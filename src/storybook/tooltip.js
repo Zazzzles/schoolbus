@@ -1,6 +1,5 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { text } from '@storybook/addon-knobs'
 
 import { Tooltip } from '../'
 
@@ -11,7 +10,9 @@ storiesOf('Tooltip', module)
     component: Tooltip,
     docs: mdx,
   })
-  .add('Basic', () => <div>
-    <Tooltip/>
-    <p data-tip="hello world">Tooltip</p>
-  </div>)
+  .add('Basic', () => (
+    <div>
+      <Tooltip />
+      <p data-tip="hello world">Tooltip</p>
+    </div>
+  ))

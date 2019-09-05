@@ -4,9 +4,11 @@ import { LanguageSetField } from '../'
 
 const defaultLanguage = {
   code: 'en-ZA',
-  value: 'English'
+  value: 'English',
 }
 
 storiesOf('Input | Language Set Field', module)
   .addParameters({ component: LanguageSetField })
-  .add('Default', () => <LanguageSetField language={defaultLanguage} name="test" placeholder="Default" />)
+  .add('Default', () => (
+    <LanguageSetField language={defaultLanguage} name="test" placeholder="Default" />
+  ))

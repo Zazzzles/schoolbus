@@ -12,7 +12,8 @@ const styleOverride = ({ fontSize, width, shape, variant, hasShadow }) => ({
     display: 'none',
   }),
   control: (provided, state) => {
-    const backgroundColor = state.isDisabled || variant === 'light' ? colors.white : colors.gray.xlight
+    const backgroundColor =
+      state.isDisabled || variant === 'light' ? colors.white : colors.gray.xlight
 
     return {
       ...provided,
