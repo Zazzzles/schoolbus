@@ -1261,10 +1261,6 @@ var mapProps = function mapProps(map) {
 };
 var errorForField = function errorForField(errors, touched, fieldname) {
   if (errors[fieldname] && touched[fieldname]) {
-    if (Array.isArray(errors[fieldname]) && errors[fieldname].length > 0) {
-      return errors[fieldname][0].value || errors[fieldname][0];
-    }
-
     return errors[fieldname] || '';
   }
 
@@ -25188,7 +25184,7 @@ function (_Component) {
           name = otherProps.name;
 
       var _createDefaultInputPr = createDefaultInputProps({
-        alertText: alertTextOverride || '',
+        alertText: alertTextOverride,
         value: value,
         onBlur: onBlur,
         onChange: onChange,
