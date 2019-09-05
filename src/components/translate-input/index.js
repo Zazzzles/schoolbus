@@ -55,7 +55,8 @@ class TranslationInput extends Component {
 
   getAlertMessage = (message = '') => {
     if (Array.isArray(message)) {
-      return message[0].value
+      const alertMessageObj = message.find(m => m && !!m.value)
+      return alertMessageObj && alertMessageObj.value
     }
 
     return message
@@ -81,8 +82,8 @@ class TranslationInput extends Component {
 
     const { id = otherProps.name, label, name } = otherProps
 
-    const { alertText, ...inputDefaults } = createDefaultInputProps({
-      alertText: alertTextOverride,
+    const { alertText, hasFormik, ...inputDefaults } = createDefaultInputProps({
+      alertText: alertTextOverride || '',
       value,
       onBlur,
       onChange,

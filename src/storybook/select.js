@@ -9,8 +9,9 @@ storiesOf('Input | Select', module)
   .addParameters({ component: Select })
   .add('Empty', () => <Select name="1" placeholder="Empty" />)
   .add('With options', () => <Select options={options} label="Label" name="2" />)
-  .add('White + Bordered', () => <Select variant="light" options={options} />)
-  .add('White + Rounded', () => (
+  .add('Light', () => <Select variant="light" options={options} />)
+  .add('Borderless', () => <Select variant="borderless" options={options} />)
+  .add('Light + Rounded', () => (
     <Select shape="rounded" variant="light" hasShadow options={options} />
   ))
   .add('Disabled', () => <Select disabled options={options} />)
