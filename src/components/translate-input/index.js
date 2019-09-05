@@ -95,7 +95,7 @@ class TranslationInput extends Component {
     const { id = otherProps.name, label, name } = otherProps
 
     const { alertText, hasFormik, ...inputDefaults } = createDefaultInputProps({
-      alertText: alertTextOverride || '',
+      alertText: alertTextOverride,
       value,
       onBlur,
       onChange,
