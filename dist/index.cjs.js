@@ -1265,7 +1265,15 @@ var mapProps = function mapProps(map) {
   };
 };
 var errorForField = function errorForField(errors, touched, fieldname) {
-  return errors[fieldname] && touched[fieldname] ? errors[fieldname] : '';
+  if (errors[fieldname] && touched[fieldname]) {
+    if (Array.isArray(errors[fieldname]) && errors[fieldname].length > 0) {
+      return errors[fieldname][0].value || errors[fieldname][0];
+    }
+
+    return errors[fieldname] || '';
+  }
+
+  return '';
 };
 
 function _templateObject$8() {
@@ -25047,7 +25055,8 @@ function (_Component) {
       _this.toggleModal();
     });
 
-    defineProperty(assertThisInitialized(_this), "updateDefaultValue", function (value) {
+    defineProperty(assertThisInitialized(_this), "updateDefaultValue", function (event) {
+      var value = event.target.value;
       var _this$props2 = _this.props,
           formik = _this$props2.formik,
           name = _this$props2.name;
@@ -25074,33 +25083,37 @@ function (_Component) {
   createClass(TranslationInput, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      var formik = this.props.formik;
+      var _this$props3 = this.props,
+          formik = _this$props3.formik,
+          name = _this$props3.name;
       var hasFormik = Object.keys(formik).length > 0;
 
       if (!hasFormik) {
-        throw Error('Translate input currently only supports formik');
+        throw Error('TranslationInput must be wrapped in a Formik provider instance');
+      }
+
+      if (!formik.values[name] || !formik.values[name][0] || formik.values[name][0].value === undefined) {
+        throw Error("TranslationInput requires a default language to be set e.g.");
       }
     }
   }, {
     key: "render",
     value: function render() {
-      var _this2 = this;
-
       var showModal = this.state.showModal;
 
-      var _this$props3 = this.props,
-          inputProps = _this$props3.inputProps,
-          type = _this$props3.type,
-          formik = _this$props3.formik,
-          value = _this$props3.value,
-          onBlur = _this$props3.onBlur,
-          onChange = _this$props3.onChange,
-          placeholder = _this$props3.placeholder,
-          onLanguagesChange = _this$props3.onLanguagesChange,
-          alertTextOverride = _this$props3.alertText,
-          disabled = _this$props3.disabled,
-          languages = _this$props3.languages,
-          otherProps = objectWithoutProperties(_this$props3, ["inputProps", "type", "formik", "value", "onBlur", "onChange", "placeholder", "onLanguagesChange", "alertText", "disabled", "languages"]);
+      var _this$props4 = this.props,
+          inputProps = _this$props4.inputProps,
+          type = _this$props4.type,
+          formik = _this$props4.formik,
+          value = _this$props4.value,
+          onBlur = _this$props4.onBlur,
+          onChange = _this$props4.onChange,
+          placeholder = _this$props4.placeholder,
+          onLanguagesChange = _this$props4.onLanguagesChange,
+          alertTextOverride = _this$props4.alertText,
+          disabled = _this$props4.disabled,
+          languages = _this$props4.languages,
+          otherProps = objectWithoutProperties(_this$props4, ["inputProps", "type", "formik", "value", "onBlur", "onChange", "placeholder", "onLanguagesChange", "alertText", "disabled", "languages"]);
 
       var _otherProps$id = otherProps.id,
           id = _otherProps$id === void 0 ? otherProps.name : _otherProps$id,
@@ -25118,15 +25131,13 @@ function (_Component) {
           alertText = _createDefaultInputPr.alertText,
           inputDefaults = objectWithoutProperties(_createDefaultInputPr, ["alertText"]);
 
+      var val = formik.values[name] && formik.values[name][0] && formik.values[name][0].value ? formik.values[name][0].value : '';
       return React__default.createElement(InputWrapper, _extends_1({
         alertText: this.getAlertMessage(alertText)
       }, otherProps), React__default.createElement(Container$3, null, React__default.createElement(StyledInput$1, _extends_1({}, inputDefaults, {
         id: id,
-        value: formik.values[name][0].value,
-        onChange: function onChange(_ref) {
-          var target = _ref.target;
-          return _this2.updateDefaultValue(target.value);
-        },
+        value: val,
+        onChange: this.updateDefaultValue,
         name: name,
         placeholder: placeholder || label,
         disabled: disabled
