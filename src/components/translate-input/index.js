@@ -23,11 +23,19 @@ class TranslationInput extends Component {
   }
 
   componentDidMount() {
-    const { formik } = this.props
+    const { formik, name } = this.props
     const hasFormik = Object.keys(formik).length > 0
 
     if (!hasFormik) {
-      throw Error('Translate input currently only supports formik')
+      throw Error('TranslationInput must be wrapped in a Formik provider instance')
+    }
+
+    if (
+      !formik.values[name] ||
+      !formik.values[name][0] ||
+      formik.values[name][0].value === undefined
+    ) {
+      throw Error(`TranslationInput requires a default language to be set e.g.`)
     }
   }
 
@@ -36,19 +44,23 @@ class TranslationInput extends Component {
   handleTranslationsSubmit = languageSets => {
     const { formik, name } = this.props
     const hasEmptySet = languageSets.some(languageSet => !languageSet.value)
+
     if (hasEmptySet) {
       toast('Oops! Please add all required translations.')
       return
     }
+
     formik.setFieldValue(name, languageSets)
 
     this.toggleModal()
   }
 
-  updateDefaultValue = value => {
+  updateDefaultValue = event => {
+    const { value } = event.target
     const { formik, name } = this.props
     const { values, setFieldValue } = formik
     const currentValue = values[name]
+
     currentValue[0].value = value
     return setFieldValue(name, currentValue)
   }
@@ -91,14 +103,19 @@ class TranslationInput extends Component {
       formik,
     })
 
+    const val =
+      formik.values[name] && formik.values[name][0] && formik.values[name][0].value
+        ? formik.values[name][0].value
+        : ''
+
     return (
       <InputWrapper alertText={this.getAlertMessage(alertText)} {...otherProps}>
         <Container>
           <StyledInput
             {...inputDefaults}
             id={id}
-            value={formik.values[name][0].value}
-            onChange={({ target }) => this.updateDefaultValue(target.value)}
+            value={val}
+            onChange={this.updateDefaultValue}
             name={name}
             placeholder={placeholder || label}
             disabled={disabled}
