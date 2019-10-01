@@ -22244,6 +22244,19 @@ function ownKeys$9(object, enumerableOnly) { var keys = Object.keys(object); if 
 
 function _objectSpread$a(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$9(source, true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$9(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
+function getBackgroundColor(variant) {
+  switch (variant) {
+    case 'borderless':
+      return colors.transparent;
+
+    case 'light':
+      return colors.white;
+
+    default:
+      return colors.gray.xlight;
+  }
+}
+
 var styleOverride = function styleOverride(_ref) {
   var fontSize = _ref.fontSize,
       shape = _ref.shape,
@@ -22256,9 +22269,8 @@ var styleOverride = function styleOverride(_ref) {
       };
     },
     control: function control(provided, state) {
-      var backgroundColor = state.isDisabled || ['light', 'borderless'].includes(variant) ? colors.white : colors.gray.xlight;
       return _objectSpread$a({}, provided, {
-        backgroundColor: backgroundColor,
+        backgroundColor: getBackgroundColor(variant),
         border: state.isDisabled && !hasShadow && variant !== 'borderless' ? "border: 1px solid ".concat(colors.gray.default) : 'none',
         borderColor: state.isDisabled ? colors.gray.default : null,
         fontFamily: fonts.Montserrat,
