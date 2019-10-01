@@ -7,19 +7,25 @@ import InputWrapper from '../input-wrapper'
 import createDefaultInputProps from '../../utils/create-input-defaults'
 import { colors, radii, fontSizes, fonts } from '../theme'
 
+function getBackgroundColor(variant) {
+  switch (variant) {
+    case 'borderless':
+      return colors.transparent
+    case 'light':
+      return colors.white
+    default:
+      return colors.gray.xlight
+  }
+}
+
 const styleOverride = ({ fontSize, shape, variant, hasShadow }) => ({
   indicatorSeparator: () => ({
     display: 'none',
   }),
   control: (provided, state) => {
-    const backgroundColor =
-      state.isDisabled || ['light', 'borderless'].includes(variant)
-        ? colors.white
-        : colors.gray.xlight
-
     return {
       ...provided,
-      backgroundColor: backgroundColor,
+      backgroundColor: getBackgroundColor(variant),
       border: state.isDisabled && !hasShadow && variant !== 'borderless'
         ? `border: 1px solid ${colors.gray.default}`
         : 'none',
