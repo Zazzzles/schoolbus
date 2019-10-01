@@ -88,7 +88,6 @@ const Select = ({
   placeholder,
   fontSize,
   multiple,
-  backgroundColor,
   alertText: alertTextOverride,
   name,
   ...otherProps
