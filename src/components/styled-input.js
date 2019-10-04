@@ -8,7 +8,7 @@ const StyledInput = styled.input`
   font-family: inherit;
   font-size: ${props => props.theme.fontSizes.small};
   padding: 0.5em 1em;
-  height: 35px;
+  height: 38px;
   border-radius: ${props => props.theme.radii.small};
   width: 100%;
 
