@@ -29,10 +29,6 @@ class ExpandingSearchInput extends Component {
       expanded: !expanded,
       value: expanded ? value : '',
     })
-
-    if (!expanded) {
-      this.input.focus()
-    }
   }
 
   render() {
@@ -44,11 +40,6 @@ class ExpandingSearchInput extends Component {
           placeholder="Search..."
           expanded={expanded}
           ref={input => (this.input = input)}
-          onBlur={e => {
-            if (e.target.value === '' && expanded) {
-              this.toggleExpanded()
-            }
-          }}
           {...this.props}
         />
         <Magnify
