@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, createRef } from 'react'
 
 import { ContainerAlt, InputAlt } from './styles'
 import Magnify from '@lessondesk/material-icons/dist/Magnify'
@@ -18,17 +18,25 @@ const ExpandedIconStyles = {
 }
 
 class ExpandingSearchInput extends Component {
-  state = {
-    expanded: false,
-    value: '',
+
+  constructor() {
+    super()
+
+    this.state = {
+      expanded: false,
+      value: '',
+    }
+
+    this.input = createRef()
   }
 
   toggleExpanded = () => {
     const { expanded, value } = this.state
+
     this.setState({
       expanded: !expanded,
       value: expanded ? value : '',
-    })
+    }, () => this.input.current.focus())
   }
 
   render() {
@@ -39,7 +47,7 @@ class ExpandingSearchInput extends Component {
           style={{ padding: '0 1em' }}
           placeholder="Search..."
           expanded={expanded}
-          ref={input => (this.input = input)}
+          ref={this.input}
           {...this.props}
         />
         <Magnify

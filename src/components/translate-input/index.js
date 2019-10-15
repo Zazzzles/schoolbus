@@ -4,14 +4,13 @@ import { connect } from 'formik'
 import Translate from '@lessondesk/material-icons/dist/Translate'
 
 import InputWrapper from '../input-wrapper'
-import StyledInput from '../styled-input'
 import TranslateModal from '../modals/translate-modal'
 import ModalWrapper from '../modals/modal-wrapper'
 
 import createDefaultInputProps from '../../utils/create-input-defaults'
 import { fontSizes, colors } from '../theme.js'
 
-import { Container, TranslateIconContainer } from './styles'
+import { Container, TranslateIconContainer, TranslateInputContainer } from './styles'
 
 class TranslationInput extends Component {
   static defaultProps = {
@@ -111,7 +110,7 @@ class TranslationInput extends Component {
     return (
       <InputWrapper alertText={this.getAlertMessage(alertText)} {...otherProps}>
         <Container>
-          <StyledInput
+          <TranslateInputContainer
             {...inputDefaults}
             id={id}
             value={val}

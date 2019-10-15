@@ -1596,7 +1596,7 @@ defineProperty(RadioButton, "defaultProps", {
 });
 
 function _templateObject$b() {
-  var data = taggedTemplateLiteral(["\n  background-color: ", ";\n  border: 1px solid\n    ", ";\n  font-family: inherit;\n  font-size: ", ";\n  padding: 0.5em 1em;\n  height: 35px;\n  border-radius: ", ";\n  width: 100%;\n\n  ::placeholder {\n    color: ", ";\n  }\n\n  ::-webkit-inner-spin-button,\n  ::-webkit-outer-spin-button {\n    /* stylelint-disable-next-line property-no-vendor-prefix */\n    -webkit-appearance: none;\n    margin: 0;\n  }\n"]);
+  var data = taggedTemplateLiteral(["\n  background-color: ", ";\n  border: 1px solid\n    ", ";\n  font-family: inherit;\n  font-size: ", ";\n  padding: 0.5em 1em;\n  height: 38px;\n  border-radius: ", ";\n  width: 100%;\n\n  ::placeholder {\n    color: ", ";\n  }\n\n  ::-webkit-inner-spin-button,\n  ::-webkit-outer-spin-button {\n    /* stylelint-disable-next-line property-no-vendor-prefix */\n    -webkit-appearance: none;\n    margin: 0;\n  }\n"]);
 
   _templateObject$b = function _templateObject() {
     return data;
@@ -33797,10 +33797,6 @@ function (_Component) {
         expanded: !expanded,
         value: expanded ? value : ''
       });
-
-      if (!expanded) {
-        _this.input.focus();
-      }
     });
 
     return _this;
@@ -33820,11 +33816,6 @@ function (_Component) {
         expanded: expanded,
         ref: function ref(input) {
           return _this2.input = input;
-        },
-        onBlur: function onBlur(e) {
-          if (e.target.value === '' && expanded) {
-            _this2.toggleExpanded();
-          }
         }
       }, this.props)), React__default.createElement(Magnify$1, {
         onClick: this.toggleExpanded,
