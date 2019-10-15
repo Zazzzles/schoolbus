@@ -1,3 +1,29 @@
+.react-tel-input > input.form-control {
+  background-color: #f4f3f4 !important;
+  border: none !important;
+  height: 38px !important;
+  width: 100% !important;
+}
+
+.react-tel-input > input.form-control:disabled {
+  background-color: #fff !important;
+  border: 1px solid #d0d0d0 !important;
+}
+
+.react-tel-input .flag-dropdown.open-dropdown .selected-flag,
+.react-tel-input .flag-dropdown:hover .selected-flag,
+.react-tel-input .flag-dropdown.open-dropdown,
+.react-tel-input > .flag-dropdown,
+.react-tel-input .selected-flag {
+  background-color: transparent !important;
+  border: none !important;
+  z-index: inherit !important;
+}
+
+.react-tel-input .selected-flag {
+  padding-left: 12px !important;
+}
+
 .react-datepicker-wrapper {
   width: 100% !important;
 }
@@ -51,32 +77,6 @@
 .react-datepicker {
   box-shadow: 0 0 2px 0 rgba(0,0,0,.0625), 0 4px 8px 0 rgba(0, 0, 0, 0.12) !important;
     border: none !important;
-}
-
-.react-tel-input > input.form-control {
-  background-color: #f4f3f4 !important;
-  border: none !important;
-  height: 38px !important;
-  width: 100% !important;
-}
-
-.react-tel-input > input.form-control:disabled {
-  background-color: #fff !important;
-  border: 1px solid #d0d0d0 !important;
-}
-
-.react-tel-input .flag-dropdown.open-dropdown .selected-flag,
-.react-tel-input .flag-dropdown:hover .selected-flag,
-.react-tel-input .flag-dropdown.open-dropdown,
-.react-tel-input > .flag-dropdown,
-.react-tel-input .selected-flag {
-  background-color: transparent !important;
-  border: none !important;
-  z-index: inherit !important;
-}
-
-.react-tel-input .selected-flag {
-  padding-left: 12px !important;
 }
 
 .rc-slider {

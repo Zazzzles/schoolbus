@@ -25059,6 +25059,16 @@ ModalWrapper.defaultProps = {
 };
 ReactModal.setAppElement('body');
 
+function _templateObject3$5() {
+  var data = taggedTemplateLiteral(["\n  padding-right: 3em;\n"]);
+
+  _templateObject3$5 = function _templateObject3() {
+    return data;
+  };
+
+  return data;
+}
+
 function _templateObject2$7() {
   var data = taggedTemplateLiteral(["\n  position: absolute;\n  right: 0.8em;\n  cursor: pointer;\n  line-height: 0;\n"]);
 
@@ -25080,6 +25090,7 @@ function _templateObject$j() {
 }
 var Container$3 = styled__default.div(_templateObject$j());
 var TranslateIconContainer = styled__default.div(_templateObject2$7());
+var TranslateInputContainer = styled__default(StyledInput$1)(_templateObject3$5());
 
 var TranslationInput =
 /*#__PURE__*/
@@ -25209,7 +25220,7 @@ function (_Component) {
       var val = formik.values[name] && formik.values[name][0] && formik.values[name][0].value ? formik.values[name][0].value : '';
       return React__default.createElement(InputWrapper, _extends_1({
         alertText: this.getAlertMessage(alertText)
-      }, otherProps), React__default.createElement(Container$3, null, React__default.createElement(StyledInput$1, _extends_1({}, inputDefaults, {
+      }, otherProps), React__default.createElement(Container$3, null, React__default.createElement(TranslateInputContainer, _extends_1({}, inputDefaults, {
         id: id,
         value: val,
         onChange: this.updateDefaultValue,
@@ -33658,10 +33669,10 @@ function _templateObject4$3() {
   return data;
 }
 
-function _templateObject3$5() {
+function _templateObject3$6() {
   var data = taggedTemplateLiteral(["\n  border: none;\n  background: transparent;\n  border-radius: 10em;\n  padding: 0.6em;\n  margin-right: 1em;\n  transition: transform 0.3s, opacity 0.3s;\n  width: 15em;\n  transform: ", ";\n  transform-origin: right;\n  opacity: ", ";\n  font-size: inherit;\n"]);
 
-  _templateObject3$5 = function _templateObject3() {
+  _templateObject3$6 = function _templateObject3() {
     return data;
   };
 
@@ -33689,7 +33700,7 @@ function _templateObject$l() {
 }
 var Container$5 = styled__default.div(_templateObject$l());
 var ContainerAlt = styled__default.div(_templateObject2$9());
-var Input$3 = styled__default.input(_templateObject3$5(), function (props) {
+var Input$3 = styled__default.input(_templateObject3$6(), function (props) {
   return props.expanded ? 'scaleX(1)' : 'scaleX(0)';
 }, function (props) {
   return props.expanded ? '1' : '0';
@@ -33771,22 +33782,11 @@ function (_Component) {
   inherits(ExpandingSearchInput, _Component);
 
   function ExpandingSearchInput() {
-    var _getPrototypeOf2;
-
     var _this;
 
     classCallCheck(this, ExpandingSearchInput);
 
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(ExpandingSearchInput)).call.apply(_getPrototypeOf2, [this].concat(args)));
-
-    defineProperty(assertThisInitialized(_this), "state", {
-      expanded: false,
-      value: ''
-    });
+    _this = possibleConstructorReturn(this, getPrototypeOf(ExpandingSearchInput).call(this));
 
     defineProperty(assertThisInitialized(_this), "toggleExpanded", function () {
       var _this$state = _this.state,
@@ -33796,17 +33796,22 @@ function (_Component) {
       _this.setState({
         expanded: !expanded,
         value: expanded ? value : ''
+      }, function () {
+        return _this.input.current.focus();
       });
     });
 
+    _this.state = {
+      expanded: false,
+      value: ''
+    };
+    _this.input = React.createRef();
     return _this;
   }
 
   createClass(ExpandingSearchInput, [{
     key: "render",
     value: function render() {
-      var _this2 = this;
-
       var expanded = this.state.expanded;
       return React__default.createElement(ContainerAlt, null, React__default.createElement(InputAlt, _extends_1({
         style: {
@@ -33814,9 +33819,7 @@ function (_Component) {
         },
         placeholder: "Search...",
         expanded: expanded,
-        ref: function ref(input) {
-          return _this2.input = input;
-        }
+        ref: this.input
       }, this.props)), React__default.createElement(Magnify$1, {
         onClick: this.toggleExpanded,
         style: _objectSpread$e({}, IconAltStyling, {}, expanded && ExpandedIconStyles),
@@ -33834,10 +33837,10 @@ function ownKeys$e(object, enumerableOnly) { var keys = Object.keys(object); if 
 
 function _objectSpread$f(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$e(source, true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$e(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
-function _templateObject3$6() {
+function _templateObject3$7() {
   var data = taggedTemplateLiteral(["\n  cursor: pointer;\n  position: relative;\n  height: 40px;\n  background-color: ", ";\n\n  ::before {\n    background: ", ";\n    border-radius: 8px;\n    content: '';\n    height: 15px;\n    margin-top: 15px;\n    position: absolute;\n    opacity: 0.3;\n    transition: all 0.4s ease-in-out;\n    width: 40px;\n  }\n\n  ::after {\n    background: ", ";\n    border-radius: 16px;\n    box-shadow: ", ";\n    content: '';\n    height: 24px;\n    left: 0px;\n    margin-top: 13px;\n    position: absolute;\n    top: -3px;\n    transition: all 0.3s ease-in-out;\n    width: 24px;\n  }\n\n  /* stylelint-disable-next-line selector-type-no-unknown */\n  ", ":checked + &::before {\n    background: ", ";\n    opacity: 0.5;\n  }\n\n  /* stylelint-disable-next-line selector-type-no-unknown */\n  ", ":checked + &::after {\n    background: ", ";\n    left: 20px;\n  }\n"]);
 
-  _templateObject3$6 = function _templateObject3() {
+  _templateObject3$7 = function _templateObject3() {
     return data;
   };
 
@@ -33865,7 +33868,7 @@ function _templateObject$m() {
 }
 var ToggleContainer = styled__default.div(_templateObject$m(), styledSystem.space, styledSystem.layout);
 var ToggleInput = styled__default.input(_templateObject2$a());
-var ToggleLabel = styled__default.label(_templateObject3$6(), function (props) {
+var ToggleLabel = styled__default.label(_templateObject3$7(), function (props) {
   return props.theme.colors.gray.xdark;
 }, function (props) {
   return props.theme.colors.gray.default;
