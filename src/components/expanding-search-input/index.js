@@ -11,6 +11,7 @@ const IconAltStyling = {
   borderRadius: '100%',
   padding: '9px',
   fontSize: '32px',
+  cursor: 'pointer',
 }
 
 const ExpandedIconStyles = {
