@@ -22040,10 +22040,23 @@ function (_Component) {
     _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(TimeInput)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     defineProperty(assertThisInitialized(_this), "state", {
-      showDialogue: false
+      showDialogue: false,
+      renderAtBottom: true
     });
 
     defineProperty(assertThisInitialized(_this), "toggleDialogue", function (showDialogue) {
+      if (showDialogue && _this.input) {
+        var _this$input$getBoundi = _this.input.getBoundingClientRect(),
+            top = _this$input$getBoundi.top;
+
+        var innerHeight = window.innerHeight;
+        var renderAtBottom = innerHeight - top > 340 || top < 300;
+        return _this.setState({
+          showDialogue: showDialogue,
+          renderAtBottom: renderAtBottom
+        });
+      }
+
       _this.setState({
         showDialogue: showDialogue
       });
@@ -22052,7 +22065,7 @@ function (_Component) {
     defineProperty(assertThisInitialized(_this), "handleClickOutside", function (_ref) {
       var target = _ref.target;
 
-      if (_this.node && _this.node.contains(target)) {
+      if (_this.clock && _this.clock.contains(target)) {
         return;
       }
 
@@ -22084,17 +22097,26 @@ function (_Component) {
     value: function render() {
       var _this2 = this;
 
-      var showDialogue = this.state.showDialogue;
+      var _this$state = this.state,
+          showDialogue = _this$state.showDialogue,
+          renderAtBottom = _this$state.renderAtBottom;
+      var wrapperPosition = renderAtBottom ? {
+        top: 65
+      } : {
+        bottom: 45
+      };
       var _this$props2 = this.props,
           formik = _this$props2.formik,
           disabled = _this$props2.disabled,
           timeFormat = _this$props2.timeFormat,
           placeholder = _this$props2.placeholder,
-          name = _this$props2.name;
+          name = _this$props2.name,
+          label = _this$props2.label;
       var timeObj = formik.values && formik.values[name];
       var formattedTime = timeObj && timeObj["formatted".concat(timeFormat)];
       var errorText = errorForField(formik.errors, formik.touched, name);
       return React__default.createElement(InputWrapper, {
+        label: label,
         alertText: errorText,
         onClick: function onClick() {
           return _this2.toggleDialogue(true);
@@ -22104,15 +22126,20 @@ function (_Component) {
         name: "timeInput",
         placeholder: placeholder,
         value: formattedTime ? formattedTime : '',
-        onChange: function onChange() {}
+        onChange: function onChange() {},
+        ref: function ref(node) {
+          return _this2.input = node;
+        },
+        width: "100%"
       }), React__default.createElement(ClockOutline$1, {
         style: iconStyles$1,
         color: colors.gray.dark
       }), showDialogue && React__default.createElement("div", {
         className: "clock-wrapper",
         ref: function ref(node) {
-          return _this2.node = node;
-        }
+          return _this2.clock = node;
+        },
+        style: wrapperPosition
       }, React__default.createElement(TimeKeeper, {
         hour24Mode: timeFormat === "24",
         switchToMinuteOnHourSelect: true,
@@ -27497,7 +27524,7 @@ var TypeInput = function TypeInput(_ref) {
 var index$5 = formik.connect(TypeInput);
 
 /*!
- * reactjs-popup v1.4.1
+ * reactjs-popup v1.5.0
  * (c) 2019-present Youssouf EL AZIZI <youssoufelazizi@gmail.com>
  * Released under the MIT License.
  */
@@ -27751,34 +27778,6 @@ function calculatePosition(triggerBounding, ContentBounding, positions, arrow, _
   return bestCoords;
 }
 
-var Ref =
-/*#__PURE__*/
-function (_React$PureComponent) {
-  _inherits$2(Ref, _React$PureComponent);
-
-  function Ref() {
-    _classCallCheck$2(this, Ref);
-
-    return _possibleConstructorReturn$2(this, _getPrototypeOf$1(Ref).apply(this, arguments));
-  }
-
-  _createClass$2(Ref, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      var innerRef = this.props.innerRef;
-      if (innerRef) innerRef(ReactDOM.findDOMNode(this));
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      var children = this.props.children;
-      return React__default.Children.only(children);
-    }
-  }]);
-
-  return Ref;
-}(React__default.PureComponent);
-
 var styles = {
   popupContent: {
     tooltip: {
@@ -27844,15 +27843,15 @@ function (_React$PureComponent) {
 
     _this = _possibleConstructorReturn$2(this, _getPrototypeOf$1(Popup).call(this, props));
 
-    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "repositionOnResize", function () {
+    _defineProperty$2(_assertThisInitialized$2(_this), "repositionOnResize", function () {
       _this.setPosition();
     });
 
-    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "onEscape", function (e) {
+    _defineProperty$2(_assertThisInitialized$2(_this), "onEscape", function (e) {
       if (e.key === 'Escape') _this.closePopup();
     });
 
-    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "lockScroll", function () {
+    _defineProperty$2(_assertThisInitialized$2(_this), "lockScroll", function () {
       var lockScroll = _this.props.lockScroll;
       var modal = _this.state.modal;
       if (modal && lockScroll)
@@ -27860,7 +27859,7 @@ function (_React$PureComponent) {
         document.getElementsByTagName('body')[0].style.overflow = 'hidden';
     });
 
-    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "resetScroll", function () {
+    _defineProperty$2(_assertThisInitialized$2(_this), "resetScroll", function () {
       var lockScroll = _this.props.lockScroll;
       var modal = _this.state.modal;
       if (modal && lockScroll)
@@ -27868,13 +27867,13 @@ function (_React$PureComponent) {
         document.getElementsByTagName('body')[0].style.overflow = 'auto';
     });
 
-    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "togglePopup", function (e) {
+    _defineProperty$2(_assertThisInitialized$2(_this), "togglePopup", function (e) {
       // https://reactjs.org/docs/events.html#event-pooling
       e.persist();
       if (_this.state.isOpen) _this.closePopup(e);else _this.openPopup(e);
     });
 
-    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "openPopup", function (e) {
+    _defineProperty$2(_assertThisInitialized$2(_this), "openPopup", function (e) {
       var _this$props = _this.props,
           disabled = _this$props.disabled,
           onOpen = _this$props.onOpen;
@@ -27891,7 +27890,7 @@ function (_React$PureComponent) {
       });
     });
 
-    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "closePopup", function (e) {
+    _defineProperty$2(_assertThisInitialized$2(_this), "closePopup", function (e) {
       var onClose = _this.props.onClose;
       var isOpen = _this.state.isOpen;
       if (!isOpen) return;
@@ -27904,7 +27903,7 @@ function (_React$PureComponent) {
       });
     });
 
-    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "onMouseEnter", function () {
+    _defineProperty$2(_assertThisInitialized$2(_this), "onMouseEnter", function () {
       clearTimeout(_this.timeOut);
       var mouseEnterDelay = _this.props.mouseEnterDelay;
       _this.timeOut = setTimeout(function () {
@@ -27912,7 +27911,7 @@ function (_React$PureComponent) {
       }, mouseEnterDelay);
     });
 
-    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "onMouseLeave", function () {
+    _defineProperty$2(_assertThisInitialized$2(_this), "onMouseLeave", function () {
       clearTimeout(_this.timeOut);
       var mouseLeaveDelay = _this.props.mouseLeaveDelay;
       _this.timeOut = setTimeout(function () {
@@ -27920,7 +27919,7 @@ function (_React$PureComponent) {
       }, mouseLeaveDelay);
     });
 
-    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "getTooltipBoundary", function () {
+    _defineProperty$2(_assertThisInitialized$2(_this), "getTooltipBoundary", function () {
       var keepTooltipInside = _this.props.keepTooltipInside;
       var boundingBox = {
         top: 0,
@@ -27947,7 +27946,7 @@ function (_React$PureComponent) {
       return boundingBox;
     });
 
-    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "setPosition", function () {
+    _defineProperty$2(_assertThisInitialized$2(_this), "setPosition", function () {
       var _this$state = _this.state,
           modal = _this$state.modal,
           isOpen = _this$state.isOpen;
@@ -28000,7 +27999,7 @@ function (_React$PureComponent) {
       window.getComputedStyle(_this.TriggerEl, null).getPropertyValue('position') === '') _this.TriggerEl.style.position = 'relative';
     });
 
-    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "addWarperAction", function () {
+    _defineProperty$2(_assertThisInitialized$2(_this), "addWarperAction", function () {
       var _this$props3 = _this.props,
           contentStyle = _this$props3.contentStyle,
           className = _this$props3.className,
@@ -28024,9 +28023,10 @@ function (_React$PureComponent) {
       return childrenElementProps;
     });
 
-    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "renderTrigger", function () {
+    _defineProperty$2(_assertThisInitialized$2(_this), "renderTrigger", function () {
       var triggerProps = {
-        key: 'T'
+        key: 'T',
+        ref: _this.setTriggerRef
       };
       var _this$props4 = _this.props,
           on = _this$props4.on,
@@ -28053,11 +28053,11 @@ function (_React$PureComponent) {
         }
       }
 
-      if (typeof trigger === 'function') return React__default.cloneElement(trigger(isOpen), triggerProps);
-      return React__default.cloneElement(trigger, triggerProps);
+      if (typeof trigger === 'function') return !!trigger && React__default.cloneElement(trigger(isOpen), triggerProps);
+      return !!trigger && React__default.cloneElement(trigger, triggerProps);
     });
 
-    _defineProperty$2(_assertThisInitialized$2(_assertThisInitialized$2(_this)), "renderContent", function () {
+    _defineProperty$2(_assertThisInitialized$2(_this), "renderContent", function () {
       var _this$props5 = _this.props,
           arrow = _this$props5.arrow,
           arrowStyle = _this$props5.arrowStyle,
@@ -28122,17 +28122,18 @@ function (_React$PureComponent) {
       }
     }
   }, {
-    key: "componentWillReceiveProps",
-    value: function componentWillReceiveProps(nextProps) {
-      if (this.props.open === nextProps.open) return;
-      if (nextProps.open) this.openPopup();else this.closePopup();
-    }
-  }, {
     key: "componentDidUpdate",
     value: function componentDidUpdate(prevProps) {
-      var disabled = this.props.disabled;
+      var _this$props7 = this.props,
+          open = _this$props7.open,
+          disabled = _this$props7.disabled;
+      var isOpen = this.state.isOpen;
 
-      if (prevProps.disabled !== disabled && disabled && this.state.isOpen) {
+      if (prevProps.open !== open) {
+        if (open) this.openPopup();else this.closePopup(undefined, true);
+      }
+
+      if (prevProps.disabled !== disabled && disabled && isOpen) {
         this.closePopup();
       }
     }
@@ -28141,9 +28142,9 @@ function (_React$PureComponent) {
     value: function componentWillUnmount() {
       // kill any function to execute if the component is unmounted
       clearTimeout(this.timeOut);
-      var _this$props7 = this.props,
-          closeOnEscape = _this$props7.closeOnEscape,
-          repositionOnResize = _this$props7.repositionOnResize; // remove events listeners
+      var _this$props8 = this.props,
+          closeOnEscape = _this$props8.closeOnEscape,
+          repositionOnResize = _this$props8.repositionOnResize; // remove events listeners
 
       if (closeOnEscape) {
         /* eslint-disable-next-line no-undef */
@@ -28160,21 +28161,18 @@ function (_React$PureComponent) {
   }, {
     key: "render",
     value: function render() {
-      var _this$props8 = this.props,
-          overlayStyle = _this$props8.overlayStyle,
-          closeOnDocumentClick = _this$props8.closeOnDocumentClick,
-          className = _this$props8.className,
-          on = _this$props8.on,
-          trigger = _this$props8.trigger;
+      var _this$props9 = this.props,
+          overlayStyle = _this$props9.overlayStyle,
+          closeOnDocumentClick = _this$props9.closeOnDocumentClick,
+          className = _this$props9.className,
+          on = _this$props9.on,
+          trigger = _this$props9.trigger;
       var _this$state3 = this.state,
           modal = _this$state3.modal,
           isOpen = _this$state3.isOpen;
       var overlay = isOpen && !(on.indexOf('hover') >= 0);
       var ovStyle = modal ? styles.overlay.modal : styles.overlay.tooltip;
-      return [!!trigger && React__default.createElement(Ref, {
-        innerRef: this.setTriggerRef,
-        key: "R"
-      }, this.renderTrigger()), isOpen && React__default.createElement("div", {
+      return [this.renderTrigger(), isOpen && React__default.createElement("div", {
         key: "H",
         style: {
           position: 'absolute',
