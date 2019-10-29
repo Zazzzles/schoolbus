@@ -28,7 +28,8 @@ class TimeInput extends Component {
   }
 
   state = {
-    showDialogue: false
+    showDialogue: false,
+    renderAtBottom: true
   }
 
   componentDidMount() {
@@ -40,11 +41,17 @@ class TimeInput extends Component {
   }
 
   toggleDialogue = showDialogue => {
+    if (showDialogue && this.input) {
+      const { top } = this.input.getBoundingClientRect()
+      const innerHeight = window.innerHeight
+      const renderAtBottom = (innerHeight-top > 340 || top < 300)
+      return this.setState({ showDialogue, renderAtBottom })
+    }
     this.setState({ showDialogue })
   }
 
   handleClickOutside = ({target}) => {
-    if (this.node && this.node.contains(target)) {
+    if (this.clock && this.clock.contains(target)) {
       return
     }
     this.toggleDialogue(false)
@@ -56,14 +63,16 @@ class TimeInput extends Component {
   }
 
   render () {
-    const { showDialogue } = this.state
+    const { showDialogue, renderAtBottom } = this.state
+    const wrapperPosition = renderAtBottom ? {top: 65} : {bottom: 45}
 
     const {
       formik,
       disabled,
       timeFormat,
       placeholder,
-      name
+      name,
+      label
     } = this.props
 
     const timeObj = formik.values && formik.values[name]
@@ -72,6 +81,7 @@ class TimeInput extends Component {
 
     return (
       <InputWrapper
+        label={label}
         alertText={errorText}
         onClick={() => this.toggleDialogue(true)}
       >
@@ -81,13 +91,16 @@ class TimeInput extends Component {
           placeholder={placeholder}
           value={formattedTime ? formattedTime : ''}
           onChange={() => {}}
+          ref={node => this.input = node}
+          width="100%"
         />
         <ClockOutline style={iconStyles} color={colors.gray.dark} />
 
         {showDialogue && (
           <div
             className='clock-wrapper'
-            ref={node => this.node = node}
+            ref={node => this.clock = node}
+            style={wrapperPosition}
           >
             <TimeKeeper
               hour24Mode={timeFormat==="24"}

@@ -1,7 +1,6 @@
 .clock-wrapper {
   position: absolute;
   z-index: 1;
-  top: 45px;
   font-family: inherit
 }
 
