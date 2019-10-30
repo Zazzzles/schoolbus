@@ -24,7 +24,8 @@ class TimeInput extends Component {
     name: 'time',
     label: 'Time',
     timeFormat: '12',
-    placeholder: 'Set'
+    placeholder: 'Set',
+    disabled: false,
   }
 
   state = {
@@ -41,6 +42,10 @@ class TimeInput extends Component {
   }
 
   toggleDialogue = showDialogue => {
+    const { disabled } = this.props
+
+    if (disabled) return
+
     if (showDialogue && this.input) {
       const { top } = this.input.getBoundingClientRect()
       const innerHeight = window.innerHeight
@@ -90,6 +95,7 @@ class TimeInput extends Component {
           name="timeInput"
           placeholder={placeholder}
           value={formattedTime ? formattedTime : ''}
+          disabled={disabled}
           onChange={() => {}}
           ref={node => this.input = node}
           width="100%"

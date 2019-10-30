@@ -22045,6 +22045,9 @@ function (_Component) {
     });
 
     defineProperty(assertThisInitialized(_this), "toggleDialogue", function (showDialogue) {
+      var disabled = _this.props.disabled;
+      if (disabled) return;
+
       if (showDialogue && _this.input) {
         var _this$input$getBoundi = _this.input.getBoundingClientRect(),
             top = _this$input$getBoundi.top;
@@ -22126,6 +22129,7 @@ function (_Component) {
         name: "timeInput",
         placeholder: placeholder,
         value: formattedTime ? formattedTime : '',
+        disabled: disabled,
         onChange: function onChange() {},
         ref: function ref(node) {
           return _this2.input = node;
@@ -22163,7 +22167,8 @@ defineProperty(TimeInput, "defaultProps", {
   name: 'time',
   label: 'Time',
   timeFormat: '12',
-  placeholder: 'Set'
+  placeholder: 'Set',
+  disabled: false
 });
 
 var index$1 = formik.connect(TimeInput);
