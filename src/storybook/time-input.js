@@ -15,3 +15,8 @@ storiesOf('Input | Time Input', module)
       <TimeInput timeFormat="24" label="With Formik" />
     </Formik>
   ))
+  .add('Disabled', () => (
+    <Formik>
+      <TimeInput timeFormat="24" label="With Formik" disabled/>
+    </Formik>
+  ))
