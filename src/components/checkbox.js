@@ -26,7 +26,7 @@ const StyledInput = styled.input.attrs({
 
   &:checked,
   &:indeterminate {
-    background-color: ${props => props.theme.colors.primary};
+    background-color: ${props => props.theme.colors.gray};
   }
 
   &:active {
@@ -36,7 +36,7 @@ const StyledInput = styled.input.attrs({
   }
 
   &:active + span::before {
-    border-color: ${props => props.theme.colors.primary};
+    border-color: ${props => props.theme.colors.gray};
   }
 
   &:checked:active + span::before {
@@ -50,7 +50,7 @@ const StyledInput = styled.input.attrs({
 
   &:disabled + span {
     color: rgba(0, 0, 0, 0.3);
-    cursor: initial;
+    cursor: not-allowed;
   }
 
   &:disabled + span::before {
@@ -82,7 +82,6 @@ const StyledLabel = styled.label`
 const StyledSpan = styled.span`
   display: inline-block;
   width: 100%;
-  cursor: pointer;
 
   ${({ labelled }) => `
     &::before {
@@ -117,8 +116,10 @@ const StyledSpan = styled.span`
 
   ${/* sc-selector */ StyledInput}:checked + &::before,
   ${/* sc-selector */ StyledInput}:indeterminate + &::before {
-    border-color: ${props => props.theme.colors.primary};
-    background-color: ${props => props.theme.colors.primary};
+    border-color: ${({ theme, disabled }) => disabled
+      ? theme.colors.gray[2] : theme.colors.primary};
+    background-color: ${({ theme, disabled }) => disabled
+      ? theme.colors.gray[2] : theme.colors.primary};
   }
 
   ${/* sc-selector */ StyledInput}:checked + &::after,
@@ -135,11 +136,11 @@ const StyledSpan = styled.span`
 class Checkbox extends React.PureComponent {
   render() {
     const { children, onChange, checked, onBlur, disabled, ...props } = this.props
-  
+
     return (
       <StyledLabel {...props}>
         <StyledInput onChange={onChange} onBlur={onBlur} checked={checked} disabled={disabled} />
-        <StyledSpan labelled={children}>{children}</StyledSpan>
+        <StyledSpan disabled={disabled} labelled={children}>{children}</StyledSpan>
       </StyledLabel>
     )
   }
