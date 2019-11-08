@@ -1299,7 +1299,7 @@ Flex.propTypes = _objectSpread$6({}, styledSystem.space.propTypes, {}, styledSys
 Flex.displayName = 'Flex';
 
 function _templateObject3$1() {
-  var data = taggedTemplateLiteral(["\n  display: inline-block;\n  width: 100%;\n  cursor: pointer;\n\n  ", "\n\n  &::after {\n    content: '';\n    display: block;\n    position: absolute;\n    box-sizing: border-box;\n    top: 4px;\n    left: 2px;\n    width: 10px;\n    height: 5px;\n    border: solid 2px transparent;\n    border-right: none;\n    border-top: none;\n    transform: translate(3px, 4px) rotate(-45deg);\n  }\n\n  ", ":checked + &::before,\n  ", ":indeterminate + &::before {\n    border-color: ", ";\n    background-color: ", ";\n  }\n\n  ", ":checked + &::after,\n  ", ":indeterminate + &::after {\n    border-color: rgb(255, 255, 255);\n  }\n\n  ", ":indeterminate + &::after {\n    border-left: none;\n    transform: translate(4px, 3px);\n  }\n"]);
+  var data = taggedTemplateLiteral(["\n  display: inline-block;\n  width: 100%;\n\n  ", "\n\n  &::after {\n    content: '';\n    display: block;\n    position: absolute;\n    box-sizing: border-box;\n    top: 4px;\n    left: 2px;\n    width: 10px;\n    height: 5px;\n    border: solid 2px transparent;\n    border-right: none;\n    border-top: none;\n    transform: translate(3px, 4px) rotate(-45deg);\n  }\n\n  ", ":checked + &::before,\n  ", ":indeterminate + &::before {\n    border-color: ", ";\n    background-color: ", ";\n  }\n\n  ", ":checked + &::after,\n  ", ":indeterminate + &::after {\n    border-color: rgb(255, 255, 255);\n  }\n\n  ", ":indeterminate + &::after {\n    border-left: none;\n    transform: translate(4px, 3px);\n  }\n"]);
 
   _templateObject3$1 = function _templateObject3() {
     return data;
@@ -1319,7 +1319,7 @@ function _templateObject2$1() {
 }
 
 function _templateObject$9() {
-  var data = taggedTemplateLiteral(["\n  appearance: none;\n  z-index: -1;\n  position: absolute;\n  left: -10px;\n  top: -8px;\n  display: block;\n  margin: 0;\n  border-radius: ", ";\n  width: 40px;\n  height: 40px;\n  background-color: rgba(0, 0, 0, 0.6);\n  box-shadow: none;\n  outline: none;\n  opacity: 0;\n  transform: scale(1);\n  pointer-events: none;\n  transition: opacity 0.3s, transform 0.2s;\n\n  &:checked,\n  &:indeterminate {\n    background-color: ", ";\n  }\n\n  &:active {\n    opacity: 1;\n    transform: scale(0);\n    transition: transform 0s, opacity 0s;\n  }\n\n  &:active + span::before {\n    border-color: ", ";\n  }\n\n  &:checked:active + span::before {\n    border-color: transparent;\n    background-color: rgba(0, 0, 0, 0.6);\n  }\n\n  &:disabled {\n    opacity: 0;\n  }\n\n  &:disabled + span {\n    color: rgba(0, 0, 0, 0.3);\n    cursor: initial;\n  }\n\n  &:disabled + span::before {\n    border-color: rgba(0, 0, 0, 0.3);\n  }\n"]);
+  var data = taggedTemplateLiteral(["\n  appearance: none;\n  z-index: -1;\n  position: absolute;\n  left: -10px;\n  top: -8px;\n  display: block;\n  margin: 0;\n  border-radius: ", ";\n  width: 40px;\n  height: 40px;\n  background-color: rgba(0, 0, 0, 0.6);\n  box-shadow: none;\n  outline: none;\n  opacity: 0;\n  transform: scale(1);\n  pointer-events: none;\n  transition: opacity 0.3s, transform 0.2s;\n\n  &:checked,\n  &:indeterminate {\n    background-color: ", ";\n  }\n\n  &:active {\n    opacity: 1;\n    transform: scale(0);\n    transition: transform 0s, opacity 0s;\n  }\n\n  &:active + span::before {\n    border-color: ", ";\n  }\n\n  &:checked:active + span::before {\n    border-color: transparent;\n    background-color: rgba(0, 0, 0, 0.6);\n  }\n\n  &:disabled {\n    opacity: 0;\n  }\n\n  &:disabled + span {\n    color: rgba(0, 0, 0, 0.3);\n    cursor: not-allowed;\n  }\n\n  &:disabled + span::before {\n    border-color: rgba(0, 0, 0, 0.3);\n  }\n"]);
 
   _templateObject$9 = function _templateObject() {
     return data;
@@ -1332,9 +1332,9 @@ var StyledInput = styled__default.input.attrs({
 })(_templateObject$9(), function (props) {
   return props.theme.radii.full;
 }, function (props) {
-  return props.theme.colors.primary;
+  return props.theme.colors.gray;
 }, function (props) {
-  return props.theme.colors.primary;
+  return props.theme.colors.gray;
 });
 var StyledLabel = styled__default.label(_templateObject2$1(), function (props) {
   return props.theme.fonts[0];
@@ -1356,10 +1356,14 @@ var StyledSpan = styled__default.span(_templateObject3$1(), function (_ref) {
 /* sc-selector */
 StyledInput,
 /* sc-selector */
-StyledInput, function (props) {
-  return props.theme.colors.primary;
-}, function (props) {
-  return props.theme.colors.primary;
+StyledInput, function (_ref2) {
+  var theme = _ref2.theme,
+      disabled = _ref2.disabled;
+  return disabled ? theme.colors.gray[2] : theme.colors.primary;
+}, function (_ref3) {
+  var theme = _ref3.theme,
+      disabled = _ref3.disabled;
+  return disabled ? theme.colors.gray[2] : theme.colors.primary;
 },
 /* sc-selector */
 StyledInput,
@@ -1396,6 +1400,7 @@ function (_React$PureComponent) {
         checked: checked,
         disabled: disabled
       }), React.createElement(StyledSpan, {
+        disabled: disabled,
         labelled: children
       }, children));
     }
