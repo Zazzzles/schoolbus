@@ -15253,7 +15253,8 @@ var DateInput = function DateInput(props) {
     id: id,
     placeholderText: placeholder || label,
     disabled: disabled,
-    name: name
+    name: name,
+    autoComplete: "off"
   }, inputProps)), React__default.createElement(CalendarToday$1, {
     style: iconStyles,
     color: colors.gray.dark
