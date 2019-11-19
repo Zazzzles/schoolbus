@@ -79,6 +79,7 @@ const DateInput = props => {
         placeholderText={placeholder || label}
         disabled={disabled}
         name={name}
+        autoComplete='off'
         {...inputProps}
       />
       <CalendarToday style={iconStyles} color={colors.gray.dark} />
