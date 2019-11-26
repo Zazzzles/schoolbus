@@ -4,6 +4,25 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
+function _interopNamespace(e) {
+  if (e && e.__esModule) { return e; } else {
+    var n = {};
+    if (e) {
+      Object.keys(e).forEach(function (k) {
+        var d = Object.getOwnPropertyDescriptor(e, k);
+        Object.defineProperty(n, k, d.get ? d : {
+          enumerable: true,
+          get: function () {
+            return e[k];
+          }
+        });
+      });
+    }
+    n['default'] = e;
+    return n;
+  }
+}
+
 var React = require('react');
 var React__default = _interopDefault(React);
 var PropTypes$1 = _interopDefault(require('prop-types'));
@@ -14,6 +33,23 @@ var styledSystem__default = _interopDefault(styledSystem);
 var formik = require('formik');
 var ReactDOM = require('react-dom');
 var ReactDOM__default = _interopDefault(ReactDOM);
+
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+
+var defineProperty = _defineProperty;
 
 var addAliases = function addAliases(arr, aliases) {
   return aliases.forEach(function (key, i) {
@@ -30,7 +66,7 @@ var space = [0, 4, 8, 16, 32, 64, 128, 256, 512];
 var fontSizes = ['0.5em', '0.625em', '0.75em', '0.875em', '1em', '1.25em', '1.5em', '2em', '3em', '4em', '5em'];
 var fontSizeAliases = ['xxxsmall', 'xxsmall', 'xsmall', 'small', 'medium', 'large', 'xlarge', 'xxlarge'];
 addAliases(fontSizes, fontSizeAliases);
-var colors = {
+var colors = defineProperty({
   white: '#fff',
   gray: ['#f4f3f4', '#dfdfdf', '#d0d0d0', '#777879', '#808080', '#47494B'],
   black: '#212325',
@@ -40,7 +76,7 @@ var colors = {
   red: ['#f6bdbb', '#ed7470', '#e53933', '#9f1814', '#71110e'],
   yellow: '#f8b31c',
   orange: ['#fff8eb', '#ffa400']
-};
+}, "transparent", 'rgba(0, 0, 0, .2)');
 colors.primary = colors.orange[1];
 var orangeColorAliases = ['primaryLight', 'primary'];
 addAliases(colors.orange, orangeColorAliases);
@@ -177,23 +213,6 @@ function _templateObject$1() {
 }
 var Visuallyhidden = styled__default.span(_templateObject$1());
 Visuallyhidden.displayName = 'Visuallyhidden';
-
-function _defineProperty(obj, key, value) {
-  if (key in obj) {
-    Object.defineProperty(obj, key, {
-      value: value,
-      enumerable: true,
-      configurable: true,
-      writable: true
-    });
-  } else {
-    obj[key] = value;
-  }
-
-  return obj;
-}
-
-var defineProperty = _defineProperty;
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
@@ -469,6 +488,258 @@ function _objectWithoutProperties(source, excluded) {
 
 var objectWithoutProperties = _objectWithoutProperties;
 
+var _extends_1 = createCommonjsModule(function (module) {
+function _extends() {
+  module.exports = _extends = Object.assign || function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+
+    return target;
+  };
+
+  return _extends.apply(this, arguments);
+}
+
+module.exports = _extends;
+});
+
+function _templateObject2() {
+  var data = taggedTemplateLiteral(["\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  position: absolute;\n  top: -5px;\n  right: -5px;\n  height: 18px;\n  min-width: 18px;\n  padding: 0 6px;\n  font-weight: ", ";\n  line-height: 0;\n  border-radius: 9px;\n  background-color: ", ";\n  color: ", ";\n"]);
+
+  _templateObject2 = function _templateObject2() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject$4() {
+  var data = taggedTemplateLiteral(["\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  position: relative;\n  border-radius: ", ";\n  border: none;\n  background-color: ", ";\n  pointer-events: ", ";\n  ", "  \n  width: ", ";\n  min-width: ", ";\n  height: ", ";\n  margin: ", ";\n  margin-top: ", ";\n  margin-right: ", ";\n  margin-bottom: ", ";\n  margin-left: ", ";\n  cursor: pointer;\n  \n"]);
+
+  _templateObject$4 = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+var getButtonColor = function getButtonColor(_ref) {
+  var theme = _ref.theme,
+      color = _ref.color,
+      disabled = _ref.disabled,
+      icon = _ref.icon,
+      badge = _ref.badge;
+  var isGray = disabled || badge && color === 'white';
+  if (isGray) return theme.colors.gray.xlight;
+  var themeColors = theme.colors;
+  if (icon === 'delete') return themeColors.red[1];
+
+  if (Object.keys(themeColors).includes(color)) {
+    var selectedColor = themeColors[color];
+    return Array.isArray(selectedColor) ? selectedColor[2] : selectedColor;
+  }
+
+  return color;
+};
+
+var buttonSizes = {
+  xsmall: '28px',
+  small: '32px',
+  medium: '38px',
+  large: '44px',
+  xlarge: '48px'
+};
+var Button$1 = styled__default.button.attrs({
+  type: 'button'
+})(_templateObject$4(), function (_ref2) {
+  var theme = _ref2.theme;
+  return theme.radii.full;
+}, function (props) {
+  return getButtonColor(props);
+}, function (_ref3) {
+  var disabled = _ref3.disabled;
+  return disabled ? 'none' : 'inherit';
+}, function (_ref4) {
+  var noShadow = _ref4.noShadow;
+  return noShadow ? null : 'box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.12), 0 2px 15px 0 rgba(0, 0, 0, 0.08);';
+}, function (_ref5) {
+  var size = _ref5.size;
+  return buttonSizes[size];
+}, function (_ref6) {
+  var size = _ref6.size;
+  return buttonSizes[size];
+}, function (_ref7) {
+  var size = _ref7.size;
+  return buttonSizes[size];
+}, function (_ref8) {
+  var m = _ref8.m;
+  return m || '0';
+}, function (_ref9) {
+  var mt = _ref9.mt;
+  return mt || '0';
+}, function (_ref10) {
+  var mr = _ref10.mr;
+  return mr || '0';
+}, function (_ref11) {
+  var mb = _ref11.mb;
+  return mb || '0';
+}, function (_ref12) {
+  var ml = _ref12.ml;
+  return ml || '0';
+});
+var Badge = styled__default.span(_templateObject2(), function (_ref13) {
+  var theme = _ref13.theme;
+  return theme.fontWeights.bold;
+}, function (_ref14) {
+  var theme = _ref14.theme;
+  return theme.colors.primary;
+}, function (_ref15) {
+  var theme = _ref15.theme;
+  return theme.colors.white;
+});
+
+var IconButton =
+/*#__PURE__*/
+function (_PureComponent) {
+  inherits(IconButton, _PureComponent);
+
+  function IconButton() {
+    var _getPrototypeOf2;
+
+    var _this;
+
+    classCallCheck(this, IconButton);
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(IconButton)).call.apply(_getPrototypeOf2, [this].concat(args)));
+
+    defineProperty(assertThisInitialized(_this), "iconTypes", {
+      add: 'Plus',
+      filter: 'FilterVariant',
+      translate: 'Translate',
+      download: 'Download',
+      back: 'ArrowLeft',
+      search: 'Magnify',
+      edit: 'Pencil',
+      fullscreen: 'Fullscreen',
+      delete: 'Delete',
+      tune: 'Tune',
+      overflow: 'DotsVertical',
+      phone: 'Phone',
+      email: 'Email'
+    });
+
+    defineProperty(assertThisInitialized(_this), "iconSizes", {
+      xsmall: 18,
+      small: 20,
+      medium: 22,
+      large: 24,
+      xlarge: 26
+    });
+
+    defineProperty(assertThisInitialized(_this), "state", {
+      IconComponent: null
+    });
+
+    defineProperty(assertThisInitialized(_this), "getIconColor", function () {
+      var _this$props = _this.props,
+          iconColor = _this$props.iconColor,
+          color = _this$props.color;
+      var colors = theme.colors;
+
+      if (iconColor) {
+        if (Object.keys(colors).includes(iconColor)) {
+          var selectedColor = colors[iconColor];
+          return Array.isArray(selectedColor) ? selectedColor[2] : selectedColor;
+        }
+
+        return iconColor;
+      }
+
+      return color === 'primary' ? colors.white : colors.gray.xdark;
+    });
+
+    defineProperty(assertThisInitialized(_this), "renderIcon", function () {
+      var IconComponent = _this.state.IconComponent;
+      var _this$props2 = _this.props,
+          iconStyle = _this$props2.iconStyle,
+          size = _this$props2.size;
+      var iconProps = {
+        color: _this.getIconColor(),
+        size: _this.iconSizes[size]
+      };
+      return IconComponent ? React__default.createElement(IconComponent, _extends_1({}, iconProps, {
+        style: iconStyle
+      })) : null;
+    });
+
+    return _this;
+  }
+
+  createClass(IconButton, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      var _this$props3 = this.props,
+          icon = _this$props3.icon,
+          children = _this$props3.children;
+      if (children) return;
+      var iconName = Object.keys(this.iconTypes).includes(icon) ? this.iconTypes[icon] : icon;
+      new Promise(function (resolve) { resolve(_interopNamespace(require("@lessondesk/material-icons/dist/".concat(iconName)))); }).then(function (module) {
+        if (!module) return;
+
+        _this2.setState({
+          IconComponent: module.default
+        });
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this$props4 = this.props,
+          badge = _this$props4.badge,
+          children = _this$props4.children,
+          otherProps = objectWithoutProperties(_this$props4, ["badge", "children"]);
+
+      return React__default.createElement(Button$1, _extends_1({
+        badge: badge
+      }, otherProps), badge > 0 && React__default.createElement(Badge, null, badge), children || this.renderIcon());
+    }
+  }]);
+
+  return IconButton;
+}(React.PureComponent);
+
+defineProperty(IconButton, "propTypes", {
+  onClick: PropTypes$1.func,
+  icon: PropTypes$1.string,
+  size: PropTypes$1.string,
+  color: PropTypes$1.string,
+  iconColor: PropTypes$1.string,
+  children: PropTypes$1.node,
+  badge: PropTypes$1.oneOfType([PropTypes$1.string, PropTypes$1.number]),
+  noShadow: PropTypes$1.bool
+});
+
+defineProperty(IconButton, "defaultProps", {
+  icon: 'Plus',
+  size: 'medium',
+  color: 'primary',
+  noShadow: false,
+  onClick: function onClick() {}
+});
+
 var Plus = createCommonjsModule(function (module, exports) {
 
 Object.defineProperty(exports, "__esModule", {
@@ -592,33 +863,33 @@ function _templateObject3() {
   return data;
 }
 
-function _templateObject2() {
+function _templateObject2$1() {
   var data = taggedTemplateLiteral(["\n  position: relative;\n"]);
 
-  _templateObject2 = function _templateObject2() {
+  _templateObject2$1 = function _templateObject2() {
     return data;
   };
 
   return data;
 }
 
-function _templateObject$4() {
+function _templateObject$5() {
   var data = taggedTemplateLiteral(["\n  background-color: ", ";\n  border-radius: ", ";\n  margin: 1em 0;\n  padding: 1.5em;\n  box-shadow: ", ";\n  flex: 1;\n  ", "\n  ", "\n  ", "\n"]);
 
-  _templateObject$4 = function _templateObject() {
+  _templateObject$5 = function _templateObject() {
     return data;
   };
 
   return data;
 }
-var StyledCard = styled__default.section(_templateObject$4(), function (props) {
+var StyledCard = styled__default.section(_templateObject$5(), function (props) {
   return props.theme.colors.white;
 }, function (props) {
   return props.theme.radii.large;
 }, function (props) {
   return props.theme.shadows[0];
 }, styledSystem.space, styledSystem.layout, styledSystem.flexbox);
-var StyledCardHeader = styled__default.header(_templateObject2());
+var StyledCardHeader = styled__default.header(_templateObject2$1());
 var StyledCardDivider = styled__default.div(_templateObject3(), function (props) {
   return props.showDivider ? '1em' : 0;
 }, function (props) {
@@ -722,16 +993,16 @@ function ownKeys$3(object, enumerableOnly) { var keys = Object.keys(object); if 
 
 function _objectSpread$3(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$3(source, true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$3(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
-function _templateObject$5() {
+function _templateObject$6() {
   var data = taggedTemplateLiteral(["\n  color: ", ";\n  ", "\n  ", "\n  ", "\n"]);
 
-  _templateObject$5 = function _templateObject() {
+  _templateObject$6 = function _templateObject() {
     return data;
   };
 
   return data;
 }
-var Text = styled__default.p(_templateObject$5(), function (props) {
+var Text = styled__default.p(_templateObject$6(), function (props) {
   return props.theme.colors.gray.xxdark;
 }, styledSystem.typography, styledSystem.space, styledSystem.color);
 Text.defaultProps = {
@@ -744,10 +1015,10 @@ function ownKeys$4(object, enumerableOnly) { var keys = Object.keys(object); if 
 
 function _objectSpread$4(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$4(source, true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$4(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
-function _templateObject$6() {
+function _templateObject$7() {
   var data = taggedTemplateLiteral(["\n  background-color: ", ";\n  color: ", ";\n  padding: 1em;\n  min-width: 80px;\n  border-radius: ", ";\n  box-shadow: ", ";\n  border: none;\n  font-size: ", ";\n  font-weight: ", ";\n  font-family: ", ";\n  ", "\n  ", "\n"]);
 
-  _templateObject$6 = function _templateObject() {
+  _templateObject$7 = function _templateObject() {
     return data;
   };
 
@@ -759,7 +1030,7 @@ var VARIANTS = {
 };
 var StyledPill = styled__default.button.attrs({
   type: 'button'
-})(_templateObject$6(), function (props) {
+})(_templateObject$7(), function (props) {
   return props.theme.colors.transparent;
 }, function (props) {
   return props.variant === VARIANTS.active ? props.theme.colors.primary : props.theme.colors.gray.xdark;
@@ -812,10 +1083,10 @@ function ownKeys$5(object, enumerableOnly) { var keys = Object.keys(object); if 
 
 function _objectSpread$5(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$5(source, true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$5(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
-function _templateObject$7() {
+function _templateObject$8() {
   var data = taggedTemplateLiteral(["\n  display: block;\n  max-width: 100%;\n  height: auto;\n  ", "\n  ", "\n  ", "\n"]);
 
-  _templateObject$7 = function _templateObject() {
+  _templateObject$8 = function _templateObject() {
     return data;
   };
 
@@ -845,7 +1116,7 @@ var shape = function shape(props) {
 
 var Image = styled__default.img.attrs({
   alt: ''
-})(_templateObject$7(), shape, styledSystem.layout, styledSystem.shadow);
+})(_templateObject$8(), shape, styledSystem.layout, styledSystem.shadow);
 Image.displayName = 'Image';
 Image.propTypes = _objectSpread$5({}, styledSystem.layout.propTypes);
 Image.defaultProps = {
@@ -1267,10 +1538,10 @@ var errorForField = function errorForField(errors, touched, fieldname) {
   return '';
 };
 
-function _templateObject$8() {
+function _templateObject$9() {
   var data = taggedTemplateLiteral(["\n  display: flex;\n  ", "\n  ", "\n  ", "\n  ", "\n  ", "\n  ", "\n  ", "\n"]);
 
-  _templateObject$8 = function _templateObject() {
+  _templateObject$9 = function _templateObject() {
     return data;
   };
 
@@ -1291,7 +1562,7 @@ var Flex = mapProps(function (_ref) {
     alignItems: align,
     justifyContent: justify
   }, props);
-})(styled__default.div(_templateObject$8(), styledSystem.space, styledSystem.layout, styledSystem.color, styledSystem.alignItems, styledSystem.justifyContent, styledSystem.flexDirection, styledSystem.flexWrap));
+})(styled__default.div(_templateObject$9(), styledSystem.space, styledSystem.layout, styledSystem.color, styledSystem.alignItems, styledSystem.justifyContent, styledSystem.flexDirection, styledSystem.flexWrap));
 Flex.defaultProps = {
   theme: theme
 };
@@ -1308,20 +1579,20 @@ function _templateObject3$1() {
   return data;
 }
 
-function _templateObject2$1() {
+function _templateObject2$2() {
   var data = taggedTemplateLiteral(["\n  z-index: 0;\n  position: relative;\n  display: inline-block;\n  color: rgba(0, 0, 0, 0.87);\n  font-family: ", ";\n  font-size: ", ";\n  line-height: ", ";\n\n  &:hover > ", " {\n    opacity: 0.04;\n  }\n\n  &:hover > ", ":focus {\n    opacity: 0.16;\n  }\n\n  ", "\n  ", "\n"]);
 
-  _templateObject2$1 = function _templateObject2() {
+  _templateObject2$2 = function _templateObject2() {
     return data;
   };
 
   return data;
 }
 
-function _templateObject$9() {
+function _templateObject$a() {
   var data = taggedTemplateLiteral(["\n  appearance: none;\n  z-index: -1;\n  position: absolute;\n  left: -10px;\n  top: -8px;\n  display: block;\n  margin: 0;\n  border-radius: ", ";\n  width: 40px;\n  height: 40px;\n  background-color: rgba(0, 0, 0, 0.6);\n  box-shadow: none;\n  outline: none;\n  opacity: 0;\n  transform: scale(1);\n  pointer-events: none;\n  transition: opacity 0.3s, transform 0.2s;\n\n  &:checked,\n  &:indeterminate {\n    background-color: ", ";\n  }\n\n  &:active {\n    opacity: 1;\n    transform: scale(0);\n    transition: transform 0s, opacity 0s;\n  }\n\n  &:active + span::before {\n    border-color: ", ";\n  }\n\n  &:checked:active + span::before {\n    border-color: transparent;\n    background-color: rgba(0, 0, 0, 0.6);\n  }\n\n  &:disabled {\n    opacity: 0;\n  }\n\n  &:disabled + span {\n    color: rgba(0, 0, 0, 0.3);\n    cursor: not-allowed;\n  }\n\n  &:disabled + span::before {\n    border-color: rgba(0, 0, 0, 0.3);\n  }\n"]);
 
-  _templateObject$9 = function _templateObject() {
+  _templateObject$a = function _templateObject() {
     return data;
   };
 
@@ -1329,14 +1600,14 @@ function _templateObject$9() {
 }
 var StyledInput = styled__default.input.attrs({
   type: 'checkbox'
-})(_templateObject$9(), function (props) {
+})(_templateObject$a(), function (props) {
   return props.theme.radii.full;
 }, function (props) {
   return props.theme.colors.gray;
 }, function (props) {
   return props.theme.colors.gray;
 });
-var StyledLabel = styled__default.label(_templateObject2$1(), function (props) {
+var StyledLabel = styled__default.label(_templateObject2$2(), function (props) {
   return props.theme.fonts[0];
 }, function (props) {
   return props.theme.fontSizes.medium;
@@ -1408,28 +1679,6 @@ function (_React$PureComponent) {
 
   return Checkbox;
 }(React.PureComponent);
-
-var _extends_1 = createCommonjsModule(function (module) {
-function _extends() {
-  module.exports = _extends = Object.assign || function (target) {
-    for (var i = 1; i < arguments.length; i++) {
-      var source = arguments[i];
-
-      for (var key in source) {
-        if (Object.prototype.hasOwnProperty.call(source, key)) {
-          target[key] = source[key];
-        }
-      }
-    }
-
-    return target;
-  };
-
-  return _extends.apply(this, arguments);
-}
-
-module.exports = _extends;
-});
 
 var RadioboxBlank = createCommonjsModule(function (module, exports) {
 
@@ -1529,33 +1778,33 @@ exports["default"] = _default;
 
 var RadioboxMarked$1 = unwrapExports(RadioboxMarked);
 
-function _templateObject2$2() {
+function _templateObject2$3() {
   var data = taggedTemplateLiteral(["\n  margin-left: 0.5em;\n"]);
 
-  _templateObject2$2 = function _templateObject2() {
+  _templateObject2$3 = function _templateObject2() {
     return data;
   };
 
   return data;
 }
 
-function _templateObject$a() {
+function _templateObject$b() {
   var data = taggedTemplateLiteral(["\n  display: flex;\n  align-items: center;\n  cursor: pointer;\n  font-family: ", ";\n  font-size: ", ";\n  line-height: ", ";\n"]);
 
-  _templateObject$a = function _templateObject() {
+  _templateObject$b = function _templateObject() {
     return data;
   };
 
   return data;
 }
-var StyledLabel$1 = styled__default.label(_templateObject$a(), function (props) {
+var StyledLabel$1 = styled__default.label(_templateObject$b(), function (props) {
   return props.theme.fonts[0];
 }, function (props) {
   return props.theme.fontSizes.medium;
 }, function (props) {
   return props.theme.lineHeights.normal;
 });
-var StyledSpan$1 = styled__default.span(_templateObject2$2());
+var StyledSpan$1 = styled__default.span(_templateObject2$3());
 
 var RadioButton =
 /*#__PURE__*/
@@ -1599,16 +1848,16 @@ defineProperty(RadioButton, "defaultProps", {
   theme: theme
 });
 
-function _templateObject$b() {
+function _templateObject$c() {
   var data = taggedTemplateLiteral(["\n  background-color: ", ";\n  border: 1px solid\n    ", ";\n  font-family: inherit;\n  font-size: ", ";\n  padding: 0.5em 1em;\n  height: 38px;\n  border-radius: ", ";\n  width: 100%;\n\n  ::placeholder {\n    color: ", ";\n  }\n\n  ::-webkit-inner-spin-button,\n  ::-webkit-outer-spin-button {\n    /* stylelint-disable-next-line property-no-vendor-prefix */\n    -webkit-appearance: none;\n    margin: 0;\n  }\n"]);
 
-  _templateObject$b = function _templateObject() {
+  _templateObject$c = function _templateObject() {
     return data;
   };
 
   return data;
 }
-var StyledInput$1 = styled__default.input(_templateObject$b(), function (props) {
+var StyledInput$1 = styled__default.input(_templateObject$c(), function (props) {
   return props.disabled ? props.theme.colors.transparent : props.theme.colors.gray.xlight;
 }, function (props) {
   return props.disabled ? props.theme.colors.gray.default : props.theme.colors.gray.xlight;
@@ -1631,26 +1880,26 @@ function _templateObject3$2() {
   return data;
 }
 
-function _templateObject2$3() {
+function _templateObject2$4() {
   var data = taggedTemplateLiteral(["\n  min-width: ", ";\n  width: ", ";\n  ", "\n  position: relative;\n  @media (max-width: 990px) {\n    width: 100%;\n  }\n\n  ", "\n  ", "\n"]);
 
-  _templateObject2$3 = function _templateObject2() {
+  _templateObject2$4 = function _templateObject2() {
     return data;
   };
 
   return data;
 }
 
-function _templateObject$c() {
+function _templateObject$d() {
   var data = taggedTemplateLiteral(["\n  display: block;\n  font-family: inherit;\n  color: ", ";\n  font-weight: ", ";\n  font-size: ", ";\n  margin-bottom: 0.4em;\n"]);
 
-  _templateObject$c = function _templateObject() {
+  _templateObject$d = function _templateObject() {
     return data;
   };
 
   return data;
 }
-var StyledLabel$2 = styled__default.label(_templateObject$c(), function (props) {
+var StyledLabel$2 = styled__default.label(_templateObject$d(), function (props) {
   return props.theme.colors.gray.xxdark;
 }, function (props) {
   return props.theme.fontWeights.bold;
@@ -1658,7 +1907,7 @@ var StyledLabel$2 = styled__default.label(_templateObject$c(), function (props) 
   return props.theme.fontSizes.xsmall;
 });
 StyledLabel$2.displayName = 'InputLabel';
-var StyledInputContainer = styled__default.div(_templateObject2$3(), function (_ref) {
+var StyledInputContainer = styled__default.div(_templateObject2$4(), function (_ref) {
   var minWidth = _ref.minWidth;
   return minWidth || '300px';
 }, function (_ref2) {
@@ -15174,16 +15423,16 @@ exports["default"] = _default;
 
 var CalendarToday$1 = unwrapExports(CalendarToday);
 
-function _templateObject$d() {
+function _templateObject$e() {
   var data = taggedTemplateLiteral(["\n  background-color: ", ";\n  border: 1px solid\n    ", ";\n  font-family: inherit;\n  font-size: ", ";\n  padding: 0.6em 1em;\n  height: 38px;\n  border-radius: ", ";\n  width: 100%;\n\n  ::placeholder {\n    color: ", ";\n  }\n"]);
 
-  _templateObject$d = function _templateObject() {
+  _templateObject$e = function _templateObject() {
     return data;
   };
 
   return data;
 }
-var StyledDatePicker = styled__default(DatePicker)(_templateObject$d(), function (props) {
+var StyledDatePicker = styled__default(DatePicker)(_templateObject$e(), function (props) {
   return props.disabled ? props.theme.colors.transparent : props.theme.colors.gray.xlight;
 }, function (props) {
   return props.disabled ? props.theme.colors.gray.light : props.theme.colors.gray.xlight;
@@ -23706,10 +23955,10 @@ var IndicatorsContainer = function IndicatorsContainer(props) {
   }, children);
 };
 
-function _templateObject$e() {
+function _templateObject$f() {
   var data = _taggedTemplateLiteral$1(["\n  0%, 80%, 100% { opacity: 0; }\n  40% { opacity: 1; }\n"]);
 
-  _templateObject$e = function _templateObject() {
+  _templateObject$f = function _templateObject() {
     return data;
   };
 
@@ -23838,7 +24087,7 @@ var IndicatorSeparator = function IndicatorSeparator(props) {
 // Loading
 // ==============================
 
-var loadingDotAnimations = keyframes(_templateObject$e());
+var loadingDotAnimations = keyframes(_templateObject$f());
 var loadingIndicatorCSS = function loadingIndicatorCSS(_ref5) {
   var isFocused = _ref5.isFocused,
       size = _ref5.size,
@@ -27449,27 +27698,27 @@ Select$1.defaultProps = {
 };
 var index$4 = formik.connect(Select$1);
 
-function _templateObject2$4() {
+function _templateObject2$5() {
   var data = taggedTemplateLiteral(["\n  padding: 0.3em 1em;\n  margin-right: 1em;\n  font-size: 1em;\n  border-radius: 1.1em;\n  border: none;\n  cursor: pointer;\n\n  ", "\n"]);
 
-  _templateObject2$4 = function _templateObject2() {
+  _templateObject2$5 = function _templateObject2() {
     return data;
   };
 
   return data;
 }
 
-function _templateObject$f() {
+function _templateObject$g() {
   var data = taggedTemplateLiteral(["\n  height: 38px;\n  display: flex;\n  align-items: center;\n"]);
 
-  _templateObject$f = function _templateObject() {
+  _templateObject$g = function _templateObject() {
     return data;
   };
 
   return data;
 }
-var Container = styled__default.div(_templateObject$f());
-var Value = styled__default.button(_templateObject2$4(), function (_ref) {
+var Container = styled__default.div(_templateObject$g());
+var Value = styled__default.button(_templateObject2$5(), function (_ref) {
   var selected = _ref.selected;
   return selected ? "\n    color: ".concat(function (props) {
     return props.theme.colors.black;
@@ -28311,16 +28560,16 @@ exports["default"] = _default;
 
 var DotsVertical$1 = unwrapExports(DotsVertical);
 
-function _templateObject$g() {
+function _templateObject$h() {
   var data = taggedTemplateLiteral(["\n  display: flex;\n  flex-direction: column;\n  > * {\n    display: inline-block;\n    margin: 0.4em 0;\n  }\n"]);
 
-  _templateObject$g = function _templateObject() {
+  _templateObject$h = function _templateObject() {
     return data;
   };
 
   return data;
 }
-var SettingsContainer = styled__default.div(_templateObject$g());
+var SettingsContainer = styled__default.div(_templateObject$h());
 
 var OverflowMenu = function OverflowMenu(_ref) {
   var position = _ref.position,
@@ -28377,29 +28626,29 @@ function _templateObject3$3() {
   return data;
 }
 
-function _templateObject2$5() {
+function _templateObject2$6() {
   var data = taggedTemplateLiteral(["\n  width: 14em;\n  border: solid 1px ", ";\n  border-radius: 0.5em;\n  background-color: ", ";\n  height: 100%;\n  display: flex;\n  align-items: center;\n  padding: 0 1em;\n"]);
 
-  _templateObject2$5 = function _templateObject2() {
+  _templateObject2$6 = function _templateObject2() {
     return data;
   };
 
   return data;
 }
 
-function _templateObject$h() {
+function _templateObject$i() {
   var data = taggedTemplateLiteral(["\n  width: 100%;\n  height: 2.7em;\n  display: flex;\n  align-items: center;\n  border-radius: 0.5em;\n  background-color: ", ";\n  margin-bottom: 1em;\n"]);
 
-  _templateObject$h = function _templateObject() {
+  _templateObject$i = function _templateObject() {
     return data;
   };
 
   return data;
 }
-var Container$1 = styled__default.div(_templateObject$h(), function (props) {
+var Container$1 = styled__default.div(_templateObject$i(), function (props) {
   return props.theme.colors.gray.xlight;
 });
-var Inner = styled__default.div(_templateObject2$5(), function (props) {
+var Inner = styled__default.div(_templateObject2$6(), function (props) {
   return props.theme.colors.gray.light;
 }, function (props) {
   return props.theme.colors.white;
@@ -28521,27 +28770,27 @@ function _templateObject3$4() {
   return data;
 }
 
-function _templateObject2$6() {
+function _templateObject2$7() {
   var data = taggedTemplateLiteral(["\n  display: flex;\n  align-items: center;\n  font-size: ", ";\n"]);
 
-  _templateObject2$6 = function _templateObject2() {
+  _templateObject2$7 = function _templateObject2() {
     return data;
   };
 
   return data;
 }
 
-function _templateObject$i() {
+function _templateObject$j() {
   var data = taggedTemplateLiteral(["\n  width: 43em;\n"]);
 
-  _templateObject$i = function _templateObject() {
+  _templateObject$j = function _templateObject() {
     return data;
   };
 
   return data;
 }
-var Container$2 = styled__default.div(_templateObject$i());
-var EditTextContainer = styled__default.div(_templateObject2$6(), function (props) {
+var Container$2 = styled__default.div(_templateObject$j());
+var EditTextContainer = styled__default.div(_templateObject2$7(), function (props) {
   return props.theme.fontSizes.small;
 });
 var EditText = styled__default.div(_templateObject3$4(), function (props) {
@@ -30106,27 +30355,27 @@ function _templateObject3$5() {
   return data;
 }
 
-function _templateObject2$7() {
+function _templateObject2$8() {
   var data = taggedTemplateLiteral(["\n  position: absolute;\n  right: 0.8em;\n  cursor: pointer;\n  line-height: 0;\n"]);
 
-  _templateObject2$7 = function _templateObject2() {
+  _templateObject2$8 = function _templateObject2() {
     return data;
   };
 
   return data;
 }
 
-function _templateObject$j() {
+function _templateObject$k() {
   var data = taggedTemplateLiteral(["\n  position: relative;\n  display: flex;\n  align-items: center;\n"]);
 
-  _templateObject$j = function _templateObject() {
+  _templateObject$k = function _templateObject() {
     return data;
   };
 
   return data;
 }
-var Container$3 = styled__default.div(_templateObject$j());
-var TranslateIconContainer = styled__default.div(_templateObject2$7());
+var Container$3 = styled__default.div(_templateObject$k());
+var TranslateIconContainer = styled__default.div(_templateObject2$8());
 var TranslateInputContainer = styled__default(StyledInput$1)(_templateObject3$5());
 
 var TranslationInput =
@@ -38616,33 +38865,33 @@ Slider$1.Range = Range$1;
 Slider$1.Handle = Handle;
 Slider$1.createSliderWithTooltip = createSliderWithTooltip;
 
-function _templateObject2$8() {
+function _templateObject2$9() {
   var data = taggedTemplateLiteral(["\n  width: 3.5em;\n  text-align: center;\n"]);
 
-  _templateObject2$8 = function _templateObject2() {
+  _templateObject2$9 = function _templateObject2() {
     return data;
   };
 
   return data;
 }
 
-function _templateObject$k() {
+function _templateObject$l() {
   var data = taggedTemplateLiteral(["\n  min-height: 38px;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n\n  & .rc-slider {\n    margin: 0 1em;\n  }\n\n  & .rc-slider-handle {\n    background-color: ", ";\n    border: solid 2px ", ";\n    box-shadow: 0 0 0.4em 0 rgba(0, 0, 0, 0.3);\n  }\n\n  & .rc-slider-track {\n    background-color: ", ";\n  }\n"]);
 
-  _templateObject$k = function _templateObject() {
+  _templateObject$l = function _templateObject() {
     return data;
   };
 
   return data;
 }
-var Container$4 = styled__default.div(_templateObject$k(), function (props) {
+var Container$4 = styled__default.div(_templateObject$l(), function (props) {
   return props.theme.colors.primary;
 }, function (props) {
   return props.theme.colors.white;
 }, function (props) {
   return props.theme.colors.primary;
 });
-var Value$1 = styled__default.div(_templateObject2$8());
+var Value$1 = styled__default.div(_templateObject2$9());
 
 var RangeInput = function RangeInput(_ref) {
   var _ref$min = _ref.min,
@@ -38716,27 +38965,27 @@ function _templateObject3$6() {
   return data;
 }
 
-function _templateObject2$9() {
+function _templateObject2$a() {
   var data = taggedTemplateLiteral(["\n  position: relative;\n  height: 40px;\n  display: flex;\n  align-items: center;\n  width: auto;\n  min-width: 250px;\n"]);
 
-  _templateObject2$9 = function _templateObject2() {
+  _templateObject2$a = function _templateObject2() {
     return data;
   };
 
   return data;
 }
 
-function _templateObject$l() {
+function _templateObject$m() {
   var data = taggedTemplateLiteral(["\n  display: flex;\n  justify-content: space-between;\n"]);
 
-  _templateObject$l = function _templateObject() {
+  _templateObject$m = function _templateObject() {
     return data;
   };
 
   return data;
 }
-var Container$5 = styled__default.div(_templateObject$l());
-var ContainerAlt = styled__default.div(_templateObject2$9());
+var Container$5 = styled__default.div(_templateObject$m());
+var ContainerAlt = styled__default.div(_templateObject2$a());
 var Input$3 = styled__default.input(_templateObject3$6(), function (props) {
   return props.expanded ? 'scaleX(1)' : 'scaleX(0)';
 }, function (props) {
@@ -38885,27 +39134,27 @@ function _templateObject3$7() {
   return data;
 }
 
-function _templateObject2$a() {
+function _templateObject2$b() {
   var data = taggedTemplateLiteral(["\n  display: none;\n"]);
 
-  _templateObject2$a = function _templateObject2() {
+  _templateObject2$b = function _templateObject2() {
     return data;
   };
 
   return data;
 }
 
-function _templateObject$m() {
+function _templateObject$n() {
   var data = taggedTemplateLiteral(["\n  display: block;\n  padding-bottom: 3px;\n  width: 60px;\n  height: 40px;\n  position: relative;\n  ", "\n  ", "\n"]);
 
-  _templateObject$m = function _templateObject() {
+  _templateObject$n = function _templateObject() {
     return data;
   };
 
   return data;
 }
-var ToggleContainer = styled__default.div(_templateObject$m(), styledSystem.space, styledSystem.layout);
-var ToggleInput = styled__default.input(_templateObject2$a());
+var ToggleContainer = styled__default.div(_templateObject$n(), styledSystem.space, styledSystem.layout);
+var ToggleInput = styled__default.input(_templateObject2$b());
 var ToggleLabel = styled__default.label(_templateObject3$7(), function (props) {
   return props.theme.colors.gray.xdark;
 }, function (props) {
@@ -38971,10 +39220,10 @@ function ownKeys$f(object, enumerableOnly) { var keys = Object.keys(object); if 
 
 function _objectSpread$h(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$f(source, true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$f(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
-function _templateObject$n() {
+function _templateObject$o() {
   var data = taggedTemplateLiteral(["\n  background-position: center;\n  background-size: cover;\n  background-repeat: no-repeat;\n  background-image: ", ";\n  ", "\n  ", "\n  ", "\n  ", "\n"]);
 
-  _templateObject$n = function _templateObject() {
+  _templateObject$o = function _templateObject() {
     return data;
   };
 
@@ -38985,7 +39234,7 @@ var image = function image(props) {
   return "url(".concat(props.source, ")");
 };
 
-var BackgroundImage = styled__default.div(_templateObject$n(), image, styledSystem.space, styledSystem.background, styledSystem.layout, styledSystem.flexbox);
+var BackgroundImage = styled__default.div(_templateObject$o(), image, styledSystem.space, styledSystem.background, styledSystem.layout, styledSystem.flexbox);
 BackgroundImage.defaultProps = {
   theme: theme
 };
@@ -40446,10 +40695,10 @@ var ReactTooltip = unwrapExports(dist);
 
 var Tooltip$1 = ReactTooltip;
 
-function _templateObject$o() {
+function _templateObject$p() {
   var data = taggedTemplateLiteral(["\n  text-align: center;\n  margin: 2em 0 0;\n  color: ", ";\n  font-size: ", ";\n  font-family: ", ";\n  font-weight: ", ";\n"]);
 
-  _templateObject$o = function _templateObject() {
+  _templateObject$p = function _templateObject() {
     return data;
   };
 
@@ -40457,7 +40706,7 @@ function _templateObject$o() {
 }
 var CopyrightText = styled__default.p.attrs({
   role: 'contentinfo'
-})(_templateObject$o(), function (props) {
+})(_templateObject$p(), function (props) {
   return props.theme.colors.gray[3];
 }, function (props) {
   return props.theme.fontSizes.xsmall;
@@ -40490,6 +40739,7 @@ exports.DateInput = index;
 exports.ExpandingSearchInput = ExpandingSearchInput;
 exports.Flex = Flex;
 exports.Footer = Footer;
+exports.IconButton = IconButton;
 exports.Image = Image;
 exports.Input = input;
 exports.LanguageSetField = LanguageSetField$1;
