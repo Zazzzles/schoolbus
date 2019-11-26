@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { IconButton, Flex, Text, Card } from '../'
+import { IconButton, Flex, Text } from '../'
 
 import mdx from '../docs/icon-button.mdx'
 
