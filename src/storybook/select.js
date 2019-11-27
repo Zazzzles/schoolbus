@@ -12,7 +12,7 @@ storiesOf('Input | Select', module)
   .add('Light', () => <Select variant="light" options={options} />)
   .add('Borderless', () => <Select variant="borderless" options={options} />)
   .add('Light + Rounded', () => (
-    <Select shape="rounded" variant="light" hasShadow options={options} />
+    <Select shape="rounded" disabled variant="light" hasShadow options={options} />
   ))
   .add('Disabled', () => <Select disabled options={options} />)
   .add('Value', () => (
