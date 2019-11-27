@@ -1,3 +1,54 @@
+.clock-wrapper {
+  position: absolute;
+  z-index: 1;
+  font-family: inherit
+}
+
+.clock-wrapper .react-timekeeper {
+  font-family: inherit;
+  border-radius: .3rem;
+  overflow: hidden;
+}
+
+.clock-wrapper .react-timekeeper__top-bar {
+  background-color: #FFA400;
+  padding: 8px;
+  font-family: inherit
+}
+
+.react-timekeeper__top-bar .react-timekeeper-button-reset {
+  transform: translateY(1px);
+  padding: 0 0 0 8px;
+}
+
+.clock-wrapper .css-1se0bia,
+.clock-wrapper .css-eg4puu,
+.clock-wrapper .css-n0t0em {
+  color: #000;
+  font-weight: 400;
+}
+
+.clock-wrapper .react-timekeeper__tb-hour,
+.clock-wrapper .react-timekeeper__tb-minute,
+.clock-wrapper .react-timekeeper__tb-colon,
+.clock-wrapper .react-timekeeper-button-reset {
+  color: #FFF;
+  font-size: 1em;
+  font-weight: 700;
+  font-family: inherit;
+  background-color: #FFA400;
+}
+
+.clock-wrapper .react-timekeeper__clock-hand,
+.clock-wrapper .react-timekeeper__hand-circle-outer {
+  fill: #FCD286;
+  stroke: #FCD286;
+}
+
+.clock-wrapper .react-timekeeper__done-button {
+  display: none;
+}
+
 .react-datepicker-wrapper {
   width: 100% !important;
 }
@@ -51,57 +102,6 @@
 .react-datepicker {
   box-shadow: 0 0 2px 0 rgba(0,0,0,.0625), 0 4px 8px 0 rgba(0, 0, 0, 0.12) !important;
     border: none !important;
-}
-
-.clock-wrapper {
-  position: absolute;
-  z-index: 1;
-  font-family: inherit
-}
-
-.clock-wrapper .react-timekeeper {
-  font-family: inherit;
-  border-radius: .3rem;
-  overflow: hidden;
-}
-
-.clock-wrapper .react-timekeeper__top-bar {
-  background-color: #FFA400;
-  padding: 8px;
-  font-family: inherit
-}
-
-.react-timekeeper__top-bar .react-timekeeper-button-reset {
-  transform: translateY(1px);
-  padding: 0 0 0 8px;
-}
-
-.clock-wrapper .css-1se0bia,
-.clock-wrapper .css-eg4puu,
-.clock-wrapper .css-n0t0em {
-  color: #000;
-  font-weight: 400;
-}
-
-.clock-wrapper .react-timekeeper__tb-hour,
-.clock-wrapper .react-timekeeper__tb-minute,
-.clock-wrapper .react-timekeeper__tb-colon,
-.clock-wrapper .react-timekeeper-button-reset {
-  color: #FFF;
-  font-size: 1em;
-  font-weight: 700;
-  font-family: inherit;
-  background-color: #FFA400;
-}
-
-.clock-wrapper .react-timekeeper__clock-hand,
-.clock-wrapper .react-timekeeper__hand-circle-outer {
-  fill: #FCD286;
-  stroke: #FCD286;
-}
-
-.clock-wrapper .react-timekeeper__done-button {
-  display: none;
 }
 
 .react-tel-input > input.form-control {
