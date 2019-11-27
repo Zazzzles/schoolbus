@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 const StyledInput = styled.input`
   background-color: ${props =>
-    props.disabled ? props.theme.colors.transparent : props.theme.colors.gray.xlight};
+    props.disabled ? props.theme.colors.white : props.theme.colors.gray.xlight};
   border: 1px solid
     ${props => (props.disabled ? props.theme.colors.gray.default : props.theme.colors.gray.xlight)};
   font-family: inherit;

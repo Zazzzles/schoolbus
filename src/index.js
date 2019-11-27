@@ -6,7 +6,6 @@ export { default as Visuallyhidden } from './components/visually-hidden'
 
 export { default as Box } from './components/box'
 export { default as Button } from './components/button'
-export { default as IconButton } from './components/icon-button'
 export { default as Card } from './components/card'
 export { default as Text } from './components/text'
 export { default as Pill } from './components/pill'

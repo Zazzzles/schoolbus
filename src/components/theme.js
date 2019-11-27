@@ -44,8 +44,7 @@ export const colors = {
   green: '#37b049',
   red: ['#f6bdbb', '#ed7470', '#e53933', '#9f1814', '#71110e'],
   yellow: '#f8b31c',
-  orange: ['#fff8eb', '#ffa400'],
-  transparent: 'rgba(0, 0, 0, .2)'
+  orange: ['#fff8eb', '#ffa400']
 }
 
 colors.primary = colors.orange[1]
