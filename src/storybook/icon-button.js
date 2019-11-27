@@ -45,7 +45,7 @@ storiesOf('Input | Icon Button', module)
 
       <Text>
         icon 
-        <em> (string | <a href="https://lessondesk.github.io/material-icons/">icon name</a> e.g. 'Plus')</em>
+        <em> (string)</em>
         </Text>
 
       <Flex m=".5em 0 2em">
