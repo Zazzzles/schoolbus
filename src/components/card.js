@@ -114,7 +114,7 @@ class Card extends React.PureComponent {
               <ActionsContainer>
                 {actions}
                 {onAdd && !viewState && (
-                  <IconButton noShadow onClick={onAdd} />
+                  <IconButton onClick={onAdd} />
                 )}
               </ActionsContainer>
             </TitleContainer>
