@@ -3,6 +3,20 @@ import theme from '../theme'
 import { Button, Badge } from './styles'
 import PropTypes from 'prop-types'
 
+import Plus from '@lessondesk/material-icons/dist/Plus'
+import FilterVariant from '@lessondesk/material-icons/dist/FilterVariant'
+import Translate from '@lessondesk/material-icons/dist/Translate'
+import Download from '@lessondesk/material-icons/dist/Download'
+import ArrowLeft from '@lessondesk/material-icons/dist/ArrowLeft'
+import Magnify from '@lessondesk/material-icons/dist/Magnify'
+import Pencil from '@lessondesk/material-icons/dist/Pencil'
+import Fullscreen from '@lessondesk/material-icons/dist/Fullscreen'
+import Delete from '@lessondesk/material-icons/dist/Delete'
+import Tune from '@lessondesk/material-icons/dist/Tune'
+import DotsVertical from '@lessondesk/material-icons/dist/DotsVertical'
+import Phone from '@lessondesk/material-icons/dist/Phone'
+import Email from '@lessondesk/material-icons/dist/Email'
+
 class IconButton extends PureComponent {
 
   static propTypes = {
@@ -17,7 +31,7 @@ class IconButton extends PureComponent {
   }
 
   static defaultProps = {
-    icon: 'Plus',
+    icon: 'add',
     size: 'medium',
     color: 'primary',
     noShadow: false,
@@ -25,19 +39,19 @@ class IconButton extends PureComponent {
   }
 
   iconTypes = {
-    add: 'Plus',
-    filter: 'FilterVariant',
-    translate: 'Translate',
-    download: 'Download',
-    back: 'ArrowLeft',
-    search: 'Magnify',
-    edit: 'Pencil',
-    fullscreen: 'Fullscreen',
-    delete: 'Delete',
-    tune: 'Tune',
-    overflow: 'DotsVertical',
-    phone: 'Phone',
-    email: 'Email'
+    add: Plus,
+    filter: FilterVariant,
+    translate: Translate,
+    download: Download,
+    back: ArrowLeft,
+    search: Magnify,
+    edit: Pencil,
+    fullscreen: Fullscreen,
+    delete: Delete,
+    tune: Tune,
+    overflow: DotsVertical,
+    phone: Phone,
+    email: Email
   }
 
   iconSizes = {
@@ -46,25 +60,6 @@ class IconButton extends PureComponent {
     medium: 22,
     large: 24,
     xlarge: 26
-  }
-
-  state = {
-    IconComponent: null
-  }
-
-  componentDidMount() {
-    const { icon, children } = this.props
-    if (children) return
-
-    const iconName = Object.keys(this.iconTypes).includes(icon)
-      ? this.iconTypes[icon]
-      : icon
-
-    import(`@lessondesk/material-icons/dist/${iconName}`)
-      .then(module => {
-        if (!module) return
-        this.setState({ IconComponent: module.default })
-      })
   }
 
   getIconColor = () => {
@@ -83,9 +78,9 @@ class IconButton extends PureComponent {
   }
 
   renderIcon = () => {
-    const { IconComponent } = this.state
+    const { iconStyle, size, icon } = this.props
+    const IconComponent = this.iconTypes[icon]
 
-    const { iconStyle, size } = this.props
     const iconProps = {
       color: this.getIconColor(),
       size: this.iconSizes[size]

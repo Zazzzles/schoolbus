@@ -1,9 +1,8 @@
 import * as React from 'react'
 import PropTypes from 'prop-types'
-import Plus from '@lessondesk/material-icons/dist/Plus'
 import styled from 'styled-components'
-import theme from './theme'
 import { space, layout, flexbox } from 'styled-system'
+import IconButton from './icon-button'
 
 const StyledCard = styled.section`
   background-color: ${props => props.theme.colors.white};
@@ -51,19 +50,6 @@ const StyledContent = styled.div`
   margin: 1em;
 `
 
-const StyledButton = styled.button`
-  border: none;
-  outline: none;
-  border-radius: 50%;
-  width: 3.6em;
-  height: 3.6em;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  background-color: ${props => props.theme.colors.primary};
-`
-
 const TitleContainer = styled.div`
   display: flex;
   justify-content: space-between;
@@ -102,8 +88,6 @@ class Card extends React.PureComponent {
 
   static Content = StyledContent
 
-  static AddButton = StyledButton
-
   render() {
     const {
       title,
@@ -130,9 +114,7 @@ class Card extends React.PureComponent {
               <ActionsContainer>
                 {actions}
                 {onAdd && !viewState && (
-                  <Card.AddButton onClick={onAdd}>
-                    <Plus color={theme.colors.white} />
-                  </Card.AddButton>
+                  <IconButton noShadow onClick={onAdd} />
                 )}
               </ActionsContainer>
             </TitleContainer>
