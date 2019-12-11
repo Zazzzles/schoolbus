@@ -1,17 +1,17 @@
 import styled from 'styled-components'
 import { typography, space, color } from 'styled-system'
 
-import theme from './theme'
+import theme from '../../config/theme'
 
 const Text = styled.p`
-  color: ${props => props.theme.colors.gray.xxdark};
+  color: ${({theme}) => theme.colors.gray.xxdark};
   ${typography}
   ${space}
   ${color}
 `
 
 Text.defaultProps = {
-  theme: theme,
+  theme,
 }
 
 Text.propTypes = {

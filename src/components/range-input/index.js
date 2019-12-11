@@ -9,8 +9,8 @@ import InputWrapper from '../input-wrapper'
 import { Container, Value } from './styles'
 
 const RangeInput = ({
-  min = 0,
-  max = 100,
+  min,
+  max,
   value,
   onBlur,
   onChange,
@@ -31,7 +31,7 @@ const RangeInput = ({
     formik,
   })
   const rangeValues = inputDefaults.value || value || [min, max]
-  const defaultOnChange = hasFormik && (value => formik.setFieldValue(name, value))
+  const defaultOnChange = hasFormik ? (value => formik.setFieldValue(name, value)) : onChange
 
   return (
     <InputWrapper alertText={alertText} {...otherProps}>
@@ -42,12 +42,12 @@ const RangeInput = ({
         </Value>
         <Range
           {...inputDefaults}
-          onChange={onChange || defaultOnChange}
+          onChange={defaultOnChange}
           name={name}
           id={id}
           pushable
           value={rangeValues}
-          width={'70%'}
+          width='70%'
           min={min}
           max={max}
           {...inputProps}
@@ -59,6 +59,13 @@ const RangeInput = ({
       </Container>
     </InputWrapper>
   )
+}
+
+RangeInput.defaultProps = {
+  min: 0,
+  max: 100,
+  onChange: () => {},
+  onBlur: () => {}
 }
 
 export default connect(RangeInput)

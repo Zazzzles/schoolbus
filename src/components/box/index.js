@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 import { space, color, layout, flexbox } from 'styled-system'
-
-import theme from './theme'
+import theme from '../../config/theme'
 
 const Box = styled.div`
   ${space}
@@ -13,7 +12,7 @@ const Box = styled.div`
 Box.displayName = 'Box'
 
 Box.defaultProps = {
-  theme: theme,
+  theme,
 }
 
 Box.propTypes = {

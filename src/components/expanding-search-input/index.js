@@ -1,22 +1,9 @@
 import React, { Component, createRef } from 'react'
 
-import { ContainerAlt, InputAlt } from './styles'
+import { ContainerAlt, InputAlt, iconAltStyling, expandedIconStyles } from './styles'
 import Magnify from '@lessondesk/material-icons/dist/Magnify'
 
-import { fontSizes, colors } from '../theme.js'
-
-const IconAltStyling = {
-  position: 'absolute',
-  right: '14px',
-  borderRadius: '100%',
-  padding: '9px',
-  fontSize: '32px',
-  cursor: 'pointer',
-}
-
-const ExpandedIconStyles = {
-  boxShadow: '0px 0px 16px 0px rgba(0, 0, 0, 0.09)',
-}
+import { fontSizes, colors } from '../../config/theme.js'
 
 class ExpandingSearchInput extends Component {
 
@@ -54,10 +41,10 @@ class ExpandingSearchInput extends Component {
         <Magnify
           onClick={this.toggleExpanded}
           style={{
-            ...IconAltStyling,
-            ...(expanded && ExpandedIconStyles),
+            ...iconAltStyling,
+            ...(expanded && expandedIconStyles),
           }}
-          bg={'white'}
+          bg='white'
           size={fontSizes.large}
           color={colors.gray.dark}
         />

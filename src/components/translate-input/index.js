@@ -8,13 +8,15 @@ import TranslateModal from '../modals/translate-modal'
 import ModalWrapper from '../modals/modal-wrapper'
 
 import createDefaultInputProps from '../../utils/create-input-defaults'
-import { fontSizes, colors } from '../theme.js'
+import { fontSizes, colors } from '../../config/theme.js'
 
 import { Container, TranslateIconContainer, TranslateInputContainer } from './styles'
 
 class TranslationInput extends Component {
   static defaultProps = {
     type: 'lesson',
+    onChange: () => {},
+    onBlur: () => {}
   }
 
   state = {
@@ -54,8 +56,8 @@ class TranslationInput extends Component {
     this.toggleModal()
   }
 
-  updateDefaultValue = event => {
-    const { value } = event.target
+  updateDefaultValue = ({ target }) => {
+    const { value } = target
     const { formik, name } = this.props
     const { values, setFieldValue } = formik
     const currentValue = values[name]

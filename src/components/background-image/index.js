@@ -1,9 +1,11 @@
 import styled from 'styled-components'
-import { background, space, layout, flexbox } from 'styled-system'
 import PropTypes from 'prop-types'
-import theme from './theme'
 
-const image = props => `url(${props.source})`
+import { background, space, layout, flexbox } from 'styled-system'
+
+import theme from '../../config/theme'
+
+const image = ({source}) => `url(${source})`
 
 const BackgroundImage = styled.div`
   background-position: center;
@@ -17,7 +19,7 @@ const BackgroundImage = styled.div`
 `
 
 BackgroundImage.defaultProps = {
-  theme: theme,
+  theme
 }
 
 BackgroundImage.propTypes = {

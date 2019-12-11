@@ -9,20 +9,18 @@ export const Container = styled.div`
 export const Value = styled.button`
   padding: 0.3em 1em;
   margin-right: 1em;
-  font-size: 1em;
-  border-radius: 1.1em;
+  font: ${({ theme }) => theme.fonts.Montserrat};
+  font-size: ${({ theme }) => theme.fontSizes.small};
+  border-radius: ${({ theme }) => theme.radii.large};
   border: none;
   cursor: pointer;
 
-  ${({ selected }) =>
-    selected
-      ? `
-    color: ${props => props.theme.colors.black};
-    background-color: ${props => props.theme.colors.white};
-    box-shadow: 0 0 1em 0 ${props => props.theme.colors.gray.default};
-  `
-      : `
-    color: ${props => props.theme.colors.gray.dark};
-    background-color: ${props => props.theme.colors.gray.xlight};
+  ${({ selected, theme }) => selected ? `
+    color: ${theme.colors.gray.xxdark};
+    background-color: ${theme.colors.white};
+    box-shadow: 0 0 1em 0 ${theme.colors.gray.default};
+  ` : `
+    color: ${theme.colors.gray.dark};
+    background-color: ${theme.colors.gray.xlight};
   `}
 `

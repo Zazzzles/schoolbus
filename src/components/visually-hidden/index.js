@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-const Visuallyhidden = styled.span`
+const VisuallyHidden = styled.span`
   border: 0;
   clip: rect(0 0 0 0);
   height: auto; /* new - was 1px */
@@ -12,6 +12,6 @@ const Visuallyhidden = styled.span`
   white-space: nowrap; /* 1 */
 `
 
-Visuallyhidden.displayName = 'Visuallyhidden'
+VisuallyHidden.displayName = 'VisuallyHidden'
 
-export default Visuallyhidden
+export default VisuallyHidden

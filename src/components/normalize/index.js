@@ -1,6 +1,5 @@
 import { createGlobalStyle } from 'styled-components'
-
-import theme from './theme'
+import theme from '../../config/theme'
 
 const Normalize = createGlobalStyle`
   html,
@@ -72,13 +71,13 @@ const Normalize = createGlobalStyle`
     height: 100%;
      overflow-y: scroll;
     box-sizing: border-box;
-    font-family: ${props => props.theme.fonts[0]};
+    font-family: ${props => props.theme.fonts.Montserrat};
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
-  article,
+article,
 aside,
 details,
 figcaption,
@@ -94,9 +93,6 @@ hgroup,
 summary {
   display: block;
 }
-
-
-
 img,
 embed,
 iframe,
@@ -215,7 +211,7 @@ samp {
 `
 
 Normalize.defaultProps = {
-  theme: theme,
+  theme,
 }
 
 Normalize.displayName = 'Normalize'

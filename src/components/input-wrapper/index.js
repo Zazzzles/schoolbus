@@ -5,9 +5,9 @@ import { layout, space } from 'styled-system'
 const StyledLabel = styled.label`
   display: block;
   font-family: inherit;
-  color: ${props => props.theme.colors.gray.xxdark};
-  font-weight: ${props => props.theme.fontWeights.bold};
-  font-size: ${props => props.theme.fontSizes.xsmall};
+  color: ${({theme}) => theme.colors.gray.xxdark};
+  font-weight: ${({theme}) => theme.fontWeights.bold};
+  font-size: ${({theme}) => theme.fontSizes.xsmall};
   margin-bottom: 0.4em;
 `
 
@@ -34,10 +34,10 @@ const StyledAlertText = styled.span.attrs({
   position: absolute;
   top: 0;
   right: 0;
-  font-size: ${props => props.theme.fontSizes.xsmall};
+  font-size: ${({theme}) => theme.fontSizes.xsmall};
   font-style: italic;
-  color: ${props => props.theme.colors.red[1]};
-  font-weight: ${props => props.theme.fontWeights.bold};
+  color: ${({theme}) => theme.colors.red[1]};
+  font-weight: ${({theme}) => theme.fontWeights.bold};
 `
 
 StyledAlertText.displayName = 'StyledAlertText'

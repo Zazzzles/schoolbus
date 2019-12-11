@@ -52,7 +52,6 @@ storiesOf('Input | Icon Button', module)
         <IconButton color="white" icon="edit" />
         <IconButton color="white" icon="download" ml="1em" />
         <IconButton color="white" ml="1em" icon="back" />
-        <IconButton color="white" ml="1em" icon="AccessPoint" />
         <IconButton icon="delete" ml="1em" />
       </Flex>
 

@@ -1,8 +1,8 @@
-export { default as theme } from './components/theme'
+export { default as theme } from './config/theme'
 export { default as ThemeProvider } from './components/theme-provider'
 
 export { default as Normalize } from './components/normalize'
-export { default as Visuallyhidden } from './components/visually-hidden'
+export { default as VisuallyHidden } from './components/visually-hidden'
 
 export { default as Box } from './components/box'
 export { default as Button } from './components/button'

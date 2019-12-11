@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+
 import {
   space,
   layout,
@@ -8,15 +9,15 @@ import {
   flexWrap,
   flexDirection,
 } from 'styled-system'
-import theme from './theme'
 
-import { mapProps } from './utils'
+import theme from '../../config/theme'
+import { mapProps } from '../../utils/map-props'
 
-const Flex = mapProps(({ wrap, align, justify, ...props }) => ({
+const Flex = mapProps(({ wrap, align, justify, ...otherProps }) => ({
   flexWrap: wrap ? 'wrap' : 'no-wrap',
   alignItems: align,
   justifyContent: justify,
-  ...props,
+  ...otherProps,
 }))(styled.div`
   display: flex;
   ${space}

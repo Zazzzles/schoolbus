@@ -124,7 +124,7 @@ var theme = {
 var ThemeProvider = function ThemeProvider(_ref) {
   var children = _ref.children;
   return React.createElement(styled.ThemeProvider, {
-    theme: theme
+    theme
   }, children);
 };
 
@@ -157,12 +157,12 @@ function _templateObject() {
   return data;
 }
 var Normalize = styled.createGlobalStyle(_templateObject(), function (props) {
-  return props.theme.fonts[0];
+  return props.theme.fonts.Montserrat;
 }, function (props) {
   return props.theme.radii[0];
 });
 Normalize.defaultProps = {
-  theme: theme
+  theme
 };
 Normalize.displayName = 'Normalize';
 
@@ -175,8 +175,8 @@ function _templateObject$1() {
 
   return data;
 }
-var Visuallyhidden = styled__default.span(_templateObject$1());
-Visuallyhidden.displayName = 'Visuallyhidden';
+var VisuallyHidden = styled__default.span(_templateObject$1());
+VisuallyHidden.displayName = 'VisuallyHidden';
 
 function _defineProperty(obj, key, value) {
   if (key in obj) {
@@ -211,7 +211,7 @@ function _templateObject$2() {
 var Box = styled__default.div(_templateObject$2(), styledSystem.space, styledSystem.layout, styledSystem.color, styledSystem.flexbox);
 Box.displayName = 'Box';
 Box.defaultProps = {
-  theme: theme
+  theme
 };
 Box.propTypes = _objectSpread({}, styledSystem.space.propTypes, {}, styledSystem.layout.propTypes, {}, styledSystem.color.propTypes, {}, styledSystem.flexbox.propTypes);
 
@@ -387,7 +387,7 @@ var StyledButton = styled__default.button.attrs({
 })(_templateObject$3(), function (props) {
   return props.theme.fontWeights.bold;
 }, function (props) {
-  return props.theme.fonts[0];
+  return props.theme.fonts.Montserrat;
 }, function (props) {
   return getWidth(props);
 }, function (props) {
@@ -428,7 +428,7 @@ defineProperty(Button, "propTypes", _objectSpread$1({
 defineProperty(Button, "defaultProps", {
   shape: Button.SHAPES.square,
   size: Button.SIZES.default,
-  theme: theme
+  theme
 });
 
 function _objectWithoutPropertiesLoose(source, excluded) {
@@ -1438,7 +1438,7 @@ var StyledCardDivider = styled__default.div(_templateObject3(), function (props)
 var StyledCardTitle = styled__default.h2(_templateObject4(), function (props) {
   return props.theme.fontSizes.small;
 }, function (props) {
-  return props.theme.fonts[0];
+  return props.theme.fonts.Montserrat;
 }, function (props) {
   return props.theme.colors.primary;
 }, function (props) {
@@ -1537,7 +1537,7 @@ var Text = styled__default.p(_templateObject$6(), function (props) {
   return props.theme.colors.gray.xxdark;
 }, styledSystem.typography, styledSystem.space, styledSystem.color);
 Text.defaultProps = {
-  theme: theme
+  theme
 };
 Text.propTypes = _objectSpread$3({}, styledSystem.typography.propTypes, {}, styledSystem.space.propTypes, {}, styledSystem.color.propTypes);
 Text.displayName = 'Text';
@@ -1574,7 +1574,7 @@ var StyledPill = styled__default.button.attrs({
 }, function (props) {
   return props.theme.fontWeights.bold;
 }, function (props) {
-  return props.theme.fonts[0];
+  return props.theme.fonts.Montserrat;
 }, styledSystem.space, styledSystem.layout);
 StyledPill.displayName = 'Pill';
 
@@ -1602,7 +1602,7 @@ function (_React$PureComponent) {
 defineProperty(Pill, "VARIANTS", VARIANTS);
 
 defineProperty(Pill, "defaultProps", {
-  theme: theme,
+  theme,
   variant: VARIANTS.inactive
 });
 
@@ -1651,7 +1651,7 @@ var Image = styled__default.img.attrs({
 Image.displayName = 'Image';
 Image.propTypes = _objectSpread$5({}, styledSystem.layout.propTypes);
 Image.defaultProps = {
-  theme: theme,
+  theme,
   shape: SHAPES$1.square
 };
 
@@ -2100,7 +2100,7 @@ var Flex = mapProps(function (_ref) {
   }, props);
 })(styled__default.div(_templateObject$9(), styledSystem.space, styledSystem.layout, styledSystem.color, styledSystem.alignItems, styledSystem.justifyContent, styledSystem.flexDirection, styledSystem.flexWrap));
 Flex.defaultProps = {
-  theme: theme
+  theme
 };
 Flex.propTypes = _objectSpread$6({}, styledSystem.space.propTypes, {}, styledSystem.layout.propTypes, {}, styledSystem.color.propTypes, {}, styledSystem.alignItems.propTypes, {}, styledSystem.justifyContent.propTypes, {}, styledSystem.flexWrap.propTypes, {}, styledSystem.flexDirection.propTypes);
 Flex.displayName = 'Flex';
@@ -2144,7 +2144,7 @@ var StyledInput = styled__default.input.attrs({
   return props.theme.colors.gray;
 });
 var StyledLabel = styled__default.label(_templateObject2$2(), function (props) {
-  return props.theme.fonts[0];
+  return props.theme.fonts.Montserrat;
 }, function (props) {
   return props.theme.fontSizes.medium;
 }, function (props) {
@@ -2334,7 +2334,7 @@ function _templateObject$b() {
   return data;
 }
 var StyledLabel$1 = styled__default.label(_templateObject$b(), function (props) {
-  return props.theme.fonts[0];
+  return props.theme.fonts.Montserrat;
 }, function (props) {
   return props.theme.fontSizes.medium;
 }, function (props) {
@@ -2381,7 +2381,7 @@ function (_React$PureComponent) {
 }(React.PureComponent);
 
 defineProperty(RadioButton, "defaultProps", {
-  theme: theme
+  theme
 });
 
 function _templateObject$c() {
@@ -2584,7 +2584,7 @@ defineProperty(Input, "propTypes", defaultPropTypes);
 defineProperty(Input, "defaultProps", {
   label: '',
   inputStyle: {},
-  theme: theme
+  theme
 });
 
 var input = formik.connect(Input);
@@ -17925,7 +17925,7 @@ var ClassNames = withEmotionCache(function (props, context) {
     var content = {
       css: css,
       cx: cx,
-      theme: theme
+      theme
     };
     var ele = props.children(content);
     hasRendered = true;
@@ -24025,7 +24025,7 @@ function (_Component) {
         placement: menuPlacement,
         shouldScroll: shouldScroll,
         isFixedPosition: isFixedPosition,
-        theme: theme
+        theme
       });
       if (getPortalPlacement) getPortalPlacement(state);
 
@@ -24734,7 +24734,7 @@ var Group = function Group(props) {
     }, className)
   }, jsx(Heading, _extends$3({}, headingProps, {
     selectProps: selectProps,
-    theme: theme,
+    theme,
     getStyles: getStyles,
     cx: cx
   }), label), jsx("div", null, children));
@@ -24765,7 +24765,7 @@ var GroupHeading = function GroupHeading(props) {
 
   return jsx("div", _extends$3({
     css: getStyles('groupHeading', _objectSpread$a({
-      theme: theme
+      theme
     }, cleanProps)),
     className: cx({
       'group-heading': true
@@ -24813,7 +24813,7 @@ var Input$1 = function Input(_ref2) {
 
   return jsx("div", {
     css: getStyles('input', _objectSpread$a({
-      theme: theme
+      theme
     }, props))
   }, jsx(AutosizeInput, _extends$3({
     className: cx({
@@ -27532,7 +27532,7 @@ function (_Component) {
         selectProps: selectProps,
         spellCheck: "false",
         tabIndex: tabIndex,
-        theme: theme,
+        theme,
         type: "text",
         value: inputValue
       }, ariaAttributes));
@@ -39855,7 +39855,7 @@ var image = function image(props) {
 
 var BackgroundImage = styled__default.div(_templateObject$o(), image, styledSystem.space, styledSystem.background, styledSystem.layout, styledSystem.flexbox);
 BackgroundImage.defaultProps = {
-  theme: theme
+  theme
 };
 BackgroundImage.propTypes = _objectSpread$g({
   source: PropTypes$1.string.isRequired
@@ -41330,7 +41330,7 @@ var CopyrightText = styled__default.p.attrs({
 }, function (props) {
   return props.theme.fontSizes.xsmall;
 }, function (props) {
-  return props.theme.fonts[0];
+  return props.theme.fonts.Montserrat;
 }, function (props) {
   return props.theme.fontWeights.bold;
 });
@@ -41376,5 +41376,5 @@ exports.Toggle = Toggle;
 exports.Tooltip = Tooltip$1;
 exports.TranslateInput = index$6;
 exports.TypeInput = index$5;
-exports.Visuallyhidden = Visuallyhidden;
+exports.VisuallyHidden = VisuallyHidden;
 exports.theme = theme;

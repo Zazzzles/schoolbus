@@ -2,7 +2,7 @@ import React from 'react'
 import Popup from 'reactjs-popup'
 import styled from 'styled-components'
 import DotsVertical from '@lessondesk/material-icons/dist/DotsVertical'
-import { colors } from './theme'
+import { colors } from '../../config/theme'
 
 const SettingsContainer = styled.div`
   display: flex;
@@ -15,6 +15,7 @@ const SettingsContainer = styled.div`
 
 const OverflowMenu = ({ position, children }) => (
   <Popup
+    closeOnDocumentClick
     contentStyle={{
       width: 'auto',
       padding: '0.5em 2em 0.5em 1em',
@@ -22,7 +23,7 @@ const OverflowMenu = ({ position, children }) => (
       border: 'none',
       animation: '200ms fade-in ease-in',
     }}
-    trigger={<DotsVertical color={colors.gray.dark} />}
+    trigger={<div><DotsVertical color={colors.gray.dark} /></div>}
     position={position || 'left center'}
     arrow={false}
   >

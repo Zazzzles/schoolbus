@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import { space, layout } from 'styled-system'
 
-import theme from './theme'
+import theme from '../../config/theme'
 
 const VARIANTS = {
   active: 'active',
@@ -13,17 +13,17 @@ const VARIANTS = {
 const StyledPill = styled.button.attrs({
   type: 'button',
 })`
-  background-color: ${props => props.theme.colors.transparent};
-  color: ${props =>
-    props.variant === VARIANTS.active ? props.theme.colors.primary : props.theme.colors.gray.xdark};
+  background-color: ${({theme}) => theme.colors.transparent};
+  color: ${({variant, theme}) =>
+    variant === VARIANTS.active ? theme.colors.primary : theme.colors.gray.xdark};
   padding: 1em;
   min-width: 80px;
-  border-radius: ${props => props.theme.radii.full};
-  box-shadow: ${props => (props.variant === VARIANTS.active ? props.theme.shadows[1] : 'none')};
+  border-radius: ${({theme}) => theme.radii.full};
+  box-shadow: ${({variant, theme}) => (variant === VARIANTS.active ? theme.shadows[1] : 'none')};
   border: none;
-  font-size: ${props => props.theme.fontSizes.small};
-  font-weight: ${props => props.theme.fontWeights.bold};
-  font-family: ${props => props.theme.fonts[0]};
+  font-size: ${({theme}) => theme.fontSizes.small};
+  font-weight: ${({theme}) => theme.fontWeights.bold};
+  font-family: ${({theme}) => theme.fonts.Montserrat};
   ${space}
   ${layout}
 `
@@ -34,7 +34,7 @@ class Pill extends React.PureComponent {
   static VARIANTS = VARIANTS
 
   static defaultProps = {
-    theme: theme,
+    theme,
     variant: VARIANTS.inactive,
   }
 

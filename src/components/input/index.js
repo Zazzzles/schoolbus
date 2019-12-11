@@ -1,11 +1,11 @@
 import * as React from 'react'
 import { connect } from 'formik'
 
-import StyledInput from './styled-input'
-import InputWrapper from './input-wrapper'
-import theme from './theme'
-import defaultPropTypes from '../config/prop-types'
-import createDefaultInputProps from '../utils/create-input-defaults'
+import StyledInput from '../styled-input'
+import InputWrapper from '../input-wrapper'
+import theme from '../../config/theme'
+import defaultPropTypes from '../../config/prop-types'
+import createDefaultInputProps from '../../utils/create-input-defaults'
 
 class Input extends React.PureComponent {
   static propTypes = defaultPropTypes
@@ -13,7 +13,7 @@ class Input extends React.PureComponent {
   static defaultProps = {
     label: '',
     inputStyle: {},
-    theme: theme,
+    theme
   }
 
   render() {

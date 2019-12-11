@@ -1,19 +1,19 @@
 import styled from 'styled-components'
 
 const StyledInput = styled.input`
-  background-color: ${props =>
-    props.disabled ? props.theme.colors.white : props.theme.colors.gray.xlight};
+  background-color: ${({disabled, theme}) =>
+    disabled ? theme.colors.white : theme.colors.gray.xlight};
   border: 1px solid
-    ${props => (props.disabled ? props.theme.colors.gray.default : props.theme.colors.gray.xlight)};
+    ${({disabled, theme}) => disabled ? theme.colors.gray.default : theme.colors.gray.xlight};
   font-family: inherit;
-  font-size: ${props => props.theme.fontSizes.small};
+  font-size: ${({theme}) => theme.fontSizes.small};
   padding: 0.5em 1em;
   height: 38px;
-  border-radius: ${props => props.theme.radii.small};
+  border-radius: ${({theme}) => theme.radii.small};
   width: 100%;
 
   ::placeholder {
-    color: ${props => props.theme.colors.gray.xxdark};
+    color: ${({theme}) => theme.colors.gray.xxdark};
   }
 
   ::-webkit-inner-spin-button,

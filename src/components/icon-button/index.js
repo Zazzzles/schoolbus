@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import theme from '../theme'
+import theme from '../../config/theme'
 import { Button, Badge } from './styles'
 import PropTypes from 'prop-types'
 

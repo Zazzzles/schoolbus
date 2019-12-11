@@ -1,6 +1,6 @@
 import { create } from '@storybook/theming';
 
-import theme from '../src/components/theme'
+import theme from '../src/config/theme'
 
 export default create({
   base: 'light',
@@ -15,7 +15,7 @@ export default create({
   appBorderRadius: theme.radii[1],
 
   // Typography
-  fontBase: theme.fonts[0],
+  fontBase: theme.fonts.Montserrat,
   fontCode: 'monospace',
 
   // Text colors

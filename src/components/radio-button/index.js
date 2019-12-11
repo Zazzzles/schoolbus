@@ -5,15 +5,15 @@ import styled from 'styled-components'
 import RadioboxBlank from '@lessondesk/material-icons/dist/RadioboxBlank'
 import RadioboxMarked from '@lessondesk/material-icons/dist/RadioboxMarked'
 
-import theme from './theme'
+import theme from '../../config/theme'
 
 const StyledLabel = styled.label`
   display: flex;
   align-items: center;
   cursor: pointer;
-  font-family: ${props => props.theme.fonts[0]};
-  font-size: ${props => props.theme.fontSizes.medium};
-  line-height: ${props => props.theme.lineHeights.normal};
+  font-family: ${({theme}) => theme.fonts.Montserrat};
+  font-size: ${({theme}) => theme.fontSizes.medium};
+  line-height: ${({theme}) => theme.lineHeights.normal};
 `
 
 const StyledSpan = styled.span`
@@ -22,7 +22,7 @@ const StyledSpan = styled.span`
 
 class RadioButton extends React.PureComponent {
   static defaultProps = {
-    theme: theme,
+    theme,
   }
 
   render() {

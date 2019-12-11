@@ -1,9 +1,7 @@
-/* eslint no-use-before-define: 0 */
-import * as React from 'react'
 import styled from 'styled-components'
 import { space, layout } from 'styled-system'
 
-const StyledInput = styled.input.attrs({
+export const StyledInput = styled.input.attrs({
   type: 'checkbox',
 })`
   appearance: none;
@@ -58,12 +56,12 @@ const StyledInput = styled.input.attrs({
   }
 `
 
-const StyledLabel = styled.label`
+export const StyledLabel = styled.label`
   z-index: 0;
   position: relative;
   display: inline-block;
   color: rgba(0, 0, 0, 0.87);
-  font-family: ${props => props.theme.fonts[0]};
+  font-family: ${props => props.theme.fonts.Montserrat};
   font-size: ${props => props.theme.fontSizes.medium};
   line-height: ${props => props.theme.lineHeights.normal};
 
@@ -79,7 +77,7 @@ const StyledLabel = styled.label`
   ${layout}
 `
 
-const StyledSpan = styled.span`
+export const StyledSpan = styled.span`
   display: inline-block;
   width: 100%;
 
@@ -117,9 +115,9 @@ const StyledSpan = styled.span`
   ${/* sc-selector */ StyledInput}:checked + &::before,
   ${/* sc-selector */ StyledInput}:indeterminate + &::before {
     border-color: ${({ theme, disabled }) => disabled
-      ? theme.colors.gray[2] : theme.colors.primary};
+    ? theme.colors.gray[2] : theme.colors.primary};
     background-color: ${({ theme, disabled }) => disabled
-      ? theme.colors.gray[2] : theme.colors.primary};
+    ? theme.colors.gray[2] : theme.colors.primary};
   }
 
   ${/* sc-selector */ StyledInput}:checked + &::after,
@@ -132,18 +130,3 @@ const StyledSpan = styled.span`
     transform: translate(4px, 3px);
   }
 `
-
-class Checkbox extends React.PureComponent {
-  render() {
-    const { children, onChange, checked, onBlur, disabled, ...props } = this.props
-
-    return (
-      <StyledLabel {...props}>
-        <StyledInput onChange={onChange} onBlur={onBlur} checked={checked} disabled={disabled} />
-        <StyledSpan disabled={disabled} labelled={children}>{children}</StyledSpan>
-      </StyledLabel>
-    )
-  }
-}
-
-export default Checkbox

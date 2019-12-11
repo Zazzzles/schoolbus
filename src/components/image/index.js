@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { layout, shadow } from 'styled-system'
 
-import theme from './theme'
+import theme from '../../config/theme'
 
 const SHAPES = {
   square: 'square',
@@ -9,16 +9,16 @@ const SHAPES = {
   rounded: 'rounded',
 }
 
-const shape = props => {
-  if (props.shape === SHAPES.round) {
-    return { borderRadius: props.theme.radii.full }
+const shape = ({shape, theme}) => {
+  if (shape === SHAPES.round) {
+    return { borderRadius: theme.radii.full }
   }
 
-  if (props.shape === SHAPES.rounded) {
-    return { borderRadius: props.theme.radii.large }
+  if (shape === SHAPES.rounded) {
+    return { borderRadius: theme.radii.large }
   }
 
-  return props.theme.radii.none
+  return theme.radii.none
 }
 
 const Image = styled.img.attrs({
@@ -39,7 +39,7 @@ Image.propTypes = {
 }
 
 Image.defaultProps = {
-  theme: theme,
+  theme,
   shape: SHAPES.square,
 }
 
