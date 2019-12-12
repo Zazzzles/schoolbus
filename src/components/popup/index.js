@@ -1,16 +1,25 @@
 import React, { Component } from 'react'
-import IconButton from '../icon-button'
 
+import DotsVertical from '@lessondesk/material-icons/dist/DotsVertical'
+import { colors } from '../../config/theme'
+
+import { Trigger, MenuWrapper } from './styles'
 
 class Popup extends Component {
 
   state = {
     showDialogue: false,
-    renderAtBottom: true
+    renderToBottom: true,
+    dimensions: {},
   }
 
   componentDidMount() {
     document.addEventListener('mousedown', this.handleClickOutside, false)
+
+    if (this.menu) {
+      const { offsetHeight: height, offsetWidth: width } = this.menu
+      this.setState({ dimensions: {height, width}})
+    }  
   }
 
   componentWillUnmount() {
@@ -23,11 +32,17 @@ class Popup extends Component {
     if (disabled) return
 
     if (showDialogue && this.trigger) {
-      const { top } = this.trigger.getBoundingClientRect()
-      const innerHeight = window.innerHeight
-      const renderAtBottom = (innerHeight - top > 340 || top < 300)
-      return this.setState({ showDialogue, renderAtBottom })
+      const { height, width } = this.state.dimensions
+      const { bottom, right, left } = this.trigger.getBoundingClientRect()
+      const { innerHeight, innerWidth } = window
+
+      if (height && width) {
+        const renderToBottom = (innerHeight - bottom > height) || bottom < height
+        const renderToLeft = right > width || (innerWidth - left < width)
+        return this.setState({ showDialogue, renderToBottom, renderToLeft })
+      }
     }
+
     this.setState({ showDialogue })
   }
 
@@ -39,32 +54,22 @@ class Popup extends Component {
   }
 
   render() {
-    const { showDialogue, renderAtBottom } = this.state
-    const wrapperPosition = renderAtBottom ? { top: 65 } : { bottom: 45 }
-
-    const {
-      children
-    } = this.props
+    const { showDialogue, renderToBottom, renderToLeft } = this.state
+    const { children } = this.props
 
     return (
-      <IconButton
-        icon="overflow"
-        color="white"
-        noShadow
-        onClick={() => this.toggleDialogue(true)}
-        ref={node => this.trigger = node}
-      >
-        {showDialogue && (
-          <div
-            style={{width: 100, height: 200, background: 'white'}}
-            ref={node => this.menu = node}
-            style={wrapperPosition}
-          >
-            Menu
-            {children || 'Menu'}
-          </div>
-        )}
-      </IconButton>
+      <Trigger ref={node => this.trigger = node} onClick={() => this.toggleDialogue(true)}>
+        <DotsVertical color={colors.gray.dark} />
+
+        <MenuWrapper
+          ref={node => this.menu = node}
+          showDialogue={showDialogue}
+          renderToBottom={renderToBottom}
+          renderToLeft={renderToLeft}
+        >
+          {children}
+        </MenuWrapper>
+      </Trigger>
     )
   }
 }
