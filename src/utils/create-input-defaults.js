@@ -1,4 +1,4 @@
-import { errorForField } from '../components/utils'
+import { errorForField } from '../utils/error-for-field'
 
 export default function createDefaultInputProps({
   formik,
@@ -12,13 +12,13 @@ export default function createDefaultInputProps({
 
   return {
     hasFormik,
-    onBlur: onBlur ? onBlur : hasFormik && formik.handleBlur,
-    value: value ? value : hasFormik && formik.values[name],
-    onChange: onChange
-      ? onChange
-      : hasFormik && (({ target }) => formik.setFieldValue(name, target.value)),
-    alertText: alertText
-      ? alertText
-      : hasFormik && errorForField(formik.errors, formik.touched, name),
+    onBlur: onBlur || (hasFormik ? formik.handleBlur : undefined),
+    value: value || (hasFormik ? formik.values[name] : undefined),
+    onChange: onChange || (
+      hasFormik ? (({ target }) => formik.setFieldValue(name, target.value)) : undefined
+    ),  
+    alertText: alertText || (
+      hasFormik ? errorForField(formik.errors, formik.touched, name) : null
+    ), 
   }
 }

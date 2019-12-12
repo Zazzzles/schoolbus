@@ -9,10 +9,6 @@ import createDefaultInputProps from '../../utils/create-input-defaults'
 
 import InputWrapper from '../input-wrapper'
 
-const defaultMasks = {
-  za: '+.. .. ... ....',
-}
-
 const TelInput = props => {
   const {
     formik,
@@ -21,7 +17,7 @@ const TelInput = props => {
     onBlur,
     onChange,
     placeholder,
-    defaultCountry = 'za',
+    defaultCountry,
     inputProps,
     disabled,
     alertText: alertTextOverride,
@@ -52,7 +48,7 @@ const TelInput = props => {
         disabled={disabled}
         name={name}
         countryCodeEditable={false}
-        masks={masks || defaultMasks}
+        masks={masks}
         inputExtraProps={{
           ...inputProps,
           id,
@@ -64,4 +60,10 @@ const TelInput = props => {
   )
 }
 
+TelInput.defaultProps = {
+  defaultCountry: 'za',
+  masks: {
+    za: '+.. .. ... ....',
+  }
+}
 export default connect(TelInput)

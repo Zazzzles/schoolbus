@@ -6,16 +6,16 @@ export const Container = styled.div`
   height: 2.7em;
   display: flex;
   align-items: center;
-  border-radius: 0.5em;
-  background-color: ${props => props.theme.colors.gray.xlight};
+  border-radius: ${({ theme }) => theme.radii.small};
+  background-color: ${({theme}) => theme.colors.gray.xlight};
   margin-bottom: 1em;
 `
 
 export const Inner = styled.div`
   width: 14em;
-  border: solid 1px ${props => props.theme.colors.gray.light};
+  border: solid 1px ${({theme}) => theme.colors.gray.light};
   border-radius: 0.5em;
-  background-color: ${props => props.theme.colors.white};
+  background-color: ${({theme}) => theme.colors.white};
   height: 100%;
   display: flex;
   align-items: center;
@@ -24,15 +24,17 @@ export const Inner = styled.div`
 
 export const Input = styled(StyledInput)`
   height: 100%;
-  border-radius: 0.5em;
+  border-radius: ${({ theme }) => theme.radii.small};
 `
 
 export const LanguageText = styled.div`
-  font-size: 0.8em;
-  font-weight: 600;
+  font-size: ${({ theme }) => theme.fontSizes.small};
+  font-weight: ${({ theme }) => theme.fontWeights.semi};
+  color: ${({ theme }) => theme.colors.gray.xxdark};
 `
 
 export const DefaultText = styled.div`
   padding-left: 0.5em;
-  font-size: 0.7em;
+  font-size: ${({ theme }) => theme.fontSizes.small};
+  color: ${({ theme }) => theme.colors.gray.xxdark};
 `

@@ -1,57 +1,33 @@
 import React from 'react'
-import DatePicker from 'react-datepicker'
-import styled from 'styled-components'
-import CalendarToday from '@lessondesk/material-icons/dist/CalendarToday'
 import { connect } from 'formik'
 
-import 'react-datepicker/dist/react-datepicker.css'
-import './styles.css'
+import CalendarToday from '@lessondesk/material-icons/dist/CalendarToday'
 
 import InputWrapper from '../input-wrapper'
 import createDefaultInputProps from '../../utils/create-input-defaults'
-import { colors } from '../theme'
+import { iconStyles, StyledDatePicker } from './styles'
 
-const StyledDatePicker = styled(DatePicker)`
-  background-color: ${props =>
-    props.disabled ? props.theme.colors.transparent : props.theme.colors.gray.xlight};
-  border: 1px solid
-    ${props => (props.disabled ? props.theme.colors.gray.light : props.theme.colors.gray.xlight)};
-  font-family: inherit;
-  font-size: ${props => props.theme.fontSizes.small};
-  padding: 0.6em 1em;
-  height: 38px;
-  border-radius: ${props => props.theme.radii.small};
-  width: 100%;
+import { colors } from '../../config/theme'
 
-  ::placeholder {
-    color: ${props => props.theme.colors.gray.dark};
-  }
-`
-
-const iconStyles = {
-  position: 'absolute',
-  right: 10,
-  bottom: 7,
-  pointerEvents: 'none',
-}
+import 'react-datepicker/dist/react-datepicker.css'
+import './styles.css'
 
 function getDateString(value) {
   return value instanceof Date ? value.toDateString() : value
 }
 
-const DateInput = props => {
-  const {
-    formik,
-    disabled,
-    value,
-    onBlur,
-    onChange,
-    placeholder,
-    inputProps,
-    alertText: alertTextOverride,
-    dateFormatter = getDateString,
-    ...otherProps
-  } = props
+const DateInput = ({
+  formik,
+  disabled,
+  value,
+  onBlur,
+  onChange,
+  placeholder,
+  inputProps,
+  alertText: alertTextOverride,
+  dateFormatter,
+  ...otherProps
+}) => {
 
   const { id = otherProps.name, label, inputStyle, name, required } = otherProps
 
@@ -63,19 +39,22 @@ const DateInput = props => {
     formik,
     alertText: alertTextOverride,
   })
+  
   const { hasFormik } = inputDefaults
-  const defaultChangeHandler = hasFormik && (value => formik.setFieldValue(name, value))
+  const defaultChangeHandler = hasFormik 
+    ? value => formik.setFieldValue(name, value)
+    : onChange
 
   return (
     <InputWrapper alertText={alertTextOverride || alertText} {...otherProps}>
       <StyledDatePicker
         {...inputDefaults}
-        onChange={onChange ? onChange : defaultChangeHandler}
+        id={id}
+        onChange={defaultChangeHandler}
         value={dateFormatter(value || inputDefaults.value)}
         style={inputStyle}
         aria-label={label}
-        aria-required={required}
-        id={id}
+        aria-required={required}  
         placeholderText={placeholder || label}
         disabled={disabled}
         name={name}
@@ -88,7 +67,10 @@ const DateInput = props => {
 }
 
 DateInput.defaultProps = {
+  dateFormatter: getDateString,
   dateFormat: 'dd/MM/yyyy',
+  onBlur: () => {},
+  onChange: () => {}
 }
 
 export default connect(DateInput)
