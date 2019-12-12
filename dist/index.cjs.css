@@ -281,7 +281,7 @@
   left: 2px;
   margin-bottom: -4px;
 }
-.rc-slider-vertical .rc-slider-dot:first-of-type {
+.rc-slider-vertical .rc-slider-dot:first-child {
   margin-bottom: -4px;
 }
 .rc-slider-vertical .rc-slider-dot:last-child {
