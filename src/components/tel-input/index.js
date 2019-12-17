@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'formik'
 import ReactPhoneInput from 'react-phone-input-2'
 
-import 'react-phone-input-2/dist/style.css'
+import 'react-phone-input-2/lib/style.css'
 import './styles.css'
 
 import createDefaultInputProps from '../../utils/create-input-defaults'

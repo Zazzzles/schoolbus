@@ -6,7 +6,7 @@ storiesOf('BackgroundImage', module)
   .addParameters({ component: BackgroundImage })
   .add('Basic', () => (
     <BackgroundImage
-      source="https://www.lessondesk.com/assets/images/lessondesk/Icon.png"
+      source="https://images.freeimages.com/images/small-previews/05e/on-the-road-6-1384796.jpg"
       size="300px"
     />
   ))

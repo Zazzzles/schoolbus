@@ -2,22 +2,24 @@ import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { Image } from '../'
 
+const imageUrl = "https://images.freeimages.com/images/small-previews/05e/on-the-road-6-1384796.jpg"
+
 storiesOf('Image', module)
   .addParameters({ component: Image })
   .add('Basic', () => (
-    <Image src="https://www.lessondesk.com/assets/images/lessondesk/Icon.png" size="300px" />
+    <Image src={imageUrl} size="300px" />
   ))
   .add('Rounded', () => (
     <Image
       shape="rounded"
-      src="https://www.lessondesk.com/assets/images/lessondesk/Icon.png"
+      src={imageUrl}
       size="300px"
     />
   ))
   .add('Round', () => (
     <Image
       shape="round"
-      src="https://www.lessondesk.com/assets/images/lessondesk/Icon.png"
+      src={imageUrl}
       size="300px"
     />
   ))
@@ -25,7 +27,7 @@ storiesOf('Image', module)
     <Image
       shape="round"
       boxShadow={3}
-      src="https://www.lessondesk.com/assets/images/lessondesk/Icon.png"
+      src={imageUrl}
       size="300px"
     />
   ))
