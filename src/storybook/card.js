@@ -26,6 +26,15 @@ storiesOf('Card', module)
       content
     </Card>
   ))
+  .add('Hidden divider, no description', () => (
+    <Card
+      hideDivider
+      title="Example"
+      onAdd={() => console.log('adding')}
+    >
+      contentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontent
+    </Card>
+  ))
   .add('viewstate hiding description and actions.', () => (
     <Card
       viewState

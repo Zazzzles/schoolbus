@@ -5,7 +5,7 @@ export const StyledCard = styled.section`
   background-color: ${({theme}) => theme.colors.white};
   border-radius: ${({theme}) => theme.radii.large};
   margin: 1em 0;
-  padding: 1.5em;
+  padding: 2.5em;
   box-shadow: ${({theme}) => theme.shadows[0]};
   flex: 1;
   ${space}
@@ -18,8 +18,8 @@ export const StyledCardHeader = styled.header`
 `
 
 export const StyledCardDivider = styled.div`
-  height: '1em';
-  margin: '0 1em 2em';
+  width: 100%;
+  margin-top: 1.5em;
   border-bottom: ${({ theme }) => `2px solid ${theme.colors.gray.xlight}`};
 `
 
@@ -35,21 +35,20 @@ export const StyledCardTitle = styled.h2`
 `
 
 export const StyledCardDescription = styled.p`
-  margin: 1em 1em;
   color: ${({theme}) => theme.colors.gray[3]};
   font-weight: ${({theme}) => theme.fontWeights.thin};
   font-size: ${({theme}) => theme.fontSizes.small};
   padding-right: 5em;
+  margin-top: 1.5em;
 `
 
 export const StyledContent = styled.div`
-  margin: 1em;
+  padding-top: ${({ showDivider }) => showDivider ? "1.5em" : "2em"};
 `
 
 export const TitleContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  margin: 1em;
 `
 
 export const ActionsContainer = styled.div`

@@ -69,10 +69,10 @@ class Card extends React.PureComponent {
             {description.length > 0 && !viewState && (
               <Card.Description>{description}</Card.Description>
             )}
-              {showDivider && <Card.Divider showDivider />}
+            {showDivider && <Card.Divider showDivider />}
           </Card.Header>
         )}
-        <Card.Content>{children}</Card.Content>
+        <Card.Content showDivider={showDivider}>{children}</Card.Content>
       </StyledCard>
     )
   }
