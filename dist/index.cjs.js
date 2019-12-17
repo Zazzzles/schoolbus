@@ -1350,7 +1350,7 @@ function _templateObject8() {
 }
 
 function _templateObject7() {
-  var data = taggedTemplateLiteral(["\n  display: flex;\n  justify-content: space-between;\n  margin: 1em;\n"]);
+  var data = taggedTemplateLiteral(["\n  display: flex;\n  justify-content: space-between;\n"]);
 
   _templateObject7 = function _templateObject7() {
     return data;
@@ -1360,7 +1360,7 @@ function _templateObject7() {
 }
 
 function _templateObject6() {
-  var data = taggedTemplateLiteral(["\n  margin: 1em;\n"]);
+  var data = taggedTemplateLiteral(["\n  padding-top: ", ";\n"]);
 
   _templateObject6 = function _templateObject6() {
     return data;
@@ -1370,7 +1370,7 @@ function _templateObject6() {
 }
 
 function _templateObject5() {
-  var data = taggedTemplateLiteral(["\n  margin: 1em 1em;\n  color: ", ";\n  font-weight: ", ";\n  font-size: ", ";\n  padding-right: 5em;\n"]);
+  var data = taggedTemplateLiteral(["\n  color: ", ";\n  font-weight: ", ";\n  font-size: ", ";\n  padding-right: 5em;\n  margin-top: 1.5em;\n"]);
 
   _templateObject5 = function _templateObject5() {
     return data;
@@ -1390,7 +1390,7 @@ function _templateObject4() {
 }
 
 function _templateObject3() {
-  var data = taggedTemplateLiteral(["\n  height: '1em';\n  margin: '0 1em 2em';\n  border-bottom: ", ";\n"]);
+  var data = taggedTemplateLiteral(["\n  width: 100%;\n  margin-top: 1.5em;\n  border-bottom: ", ";\n"]);
 
   _templateObject3 = function _templateObject3() {
     return data;
@@ -1410,7 +1410,7 @@ function _templateObject2$1() {
 }
 
 function _templateObject$5() {
-  var data = taggedTemplateLiteral(["\n  background-color: ", ";\n  border-radius: ", ";\n  margin: 1em 0;\n  padding: 1.5em;\n  box-shadow: ", ";\n  flex: 1;\n  ", "\n  ", "\n  ", "\n"]);
+  var data = taggedTemplateLiteral(["\n  background-color: ", ";\n  border-radius: ", ";\n  margin: 1em 0;\n  padding: 2.5em;\n  box-shadow: ", ";\n  flex: 1;\n  ", "\n  ", "\n  ", "\n"]);
 
   _templateObject$5 = function _templateObject() {
     return data;
@@ -1462,7 +1462,10 @@ var StyledCardDescription = styled__default.p(_templateObject5(), function (_ref
   var theme = _ref13.theme;
   return theme.fontSizes.small;
 });
-var StyledContent = styled__default.div(_templateObject6());
+var StyledContent = styled__default.div(_templateObject6(), function (_ref14) {
+  var showDivider = _ref14.showDivider;
+  return showDivider ? "1.5em" : "2em";
+});
 var TitleContainer = styled__default.div(_templateObject7());
 var ActionsContainer = styled__default.div(_templateObject8());
 
@@ -1503,7 +1506,9 @@ function (_React$PureComponent) {
         onClick: onAdd
       }))), description.length > 0 && !viewState && React.createElement(Card.Description, null, description), showDivider && React.createElement(Card.Divider, {
         showDivider: true
-      })), React.createElement(Card.Content, null, children));
+      })), React.createElement(Card.Content, {
+        showDivider: showDivider
+      }, children));
     }
   }]);
 
