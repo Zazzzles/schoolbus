@@ -3,13 +3,18 @@ import React, { Component } from 'react'
 import DotsVertical from '@lessondesk/material-icons/dist/DotsVertical'
 import { colors } from '../../config/theme'
 
-import { Trigger, MenuWrapper } from './styles'
+import { Trigger, ContentWrapper, Container} from './styles'
 
 class Popup extends Component {
+
+  static defaultProps = {
+    position: 'bottomLeft'
+  }
 
   state = {
     showDialogue: false,
     renderToBottom: true,
+    renderToLeft: true,
     dimensions: {},
   }
 
@@ -27,7 +32,8 @@ class Popup extends Component {
   }
 
   toggleDialogue = showDialogue => {
-    const { disabled } = this.props
+
+    const { disabled, position } = this.props
 
     if (disabled) return
 
@@ -36,9 +42,12 @@ class Popup extends Component {
       const { bottom, right, left } = this.trigger.getBoundingClientRect()
       const { innerHeight, innerWidth } = window
 
+      const renderDown = ['bottomLeft', 'bottomRight'].includes(position)
+      const renderLeft = ['topLeft', 'bottomLeft'].includes(position)
+
       if (height && width) {
-        const renderToBottom = (innerHeight - bottom > height) || bottom < height
-        const renderToLeft = right > width || (innerWidth - left < width)
+        const renderToBottom = renderDown && (innerHeight - bottom > height) || bottom < height
+        const renderToLeft = renderLeft && right > width || (innerWidth - left < width)
         return this.setState({ showDialogue, renderToBottom, renderToLeft })
       }
     }
@@ -46,30 +55,36 @@ class Popup extends Component {
     this.setState({ showDialogue })
   }
 
+  closePopup = () =>  this.toggleDialogue(false)
+
   handleClickOutside = ({ target }) => {
-    if (this.menu && this.menu.contains(target)) {
-      return
-    }
+    if (this.menu && this.menu.contains(target)) return
     this.toggleDialogue(false)
   }
 
   render() {
     const { showDialogue, renderToBottom, renderToLeft } = this.state
-    const { children } = this.props
+    const { children, trigger, ...otherProps } = this.props
 
     return (
-      <Trigger ref={node => this.trigger = node} onClick={() => this.toggleDialogue(true)}>
-        <DotsVertical color={colors.gray.dark} />
-
-        <MenuWrapper
-          ref={node => this.menu = node}
-          showDialogue={showDialogue}
-          renderToBottom={renderToBottom}
-          renderToLeft={renderToLeft}
+      <Container>
+        <Trigger
+          ref={node => this.trigger = node}
+          onClick={() => !showDialogue && this.toggleDialogue(true)}
+          {...otherProps}
         >
-          {children}
-        </MenuWrapper>
-      </Trigger>
+          {trigger || <DotsVertical color={colors.gray.dark} />}
+
+          <ContentWrapper
+            ref={node => this.menu = node}
+            showDialogue={showDialogue}
+            renderToBottom={renderToBottom}
+            renderToLeft={renderToLeft}
+          >
+            {typeof children === 'function' ? children(this.closePopup) : children}
+          </ContentWrapper>
+        </Trigger>
+      </Container>
     )
   }
 }
