@@ -45,11 +45,9 @@ storiesOf('Popup', module)
   ))
   .add('closePopup', () => (
     <>
-      <Popup
-        position="bottomRight"
-      >
+      <Popup position="bottomRight">
         {closePopup => (
-          <Button variant="Tertiary" onClick={() => { closePopup() }}>Click me</Button>
+          <Button variant="Tertiary" onClick={closePopup}>Click me</Button>
         )}
       </Popup>
     </>

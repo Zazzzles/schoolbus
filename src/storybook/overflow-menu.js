@@ -1,13 +1,12 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { OverflowMenu } from '../'
+import { OverflowMenu, Button } from '../'
 
 storiesOf('Overflow Menu', module)
   .addParameters({ component: OverflowMenu })
   .add('Position Right', () => (
-    <OverflowMenu position="right">
-      <h1>Item 1</h1>
-      <h1>Item 2</h1>
+    <OverflowMenu position="bottomRight">
+      {closePopup => <Button onClick={closePopup} variant="Tertiary">Click me</Button>}
     </OverflowMenu>
   ))
   .add('Bottom', () => (

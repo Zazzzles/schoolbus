@@ -8,7 +8,8 @@ import { Trigger, ContentWrapper, Container} from './styles'
 class Popup extends Component {
 
   static defaultProps = {
-    position: 'bottomLeft'
+    position: 'bottomLeft',
+    contentStyle: {}
   }
 
   state = {
@@ -64,7 +65,7 @@ class Popup extends Component {
 
   render() {
     const { showDialogue, renderToBottom, renderToLeft } = this.state
-    const { children, trigger, ...otherProps } = this.props
+    const { children, trigger, contentStyle, ...otherProps } = this.props
 
     return (
       <Container>
@@ -80,6 +81,7 @@ class Popup extends Component {
             showDialogue={showDialogue}
             renderToBottom={renderToBottom}
             renderToLeft={renderToLeft}
+            style={contentStyle}
           >
             {typeof children === 'function' ? children(this.closePopup) : children}
           </ContentWrapper>

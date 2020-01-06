@@ -5,7 +5,6 @@ export const Container = styled.div`
   position: relative;
 `
 
-
 export const Trigger = styled.div`
   position: relative;
   display: inline-block;
@@ -14,6 +13,7 @@ export const Trigger = styled.div`
 `
 
 export const ContentWrapper = styled.div`
+  white-space: nowrap;
   transform: ${({ showDialogue }) => showDialogue ? 'scale(1)' : 'scale(0)'};
   position: absolute;
   background-color: ${({ theme }) => theme.colors.white};
