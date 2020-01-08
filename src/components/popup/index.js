@@ -1,11 +1,11 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 
 import DotsVertical from '@lessondesk/material-icons/dist/DotsVertical'
 import { colors } from '../../config/theme'
 
 import { Trigger, ContentWrapper, Container} from './styles'
 
-class Popup extends Component {
+class Popup extends PureComponent {
 
   static defaultProps = {
     position: 'bottomLeft',
@@ -63,9 +63,23 @@ class Popup extends Component {
     this.toggleDialogue(false)
   }
 
+  getElement = child => {
+    const { closeOnSelect } = this.props
+
+    const childProps = closeOnSelect ? ({ 
+      onClick: this.closePopup
+    }) : {}
+
+    return React.cloneElement(<div>{child}</div>, childProps)
+  }
+
   render() {
     const { showDialogue, renderToBottom, renderToLeft } = this.state
     const { children, trigger, contentStyle, ...otherProps } = this.props
+
+    const childrenWithProps = React.Children.map(children, child => {
+      return this.getElement(child)
+    })
 
     return (
       <Container>
@@ -83,7 +97,8 @@ class Popup extends Component {
             renderToLeft={renderToLeft}
             style={contentStyle}
           >
-            {typeof children === 'function' ? children(this.closePopup) : children}
+            
+            {typeof children === 'function' ? children(this.closePopup) : childrenWithProps}
           </ContentWrapper>
         </Trigger>
       </Container>

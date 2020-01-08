@@ -1,17 +1,20 @@
 import React from 'react'
 import Popup from '../popup'
 
-const OverflowMenu = ({ position, children }) => (
+import { Button } from "./styles"
 
+const OverflowMenu = ({ position, options, ...otherProps }) => (
   <Popup
+    closeOnSelect
     position={position || 'bottomLeft'}
-    contentStyle={{
-      padding: '0.5em 2em 0.5em 1em'
-    }}
+    contentStyle={{padding: '.2em 2em .7em 1em'}}
+    {...otherProps}
   >
-    {React.Children.forEach(children, (c) => {console.log(c)})}
-    {children}
+    {options.map(({name, onClick, href, ...otherProps}) => href 
+      ? <a key={name} href={href} {...otherProps}><Button>{name}</Button></a> 
+      : <Button key={name} onClick={onClick} {...otherProps}>{name}</Button>
+    )}
   </Popup>
 )
 
-export default OverflowMenu
+export default React.memo(OverflowMenu)

@@ -2,12 +2,11 @@ import React from 'react'
 import { storiesOf } from '@storybook/react'
 
 import mdx from '../docs/popup.mdx'
-
 import { Popup, Flex, Button } from '../'
 
 const styles = {
   container: {
-    padding: "0 100px 40px"
+    padding: "0 150px 40px"
   }
 }
 
@@ -32,9 +31,8 @@ storiesOf('Popup', module)
       </Flex>
     </>
   ))
-  .add('Trigger', () => (
+  .add('Custom Trigger', () => (
     <Flex flexDirection="column">
-      <Popup>default trigger</Popup>
       <Popup 
         position="bottomRight" 
         trigger={<Button variant="primary">Custom trigger</Button>}
@@ -43,12 +41,15 @@ storiesOf('Popup', module)
       </Popup>
     </Flex>
   ))
+  .add('closeOnSelect', () => (
+    <Popup closeOnSelect position="bottomRight">
+      Click me
+    </Popup>
+  ))
   .add('closePopup', () => (
-    <>
-      <Popup position="bottomRight">
-        {closePopup => (
-          <Button variant="Tertiary" onClick={closePopup}>Click me</Button>
-        )}
-      </Popup>
-    </>
+    <Popup position="bottomRight">
+      {closePopup => (
+        <Button variant="Tertiary" onClick={closePopup}>Click me</Button>
+      )}
+    </Popup>
   ))
