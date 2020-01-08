@@ -9,14 +9,16 @@ class Popup extends PureComponent {
 
   static defaultProps = {
     position: 'bottomLeft',
-    contentStyle: {}
+    contentStyle: {},
+    xOffset: -5,
+    yOffset: -5
   }
 
   state = {
     showDialogue: false,
     renderToBottom: true,
     renderToLeft: true,
-    dimensions: {},
+    menuDimensions: {},
   }
 
   componentDidMount() {
@@ -24,7 +26,7 @@ class Popup extends PureComponent {
 
     if (this.menu) {
       const { offsetHeight: height, offsetWidth: width } = this.menu
-      this.setState({ dimensions: {height, width}})
+      this.setState({ menuDimensions: { height, width }})
     }  
   }
 
@@ -39,16 +41,16 @@ class Popup extends PureComponent {
     if (disabled) return
 
     if (showDialogue && this.trigger) {
-      const { height, width } = this.state.dimensions
+      const { height: menuHeight, width: menuWidth } = this.state.menuDimensions
       const { bottom, right, left } = this.trigger.getBoundingClientRect()
       const { innerHeight, innerWidth } = window
 
       const renderDown = ['bottomLeft', 'bottomRight'].includes(position)
       const renderLeft = ['topLeft', 'bottomLeft'].includes(position)
 
-      if (height && width) {
-        const renderToBottom = renderDown && (innerHeight - bottom > height) || bottom < height
-        const renderToLeft = renderLeft && right > width || (innerWidth - left < width)
+      if (menuHeight && menuWidth) {
+        const renderToBottom = renderDown && (innerHeight - bottom > menuHeight) || bottom < menuHeight
+        const renderToLeft = renderLeft && right > menuWidth || (innerWidth - left < menuWidth)
         return this.setState({ showDialogue, renderToBottom, renderToLeft })
       }
     }
@@ -59,7 +61,9 @@ class Popup extends PureComponent {
   closePopup = () =>  this.toggleDialogue(false)
 
   handleClickOutside = ({ target }) => {
-    if (this.menu && this.menu.contains(target)) return
+    const isMenu = this.menu && this.menu.contains(target)
+    const isTrigger = this.trigger && this.trigger.contains(target)
+    if (isMenu || isTrigger) return
     this.toggleDialogue(false)
   }
 
@@ -75,7 +79,7 @@ class Popup extends PureComponent {
 
   render() {
     const { showDialogue, renderToBottom, renderToLeft } = this.state
-    const { children, trigger, contentStyle, ...otherProps } = this.props
+    const { children, trigger, contentStyle, xOffset, yOffset, ...otherProps } = this.props
 
     const childrenWithProps = React.Children.map(children, child => {
       return this.getElement(child)
@@ -96,6 +100,8 @@ class Popup extends PureComponent {
             renderToBottom={renderToBottom}
             renderToLeft={renderToLeft}
             style={contentStyle}
+            xOffset={xOffset}
+            yOffset={yOffset}
           >
             
             {typeof children === 'function' ? children(this.closePopup) : childrenWithProps}

@@ -19,7 +19,7 @@ export const ContentWrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.white};
   border-radius: ${({ theme }) => theme.radii.small};
   box-shadow: 0 0 10px 2px rgba(0,0,0,.2);
-  ${({ renderToBottom }) => renderToBottom ? 'top: 110%;' : 'bottom: 110%;'}
-  ${({ renderToLeft }) => renderToLeft ? 'right: 50%;' : 'left: 50%;'}
+  ${({ renderToBottom, yOffset }) => `${renderToBottom ? 'top:' : 'bottom:'} calc(100% - ${yOffset}px)`};
+  ${({ renderToLeft, xOffset }) => `${renderToLeft ? 'right:' : 'left:'} calc(100% - ${xOffset}px)`};
   z-index: ${({ theme }) => theme.zIndices[4]};
 `
