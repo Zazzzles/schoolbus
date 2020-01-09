@@ -1,19 +1,17 @@
 .clock-wrapper {
-  position: absolute;
   z-index: 1;
   font-family: inherit
 }
 
 .clock-wrapper .react-timekeeper {
   font-family: inherit;
-  border-radius: .3rem;
-  overflow: hidden;
+  box-shadow: none;
 }
 
 .clock-wrapper .react-timekeeper__top-bar {
   background-color: #FFA400;
   padding: 8px;
-  font-family: inherit
+  font-family: inherit;
 }
 
 .react-timekeeper__top-bar .react-timekeeper-button-reset {

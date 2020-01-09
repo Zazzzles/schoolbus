@@ -9,12 +9,19 @@ import './styles.css'
 import { errorForField } from '../../utils/error-for-field'
 import InputWrapper from '../input-wrapper'
 import Input from '../styled-input'
+import Popup from '../popup'
 
-const iconStyles = {
-  position: 'absolute',
-  right: 10,
-  bottom: 7,
-  pointerEvents: 'none'
+const styleOverrides = {
+  icon: {
+    position: 'absolute',
+    right: 10,
+    bottom: 7,
+    pointerEvents: 'none'
+  },
+  popup: {
+    left: '0px',
+    right: 'auto'
+  }
 }
 
 class TimeInput extends Component {
@@ -25,40 +32,7 @@ class TimeInput extends Component {
     timeFormat: '12',
     placeholder: 'Set',
     disabled: false,
-  }
-
-  state = {
-    showDialogue: false,
-    renderAtBottom: true
-  }
-
-  componentDidMount() {
-    document.addEventListener('mousedown', this.handleClickOutside, false)
-  }
-
-  componentWillUnmount() {
-    document.removeEventListener('mousedown', this.handleClickOutside, false)
-  }
-
-  toggleDialogue = showDialogue => {
-    const { disabled } = this.props
-
-    if (disabled) return
-
-    if (showDialogue && this.input) {
-      const { top } = this.input.getBoundingClientRect()
-      const innerHeight = window.innerHeight
-      const renderAtBottom = (innerHeight-top > 340 || top < 300)
-      return this.setState({ showDialogue, renderAtBottom })
-    }
-    this.setState({ showDialogue })
-  }
-
-  handleClickOutside = ({target}) => {
-    if (this.clock && this.clock.contains(target)) {
-      return
-    }
-    this.toggleDialogue(false)
+    width: "48%"
   }
 
   handleChange = timeObj => {
@@ -67,27 +41,25 @@ class TimeInput extends Component {
   }
 
   render () {
-    const { showDialogue, renderAtBottom } = this.state
-    const wrapperPosition = renderAtBottom ? {top: 65} : {bottom: 45}
-
     const {
       formik,
       disabled,
       timeFormat,
       placeholder,
       name,
-      label
+      label,
+      width
     } = this.props
 
     const timeObj = formik.values && formik.values[name]
     const formattedTime = timeObj && timeObj[`formatted${timeFormat}`]
     const errorText = errorForField(formik.errors, formik.touched, name)
 
-    return (
+    const trigger = (
       <InputWrapper
         label={label}
         alertText={errorText}
-        onClick={() => this.toggleDialogue(true)}
+        width="100%"
       >
         <Input
           type="text"
@@ -95,32 +67,33 @@ class TimeInput extends Component {
           placeholder={placeholder}
           value={formattedTime ? formattedTime : ''}
           disabled={disabled}
-          onChange={() => {}}
-          ref={node => this.input = node}
+          onChange={() => { }}
           width="100%"
+          autoComplete="off"
         />
-        <ClockOutline style={iconStyles} color={colors.gray.dark} />
-
-        {showDialogue && (
-          <div
-            className='clock-wrapper'
-            ref={node => this.clock = node}
-            style={wrapperPosition}
-          >
-            <TimeKeeper
-              hour24Mode={timeFormat==="24"}
-              switchToMinuteOnHourSelect
-              closeOnMinuteSelect
-              onDoneClick={() => this.toggleDialogue(false)}
-              doneButton={null}
-              time={formattedTime || '00:00'}
-              disabled={disabled}
-              name={name}
-              onChange={this.handleChange}
-            />
-          </div>
-        )}
+        <ClockOutline style={styleOverrides.icon} color={colors.gray.dark} />
       </InputWrapper>
+    )
+
+    return (
+      <Popup 
+        trigger={trigger} 
+        style={{width}}
+        contentStyle={styleOverrides.popup}
+        disabled={disabled}
+      >
+        <div className='clock-wrapper'>
+          <TimeKeeper
+            hour24Mode={timeFormat === "24"}
+            switchToMinuteOnHourSelect
+            closeOnMinuteSelect
+            time={formattedTime || '00:00'}
+            disabled={disabled}
+            name={name}
+            onChange={this.handleChange}
+          />
+        </div>
+      </Popup>
     )
   }
 }
