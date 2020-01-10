@@ -3,7 +3,7 @@ import React, { PureComponent } from 'react'
 import DotsVertical from '@lessondesk/material-icons/dist/DotsVertical'
 import { colors } from '../../config/theme'
 
-import { Trigger, ContentWrapper, Container} from './styles'
+import { Trigger, ContentWrapper} from './styles'
 
 class Popup extends PureComponent {
 
@@ -44,8 +44,8 @@ class Popup extends PureComponent {
       const { bottom, right, left, top } = this.trigger.getBoundingClientRect()
       const { innerHeight, innerWidth } = window
 
-      const renderDown = ['bottomLeft', 'bottomRight'].includes(position)
-      const renderLeft = ['topLeft', 'bottomLeft'].includes(position)
+      const renderDown = ['bottomLeft', 'bottomRight', 'bottomCenter'].includes(position)
+      const renderLeft = ['topLeft', 'bottomLeft', 'leftCenter'].includes(position)
 
       if (menuHeight && menuWidth) {
         const renderToBottom = renderDown && (innerHeight - bottom > menuHeight) || (top < menuHeight)
@@ -78,7 +78,7 @@ class Popup extends PureComponent {
 
   render() {
     const { showDialogue, renderToBottom, renderToLeft } = this.state
-    const { children, trigger, contentStyle, xOffset, yOffset, ...otherProps } = this.props
+    const { children, trigger, contentStyle, xOffset, yOffset, position, ...otherProps } = this.props
 
     const childrenWithProps = React.Children.map(children, child => {
       return this.getElement(child)
@@ -101,6 +101,7 @@ class Popup extends PureComponent {
             xOffset={xOffset}
             yOffset={yOffset}
             style={contentStyle}
+            position={position}
           >
             
             {typeof children === 'function' ? children(this.closePopup) : childrenWithProps}

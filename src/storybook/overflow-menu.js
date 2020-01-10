@@ -12,6 +12,6 @@ const options = [{
 
 storiesOf('Overflow Menu', module)
   .addParameters({ component: OverflowMenu })
-  .add('Bottom', () => (
+  .add('Default', () => (
     <OverflowMenu options={options}/>
   ))

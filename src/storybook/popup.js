@@ -6,30 +6,37 @@ import { Popup, Flex, Button } from '../'
 
 const styles = {
   container: {
-    padding: "0 150px 40px"
+    alignItems: 'center',
+    padding: "0 150px 50px"
+  },
+  content: {
+    padding: '5px 10px'
   }
 }
+
+const options = [
+  'bottomRight', 'bottomLeft', 'topLeft', 'topRight',
+  'topCenter', 'bottomCenter', 'leftCenter', 'rightCenter'
+]
 
 storiesOf('Popup', module)
   .addParameters({
     component: Popup,
     docs: mdx,
   })
+  .add('Default', () => (
+    <Popup>
+      Content
+    </Popup>
+  ))
   .add('Position', () => (
-    <>
-      <Flex style={styles.container}>
-        <Popup>bottomLeft (default)</Popup>
-      </Flex>
-      <Flex style={styles.container}>
-        <Popup position="topLeft">topLeft</Popup>
-      </Flex>
-      <Flex style={styles.container}>
-        <Popup position="topRight">topRight</Popup>
-      </Flex>
-      <Flex style={styles.container}>
-        <Popup position="bottomRight">bottomRight</Popup>
-      </Flex>
-    </>
+      options.map(option => (
+        <Flex style={styles.container}>
+          <Popup contentStyle={styles.content} position={option}>Content</Popup>
+          {option}
+          {option === 'bottomLeft' && ` (default)`}
+        </Flex>
+      ))  
   ))
   .add('Custom Trigger', () => (
     <Flex flexDirection="column">
