@@ -1340,7 +1340,7 @@ defineProperty(IconButton, "defaultProps", {
 });
 
 function _templateObject8() {
-  var data = taggedTemplateLiteral(["\n  position: absolute;\n  top: 0;\n  right: 1em;\n  display: flex;\n  align-items: center;\n"]);
+  var data = taggedTemplateLiteral(["\n  position: absolute;\n  top: -10px;\n  right: 0;\n  display: flex;\n  align-items: center;\n"]);
 
   _templateObject8 = function _templateObject8() {
     return data;
@@ -20787,29 +20787,54 @@ function _templateObject$f() {
 
   return data;
 }
+
+function getVerticalOffset(props) {
+  var renderToBottom = props.renderToBottom,
+      yOffset = props.yOffset,
+      position = props.position;
+  var isCentered = ['leftCenter', 'rightCenter'].includes(position);
+  var offset = "calc(".concat(isCentered ? '50%' : '100%', " + ").concat(isCentered ? '0px' : yOffset, ")");
+  return "".concat(renderToBottom ? 'top:' : 'bottom:', " ").concat(offset);
+}
+
+function getHorizontalOffset(props) {
+  var renderToLeft = props.renderToLeft,
+      xOffset = props.xOffset,
+      position = props.position;
+  var isCentered = ['bottomCenter', 'topCenter'].includes(position);
+  var offset = "calc(".concat(isCentered ? '50%' : '100%', " + ").concat(isCentered ? '0px' : xOffset, ")");
+  return "".concat(renderToLeft ? 'right:' : 'left:', " ").concat(offset);
+}
+
+function getTransform(props) {
+  var showDialogue = props.showDialogue,
+      position = props.position;
+  var xCentered = ['bottomCenter', 'topCenter'].includes(position);
+  var translateX = "translateX(".concat(xCentered ? '-50%' : '0px', ")");
+  var yCentered = ['leftCenter', 'rightCenter'].includes(position);
+  var translateY = "translateY(".concat(yCentered ? '50%' : '0px', ")");
+  var scale = showDialogue ? 'scale(1)' : 'scale(0)';
+  return "".concat(scale, " ").concat(translateX, " ").concat(translateY);
+}
+
 var Trigger = styled__default.div(_templateObject$f(), function (_ref) {
   var theme = _ref.theme;
   return theme.colors.transparent;
 });
-var ContentWrapper = styled__default.div(_templateObject2$5(), function (_ref2) {
-  var showDialogue = _ref2.showDialogue;
-  return showDialogue ? 'scale(1)' : 'scale(0)';
+var ContentWrapper = styled__default.div(_templateObject2$5(), function (props) {
+  return getTransform(props);
+}, function (_ref2) {
+  var theme = _ref2.theme;
+  return theme.colors.white;
 }, function (_ref3) {
   var theme = _ref3.theme;
-  return theme.colors.white;
+  return theme.radii.small;
+}, function (props) {
+  return getVerticalOffset(props);
+}, function (props) {
+  return getHorizontalOffset(props);
 }, function (_ref4) {
   var theme = _ref4.theme;
-  return theme.radii.small;
-}, function (_ref5) {
-  var renderToBottom = _ref5.renderToBottom,
-      yOffset = _ref5.yOffset;
-  return "".concat(renderToBottom ? 'top:' : 'bottom:', " calc(100% + ").concat(yOffset, ")");
-}, function (_ref6) {
-  var renderToLeft = _ref6.renderToLeft,
-      xOffset = _ref6.xOffset;
-  return "".concat(renderToLeft ? 'right:' : 'left:', " calc(100% + ").concat(xOffset, ")");
-}, function (_ref7) {
-  var theme = _ref7.theme;
   return theme.zIndices[4];
 });
 
@@ -20858,8 +20883,8 @@ function (_PureComponent) {
         var _window = window,
             innerHeight = _window.innerHeight,
             innerWidth = _window.innerWidth;
-        var renderDown = ['bottomLeft', 'bottomRight'].includes(position);
-        var renderLeft = ['topLeft', 'bottomLeft'].includes(position);
+        var renderDown = ['bottomLeft', 'bottomRight', 'bottomCenter'].includes(position);
+        var renderLeft = ['topLeft', 'bottomLeft', 'leftCenter'].includes(position);
 
         if (menuHeight && menuWidth) {
           var renderToBottom = renderDown && innerHeight - bottom > menuHeight || top < menuHeight;
@@ -20942,7 +20967,8 @@ function (_PureComponent) {
           contentStyle = _this$props2.contentStyle,
           xOffset = _this$props2.xOffset,
           yOffset = _this$props2.yOffset,
-          otherProps = objectWithoutProperties(_this$props2, ["children", "trigger", "contentStyle", "xOffset", "yOffset"]);
+          position = _this$props2.position,
+          otherProps = objectWithoutProperties(_this$props2, ["children", "trigger", "contentStyle", "xOffset", "yOffset", "position"]);
 
       var childrenWithProps = React__default.Children.map(children, function (child) {
         return _this2.getElement(child);
@@ -20965,7 +20991,8 @@ function (_PureComponent) {
         renderToLeft: renderToLeft,
         xOffset: xOffset,
         yOffset: yOffset,
-        style: contentStyle
+        style: contentStyle,
+        position: position
       }, typeof children === 'function' ? children(this.closePopup) : childrenWithProps)));
     }
   }]);
@@ -26303,7 +26330,7 @@ var TypeInput = function TypeInput(_ref) {
 var index$7 = formik.connect(TypeInput);
 
 function _templateObject$i() {
-  var data = taggedTemplateLiteral(["\n  padding: 0;\n  margin-top: .7em;\n  font-family: ", ";\n  font-weight: ", ";\n  font-size: ", ";\n  color: ", ";\n  background-color: ", ";\n"]);
+  var data = taggedTemplateLiteral(["\n  padding: 0;\n  margin-top: .7em;\n  font-family: ", ";\n  font-weight: ", ";\n  font-size: ", ";\n  color: ", ";\n  background-color: ", ";\n  cursor: pointer;\n"]);
 
   _templateObject$i = function _templateObject() {
     return data;
@@ -26328,35 +26355,51 @@ var Button$2 = styled__default.button(_templateObject$i(), function (_ref) {
   return theme.colors.transparent;
 });
 
-var OverflowMenu = function OverflowMenu(_ref) {
-  var position = _ref.position,
-      options = _ref.options,
-      otherProps = objectWithoutProperties(_ref, ["position", "options"]);
+var Link = function Link(_ref) {
+  var href = _ref.href,
+      children = _ref.children,
+      otherProps = objectWithoutProperties(_ref, ["href", "children"]);
 
+  return React__default.createElement("a", _extends_1({
+    href: href
+  }, otherProps), children);
+};
+
+var OverflowMenu = function OverflowMenu(_ref2) {
+  var position = _ref2.position,
+      options = _ref2.options,
+      NextLink = _ref2.NextLink,
+      otherProps = objectWithoutProperties(_ref2, ["position", "options", "NextLink"]);
+
+  var LinkComponent = NextLink ? NextLink : Link;
   return React__default.createElement(Popup, _extends_1({
     closeOnSelect: true,
-    position: position || 'bottomLeft',
+    position: position,
     contentStyle: {
       padding: '.2em 2em .7em 1em'
     },
     xOffset: "-20px",
     yOffset: "-30px"
-  }, otherProps), options.map(function (_ref2) {
-    var name = _ref2.name,
-        onClick = _ref2.onClick,
-        href = _ref2.href,
-        otherProps = objectWithoutProperties(_ref2, ["name", "onClick", "href"]);
+  }, otherProps), options.map(function (_ref3) {
+    var name = _ref3.name,
+        onClick = _ref3.onClick,
+        href = _ref3.href,
+        otherProps = objectWithoutProperties(_ref3, ["name", "onClick", "href"]);
 
-    return href ? React__default.createElement("a", _extends_1({
+    return href ? React__default.createElement(LinkComponent, {
       key: name,
       href: href
-    }, otherProps), React__default.createElement(Button$2, null, name)) : React__default.createElement(Button$2, _extends_1({
+    }, React__default.createElement(Button$2, null, name)) : React__default.createElement(Button$2, _extends_1({
       key: name,
       onClick: onClick
     }, otherProps), name);
   }));
 };
 
+OverflowMenu.defaultProps = {
+  position: 'bottomLeft',
+  options: []
+};
 var index$8 = React__default.memo(OverflowMenu);
 
 function _templateObject5$1() {
