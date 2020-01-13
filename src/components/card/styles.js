@@ -53,7 +53,7 @@ export const TitleContainer = styled.div`
 
 export const ActionsContainer = styled.div`
   position: absolute;
-  top: 0;
+  top: -10px;
   right: 1em;
   display: flex;
   align-items: center;

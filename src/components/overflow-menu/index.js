@@ -3,7 +3,14 @@ import Popup from '../popup'
 
 import { Button } from "./styles"
 
-const OverflowMenu = ({ position, options, Link, ...otherProps }) => {
+const Link = ({href, children, ...otherProps}) => (
+  <a href={href} {...otherProps}>{children}</a>
+)
+
+const OverflowMenu = ({ position, options, NextLink, ...otherProps }) => {
+
+  const LinkComponent = NextLink ? NextLink : Link
+
   return (
     <Popup
       closeOnSelect
@@ -14,7 +21,7 @@ const OverflowMenu = ({ position, options, Link, ...otherProps }) => {
       {...otherProps}
     >
       {options.map(({ name, onClick, href, ...otherProps }) => href
-        ? <a key={name} href={href} {...otherProps}><Button>{name}</Button></a>
+        ? <LinkComponent key={name} href={href}><Button>{name}</Button></LinkComponent>
         : <Button key={name} onClick={onClick} {...otherProps}>{name}</Button>
       )}
     </Popup>

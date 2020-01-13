@@ -9,4 +9,5 @@ export const Button = styled.button`
   font-size: ${({ theme }) => theme.fontSizes.xsmall};
   color: ${({ theme }) => theme.colors.black};
   background-color: ${({ theme }) => theme.colors.transparent};
+  cursor: pointer;
 `
