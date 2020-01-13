@@ -5,6 +5,8 @@ import { Card } from '../'
 
 import mdx from '../docs/card.mdx'
 
+const description = 'Lorem ipsum dolor amet twee occupy deep v cold-pressed. Street art skateboard man braid sint sed venmo in, cillum YOLO organic.'
+
 storiesOf('Card', module)
   .addParameters({
     docs: mdx,
@@ -13,14 +15,23 @@ storiesOf('Card', module)
   .add('Empty', () => <Card />)
   .add('With title', () => <Card title="Example" viewState></Card>)
   .add('With description', () => (
-    <Card title="Example" description="This is a example description">
+    <Card title="Example" description={description}>
       content
     </Card>
   ))
   .add('With onAdd', () => (
     <Card
       title="Example"
-      description="This is a example description"
+      description={description}
+      onAdd={() => console.log('adding')}
+    >
+      content
+    </Card>
+  ))
+  .add('Hidden divider, no description', () => (
+    <Card
+      hideDivider
+      title="Example"
       onAdd={() => console.log('adding')}
     >
       content
@@ -30,7 +41,7 @@ storiesOf('Card', module)
     <Card
       viewState
       title="Example"
-      description="This is a example description"
+      description={description}
       onAdd={() => console.log('adding')}
     >
       content

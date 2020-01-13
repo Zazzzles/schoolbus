@@ -1,41 +1,37 @@
 import React from 'react'
-import Popup from 'reactjs-popup'
-import styled from 'styled-components'
-import DotsVertical from '@lessondesk/material-icons/dist/DotsVertical'
-import { colors } from '../../config/theme'
+import Popup from '../popup'
 
-const SettingsContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  > * {
-    display: inline-block;
-    margin: 0.4em 0;
-  }
-`
+import { Button } from "./styles"
 
-const OverflowMenu = ({ position, children }) => (
-  <Popup
-    contentStyle={{
-      width: 'auto',
-      padding: '0.5em 2em 0.5em 1em',
-      borderRadius: '.4em',
-      border: 'none',
-      animation: '200ms fade-in ease-in',
-    }}
-    trigger={<DotsVertical color={colors.gray.dark} />}
-    position={position || 'left center'}
-    arrow={false}
-  >
-    {closePopup => (
-      <SettingsContainer>
-        {React.Children.map(children, child =>
-          React.cloneElement(child, {
-            closePopup,
-          })
-        )}
-      </SettingsContainer>
-    )}
-  </Popup>
+const Link = ({href, children, ...otherProps}) => (
+  <a href={href} {...otherProps}>{children}</a>
 )
 
-export default OverflowMenu
+const OverflowMenu = ({ position, options, NextLink, ...otherProps }) => {
+
+  const LinkComponent = NextLink ? NextLink : Link
+
+  return (
+    <Popup
+      closeOnSelect
+      position={position}
+      contentStyle={{ padding: '.2em 2em .7em 1em' }}
+      xOffset="-20px"
+      yOffset="-30px"
+      {...otherProps}
+    >
+      {options.map(({ name, onClick, href, ...otherProps }) => href
+        ? <LinkComponent key={name} href={href}><Button>{name}</Button></LinkComponent>
+        : <Button key={name} onClick={onClick} {...otherProps}>{name}</Button>
+      )}
+    </Popup>
+  )
+}
+
+OverflowMenu.defaultProps = {
+  position: 'bottomLeft',
+  options: []
+}
+
+
+export default React.memo(OverflowMenu)

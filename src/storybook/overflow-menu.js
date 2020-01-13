@@ -2,17 +2,16 @@ import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { OverflowMenu } from '../'
 
+const options = [{
+  name: "With onClick",
+  onClick: () => { console.log("click") }
+}, {
+  name: "With href",
+  href: "/"
+}]
+
 storiesOf('Overflow Menu', module)
   .addParameters({ component: OverflowMenu })
-  .add('Position Right', () => (
-    <OverflowMenu position="right">
-      <h1>Item 1</h1>
-      <h1>Item 2</h1>
-    </OverflowMenu>
-  ))
-  .add('Bottom', () => (
-    <OverflowMenu position="bottom">
-      <h1>Item 1</h1>
-      <h1>Item 2</h1>
-    </OverflowMenu>
+  .add('Default', () => (
+    <OverflowMenu options={options}/>
   ))

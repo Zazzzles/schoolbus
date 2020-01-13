@@ -1,15 +1,23 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 
 import DotsVertical from '@lessondesk/material-icons/dist/DotsVertical'
 import { colors } from '../../config/theme'
 
-import { Trigger, MenuWrapper } from './styles'
+import { Trigger, ContentWrapper} from './styles'
 
-class Popup extends Component {
+class Popup extends PureComponent {
+
+  static defaultProps = {
+    position: 'bottomLeft',
+    contentStyle: {},
+    xOffset: '5px',
+    yOffset: '5px'
+  }
 
   state = {
     showDialogue: false,
     renderToBottom: true,
+    renderToLeft: true,
     dimensions: {},
   }
 
@@ -17,9 +25,9 @@ class Popup extends Component {
     document.addEventListener('mousedown', this.handleClickOutside, false)
 
     if (this.menu) {
-      const { offsetHeight: height, offsetWidth: width } = this.menu
-      this.setState({ dimensions: {height, width}})
-    }  
+      const { offsetHeight: menuHeight, offsetWidth: menuWidth } = this.menu
+      this.setState({ dimensions: { menuHeight, menuWidth }})
+    } 
   }
 
   componentWillUnmount() {
@@ -27,18 +35,21 @@ class Popup extends Component {
   }
 
   toggleDialogue = showDialogue => {
-    const { disabled } = this.props
+    const { disabled, position } = this.props
 
     if (disabled) return
 
     if (showDialogue && this.trigger) {
-      const { height, width } = this.state.dimensions
-      const { bottom, right, left } = this.trigger.getBoundingClientRect()
+      const { menuHeight, menuWidth } = this.state.dimensions
+      const { bottom, right, left, top } = this.trigger.getBoundingClientRect()
       const { innerHeight, innerWidth } = window
 
-      if (height && width) {
-        const renderToBottom = (innerHeight - bottom > height) || bottom < height
-        const renderToLeft = right > width || (innerWidth - left < width)
+      const renderDown = ['bottomLeft', 'bottomRight', 'bottomCenter'].includes(position)
+      const renderLeft = ['topLeft', 'bottomLeft', 'leftCenter'].includes(position)
+
+      if (menuHeight && menuWidth) {
+        const renderToBottom = renderDown && (innerHeight - bottom > menuHeight) || (top < menuHeight)
+        const renderToLeft = renderLeft && right > menuWidth || (innerWidth - left < menuWidth)
         return this.setState({ showDialogue, renderToBottom, renderToLeft })
       }
     }
@@ -46,30 +57,57 @@ class Popup extends Component {
     this.setState({ showDialogue })
   }
 
+  closePopup = () =>  this.toggleDialogue(false)
+
   handleClickOutside = ({ target }) => {
-    if (this.menu && this.menu.contains(target)) {
-      return
-    }
+    const isMenu = this.menu && this.menu.contains(target)
+    const isTrigger = this.trigger && this.trigger.contains(target)
+    if (isMenu || isTrigger) return
     this.toggleDialogue(false)
+  }
+
+  getElement = child => {
+    const { closeOnSelect } = this.props
+
+    const childProps = closeOnSelect ? ({ 
+      onClick: this.closePopup
+    }) : {}
+
+    return React.cloneElement(<div>{child}</div>, childProps)
   }
 
   render() {
     const { showDialogue, renderToBottom, renderToLeft } = this.state
-    const { children } = this.props
+    const { children, trigger, contentStyle, xOffset, yOffset, position, ...otherProps } = this.props
+
+    const childrenWithProps = React.Children.map(children, child => {
+      return this.getElement(child)
+    })
 
     return (
-      <Trigger ref={node => this.trigger = node} onClick={() => this.toggleDialogue(true)}>
-        <DotsVertical color={colors.gray.dark} />
-
-        <MenuWrapper
-          ref={node => this.menu = node}
-          showDialogue={showDialogue}
-          renderToBottom={renderToBottom}
-          renderToLeft={renderToLeft}
+      <>
+        <Trigger
+          ref={node => this.trigger = node}
+          onClick={() => !showDialogue && this.toggleDialogue(true)}
+          {...otherProps}
         >
-          {children}
-        </MenuWrapper>
-      </Trigger>
+          {trigger || <DotsVertical color={colors.gray.dark} />}
+
+          <ContentWrapper
+            ref={node => this.menu = node}
+            showDialogue={showDialogue}
+            renderToBottom={renderToBottom}
+            renderToLeft={renderToLeft}
+            xOffset={xOffset}
+            yOffset={yOffset}
+            style={contentStyle}
+            position={position}
+          >
+            
+            {typeof children === 'function' ? children(this.closePopup) : childrenWithProps}
+          </ContentWrapper>
+        </Trigger>
+      </>
     )
   }
 }
