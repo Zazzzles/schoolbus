@@ -29,6 +29,15 @@ function getTransform(props) {
   return `${scale} ${translateX} ${translateY}`
 }
 
+function getTransformOrigin(props) {
+  const { position, renderToBottom, renderToLeft } = props 
+
+  const xOrigin = renderToBottom ? 'top' : 'bottom'
+  const yOrigin = renderToLeft ? 'right' : 'left'
+
+  return `${xOrigin} ${yOrigin}`
+}
+
 export const Trigger = styled.div`
   position: relative;
   width: fit-content;
@@ -47,4 +56,6 @@ export const ContentWrapper = styled.div`
   ${props => getHorizontalOffset(props)};
   z-index: ${({ theme }) => theme.zIndices[4]};
   overflow: "hidden";
+  transition: 100ms ease-out;
+  transform-origin: ${props => getTransformOrigin(props)};
 `

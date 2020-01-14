@@ -26,20 +26,25 @@ class Popup extends PureComponent {
 
     if (this.menu) {
       const { offsetHeight: menuHeight, offsetWidth: menuWidth } = this.menu
-      this.setState({ dimensions: { menuHeight, menuWidth }})
+      this.setState({ dimensions: { menuHeight, menuWidth }}, () => {
+        this.toggleDialogue(false, true)
+      })
     } 
+
+    
   }
 
   componentWillUnmount() {
     document.removeEventListener('mousedown', this.handleClickOutside, false)
   }
 
-  toggleDialogue = showDialogue => {
+  toggleDialogue = (showDialogue, initial) => {
     const { disabled, position } = this.props
 
-    if (disabled) return
+    if (disabled && !initial) return
 
-    if (showDialogue && this.trigger) {
+
+    if ((initial || showDialogue) && this.trigger) {
       const { menuHeight, menuWidth } = this.state.dimensions
       const { bottom, right, left, top } = this.trigger.getBoundingClientRect()
       const { innerHeight, innerWidth } = window
@@ -50,11 +55,15 @@ class Popup extends PureComponent {
       if (menuHeight && menuWidth) {
         const renderToBottom = renderDown && (innerHeight - bottom > menuHeight) || (top < menuHeight)
         const renderToLeft = renderLeft && right > menuWidth || (innerWidth - left < menuWidth)
-        return this.setState({ showDialogue, renderToBottom, renderToLeft })
+        return this.setState({ 
+          showDialogue: showDialogue && !initial, 
+          renderToBottom, 
+          renderToLeft 
+        })
       }
     }
 
-    this.setState({ showDialogue })
+    this.setState({ showDialogue: showDialogue && !initial })
   }
 
   closePopup = () =>  this.toggleDialogue(false)
