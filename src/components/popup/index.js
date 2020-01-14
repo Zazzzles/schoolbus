@@ -11,7 +11,8 @@ class Popup extends PureComponent {
     position: 'bottomLeft',
     contentStyle: {},
     xOffset: '5px',
-    yOffset: '5px'
+    yOffset: '5px',
+    arrow: false
   }
 
   state = {
@@ -26,25 +27,20 @@ class Popup extends PureComponent {
 
     if (this.menu) {
       const { offsetHeight: menuHeight, offsetWidth: menuWidth } = this.menu
-      this.setState({ dimensions: { menuHeight, menuWidth }}, () => {
-        this.toggleDialogue(false, true)
-      })
+      this.setState({ dimensions: { menuHeight, menuWidth }})
     } 
-
-    
   }
 
   componentWillUnmount() {
     document.removeEventListener('mousedown', this.handleClickOutside, false)
   }
 
-  toggleDialogue = (showDialogue, initial) => {
+  toggleDialogue = showDialogue => {
     const { disabled, position } = this.props
 
-    if (disabled && !initial) return
+    if (disabled) return
 
-
-    if ((initial || showDialogue) && this.trigger) {
+    if (showDialogue && this.trigger) {
       const { menuHeight, menuWidth } = this.state.dimensions
       const { bottom, right, left, top } = this.trigger.getBoundingClientRect()
       const { innerHeight, innerWidth } = window
@@ -52,18 +48,18 @@ class Popup extends PureComponent {
       const renderDown = ['bottomLeft', 'bottomRight', 'bottomCenter'].includes(position)
       const renderLeft = ['topLeft', 'bottomLeft', 'leftCenter'].includes(position)
 
+      console.log("herw")
+
       if (menuHeight && menuWidth) {
         const renderToBottom = renderDown && (innerHeight - bottom > menuHeight) || (top < menuHeight)
         const renderToLeft = renderLeft && right > menuWidth || (innerWidth - left < menuWidth)
-        return this.setState({ 
-          showDialogue: showDialogue && !initial, 
-          renderToBottom, 
-          renderToLeft 
+        return this.setState({ renderToBottom, renderToLeft }, () => {
+          this.setState({showDialogue})
         })
       }
     }
 
-    this.setState({ showDialogue: showDialogue && !initial })
+    this.setState({ showDialogue })
   }
 
   closePopup = () =>  this.toggleDialogue(false)
@@ -87,7 +83,7 @@ class Popup extends PureComponent {
 
   render() {
     const { showDialogue, renderToBottom, renderToLeft } = this.state
-    const { children, trigger, contentStyle, xOffset, yOffset, position, ...otherProps } = this.props
+    const { children, trigger, contentStyle, xOffset, yOffset, position, arrow, ...otherProps } = this.props
 
     const childrenWithProps = React.Children.map(children, child => {
       return this.getElement(child)
@@ -111,6 +107,7 @@ class Popup extends PureComponent {
             yOffset={yOffset}
             style={contentStyle}
             position={position}
+            arrow={arrow}
           >
             
             {typeof children === 'function' ? children(this.closePopup) : childrenWithProps}
