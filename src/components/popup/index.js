@@ -11,7 +11,8 @@ class Popup extends PureComponent {
     position: 'bottomLeft',
     contentStyle: {},
     xOffset: '5px',
-    yOffset: '5px'
+    yOffset: '5px',
+    arrow: false
   }
 
   state = {
@@ -50,7 +51,9 @@ class Popup extends PureComponent {
       if (menuHeight && menuWidth) {
         const renderToBottom = renderDown && (innerHeight - bottom > menuHeight) || (top < menuHeight)
         const renderToLeft = renderLeft && right > menuWidth || (innerWidth - left < menuWidth)
-        return this.setState({ showDialogue, renderToBottom, renderToLeft })
+        return this.setState({ renderToBottom, renderToLeft }, () => {
+          this.setState({showDialogue})
+        })
       }
     }
 
@@ -78,7 +81,7 @@ class Popup extends PureComponent {
 
   render() {
     const { showDialogue, renderToBottom, renderToLeft } = this.state
-    const { children, trigger, contentStyle, xOffset, yOffset, position, ...otherProps } = this.props
+    const { children, trigger, contentStyle, xOffset, yOffset, position, arrow, ...otherProps } = this.props
 
     const childrenWithProps = React.Children.map(children, child => {
       return this.getElement(child)
@@ -102,6 +105,7 @@ class Popup extends PureComponent {
             yOffset={yOffset}
             style={contentStyle}
             position={position}
+            arrow={arrow}
           >
             
             {typeof children === 'function' ? children(this.closePopup) : childrenWithProps}

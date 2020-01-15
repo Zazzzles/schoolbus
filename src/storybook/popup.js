@@ -38,6 +38,11 @@ storiesOf('Popup', module)
         </Flex>
       ))  
   ))
+  .add('Arrow', () => (
+    <Popup arrow position="bottomCenter">
+      Arrow
+    </Popup>
+  ))
   .add('Custom Trigger', () => (
     <Flex flexDirection="column">
       <Popup 

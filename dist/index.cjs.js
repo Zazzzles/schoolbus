@@ -20769,7 +20769,7 @@ exports["default"] = _default;
 var ClockOutline$1 = unwrapExports(ClockOutline);
 
 function _templateObject2$5() {
-  var data = taggedTemplateLiteral(["\n  white-space: nowrap;\n  transform: ", ";\n  position: absolute;\n  background-color: ", ";\n  border-radius: ", ";\n  box-shadow: 0 0 10px 2px rgba(0,0,0,.2);\n  ", ";\n  ", ";\n  z-index: ", ";\n  overflow: \"hidden\";\n"]);
+  var data = taggedTemplateLiteral(["\n  white-space: nowrap;\n  position: absolute;\n  background-color: ", ";\n  border-radius: ", ";\n  box-shadow: 0 0 15px 5px rgba(0,0,0,.2);\n  ", ";\n  ", ";\n  z-index: ", ";\n  transform: ", ";\n  transform-origin: ", ";\n  transition: 80ms transform ease-out;\n  &::before {\n    display: ", ";\n    content: '';\n    position: absolute;\n    height: 12px;\n    width: 12px;\n    background-color: inherit;\n    ", "; \n    z-index: -1;\n  }\n"]);
 
   _templateObject2$5 = function _templateObject2() {
     return data;
@@ -20817,13 +20817,32 @@ function getTransform(props) {
   return "".concat(scale, " ").concat(translateX, " ").concat(translateY);
 }
 
+function getTransformOrigin(props) {
+  var renderToBottom = props.renderToBottom,
+      renderToLeft = props.renderToLeft;
+  var xOrigin = renderToBottom ? 'top' : 'bottom';
+  var yOrigin = renderToLeft ? 'right' : 'left';
+  return "".concat(xOrigin, " ").concat(yOrigin);
+}
+
+function getArrowPosition(props) {
+  var position = props.position,
+      renderToBottom = props.renderToBottom,
+      renderToLeft = props.renderToLeft;
+  var arrowVertical = ['bottomCenter', 'topCenter'].includes(position);
+
+  if (arrowVertical) {
+    return "\n      transform: translateX(-50%) rotate(45deg);\n      left: 50%;\n      ".concat(renderToBottom ? 'top' : 'bottom', ": -5px;\n    ");
+  }
+
+  return "\n    transform: translateY(-50%) rotate(45deg);\n    top: 50%;\n    ".concat(renderToLeft ? 'right' : 'left', ": -5px;\n  ");
+}
+
 var Trigger = styled__default.div(_templateObject$f(), function (_ref) {
   var theme = _ref.theme;
   return theme.colors.transparent;
 });
-var ContentWrapper = styled__default.div(_templateObject2$5(), function (props) {
-  return getTransform(props);
-}, function (_ref2) {
+var ContentWrapper = styled__default.div(_templateObject2$5(), function (_ref2) {
   var theme = _ref2.theme;
   return theme.colors.white;
 }, function (_ref3) {
@@ -20836,6 +20855,15 @@ var ContentWrapper = styled__default.div(_templateObject2$5(), function (props) 
 }, function (_ref4) {
   var theme = _ref4.theme;
   return theme.zIndices[4];
+}, function (props) {
+  return getTransform(props);
+}, function (props) {
+  return getTransformOrigin(props);
+}, function (_ref5) {
+  var arrow = _ref5.arrow;
+  return arrow ? 'block' : 'none';
+}, function (props) {
+  return getArrowPosition(props);
 });
 
 var Popup =
@@ -20890,9 +20918,12 @@ function (_PureComponent) {
           var renderToBottom = renderDown && innerHeight - bottom > menuHeight || top < menuHeight;
           var renderToLeft = renderLeft && right > menuWidth || innerWidth - left < menuWidth;
           return _this.setState({
-            showDialogue: showDialogue,
             renderToBottom: renderToBottom,
             renderToLeft: renderToLeft
+          }, function () {
+            _this.setState({
+              showDialogue: showDialogue
+            });
           });
         }
       }
@@ -20968,7 +20999,8 @@ function (_PureComponent) {
           xOffset = _this$props2.xOffset,
           yOffset = _this$props2.yOffset,
           position = _this$props2.position,
-          otherProps = objectWithoutProperties(_this$props2, ["children", "trigger", "contentStyle", "xOffset", "yOffset", "position"]);
+          arrow = _this$props2.arrow,
+          otherProps = objectWithoutProperties(_this$props2, ["children", "trigger", "contentStyle", "xOffset", "yOffset", "position", "arrow"]);
 
       var childrenWithProps = React__default.Children.map(children, function (child) {
         return _this2.getElement(child);
@@ -20992,7 +21024,8 @@ function (_PureComponent) {
         xOffset: xOffset,
         yOffset: yOffset,
         style: contentStyle,
-        position: position
+        position: position,
+        arrow: arrow
       }, typeof children === 'function' ? children(this.closePopup) : childrenWithProps)));
     }
   }]);
@@ -21004,7 +21037,8 @@ defineProperty(Popup, "defaultProps", {
   position: 'bottomLeft',
   contentStyle: {},
   xOffset: '5px',
-  yOffset: '5px'
+  yOffset: '5px',
+  arrow: false
 });
 
 var styleOverrides = {
@@ -21016,7 +21050,8 @@ var styleOverrides = {
   },
   popup: {
     left: '0px',
-    right: 'auto'
+    right: 'auto',
+    transformOrigin: 'top center'
   }
 };
 
@@ -21038,11 +21073,27 @@ function (_Component) {
 
     _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(TimeInput)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
+    defineProperty(assertThisInitialized(_this), "state", {
+      showTime: true
+    });
+
     defineProperty(assertThisInitialized(_this), "handleChange", function (timeObj) {
       var _this$props = _this.props,
           formik = _this$props.formik,
           name = _this$props.name;
       formik.setFieldValue(name, timeObj);
+    });
+
+    defineProperty(assertThisInitialized(_this), "resetClock", function (closePopup) {
+      closePopup();
+
+      _this.setState({
+        showTime: false
+      }, function () {
+        _this.setState({
+          showTime: true
+        });
+      });
     });
 
     return _this;
@@ -21051,6 +21102,9 @@ function (_Component) {
   createClass(TimeInput, [{
     key: "render",
     value: function render() {
+      var _this2 = this;
+
+      var showTime = this.state.showTime;
       var _this$props2 = this.props,
           formik = _this$props2.formik,
           disabled = _this$props2.disabled,
@@ -21086,17 +21140,20 @@ function (_Component) {
         },
         contentStyle: styleOverrides.popup,
         disabled: disabled
-      }, React__default.createElement("div", {
-        className: "clock-wrapper"
-      }, React__default.createElement(TimeKeeper, {
-        hour24Mode: timeFormat === "24",
-        switchToMinuteOnHourSelect: true,
-        closeOnMinuteSelect: true,
-        time: formattedTime || '00:00',
-        disabled: disabled,
-        name: name,
-        onChange: this.handleChange
-      })));
+      }, function (closePopup) {
+        return showTime && React__default.createElement("div", {
+          className: "clock-wrapper"
+        }, React__default.createElement(TimeKeeper, {
+          hour24Mode: timeFormat === "24",
+          switchToMinuteOnHourSelect: true,
+          time: formattedTime || '00:00',
+          name: name,
+          onChange: _this2.handleChange,
+          onDoneClick: function onDoneClick() {
+            return _this2.resetClock(closePopup);
+          }
+        }));
+      });
     }
   }]);
 
