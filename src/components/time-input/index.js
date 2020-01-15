@@ -20,7 +20,8 @@ const styleOverrides = {
   },
   popup: {
     left: '0px',
-    right: 'auto'
+    right: 'auto',
+    transformOrigin: 'top center'
   }
 }
 
@@ -35,12 +36,25 @@ class TimeInput extends Component {
     width: "48%"
   }
 
+  state = {
+    showTime: true
+  }
+
   handleChange = timeObj => {
     const { formik, name } = this.props
     formik.setFieldValue(name, timeObj)
   }
 
+  resetClock = closePopup => {
+    closePopup()
+    this.setState({showTime: false}, () => {
+      this.setState({showTime: true})
+    })
+  }
+
   render () {
+    const {showTime} = this.state
+
     const {
       formik,
       disabled,
@@ -67,7 +81,7 @@ class TimeInput extends Component {
           placeholder={placeholder}
           value={formattedTime ? formattedTime : ''}
           disabled={disabled}
-          onChange={() => { }}
+          onChange={() => {}}
           width="100%"
           autoComplete="off"
         />
@@ -82,17 +96,18 @@ class TimeInput extends Component {
         contentStyle={styleOverrides.popup}
         disabled={disabled}
       >
-        <div className='clock-wrapper'>
-          <TimeKeeper
-            hour24Mode={timeFormat === "24"}
-            switchToMinuteOnHourSelect
-            closeOnMinuteSelect
-            time={formattedTime || '00:00'}
-            disabled={disabled}
-            name={name}
-            onChange={this.handleChange}
-          />
-        </div>
+        {closePopup => showTime && (
+          <div className='clock-wrapper'>
+            <TimeKeeper
+              hour24Mode={timeFormat === "24"}
+              switchToMinuteOnHourSelect
+              time={formattedTime || '00:00'}
+              name={name}
+              onChange={this.handleChange}
+              onDoneClick={() => this.resetClock(closePopup)}
+            />
+          </div>
+        )}
       </Popup>
     )
   }
