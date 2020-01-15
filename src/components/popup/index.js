@@ -48,8 +48,6 @@ class Popup extends PureComponent {
       const renderDown = ['bottomLeft', 'bottomRight', 'bottomCenter'].includes(position)
       const renderLeft = ['topLeft', 'bottomLeft', 'leftCenter'].includes(position)
 
-      console.log("herw")
-
       if (menuHeight && menuWidth) {
         const renderToBottom = renderDown && (innerHeight - bottom > menuHeight) || (top < menuHeight)
         const renderToLeft = renderLeft && right > menuWidth || (innerWidth - left < menuWidth)
