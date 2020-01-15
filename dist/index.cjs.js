@@ -20913,7 +20913,6 @@ function (_PureComponent) {
             innerWidth = _window.innerWidth;
         var renderDown = ['bottomLeft', 'bottomRight', 'bottomCenter'].includes(position);
         var renderLeft = ['topLeft', 'bottomLeft', 'leftCenter'].includes(position);
-        console.log("herw");
 
         if (menuHeight && menuWidth) {
           var renderToBottom = renderDown && innerHeight - bottom > menuHeight || top < menuHeight;
@@ -21051,7 +21050,8 @@ var styleOverrides = {
   },
   popup: {
     left: '0px',
-    right: 'auto'
+    right: 'auto',
+    transformOrigin: 'top center'
   }
 };
 
@@ -21073,11 +21073,27 @@ function (_Component) {
 
     _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(TimeInput)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
+    defineProperty(assertThisInitialized(_this), "state", {
+      showTime: true
+    });
+
     defineProperty(assertThisInitialized(_this), "handleChange", function (timeObj) {
       var _this$props = _this.props,
           formik = _this$props.formik,
           name = _this$props.name;
       formik.setFieldValue(name, timeObj);
+    });
+
+    defineProperty(assertThisInitialized(_this), "resetClock", function (closePopup) {
+      closePopup();
+
+      _this.setState({
+        showTime: false
+      }, function () {
+        _this.setState({
+          showTime: true
+        });
+      });
     });
 
     return _this;
@@ -21086,6 +21102,9 @@ function (_Component) {
   createClass(TimeInput, [{
     key: "render",
     value: function render() {
+      var _this2 = this;
+
+      var showTime = this.state.showTime;
       var _this$props2 = this.props,
           formik = _this$props2.formik,
           disabled = _this$props2.disabled,
@@ -21121,17 +21140,20 @@ function (_Component) {
         },
         contentStyle: styleOverrides.popup,
         disabled: disabled
-      }, React__default.createElement("div", {
-        className: "clock-wrapper"
-      }, React__default.createElement(TimeKeeper, {
-        hour24Mode: timeFormat === "24",
-        switchToMinuteOnHourSelect: true,
-        closeOnMinuteSelect: true,
-        time: formattedTime || '00:00',
-        disabled: disabled,
-        name: name,
-        onChange: this.handleChange
-      })));
+      }, function (closePopup) {
+        return showTime && React__default.createElement("div", {
+          className: "clock-wrapper"
+        }, React__default.createElement(TimeKeeper, {
+          hour24Mode: timeFormat === "24",
+          switchToMinuteOnHourSelect: true,
+          time: formattedTime || '00:00',
+          name: name,
+          onChange: _this2.handleChange,
+          onDoneClick: function onDoneClick() {
+            return _this2.resetClock(closePopup);
+          }
+        }));
+      });
     }
   }]);
 
