@@ -14,7 +14,7 @@ import theme from '../../config/theme'
 import { mapProps } from '../../utils/map-props'
 
 const Flex = mapProps(({ wrap, align, justify, ...otherProps }) => ({
-  flexWrap: wrap ? 'wrap' : 'no-wrap',
+  flexWrap: wrap ? 'wrap' : 'nowrap',
   alignItems: align,
   justifyContent: justify,
   ...otherProps,

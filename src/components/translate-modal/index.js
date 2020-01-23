@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
-import LanguageSetField from '../../language-set-field'
-import Button from '../../button'
+import LanguageSetField from '../language-set-field'
+import Button from '../button'
 
 import { Container, EditTextContainer, EditText, EditButton, Actions } from './styles'
 

@@ -16,6 +16,7 @@ import Tune from '@lessondesk/material-icons/dist/Tune'
 import DotsVertical from '@lessondesk/material-icons/dist/DotsVertical'
 import Phone from '@lessondesk/material-icons/dist/Phone'
 import Email from '@lessondesk/material-icons/dist/Email'
+import Close from '@lessondesk/material-icons/dist/Close'
 
 class IconButton extends PureComponent {
 
@@ -51,7 +52,8 @@ class IconButton extends PureComponent {
     tune: Tune,
     overflow: DotsVertical,
     phone: Phone,
-    email: Email
+    email: Email,
+    close: Close
   }
 
   iconSizes = {
