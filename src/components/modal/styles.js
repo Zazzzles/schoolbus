@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const Header = styled.h1`
+export const Header = styled.div`
   max-width: 1100px;
 `
 export const Title = styled.h1`
@@ -32,7 +32,7 @@ export const FadeOverlay = styled.div`
   bottom: 0;
   left: 0;
   right: 0;
-  background: linear-gradient(white 0%, transparent 1.8em, transparent calc(100% - 2em), white 100% );
+  background: linear-gradient(white 0%, transparent 1.5em, transparent calc(100% - 1em), white 100% );
   pointer-events: none;
 `
 
