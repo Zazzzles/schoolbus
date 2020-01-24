@@ -15,7 +15,25 @@ export const Description = styled.p`
   margin-top: 1.5em;
 `
 
+export const ContentWrapper = styled.div`
+  position: relative;
+  max-width: 1100px;
+  margin: 1em 0;
+`
+
 export const InnerContent = styled.div`
+  padding: 1em;
+  margin: ${({ hasHeader }) => hasHeader ? '0 -1em' : '-2em -1em 0'};
+  overflow: auto;
+`
+export const FadeOverlay = styled.div`
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(white 0%, transparent 1.8em, transparent calc(100% - 2em), white 100% );
+  pointer-events: none;
 `
 
 export const styleOverrides = {

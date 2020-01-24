@@ -1,10 +1,17 @@
 import React from 'react'
 import ReactModal from 'react-modal'
 
-import Flex from '../flex'
 import IconButton from '../icon-button'
 
-import { Header, Title, Description, styleOverrides } from './styles'
+import { 
+  Header, 
+  Title, 
+  Description, 
+  InnerContent, 
+  FadeOverlay, 
+  ContentWrapper,
+  styleOverrides
+} from './styles'
 
 ReactModal.setAppElement('body')
 
@@ -27,12 +34,13 @@ const ModalWrapper = ({
       justifyContent: 'center',
     },
     content: {
+      position: 'relative',
       top: 'unset',
       left: 'unset',
       right: 'unset',
       bottom: 'unset',
       borderRadius: '1em',
-      padding: '2em',
+      padding: '2em 2em 0',
       overflow: 'auto',
       maxWidth: '95vw',
       maxHeight: '95vh',
@@ -70,16 +78,13 @@ const ModalWrapper = ({
           </Header>
         )}
         
+        <ContentWrapper>
+          <FadeOverlay />
 
-        <Flex 
-          p="0 1em" 
-          m="0 -1em" 
-          mt={hasHeader ? '2em' : '0'} 
-          style={styleOverrides.content}
-          flexDirection="column"
-        >
-          {children}
-        </Flex>     
+          <InnerContent hasHeader={hasHeader} style={styleOverrides.content}>     
+            {children}
+          </InnerContent> 
+        </ContentWrapper>    
       </>  
     </ReactModal>
   )
