@@ -28447,7 +28447,7 @@ defineProperty(TranslationInput, "defaultProps", {
 var index$9 = formik.connect(TranslationInput);
 
 function _templateObject6$1() {
-  var data = taggedTemplateLiteral(["\n  position: absolute;\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  background: linear-gradient(white 0%, transparent 1.8em, transparent calc(100% - 2em), white 100% );\n  pointer-events: none;\n"]);
+  var data = taggedTemplateLiteral(["\n  position: absolute;\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  background: linear-gradient(white 0%, transparent 1.5em, transparent calc(100% - 1em), white 100% );\n  pointer-events: none;\n"]);
 
   _templateObject6$1 = function _templateObject6() {
     return data;
@@ -28505,7 +28505,7 @@ function _templateObject$m() {
 
   return data;
 }
-var Header = styled__default.h1(_templateObject$m());
+var Header = styled__default.div(_templateObject$m());
 var Title = styled__default.h1(_templateObject2$a(), function (_ref) {
   var theme = _ref.theme;
   return theme.fontSizes.large;
