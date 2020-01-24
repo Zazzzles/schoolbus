@@ -40,7 +40,8 @@ export const styleOverrides = {
   closeBtn: {
     position: "absolute",
     top: 25,
-    right: 25
+    right: 25,
+    zIndex: 1
   },
   content: {
     maxHeight: '70vh',
