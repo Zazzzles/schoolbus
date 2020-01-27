@@ -4,8 +4,8 @@ import { connect } from 'formik'
 import Translate from '@lessondesk/material-icons/dist/Translate'
 
 import InputWrapper from '../input-wrapper'
-import TranslateModal from '../modals/translate-modal'
-import ModalWrapper from '../modals/modal-wrapper'
+import TranslateModal from '../translate-modal'
+import ModalWrapper from '../modal/modal-wrapper'
 
 import createDefaultInputProps from '../../utils/create-input-defaults'
 import { fontSizes, colors } from '../../config/theme.js'
