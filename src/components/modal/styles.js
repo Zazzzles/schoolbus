@@ -8,11 +8,23 @@ export const Title = styled.h1`
   font-weight: ${({ theme }) => theme.fontWeights.bold};
   color: ${({ theme }) => theme.colors.gray.xxdark};
 `
+
+export const Subtitle = styled.h2`
+  font-size: ${({ theme }) => theme.fontSizes.small};
+  font-weight: ${({ theme }) => theme.fontWeights.semi};
+  color: ${({ theme }) => theme.colors.gray.xxdark};
+  margin-top: 2.5em;
+`
+
 export const Description = styled.p`
   font-size: ${({ theme }) => theme.fontSizes.small};
   font-weight: ${({ theme }) => theme.fontWeights.normal};
   color: ${({ theme }) => theme.colors.gray.dark};
   margin-top: 1.5em;
+`
+
+export const Actions = styled.div`
+  margin-top: 2em;
 `
 
 export const ContentWrapper = styled.div`
@@ -26,6 +38,11 @@ export const InnerContent = styled.div`
   margin: ${({ hasHeader }) => hasHeader ? '0 -1em' : '-2em -1em 0'};
   overflow: auto;
 `
+
+export const Footer = styled.div`
+  padding: 0 0 2em;
+`
+
 export const FadeOverlay = styled.div`
   position: absolute;
   top: 0;
@@ -35,17 +52,3 @@ export const FadeOverlay = styled.div`
   background: linear-gradient(white 0%, transparent 1.5em, transparent calc(100% - 1em), white 100% );
   pointer-events: none;
 `
-
-export const styleOverrides = {
-  closeBtn: {
-    position: "absolute",
-    top: 25,
-    right: 25,
-    zIndex: 1
-  },
-  content: {
-    maxHeight: '70vh',
-    maxWidth: 1100,
-    overflow: 'auto'
-  }
-}

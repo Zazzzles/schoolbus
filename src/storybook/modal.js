@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { Modal } from '../'
+import { Modal, Button } from '../'
 
 const par = `
   Etiam a metus urnaEtiam a metus urnaEtiam a metus urnaEtiam a metus urnaEtiam a metus urnaEtiam a 
@@ -22,6 +22,26 @@ storiesOf('Modal', module)
       >
         Content goes here.
       </Modal>
+  ))
+  .add('Subtitle', () => (
+    <Modal
+      isOpen
+      title="Lorem Ipsum"
+      subtitle="I'm a subtitle"
+      description="Duis lectus erat, condimentum eget luctus a, pretium at mauris. Etiam a metus urna."
+    >
+      Content goes here.
+    </Modal>
+  ))
+  .add('Actions', () => (
+    <Modal
+      isOpen
+      title="Lorem Ipsum"
+      description="Duis lectus erat, condimentum eget luctus a, pretium at mauris. Etiam a metus urna."
+      actions={<Button variant="primary">Actions here</Button>}
+    >
+      Content goes here.
+    </Modal>
   ))
   .add('onClose', () => (
     <Modal
@@ -51,6 +71,18 @@ storiesOf('Modal', module)
     >
       {Array(20).fill().map(() => (
         <p style={{marginBottom: '.5em'}}>{par}</p>
+      ))}
+    </Modal>
+  ))
+  .add('Footer', () => (
+    <Modal
+      isOpen
+      onClose={() => { }}
+      title="Overflowing content"
+      footer={<Button variant="primary">Footer content here</Button>}
+    >
+      {Array(20).fill().map(() => (
+        <p style={{ marginBottom: '.5em' }}>{par}</p>
       ))}
     </Modal>
   ))

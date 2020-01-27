@@ -6,11 +6,13 @@ import IconButton from '../icon-button'
 import { 
   Header, 
   Title, 
+  Subtitle,
   Description, 
   InnerContent, 
   FadeOverlay, 
   ContentWrapper,
-  styleOverrides
+  Actions,
+  Footer
 } from './styles'
 
 ReactModal.setAppElement('body')
@@ -18,13 +20,33 @@ ReactModal.setAppElement('body')
 const ModalWrapper = ({
   onClose,
   style,
+  contentStyle,
   children,
   width,
   height,
   title,
+  subtitle,
   description,
+  actions,
+  footer,
   ...otherProps
 }) => {
+
+  const hasHeader = !!title || !!description || !!subtitle || !!actions
+
+  const styleOverrides = {
+    closeBtn: {
+      position: "absolute",
+      top: 25,
+      right: 25,
+      zIndex: 1
+    },
+    content: {
+      maxHeight: hasHeader ? '70vh' : '90vh',
+      maxWidth: 1100,
+      overflow: 'auto'
+    }
+  }
 
   const modalStyles = {
     overlay: {
@@ -60,8 +82,6 @@ const ModalWrapper = ({
     />
   )
 
-  const hasHeader = !!title || !!description
-
   return (
     <ReactModal
       onRequestClose={onClose}
@@ -74,17 +94,24 @@ const ModalWrapper = ({
         {hasHeader && (
           <Header>
             {title && <Title>{title}</Title>}
+            {subtitle && <Subtitle>{subtitle}</Subtitle>}
             {description && <Description>{description}</Description>}
+            {actions && <Actions>{actions}</Actions>}
           </Header>
         )}
         
         <ContentWrapper>
           <FadeOverlay />
 
-          <InnerContent hasHeader={hasHeader} style={styleOverrides.content}>     
+          <InnerContent 
+            hasHeader={hasHeader} 
+            style={{ ...contentStyle, ...styleOverrides.content}}
+          >     
             {children}
           </InnerContent> 
         </ContentWrapper>    
+
+        {footer && <Footer>{footer}</Footer>}
       </>  
     </ReactModal>
   )
@@ -95,6 +122,7 @@ ModalWrapper.defaultProps = {
   contentLabel: '',
   closeTimeoutMS: 300,
   style: {},
+  contentStyle: {},
   width: 'fit-content',
   height: 'fit-content'
 }
