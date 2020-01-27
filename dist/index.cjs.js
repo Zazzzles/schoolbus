@@ -28446,8 +28446,38 @@ defineProperty(TranslationInput, "defaultProps", {
 
 var index$9 = formik.connect(TranslationInput);
 
-function _templateObject6$1() {
+function _templateObject9() {
   var data = taggedTemplateLiteral(["\n  position: absolute;\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  background: linear-gradient(white 0%, transparent 1.5em, transparent calc(100% - 1em), white 100% );\n  pointer-events: none;\n"]);
+
+  _templateObject9 = function _templateObject9() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject8$1() {
+  var data = taggedTemplateLiteral(["\n  padding: 0 0 2em;\n"]);
+
+  _templateObject8$1 = function _templateObject8() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject7$1() {
+  var data = taggedTemplateLiteral(["\n  padding: 1em;\n  margin: ", ";\n  overflow: auto;\n"]);
+
+  _templateObject7$1 = function _templateObject7() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject6$1() {
+  var data = taggedTemplateLiteral(["\n  position: relative;\n  max-width: 1100px;\n  margin: 1em 0;\n"]);
 
   _templateObject6$1 = function _templateObject6() {
     return data;
@@ -28457,7 +28487,7 @@ function _templateObject6$1() {
 }
 
 function _templateObject5$3() {
-  var data = taggedTemplateLiteral(["\n  padding: 1em;\n  margin: ", ";\n  overflow: auto;\n"]);
+  var data = taggedTemplateLiteral(["\n  margin-top: 2em;\n"]);
 
   _templateObject5$3 = function _templateObject5() {
     return data;
@@ -28467,7 +28497,7 @@ function _templateObject5$3() {
 }
 
 function _templateObject4$3() {
-  var data = taggedTemplateLiteral(["\n  position: relative;\n  max-width: 1100px;\n  margin: 1em 0;\n"]);
+  var data = taggedTemplateLiteral(["\n  font-size: ", ";\n  font-weight: ", ";\n  color: ", ";\n  margin-top: 1.5em;\n"]);
 
   _templateObject4$3 = function _templateObject4() {
     return data;
@@ -28477,7 +28507,7 @@ function _templateObject4$3() {
 }
 
 function _templateObject3$6() {
-  var data = taggedTemplateLiteral(["\n  font-size: ", ";\n  font-weight: ", ";\n  color: ", ";\n  margin-top: 1.5em;\n"]);
+  var data = taggedTemplateLiteral(["\n  font-size: ", ";\n  font-weight: ", ";\n  color: ", ";\n  margin-top: 2.5em;\n"]);
 
   _templateObject3$6 = function _templateObject3() {
     return data;
@@ -28516,34 +28546,34 @@ var Title = styled__default.h1(_templateObject2$a(), function (_ref) {
   var theme = _ref3.theme;
   return theme.colors.gray.xxdark;
 });
-var Description = styled__default.p(_templateObject3$6(), function (_ref4) {
+var Subtitle = styled__default.h2(_templateObject3$6(), function (_ref4) {
   var theme = _ref4.theme;
   return theme.fontSizes.small;
 }, function (_ref5) {
   var theme = _ref5.theme;
-  return theme.fontWeights.normal;
+  return theme.fontWeights.semi;
 }, function (_ref6) {
   var theme = _ref6.theme;
+  return theme.colors.gray.xxdark;
+});
+var Description = styled__default.p(_templateObject4$3(), function (_ref7) {
+  var theme = _ref7.theme;
+  return theme.fontSizes.small;
+}, function (_ref8) {
+  var theme = _ref8.theme;
+  return theme.fontWeights.normal;
+}, function (_ref9) {
+  var theme = _ref9.theme;
   return theme.colors.gray.dark;
 });
-var ContentWrapper$1 = styled__default.div(_templateObject4$3());
-var InnerContent = styled__default.div(_templateObject5$3(), function (_ref7) {
-  var hasHeader = _ref7.hasHeader;
+var Actions$1 = styled__default.div(_templateObject5$3());
+var ContentWrapper$1 = styled__default.div(_templateObject6$1());
+var InnerContent = styled__default.div(_templateObject7$1(), function (_ref10) {
+  var hasHeader = _ref10.hasHeader;
   return hasHeader ? '0 -1em' : '-2em -1em 0';
 });
-var FadeOverlay = styled__default.div(_templateObject6$1());
-var styleOverrides$1 = {
-  closeBtn: {
-    position: "absolute",
-    top: 25,
-    right: 25
-  },
-  content: {
-    maxHeight: '70vh',
-    maxWidth: 1100,
-    overflow: 'auto'
-  }
-};
+var Footer = styled__default.div(_templateObject8$1());
+var FadeOverlay = styled__default.div(_templateObject9());
 
 function ownKeys$c(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
@@ -28553,13 +28583,31 @@ ReactModal.setAppElement('body');
 var ModalWrapper$1 = function ModalWrapper(_ref) {
   var onClose = _ref.onClose,
       style = _ref.style,
+      contentStyle = _ref.contentStyle,
       children = _ref.children,
       width = _ref.width,
       height = _ref.height,
       title = _ref.title,
+      subtitle = _ref.subtitle,
       description = _ref.description,
-      otherProps = objectWithoutProperties(_ref, ["onClose", "style", "children", "width", "height", "title", "description"]);
+      actions = _ref.actions,
+      footer = _ref.footer,
+      otherProps = objectWithoutProperties(_ref, ["onClose", "style", "contentStyle", "children", "width", "height", "title", "subtitle", "description", "actions", "footer"]);
 
+  var hasHeader = !!title || !!description || !!subtitle || !!actions;
+  var styleOverrides = {
+    closeBtn: {
+      position: "absolute",
+      top: 25,
+      right: 25,
+      zIndex: 1
+    },
+    content: {
+      maxHeight: hasHeader ? '70vh' : '90vh',
+      maxWidth: 1100,
+      overflow: 'auto'
+    }
+  };
   var modalStyles = {
     overlay: {
       backgroundColor: 'rgba(0, 0, 0, .3)',
@@ -28588,19 +28636,18 @@ var ModalWrapper$1 = function ModalWrapper(_ref) {
       icon: "close",
       noShadow: true,
       color: "white",
-      style: styleOverrides$1.closeBtn,
+      style: styleOverrides.closeBtn,
       onClick: onClose
     });
   };
 
-  var hasHeader = !!title || !!description;
   return React__default.createElement(ReactModal, _extends_1({
     onRequestClose: onClose,
     style: modalStyles
-  }, otherProps), React__default.createElement(React__default.Fragment, null, onClose && renderCloseIcon(), hasHeader && React__default.createElement(Header, null, title && React__default.createElement(Title, null, title), description && React__default.createElement(Description, null, description)), React__default.createElement(ContentWrapper$1, null, React__default.createElement(FadeOverlay, null), React__default.createElement(InnerContent, {
+  }, otherProps), React__default.createElement(React__default.Fragment, null, onClose && renderCloseIcon(), hasHeader && React__default.createElement(Header, null, title && React__default.createElement(Title, null, title), subtitle && React__default.createElement(Subtitle, null, subtitle), description && React__default.createElement(Description, null, description), actions && React__default.createElement(Actions$1, null, actions)), React__default.createElement(ContentWrapper$1, null, React__default.createElement(FadeOverlay, null), React__default.createElement(InnerContent, {
     hasHeader: hasHeader,
-    style: styleOverrides$1.content
-  }, children))));
+    style: _objectSpread$e({}, contentStyle, {}, styleOverrides.content)
+  }, children)), footer && React__default.createElement(Footer, null, footer)));
 };
 
 ModalWrapper$1.defaultProps = {
@@ -28608,6 +28655,7 @@ ModalWrapper$1.defaultProps = {
   contentLabel: '',
   closeTimeoutMS: 300,
   style: {},
+  contentStyle: {},
   width: 'fit-content',
   height: 'fit-content'
 };
@@ -39084,7 +39132,7 @@ var CopyrightText = styled__default.p.attrs({
 });
 CopyrightText.displayName = 'CopyrightText';
 
-var Footer = function Footer(_ref5) {
+var Footer$1 = function Footer(_ref5) {
   var copyright = _ref5.copyright,
       children = _ref5.children,
       otherProps = objectWithoutProperties(_ref5, ["copyright", "children"]);
@@ -39092,10 +39140,10 @@ var Footer = function Footer(_ref5) {
   return React.createElement(Box, otherProps, children, React.createElement(CopyrightText, null, copyright));
 };
 
-Footer.defaultProps = {
+Footer$1.defaultProps = {
   copyright: '2019 Lesson Desk (Pty) Ltd. All rights reserved.'
 };
-Footer.displayName = 'Footer';
+Footer$1.displayName = 'Footer';
 
 exports.BackgroundImage = BackgroundImage;
 exports.Box = Box;
@@ -39105,7 +39153,7 @@ exports.Checkbox = Checkbox;
 exports.DateInput = index$2;
 exports.ExpandingSearchInput = ExpandingSearchInput;
 exports.Flex = Flex;
-exports.Footer = Footer;
+exports.Footer = Footer$1;
 exports.IconButton = IconButton;
 exports.Image = Image;
 exports.Input = index$1;
