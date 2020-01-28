@@ -26,7 +26,8 @@ class ModalWrapper extends Component {
     style: {},
     contentStyle: {},
     width: 'fit-content',
-    height: 'fit-content'
+    height: 'fit-content',
+    scrollable: true
   }
 
   state = {
@@ -56,6 +57,7 @@ class ModalWrapper extends Component {
       description,
       actions,
       footer,
+      scrollable,
       ...otherProps
     } = this.props
 
@@ -69,9 +71,9 @@ class ModalWrapper extends Component {
         zIndex: 1
       },
       content: {
-        maxHeight: `calc(95vh - 5em - ${contentSpacing}px)`,
+        maxHeight: scrollable ? `calc(95vh - 5em - ${contentSpacing}px)` : 'none',
         maxWidth: 1100,
-        overflow: 'auto'
+        overflow: scrollable ? 'auto' : 'visible'
       }
     }
 
@@ -90,7 +92,7 @@ class ModalWrapper extends Component {
         bottom: 'unset',
         borderRadius: '1em',
         padding: '2em 2em 0',
-        overflow: 'auto',
+        overflow: scrollable ? 'auto' : 'visible',
         maxWidth: '95vw',
         maxHeight: '95vh',
         width,

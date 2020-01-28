@@ -74,6 +74,19 @@ storiesOf('Modal', module)
       ))}
     </Modal>
   ))
+  .add('scrollable={false}', () => (
+    <Modal
+      isOpen
+      onClose={() => { }}
+      title="Inner content all visible"
+      description={par}
+      scrollable={false}
+    >
+      {Array(20).fill().map(() => (
+        <p style={{ marginBottom: '.5em' }}>{par}</p>
+      ))}
+    </Modal>
+  ))
   .add('Footer', () => (
     <Modal
       isOpen
