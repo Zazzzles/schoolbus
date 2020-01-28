@@ -13,18 +13,18 @@ export const Subtitle = styled.h2`
   font-size: ${({ theme }) => theme.fontSizes.small};
   font-weight: ${({ theme }) => theme.fontWeights.semi};
   color: ${({ theme }) => theme.colors.gray.xxdark};
-  margin-top: 2.5em;
+  padding-top: 2.5em;
 `
 
 export const Description = styled.p`
   font-size: ${({ theme }) => theme.fontSizes.small};
   font-weight: ${({ theme }) => theme.fontWeights.normal};
   color: ${({ theme }) => theme.colors.gray.dark};
-  margin-top: 1.5em;
+  padding-top: 1.5em;
 `
 
 export const Actions = styled.div`
-  margin-top: 2em;
+  padding-top: 2em;
 `
 
 export const ContentWrapper = styled.div`
@@ -40,6 +40,8 @@ export const InnerContent = styled.div`
 `
 
 export const Footer = styled.div`
+  display: flex;
+  justify-content: flex-end;
   padding: 0 0 2em;
 `
 
