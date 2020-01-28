@@ -28634,7 +28634,8 @@ function (_Component) {
           description = _this$props.description,
           actions = _this$props.actions,
           footer = _this$props.footer,
-          otherProps = objectWithoutProperties(_this$props, ["onClose", "style", "contentStyle", "children", "width", "height", "title", "subtitle", "description", "actions", "footer"]);
+          scrollable = _this$props.scrollable,
+          otherProps = objectWithoutProperties(_this$props, ["onClose", "style", "contentStyle", "children", "width", "height", "title", "subtitle", "description", "actions", "footer", "scrollable"]);
 
       var hasHeader = !!title || !!description || !!subtitle || !!actions;
       var styleOverrides = {
@@ -28645,9 +28646,9 @@ function (_Component) {
           zIndex: 1
         },
         content: {
-          maxHeight: "calc(95vh - 5em - ".concat(contentSpacing, "px)"),
+          maxHeight: scrollable ? "calc(95vh - 5em - ".concat(contentSpacing, "px)") : 'none',
           maxWidth: 1100,
-          overflow: 'auto'
+          overflow: scrollable ? 'auto' : 'visible'
         }
       };
       var modalStyles = {
@@ -28665,7 +28666,7 @@ function (_Component) {
           bottom: 'unset',
           borderRadius: '1em',
           padding: '2em 2em 0',
-          overflow: 'auto',
+          overflow: scrollable ? 'auto' : 'visible',
           maxWidth: '95vw',
           maxHeight: '95vh',
           width: width,
@@ -28712,7 +28713,8 @@ defineProperty(ModalWrapper$1, "defaultProps", {
   style: {},
   contentStyle: {},
   width: 'fit-content',
-  height: 'fit-content'
+  height: 'fit-content',
+  scrollable: true
 });
 
 var _global = createCommonjsModule(function (module) {
