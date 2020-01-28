@@ -28457,7 +28457,7 @@ function _templateObject9() {
 }
 
 function _templateObject8$1() {
-  var data = taggedTemplateLiteral(["\n  padding: 0 0 2em;\n"]);
+  var data = taggedTemplateLiteral(["\n  display: flex;\n  justify-content: flex-end;\n  padding: 0 0 2em;\n"]);
 
   _templateObject8$1 = function _templateObject8() {
     return data;
@@ -28487,7 +28487,7 @@ function _templateObject6$1() {
 }
 
 function _templateObject5$3() {
-  var data = taggedTemplateLiteral(["\n  margin-top: 2em;\n"]);
+  var data = taggedTemplateLiteral(["\n  padding-top: 2em;\n"]);
 
   _templateObject5$3 = function _templateObject5() {
     return data;
@@ -28497,7 +28497,7 @@ function _templateObject5$3() {
 }
 
 function _templateObject4$3() {
-  var data = taggedTemplateLiteral(["\n  font-size: ", ";\n  font-weight: ", ";\n  color: ", ";\n  margin-top: 1.5em;\n"]);
+  var data = taggedTemplateLiteral(["\n  font-size: ", ";\n  font-weight: ", ";\n  color: ", ";\n  padding-top: 1.5em;\n"]);
 
   _templateObject4$3 = function _templateObject4() {
     return data;
@@ -28507,7 +28507,7 @@ function _templateObject4$3() {
 }
 
 function _templateObject3$6() {
-  var data = taggedTemplateLiteral(["\n  font-size: ", ";\n  font-weight: ", ";\n  color: ", ";\n  margin-top: 2.5em;\n"]);
+  var data = taggedTemplateLiteral(["\n  font-size: ", ";\n  font-weight: ", ";\n  color: ", ";\n  padding-top: 2.5em;\n"]);
 
   _templateObject3$6 = function _templateObject3() {
     return data;
@@ -28580,77 +28580,132 @@ function ownKeys$c(object, enumerableOnly) { var keys = Object.keys(object); if 
 function _objectSpread$e(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$c(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$c(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 ReactModal.setAppElement('body');
 
-var ModalWrapper$1 = function ModalWrapper(_ref) {
-  var onClose = _ref.onClose,
-      style = _ref.style,
-      contentStyle = _ref.contentStyle,
-      children = _ref.children,
-      width = _ref.width,
-      height = _ref.height,
-      title = _ref.title,
-      subtitle = _ref.subtitle,
-      description = _ref.description,
-      actions = _ref.actions,
-      footer = _ref.footer,
-      otherProps = objectWithoutProperties(_ref, ["onClose", "style", "contentStyle", "children", "width", "height", "title", "subtitle", "description", "actions", "footer"]);
+var ModalWrapper$1 =
+/*#__PURE__*/
+function (_Component) {
+  inherits(ModalWrapper, _Component);
 
-  var hasHeader = !!title || !!description || !!subtitle || !!actions;
-  var styleOverrides = {
-    closeBtn: {
-      position: "absolute",
-      top: 25,
-      right: 25,
-      zIndex: 1
-    },
-    content: {
-      maxHeight: hasHeader ? '70vh' : '90vh',
-      maxWidth: 1100,
-      overflow: 'auto'
+  function ModalWrapper() {
+    var _getPrototypeOf2;
+
+    var _this;
+
+    classCallCheck(this, ModalWrapper);
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
     }
-  };
-  var modalStyles = {
-    overlay: {
-      backgroundColor: 'rgba(0, 0, 0, .3)',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center'
-    },
-    content: _objectSpread$e({
-      position: 'relative',
-      top: 'unset',
-      left: 'unset',
-      right: 'unset',
-      bottom: 'unset',
-      borderRadius: '1em',
-      padding: '2em 2em 0',
-      overflow: 'auto',
-      maxWidth: '95vw',
-      maxHeight: '95vh',
-      width: width,
-      height: height
-    }, style)
-  };
 
-  var renderCloseIcon = function renderCloseIcon() {
-    return React__default.createElement(IconButton, {
-      icon: "close",
-      noShadow: true,
-      color: "white",
-      style: styleOverrides.closeBtn,
-      onClick: onClose
+    _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(ModalWrapper)).call.apply(_getPrototypeOf2, [this].concat(args)));
+
+    defineProperty(assertThisInitialized(_this), "state", {
+      contentSpacing: 0
     });
-  };
 
-  return React__default.createElement(ReactModal, _extends_1({
-    onRequestClose: onClose,
-    style: modalStyles
-  }, otherProps), React__default.createElement(React__default.Fragment, null, onClose && renderCloseIcon(), hasHeader && React__default.createElement(Header, null, title && React__default.createElement(Title, null, title), subtitle && React__default.createElement(Subtitle, null, subtitle), description && React__default.createElement(Description, null, description), actions && React__default.createElement(Actions$1, null, actions)), React__default.createElement(ContentWrapper$1, null, React__default.createElement(FadeOverlay, null), React__default.createElement(InnerContent, {
-    hasHeader: hasHeader,
-    style: _objectSpread$e({}, contentStyle, {}, styleOverrides.content)
-  }, children)), footer && React__default.createElement(Footer, null, footer)));
-};
+    defineProperty(assertThisInitialized(_this), "afterOpenModal", function () {
+      var headerHeight = _this.headerRef ? _this.headerRef.clientHeight : 0;
+      var footerHeight = _this.footerRef ? _this.footerRef.clientHeight : 0;
+      var contentSpacing = headerHeight + footerHeight;
 
-ModalWrapper$1.defaultProps = {
+      _this.setState({
+        contentSpacing: contentSpacing
+      });
+    });
+
+    return _this;
+  }
+
+  createClass(ModalWrapper, [{
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      var contentSpacing = this.state.contentSpacing;
+
+      var _this$props = this.props,
+          onClose = _this$props.onClose,
+          style = _this$props.style,
+          contentStyle = _this$props.contentStyle,
+          children = _this$props.children,
+          width = _this$props.width,
+          height = _this$props.height,
+          title = _this$props.title,
+          subtitle = _this$props.subtitle,
+          description = _this$props.description,
+          actions = _this$props.actions,
+          footer = _this$props.footer,
+          otherProps = objectWithoutProperties(_this$props, ["onClose", "style", "contentStyle", "children", "width", "height", "title", "subtitle", "description", "actions", "footer"]);
+
+      var hasHeader = !!title || !!description || !!subtitle || !!actions;
+      var styleOverrides = {
+        closeBtn: {
+          position: "absolute",
+          top: 25,
+          right: 25,
+          zIndex: 1
+        },
+        content: {
+          maxHeight: "calc(95vh - 5em - ".concat(contentSpacing, "px)"),
+          maxWidth: 1100,
+          overflow: 'auto'
+        }
+      };
+      var modalStyles = {
+        overlay: {
+          backgroundColor: 'rgba(0, 0, 0, .3)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center'
+        },
+        content: _objectSpread$e({
+          position: 'relative',
+          top: 'unset',
+          left: 'unset',
+          right: 'unset',
+          bottom: 'unset',
+          borderRadius: '1em',
+          padding: '2em 2em 0',
+          overflow: 'auto',
+          maxWidth: '95vw',
+          maxHeight: '95vh',
+          width: width,
+          height: height
+        }, style)
+      };
+
+      var renderCloseIcon = function renderCloseIcon() {
+        return React__default.createElement(IconButton, {
+          icon: "close",
+          noShadow: true,
+          color: "transparent",
+          style: styleOverrides.closeBtn,
+          onClick: onClose
+        });
+      };
+
+      return React__default.createElement(ReactModal, _extends_1({
+        onRequestClose: onClose,
+        onAfterOpen: this.afterOpenModal,
+        style: modalStyles
+      }, otherProps), React__default.createElement(React__default.Fragment, null, onClose && renderCloseIcon(), React__default.createElement(Header, {
+        ref: function ref(node) {
+          return _this2.headerRef = node;
+        }
+      }, title && React__default.createElement(Title, null, title), subtitle && React__default.createElement(Subtitle, null, subtitle), description && React__default.createElement(Description, null, description), actions && React__default.createElement(Actions$1, null, actions)), React__default.createElement(ContentWrapper$1, null, React__default.createElement(FadeOverlay, null), React__default.createElement(InnerContent, {
+        hasHeader: hasHeader,
+        style: _objectSpread$e({}, contentStyle, {}, styleOverrides.content)
+      }, children)), footer && React__default.createElement(Footer, {
+        ref: function ref(node) {
+          return _this2.footerRef = node;
+        }
+      }, footer)));
+    }
+  }]);
+
+  return ModalWrapper;
+}(React.Component);
+
+defineProperty(ModalWrapper$1, "defaultProps", {
   isOpen: false,
   contentLabel: '',
   closeTimeoutMS: 300,
@@ -28658,8 +28713,7 @@ ModalWrapper$1.defaultProps = {
   contentStyle: {},
   width: 'fit-content',
   height: 'fit-content'
-};
-var index$a = React__default.memo(ModalWrapper$1);
+});
 
 var _global = createCommonjsModule(function (module) {
 // https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
@@ -34991,9 +35045,9 @@ var componentIndexof = function(arr, obj){
  */
 
 try {
-  var index$b = indexof;
+  var index$a = indexof;
 } catch (err) {
-  var index$b = componentIndexof;
+  var index$a = componentIndexof;
 }
 
 /**
@@ -35052,7 +35106,7 @@ ClassList.prototype.add = function(name){
 
   // fallback
   var arr = this.array();
-  var i = index$b(arr, name);
+  var i = index$a(arr, name);
   if (!~i) arr.push(name);
   this.el.className = arr.join(' ');
   return this;
@@ -35081,7 +35135,7 @@ ClassList.prototype.remove = function(name){
 
   // fallback
   var arr = this.array();
-  var i = index$b(arr, name);
+  var i = index$a(arr, name);
   if (~i) arr.splice(i, 1);
   this.el.className = arr.join(' ');
   return this;
@@ -35175,7 +35229,7 @@ ClassList.prototype.has =
 ClassList.prototype.contains = function(name){
   return this.list
     ? this.list.contains(name)
-    : !! ~index$b(this.array(), name);
+    : !! ~index$a(this.array(), name);
 };
 
 var isCssAnimationSupported = TransitionEvents.endEvents.length !== 0;
@@ -37371,7 +37425,7 @@ RangeInput.defaultProps = {
   onChange: function onChange() {},
   onBlur: function onBlur() {}
 };
-var index$c = formik.connect(RangeInput);
+var index$b = formik.connect(RangeInput);
 
 function _templateObject3$7() {
   var data = taggedTemplateLiteral(["\n  border: none;\n  background: ", ";\n  color: ", ";\n  border-radius: ", ";\n  padding: 0.6em 1em;\n  margin-right: 1em;\n  transition: transform 0.3s, opacity 0.3s;\n  width: 100%;\n  transform: ", ";\n  transform-origin: right;\n  opacity: ", ";\n  font-size: ", ";\n  font-family: ", ";\n  height: 100%;\n"]);
@@ -39158,13 +39212,13 @@ exports.IconButton = IconButton;
 exports.Image = Image;
 exports.Input = index$1;
 exports.LanguageSetField = LanguageSetField$1;
-exports.Modal = index$a;
+exports.Modal = ModalWrapper$1;
 exports.Normalize = Normalize;
 exports.OverflowMenu = index$8;
 exports.Pill = Pill;
 exports.Popup = Popup;
 exports.RadioButton = RadioButton;
-exports.RangeInput = index$c;
+exports.RangeInput = index$b;
 exports.Select = index$6;
 exports.TelInput = index$4;
 exports.Text = Text;
