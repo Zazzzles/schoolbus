@@ -79,8 +79,8 @@ export const shadows = [
   `${baseShadow}0 24px 24px 0 ${shadowColor}`,
 ]
 
-export const radii = [0, '2px', '5px', '15px', '20px', '30px', '9999px']
-const radiiAliases = ['none', 'xsmall', 'small', 'large', 'xlarge', 'xxlarge', 'full']
+export const radii = [0, '2px', '5px', '10px', '15px', '20px', '30px', '9999px']
+const radiiAliases = ['none', 'xsmall', 'small', 'medium', 'large', 'xlarge', 'xxlarge', 'full']
 addAliases(radii, radiiAliases)
 
 export const zIndices = [1, 2, 3, 4, 5]
