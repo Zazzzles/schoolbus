@@ -26493,10 +26493,10 @@ var OverflowMenu = function OverflowMenu(_ref2) {
         href = _ref3.href,
         otherProps = objectWithoutProperties(_ref3, ["name", "onClick", "href"]);
 
-    return href ? React__default.createElement(LinkComponent, {
+    return href ? React__default.createElement(LinkComponent, _extends_1({
       key: name,
       href: href
-    }, React__default.createElement(Button$2, null, name)) : React__default.createElement(Button$2, _extends_1({
+    }, otherProps), React__default.createElement(Button$2, null, name)) : React__default.createElement(Button$2, _extends_1({
       key: name,
       onClick: onClick
     }, otherProps), name);
