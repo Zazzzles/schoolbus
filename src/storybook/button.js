@@ -4,13 +4,15 @@ import { Button } from '../'
 
 import mdx from '../docs/button.mdx'
 
+const flexContainer = { display: 'flex' }
+
 storiesOf('Input | Button', module)
   .addParameters({
     docs: mdx,
     component: Button,
   })
   .add('Variants', () => (
-    <>
+    <div style={flexContainer}>
       <Button>Default</Button>
       <Button variant="primary" m={2}>
         Primary
@@ -27,7 +29,10 @@ storiesOf('Input | Button', module)
       <Button variant="danger" m={2}>
         Danger
       </Button>
-    </>
+      <Button variant="primary" isLoading m={2}>
+        Submit
+      </Button>
+    </div>
   ))
   .add('Sizes', () => (
     <>
