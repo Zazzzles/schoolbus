@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 
 import { typography, layout, space } from 'styled-system'
 import theme from '../../config/theme'
+import Spinner from '../spinner'
 
 import { StyledButton, SHAPES, SIZES } from './styles'
 
@@ -27,7 +28,20 @@ class Button extends React.PureComponent {
   }
 
   render() {
-    return <StyledButton {...this.props}>{this.props.children}</StyledButton>
+    const { isLoading = false, spinnerProps } = this.props
+
+    return (
+      <StyledButton {...this.props}>
+        {isLoading
+          ? <Spinner
+              color='white'
+              size='20px'
+              width='3px'
+              {...spinnerProps}
+            />
+          : this.props.children}
+      </StyledButton>
+    )
   }
 }
 

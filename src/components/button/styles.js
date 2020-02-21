@@ -44,8 +44,12 @@ export const StyledButton = styled.button.attrs({
   border: none;
   cursor: pointer;
   transition: transform 0.1s;
+  min-height: 2.9em;
   &:active {
     transform: ${({ shape }) => (shape === SHAPES.block ? 'scale(0.99)' : 'scale(0.95)')};
+  }
+  > div {
+    margin: auto;
   }
 
   ${buttonStyle}
