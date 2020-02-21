@@ -28,10 +28,10 @@ class Button extends React.PureComponent {
   }
 
   render() {
-    const { isLoading = false, spinnerProps } = this.props
+    const { isLoading = false, spinnerProps, variant } = this.props
 
     return (
-      <StyledButton {...this.props}>
+      <StyledButton {...this.props} variant={isLoading ? 'secondary' : variant}>
         {isLoading
           ? <Spinner
               color='white'

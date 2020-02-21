@@ -467,8 +467,11 @@ function (_React$PureComponent) {
       var _this$props = this.props,
           _this$props$isLoading = _this$props.isLoading,
           isLoading = _this$props$isLoading === void 0 ? false : _this$props$isLoading,
-          spinnerProps = _this$props.spinnerProps;
-      return React.createElement(StyledButton, this.props, isLoading ? React.createElement(Spinner, _extends_1({
+          spinnerProps = _this$props.spinnerProps,
+          variant = _this$props.variant;
+      return React.createElement(StyledButton, _extends_1({}, this.props, {
+        variant: isLoading ? 'secondary' : variant
+      }), isLoading ? React.createElement(Spinner, _extends_1({
         color: "white",
         size: "20px",
         width: "3px"
