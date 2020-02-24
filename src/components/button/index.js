@@ -31,7 +31,11 @@ class Button extends React.PureComponent {
     const { isLoading = false, spinnerProps, variant } = this.props
 
     return (
-      <StyledButton {...this.props} variant={isLoading ? 'secondary' : variant}>
+      <StyledButton
+        {...this.props}
+        variant={isLoading ? 'secondary' : variant}
+        disabled={isLoading}
+      >
         {isLoading
           ? <Spinner
               color='white'
