@@ -26832,7 +26832,7 @@ function (_Component) {
           disabled: disabled,
           languages: languages
         }));
-      }), React__default.createElement(Actions, null, React__default.createElement(EditTextContainer, null, onLAnguagesChange && React__default.createElement(React__default.Fragment, null, React__default.createElement(EditButton, {
+      }), React__default.createElement(Actions, null, React__default.createElement(EditTextContainer, null, onLanguagesChange && React__default.createElement(React__default.Fragment, null, React__default.createElement(EditButton, {
         onClick: onLanguagesChange
       }, "Edit"), React__default.createElement(EditText, null, "\xA0 ", "language preferences."))), React__default.createElement(Button, {
         variant: "primary",

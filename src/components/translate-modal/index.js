@@ -70,7 +70,7 @@ class TranslateModal extends Component {
 
         <Actions>
           <EditTextContainer>
-            {onLAnguagesChange && (
+            {onLanguagesChange && (
               <>
                 <EditButton onClick={onLanguagesChange}>Edit</EditButton>
                 <EditText>&nbsp; {`language preferences.`}</EditText>
