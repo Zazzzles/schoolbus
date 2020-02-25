@@ -28,13 +28,12 @@ class Pill extends React.PureComponent {
   }
 
   render() {
-    const { children, ...otherProps } = this.props
-    const count = 0
+    const { children, variant, count, ...otherProps } = this.props
 
     return (
-      <Container {...otherProps}>
-        <Text>{children}</Text>
-        {count >= 0 && <Count>{count}</Count>}
+      <Container {...otherProps} variant={variant} count={count}>
+        <Text variant={variant}>{children}</Text>
+        {count >= 0 && <Count variant={variant}>{count}</Count>}
       </Container>
     )
   }

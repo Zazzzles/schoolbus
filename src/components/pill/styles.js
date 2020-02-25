@@ -18,9 +18,11 @@ export const Container = styled.button.attrs({
   min-width: 80px;
   border-radius: ${({ theme }) => theme.radii.full};
   box-shadow: ${({ variant, theme, count }) => (
-    count >= 0 || (variant === VARIANTS.active) ? theme.shadows[1] : 'none'
+    variant === VARIANTS.active ? theme.shadows[1] : 'none'
   )};
-  border: none;
+  border: ${({ variant, theme, count }) => (
+    count >= 0 && (variant === VARIANTS.inactive) ? `1px solid ${theme.colors.gray.light}` : 'none'
+  )};
   font-size: ${({ theme }) => theme.fontSizes.small};
   font-weight: ${({ theme }) => theme.fontWeights.bold};
   font-family: ${({ theme }) => theme.fonts.Montserrat};
@@ -41,7 +43,6 @@ export const Count = styled.span`
   min-width: 2em;
   margin-right: .3em;
   border-radius: ${({ theme }) => theme.radii.full};
-  background-color: ${({ theme }) => (variant === VARIANTS.active) 
-  ? theme.colors.orange[0]};
-
+  background-color: ${({ theme, variant }) => (variant === VARIANTS.active) 
+  ? theme.colors.orange[0] : theme.colors.gray.light};
 `
