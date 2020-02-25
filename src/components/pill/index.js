@@ -1,7 +1,8 @@
 import * as React from 'react'
-import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import { space, layout } from 'styled-system'
+
+import { Container, Text, Count } from './styles'
 
 import theme from '../../config/theme'
 
@@ -10,25 +11,7 @@ const VARIANTS = {
   inactive: 'inactive',
 }
 
-const StyledPill = styled.button.attrs({
-  type: 'button',
-})`
-  background-color: ${({theme}) => theme.colors.transparent};
-  color: ${({variant, theme}) =>
-    variant === VARIANTS.active ? theme.colors.primary : theme.colors.gray.xdark};
-  padding: 1em;
-  min-width: 80px;
-  border-radius: ${({theme}) => theme.radii.full};
-  box-shadow: ${({variant, theme}) => (variant === VARIANTS.active ? theme.shadows[1] : 'none')};
-  border: none;
-  font-size: ${({theme}) => theme.fontSizes.small};
-  font-weight: ${({theme}) => theme.fontWeights.bold};
-  font-family: ${({theme}) => theme.fonts.Montserrat};
-  ${space}
-  ${layout}
-`
-
-StyledPill.displayName = 'Pill'
+Container.displayName = 'Pill'
 
 class Pill extends React.PureComponent {
   static VARIANTS = VARIANTS
@@ -45,7 +28,15 @@ class Pill extends React.PureComponent {
   }
 
   render() {
-    return <StyledPill {...this.props} />
+    const { children, ...otherProps } = this.props
+    const count = 0
+
+    return (
+      <Container {...otherProps}>
+        <Text>{children}</Text>
+        {count >= 0 && <Count>{count}</Count>}
+      </Container>
+    )
   }
 }
 
