@@ -39,9 +39,9 @@ export const Count = styled.span`
   align-items: center;
   justify-content: center;
   height: 2em;
-  width: 2em;
+  padding: 0 .5em;
   min-width: 2em;
-  margin-right: .3em;
+  margin-right: .25em;
   border-radius: ${({ theme }) => theme.radii.full};
   background-color: ${({ theme, variant }) => (variant === VARIANTS.active) 
   ? theme.colors.orange[0] : theme.colors.gray.light};
