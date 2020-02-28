@@ -17,6 +17,8 @@ import DotsVertical from '@lessondesk/material-icons/dist/DotsVertical'
 import Phone from '@lessondesk/material-icons/dist/Phone'
 import Email from '@lessondesk/material-icons/dist/Email'
 import Close from '@lessondesk/material-icons/dist/Close'
+import Eye from '@lessondesk/material-icons/dist/Eye'
+import EyeClosed from '@lessondesk/material-icons/dist/EyeOff'
 
 class IconButton extends PureComponent {
 
@@ -53,7 +55,9 @@ class IconButton extends PureComponent {
     overflow: DotsVertical,
     phone: Phone,
     email: Email,
-    close: Close
+    close: Close,
+    eye: Eye,
+    eyeClosed: EyeClosed
   }
 
   iconSizes = {
