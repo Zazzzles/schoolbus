@@ -6,6 +6,7 @@ export const Container = styled.button.attrs({
 })`
   display: flex;
   align-items: center;
+  justify-content: center;
   background-color: ${({ theme }) => theme.colors.transparent};
   color: ${({ active, theme }) => active ? theme.colors.primary : theme.colors.gray.xdark};
   height: 2.5em;
@@ -31,9 +32,10 @@ export const Count = styled.span`
   align-items: center;
   justify-content: center;
   height: 2em;
-  padding: 0 .5em;
   min-width: 2em;
-  margin-right: .25em;
+  min-width: 2em;
+  padding: 0 .5em;
+  margin-right: .3em;
   border-radius: ${({ theme }) => theme.radii.full};
   background-color: ${({ theme, active }) => (
     active ? theme.colors.orange[0] : theme.colors.gray.light
