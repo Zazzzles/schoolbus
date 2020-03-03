@@ -1,27 +1,19 @@
 import styled from 'styled-components'
 import { space, layout } from 'styled-system'
 
-const VARIANTS = {
-  active: 'active',
-  inactive: 'inactive',
-}
-
 export const Container = styled.button.attrs({
   type: 'button',
 })`
   display: flex;
   align-items: center;
   background-color: ${({ theme }) => theme.colors.transparent};
-  color: ${({ variant, theme }) =>
-    variant === VARIANTS.active ? theme.colors.primary : theme.colors.gray.xdark};
+  color: ${({ active, theme }) => active ? theme.colors.primary : theme.colors.gray.xdark};
   height: 2.5em;
   min-width: 80px;
   border-radius: ${({ theme }) => theme.radii.full};
-  box-shadow: ${({ variant, theme, count }) => (
-    variant === VARIANTS.active ? theme.shadows[1] : 'none'
-  )};
-  border: ${({ variant, theme, count }) => (
-    count >= 0 && (variant === VARIANTS.inactive) ? `1px solid ${theme.colors.gray.light}` : 'none'
+  box-shadow: ${({ active, theme }) => active ? theme.shadows[1] : 'none'};
+  border: ${({ active, theme, count, bordered }) => (
+    (count >= 0 && !active) || (bordered && !active) ? `1px solid ${theme.colors.gray.light}` : 'none'
   )};
   font-size: ${({ theme }) => theme.fontSizes.small};
   font-weight: ${({ theme }) => theme.fontWeights.bold};
@@ -43,6 +35,7 @@ export const Count = styled.span`
   min-width: 2em;
   margin-right: .3em;
   border-radius: ${({ theme }) => theme.radii.full};
-  background-color: ${({ theme, variant }) => (variant === VARIANTS.active) 
-  ? theme.colors.orange[0] : theme.colors.gray.light};
+  background-color: ${({ theme, active }) => (
+    active ? theme.colors.orange[0] : theme.colors.gray.light
+  )};
 `
