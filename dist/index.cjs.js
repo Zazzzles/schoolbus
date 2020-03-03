@@ -1755,7 +1755,7 @@ Text.propTypes = _objectSpread$3({}, styledSystem.typography.propTypes, {}, styl
 Text.displayName = 'Text';
 
 function _templateObject3$1() {
-  var data = taggedTemplateLiteral(["\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  height: 2em;\n  padding: 0 .5em;\n  min-width: 2em;\n  margin-right: .25em;\n  border-radius: ", ";\n  background-color: ", ";\n"]);
+  var data = taggedTemplateLiteral(["\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  height: 2em;\n  min-width: 2em;\n  min-width: 2em;\n  padding: 0 .5em;\n  margin-right: .3em;\n  border-radius: ", ";\n  background-color: ", ";\n"]);
 
   _templateObject3$1 = function _templateObject3() {
     return data;
@@ -1775,7 +1775,7 @@ function _templateObject2$2() {
 }
 
 function _templateObject$8() {
-  var data = taggedTemplateLiteral(["\n  display: flex;\n  align-items: center;\n  background-color: ", ";\n  color: ", ";\n  height: 2.5em;\n  min-width: 80px;\n  border-radius: ", ";\n  box-shadow: ", ";\n  border: ", ";\n  font-size: ", ";\n  font-weight: ", ";\n  font-family: ", ";\n  ", "\n  ", "\n"]);
+  var data = taggedTemplateLiteral(["\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  background-color: ", ";\n  color: ", ";\n  height: 2.5em;\n  min-width: 80px;\n  border-radius: ", ";\n  box-shadow: ", ";\n  border: ", ";\n  font-size: ", ";\n  font-weight: ", ";\n  font-family: ", ";\n  ", "\n  ", "\n"]);
 
   _templateObject$8 = function _templateObject() {
     return data;
@@ -1783,32 +1783,28 @@ function _templateObject$8() {
 
   return data;
 }
-var VARIANTS = {
-  active: 'active',
-  inactive: 'inactive'
-};
 var Container = styled__default.button.attrs({
   type: 'button'
 })(_templateObject$8(), function (_ref) {
   var theme = _ref.theme;
   return theme.colors.transparent;
 }, function (_ref2) {
-  var variant = _ref2.variant,
+  var active = _ref2.active,
       theme = _ref2.theme;
-  return variant === VARIANTS.active ? theme.colors.primary : theme.colors.gray.xdark;
+  return active ? theme.colors.primary : theme.colors.gray.xdark;
 }, function (_ref3) {
   var theme = _ref3.theme;
   return theme.radii.full;
 }, function (_ref4) {
-  var variant = _ref4.variant,
-      theme = _ref4.theme,
-      count = _ref4.count;
-  return variant === VARIANTS.active ? theme.shadows[1] : 'none';
+  var active = _ref4.active,
+      theme = _ref4.theme;
+  return active ? theme.shadows[1] : 'none';
 }, function (_ref5) {
-  var variant = _ref5.variant,
+  var active = _ref5.active,
       theme = _ref5.theme,
-      count = _ref5.count;
-  return count >= 0 && variant === VARIANTS.inactive ? "1px solid ".concat(theme.colors.gray.light) : 'none';
+      count = _ref5.count,
+      bordered = _ref5.bordered;
+  return count >= 0 && !active || bordered && !active ? "1px solid ".concat(theme.colors.gray.light) : 'none';
 }, function (_ref6) {
   var theme = _ref6.theme;
   return theme.fontSizes.small;
@@ -1825,17 +1821,13 @@ var Count = styled__default.span(_templateObject3$1(), function (_ref9) {
   return theme.radii.full;
 }, function (_ref10) {
   var theme = _ref10.theme,
-      variant = _ref10.variant;
-  return variant === VARIANTS.active ? theme.colors.orange[0] : theme.colors.gray.light;
+      active = _ref10.active;
+  return active ? theme.colors.orange[0] : theme.colors.gray.light;
 });
 
 function ownKeys$4(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread$4(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$4(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$4(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-var VARIANTS$1 = {
-  active: 'active',
-  inactive: 'inactive'
-};
 Container.displayName = 'Pill';
 
 var Pill =
@@ -1854,17 +1846,17 @@ function (_React$PureComponent) {
     value: function render() {
       var _this$props = this.props,
           children = _this$props.children,
-          variant = _this$props.variant,
+          active = _this$props.active,
           count = _this$props.count,
-          otherProps = objectWithoutProperties(_this$props, ["children", "variant", "count"]);
+          otherProps = objectWithoutProperties(_this$props, ["children", "active", "count"]);
 
       return React.createElement(Container, _extends_1({}, otherProps, {
-        variant: variant,
+        active: active,
         count: count
       }), React.createElement(Text$1, {
-        variant: variant
+        active: active
       }, children), count >= 0 && React.createElement(Count, {
-        variant: variant
+        active: active
       }, count));
     }
   }]);
@@ -1872,15 +1864,13 @@ function (_React$PureComponent) {
   return Pill;
 }(React.PureComponent);
 
-defineProperty(Pill, "VARIANTS", VARIANTS$1);
-
 defineProperty(Pill, "defaultProps", {
   theme: theme,
-  variant: VARIANTS$1.inactive
+  active: false
 });
 
 defineProperty(Pill, "propTypes", _objectSpread$4({
-  variant: PropTypes.oneOf(Object.keys(VARIANTS$1))
+  active: PropTypes.bool
 }, styledSystem.space.propTypes, {}, styledSystem.layout.propTypes));
 
 function ownKeys$5(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
