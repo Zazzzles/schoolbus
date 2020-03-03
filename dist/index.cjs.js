@@ -1319,6 +1319,104 @@ exports["default"] = _default;
 
 var Close$1 = unwrapExports(Close);
 
+var Eye = createCommonjsModule(function (module, exports) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+
+var _react = _interopRequireDefault(React__default);
+
+var _styledComponents = _interopRequireDefault(styled__default);
+
+
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+
+var Svg = (0, _styledComponents["default"])('svg')({
+  flex: 'none'
+}, styledSystem__default.space, styledSystem__default.color);
+
+var EyeIcon = function EyeIcon(_ref) {
+  var size = _ref.size,
+      props = _objectWithoutProperties(_ref, ["size"]);
+
+  return _react["default"].createElement(Svg, _extends({}, props, {
+    viewBox: "0 0 24 24",
+    width: size,
+    height: size,
+    fill: "currentcolor"
+  }), _react["default"].createElement("path", {
+    d: "M12,9C10.34,9 9,10.34 9,12C9,13.66 10.34,15 12,15C13.66,15 15,13.66 15,12C15,10.34 13.66,9 12,9M12,17C9.24,17 7,14.76 7,12C7,9.24 9.24,7 12,7C14.76,7 17,9.24 17,12C17,14.76 14.76,17 12,17M12,4.5C7,4.5 2.73,7.61 1,12C2.73,16.39 7,19.5 12,19.5C17,19.5 21.27,16.39 23,12C21.27,7.61 17,4.5 12,4.5Z"
+  }));
+};
+
+EyeIcon.displayName = 'EyeIcon';
+EyeIcon.defaultProps = {
+  size: 24
+};
+var _default = EyeIcon;
+exports["default"] = _default;
+});
+
+var Eye$1 = unwrapExports(Eye);
+
+var EyeOff = createCommonjsModule(function (module, exports) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+
+var _react = _interopRequireDefault(React__default);
+
+var _styledComponents = _interopRequireDefault(styled__default);
+
+
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+
+var Svg = (0, _styledComponents["default"])('svg')({
+  flex: 'none'
+}, styledSystem__default.space, styledSystem__default.color);
+
+var EyeOffIcon = function EyeOffIcon(_ref) {
+  var size = _ref.size,
+      props = _objectWithoutProperties(_ref, ["size"]);
+
+  return _react["default"].createElement(Svg, _extends({}, props, {
+    viewBox: "0 0 24 24",
+    width: size,
+    height: size,
+    fill: "currentcolor"
+  }), _react["default"].createElement("path", {
+    d: "M11.83,9L15,12.16C15,12.11 15,12.05 15,12C15,10.34 13.66,9 12,9C11.94,9 11.89,9 11.83,9M7.53,9.8L9.08,11.35C9.03,11.56 9,11.77 9,12C9,13.66 10.34,15 12,15C12.22,15 12.44,14.97 12.65,14.92L14.2,16.47C13.53,16.8 12.79,17 12,17C9.24,17 7,14.76 7,12C7,11.21 7.2,10.47 7.53,9.8M2,4.27L4.28,6.55L4.73,7C3.08,8.3 1.78,10 1,12C2.73,16.39 7,19.5 12,19.5C13.55,19.5 15.03,19.2 16.38,18.66L16.81,19.08L19.73,22L21,20.73L3.27,3M12,7C14.76,7 17,9.24 17,12C17,12.64 16.87,13.26 16.64,13.82L19.57,16.75C21.07,15.5 22.27,13.86 23,12C21.27,7.61 17,4.5 12,4.5C10.6,4.5 9.26,4.75 8,5.2L10.17,7.35C10.74,7.13 11.35,7 12,7Z"
+  }));
+};
+
+EyeOffIcon.displayName = 'EyeOffIcon';
+EyeOffIcon.defaultProps = {
+  size: 24
+};
+var _default = EyeOffIcon;
+exports["default"] = _default;
+});
+
+var EyeClosed = unwrapExports(EyeOff);
+
 var IconButton =
 /*#__PURE__*/
 function (_PureComponent) {
@@ -1351,7 +1449,9 @@ function (_PureComponent) {
       overflow: DotsVertical$1,
       phone: Phone$1,
       email: Email$1,
-      close: Close$1
+      close: Close$1,
+      eye: Eye$1,
+      eyeClosed: EyeClosed
     });
 
     defineProperty(assertThisInitialized(_this), "iconSizes", {
@@ -1654,12 +1754,28 @@ Text.defaultProps = {
 Text.propTypes = _objectSpread$3({}, styledSystem.typography.propTypes, {}, styledSystem.space.propTypes, {}, styledSystem.color.propTypes);
 Text.displayName = 'Text';
 
-function ownKeys$4(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+function _templateObject3$1() {
+  var data = taggedTemplateLiteral(["\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  height: 2em;\n  padding: 0 .5em;\n  min-width: 2em;\n  margin-right: .25em;\n  border-radius: ", ";\n  background-color: ", ";\n"]);
 
-function _objectSpread$4(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$4(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$4(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+  _templateObject3$1 = function _templateObject3() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject2$2() {
+  var data = taggedTemplateLiteral(["\n  margin: 0 1em;\n"]);
+
+  _templateObject2$2 = function _templateObject2() {
+    return data;
+  };
+
+  return data;
+}
 
 function _templateObject$8() {
-  var data = taggedTemplateLiteral(["\n  background-color: ", ";\n  color: ", ";\n  padding: 1em;\n  min-width: 80px;\n  border-radius: ", ";\n  box-shadow: ", ";\n  border: none;\n  font-size: ", ";\n  font-weight: ", ";\n  font-family: ", ";\n  ", "\n  ", "\n"]);
+  var data = taggedTemplateLiteral(["\n  display: flex;\n  align-items: center;\n  background-color: ", ";\n  color: ", ";\n  height: 2.5em;\n  min-width: 80px;\n  border-radius: ", ";\n  box-shadow: ", ";\n  border: ", ";\n  font-size: ", ";\n  font-weight: ", ";\n  font-family: ", ";\n  ", "\n  ", "\n"]);
 
   _templateObject$8 = function _templateObject() {
     return data;
@@ -1671,7 +1787,7 @@ var VARIANTS = {
   active: 'active',
   inactive: 'inactive'
 };
-var StyledPill = styled__default.button.attrs({
+var Container = styled__default.button.attrs({
   type: 'button'
 })(_templateObject$8(), function (_ref) {
   var theme = _ref.theme;
@@ -1685,19 +1801,42 @@ var StyledPill = styled__default.button.attrs({
   return theme.radii.full;
 }, function (_ref4) {
   var variant = _ref4.variant,
-      theme = _ref4.theme;
+      theme = _ref4.theme,
+      count = _ref4.count;
   return variant === VARIANTS.active ? theme.shadows[1] : 'none';
 }, function (_ref5) {
-  var theme = _ref5.theme;
-  return theme.fontSizes.small;
+  var variant = _ref5.variant,
+      theme = _ref5.theme,
+      count = _ref5.count;
+  return count >= 0 && variant === VARIANTS.inactive ? "1px solid ".concat(theme.colors.gray.light) : 'none';
 }, function (_ref6) {
   var theme = _ref6.theme;
-  return theme.fontWeights.bold;
+  return theme.fontSizes.small;
 }, function (_ref7) {
   var theme = _ref7.theme;
+  return theme.fontWeights.bold;
+}, function (_ref8) {
+  var theme = _ref8.theme;
   return theme.fonts.Montserrat;
 }, styledSystem.space, styledSystem.layout);
-StyledPill.displayName = 'Pill';
+var Text$1 = styled__default.span(_templateObject2$2());
+var Count = styled__default.span(_templateObject3$1(), function (_ref9) {
+  var theme = _ref9.theme;
+  return theme.radii.full;
+}, function (_ref10) {
+  var theme = _ref10.theme,
+      variant = _ref10.variant;
+  return variant === VARIANTS.active ? theme.colors.orange[0] : theme.colors.gray.light;
+});
+
+function ownKeys$4(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread$4(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$4(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$4(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+var VARIANTS$1 = {
+  active: 'active',
+  inactive: 'inactive'
+};
+Container.displayName = 'Pill';
 
 var Pill =
 /*#__PURE__*/
@@ -1713,22 +1852,35 @@ function (_React$PureComponent) {
   createClass(Pill, [{
     key: "render",
     value: function render() {
-      return React.createElement(StyledPill, this.props);
+      var _this$props = this.props,
+          children = _this$props.children,
+          variant = _this$props.variant,
+          count = _this$props.count,
+          otherProps = objectWithoutProperties(_this$props, ["children", "variant", "count"]);
+
+      return React.createElement(Container, _extends_1({}, otherProps, {
+        variant: variant,
+        count: count
+      }), React.createElement(Text$1, {
+        variant: variant
+      }, children), count >= 0 && React.createElement(Count, {
+        variant: variant
+      }, count));
     }
   }]);
 
   return Pill;
 }(React.PureComponent);
 
-defineProperty(Pill, "VARIANTS", VARIANTS);
+defineProperty(Pill, "VARIANTS", VARIANTS$1);
 
 defineProperty(Pill, "defaultProps", {
   theme: theme,
-  variant: VARIANTS.inactive
+  variant: VARIANTS$1.inactive
 });
 
 defineProperty(Pill, "propTypes", _objectSpread$4({
-  variant: PropTypes.oneOf(Object.keys(VARIANTS))
+  variant: PropTypes.oneOf(Object.keys(VARIANTS$1))
 }, styledSystem.space.propTypes, {}, styledSystem.layout.propTypes));
 
 function ownKeys$5(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
@@ -2221,20 +2373,20 @@ Flex.defaultProps = {
 Flex.propTypes = _objectSpread$6({}, styledSystem.space.propTypes, {}, styledSystem.layout.propTypes, {}, styledSystem.color.propTypes, {}, styledSystem.alignItems.propTypes, {}, styledSystem.justifyContent.propTypes, {}, styledSystem.flexWrap.propTypes, {}, styledSystem.flexDirection.propTypes);
 Flex.displayName = 'Flex';
 
-function _templateObject3$1() {
+function _templateObject3$2() {
   var data = taggedTemplateLiteral(["\n  display: inline-block;\n  width: 100%;\n\n  ", "\n\n  &::after {\n    content: '';\n    display: block;\n    position: absolute;\n    box-sizing: border-box;\n    top: 4px;\n    left: 2px;\n    width: 10px;\n    height: 5px;\n    border: solid 2px transparent;\n    border-right: none;\n    border-top: none;\n    transform: translate(3px, 4px) rotate(-45deg);\n  }\n\n  ", ":checked + &::before,\n  ", ":indeterminate + &::before {\n    border-color: ", ";\n    background-color: ", ";\n  }\n\n  ", ":checked + &::after,\n  ", ":indeterminate + &::after {\n    border-color: rgb(255, 255, 255);\n  }\n\n  ", ":indeterminate + &::after {\n    border-left: none;\n    transform: translate(4px, 3px);\n  }\n"]);
 
-  _templateObject3$1 = function _templateObject3() {
+  _templateObject3$2 = function _templateObject3() {
     return data;
   };
 
   return data;
 }
 
-function _templateObject2$2() {
+function _templateObject2$3() {
   var data = taggedTemplateLiteral(["\n  z-index: 0;\n  position: relative;\n  display: inline-block;\n  color: rgba(0, 0, 0, 0.87);\n  font-family: ", ";\n  font-size: ", ";\n  line-height: ", ";\n\n  &:hover > ", " {\n    opacity: 0.04;\n  }\n\n  &:hover > ", ":focus {\n    opacity: 0.16;\n  }\n\n  ", "\n  ", "\n"]);
 
-  _templateObject2$2 = function _templateObject2() {
+  _templateObject2$3 = function _templateObject2() {
     return data;
   };
 
@@ -2259,7 +2411,7 @@ var StyledInput = styled__default.input.attrs({
 }, function (props) {
   return props.theme.colors.gray;
 });
-var StyledLabel = styled__default.label(_templateObject2$2(), function (props) {
+var StyledLabel = styled__default.label(_templateObject2$3(), function (props) {
   return props.theme.fonts.Montserrat;
 }, function (props) {
   return props.theme.fontSizes.medium;
@@ -2270,7 +2422,7 @@ var StyledLabel = styled__default.label(_templateObject2$2(), function (props) {
 StyledInput,
 /* sc-selector */
 StyledInput, styledSystem.space, styledSystem.layout);
-var StyledSpan = styled__default.span(_templateObject3$1(), function (_ref) {
+var StyledSpan = styled__default.span(_templateObject3$2(), function (_ref) {
   var labelled = _ref.labelled;
   return "\n    &::before {\n      content: '';\n      display: inline-block;\n      box-sizing: border-box;\n      margin: ".concat(labelled ? '3px 11px 3px 1px' : '3px 1px', ";\n      border: solid 2px; /* Safari */\n      border-color: rgba(0, 0, 0, 0.6);\n      border-radius: ").concat(function (props) {
     return props.theme.radii.xsmall;
@@ -2431,10 +2583,10 @@ exports["default"] = _default;
 
 var RadioboxMarked$1 = unwrapExports(RadioboxMarked);
 
-function _templateObject2$3() {
+function _templateObject2$4() {
   var data = taggedTemplateLiteral(["\n  margin-left: 0.5em;\n"]);
 
-  _templateObject2$3 = function _templateObject2() {
+  _templateObject2$4 = function _templateObject2() {
     return data;
   };
 
@@ -2460,7 +2612,7 @@ var StyledLabel$1 = styled__default.label(_templateObject$c(), function (_ref) {
   var theme = _ref3.theme;
   return theme.lineHeights.normal;
 });
-var StyledSpan$1 = styled__default.span(_templateObject2$3());
+var StyledSpan$1 = styled__default.span(_templateObject2$4());
 
 var RadioButton =
 /*#__PURE__*/
@@ -2533,20 +2685,20 @@ var StyledInput$1 = styled__default.input(_templateObject$d(), function (_ref) {
 });
 StyledInput$1.displayName = 'Input';
 
-function _templateObject3$2() {
+function _templateObject3$3() {
   var data = taggedTemplateLiteral(["\n  position: absolute;\n  top: 0;\n  right: 0;\n  font-size: ", ";\n  font-style: italic;\n  color: ", ";\n  font-weight: ", ";\n"]);
 
-  _templateObject3$2 = function _templateObject3() {
+  _templateObject3$3 = function _templateObject3() {
     return data;
   };
 
   return data;
 }
 
-function _templateObject2$4() {
+function _templateObject2$5() {
   var data = taggedTemplateLiteral(["\n  min-width: ", ";\n  width: ", ";\n  ", "\n  position: relative;\n  @media (max-width: 990px) {\n    width: 100%;\n  }\n\n  ", "\n  ", "\n"]);
 
-  _templateObject2$4 = function _templateObject2() {
+  _templateObject2$5 = function _templateObject2() {
     return data;
   };
 
@@ -2573,7 +2725,7 @@ var StyledLabel$2 = styled__default.label(_templateObject$e(), function (_ref) {
   return theme.fontSizes.xsmall;
 });
 StyledLabel$2.displayName = 'InputLabel';
-var StyledInputContainer = styled__default.div(_templateObject2$4(), function (_ref4) {
+var StyledInputContainer = styled__default.div(_templateObject2$5(), function (_ref4) {
   var minWidth = _ref4.minWidth;
   return minWidth || '300px';
 }, function (_ref5) {
@@ -2586,7 +2738,7 @@ var StyledInputContainer = styled__default.div(_templateObject2$4(), function (_
 StyledInputContainer.displayName = 'InputContainer';
 var StyledAlertText = styled__default.span.attrs({
   role: 'alert'
-})(_templateObject3$2(), function (_ref7) {
+})(_templateObject3$3(), function (_ref7) {
   var theme = _ref7.theme;
   return theme.fontSizes.xsmall;
 }, function (_ref8) {
@@ -20863,10 +21015,10 @@ exports["default"] = _default;
 
 var ClockOutline$1 = unwrapExports(ClockOutline);
 
-function _templateObject2$5() {
+function _templateObject2$6() {
   var data = taggedTemplateLiteral(["\n  white-space: nowrap;\n  position: absolute;\n  background-color: ", ";\n  border-radius: ", ";\n  box-shadow: 0 0 15px 5px rgba(0,0,0,.2);\n  ", ";\n  ", ";\n  z-index: ", ";\n  transform: ", ";\n  transform-origin: ", ";\n  transition: 80ms transform ease-out;\n  &::before {\n    display: ", ";\n    content: '';\n    position: absolute;\n    height: 12px;\n    width: 12px;\n    background-color: inherit;\n    ", "; \n    z-index: -1;\n  }\n"]);
 
-  _templateObject2$5 = function _templateObject2() {
+  _templateObject2$6 = function _templateObject2() {
     return data;
   };
 
@@ -20937,7 +21089,7 @@ var Trigger = styled__default.div(_templateObject$g(), function (_ref) {
   var theme = _ref.theme;
   return theme.colors.transparent;
 });
-var ContentWrapper = styled__default.div(_templateObject2$5(), function (_ref2) {
+var ContentWrapper = styled__default.div(_templateObject2$6(), function (_ref2) {
   var theme = _ref2.theme;
   return theme.colors.white;
 }, function (_ref3) {
@@ -21320,9 +21472,10 @@ var TelInput = function TelInput(props) {
     disabled: disabled,
     alertText: alertText
   }, otherProps), React__default.createElement(ReactPhoneInput, _extends_1({}, inputDefaults, {
+    preferredCountries: ['za'],
     onChange: onChange ? onChange : defaultOnChange,
     value: value || defaultValue || '',
-    defaultCountry: defaultCountry,
+    country: defaultCountry,
     disabled: disabled,
     name: name,
     countryCodeEditable: false,
@@ -26396,10 +26549,10 @@ Select$1.defaultProps = {
 };
 var index$6 = formik.connect(Select$1);
 
-function _templateObject2$6() {
+function _templateObject2$7() {
   var data = taggedTemplateLiteral(["\n  padding: 0.3em 1em;\n  margin-right: 1em;\n  font: ", ";\n  font-size: ", ";\n  border-radius: ", ";\n  border: none;\n  cursor: pointer;\n\n  ", "\n"]);
 
-  _templateObject2$6 = function _templateObject2() {
+  _templateObject2$7 = function _templateObject2() {
     return data;
   };
 
@@ -26415,8 +26568,8 @@ function _templateObject$i() {
 
   return data;
 }
-var Container = styled__default.div(_templateObject$i());
-var Value = styled__default.button(_templateObject2$6(), function (_ref) {
+var Container$1 = styled__default.div(_templateObject$i());
+var Value = styled__default.button(_templateObject2$7(), function (_ref) {
   var theme = _ref.theme;
   return theme.fonts.Montserrat;
 }, function (_ref2) {
@@ -26465,7 +26618,7 @@ var TypeInput = function TypeInput(_ref) {
   var selectedValues = selected || hasFormik && formik.values[name];
   return React__default.createElement(InputWrapper, _extends_1({
     alertText: alertText
-  }, otherProps), React__default.createElement(Container, null, options && options.map(function (_ref2) {
+  }, otherProps), React__default.createElement(Container$1, null, options && options.map(function (_ref2) {
     var label = _ref2.label,
         value = _ref2.value;
     return React__default.createElement(Value, {
@@ -26574,20 +26727,20 @@ function _templateObject4$1() {
   return data;
 }
 
-function _templateObject3$3() {
+function _templateObject3$4() {
   var data = taggedTemplateLiteral(["\n  height: 100%;\n  border-radius: ", ";\n"]);
 
-  _templateObject3$3 = function _templateObject3() {
+  _templateObject3$4 = function _templateObject3() {
     return data;
   };
 
   return data;
 }
 
-function _templateObject2$7() {
+function _templateObject2$8() {
   var data = taggedTemplateLiteral(["\n  width: 14em;\n  border: solid 1px ", ";\n  border-radius: 0.5em;\n  background-color: ", ";\n  height: 100%;\n  display: flex;\n  align-items: center;\n  padding: 0 1em;\n"]);
 
-  _templateObject2$7 = function _templateObject2() {
+  _templateObject2$8 = function _templateObject2() {
     return data;
   };
 
@@ -26603,21 +26756,21 @@ function _templateObject$k() {
 
   return data;
 }
-var Container$1 = styled__default.div(_templateObject$k(), function (_ref) {
+var Container$2 = styled__default.div(_templateObject$k(), function (_ref) {
   var theme = _ref.theme;
   return theme.radii.small;
 }, function (_ref2) {
   var theme = _ref2.theme;
   return theme.colors.gray.xlight;
 });
-var Inner = styled__default.div(_templateObject2$7(), function (_ref3) {
+var Inner = styled__default.div(_templateObject2$8(), function (_ref3) {
   var theme = _ref3.theme;
   return theme.colors.gray.light;
 }, function (_ref4) {
   var theme = _ref4.theme;
   return theme.colors.white;
 });
-var Input$2 = styled__default(StyledInput$1)(_templateObject3$3(), function (_ref5) {
+var Input$2 = styled__default(StyledInput$1)(_templateObject3$4(), function (_ref5) {
   var theme = _ref5.theme;
   return theme.radii.small;
 });
@@ -26656,7 +26809,7 @@ var LanguageSetField = function LanguageSetField(_ref) {
     var code = _ref2.code;
     return code === locale;
   });
-  return React__default.createElement(Container$1, _extends_1({
+  return React__default.createElement(Container$2, _extends_1({
     id: containerId
   }, otherProps), React__default.createElement(Inner, null, React__default.createElement(LanguageText, null, language ? language.value || locale : locale), defaultLanguage && React__default.createElement(DefaultText, null, "(default)")), React__default.createElement(Input$2, _extends_1({
     placeholder: placeholder,
@@ -26693,20 +26846,20 @@ function _templateObject4$2() {
   return data;
 }
 
-function _templateObject3$4() {
+function _templateObject3$5() {
   var data = taggedTemplateLiteral(["\n  color: ", ";\n"]);
 
-  _templateObject3$4 = function _templateObject3() {
+  _templateObject3$5 = function _templateObject3() {
     return data;
   };
 
   return data;
 }
 
-function _templateObject2$8() {
+function _templateObject2$9() {
   var data = taggedTemplateLiteral(["\n  display: flex;\n  align-items: center;\n  font-size: ", ";\n"]);
 
-  _templateObject2$8 = function _templateObject2() {
+  _templateObject2$9 = function _templateObject2() {
     return data;
   };
 
@@ -26722,12 +26875,12 @@ function _templateObject$l() {
 
   return data;
 }
-var Container$2 = styled__default.div(_templateObject$l());
-var EditTextContainer = styled__default.div(_templateObject2$8(), function (_ref) {
+var Container$3 = styled__default.div(_templateObject$l());
+var EditTextContainer = styled__default.div(_templateObject2$9(), function (_ref) {
   var theme = _ref.theme;
   return theme.fontSizes.small;
 });
-var EditText = styled__default.div(_templateObject3$4(), function (_ref2) {
+var EditText = styled__default.div(_templateObject3$5(), function (_ref2) {
   var theme = _ref2.theme;
   return theme.colors.gray.dark;
 });
@@ -26821,7 +26974,7 @@ function (_Component) {
           disabled = _this$props.disabled,
           languages = _this$props.languages;
       var languageSets = this.state.languageSets;
-      return React__default.createElement(Container$2, null, languageSets.map(function (languageSet, i) {
+      return React__default.createElement(Container$3, null, languageSets.map(function (languageSet, i) {
         return React__default.createElement(LanguageSetField$1, _extends_1({
           key: languageSet.locale
         }, languageSet, {
@@ -28290,20 +28443,20 @@ ModalWrapper.defaultProps = {
 };
 ReactModal.setAppElement('body');
 
-function _templateObject3$5() {
+function _templateObject3$6() {
   var data = taggedTemplateLiteral(["\n  padding-right: 3em;\n"]);
 
-  _templateObject3$5 = function _templateObject3() {
+  _templateObject3$6 = function _templateObject3() {
     return data;
   };
 
   return data;
 }
 
-function _templateObject2$9() {
+function _templateObject2$a() {
   var data = taggedTemplateLiteral(["\n  position: absolute;\n  right: 0.8em;\n  cursor: pointer;\n  line-height: 0;\n"]);
 
-  _templateObject2$9 = function _templateObject2() {
+  _templateObject2$a = function _templateObject2() {
     return data;
   };
 
@@ -28319,9 +28472,9 @@ function _templateObject$m() {
 
   return data;
 }
-var Container$3 = styled__default.div(_templateObject$m());
-var TranslateIconContainer = styled__default.div(_templateObject2$9());
-var TranslateInputContainer = styled__default(StyledInput$1)(_templateObject3$5());
+var Container$4 = styled__default.div(_templateObject$m());
+var TranslateIconContainer = styled__default.div(_templateObject2$a());
+var TranslateInputContainer = styled__default(StyledInput$1)(_templateObject3$6());
 
 var TranslationInput =
 /*#__PURE__*/
@@ -28452,7 +28605,7 @@ function (_Component) {
       var val = formik.values[name] && formik.values[name][0] && formik.values[name][0].value ? formik.values[name][0].value : '';
       return React__default.createElement(InputWrapper, _extends_1({
         alertText: this.getAlertMessage(alertText)
-      }, otherProps), React__default.createElement(Container$3, null, React__default.createElement(TranslateInputContainer, _extends_1({}, inputDefaults, {
+      }, otherProps), React__default.createElement(Container$4, null, React__default.createElement(TranslateInputContainer, _extends_1({}, inputDefaults, {
         id: id,
         value: val,
         onChange: this.updateDefaultValue,
@@ -28551,20 +28704,20 @@ function _templateObject4$3() {
   return data;
 }
 
-function _templateObject3$6() {
+function _templateObject3$7() {
   var data = taggedTemplateLiteral(["\n  font-size: ", ";\n  font-weight: ", ";\n  color: ", ";\n  padding-top: 2.5em;\n"]);
 
-  _templateObject3$6 = function _templateObject3() {
+  _templateObject3$7 = function _templateObject3() {
     return data;
   };
 
   return data;
 }
 
-function _templateObject2$a() {
+function _templateObject2$b() {
   var data = taggedTemplateLiteral(["\n  font-size: ", ";\n  font-weight: ", ";\n  color: ", ";\n"]);
 
-  _templateObject2$a = function _templateObject2() {
+  _templateObject2$b = function _templateObject2() {
     return data;
   };
 
@@ -28581,7 +28734,7 @@ function _templateObject$n() {
   return data;
 }
 var Header = styled__default.div(_templateObject$n());
-var Title = styled__default.h1(_templateObject2$a(), function (_ref) {
+var Title = styled__default.h1(_templateObject2$b(), function (_ref) {
   var theme = _ref.theme;
   return theme.fontSizes.large;
 }, function (_ref2) {
@@ -28591,7 +28744,7 @@ var Title = styled__default.h1(_templateObject2$a(), function (_ref) {
   var theme = _ref3.theme;
   return theme.colors.gray.xxdark;
 });
-var Subtitle = styled__default.h2(_templateObject3$6(), function (_ref4) {
+var Subtitle = styled__default.h2(_templateObject3$7(), function (_ref4) {
   var theme = _ref4.theme;
   return theme.fontSizes.small;
 }, function (_ref5) {
@@ -37389,10 +37542,10 @@ Slider$1.Range = Range$1;
 Slider$1.Handle = Handle;
 Slider$1.createSliderWithTooltip = createSliderWithTooltip;
 
-function _templateObject2$b() {
+function _templateObject2$c() {
   var data = taggedTemplateLiteral(["\n  width: 3.5em;\n  text-align: center;\n"]);
 
-  _templateObject2$b = function _templateObject2() {
+  _templateObject2$c = function _templateObject2() {
     return data;
   };
 
@@ -37408,7 +37561,7 @@ function _templateObject$o() {
 
   return data;
 }
-var Container$4 = styled__default.div(_templateObject$o(), function (_ref) {
+var Container$5 = styled__default.div(_templateObject$o(), function (_ref) {
   var theme = _ref.theme;
   return theme.colors.primary;
 }, function (_ref2) {
@@ -37418,7 +37571,7 @@ var Container$4 = styled__default.div(_templateObject$o(), function (_ref) {
   var theme = _ref3.theme;
   return theme.colors.primary;
 });
-var Value$1 = styled__default.div(_templateObject2$b());
+var Value$1 = styled__default.div(_templateObject2$c());
 
 var RangeInput = function RangeInput(_ref) {
   var min = _ref.min,
@@ -37454,7 +37607,7 @@ var RangeInput = function RangeInput(_ref) {
   } : onChange;
   return React__default.createElement(InputWrapper, _extends_1({
     alertText: alertText
-  }, otherProps), React__default.createElement(Container$4, null, React__default.createElement(Value$1, null, metric, rangeValues[0]), React__default.createElement(Range$1, _extends_1({}, inputDefaults, {
+  }, otherProps), React__default.createElement(Container$5, null, React__default.createElement(Value$1, null, metric, rangeValues[0]), React__default.createElement(Range$1, _extends_1({}, inputDefaults, {
     onChange: defaultOnChange,
     name: name,
     id: id,
@@ -37474,20 +37627,20 @@ RangeInput.defaultProps = {
 };
 var index$b = formik.connect(RangeInput);
 
-function _templateObject3$7() {
+function _templateObject3$8() {
   var data = taggedTemplateLiteral(["\n  border: none;\n  background: ", ";\n  color: ", ";\n  border-radius: ", ";\n  padding: 0.6em 1em;\n  margin-right: 1em;\n  transition: transform 0.3s, opacity 0.3s;\n  width: 100%;\n  transform: ", ";\n  transform-origin: right;\n  opacity: ", ";\n  font-size: ", ";\n  font-family: ", ";\n  height: 100%;\n"]);
 
-  _templateObject3$7 = function _templateObject3() {
+  _templateObject3$8 = function _templateObject3() {
     return data;
   };
 
   return data;
 }
 
-function _templateObject2$c() {
+function _templateObject2$d() {
   var data = taggedTemplateLiteral(["\n  border: none;\n  background: transparent;\n  border-radius: ", ";\n  padding: 0.6em;\n  margin-right: 1em;\n  transition: transform 0.3s, opacity 0.3s;\n  width: 15em;\n  transform: ", ";\n  transform-origin: right;\n  opacity: ", ";\n  font-size: inherit;\n"]);
 
-  _templateObject2$c = function _templateObject2() {
+  _templateObject2$d = function _templateObject2() {
     return data;
   };
 
@@ -37504,7 +37657,7 @@ function _templateObject$p() {
   return data;
 }
 var ContainerAlt = styled__default.div(_templateObject$p());
-var Input$3 = styled__default.input(_templateObject2$c(), function (_ref) {
+var Input$3 = styled__default.input(_templateObject2$d(), function (_ref) {
   var theme = _ref.theme;
   return theme.radii.full;
 }, function (_ref2) {
@@ -37514,7 +37667,7 @@ var Input$3 = styled__default.input(_templateObject2$c(), function (_ref) {
   var expanded = _ref3.expanded;
   return expanded ? '1' : '0';
 });
-var InputAlt = styled__default.input(_templateObject3$7(), function (_ref4) {
+var InputAlt = styled__default.input(_templateObject3$8(), function (_ref4) {
   var theme = _ref4.theme;
   return theme.colors.gray.xlight;
 }, function (_ref5) {
@@ -37609,20 +37762,20 @@ function (_Component) {
   return ExpandingSearchInput;
 }(React.Component);
 
-function _templateObject3$8() {
+function _templateObject3$9() {
   var data = taggedTemplateLiteral(["\n  cursor: pointer;\n  position: relative;\n  height: 40px;\n  background-color: ", ";\n\n  ::before {\n    background: ", ";\n    border-radius: ", ";\n    content: '';\n    height: 15px;\n    margin-top: 15px;\n    position: absolute;\n    opacity: 0.3;\n    transition: all 0.4s ease-in-out;\n    width: 40px;\n  }\n\n  ::after {\n    background: ", ";\n    border-radius: 16px;\n    box-shadow: ", ";\n    content: '';\n    height: 24px;\n    left: 0px;\n    margin-top: 13px;\n    position: absolute;\n    top: -3px;\n    transition: all 0.3s ease-in-out;\n    width: 24px;\n  }\n\n  /* stylelint-disable-next-line selector-type-no-unknown */\n  ", ":checked + &::before {\n    background: ", ";\n    opacity: 0.5;\n  }\n\n  /* stylelint-disable-next-line selector-type-no-unknown */\n  ", ":checked + &::after {\n    background: ", ";\n    left: 20px;\n  }\n"]);
 
-  _templateObject3$8 = function _templateObject3() {
+  _templateObject3$9 = function _templateObject3() {
     return data;
   };
 
   return data;
 }
 
-function _templateObject2$d() {
+function _templateObject2$e() {
   var data = taggedTemplateLiteral(["\n  display: none;\n"]);
 
-  _templateObject2$d = function _templateObject2() {
+  _templateObject2$e = function _templateObject2() {
     return data;
   };
 
@@ -37639,8 +37792,8 @@ function _templateObject$q() {
   return data;
 }
 var ToggleContainer = styled__default.div(_templateObject$q(), styledSystem.space, styledSystem.layout);
-var ToggleInput = styled__default.input(_templateObject2$d());
-var ToggleLabel = styled__default.label(_templateObject3$8(), function (_ref) {
+var ToggleInput = styled__default.input(_templateObject2$e());
+var ToggleLabel = styled__default.label(_templateObject3$9(), function (_ref) {
   var theme = _ref.theme;
   return theme.colors.gray.xdark;
 }, function (_ref2) {

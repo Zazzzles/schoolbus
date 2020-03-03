@@ -42,9 +42,10 @@ const TelInput = props => {
     <InputWrapper disabled={disabled} alertText={alertText} {...otherProps}>
       <ReactPhoneInput
         {...inputDefaults}
+        preferredCountries={['za']}
         onChange={onChange ? onChange : defaultOnChange}
         value={value || defaultValue || ''}
-        defaultCountry={defaultCountry}
+        country={defaultCountry}
         disabled={disabled}
         name={name}
         countryCodeEditable={false}
