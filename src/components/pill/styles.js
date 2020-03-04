@@ -14,7 +14,9 @@ export const Container = styled.button.attrs({
   border-radius: ${({ theme }) => theme.radii.full};
   box-shadow: ${({ active, theme }) => active ? theme.shadows[1] : 'none'};
   border: ${({ active, theme, count, bordered }) => (
-    (count >= 0 && !active) || (bordered && !active) ? `1px solid ${theme.colors.gray.light}` : 'none'
+    `1px solid ${(count >= 0 && !active) || (bordered && !active) 
+      ? theme.colors.gray.light 
+      : theme.colors.transparent}`
   )};
   font-size: ${({ theme }) => theme.fontSizes.small};
   font-weight: ${({ theme }) => theme.fontWeights.bold};
