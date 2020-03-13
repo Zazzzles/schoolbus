@@ -1,5 +1,5 @@
 import React, { Component, createRef } from 'react'
-import { debounce } from 'lodash'
+import { debounce } from 'lodash-es'
 
 import { ContainerAlt, InputAlt, iconAltStyling, expandedIconStyles } from './styles'
 import Magnify from '@lessondesk/material-icons/dist/Magnify'
