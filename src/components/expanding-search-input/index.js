@@ -1,4 +1,5 @@
 import React, { Component, createRef } from 'react'
+import { debounce } from 'lodash'
 
 import { ContainerAlt, InputAlt, iconAltStyling, expandedIconStyles } from './styles'
 import Magnify from '@lessondesk/material-icons/dist/Magnify'
@@ -29,6 +30,8 @@ class ExpandingSearchInput extends Component {
 
   render() {
     const { expanded } = this.state
+    const { onChange, ...otherProps } = this.props
+
     return (
       <ContainerAlt>
         <InputAlt
@@ -36,6 +39,7 @@ class ExpandingSearchInput extends Component {
           placeholder="Search..."
           expanded={expanded}
           ref={this.input}
+          onChange={debounce((...args) => onChange(...args), 500)}
           {...this.props}
         />
         <Magnify
