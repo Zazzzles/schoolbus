@@ -1805,7 +1805,7 @@ var Container = styled__default.button.attrs({
       theme = _ref5.theme,
       count = _ref5.count,
       bordered = _ref5.bordered;
-  return count >= 0 && !active || bordered && !active ? "1px solid ".concat(theme.colors.gray.light) : 'none';
+  return "1px solid ".concat(count >= 0 && !active || bordered && !active ? theme.colors.gray.light : theme.colors.transparent);
 }, function (_ref6) {
   var theme = _ref6.theme;
   return theme.fontSizes.small;
@@ -21346,164 +21346,6 @@ TelInput.defaultProps = {
 };
 var index$4 = formik.connect(TelInput);
 
-function _objectWithoutProperties$2(source, excluded) {
-  if (source == null) return {};
-  var target = _objectWithoutPropertiesLoose$1(source, excluded);
-  var key, i;
-
-  if (Object.getOwnPropertySymbols) {
-    var sourceSymbolKeys = Object.getOwnPropertySymbols(source);
-
-    for (i = 0; i < sourceSymbolKeys.length; i++) {
-      key = sourceSymbolKeys[i];
-      if (excluded.indexOf(key) >= 0) continue;
-      if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue;
-      target[key] = source[key];
-    }
-  }
-
-  return target;
-}
-
-function _arrayWithoutHoles(arr) {
-  if (Array.isArray(arr)) {
-    for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) {
-      arr2[i] = arr[i];
-    }
-
-    return arr2;
-  }
-}
-
-function _iterableToArray(iter) {
-  if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter);
-}
-
-function _nonIterableSpread() {
-  throw new TypeError("Invalid attempt to spread non-iterable instance");
-}
-
-function _toConsumableArray(arr) {
-  return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread();
-}
-
-function _defineProperty$1(obj, key, value) {
-  if (key in obj) {
-    Object.defineProperty(obj, key, {
-      value: value,
-      enumerable: true,
-      configurable: true,
-      writable: true
-    });
-  } else {
-    obj[key] = value;
-  }
-
-  return obj;
-}
-
-function _objectSpread$a(target) {
-  for (var i = 1; i < arguments.length; i++) {
-    var source = arguments[i] != null ? arguments[i] : {};
-    var ownKeys = Object.keys(Object(source));
-
-    if (typeof Object.getOwnPropertySymbols === 'function') {
-      ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {
-        return Object.getOwnPropertyDescriptor(source, sym).enumerable;
-      }));
-    }
-
-    ownKeys.forEach(function (key) {
-      _defineProperty$1(target, key, source[key]);
-    });
-  }
-
-  return target;
-}
-
-function _classCallCheck$1(instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
-  }
-}
-
-function _defineProperties$1(target, props) {
-  for (var i = 0; i < props.length; i++) {
-    var descriptor = props[i];
-    descriptor.enumerable = descriptor.enumerable || false;
-    descriptor.configurable = true;
-    if ("value" in descriptor) descriptor.writable = true;
-    Object.defineProperty(target, descriptor.key, descriptor);
-  }
-}
-
-function _createClass$1(Constructor, protoProps, staticProps) {
-  if (protoProps) _defineProperties$1(Constructor.prototype, protoProps);
-  if (staticProps) _defineProperties$1(Constructor, staticProps);
-  return Constructor;
-}
-
-function _typeof(obj) {
-  if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
-    _typeof = function _typeof(obj) {
-      return typeof obj;
-    };
-  } else {
-    _typeof = function _typeof(obj) {
-      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
-    };
-  }
-
-  return _typeof(obj);
-}
-
-function _assertThisInitialized$1(self) {
-  if (self === void 0) {
-    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-  }
-
-  return self;
-}
-
-function _possibleConstructorReturn$1(self, call) {
-  if (call && (_typeof(call) === "object" || typeof call === "function")) {
-    return call;
-  }
-
-  return _assertThisInitialized$1(self);
-}
-
-function _getPrototypeOf(o) {
-  _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
-    return o.__proto__ || Object.getPrototypeOf(o);
-  };
-  return _getPrototypeOf(o);
-}
-
-function _setPrototypeOf(o, p) {
-  _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
-    o.__proto__ = p;
-    return o;
-  };
-
-  return _setPrototypeOf(o, p);
-}
-
-function _inherits$1(subClass, superClass) {
-  if (typeof superClass !== "function" && superClass !== null) {
-    throw new TypeError("Super expression must either be null or a function");
-  }
-
-  subClass.prototype = Object.create(superClass && superClass.prototype, {
-    constructor: {
-      value: subClass,
-      writable: true,
-      configurable: true
-    }
-  });
-  if (superClass) _setPrototypeOf(subClass, superClass);
-}
-
 function areInputsEqual(newInputs, lastInputs) {
     if (newInputs.length !== lastInputs.length) {
         return false;
@@ -21572,7 +21414,7 @@ function classNames(prefix, state, className) {
   if (state && prefix) {
     for (var key in state) {
       if (state.hasOwnProperty(key) && state[key]) {
-        arr.push("".concat(applyPrefixToName(prefix, key)));
+        arr.push("" + applyPrefixToName(prefix, key));
       }
     }
   }
@@ -21588,7 +21430,7 @@ function classNames(prefix, state, className) {
 
 var cleanValue = function cleanValue(value) {
   if (Array.isArray(value)) return value.filter(Boolean);
-  if (_typeof(value) === 'object' && value !== null) return [value];
+  if (typeof value === 'object' && value !== null) return [value];
   return [];
 }; // ==============================
 // Scroll Helpers
@@ -21652,9 +21494,15 @@ function easeOutCubic(t, b, c, d) {
   return c * ((t = t / d - 1) * t * t + 1) + b;
 }
 
-function animatedScrollTo(element, to) {
-  var duration = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 200;
-  var callback = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : noop;
+function animatedScrollTo(element, to, duration, callback) {
+  if (duration === void 0) {
+    duration = 200;
+  }
+
+  if (callback === void 0) {
+    callback = noop;
+  }
+
   var start = getScrollTop(element);
   var change = to - start;
   var increment = 10;
@@ -21722,18 +21570,6 @@ function isMobileDevice() {
   } catch (e) {
     return false;
   }
-}
-
-function _taggedTemplateLiteral$1(strings, raw) {
-  if (!raw) {
-    raw = strings.slice(0);
-  }
-
-  return Object.freeze(Object.defineProperties(strings, {
-    raw: {
-      value: Object.freeze(raw)
-    }
-  }));
 }
 
 var AutosizeInput_1 = createCommonjsModule(function (module, exports) {
@@ -22008,6 +21844,9 @@ exports.default = AutosizeInput;
 
 var AutosizeInput = unwrapExports(AutosizeInput_1);
 
+function _extends$2() { _extends$2 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$2.apply(this, arguments); }
+
+function _inheritsLoose$2(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; subClass.__proto__ = superClass; }
 function getMenuPlacement(_ref) {
   var maxHeight = _ref.maxHeight,
       menuEl = _ref.menuEl,
@@ -22164,7 +22003,7 @@ function getMenuPlacement(_ref) {
       };
 
     default:
-      throw new Error("Invalid placement provided \"".concat(placement, "\"."));
+      throw new Error("Invalid placement provided \"" + placement + "\".");
   } // fulfil contract with flow: implicit return value of undefined
 
 
@@ -22194,33 +22033,28 @@ var menuCSS = function menuCSS(_ref2) {
       colors = _ref2$theme.colors;
   return _ref3 = {
     label: 'menu'
-  }, _defineProperty$1(_ref3, alignToControl(placement), '100%'), _defineProperty$1(_ref3, "backgroundColor", colors.neutral0), _defineProperty$1(_ref3, "borderRadius", borderRadius), _defineProperty$1(_ref3, "boxShadow", '0 0 0 1px hsla(0, 0%, 0%, 0.1), 0 4px 11px hsla(0, 0%, 0%, 0.1)'), _defineProperty$1(_ref3, "marginBottom", spacing.menuGutter), _defineProperty$1(_ref3, "marginTop", spacing.menuGutter), _defineProperty$1(_ref3, "position", 'absolute'), _defineProperty$1(_ref3, "width", '100%'), _defineProperty$1(_ref3, "zIndex", 1), _ref3;
+  }, _ref3[alignToControl(placement)] = '100%', _ref3.backgroundColor = colors.neutral0, _ref3.borderRadius = borderRadius, _ref3.boxShadow = '0 0 0 1px hsla(0, 0%, 0%, 0.1), 0 4px 11px hsla(0, 0%, 0%, 0.1)', _ref3.marginBottom = spacing.menuGutter, _ref3.marginTop = spacing.menuGutter, _ref3.position = 'absolute', _ref3.width = '100%', _ref3.zIndex = 1, _ref3;
 }; // NOTE: internal only
 
 var MenuPlacer =
 /*#__PURE__*/
 function (_Component) {
-  _inherits$1(MenuPlacer, _Component);
+  _inheritsLoose$2(MenuPlacer, _Component);
 
   function MenuPlacer() {
-    var _getPrototypeOf2;
-
     var _this;
-
-    _classCallCheck$1(this, MenuPlacer);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = _possibleConstructorReturn$1(this, (_getPrototypeOf2 = _getPrototypeOf(MenuPlacer)).call.apply(_getPrototypeOf2, [this].concat(args)));
-
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "state", {
+    _this = _Component.call.apply(_Component, [this].concat(args)) || this;
+    _this.state = {
       maxHeight: _this.props.maxMenuHeight,
       placement: null
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "getPlacement", function (ref) {
+    _this.getPlacement = function (ref) {
       var _this$props = _this.props,
           minMenuHeight = _this$props.minMenuHeight,
           maxMenuHeight = _this$props.maxMenuHeight,
@@ -22245,37 +22079,35 @@ function (_Component) {
       if (getPortalPlacement) getPortalPlacement(state);
 
       _this.setState(state);
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "getUpdatedProps", function () {
+    _this.getUpdatedProps = function () {
       var menuPlacement = _this.props.menuPlacement;
       var placement = _this.state.placement || coercePlacement(menuPlacement);
-      return _objectSpread$a({}, _this.props, {
+      return _extends$2({}, _this.props, {
         placement: placement,
         maxHeight: _this.state.maxHeight
       });
-    });
+    };
 
     return _this;
   }
 
-  _createClass$1(MenuPlacer, [{
-    key: "render",
-    value: function render() {
-      var children = this.props.children;
-      return children({
-        ref: this.getPlacement,
-        placerProps: this.getUpdatedProps()
-      });
-    }
-  }]);
+  var _proto = MenuPlacer.prototype;
+
+  _proto.render = function render() {
+    var children = this.props.children;
+    return children({
+      ref: this.getPlacement,
+      placerProps: this.getUpdatedProps()
+    });
+  };
 
   return MenuPlacer;
 }(React.Component);
-
-_defineProperty$1(MenuPlacer, "contextTypes", {
+MenuPlacer.contextTypes = {
   getPortalPlacement: PropTypes.func
-});
+};
 
 var Menu = function Menu(props) {
   var children = props.children,
@@ -22284,7 +22116,7 @@ var Menu = function Menu(props) {
       getStyles = props.getStyles,
       innerRef = props.innerRef,
       innerProps = props.innerProps;
-  return jsx("div", _extends$1({
+  return jsx("div", _extends$2({
     css: getStyles('menu', props),
     className: cx({
       menu: true
@@ -22334,7 +22166,7 @@ var noticeCSS = function noticeCSS(_ref5) {
       colors = _ref5$theme.colors;
   return {
     color: colors.neutral40,
-    padding: "".concat(baseUnit * 2, "px ").concat(baseUnit * 3, "px"),
+    padding: baseUnit * 2 + "px " + baseUnit * 3 + "px",
     textAlign: 'center'
   };
 };
@@ -22347,7 +22179,7 @@ var NoOptionsMessage = function NoOptionsMessage(props) {
       cx = props.cx,
       getStyles = props.getStyles,
       innerProps = props.innerProps;
-  return jsx("div", _extends$1({
+  return jsx("div", _extends$2({
     css: getStyles('noOptionsMessage', props),
     className: cx({
       'menu-notice': true,
@@ -22364,7 +22196,7 @@ var LoadingMessage = function LoadingMessage(props) {
       cx = props.cx,
       getStyles = props.getStyles,
       innerProps = props.innerProps;
-  return jsx("div", _extends$1({
+  return jsx("div", _extends$2({
     css: getStyles('loadingMessage', props),
     className: cx({
       'menu-notice': true,
@@ -22393,26 +22225,21 @@ var menuPortalCSS = function menuPortalCSS(_ref6) {
 var MenuPortal =
 /*#__PURE__*/
 function (_Component2) {
-  _inherits$1(MenuPortal, _Component2);
+  _inheritsLoose$2(MenuPortal, _Component2);
 
   function MenuPortal() {
-    var _getPrototypeOf3;
-
     var _this2;
-
-    _classCallCheck$1(this, MenuPortal);
 
     for (var _len2 = arguments.length, args = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
       args[_key2] = arguments[_key2];
     }
 
-    _this2 = _possibleConstructorReturn$1(this, (_getPrototypeOf3 = _getPrototypeOf(MenuPortal)).call.apply(_getPrototypeOf3, [this].concat(args)));
-
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this2)), "state", {
+    _this2 = _Component2.call.apply(_Component2, [this].concat(args)) || this;
+    _this2.state = {
       placement: null
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this2)), "getPortalPlacement", function (_ref7) {
+    _this2.getPortalPlacement = function (_ref7) {
       var placement = _ref7.placement;
       var initialPlacement = coercePlacement(_this2.props.menuPlacement); // avoid re-renders if the placement has not changed
 
@@ -22421,58 +22248,55 @@ function (_Component2) {
           placement: placement
         });
       }
-    });
+    };
 
     return _this2;
   }
 
-  _createClass$1(MenuPortal, [{
-    key: "getChildContext",
-    value: function getChildContext() {
-      return {
-        getPortalPlacement: this.getPortalPlacement
-      };
-    } // callback for occassions where the menu must "flip"
+  var _proto2 = MenuPortal.prototype;
 
-  }, {
-    key: "render",
-    value: function render() {
-      var _this$props2 = this.props,
-          appendTo = _this$props2.appendTo,
-          children = _this$props2.children,
-          controlElement = _this$props2.controlElement,
-          menuPlacement = _this$props2.menuPlacement,
-          position = _this$props2.menuPosition,
-          getStyles = _this$props2.getStyles;
-      var isFixed = position === 'fixed'; // bail early if required elements aren't present
+  _proto2.getChildContext = function getChildContext() {
+    return {
+      getPortalPlacement: this.getPortalPlacement
+    };
+  } // callback for occassions where the menu must "flip"
+  ;
 
-      if (!appendTo && !isFixed || !controlElement) {
-        return null;
-      }
+  _proto2.render = function render() {
+    var _this$props2 = this.props,
+        appendTo = _this$props2.appendTo,
+        children = _this$props2.children,
+        controlElement = _this$props2.controlElement,
+        menuPlacement = _this$props2.menuPlacement,
+        position = _this$props2.menuPosition,
+        getStyles = _this$props2.getStyles;
+    var isFixed = position === 'fixed'; // bail early if required elements aren't present
 
-      var placement = this.state.placement || coercePlacement(menuPlacement);
-      var rect = getBoundingClientObj(controlElement);
-      var scrollDistance = isFixed ? 0 : window.pageYOffset;
-      var offset = rect[placement] + scrollDistance;
-      var state = {
-        offset: offset,
-        position: position,
-        rect: rect
-      }; // same wrapper element whether fixed or portalled
-
-      var menuWrapper = jsx("div", {
-        css: getStyles('menuPortal', state)
-      }, children);
-      return appendTo ? ReactDOM.createPortal(menuWrapper, appendTo) : menuWrapper;
+    if (!appendTo && !isFixed || !controlElement) {
+      return null;
     }
-  }]);
+
+    var placement = this.state.placement || coercePlacement(menuPlacement);
+    var rect = getBoundingClientObj(controlElement);
+    var scrollDistance = isFixed ? 0 : window.pageYOffset;
+    var offset = rect[placement] + scrollDistance;
+    var state = {
+      offset: offset,
+      position: position,
+      rect: rect
+    }; // same wrapper element whether fixed or portalled
+
+    var menuWrapper = jsx("div", {
+      css: getStyles('menuPortal', state)
+    }, children);
+    return appendTo ? ReactDOM.createPortal(menuWrapper, appendTo) : menuWrapper;
+  };
 
   return MenuPortal;
 }(React.Component);
-
-_defineProperty$1(MenuPortal, "childContextTypes", {
+MenuPortal.childContextTypes = {
   getPortalPlacement: PropTypes.func
-});
+};
 
 var isArray = Array.isArray;
 var keyList = Object.keys;
@@ -22482,7 +22306,7 @@ function equal(a, b) {
   // fast-deep-equal index.js 2.0.1
   if (a === b) return true;
 
-  if (a && b && _typeof(a) == 'object' && _typeof(b) == 'object') {
+  if (a && b && typeof a == 'object' && typeof b == 'object') {
     var arrA = isArray(a),
         arrB = isArray(b),
         i,
@@ -22564,6 +22388,7 @@ function exportedEqual(a, b) {
   }
 }
 
+function _extends$1$1() { _extends$1$1 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$1$1.apply(this, arguments); }
 var containerCSS = function containerCSS(_ref) {
   var isDisabled = _ref.isDisabled,
       isRtl = _ref.isRtl;
@@ -22583,7 +22408,7 @@ var SelectContainer = function SelectContainer(props) {
       innerProps = props.innerProps,
       isDisabled = props.isDisabled,
       isRtl = props.isRtl;
-  return jsx("div", _extends$1({
+  return jsx("div", _extends$1$1({
     css: getStyles('container', props),
     className: cx({
       '--is-disabled': isDisabled,
@@ -22601,46 +22426,28 @@ var valueContainerCSS = function valueContainerCSS(_ref2) {
     display: 'flex',
     flex: 1,
     flexWrap: 'wrap',
-    padding: "".concat(spacing.baseUnit / 2, "px ").concat(spacing.baseUnit * 2, "px"),
+    padding: spacing.baseUnit / 2 + "px " + spacing.baseUnit * 2 + "px",
     WebkitOverflowScrolling: 'touch',
     position: 'relative',
     overflow: 'hidden'
   };
 };
-var ValueContainer =
-/*#__PURE__*/
-function (_Component) {
-  _inherits$1(ValueContainer, _Component);
-
-  function ValueContainer() {
-    _classCallCheck$1(this, ValueContainer);
-
-    return _possibleConstructorReturn$1(this, _getPrototypeOf(ValueContainer).apply(this, arguments));
-  }
-
-  _createClass$1(ValueContainer, [{
-    key: "render",
-    value: function render() {
-      var _this$props = this.props,
-          children = _this$props.children,
-          className = _this$props.className,
-          cx = _this$props.cx,
-          isMulti = _this$props.isMulti,
-          getStyles = _this$props.getStyles,
-          hasValue = _this$props.hasValue;
-      return jsx("div", {
-        css: getStyles('valueContainer', this.props),
-        className: cx({
-          'value-container': true,
-          'value-container--is-multi': isMulti,
-          'value-container--has-value': hasValue
-        }, className)
-      }, children);
-    }
-  }]);
-
-  return ValueContainer;
-}(React.Component); // ==============================
+var ValueContainer = function ValueContainer(props) {
+  var children = props.children,
+      className = props.className,
+      cx = props.cx,
+      isMulti = props.isMulti,
+      getStyles = props.getStyles,
+      hasValue = props.hasValue;
+  return jsx("div", {
+    css: getStyles('valueContainer', props),
+    className: cx({
+      'value-container': true,
+      'value-container--is-multi': isMulti,
+      'value-container--has-value': hasValue
+    }, className)
+  }, children);
+}; // ==============================
 // Indicator Container
 // ==============================
 
@@ -22666,7 +22473,7 @@ var IndicatorsContainer = function IndicatorsContainer(props) {
 };
 
 function _templateObject$h() {
-  var data = _taggedTemplateLiteral$1(["\n  0%, 80%, 100% { opacity: 0; }\n  40% { opacity: 1; }\n"]);
+  var data = _taggedTemplateLiteralLoose(["\n  0%, 80%, 100% { opacity: 0; }\n  40% { opacity: 1; }\n"]);
 
   _templateObject$h = function _templateObject() {
     return data;
@@ -22674,6 +22481,12 @@ function _templateObject$h() {
 
   return data;
 }
+
+function _taggedTemplateLiteralLoose(strings, raw) { if (!raw) { raw = strings.slice(0); } strings.raw = raw; return strings; }
+
+function _extends$2$1() { _extends$2$1 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$2$1.apply(this, arguments); }
+
+function _objectWithoutPropertiesLoose$2(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 
 var _ref2 = process.env.NODE_ENV === "production" ? {
   name: "19bqh2r",
@@ -22689,9 +22502,9 @@ var _ref2 = process.env.NODE_ENV === "production" ? {
 // ==============================
 var Svg = function Svg(_ref) {
   var size = _ref.size,
-      props = _objectWithoutProperties$2(_ref, ["size"]);
+      props = _objectWithoutPropertiesLoose$2(_ref, ["size"]);
 
-  return jsx("svg", _extends$1({
+  return jsx("svg", _extends$2$1({
     height: size,
     width: size,
     viewBox: "0 0 20 20",
@@ -22702,14 +22515,14 @@ var Svg = function Svg(_ref) {
 };
 
 var CrossIcon = function CrossIcon(props) {
-  return jsx(Svg, _extends$1({
+  return jsx(Svg, _extends$2$1({
     size: 20
   }, props), jsx("path", {
     d: "M14.348 14.849c-0.469 0.469-1.229 0.469-1.697 0l-2.651-3.030-2.651 3.029c-0.469 0.469-1.229 0.469-1.697 0-0.469-0.469-0.469-1.229 0-1.697l2.758-3.15-2.759-3.152c-0.469-0.469-0.469-1.228 0-1.697s1.228-0.469 1.697 0l2.652 3.031 2.651-3.031c0.469-0.469 1.228-0.469 1.697 0s0.469 1.229 0 1.697l-2.758 3.152 2.758 3.15c0.469 0.469 0.469 1.229 0 1.698z"
   }));
 };
 var DownChevron = function DownChevron(props) {
-  return jsx(Svg, _extends$1({
+  return jsx(Svg, _extends$2$1({
     size: 20
   }, props), jsx("path", {
     d: "M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"
@@ -22742,7 +22555,7 @@ var DropdownIndicator = function DropdownIndicator(props) {
       cx = props.cx,
       getStyles = props.getStyles,
       innerProps = props.innerProps;
-  return jsx("div", _extends$1({}, innerProps, {
+  return jsx("div", _extends$2$1({}, innerProps, {
     css: getStyles('dropdownIndicator', props),
     className: cx({
       indicator: true,
@@ -22757,7 +22570,7 @@ var ClearIndicator = function ClearIndicator(props) {
       cx = props.cx,
       getStyles = props.getStyles,
       innerProps = props.innerProps;
-  return jsx("div", _extends$1({}, innerProps, {
+  return jsx("div", _extends$2$1({}, innerProps, {
     css: getStyles('clearIndicator', props),
     className: cx({
       indicator: true,
@@ -22787,7 +22600,7 @@ var IndicatorSeparator = function IndicatorSeparator(props) {
       cx = props.cx,
       getStyles = props.getStyles,
       innerProps = props.innerProps;
-  return jsx("span", _extends$1({}, innerProps, {
+  return jsx("span", _extends$2$1({}, innerProps, {
     css: getStyles('indicatorSeparator', props),
     className: cx({
       'indicator-separator': true
@@ -22826,7 +22639,7 @@ var LoadingDot = function LoadingDot(_ref6) {
     css:
     /*#__PURE__*/
     css({
-      animation: "".concat(loadingDotAnimations, " 1s ease-in-out ").concat(delay, "ms infinite;"),
+      animation: loadingDotAnimations + " 1s ease-in-out " + delay + "ms infinite;",
       backgroundColor: 'currentColor',
       borderRadius: '1em',
       display: 'inline-block',
@@ -22844,7 +22657,7 @@ var LoadingIndicator = function LoadingIndicator(props) {
       getStyles = props.getStyles,
       innerProps = props.innerProps,
       isRtl = props.isRtl;
-  return jsx("div", _extends$1({}, innerProps, {
+  return jsx("div", _extends$2$1({}, innerProps, {
     css: getStyles('loadingIndicator', props),
     className: cx({
       indicator: true,
@@ -22865,6 +22678,7 @@ LoadingIndicator.defaultProps = {
   size: 4
 };
 
+function _extends$3() { _extends$3 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$3.apply(this, arguments); }
 var css$1 = function css(_ref) {
   var isDisabled = _ref.isDisabled,
       isFocused = _ref.isFocused,
@@ -22880,7 +22694,7 @@ var css$1 = function css(_ref) {
     borderRadius: borderRadius,
     borderStyle: 'solid',
     borderWidth: 1,
-    boxShadow: isFocused ? "0 0 0 1px ".concat(colors.primary) : null,
+    boxShadow: isFocused ? "0 0 0 1px " + colors.primary : null,
     cursor: 'default',
     display: 'flex',
     flexWrap: 'wrap',
@@ -22905,7 +22719,7 @@ var Control = function Control(props) {
       innerRef = props.innerRef,
       innerProps = props.innerProps,
       menuIsOpen = props.menuIsOpen;
-  return jsx("div", _extends$1({
+  return jsx("div", _extends$3({
     ref: innerRef,
     css: getStyles('control', props),
     className: cx({
@@ -22917,6 +22731,9 @@ var Control = function Control(props) {
   }, innerProps), children);
 };
 
+function _objectWithoutPropertiesLoose$1$1(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+
+function _extends$4() { _extends$4 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$4.apply(this, arguments); }
 var groupCSS = function groupCSS(_ref) {
   var spacing = _ref.theme.spacing;
   return {
@@ -22940,7 +22757,7 @@ var Group = function Group(props) {
     className: cx({
       group: true
     }, className)
-  }, jsx(Heading, _extends$1({}, headingProps, {
+  }, jsx(Heading, _extends$4({}, headingProps, {
     selectProps: selectProps,
     theme: theme,
     getStyles: getStyles,
@@ -22969,10 +22786,10 @@ var GroupHeading = function GroupHeading(props) {
       getStyles = props.getStyles,
       theme = props.theme,
       selectProps = props.selectProps,
-      cleanProps = _objectWithoutProperties$2(props, ["className", "cx", "getStyles", "theme", "selectProps"]);
+      cleanProps = _objectWithoutPropertiesLoose$1$1(props, ["className", "cx", "getStyles", "theme", "selectProps"]);
 
-  return jsx("div", _extends$1({
-    css: getStyles('groupHeading', _objectSpread$a({
+  return jsx("div", _extends$4({
+    css: getStyles('groupHeading', _extends$4({
       theme: theme
     }, cleanProps)),
     className: cx({
@@ -22981,6 +22798,9 @@ var GroupHeading = function GroupHeading(props) {
   }, cleanProps));
 };
 
+function _extends$5() { _extends$5 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$5.apply(this, arguments); }
+
+function _objectWithoutPropertiesLoose$2$1(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 var inputCSS = function inputCSS(_ref) {
   var isDisabled = _ref.isDisabled,
       _ref$theme = _ref.theme,
@@ -23017,13 +22837,13 @@ var Input$1 = function Input(_ref2) {
       isDisabled = _ref2.isDisabled,
       theme = _ref2.theme,
       selectProps = _ref2.selectProps,
-      props = _objectWithoutProperties$2(_ref2, ["className", "cx", "getStyles", "innerRef", "isHidden", "isDisabled", "theme", "selectProps"]);
+      props = _objectWithoutPropertiesLoose$2$1(_ref2, ["className", "cx", "getStyles", "innerRef", "isHidden", "isDisabled", "theme", "selectProps"]);
 
   return jsx("div", {
-    css: getStyles('input', _objectSpread$a({
+    css: getStyles('input', _extends$5({
       theme: theme
     }, props))
-  }, jsx(AutosizeInput, _extends$1({
+  }, jsx(AutosizeInput, _extends$5({
     className: cx({
       input: true
     }, className),
@@ -23033,6 +22853,7 @@ var Input$1 = function Input(_ref2) {
   }, props)));
 };
 
+function _extends$6() { _extends$6 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$6.apply(this, arguments); }
 var multiValueCSS = function multiValueCSS(_ref) {
   var _ref$theme = _ref.theme,
       spacing = _ref$theme.spacing,
@@ -23090,102 +22911,65 @@ var MultiValueGeneric = function MultiValueGeneric(_ref4) {
 };
 var MultiValueContainer = MultiValueGeneric;
 var MultiValueLabel = MultiValueGeneric;
-var MultiValueRemove =
-/*#__PURE__*/
-function (_Component) {
-  _inherits$1(MultiValueRemove, _Component);
+function MultiValueRemove(_ref5) {
+  var children = _ref5.children,
+      innerProps = _ref5.innerProps;
+  return jsx("div", innerProps, children || jsx(CrossIcon, {
+    size: 14
+  }));
+}
 
-  function MultiValueRemove() {
-    _classCallCheck$1(this, MultiValueRemove);
+var MultiValue = function MultiValue(props) {
+  var children = props.children,
+      className = props.className,
+      components = props.components,
+      cx = props.cx,
+      data = props.data,
+      getStyles = props.getStyles,
+      innerProps = props.innerProps,
+      isDisabled = props.isDisabled,
+      removeProps = props.removeProps,
+      selectProps = props.selectProps;
+  var Container = components.Container,
+      Label = components.Label,
+      Remove = components.Remove;
+  return jsx(ClassNames, null, function (_ref6) {
+    var css = _ref6.css,
+        emotionCx = _ref6.cx;
+    return jsx(Container, {
+      data: data,
+      innerProps: _extends$6({}, innerProps, {
+        className: emotionCx(css(getStyles('multiValue', props)), cx({
+          'multi-value': true,
+          'multi-value--is-disabled': isDisabled
+        }, className))
+      }),
+      selectProps: selectProps
+    }, jsx(Label, {
+      data: data,
+      innerProps: {
+        className: emotionCx(css(getStyles('multiValueLabel', props)), cx({
+          'multi-value__label': true
+        }, className))
+      },
+      selectProps: selectProps
+    }, children), jsx(Remove, {
+      data: data,
+      innerProps: _extends$6({
+        className: emotionCx(css(getStyles('multiValueRemove', props)), cx({
+          'multi-value__remove': true
+        }, className))
+      }, removeProps),
+      selectProps: selectProps
+    }));
+  });
+};
 
-    return _possibleConstructorReturn$1(this, _getPrototypeOf(MultiValueRemove).apply(this, arguments));
-  }
-
-  _createClass$1(MultiValueRemove, [{
-    key: "render",
-    value: function render() {
-      var _this$props = this.props,
-          children = _this$props.children,
-          innerProps = _this$props.innerProps;
-      return jsx("div", innerProps, children || jsx(CrossIcon, {
-        size: 14
-      }));
-    }
-  }]);
-
-  return MultiValueRemove;
-}(React.Component);
-
-var MultiValue =
-/*#__PURE__*/
-function (_Component2) {
-  _inherits$1(MultiValue, _Component2);
-
-  function MultiValue() {
-    _classCallCheck$1(this, MultiValue);
-
-    return _possibleConstructorReturn$1(this, _getPrototypeOf(MultiValue).apply(this, arguments));
-  }
-
-  _createClass$1(MultiValue, [{
-    key: "render",
-    value: function render() {
-      var _this = this;
-
-      var _this$props2 = this.props,
-          children = _this$props2.children,
-          className = _this$props2.className,
-          components = _this$props2.components,
-          cx = _this$props2.cx,
-          data = _this$props2.data,
-          getStyles = _this$props2.getStyles,
-          innerProps = _this$props2.innerProps,
-          isDisabled = _this$props2.isDisabled,
-          removeProps = _this$props2.removeProps,
-          selectProps = _this$props2.selectProps;
-      var Container = components.Container,
-          Label = components.Label,
-          Remove = components.Remove;
-      return jsx(ClassNames, null, function (_ref5) {
-        var css = _ref5.css,
-            emotionCx = _ref5.cx;
-        return jsx(Container, {
-          data: data,
-          innerProps: _objectSpread$a({}, innerProps, {
-            className: emotionCx(css(getStyles('multiValue', _this.props)), cx({
-              'multi-value': true,
-              'multi-value--is-disabled': isDisabled
-            }, className))
-          }),
-          selectProps: selectProps
-        }, jsx(Label, {
-          data: data,
-          innerProps: {
-            className: emotionCx(css(getStyles('multiValueLabel', _this.props)), cx({
-              'multi-value__label': true
-            }, className))
-          },
-          selectProps: selectProps
-        }, children), jsx(Remove, {
-          data: data,
-          innerProps: _objectSpread$a({
-            className: emotionCx(css(getStyles('multiValueRemove', _this.props)), cx({
-              'multi-value__remove': true
-            }, className))
-          }, removeProps),
-          selectProps: selectProps
-        }));
-      });
-    }
-  }]);
-
-  return MultiValue;
-}(React.Component);
-
-_defineProperty$1(MultiValue, "defaultProps", {
+MultiValue.defaultProps = {
   cropWithEllipsis: true
-});
+};
 
+function _extends$7() { _extends$7 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$7.apply(this, arguments); }
 var optionCSS = function optionCSS(_ref) {
   var isDisabled = _ref.isDisabled,
       isFocused = _ref.isFocused,
@@ -23200,7 +22984,7 @@ var optionCSS = function optionCSS(_ref) {
     cursor: 'default',
     display: 'block',
     fontSize: 'inherit',
-    padding: "".concat(spacing.baseUnit * 2, "px ").concat(spacing.baseUnit * 3, "px"),
+    padding: spacing.baseUnit * 2 + "px " + spacing.baseUnit * 3 + "px",
     width: '100%',
     userSelect: 'none',
     WebkitTapHighlightColor: 'rgba(0, 0, 0, 0)',
@@ -23221,7 +23005,7 @@ var Option = function Option(props) {
       isSelected = props.isSelected,
       innerRef = props.innerRef,
       innerProps = props.innerProps;
-  return jsx("div", _extends$1({
+  return jsx("div", _extends$7({
     css: getStyles('option', props),
     className: cx({
       option: true,
@@ -23233,6 +23017,7 @@ var Option = function Option(props) {
   }, innerProps), children);
 };
 
+function _extends$8() { _extends$8 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$8.apply(this, arguments); }
 var placeholderCSS = function placeholderCSS(_ref) {
   var _ref$theme = _ref.theme,
       spacing = _ref$theme.spacing,
@@ -23254,7 +23039,7 @@ var Placeholder = function Placeholder(props) {
       cx = props.cx,
       getStyles = props.getStyles,
       innerProps = props.innerProps;
-  return jsx("div", _extends$1({
+  return jsx("div", _extends$8({
     css: getStyles('placeholder', props),
     className: cx({
       placeholder: true
@@ -23262,6 +23047,7 @@ var Placeholder = function Placeholder(props) {
   }, innerProps), children);
 };
 
+function _extends$9() { _extends$9 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$9.apply(this, arguments); }
 var css$1$1 = function css(_ref) {
   var isDisabled = _ref.isDisabled,
       _ref$theme = _ref.theme,
@@ -23272,7 +23058,7 @@ var css$1$1 = function css(_ref) {
     color: isDisabled ? colors.neutral40 : colors.neutral80,
     marginLeft: spacing.baseUnit / 2,
     marginRight: spacing.baseUnit / 2,
-    maxWidth: "calc(100% - ".concat(spacing.baseUnit * 2, "px)"),
+    maxWidth: "calc(100% - " + spacing.baseUnit * 2 + "px)",
     overflow: 'hidden',
     position: 'absolute',
     textOverflow: 'ellipsis',
@@ -23289,7 +23075,7 @@ var SingleValue = function SingleValue(props) {
       getStyles = props.getStyles,
       isDisabled = props.isDisabled,
       innerProps = props.innerProps;
-  return jsx("div", _extends$1({
+  return jsx("div", _extends$9({
     css: getStyles('singleValue', props),
     className: cx({
       'single-value': true,
@@ -23298,6 +23084,7 @@ var SingleValue = function SingleValue(props) {
   }, innerProps), children);
 };
 
+function _extends$a() { _extends$a = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$a.apply(this, arguments); }
 var components = {
   ClearIndicator: ClearIndicator,
   Control: Control,
@@ -23326,7 +23113,7 @@ var components = {
   ValueContainer: ValueContainer
 };
 var defaultComponents = function defaultComponents(props) {
-  return _objectSpread$a({}, components, props.components);
+  return _extends$a({}, components, props.components);
 };
 
 var diacritics = [{
@@ -23590,17 +23377,19 @@ var stripDiacritics = function stripDiacritics(str) {
   return str;
 };
 
+function _extends$b() { _extends$b = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$b.apply(this, arguments); }
+
 var trimString = function trimString(str) {
   return str.replace(/^\s+|\s+$/g, '');
 };
 
 var defaultStringify = function defaultStringify(option) {
-  return "".concat(option.label, " ").concat(option.value);
+  return option.label + " " + option.value;
 };
 
 var createFilter = function createFilter(config) {
   return function (option, rawInput) {
-    var _ignoreCase$ignoreAcc = _objectSpread$a({
+    var _ignoreCase$ignoreAcc = _extends$b({
       ignoreCase: true,
       ignoreAccents: true,
       stringify: defaultStringify,
@@ -23630,6 +23419,8 @@ var createFilter = function createFilter(config) {
   };
 };
 
+function _extends$1$2() { _extends$1$2 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$1$2.apply(this, arguments); }
+
 var _ref = process.env.NODE_ENV === "production" ? {
   name: "1laao21-a11yText",
   styles: "label:a11yText;z-index:9999;border:0;clip:rect(1px, 1px, 1px, 1px);height:1px;width:1px;position:absolute;overflow:hidden;padding:0;white-space:nowrap;"
@@ -23640,93 +23431,75 @@ var _ref = process.env.NODE_ENV === "production" ? {
 };
 
 var A11yText = function A11yText(props) {
-  return jsx("span", _extends$1({
+  return jsx("span", _extends$1$2({
     css: _ref
   }, props));
 };
 
-var DummyInput =
-/*#__PURE__*/
-function (_Component) {
-  _inherits$1(DummyInput, _Component);
+function _extends$2$2() { _extends$2$2 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$2$2.apply(this, arguments); }
 
-  function DummyInput() {
-    _classCallCheck$1(this, DummyInput);
+function _objectWithoutPropertiesLoose$3(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+function DummyInput(_ref) {
+  var inProp = _ref.in,
+      out = _ref.out,
+      onExited = _ref.onExited,
+      appear = _ref.appear,
+      enter = _ref.enter,
+      exit = _ref.exit,
+      innerRef = _ref.innerRef,
+      emotion = _ref.emotion,
+      props = _objectWithoutPropertiesLoose$3(_ref, ["in", "out", "onExited", "appear", "enter", "exit", "innerRef", "emotion"]);
 
-    return _possibleConstructorReturn$1(this, _getPrototypeOf(DummyInput).apply(this, arguments));
-  }
+  return jsx("input", _extends$2$2({
+    ref: innerRef
+  }, props, {
+    css:
+    /*#__PURE__*/
+    css({
+      label: 'dummyInput',
+      // get rid of any default styles
+      background: 0,
+      border: 0,
+      fontSize: 'inherit',
+      outline: 0,
+      padding: 0,
+      // important! without `width` browsers won't allow focus
+      width: 1,
+      // remove cursor on desktop
+      color: 'transparent',
+      // remove cursor on mobile whilst maintaining "scroll into view" behaviour
+      left: -100,
+      opacity: 0,
+      position: 'relative',
+      transform: 'scale(0)'
+    }, process.env.NODE_ENV === "production" ? "" : "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIkR1bW15SW5wdXQuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBbUJNIiwiZmlsZSI6IkR1bW15SW5wdXQuanMiLCJzb3VyY2VzQ29udGVudCI6WyIvLyBAZmxvd1xuLyoqIEBqc3gganN4ICovXG5pbXBvcnQgeyBqc3ggfSBmcm9tICdAZW1vdGlvbi9jb3JlJztcblxuZXhwb3J0IGRlZmF1bHQgZnVuY3Rpb24gRHVtbXlJbnB1dCh7XG4gIGluOiBpblByb3AsXG4gIG91dCxcbiAgb25FeGl0ZWQsXG4gIGFwcGVhcixcbiAgZW50ZXIsXG4gIGV4aXQsXG4gIGlubmVyUmVmLFxuICBlbW90aW9uLFxuICAuLi5wcm9wc1xufTogYW55KSB7XG4gIHJldHVybiAoXG4gICAgPGlucHV0XG4gICAgICByZWY9e2lubmVyUmVmfVxuICAgICAgey4uLnByb3BzfVxuICAgICAgY3NzPXt7XG4gICAgICAgIGxhYmVsOiAnZHVtbXlJbnB1dCcsXG4gICAgICAgIC8vIGdldCByaWQgb2YgYW55IGRlZmF1bHQgc3R5bGVzXG4gICAgICAgIGJhY2tncm91bmQ6IDAsXG4gICAgICAgIGJvcmRlcjogMCxcbiAgICAgICAgZm9udFNpemU6ICdpbmhlcml0JyxcbiAgICAgICAgb3V0bGluZTogMCxcbiAgICAgICAgcGFkZGluZzogMCxcbiAgICAgICAgLy8gaW1wb3J0YW50ISB3aXRob3V0IGB3aWR0aGAgYnJvd3NlcnMgd29uJ3QgYWxsb3cgZm9jdXNcbiAgICAgICAgd2lkdGg6IDEsXG5cbiAgICAgICAgLy8gcmVtb3ZlIGN1cnNvciBvbiBkZXNrdG9wXG4gICAgICAgIGNvbG9yOiAndHJhbnNwYXJlbnQnLFxuXG4gICAgICAgIC8vIHJlbW92ZSBjdXJzb3Igb24gbW9iaWxlIHdoaWxzdCBtYWludGFpbmluZyBcInNjcm9sbCBpbnRvIHZpZXdcIiBiZWhhdmlvdXJcbiAgICAgICAgbGVmdDogLTEwMCxcbiAgICAgICAgb3BhY2l0eTogMCxcbiAgICAgICAgcG9zaXRpb246ICdyZWxhdGl2ZScsXG4gICAgICAgIHRyYW5zZm9ybTogJ3NjYWxlKDApJyxcbiAgICAgIH19XG4gICAgLz5cbiAgKTtcbn1cbiJdfQ== */")
+  }));
+}
 
-  _createClass$1(DummyInput, [{
-    key: "render",
-    value: function render() {
-      var _this$props = this.props,
-          inProp = _this$props.in,
-          out = _this$props.out,
-          onExited = _this$props.onExited,
-          appear = _this$props.appear,
-          enter = _this$props.enter,
-          exit = _this$props.exit,
-          innerRef = _this$props.innerRef,
-          emotion = _this$props.emotion,
-          props = _objectWithoutProperties$2(_this$props, ["in", "out", "onExited", "appear", "enter", "exit", "innerRef", "emotion"]);
-
-      return jsx("input", _extends$1({
-        ref: innerRef
-      }, props, {
-        css:
-        /*#__PURE__*/
-        css({
-          label: 'dummyInput',
-          // get rid of any default styles
-          background: 0,
-          border: 0,
-          fontSize: 'inherit',
-          outline: 0,
-          padding: 0,
-          // important! without `width` browsers won't allow focus
-          width: 1,
-          // remove cursor on desktop
-          color: 'transparent',
-          // remove cursor on mobile whilst maintaining "scroll into view" behaviour
-          left: -100,
-          opacity: 0,
-          position: 'relative',
-          transform: 'scale(0)'
-        }, process.env.NODE_ENV === "production" ? "" : "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIkR1bW15SW5wdXQuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBWVEiLCJmaWxlIjoiRHVtbXlJbnB1dC5qcyIsInNvdXJjZXNDb250ZW50IjpbIi8vIEBmbG93XG4vKiogQGpzeCBqc3ggKi9cbmltcG9ydCB7IENvbXBvbmVudCB9IGZyb20gJ3JlYWN0JztcbmltcG9ydCB7IGpzeCB9IGZyb20gJ0BlbW90aW9uL2NvcmUnO1xuXG5leHBvcnQgZGVmYXVsdCBjbGFzcyBEdW1teUlucHV0IGV4dGVuZHMgQ29tcG9uZW50PGFueT4ge1xuICByZW5kZXIgKCkge1xuICAgIGNvbnN0IHsgaW46IGluUHJvcCwgb3V0LCBvbkV4aXRlZCwgYXBwZWFyLCBlbnRlciwgZXhpdCwgaW5uZXJSZWYsIGVtb3Rpb24sIC4uLnByb3BzIH0gPSB0aGlzLnByb3BzO1xuICAgIHJldHVybihcbiAgICAgIDxpbnB1dFxuICAgICAgICByZWY9e2lubmVyUmVmfVxuICAgICAgICB7Li4ucHJvcHN9XG4gICAgICAgIGNzcz17e1xuICAgICAgICAgIGxhYmVsOiAnZHVtbXlJbnB1dCcsXG4gICAgICAgICAgLy8gZ2V0IHJpZCBvZiBhbnkgZGVmYXVsdCBzdHlsZXNcbiAgICAgICAgICBiYWNrZ3JvdW5kOiAwLFxuICAgICAgICAgIGJvcmRlcjogMCxcbiAgICAgICAgICBmb250U2l6ZTogJ2luaGVyaXQnLFxuICAgICAgICAgIG91dGxpbmU6IDAsXG4gICAgICAgICAgcGFkZGluZzogMCxcbiAgICAgICAgICAvLyBpbXBvcnRhbnQhIHdpdGhvdXQgYHdpZHRoYCBicm93c2VycyB3b24ndCBhbGxvdyBmb2N1c1xuICAgICAgICAgIHdpZHRoOiAxLFxuXG4gICAgICAgICAgLy8gcmVtb3ZlIGN1cnNvciBvbiBkZXNrdG9wXG4gICAgICAgICAgY29sb3I6ICd0cmFuc3BhcmVudCcsXG5cbiAgICAgICAgICAvLyByZW1vdmUgY3Vyc29yIG9uIG1vYmlsZSB3aGlsc3QgbWFpbnRhaW5pbmcgXCJzY3JvbGwgaW50byB2aWV3XCIgYmVoYXZpb3VyXG4gICAgICAgICAgbGVmdDogLTEwMCxcbiAgICAgICAgICBvcGFjaXR5OiAwLFxuICAgICAgICAgIHBvc2l0aW9uOiAncmVsYXRpdmUnLFxuICAgICAgICAgIHRyYW5zZm9ybTogJ3NjYWxlKDApJyxcbiAgICAgICAgfX1cbiAgICAgIC8+XG4gICAgKTtcbiAgfVxufVxuIl19 */")
-      }));
-    }
-  }]);
-
-  return DummyInput;
-}(React.Component);
+function _inheritsLoose$3(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; subClass.__proto__ = superClass; }
 
 var NodeResolver =
 /*#__PURE__*/
 function (_Component) {
-  _inherits$1(NodeResolver, _Component);
+  _inheritsLoose$3(NodeResolver, _Component);
 
   function NodeResolver() {
-    _classCallCheck$1(this, NodeResolver);
-
-    return _possibleConstructorReturn$1(this, _getPrototypeOf(NodeResolver).apply(this, arguments));
+    return _Component.apply(this, arguments) || this;
   }
 
-  _createClass$1(NodeResolver, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      this.props.innerRef(ReactDOM.findDOMNode(this));
-    }
-  }, {
-    key: "componentWillUnmount",
-    value: function componentWillUnmount() {
-      this.props.innerRef(null);
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      return this.props.children;
-    }
-  }]);
+  var _proto = NodeResolver.prototype;
+
+  _proto.componentDidMount = function componentDidMount() {
+    this.props.innerRef(ReactDOM.findDOMNode(this));
+  };
+
+  _proto.componentWillUnmount = function componentWillUnmount() {
+    this.props.innerRef(null);
+  };
+
+  _proto.render = function render() {
+    return this.props.children;
+  };
 
   return NodeResolver;
 }(React.Component);
@@ -23763,136 +23536,129 @@ function isTouchDevice() {
   return 'ontouchstart' in window || navigator.maxTouchPoints;
 }
 
+function _inheritsLoose$1$1(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; subClass.__proto__ = superClass; }
 var canUseDOM = !!(typeof window !== 'undefined' && window.document && window.document.createElement);
 var activeScrollLocks = 0;
 
 var ScrollLock =
 /*#__PURE__*/
 function (_Component) {
-  _inherits$1(ScrollLock, _Component);
+  _inheritsLoose$1$1(ScrollLock, _Component);
 
   function ScrollLock() {
-    var _getPrototypeOf2;
-
     var _this;
-
-    _classCallCheck$1(this, ScrollLock);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = _possibleConstructorReturn$1(this, (_getPrototypeOf2 = _getPrototypeOf(ScrollLock)).call.apply(_getPrototypeOf2, [this].concat(args)));
-
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "originalStyles", {});
-
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "listenerOptions", {
+    _this = _Component.call.apply(_Component, [this].concat(args)) || this;
+    _this.originalStyles = {};
+    _this.listenerOptions = {
       capture: false,
       passive: false
-    });
-
+    };
     return _this;
   }
 
-  _createClass$1(ScrollLock, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      var _this2 = this;
+  var _proto = ScrollLock.prototype;
 
-      if (!canUseDOM) return;
-      var _this$props = this.props,
-          accountForScrollbars = _this$props.accountForScrollbars,
-          touchScrollTarget = _this$props.touchScrollTarget;
-      var target = document.body;
-      var targetStyle = target && target.style;
+  _proto.componentDidMount = function componentDidMount() {
+    var _this2 = this;
 
-      if (accountForScrollbars) {
-        // store any styles already applied to the body
-        STYLE_KEYS.forEach(function (key) {
-          var val = targetStyle && targetStyle[key];
-          _this2.originalStyles[key] = val;
-        });
-      } // apply the lock styles and padding if this is the first scroll lock
+    if (!canUseDOM) return;
+    var _this$props = this.props,
+        accountForScrollbars = _this$props.accountForScrollbars,
+        touchScrollTarget = _this$props.touchScrollTarget;
+    var target = document.body;
+    var targetStyle = target && target.style;
+
+    if (accountForScrollbars) {
+      // store any styles already applied to the body
+      STYLE_KEYS.forEach(function (key) {
+        var val = targetStyle && targetStyle[key];
+        _this2.originalStyles[key] = val;
+      });
+    } // apply the lock styles and padding if this is the first scroll lock
 
 
-      if (accountForScrollbars && activeScrollLocks < 1) {
-        var currentPadding = parseInt(this.originalStyles.paddingRight, 10) || 0;
-        var clientWidth = document.body ? document.body.clientWidth : 0;
-        var adjustedPadding = window.innerWidth - clientWidth + currentPadding || 0;
-        Object.keys(LOCK_STYLES).forEach(function (key) {
-          var val = LOCK_STYLES[key];
-
-          if (targetStyle) {
-            targetStyle[key] = val;
-          }
-        });
+    if (accountForScrollbars && activeScrollLocks < 1) {
+      var currentPadding = parseInt(this.originalStyles.paddingRight, 10) || 0;
+      var clientWidth = document.body ? document.body.clientWidth : 0;
+      var adjustedPadding = window.innerWidth - clientWidth + currentPadding || 0;
+      Object.keys(LOCK_STYLES).forEach(function (key) {
+        var val = LOCK_STYLES[key];
 
         if (targetStyle) {
-          targetStyle.paddingRight = "".concat(adjustedPadding, "px");
+          targetStyle[key] = val;
         }
-      } // account for touch devices
+      });
+
+      if (targetStyle) {
+        targetStyle.paddingRight = adjustedPadding + "px";
+      }
+    } // account for touch devices
 
 
-      if (target && isTouchDevice()) {
-        // Mobile Safari ignores { overflow: hidden } declaration on the body.
-        target.addEventListener('touchmove', preventTouchMove, this.listenerOptions); // Allow scroll on provided target
+    if (target && isTouchDevice()) {
+      // Mobile Safari ignores { overflow: hidden } declaration on the body.
+      target.addEventListener('touchmove', preventTouchMove, this.listenerOptions); // Allow scroll on provided target
 
-        if (touchScrollTarget) {
-          touchScrollTarget.addEventListener('touchstart', preventInertiaScroll, this.listenerOptions);
-          touchScrollTarget.addEventListener('touchmove', allowTouchMove, this.listenerOptions);
+      if (touchScrollTarget) {
+        touchScrollTarget.addEventListener('touchstart', preventInertiaScroll, this.listenerOptions);
+        touchScrollTarget.addEventListener('touchmove', allowTouchMove, this.listenerOptions);
+      }
+    } // increment active scroll locks
+
+
+    activeScrollLocks += 1;
+  };
+
+  _proto.componentWillUnmount = function componentWillUnmount() {
+    var _this3 = this;
+
+    if (!canUseDOM) return;
+    var _this$props2 = this.props,
+        accountForScrollbars = _this$props2.accountForScrollbars,
+        touchScrollTarget = _this$props2.touchScrollTarget;
+    var target = document.body;
+    var targetStyle = target && target.style; // safely decrement active scroll locks
+
+    activeScrollLocks = Math.max(activeScrollLocks - 1, 0); // reapply original body styles, if any
+
+    if (accountForScrollbars && activeScrollLocks < 1) {
+      STYLE_KEYS.forEach(function (key) {
+        var val = _this3.originalStyles[key];
+
+        if (targetStyle) {
+          targetStyle[key] = val;
         }
-      } // increment active scroll locks
+      });
+    } // remove touch listeners
 
 
-      activeScrollLocks += 1;
-    }
-  }, {
-    key: "componentWillUnmount",
-    value: function componentWillUnmount() {
-      var _this3 = this;
+    if (target && isTouchDevice()) {
+      target.removeEventListener('touchmove', preventTouchMove, this.listenerOptions);
 
-      if (!canUseDOM) return;
-      var _this$props2 = this.props,
-          accountForScrollbars = _this$props2.accountForScrollbars,
-          touchScrollTarget = _this$props2.touchScrollTarget;
-      var target = document.body;
-      var targetStyle = target && target.style; // safely decrement active scroll locks
-
-      activeScrollLocks = Math.max(activeScrollLocks - 1, 0); // reapply original body styles, if any
-
-      if (accountForScrollbars && activeScrollLocks < 1) {
-        STYLE_KEYS.forEach(function (key) {
-          var val = _this3.originalStyles[key];
-
-          if (targetStyle) {
-            targetStyle[key] = val;
-          }
-        });
-      } // remove touch listeners
-
-
-      if (target && isTouchDevice()) {
-        target.removeEventListener('touchmove', preventTouchMove, this.listenerOptions);
-
-        if (touchScrollTarget) {
-          touchScrollTarget.removeEventListener('touchstart', preventInertiaScroll, this.listenerOptions);
-          touchScrollTarget.removeEventListener('touchmove', allowTouchMove, this.listenerOptions);
-        }
+      if (touchScrollTarget) {
+        touchScrollTarget.removeEventListener('touchstart', preventInertiaScroll, this.listenerOptions);
+        touchScrollTarget.removeEventListener('touchmove', allowTouchMove, this.listenerOptions);
       }
     }
-  }, {
-    key: "render",
-    value: function render() {
-      return null;
-    }
-  }]);
+  };
+
+  _proto.render = function render() {
+    return null;
+  };
 
   return ScrollLock;
 }(React.Component);
 
-_defineProperty$1(ScrollLock, "defaultProps", {
+ScrollLock.defaultProps = {
   accountForScrollbars: true
-});
+};
+
+function _inheritsLoose$2$1(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; subClass.__proto__ = superClass; }
 
 var _ref$1 = process.env.NODE_ENV === "production" ? {
   name: "1dsbpcp",
@@ -23910,110 +23676,100 @@ var _ref$1 = process.env.NODE_ENV === "production" ? {
 var ScrollBlock =
 /*#__PURE__*/
 function (_PureComponent) {
-  _inherits$1(ScrollBlock, _PureComponent);
+  _inheritsLoose$2$1(ScrollBlock, _PureComponent);
 
   function ScrollBlock() {
-    var _getPrototypeOf2;
-
     var _this;
-
-    _classCallCheck$1(this, ScrollBlock);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = _possibleConstructorReturn$1(this, (_getPrototypeOf2 = _getPrototypeOf(ScrollBlock)).call.apply(_getPrototypeOf2, [this].concat(args)));
-
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "state", {
+    _this = _PureComponent.call.apply(_PureComponent, [this].concat(args)) || this;
+    _this.state = {
       touchScrollTarget: null
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "getScrollTarget", function (ref) {
+    _this.getScrollTarget = function (ref) {
       if (ref === _this.state.touchScrollTarget) return;
 
       _this.setState({
         touchScrollTarget: ref
       });
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "blurSelectInput", function () {
+    _this.blurSelectInput = function () {
       if (document.activeElement) {
         document.activeElement.blur();
       }
-    });
+    };
 
     return _this;
   }
 
-  _createClass$1(ScrollBlock, [{
-    key: "render",
-    value: function render() {
-      var _this$props = this.props,
-          children = _this$props.children,
-          isEnabled = _this$props.isEnabled;
-      var touchScrollTarget = this.state.touchScrollTarget; // bail early if not enabled
+  var _proto = ScrollBlock.prototype;
 
-      if (!isEnabled) return children;
-      /*
-       * Div
-       * ------------------------------
-       * blocks scrolling on non-body elements behind the menu
-        * NodeResolver
-       * ------------------------------
-       * we need a reference to the scrollable element to "unlock" scroll on
-       * mobile devices
-        * ScrollLock
-       * ------------------------------
-       * actually does the scroll locking
-       */
+  _proto.render = function render() {
+    var _this$props = this.props,
+        children = _this$props.children,
+        isEnabled = _this$props.isEnabled;
+    var touchScrollTarget = this.state.touchScrollTarget; // bail early if not enabled
 
-      return jsx("div", null, jsx("div", {
-        onClick: this.blurSelectInput,
-        css: _ref$1
-      }), jsx(NodeResolver, {
-        innerRef: this.getScrollTarget
-      }, children), touchScrollTarget ? jsx(ScrollLock, {
-        touchScrollTarget: touchScrollTarget
-      }) : null);
-    }
-  }]);
+    if (!isEnabled) return children;
+    /*
+     * Div
+     * ------------------------------
+     * blocks scrolling on non-body elements behind the menu
+      * NodeResolver
+     * ------------------------------
+     * we need a reference to the scrollable element to "unlock" scroll on
+     * mobile devices
+      * ScrollLock
+     * ------------------------------
+     * actually does the scroll locking
+     */
+
+    return jsx("div", null, jsx("div", {
+      onClick: this.blurSelectInput,
+      css: _ref$1
+    }), jsx(NodeResolver, {
+      innerRef: this.getScrollTarget
+    }, children), touchScrollTarget ? jsx(ScrollLock, {
+      touchScrollTarget: touchScrollTarget
+    }) : null);
+  };
 
   return ScrollBlock;
 }(React.PureComponent);
 
+function _objectWithoutPropertiesLoose$1$2(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+
+function _inheritsLoose$3$1(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; subClass.__proto__ = superClass; }
+
 var ScrollCaptor =
 /*#__PURE__*/
 function (_Component) {
-  _inherits$1(ScrollCaptor, _Component);
+  _inheritsLoose$3$1(ScrollCaptor, _Component);
 
   function ScrollCaptor() {
-    var _getPrototypeOf2;
-
     var _this;
-
-    _classCallCheck$1(this, ScrollCaptor);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = _possibleConstructorReturn$1(this, (_getPrototypeOf2 = _getPrototypeOf(ScrollCaptor)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = _Component.call.apply(_Component, [this].concat(args)) || this;
+    _this.isBottom = false;
+    _this.isTop = false;
+    _this.scrollTarget = void 0;
+    _this.touchStart = void 0;
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "isBottom", false);
-
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "isTop", false);
-
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "scrollTarget", void 0);
-
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "touchStart", void 0);
-
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "cancelScroll", function (event) {
+    _this.cancelScroll = function (event) {
       event.preventDefault();
       event.stopPropagation();
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "handleEventDelta", function (event, delta) {
+    _this.handleEventDelta = function (event, delta) {
       var _this$props = _this.props,
           onBottomArrive = _this$props.onBottomArrive,
           onBottomLeave = _this$props.onBottomLeave,
@@ -24061,128 +23817,106 @@ function (_Component) {
       if (shouldCancelScroll) {
         _this.cancelScroll(event);
       }
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onWheel", function (event) {
+    _this.onWheel = function (event) {
       _this.handleEventDelta(event, event.deltaY);
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onTouchStart", function (event) {
+    _this.onTouchStart = function (event) {
       // set touch start so we can calculate touchmove delta
       _this.touchStart = event.changedTouches[0].clientY;
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onTouchMove", function (event) {
+    _this.onTouchMove = function (event) {
       var deltaY = _this.touchStart - event.changedTouches[0].clientY;
 
       _this.handleEventDelta(event, deltaY);
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "getScrollTarget", function (ref) {
+    _this.getScrollTarget = function (ref) {
       _this.scrollTarget = ref;
-    });
+    };
 
     return _this;
   }
 
-  _createClass$1(ScrollCaptor, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      this.startListening(this.scrollTarget);
-    }
-  }, {
-    key: "componentWillUnmount",
-    value: function componentWillUnmount() {
-      this.stopListening(this.scrollTarget);
-    }
-  }, {
-    key: "startListening",
-    value: function startListening(el) {
-      // bail early if no element is available to attach to
-      if (!el) return; // all the if statements are to appease Flow 😢
+  var _proto = ScrollCaptor.prototype;
 
-      if (typeof el.addEventListener === 'function') {
-        el.addEventListener('wheel', this.onWheel, false);
-      }
+  _proto.componentDidMount = function componentDidMount() {
+    this.startListening(this.scrollTarget);
+  };
 
-      if (typeof el.addEventListener === 'function') {
-        el.addEventListener('touchstart', this.onTouchStart, false);
-      }
+  _proto.componentWillUnmount = function componentWillUnmount() {
+    this.stopListening(this.scrollTarget);
+  };
 
-      if (typeof el.addEventListener === 'function') {
-        el.addEventListener('touchmove', this.onTouchMove, false);
-      }
+  _proto.startListening = function startListening(el) {
+    // bail early if no element is available to attach to
+    if (!el) return; // all the if statements are to appease Flow 😢
+
+    if (typeof el.addEventListener === 'function') {
+      el.addEventListener('wheel', this.onWheel, false);
     }
-  }, {
-    key: "stopListening",
-    value: function stopListening(el) {
-      // all the if statements are to appease Flow 😢
-      if (typeof el.removeEventListener === 'function') {
-        el.removeEventListener('wheel', this.onWheel, false);
-      }
 
-      if (typeof el.removeEventListener === 'function') {
-        el.removeEventListener('touchstart', this.onTouchStart, false);
-      }
+    if (typeof el.addEventListener === 'function') {
+      el.addEventListener('touchstart', this.onTouchStart, false);
+    }
 
-      if (typeof el.removeEventListener === 'function') {
-        el.removeEventListener('touchmove', this.onTouchMove, false);
-      }
+    if (typeof el.addEventListener === 'function') {
+      el.addEventListener('touchmove', this.onTouchMove, false);
     }
-  }, {
-    key: "render",
-    value: function render() {
-      return React__default.createElement(NodeResolver, {
-        innerRef: this.getScrollTarget
-      }, this.props.children);
+  };
+
+  _proto.stopListening = function stopListening(el) {
+    // all the if statements are to appease Flow 😢
+    if (typeof el.removeEventListener === 'function') {
+      el.removeEventListener('wheel', this.onWheel, false);
     }
-  }]);
+
+    if (typeof el.removeEventListener === 'function') {
+      el.removeEventListener('touchstart', this.onTouchStart, false);
+    }
+
+    if (typeof el.removeEventListener === 'function') {
+      el.removeEventListener('touchmove', this.onTouchMove, false);
+    }
+  };
+
+  _proto.render = function render() {
+    return React__default.createElement(NodeResolver, {
+      innerRef: this.getScrollTarget
+    }, this.props.children);
+  };
 
   return ScrollCaptor;
 }(React.Component);
 
-var ScrollCaptorSwitch =
-/*#__PURE__*/
-function (_Component2) {
-  _inherits$1(ScrollCaptorSwitch, _Component2);
+function ScrollCaptorSwitch(_ref) {
+  var _ref$isEnabled = _ref.isEnabled,
+      isEnabled = _ref$isEnabled === void 0 ? true : _ref$isEnabled,
+      props = _objectWithoutPropertiesLoose$1$2(_ref, ["isEnabled"]);
 
-  function ScrollCaptorSwitch() {
-    _classCallCheck$1(this, ScrollCaptorSwitch);
+  return isEnabled ? React__default.createElement(ScrollCaptor, props) : props.children;
+}
 
-    return _possibleConstructorReturn$1(this, _getPrototypeOf(ScrollCaptorSwitch).apply(this, arguments));
+var instructionsAriaMessage = function instructionsAriaMessage(event, context) {
+  if (context === void 0) {
+    context = {};
   }
 
-  _createClass$1(ScrollCaptorSwitch, [{
-    key: "render",
-    value: function render() {
-      var _this$props2 = this.props,
-          isEnabled = _this$props2.isEnabled,
-          props = _objectWithoutProperties$2(_this$props2, ["isEnabled"]);
-
-      return isEnabled ? React__default.createElement(ScrollCaptor, props) : this.props.children;
-    }
-  }]);
-
-  return ScrollCaptorSwitch;
-}(React.Component);
-
-_defineProperty$1(ScrollCaptorSwitch, "defaultProps", {
-  isEnabled: true
-});
-
-var instructionsAriaMessage = function instructionsAriaMessage(event) {
-  var context = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-  var isSearchable = context.isSearchable,
-      isMulti = context.isMulti,
-      label = context.label,
-      isDisabled = context.isDisabled;
+  var _context = context,
+      isSearchable = _context.isSearchable,
+      isMulti = _context.isMulti,
+      label = _context.label,
+      isDisabled = _context.isDisabled;
 
   switch (event) {
     case 'menu':
-      return "Use Up and Down to choose options".concat(isDisabled ? '' : ', press Enter to select the currently focused option', ", press Escape to exit the menu, press Tab to select the option and exit the menu.");
+      return "Use Up and Down to choose options" + (isDisabled ? '' : ', press Enter to select the currently focused option') + ", press Escape to exit the menu, press Tab to select the option and exit the menu.";
 
     case 'input':
-      return "".concat(label ? label : 'Select', " is focused ").concat(isSearchable ? ',type to refine list' : '', ", press Down to open the menu, ").concat(isMulti ? ' press left to focus selected values' : '');
+      return (label ? label : 'Select') + " is focused " + (isSearchable ? ',type to refine list' : '') + ", press Down to open the menu, " + (isMulti ? ' press left to focus selected values' : '');
 
     case 'value':
       return 'Use left and right to toggle between focused values, press Backspace to remove the currently focused value';
@@ -24197,28 +23931,28 @@ var valueEventAriaMessage = function valueEventAriaMessage(event, context) {
     case 'deselect-option':
     case 'pop-value':
     case 'remove-value':
-      return "option ".concat(value, ", deselected.");
+      return "option " + value + ", deselected.";
 
     case 'select-option':
-      return isDisabled ? "option ".concat(value, " is disabled. Select another option.") : "option ".concat(value, ", selected.");
+      return isDisabled ? "option " + value + " is disabled. Select another option." : "option " + value + ", selected.";
   }
 };
 var valueFocusAriaMessage = function valueFocusAriaMessage(_ref) {
   var focusedValue = _ref.focusedValue,
       getOptionLabel = _ref.getOptionLabel,
       selectValue = _ref.selectValue;
-  return "value ".concat(getOptionLabel(focusedValue), " focused, ").concat(selectValue.indexOf(focusedValue) + 1, " of ").concat(selectValue.length, ".");
+  return "value " + getOptionLabel(focusedValue) + " focused, " + (selectValue.indexOf(focusedValue) + 1) + " of " + selectValue.length + ".";
 };
 var optionFocusAriaMessage = function optionFocusAriaMessage(_ref2) {
   var focusedOption = _ref2.focusedOption,
       getOptionLabel = _ref2.getOptionLabel,
       options = _ref2.options;
-  return "option ".concat(getOptionLabel(focusedOption), " focused").concat(focusedOption.isDisabled ? ' disabled' : '', ", ").concat(options.indexOf(focusedOption) + 1, " of ").concat(options.length, ".");
+  return "option " + getOptionLabel(focusedOption) + " focused" + (focusedOption.isDisabled ? ' disabled' : '') + ", " + (options.indexOf(focusedOption) + 1) + " of " + options.length + ".";
 };
 var resultsAriaMessage = function resultsAriaMessage(_ref3) {
   var inputValue = _ref3.inputValue,
       screenReaderMessage = _ref3.screenReaderMessage;
-  return "".concat(screenReaderMessage).concat(inputValue ? ' for search term ' + inputValue : '', ".");
+  return "" + screenReaderMessage + (inputValue ? ' for search term ' + inputValue : '') + ".";
 };
 
 var formatGroupLabel = function formatGroupLabel(group) {
@@ -24233,7 +23967,6 @@ var getOptionValue = function getOptionValue(option) {
 var isOptionDisabled = function isOptionDisabled(option) {
   return !!option.isDisabled;
 };
-
 var defaultStyles = {
   clearIndicator: clearIndicatorCSS,
   container: containerCSS,
@@ -24296,6 +24029,13 @@ var defaultTheme = {
   spacing: spacing
 };
 
+function _objectWithoutPropertiesLoose$2$2(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+
+function _extends$4$1() { _extends$4$1 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$4$1.apply(this, arguments); }
+
+function _inheritsLoose$4(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; subClass.__proto__ = superClass; }
+
+function _assertThisInitialized$1(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 var defaultProps = {
   backspaceRemovesValue: true,
   blurInputOnSelect: isTouchCapable(),
@@ -24335,7 +24075,7 @@ var defaultProps = {
   placeholder: 'Select...',
   screenReaderStatus: function screenReaderStatus(_ref) {
     var count = _ref.count;
-    return "".concat(count, " result").concat(count !== 1 ? 's' : '', " available");
+    return count + " result" + (count !== 1 ? 's' : '') + " available";
   },
   styles: {},
   tabIndex: '0',
@@ -24346,7 +24086,7 @@ var instanceId = 1;
 var Select =
 /*#__PURE__*/
 function (_Component) {
-  _inherits$1(Select, _Component);
+  _inheritsLoose$4(Select, _Component);
 
   // Misc. Instance Properties
   // ------------------------------
@@ -24358,11 +24098,8 @@ function (_Component) {
   function Select(_props) {
     var _this;
 
-    _classCallCheck$1(this, Select);
-
-    _this = _possibleConstructorReturn$1(this, _getPrototypeOf(Select).call(this, _props));
-
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "state", {
+    _this = _Component.call(this, _props) || this;
+    _this.state = {
       ariaLiveSelection: '',
       ariaLiveContext: '',
       focusedOption: null,
@@ -24374,80 +24111,67 @@ function (_Component) {
         focusable: []
       },
       selectValue: []
-    });
+    };
+    _this.blockOptionHover = false;
+    _this.isComposing = false;
+    _this.clearFocusValueOnUpdate = false;
+    _this.commonProps = void 0;
+    _this.components = void 0;
+    _this.hasGroups = false;
+    _this.initialTouchX = 0;
+    _this.initialTouchY = 0;
+    _this.inputIsHiddenAfterUpdate = void 0;
+    _this.instancePrefix = '';
+    _this.openAfterFocus = false;
+    _this.scrollToFocusedOptionOnUpdate = false;
+    _this.userIsDragging = void 0;
+    _this.controlRef = null;
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "blockOptionHover", false);
-
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "isComposing", false);
-
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "clearFocusValueOnUpdate", false);
-
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "commonProps", void 0);
-
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "components", void 0);
-
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "hasGroups", false);
-
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "initialTouchX", 0);
-
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "initialTouchY", 0);
-
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "inputIsHiddenAfterUpdate", void 0);
-
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "instancePrefix", '');
-
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "openAfterFocus", false);
-
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "scrollToFocusedOptionOnUpdate", false);
-
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "userIsDragging", void 0);
-
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "controlRef", null);
-
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "getControlRef", function (ref) {
+    _this.getControlRef = function (ref) {
       _this.controlRef = ref;
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "focusedOptionRef", null);
+    _this.focusedOptionRef = null;
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "getFocusedOptionRef", function (ref) {
+    _this.getFocusedOptionRef = function (ref) {
       _this.focusedOptionRef = ref;
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "menuListRef", null);
+    _this.menuListRef = null;
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "getMenuListRef", function (ref) {
+    _this.getMenuListRef = function (ref) {
       _this.menuListRef = ref;
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "inputRef", null);
+    _this.inputRef = null;
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "getInputRef", function (ref) {
+    _this.getInputRef = function (ref) {
       _this.inputRef = ref;
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "cacheComponents", function (components) {
+    _this.cacheComponents = function (components) {
       _this.components = defaultComponents({
         components: components
       });
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "focus", _this.focusInput);
+    _this.focus = _this.focusInput;
+    _this.blur = _this.blurInput;
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "blur", _this.blurInput);
-
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onChange", function (newValue, actionMeta) {
+    _this.onChange = function (newValue, actionMeta) {
       var _this$props = _this.props,
           onChange = _this$props.onChange,
           name = _this$props.name;
-      onChange(newValue, _objectSpread$a({}, actionMeta, {
+      onChange(newValue, _extends$4$1({}, actionMeta, {
         name: name
       }));
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "setValue", function (newValue) {
-      var action = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'set-value';
-      var option = arguments.length > 2 ? arguments[2] : undefined;
+    _this.setValue = function (newValue, action, option) {
+      if (action === void 0) {
+        action = 'set-value';
+      }
+
       var _this$props2 = _this.props,
           closeMenuOnSelect = _this$props2.closeMenuOnSelect,
           isMulti = _this$props2.isMulti;
@@ -24469,9 +24193,9 @@ function (_Component) {
         action: action,
         option: option
       });
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "selectOption", function (newValue) {
+    _this.selectOption = function (newValue) {
       var _this$props3 = _this.props,
           blurInputOnSelect = _this$props3.blurInputOnSelect,
           isMulti = _this$props3.isMulti;
@@ -24493,7 +24217,7 @@ function (_Component) {
           });
         } else {
           if (!_this.isOptionDisabled(newValue, selectValue)) {
-            _this.setValue([].concat(_toConsumableArray(selectValue), [newValue]), 'select-option', newValue);
+            _this.setValue([].concat(selectValue, [newValue]), 'select-option', newValue);
 
             _this.announceAriaLiveSelection({
               event: 'select-option',
@@ -24537,9 +24261,9 @@ function (_Component) {
       if (blurInputOnSelect) {
         _this.blurInput();
       }
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "removeValue", function (removedValue) {
+    _this.removeValue = function (removedValue) {
       var selectValue = _this.state.selectValue;
 
       var candidate = _this.getOptionValue(removedValue);
@@ -24561,17 +24285,17 @@ function (_Component) {
       });
 
       _this.focusInput();
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "clearValue", function () {
+    _this.clearValue = function () {
       var isMulti = _this.props.isMulti;
 
       _this.onChange(isMulti ? [] : null, {
         action: 'clear'
       });
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "popValue", function () {
+    _this.popValue = function () {
       var selectValue = _this.state.selectValue;
       var lastSelectedValue = selectValue[selectValue.length - 1];
       var newValue = selectValue.slice(0, selectValue.length - 1);
@@ -24587,28 +24311,28 @@ function (_Component) {
         action: 'pop-value',
         removedValue: lastSelectedValue
       });
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "getOptionLabel", function (data) {
+    _this.getOptionLabel = function (data) {
       return _this.props.getOptionLabel(data);
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "getOptionValue", function (data) {
+    _this.getOptionValue = function (data) {
       return _this.props.getOptionValue(data);
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "getStyles", function (key, props) {
+    _this.getStyles = function (key, props) {
       var base = defaultStyles[key](props);
       base.boxSizing = 'border-box';
       var custom = _this.props.styles[key];
       return custom ? custom(base, props) : base;
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "getElementId", function (element) {
-      return "".concat(_this.instancePrefix, "-").concat(element);
-    });
+    _this.getElementId = function (element) {
+      return _this.instancePrefix + "-" + element;
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "getActiveDescendentId", function () {
+    _this.getActiveDescendentId = function () {
       var menuIsOpen = _this.props.menuIsOpen;
       var _this$state = _this.state,
           menuOptions = _this$state.menuOptions,
@@ -24617,29 +24341,29 @@ function (_Component) {
       var index = menuOptions.focusable.indexOf(focusedOption);
       var option = menuOptions.render[index];
       return option && option.key;
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "announceAriaLiveSelection", function (_ref2) {
+    _this.announceAriaLiveSelection = function (_ref2) {
       var event = _ref2.event,
           context = _ref2.context;
 
       _this.setState({
         ariaLiveSelection: valueEventAriaMessage(event, context)
       });
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "announceAriaLiveContext", function (_ref3) {
+    _this.announceAriaLiveContext = function (_ref3) {
       var event = _ref3.event,
           context = _ref3.context;
 
       _this.setState({
-        ariaLiveContext: instructionsAriaMessage(event, _objectSpread$a({}, context, {
+        ariaLiveContext: instructionsAriaMessage(event, _extends$4$1({}, context, {
           label: _this.props['aria-label']
         }))
       });
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onMenuMouseDown", function (event) {
+    _this.onMenuMouseDown = function (event) {
       if (event.button !== 0) {
         return;
       }
@@ -24648,13 +24372,13 @@ function (_Component) {
       event.preventDefault();
 
       _this.focusInput();
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onMenuMouseMove", function (event) {
+    _this.onMenuMouseMove = function (event) {
       _this.blockOptionHover = false;
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onControlMouseDown", function (event) {
+    _this.onControlMouseDown = function (event) {
       var openMenuOnClick = _this.props.openMenuOnClick;
 
       if (!_this.state.isFocused) {
@@ -24668,19 +24392,19 @@ function (_Component) {
           _this.openMenu('first');
         }
       } else {
-        //$FlowFixMe
-        if (event.target.tagName !== 'INPUT') {
+        if ( // $FlowFixMe
+        event.target.tagName !== 'INPUT' && event.target.tagName !== 'TEXTAREA') {
           _this.onMenuClose();
         }
-      } //$FlowFixMe
+      }
 
-
-      if (event.target.tagName !== 'INPUT') {
+      if ( // $FlowFixMe
+      event.target.tagName !== 'INPUT' && event.target.tagName !== 'TEXTAREA') {
         event.preventDefault();
       }
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onDropdownIndicatorMouseDown", function (event) {
+    _this.onDropdownIndicatorMouseDown = function (event) {
       // ignore mouse events that weren't triggered by the primary button
       if (event && event.type === 'mousedown' && event.button !== 0) {
         return;
@@ -24703,9 +24427,9 @@ function (_Component) {
 
       event.preventDefault();
       event.stopPropagation();
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onClearIndicatorMouseDown", function (event) {
+    _this.onClearIndicatorMouseDown = function (event) {
       // ignore mouse events that weren't triggered by the primary button
       if (event && event.type === 'mousedown' && event.button !== 0) {
         return;
@@ -24723,9 +24447,9 @@ function (_Component) {
           return _this.focusInput();
         });
       }
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onScroll", function (event) {
+    _this.onScroll = function (event) {
       if (typeof _this.props.closeMenuOnScroll === 'boolean') {
         if (event.target instanceof HTMLElement && isDocumentElement(event.target)) {
           _this.props.onMenuClose();
@@ -24735,17 +24459,17 @@ function (_Component) {
           _this.props.onMenuClose();
         }
       }
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onCompositionStart", function () {
+    _this.onCompositionStart = function () {
       _this.isComposing = true;
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onCompositionEnd", function () {
+    _this.onCompositionEnd = function () {
       _this.isComposing = false;
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onTouchStart", function (_ref4) {
+    _this.onTouchStart = function (_ref4) {
       var touches = _ref4.touches;
       var touch = touches.item(0);
 
@@ -24756,9 +24480,9 @@ function (_Component) {
       _this.initialTouchX = touch.clientX;
       _this.initialTouchY = touch.clientY;
       _this.userIsDragging = false;
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onTouchMove", function (_ref5) {
+    _this.onTouchMove = function (_ref5) {
       var touches = _ref5.touches;
       var touch = touches.item(0);
 
@@ -24770,9 +24494,9 @@ function (_Component) {
       var deltaY = Math.abs(touch.clientY - _this.initialTouchY);
       var moveThreshold = 5;
       _this.userIsDragging = deltaX > moveThreshold || deltaY > moveThreshold;
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onTouchEnd", function (event) {
+    _this.onTouchEnd = function (event) {
       if (_this.userIsDragging) return; // close the menu if the user taps outside
       // we're checking on event.target here instead of event.currentTarget, because we want to assert information
       // on events on child elements, not the document (which we've attached this handler to).
@@ -24784,27 +24508,27 @@ function (_Component) {
 
       _this.initialTouchX = 0;
       _this.initialTouchY = 0;
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onControlTouchEnd", function (event) {
+    _this.onControlTouchEnd = function (event) {
       if (_this.userIsDragging) return;
 
       _this.onControlMouseDown(event);
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onClearIndicatorTouchEnd", function (event) {
+    _this.onClearIndicatorTouchEnd = function (event) {
       if (_this.userIsDragging) return;
 
       _this.onClearIndicatorMouseDown(event);
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onDropdownIndicatorTouchEnd", function (event) {
+    _this.onDropdownIndicatorTouchEnd = function (event) {
       if (_this.userIsDragging) return;
 
       _this.onDropdownIndicatorMouseDown(event);
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "handleInputChange", function (event) {
+    _this.handleInputChange = function (event) {
       var inputValue = event.currentTarget.value;
       _this.inputIsHiddenAfterUpdate = false;
 
@@ -24813,9 +24537,9 @@ function (_Component) {
       });
 
       _this.onMenuOpen();
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onInputFocus", function (event) {
+    _this.onInputFocus = function (event) {
       var _this$props5 = _this.props,
           isSearchable = _this$props5.isSearchable,
           isMulti = _this$props5.isMulti;
@@ -24843,9 +24567,9 @@ function (_Component) {
       }
 
       _this.openAfterFocus = false;
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onInputBlur", function (event) {
+    _this.onInputBlur = function (event) {
       if (_this.menuListRef && _this.menuListRef.contains(document.activeElement)) {
         _this.inputRef.focus();
 
@@ -24866,9 +24590,9 @@ function (_Component) {
         focusedValue: null,
         isFocused: false
       });
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onOptionHover", function (focusedOption) {
+    _this.onOptionHover = function (focusedOption) {
       if (_this.blockOptionHover || _this.state.focusedOption === focusedOption) {
         return;
       }
@@ -24876,17 +24600,17 @@ function (_Component) {
       _this.setState({
         focusedOption: focusedOption
       });
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "shouldHideSelectedOptions", function () {
+    _this.shouldHideSelectedOptions = function () {
       var _this$props6 = _this.props,
           hideSelectedOptions = _this$props6.hideSelectedOptions,
           isMulti = _this$props6.isMulti;
       if (hideSelectedOptions === undefined) return isMulti;
       return hideSelectedOptions;
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onKeyDown", function (event) {
+    _this.onKeyDown = function (event) {
       var _this$props7 = _this.props,
           isMulti = _this$props7.isMulti,
           backspaceRemovesValue = _this$props7.backspaceRemovesValue,
@@ -25063,522 +24787,23 @@ function (_Component) {
       }
 
       event.preventDefault();
-    });
-
-    var value = _props.value;
-    _this.cacheComponents = memoizeOne(_this.cacheComponents, exportedEqual).bind(_assertThisInitialized$1(_assertThisInitialized$1(_this)));
-
-    _this.cacheComponents(_props.components);
-
-    _this.instancePrefix = 'react-select-' + (_this.props.instanceId || ++instanceId);
-
-    var _selectValue = cleanValue(value);
-
-    var _menuOptions = _props.menuIsOpen ? _this.buildMenuOptions(_props, _selectValue) : {
-      render: [],
-      focusable: []
     };
 
-    _this.state.menuOptions = _menuOptions;
-    _this.state.selectValue = _selectValue;
-    return _this;
-  }
-
-  _createClass$1(Select, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      this.startListeningComposition();
-      this.startListeningToTouch();
-
-      if (this.props.closeMenuOnScroll && document && document.addEventListener) {
-        // Listen to all scroll events, and filter them out inside of 'onScroll'
-        document.addEventListener('scroll', this.onScroll, true);
-      }
-
-      if (this.props.autoFocus) {
-        this.focusInput();
-      }
-    }
-  }, {
-    key: "UNSAFE_componentWillReceiveProps",
-    value: function UNSAFE_componentWillReceiveProps(nextProps) {
-      var _this$props8 = this.props,
-          options = _this$props8.options,
-          value = _this$props8.value,
-          menuIsOpen = _this$props8.menuIsOpen,
-          inputValue = _this$props8.inputValue; // re-cache custom components
-
-      this.cacheComponents(nextProps.components); // rebuild the menu options
-
-      if (nextProps.value !== value || nextProps.options !== options || nextProps.menuIsOpen !== menuIsOpen || nextProps.inputValue !== inputValue) {
-        var selectValue = cleanValue(nextProps.value);
-        var menuOptions = nextProps.menuIsOpen ? this.buildMenuOptions(nextProps, selectValue) : {
-          render: [],
-          focusable: []
-        };
-        var focusedValue = this.getNextFocusedValue(selectValue);
-        var focusedOption = this.getNextFocusedOption(menuOptions.focusable);
-        this.setState({
-          menuOptions: menuOptions,
-          selectValue: selectValue,
-          focusedOption: focusedOption,
-          focusedValue: focusedValue
-        });
-      } // some updates should toggle the state of the input visibility
-
-
-      if (this.inputIsHiddenAfterUpdate != null) {
-        this.setState({
-          inputIsHidden: this.inputIsHiddenAfterUpdate
-        });
-        delete this.inputIsHiddenAfterUpdate;
-      }
-    }
-  }, {
-    key: "componentDidUpdate",
-    value: function componentDidUpdate(prevProps) {
-      var _this$props9 = this.props,
-          isDisabled = _this$props9.isDisabled,
-          menuIsOpen = _this$props9.menuIsOpen;
-      var isFocused = this.state.isFocused;
-
-      if ( // ensure focus is restored correctly when the control becomes enabled
-      isFocused && !isDisabled && prevProps.isDisabled || // ensure focus is on the Input when the menu opens
-      isFocused && menuIsOpen && !prevProps.menuIsOpen) {
-        this.focusInput();
-      } // scroll the focused option into view if necessary
-
-
-      if (this.menuListRef && this.focusedOptionRef && this.scrollToFocusedOptionOnUpdate) {
-        scrollIntoView(this.menuListRef, this.focusedOptionRef);
-      }
-
-      this.scrollToFocusedOptionOnUpdate = false;
-    }
-  }, {
-    key: "componentWillUnmount",
-    value: function componentWillUnmount() {
-      this.stopListeningComposition();
-      this.stopListeningToTouch();
-      document.removeEventListener('scroll', this.onScroll, true);
-    }
-  }, {
-    key: "onMenuOpen",
-    // ==============================
-    // Consumer Handlers
-    // ==============================
-    value: function onMenuOpen() {
-      this.props.onMenuOpen();
-    }
-  }, {
-    key: "onMenuClose",
-    value: function onMenuClose() {
-      var _this$props10 = this.props,
-          isSearchable = _this$props10.isSearchable,
-          isMulti = _this$props10.isMulti;
-      this.announceAriaLiveContext({
-        event: 'input',
-        context: {
-          isSearchable: isSearchable,
-          isMulti: isMulti
-        }
-      });
-      this.onInputChange('', {
-        action: 'menu-close'
-      });
-      this.props.onMenuClose();
-    }
-  }, {
-    key: "onInputChange",
-    value: function onInputChange(newValue, actionMeta) {
-      this.props.onInputChange(newValue, actionMeta);
-    } // ==============================
-    // Methods
-    // ==============================
-
-  }, {
-    key: "focusInput",
-    value: function focusInput() {
-      if (!this.inputRef) return;
-      this.inputRef.focus();
-    }
-  }, {
-    key: "blurInput",
-    value: function blurInput() {
-      if (!this.inputRef) return;
-      this.inputRef.blur();
-    } // aliased for consumers
-
-  }, {
-    key: "openMenu",
-    value: function openMenu(focusOption) {
-      var _this$state3 = this.state,
-          menuOptions = _this$state3.menuOptions,
-          selectValue = _this$state3.selectValue,
-          isFocused = _this$state3.isFocused;
-      var isMulti = this.props.isMulti;
-      var openAtIndex = focusOption === 'first' ? 0 : menuOptions.focusable.length - 1;
-
-      if (!isMulti) {
-        var selectedIndex = menuOptions.focusable.indexOf(selectValue[0]);
-
-        if (selectedIndex > -1) {
-          openAtIndex = selectedIndex;
-        }
-      } // only scroll if the menu isn't already open
-
-
-      this.scrollToFocusedOptionOnUpdate = !(isFocused && this.menuListRef);
-      this.inputIsHiddenAfterUpdate = false;
-      this.onMenuOpen();
-      this.setState({
-        focusedValue: null,
-        focusedOption: menuOptions.focusable[openAtIndex]
-      });
-      this.announceAriaLiveContext({
-        event: 'menu'
-      });
-    }
-  }, {
-    key: "focusValue",
-    value: function focusValue(direction) {
-      var _this$props11 = this.props,
-          isMulti = _this$props11.isMulti,
-          isSearchable = _this$props11.isSearchable;
-      var _this$state4 = this.state,
-          selectValue = _this$state4.selectValue,
-          focusedValue = _this$state4.focusedValue; // Only multiselects support value focusing
-
-      if (!isMulti) return;
-      this.setState({
-        focusedOption: null
-      });
-      var focusedIndex = selectValue.indexOf(focusedValue);
-
-      if (!focusedValue) {
-        focusedIndex = -1;
-        this.announceAriaLiveContext({
-          event: 'value'
-        });
-      }
-
-      var lastIndex = selectValue.length - 1;
-      var nextFocus = -1;
-      if (!selectValue.length) return;
-
-      switch (direction) {
-        case 'previous':
-          if (focusedIndex === 0) {
-            // don't cycle from the start to the end
-            nextFocus = 0;
-          } else if (focusedIndex === -1) {
-            // if nothing is focused, focus the last value first
-            nextFocus = lastIndex;
-          } else {
-            nextFocus = focusedIndex - 1;
-          }
-
-          break;
-
-        case 'next':
-          if (focusedIndex > -1 && focusedIndex < lastIndex) {
-            nextFocus = focusedIndex + 1;
-          }
-
-          break;
-      }
-
-      if (nextFocus === -1) {
-        this.announceAriaLiveContext({
-          event: 'input',
-          context: {
-            isSearchable: isSearchable,
-            isMulti: isMulti
-          }
-        });
-      }
-
-      this.setState({
-        inputIsHidden: nextFocus !== -1,
-        focusedValue: selectValue[nextFocus]
-      });
-    }
-  }, {
-    key: "focusOption",
-    value: function focusOption() {
-      var direction = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'first';
-      var pageSize = this.props.pageSize;
-      var _this$state5 = this.state,
-          focusedOption = _this$state5.focusedOption,
-          menuOptions = _this$state5.menuOptions;
-      var options = menuOptions.focusable;
-      if (!options.length) return;
-      var nextFocus = 0; // handles 'first'
-
-      var focusedIndex = options.indexOf(focusedOption);
-
-      if (!focusedOption) {
-        focusedIndex = -1;
-        this.announceAriaLiveContext({
-          event: 'menu'
-        });
-      }
-
-      if (direction === 'up') {
-        nextFocus = focusedIndex > 0 ? focusedIndex - 1 : options.length - 1;
-      } else if (direction === 'down') {
-        nextFocus = (focusedIndex + 1) % options.length;
-      } else if (direction === 'pageup') {
-        nextFocus = focusedIndex - pageSize;
-        if (nextFocus < 0) nextFocus = 0;
-      } else if (direction === 'pagedown') {
-        nextFocus = focusedIndex + pageSize;
-        if (nextFocus > options.length - 1) nextFocus = options.length - 1;
-      } else if (direction === 'last') {
-        nextFocus = options.length - 1;
-      }
-
-      this.scrollToFocusedOptionOnUpdate = true;
-      this.setState({
-        focusedOption: options[nextFocus],
-        focusedValue: null
-      });
-      this.announceAriaLiveContext({
-        event: 'menu',
-        context: {
-          isDisabled: isOptionDisabled(options[nextFocus])
-        }
-      });
-    }
-  }, {
-    key: "getTheme",
-    // ==============================
-    // Getters
-    // ==============================
-    value: function getTheme() {
-      // Use the default theme if there are no customizations.
-      if (!this.props.theme) {
-        return defaultTheme;
-      } // If the theme prop is a function, assume the function
-      // knows how to merge the passed-in default theme with
-      // its own modifications.
-
-
-      if (typeof this.props.theme === 'function') {
-        return this.props.theme(defaultTheme);
-      } // Otherwise, if a plain theme object was passed in,
-      // overlay it with the default theme.
-
-
-      return _objectSpread$a({}, defaultTheme, this.props.theme);
-    }
-  }, {
-    key: "getCommonProps",
-    value: function getCommonProps() {
-      var clearValue = this.clearValue,
-          getStyles = this.getStyles,
-          setValue = this.setValue,
-          selectOption = this.selectOption,
-          props = this.props;
-      var classNamePrefix = props.classNamePrefix,
-          isMulti = props.isMulti,
-          isRtl = props.isRtl,
-          options = props.options;
-      var selectValue = this.state.selectValue;
-      var hasValue = this.hasValue();
-
-      var getValue = function getValue() {
-        return selectValue;
-      };
-
-      var cx = classNames.bind(null, classNamePrefix);
-      return {
-        cx: cx,
-        clearValue: clearValue,
-        getStyles: getStyles,
-        getValue: getValue,
-        hasValue: hasValue,
-        isMulti: isMulti,
-        isRtl: isRtl,
-        options: options,
-        selectOption: selectOption,
-        setValue: setValue,
-        selectProps: props,
-        theme: this.getTheme()
-      };
-    }
-  }, {
-    key: "getNextFocusedValue",
-    value: function getNextFocusedValue(nextSelectValue) {
-      if (this.clearFocusValueOnUpdate) {
-        this.clearFocusValueOnUpdate = false;
-        return null;
-      }
-
-      var _this$state6 = this.state,
-          focusedValue = _this$state6.focusedValue,
-          lastSelectValue = _this$state6.selectValue;
-      var lastFocusedIndex = lastSelectValue.indexOf(focusedValue);
-
-      if (lastFocusedIndex > -1) {
-        var nextFocusedIndex = nextSelectValue.indexOf(focusedValue);
-
-        if (nextFocusedIndex > -1) {
-          // the focused value is still in the selectValue, return it
-          return focusedValue;
-        } else if (lastFocusedIndex < nextSelectValue.length) {
-          // the focusedValue is not present in the next selectValue array by
-          // reference, so return the new value at the same index
-          return nextSelectValue[lastFocusedIndex];
-        }
-      }
-
-      return null;
-    }
-  }, {
-    key: "getNextFocusedOption",
-    value: function getNextFocusedOption(options) {
-      var lastFocusedOption = this.state.focusedOption;
-      return lastFocusedOption && options.indexOf(lastFocusedOption) > -1 ? lastFocusedOption : options[0];
-    }
-  }, {
-    key: "hasValue",
-    value: function hasValue() {
-      var selectValue = this.state.selectValue;
-      return selectValue.length > 0;
-    }
-  }, {
-    key: "hasOptions",
-    value: function hasOptions() {
-      return !!this.state.menuOptions.render.length;
-    }
-  }, {
-    key: "countOptions",
-    value: function countOptions() {
-      return this.state.menuOptions.focusable.length;
-    }
-  }, {
-    key: "isClearable",
-    value: function isClearable() {
-      var _this$props12 = this.props,
-          isClearable = _this$props12.isClearable,
-          isMulti = _this$props12.isMulti; // single select, by default, IS NOT clearable
-      // multi select, by default, IS clearable
-
-      if (isClearable === undefined) return isMulti;
-      return isClearable;
-    }
-  }, {
-    key: "isOptionDisabled",
-    value: function isOptionDisabled(option, selectValue) {
-      return typeof this.props.isOptionDisabled === 'function' ? this.props.isOptionDisabled(option, selectValue) : false;
-    }
-  }, {
-    key: "isOptionSelected",
-    value: function isOptionSelected(option, selectValue) {
-      var _this2 = this;
-
-      if (selectValue.indexOf(option) > -1) return true;
-
-      if (typeof this.props.isOptionSelected === 'function') {
-        return this.props.isOptionSelected(option, selectValue);
-      }
-
-      var candidate = this.getOptionValue(option);
-      return selectValue.some(function (i) {
-        return _this2.getOptionValue(i) === candidate;
-      });
-    }
-  }, {
-    key: "filterOption",
-    value: function filterOption(option, inputValue) {
-      return this.props.filterOption ? this.props.filterOption(option, inputValue) : true;
-    }
-  }, {
-    key: "formatOptionLabel",
-    value: function formatOptionLabel(data, context) {
-      if (typeof this.props.formatOptionLabel === 'function') {
-        var inputValue = this.props.inputValue;
-        var selectValue = this.state.selectValue;
-        return this.props.formatOptionLabel(data, {
-          context: context,
-          inputValue: inputValue,
-          selectValue: selectValue
-        });
-      } else {
-        return this.getOptionLabel(data);
-      }
-    }
-  }, {
-    key: "formatGroupLabel",
-    value: function formatGroupLabel(data) {
-      return this.props.formatGroupLabel(data);
-    } // ==============================
-    // Mouse Handlers
-    // ==============================
-
-  }, {
-    key: "startListeningComposition",
-    // ==============================
-    // Composition Handlers
-    // ==============================
-    value: function startListeningComposition() {
-      if (document && document.addEventListener) {
-        document.addEventListener('compositionstart', this.onCompositionStart, false);
-        document.addEventListener('compositionend', this.onCompositionEnd, false);
-      }
-    }
-  }, {
-    key: "stopListeningComposition",
-    value: function stopListeningComposition() {
-      if (document && document.removeEventListener) {
-        document.removeEventListener('compositionstart', this.onCompositionStart);
-        document.removeEventListener('compositionend', this.onCompositionEnd);
-      }
-    }
-  }, {
-    key: "startListeningToTouch",
-    // ==============================
-    // Touch Handlers
-    // ==============================
-    value: function startListeningToTouch() {
-      if (document && document.addEventListener) {
-        document.addEventListener('touchstart', this.onTouchStart, false);
-        document.addEventListener('touchmove', this.onTouchMove, false);
-        document.addEventListener('touchend', this.onTouchEnd, false);
-      }
-    }
-  }, {
-    key: "stopListeningToTouch",
-    value: function stopListeningToTouch() {
-      if (document && document.removeEventListener) {
-        document.removeEventListener('touchstart', this.onTouchStart);
-        document.removeEventListener('touchmove', this.onTouchMove);
-        document.removeEventListener('touchend', this.onTouchEnd);
-      }
-    }
-  }, {
-    key: "buildMenuOptions",
-    // ==============================
-    // Menu Options
-    // ==============================
-    value: function buildMenuOptions(props, selectValue) {
-      var _this3 = this;
-
+    _this.buildMenuOptions = function (props, selectValue) {
       var _props$inputValue = props.inputValue,
           inputValue = _props$inputValue === void 0 ? '' : _props$inputValue,
           options = props.options;
 
       var toOption = function toOption(option, id) {
-        var isDisabled = _this3.isOptionDisabled(option, selectValue);
+        var isDisabled = _this.isOptionDisabled(option, selectValue);
 
-        var isSelected = _this3.isOptionSelected(option, selectValue);
+        var isSelected = _this.isOptionSelected(option, selectValue);
 
-        var label = _this3.getOptionLabel(option);
+        var label = _this.getOptionLabel(option);
 
-        var value = _this3.getOptionValue(option);
+        var value = _this.getOptionValue(option);
 
-        if (_this3.shouldHideSelectedOptions() && isSelected || !_this3.filterOption({
+        if (_this.shouldHideSelectedOptions() && isSelected || !_this.filterOption({
           label: label,
           value: value,
           data: option
@@ -25587,12 +24812,12 @@ function (_Component) {
         }
 
         var onHover = isDisabled ? undefined : function () {
-          return _this3.onOptionHover(option);
+          return _this.onOptionHover(option);
         };
         var onSelect = isDisabled ? undefined : function () {
-          return _this3.selectOption(option);
+          return _this.selectOption(option);
         };
-        var optionId = "".concat(_this3.getElementId('option'), "-").concat(id);
+        var optionId = _this.getElementId('option') + "-" + id;
         return {
           innerProps: {
             id: optionId,
@@ -25614,16 +24839,16 @@ function (_Component) {
       return options.reduce(function (acc, item, itemIndex) {
         if (item.options) {
           // TODO needs a tidier implementation
-          if (!_this3.hasGroups) _this3.hasGroups = true;
+          if (!_this.hasGroups) _this.hasGroups = true;
           var items = item.options;
           var children = items.map(function (child, i) {
-            var option = toOption(child, "".concat(itemIndex, "-").concat(i));
+            var option = toOption(child, itemIndex + "-" + i);
             if (option) acc.focusable.push(child);
             return option;
           }).filter(Boolean);
 
           if (children.length) {
-            var groupId = "".concat(_this3.getElementId('group'), "-").concat(itemIndex);
+            var groupId = _this.getElementId('group') + "-" + itemIndex;
             acc.render.push({
               type: 'group',
               key: groupId,
@@ -25632,7 +24857,7 @@ function (_Component) {
             });
           }
         } else {
-          var option = toOption(item, "".concat(itemIndex));
+          var option = toOption(item, "" + itemIndex);
 
           if (option) {
             acc.render.push(option);
@@ -25645,483 +24870,958 @@ function (_Component) {
         render: [],
         focusable: []
       });
-    } // ==============================
-    // Renderers
-    // ==============================
+    };
 
-  }, {
-    key: "constructAriaLiveMessage",
-    value: function constructAriaLiveMessage() {
-      var _this$state7 = this.state,
-          ariaLiveContext = _this$state7.ariaLiveContext,
-          selectValue = _this$state7.selectValue,
-          focusedValue = _this$state7.focusedValue,
-          focusedOption = _this$state7.focusedOption;
-      var _this$props13 = this.props,
-          options = _this$props13.options,
-          menuIsOpen = _this$props13.menuIsOpen,
-          inputValue = _this$props13.inputValue,
-          screenReaderStatus = _this$props13.screenReaderStatus; // An aria live message representing the currently focused value in the select.
+    var _value = _props.value;
+    _this.cacheComponents = memoizeOne(_this.cacheComponents, exportedEqual).bind(_assertThisInitialized$1(_assertThisInitialized$1(_this)));
 
-      var focusedValueMsg = focusedValue ? valueFocusAriaMessage({
-        focusedValue: focusedValue,
-        getOptionLabel: this.getOptionLabel,
-        selectValue: selectValue
-      }) : ''; // An aria live message representing the currently focused option in the select.
+    _this.cacheComponents(_props.components);
 
-      var focusedOptionMsg = focusedOption && menuIsOpen ? optionFocusAriaMessage({
-        focusedOption: focusedOption,
-        getOptionLabel: this.getOptionLabel,
-        options: options
-      }) : ''; // An aria live message representing the set of focusable results and current searchterm/inputvalue.
+    _this.instancePrefix = 'react-select-' + (_this.props.instanceId || ++instanceId);
 
-      var resultsMsg = resultsAriaMessage({
-        inputValue: inputValue,
-        screenReaderMessage: screenReaderStatus({
-          count: this.countOptions()
-        })
-      });
-      return "".concat(focusedValueMsg, " ").concat(focusedOptionMsg, " ").concat(resultsMsg, " ").concat(ariaLiveContext);
+    var _selectValue = cleanValue(_value);
+
+    _this.buildMenuOptions = memoizeOne(_this.buildMenuOptions, function (newArgs, lastArgs) {
+      var _ref6 = newArgs,
+          newProps = _ref6[0],
+          newSelectValue = _ref6[1];
+      var _ref7 = lastArgs,
+          lastProps = _ref7[0],
+          lastSelectValue = _ref7[1];
+      return exportedEqual(newSelectValue, lastSelectValue) && exportedEqual(newProps.inputValue, lastProps.inputValue) && exportedEqual(newProps.options, lastProps.options);
+    }).bind(_assertThisInitialized$1(_assertThisInitialized$1(_this)));
+
+    var _menuOptions = _props.menuIsOpen ? _this.buildMenuOptions(_props, _selectValue) : {
+      render: [],
+      focusable: []
+    };
+
+    _this.state.menuOptions = _menuOptions;
+    _this.state.selectValue = _selectValue;
+    return _this;
+  }
+
+  var _proto = Select.prototype;
+
+  _proto.componentDidMount = function componentDidMount() {
+    this.startListeningComposition();
+    this.startListeningToTouch();
+
+    if (this.props.closeMenuOnScroll && document && document.addEventListener) {
+      // Listen to all scroll events, and filter them out inside of 'onScroll'
+      document.addEventListener('scroll', this.onScroll, true);
     }
-  }, {
-    key: "renderInput",
-    value: function renderInput() {
-      var _this$props14 = this.props,
-          isDisabled = _this$props14.isDisabled,
-          isSearchable = _this$props14.isSearchable,
-          inputId = _this$props14.inputId,
-          inputValue = _this$props14.inputValue,
-          tabIndex = _this$props14.tabIndex;
-      var Input = this.components.Input;
-      var inputIsHidden = this.state.inputIsHidden;
-      var id = inputId || this.getElementId('input');
 
-      if (!isSearchable) {
-        // use a dummy input to maintain focus/blur functionality
-        return React__default.createElement(DummyInput, {
-          id: id,
-          innerRef: this.getInputRef,
-          onBlur: this.onInputBlur,
-          onChange: noop,
-          onFocus: this.onInputFocus,
-          readOnly: true,
-          disabled: isDisabled,
-          tabIndex: tabIndex,
-          value: ""
-        });
-      } // aria attributes makes the JSX "noisy", separated for clarity
+    if (this.props.autoFocus) {
+      this.focusInput();
+    }
+  };
 
+  _proto.UNSAFE_componentWillReceiveProps = function UNSAFE_componentWillReceiveProps(nextProps) {
+    var _this$props8 = this.props,
+        options = _this$props8.options,
+        value = _this$props8.value,
+        menuIsOpen = _this$props8.menuIsOpen,
+        inputValue = _this$props8.inputValue; // re-cache custom components
 
-      var ariaAttributes = {
-        'aria-autocomplete': 'list',
-        'aria-label': this.props['aria-label'],
-        'aria-labelledby': this.props['aria-labelledby']
+    this.cacheComponents(nextProps.components); // rebuild the menu options
+
+    if (nextProps.value !== value || nextProps.options !== options || nextProps.menuIsOpen !== menuIsOpen || nextProps.inputValue !== inputValue) {
+      var selectValue = cleanValue(nextProps.value);
+      var menuOptions = nextProps.menuIsOpen ? this.buildMenuOptions(nextProps, selectValue) : {
+        render: [],
+        focusable: []
       };
-      var _this$commonProps = this.commonProps,
-          cx = _this$commonProps.cx,
-          theme = _this$commonProps.theme,
-          selectProps = _this$commonProps.selectProps;
-      return React__default.createElement(Input, _extends$1({
-        autoCapitalize: "none",
-        autoComplete: "off",
-        autoCorrect: "off",
-        cx: cx,
-        getStyles: this.getStyles,
+      var focusedValue = this.getNextFocusedValue(selectValue);
+      var focusedOption = this.getNextFocusedOption(menuOptions.focusable);
+      this.setState({
+        menuOptions: menuOptions,
+        selectValue: selectValue,
+        focusedOption: focusedOption,
+        focusedValue: focusedValue
+      });
+    } // some updates should toggle the state of the input visibility
+
+
+    if (this.inputIsHiddenAfterUpdate != null) {
+      this.setState({
+        inputIsHidden: this.inputIsHiddenAfterUpdate
+      });
+      delete this.inputIsHiddenAfterUpdate;
+    }
+  };
+
+  _proto.componentDidUpdate = function componentDidUpdate(prevProps) {
+    var _this$props9 = this.props,
+        isDisabled = _this$props9.isDisabled,
+        menuIsOpen = _this$props9.menuIsOpen;
+    var isFocused = this.state.isFocused;
+
+    if ( // ensure focus is restored correctly when the control becomes enabled
+    isFocused && !isDisabled && prevProps.isDisabled || // ensure focus is on the Input when the menu opens
+    isFocused && menuIsOpen && !prevProps.menuIsOpen) {
+      this.focusInput();
+    } // scroll the focused option into view if necessary
+
+
+    if (this.menuListRef && this.focusedOptionRef && this.scrollToFocusedOptionOnUpdate) {
+      scrollIntoView(this.menuListRef, this.focusedOptionRef);
+      this.scrollToFocusedOptionOnUpdate = false;
+    }
+  };
+
+  _proto.componentWillUnmount = function componentWillUnmount() {
+    this.stopListeningComposition();
+    this.stopListeningToTouch();
+    document.removeEventListener('scroll', this.onScroll, true);
+  };
+
+  // ==============================
+  // Consumer Handlers
+  // ==============================
+  _proto.onMenuOpen = function onMenuOpen() {
+    this.props.onMenuOpen();
+  };
+
+  _proto.onMenuClose = function onMenuClose() {
+    var _this$props10 = this.props,
+        isSearchable = _this$props10.isSearchable,
+        isMulti = _this$props10.isMulti;
+    this.announceAriaLiveContext({
+      event: 'input',
+      context: {
+        isSearchable: isSearchable,
+        isMulti: isMulti
+      }
+    });
+    this.onInputChange('', {
+      action: 'menu-close'
+    });
+    this.props.onMenuClose();
+  };
+
+  _proto.onInputChange = function onInputChange(newValue, actionMeta) {
+    this.props.onInputChange(newValue, actionMeta);
+  } // ==============================
+  // Methods
+  // ==============================
+  ;
+
+  _proto.focusInput = function focusInput() {
+    if (!this.inputRef) return;
+    this.inputRef.focus();
+  };
+
+  _proto.blurInput = function blurInput() {
+    if (!this.inputRef) return;
+    this.inputRef.blur();
+  } // aliased for consumers
+  ;
+
+  _proto.openMenu = function openMenu(focusOption) {
+    var _this2 = this;
+
+    var _this$state3 = this.state,
+        selectValue = _this$state3.selectValue,
+        isFocused = _this$state3.isFocused;
+    var menuOptions = this.buildMenuOptions(this.props, selectValue);
+    var isMulti = this.props.isMulti;
+    var openAtIndex = focusOption === 'first' ? 0 : menuOptions.focusable.length - 1;
+
+    if (!isMulti) {
+      var selectedIndex = menuOptions.focusable.indexOf(selectValue[0]);
+
+      if (selectedIndex > -1) {
+        openAtIndex = selectedIndex;
+      }
+    } // only scroll if the menu isn't already open
+
+
+    this.scrollToFocusedOptionOnUpdate = !(isFocused && this.menuListRef);
+    this.inputIsHiddenAfterUpdate = false;
+    this.setState({
+      menuOptions: menuOptions,
+      focusedValue: null,
+      focusedOption: menuOptions.focusable[openAtIndex]
+    }, function () {
+      _this2.onMenuOpen();
+
+      _this2.announceAriaLiveContext({
+        event: 'menu'
+      });
+    });
+  };
+
+  _proto.focusValue = function focusValue(direction) {
+    var _this$props11 = this.props,
+        isMulti = _this$props11.isMulti,
+        isSearchable = _this$props11.isSearchable;
+    var _this$state4 = this.state,
+        selectValue = _this$state4.selectValue,
+        focusedValue = _this$state4.focusedValue; // Only multiselects support value focusing
+
+    if (!isMulti) return;
+    this.setState({
+      focusedOption: null
+    });
+    var focusedIndex = selectValue.indexOf(focusedValue);
+
+    if (!focusedValue) {
+      focusedIndex = -1;
+      this.announceAriaLiveContext({
+        event: 'value'
+      });
+    }
+
+    var lastIndex = selectValue.length - 1;
+    var nextFocus = -1;
+    if (!selectValue.length) return;
+
+    switch (direction) {
+      case 'previous':
+        if (focusedIndex === 0) {
+          // don't cycle from the start to the end
+          nextFocus = 0;
+        } else if (focusedIndex === -1) {
+          // if nothing is focused, focus the last value first
+          nextFocus = lastIndex;
+        } else {
+          nextFocus = focusedIndex - 1;
+        }
+
+        break;
+
+      case 'next':
+        if (focusedIndex > -1 && focusedIndex < lastIndex) {
+          nextFocus = focusedIndex + 1;
+        }
+
+        break;
+    }
+
+    if (nextFocus === -1) {
+      this.announceAriaLiveContext({
+        event: 'input',
+        context: {
+          isSearchable: isSearchable,
+          isMulti: isMulti
+        }
+      });
+    }
+
+    this.setState({
+      inputIsHidden: nextFocus !== -1,
+      focusedValue: selectValue[nextFocus]
+    });
+  };
+
+  _proto.focusOption = function focusOption(direction) {
+    if (direction === void 0) {
+      direction = 'first';
+    }
+
+    var pageSize = this.props.pageSize;
+    var _this$state5 = this.state,
+        focusedOption = _this$state5.focusedOption,
+        menuOptions = _this$state5.menuOptions;
+    var options = menuOptions.focusable;
+    if (!options.length) return;
+    var nextFocus = 0; // handles 'first'
+
+    var focusedIndex = options.indexOf(focusedOption);
+
+    if (!focusedOption) {
+      focusedIndex = -1;
+      this.announceAriaLiveContext({
+        event: 'menu'
+      });
+    }
+
+    if (direction === 'up') {
+      nextFocus = focusedIndex > 0 ? focusedIndex - 1 : options.length - 1;
+    } else if (direction === 'down') {
+      nextFocus = (focusedIndex + 1) % options.length;
+    } else if (direction === 'pageup') {
+      nextFocus = focusedIndex - pageSize;
+      if (nextFocus < 0) nextFocus = 0;
+    } else if (direction === 'pagedown') {
+      nextFocus = focusedIndex + pageSize;
+      if (nextFocus > options.length - 1) nextFocus = options.length - 1;
+    } else if (direction === 'last') {
+      nextFocus = options.length - 1;
+    }
+
+    this.scrollToFocusedOptionOnUpdate = true;
+    this.setState({
+      focusedOption: options[nextFocus],
+      focusedValue: null
+    });
+    this.announceAriaLiveContext({
+      event: 'menu',
+      context: {
+        isDisabled: isOptionDisabled(options[nextFocus])
+      }
+    });
+  };
+
+  // ==============================
+  // Getters
+  // ==============================
+  _proto.getTheme = function getTheme() {
+    // Use the default theme if there are no customizations.
+    if (!this.props.theme) {
+      return defaultTheme;
+    } // If the theme prop is a function, assume the function
+    // knows how to merge the passed-in default theme with
+    // its own modifications.
+
+
+    if (typeof this.props.theme === 'function') {
+      return this.props.theme(defaultTheme);
+    } // Otherwise, if a plain theme object was passed in,
+    // overlay it with the default theme.
+
+
+    return _extends$4$1({}, defaultTheme, this.props.theme);
+  };
+
+  _proto.getCommonProps = function getCommonProps() {
+    var clearValue = this.clearValue,
+        getStyles = this.getStyles,
+        setValue = this.setValue,
+        selectOption = this.selectOption,
+        props = this.props;
+    var classNamePrefix = props.classNamePrefix,
+        isMulti = props.isMulti,
+        isRtl = props.isRtl,
+        options = props.options;
+    var selectValue = this.state.selectValue;
+    var hasValue = this.hasValue();
+
+    var getValue = function getValue() {
+      return selectValue;
+    };
+
+    var cx = classNames.bind(null, classNamePrefix);
+    return {
+      cx: cx,
+      clearValue: clearValue,
+      getStyles: getStyles,
+      getValue: getValue,
+      hasValue: hasValue,
+      isMulti: isMulti,
+      isRtl: isRtl,
+      options: options,
+      selectOption: selectOption,
+      setValue: setValue,
+      selectProps: props,
+      theme: this.getTheme()
+    };
+  };
+
+  _proto.getNextFocusedValue = function getNextFocusedValue(nextSelectValue) {
+    if (this.clearFocusValueOnUpdate) {
+      this.clearFocusValueOnUpdate = false;
+      return null;
+    }
+
+    var _this$state6 = this.state,
+        focusedValue = _this$state6.focusedValue,
+        lastSelectValue = _this$state6.selectValue;
+    var lastFocusedIndex = lastSelectValue.indexOf(focusedValue);
+
+    if (lastFocusedIndex > -1) {
+      var nextFocusedIndex = nextSelectValue.indexOf(focusedValue);
+
+      if (nextFocusedIndex > -1) {
+        // the focused value is still in the selectValue, return it
+        return focusedValue;
+      } else if (lastFocusedIndex < nextSelectValue.length) {
+        // the focusedValue is not present in the next selectValue array by
+        // reference, so return the new value at the same index
+        return nextSelectValue[lastFocusedIndex];
+      }
+    }
+
+    return null;
+  };
+
+  _proto.getNextFocusedOption = function getNextFocusedOption(options) {
+    var lastFocusedOption = this.state.focusedOption;
+    return lastFocusedOption && options.indexOf(lastFocusedOption) > -1 ? lastFocusedOption : options[0];
+  };
+
+  _proto.hasValue = function hasValue() {
+    var selectValue = this.state.selectValue;
+    return selectValue.length > 0;
+  };
+
+  _proto.hasOptions = function hasOptions() {
+    return !!this.state.menuOptions.render.length;
+  };
+
+  _proto.countOptions = function countOptions() {
+    return this.state.menuOptions.focusable.length;
+  };
+
+  _proto.isClearable = function isClearable() {
+    var _this$props12 = this.props,
+        isClearable = _this$props12.isClearable,
+        isMulti = _this$props12.isMulti; // single select, by default, IS NOT clearable
+    // multi select, by default, IS clearable
+
+    if (isClearable === undefined) return isMulti;
+    return isClearable;
+  };
+
+  _proto.isOptionDisabled = function isOptionDisabled(option, selectValue) {
+    return typeof this.props.isOptionDisabled === 'function' ? this.props.isOptionDisabled(option, selectValue) : false;
+  };
+
+  _proto.isOptionSelected = function isOptionSelected(option, selectValue) {
+    var _this3 = this;
+
+    if (selectValue.indexOf(option) > -1) return true;
+
+    if (typeof this.props.isOptionSelected === 'function') {
+      return this.props.isOptionSelected(option, selectValue);
+    }
+
+    var candidate = this.getOptionValue(option);
+    return selectValue.some(function (i) {
+      return _this3.getOptionValue(i) === candidate;
+    });
+  };
+
+  _proto.filterOption = function filterOption(option, inputValue) {
+    return this.props.filterOption ? this.props.filterOption(option, inputValue) : true;
+  };
+
+  _proto.formatOptionLabel = function formatOptionLabel(data, context) {
+    if (typeof this.props.formatOptionLabel === 'function') {
+      var inputValue = this.props.inputValue;
+      var selectValue = this.state.selectValue;
+      return this.props.formatOptionLabel(data, {
+        context: context,
+        inputValue: inputValue,
+        selectValue: selectValue
+      });
+    } else {
+      return this.getOptionLabel(data);
+    }
+  };
+
+  _proto.formatGroupLabel = function formatGroupLabel(data) {
+    return this.props.formatGroupLabel(data);
+  } // ==============================
+  // Mouse Handlers
+  // ==============================
+  ;
+
+  // ==============================
+  // Composition Handlers
+  // ==============================
+  _proto.startListeningComposition = function startListeningComposition() {
+    if (document && document.addEventListener) {
+      document.addEventListener('compositionstart', this.onCompositionStart, false);
+      document.addEventListener('compositionend', this.onCompositionEnd, false);
+    }
+  };
+
+  _proto.stopListeningComposition = function stopListeningComposition() {
+    if (document && document.removeEventListener) {
+      document.removeEventListener('compositionstart', this.onCompositionStart);
+      document.removeEventListener('compositionend', this.onCompositionEnd);
+    }
+  };
+
+  // ==============================
+  // Touch Handlers
+  // ==============================
+  _proto.startListeningToTouch = function startListeningToTouch() {
+    if (document && document.addEventListener) {
+      document.addEventListener('touchstart', this.onTouchStart, false);
+      document.addEventListener('touchmove', this.onTouchMove, false);
+      document.addEventListener('touchend', this.onTouchEnd, false);
+    }
+  };
+
+  _proto.stopListeningToTouch = function stopListeningToTouch() {
+    if (document && document.removeEventListener) {
+      document.removeEventListener('touchstart', this.onTouchStart);
+      document.removeEventListener('touchmove', this.onTouchMove);
+      document.removeEventListener('touchend', this.onTouchEnd);
+    }
+  };
+
+  // ==============================
+  // Renderers
+  // ==============================
+  _proto.constructAriaLiveMessage = function constructAriaLiveMessage() {
+    var _this$state7 = this.state,
+        ariaLiveContext = _this$state7.ariaLiveContext,
+        selectValue = _this$state7.selectValue,
+        focusedValue = _this$state7.focusedValue,
+        focusedOption = _this$state7.focusedOption;
+    var _this$props13 = this.props,
+        options = _this$props13.options,
+        menuIsOpen = _this$props13.menuIsOpen,
+        inputValue = _this$props13.inputValue,
+        screenReaderStatus = _this$props13.screenReaderStatus; // An aria live message representing the currently focused value in the select.
+
+    var focusedValueMsg = focusedValue ? valueFocusAriaMessage({
+      focusedValue: focusedValue,
+      getOptionLabel: this.getOptionLabel,
+      selectValue: selectValue
+    }) : ''; // An aria live message representing the currently focused option in the select.
+
+    var focusedOptionMsg = focusedOption && menuIsOpen ? optionFocusAriaMessage({
+      focusedOption: focusedOption,
+      getOptionLabel: this.getOptionLabel,
+      options: options
+    }) : ''; // An aria live message representing the set of focusable results and current searchterm/inputvalue.
+
+    var resultsMsg = resultsAriaMessage({
+      inputValue: inputValue,
+      screenReaderMessage: screenReaderStatus({
+        count: this.countOptions()
+      })
+    });
+    return focusedValueMsg + " " + focusedOptionMsg + " " + resultsMsg + " " + ariaLiveContext;
+  };
+
+  _proto.renderInput = function renderInput() {
+    var _this$props14 = this.props,
+        isDisabled = _this$props14.isDisabled,
+        isSearchable = _this$props14.isSearchable,
+        inputId = _this$props14.inputId,
+        inputValue = _this$props14.inputValue,
+        tabIndex = _this$props14.tabIndex;
+    var Input = this.components.Input;
+    var inputIsHidden = this.state.inputIsHidden;
+    var id = inputId || this.getElementId('input'); // aria attributes makes the JSX "noisy", separated for clarity
+
+    var ariaAttributes = {
+      'aria-autocomplete': 'list',
+      'aria-label': this.props['aria-label'],
+      'aria-labelledby': this.props['aria-labelledby']
+    };
+
+    if (!isSearchable) {
+      // use a dummy input to maintain focus/blur functionality
+      return React__default.createElement(DummyInput, _extends$4$1({
         id: id,
         innerRef: this.getInputRef,
-        isDisabled: isDisabled,
-        isHidden: inputIsHidden,
         onBlur: this.onInputBlur,
-        onChange: this.handleInputChange,
+        onChange: noop,
         onFocus: this.onInputFocus,
-        selectProps: selectProps,
-        spellCheck: "false",
+        readOnly: true,
+        disabled: isDisabled,
         tabIndex: tabIndex,
-        theme: theme,
-        type: "text",
-        value: inputValue
+        value: ""
       }, ariaAttributes));
     }
-  }, {
-    key: "renderPlaceholderOrValue",
-    value: function renderPlaceholderOrValue() {
-      var _this4 = this;
 
-      var _this$components = this.components,
-          MultiValue = _this$components.MultiValue,
-          MultiValueContainer = _this$components.MultiValueContainer,
-          MultiValueLabel = _this$components.MultiValueLabel,
-          MultiValueRemove = _this$components.MultiValueRemove,
-          SingleValue = _this$components.SingleValue,
-          Placeholder = _this$components.Placeholder;
-      var commonProps = this.commonProps;
-      var _this$props15 = this.props,
-          controlShouldRenderValue = _this$props15.controlShouldRenderValue,
-          isDisabled = _this$props15.isDisabled,
-          isMulti = _this$props15.isMulti,
-          inputValue = _this$props15.inputValue,
-          placeholder = _this$props15.placeholder;
-      var _this$state8 = this.state,
-          selectValue = _this$state8.selectValue,
-          focusedValue = _this$state8.focusedValue,
-          isFocused = _this$state8.isFocused;
+    var _this$commonProps = this.commonProps,
+        cx = _this$commonProps.cx,
+        theme = _this$commonProps.theme,
+        selectProps = _this$commonProps.selectProps;
+    return React__default.createElement(Input, _extends$4$1({
+      autoCapitalize: "none",
+      autoComplete: "off",
+      autoCorrect: "off",
+      cx: cx,
+      getStyles: this.getStyles,
+      id: id,
+      innerRef: this.getInputRef,
+      isDisabled: isDisabled,
+      isHidden: inputIsHidden,
+      onBlur: this.onInputBlur,
+      onChange: this.handleInputChange,
+      onFocus: this.onInputFocus,
+      selectProps: selectProps,
+      spellCheck: "false",
+      tabIndex: tabIndex,
+      theme: theme,
+      type: "text",
+      value: inputValue
+    }, ariaAttributes));
+  };
 
-      if (!this.hasValue() || !controlShouldRenderValue) {
-        return inputValue ? null : React__default.createElement(Placeholder, _extends$1({}, commonProps, {
-          key: "placeholder",
-          isDisabled: isDisabled,
-          isFocused: isFocused
-        }), placeholder);
-      }
+  _proto.renderPlaceholderOrValue = function renderPlaceholderOrValue() {
+    var _this4 = this;
 
-      if (isMulti) {
-        var selectValues = selectValue.map(function (opt, index) {
-          var isOptionFocused = opt === focusedValue;
-          return React__default.createElement(MultiValue, _extends$1({}, commonProps, {
-            components: {
-              Container: MultiValueContainer,
-              Label: MultiValueLabel,
-              Remove: MultiValueRemove
-            },
-            isFocused: isOptionFocused,
-            isDisabled: isDisabled,
-            key: _this4.getOptionValue(opt),
-            index: index,
-            removeProps: {
-              onClick: function onClick() {
-                return _this4.removeValue(opt);
-              },
-              onTouchEnd: function onTouchEnd() {
-                return _this4.removeValue(opt);
-              },
-              onMouseDown: function onMouseDown(e) {
-                e.preventDefault();
-                e.stopPropagation();
-              }
-            },
-            data: opt
-          }), _this4.formatOptionLabel(opt, 'value'));
-        });
-        return selectValues;
-      }
+    var _this$components = this.components,
+        MultiValue = _this$components.MultiValue,
+        MultiValueContainer = _this$components.MultiValueContainer,
+        MultiValueLabel = _this$components.MultiValueLabel,
+        MultiValueRemove = _this$components.MultiValueRemove,
+        SingleValue = _this$components.SingleValue,
+        Placeholder = _this$components.Placeholder;
+    var commonProps = this.commonProps;
+    var _this$props15 = this.props,
+        controlShouldRenderValue = _this$props15.controlShouldRenderValue,
+        isDisabled = _this$props15.isDisabled,
+        isMulti = _this$props15.isMulti,
+        inputValue = _this$props15.inputValue,
+        placeholder = _this$props15.placeholder;
+    var _this$state8 = this.state,
+        selectValue = _this$state8.selectValue,
+        focusedValue = _this$state8.focusedValue,
+        isFocused = _this$state8.isFocused;
 
-      if (inputValue) {
-        return null;
-      }
-
-      var singleValue = selectValue[0];
-      return React__default.createElement(SingleValue, _extends$1({}, commonProps, {
-        data: singleValue,
-        isDisabled: isDisabled
-      }), this.formatOptionLabel(singleValue, 'value'));
-    }
-  }, {
-    key: "renderClearIndicator",
-    value: function renderClearIndicator() {
-      var ClearIndicator = this.components.ClearIndicator;
-      var commonProps = this.commonProps;
-      var _this$props16 = this.props,
-          isDisabled = _this$props16.isDisabled,
-          isLoading = _this$props16.isLoading;
-      var isFocused = this.state.isFocused;
-
-      if (!this.isClearable() || !ClearIndicator || isDisabled || !this.hasValue() || isLoading) {
-        return null;
-      }
-
-      var innerProps = {
-        onMouseDown: this.onClearIndicatorMouseDown,
-        onTouchEnd: this.onClearIndicatorTouchEnd,
-        'aria-hidden': 'true'
-      };
-      return React__default.createElement(ClearIndicator, _extends$1({}, commonProps, {
-        innerProps: innerProps,
-        isFocused: isFocused
-      }));
-    }
-  }, {
-    key: "renderLoadingIndicator",
-    value: function renderLoadingIndicator() {
-      var LoadingIndicator = this.components.LoadingIndicator;
-      var commonProps = this.commonProps;
-      var _this$props17 = this.props,
-          isDisabled = _this$props17.isDisabled,
-          isLoading = _this$props17.isLoading;
-      var isFocused = this.state.isFocused;
-      if (!LoadingIndicator || !isLoading) return null;
-      var innerProps = {
-        'aria-hidden': 'true'
-      };
-      return React__default.createElement(LoadingIndicator, _extends$1({}, commonProps, {
-        innerProps: innerProps,
+    if (!this.hasValue() || !controlShouldRenderValue) {
+      return inputValue ? null : React__default.createElement(Placeholder, _extends$4$1({}, commonProps, {
+        key: "placeholder",
         isDisabled: isDisabled,
         isFocused: isFocused
-      }));
+      }), placeholder);
     }
-  }, {
-    key: "renderIndicatorSeparator",
-    value: function renderIndicatorSeparator() {
-      var _this$components2 = this.components,
-          DropdownIndicator = _this$components2.DropdownIndicator,
-          IndicatorSeparator = _this$components2.IndicatorSeparator; // separator doesn't make sense without the dropdown indicator
 
-      if (!DropdownIndicator || !IndicatorSeparator) return null;
-      var commonProps = this.commonProps;
-      var isDisabled = this.props.isDisabled;
-      var isFocused = this.state.isFocused;
-      return React__default.createElement(IndicatorSeparator, _extends$1({}, commonProps, {
-        isDisabled: isDisabled,
-        isFocused: isFocused
-      }));
-    }
-  }, {
-    key: "renderDropdownIndicator",
-    value: function renderDropdownIndicator() {
-      var DropdownIndicator = this.components.DropdownIndicator;
-      if (!DropdownIndicator) return null;
-      var commonProps = this.commonProps;
-      var isDisabled = this.props.isDisabled;
-      var isFocused = this.state.isFocused;
-      var innerProps = {
-        onMouseDown: this.onDropdownIndicatorMouseDown,
-        onTouchEnd: this.onDropdownIndicatorTouchEnd,
-        'aria-hidden': 'true'
-      };
-      return React__default.createElement(DropdownIndicator, _extends$1({}, commonProps, {
-        innerProps: innerProps,
-        isDisabled: isDisabled,
-        isFocused: isFocused
-      }));
-    }
-  }, {
-    key: "renderMenu",
-    value: function renderMenu() {
-      var _this5 = this;
-
-      var _this$components3 = this.components,
-          Group = _this$components3.Group,
-          GroupHeading = _this$components3.GroupHeading,
-          Menu = _this$components3.Menu,
-          MenuList = _this$components3.MenuList,
-          MenuPortal = _this$components3.MenuPortal,
-          LoadingMessage = _this$components3.LoadingMessage,
-          NoOptionsMessage = _this$components3.NoOptionsMessage,
-          Option = _this$components3.Option;
-      var commonProps = this.commonProps;
-      var _this$state9 = this.state,
-          focusedOption = _this$state9.focusedOption,
-          menuOptions = _this$state9.menuOptions;
-      var _this$props18 = this.props,
-          captureMenuScroll = _this$props18.captureMenuScroll,
-          inputValue = _this$props18.inputValue,
-          isLoading = _this$props18.isLoading,
-          loadingMessage = _this$props18.loadingMessage,
-          minMenuHeight = _this$props18.minMenuHeight,
-          maxMenuHeight = _this$props18.maxMenuHeight,
-          menuIsOpen = _this$props18.menuIsOpen,
-          menuPlacement = _this$props18.menuPlacement,
-          menuPosition = _this$props18.menuPosition,
-          menuPortalTarget = _this$props18.menuPortalTarget,
-          menuShouldBlockScroll = _this$props18.menuShouldBlockScroll,
-          menuShouldScrollIntoView = _this$props18.menuShouldScrollIntoView,
-          noOptionsMessage = _this$props18.noOptionsMessage,
-          onMenuScrollToTop = _this$props18.onMenuScrollToTop,
-          onMenuScrollToBottom = _this$props18.onMenuScrollToBottom;
-      if (!menuIsOpen) return null; // TODO: Internal Option Type here
-
-      var render = function render(props) {
-        // for performance, the menu options in state aren't changed when the
-        // focused option changes so we calculate additional props based on that
-        var isFocused = focusedOption === props.data;
-        props.innerRef = isFocused ? _this5.getFocusedOptionRef : undefined;
-        return React__default.createElement(Option, _extends$1({}, commonProps, props, {
-          isFocused: isFocused
-        }), _this5.formatOptionLabel(props.data, 'menu'));
-      };
-
-      var menuUI;
-
-      if (this.hasOptions()) {
-        menuUI = menuOptions.render.map(function (item) {
-          if (item.type === 'group') {
-            var type = item.type,
-                group = _objectWithoutProperties$2(item, ["type"]);
-
-            var headingId = "".concat(item.key, "-heading");
-            return React__default.createElement(Group, _extends$1({}, commonProps, group, {
-              Heading: GroupHeading,
-              headingProps: {
-                id: headingId
-              },
-              label: _this5.formatGroupLabel(item.data)
-            }), item.options.map(function (option) {
-              return render(option);
-            }));
-          } else if (item.type === 'option') {
-            return render(item);
-          }
-        });
-      } else if (isLoading) {
-        var message = loadingMessage({
-          inputValue: inputValue
-        });
-        if (message === null) return null;
-        menuUI = React__default.createElement(LoadingMessage, commonProps, message);
-      } else {
-        var _message = noOptionsMessage({
-          inputValue: inputValue
-        });
-
-        if (_message === null) return null;
-        menuUI = React__default.createElement(NoOptionsMessage, commonProps, _message);
-      }
-
-      var menuPlacementProps = {
-        minMenuHeight: minMenuHeight,
-        maxMenuHeight: maxMenuHeight,
-        menuPlacement: menuPlacement,
-        menuPosition: menuPosition,
-        menuShouldScrollIntoView: menuShouldScrollIntoView
-      };
-      var menuElement = React__default.createElement(MenuPlacer, _extends$1({}, commonProps, menuPlacementProps), function (_ref6) {
-        var ref = _ref6.ref,
-            _ref6$placerProps = _ref6.placerProps,
-            placement = _ref6$placerProps.placement,
-            maxHeight = _ref6$placerProps.maxHeight;
-        return React__default.createElement(Menu, _extends$1({}, commonProps, menuPlacementProps, {
-          innerRef: ref,
-          innerProps: {
-            onMouseDown: _this5.onMenuMouseDown,
-            onMouseMove: _this5.onMenuMouseMove
+    if (isMulti) {
+      var selectValues = selectValue.map(function (opt, index) {
+        var isOptionFocused = opt === focusedValue;
+        return React__default.createElement(MultiValue, _extends$4$1({}, commonProps, {
+          components: {
+            Container: MultiValueContainer,
+            Label: MultiValueLabel,
+            Remove: MultiValueRemove
           },
-          isLoading: isLoading,
-          placement: placement
-        }), React__default.createElement(ScrollCaptorSwitch, {
-          isEnabled: captureMenuScroll,
-          onTopArrive: onMenuScrollToTop,
-          onBottomArrive: onMenuScrollToBottom
-        }, React__default.createElement(ScrollBlock, {
-          isEnabled: menuShouldBlockScroll
-        }, React__default.createElement(MenuList, _extends$1({}, commonProps, {
-          innerRef: _this5.getMenuListRef,
-          isLoading: isLoading,
-          maxHeight: maxHeight
-        }), menuUI))));
-      }); // positioning behaviour is almost identical for portalled and fixed,
-      // so we use the same component. the actual portalling logic is forked
-      // within the component based on `menuPosition`
-
-      return menuPortalTarget || menuPosition === 'fixed' ? React__default.createElement(MenuPortal, _extends$1({}, commonProps, {
-        appendTo: menuPortalTarget,
-        controlElement: this.controlRef,
-        menuPlacement: menuPlacement,
-        menuPosition: menuPosition
-      }), menuElement) : menuElement;
+          isFocused: isOptionFocused,
+          isDisabled: isDisabled,
+          key: _this4.getOptionValue(opt),
+          index: index,
+          removeProps: {
+            onClick: function onClick() {
+              return _this4.removeValue(opt);
+            },
+            onTouchEnd: function onTouchEnd() {
+              return _this4.removeValue(opt);
+            },
+            onMouseDown: function onMouseDown(e) {
+              e.preventDefault();
+              e.stopPropagation();
+            }
+          },
+          data: opt
+        }), _this4.formatOptionLabel(opt, 'value'));
+      });
+      return selectValues;
     }
-  }, {
-    key: "renderFormField",
-    value: function renderFormField() {
-      var _this6 = this;
 
-      var _this$props19 = this.props,
-          delimiter = _this$props19.delimiter,
-          isDisabled = _this$props19.isDisabled,
-          isMulti = _this$props19.isMulti,
-          name = _this$props19.name;
-      var selectValue = this.state.selectValue;
-      if (!name || isDisabled) return;
+    if (inputValue) {
+      return null;
+    }
 
-      if (isMulti) {
-        if (delimiter) {
-          var value = selectValue.map(function (opt) {
-            return _this6.getOptionValue(opt);
-          }).join(delimiter);
-          return React__default.createElement("input", {
-            name: name,
-            type: "hidden",
-            value: value
-          });
-        } else {
-          var input = selectValue.length > 0 ? selectValue.map(function (opt, i) {
-            return React__default.createElement("input", {
-              key: "i-".concat(i),
-              name: name,
-              type: "hidden",
-              value: _this6.getOptionValue(opt)
-            });
-          }) : React__default.createElement("input", {
-            name: name,
-            type: "hidden"
-          });
-          return React__default.createElement("div", null, input);
+    var singleValue = selectValue[0];
+    return React__default.createElement(SingleValue, _extends$4$1({}, commonProps, {
+      data: singleValue,
+      isDisabled: isDisabled
+    }), this.formatOptionLabel(singleValue, 'value'));
+  };
+
+  _proto.renderClearIndicator = function renderClearIndicator() {
+    var ClearIndicator = this.components.ClearIndicator;
+    var commonProps = this.commonProps;
+    var _this$props16 = this.props,
+        isDisabled = _this$props16.isDisabled,
+        isLoading = _this$props16.isLoading;
+    var isFocused = this.state.isFocused;
+
+    if (!this.isClearable() || !ClearIndicator || isDisabled || !this.hasValue() || isLoading) {
+      return null;
+    }
+
+    var innerProps = {
+      onMouseDown: this.onClearIndicatorMouseDown,
+      onTouchEnd: this.onClearIndicatorTouchEnd,
+      'aria-hidden': 'true'
+    };
+    return React__default.createElement(ClearIndicator, _extends$4$1({}, commonProps, {
+      innerProps: innerProps,
+      isFocused: isFocused
+    }));
+  };
+
+  _proto.renderLoadingIndicator = function renderLoadingIndicator() {
+    var LoadingIndicator = this.components.LoadingIndicator;
+    var commonProps = this.commonProps;
+    var _this$props17 = this.props,
+        isDisabled = _this$props17.isDisabled,
+        isLoading = _this$props17.isLoading;
+    var isFocused = this.state.isFocused;
+    if (!LoadingIndicator || !isLoading) return null;
+    var innerProps = {
+      'aria-hidden': 'true'
+    };
+    return React__default.createElement(LoadingIndicator, _extends$4$1({}, commonProps, {
+      innerProps: innerProps,
+      isDisabled: isDisabled,
+      isFocused: isFocused
+    }));
+  };
+
+  _proto.renderIndicatorSeparator = function renderIndicatorSeparator() {
+    var _this$components2 = this.components,
+        DropdownIndicator = _this$components2.DropdownIndicator,
+        IndicatorSeparator = _this$components2.IndicatorSeparator; // separator doesn't make sense without the dropdown indicator
+
+    if (!DropdownIndicator || !IndicatorSeparator) return null;
+    var commonProps = this.commonProps;
+    var isDisabled = this.props.isDisabled;
+    var isFocused = this.state.isFocused;
+    return React__default.createElement(IndicatorSeparator, _extends$4$1({}, commonProps, {
+      isDisabled: isDisabled,
+      isFocused: isFocused
+    }));
+  };
+
+  _proto.renderDropdownIndicator = function renderDropdownIndicator() {
+    var DropdownIndicator = this.components.DropdownIndicator;
+    if (!DropdownIndicator) return null;
+    var commonProps = this.commonProps;
+    var isDisabled = this.props.isDisabled;
+    var isFocused = this.state.isFocused;
+    var innerProps = {
+      onMouseDown: this.onDropdownIndicatorMouseDown,
+      onTouchEnd: this.onDropdownIndicatorTouchEnd,
+      'aria-hidden': 'true'
+    };
+    return React__default.createElement(DropdownIndicator, _extends$4$1({}, commonProps, {
+      innerProps: innerProps,
+      isDisabled: isDisabled,
+      isFocused: isFocused
+    }));
+  };
+
+  _proto.renderMenu = function renderMenu() {
+    var _this5 = this;
+
+    var _this$components3 = this.components,
+        Group = _this$components3.Group,
+        GroupHeading = _this$components3.GroupHeading,
+        Menu = _this$components3.Menu,
+        MenuList = _this$components3.MenuList,
+        MenuPortal = _this$components3.MenuPortal,
+        LoadingMessage = _this$components3.LoadingMessage,
+        NoOptionsMessage = _this$components3.NoOptionsMessage,
+        Option = _this$components3.Option;
+    var commonProps = this.commonProps;
+    var _this$state9 = this.state,
+        focusedOption = _this$state9.focusedOption,
+        menuOptions = _this$state9.menuOptions;
+    var _this$props18 = this.props,
+        captureMenuScroll = _this$props18.captureMenuScroll,
+        inputValue = _this$props18.inputValue,
+        isLoading = _this$props18.isLoading,
+        loadingMessage = _this$props18.loadingMessage,
+        minMenuHeight = _this$props18.minMenuHeight,
+        maxMenuHeight = _this$props18.maxMenuHeight,
+        menuIsOpen = _this$props18.menuIsOpen,
+        menuPlacement = _this$props18.menuPlacement,
+        menuPosition = _this$props18.menuPosition,
+        menuPortalTarget = _this$props18.menuPortalTarget,
+        menuShouldBlockScroll = _this$props18.menuShouldBlockScroll,
+        menuShouldScrollIntoView = _this$props18.menuShouldScrollIntoView,
+        noOptionsMessage = _this$props18.noOptionsMessage,
+        onMenuScrollToTop = _this$props18.onMenuScrollToTop,
+        onMenuScrollToBottom = _this$props18.onMenuScrollToBottom;
+    if (!menuIsOpen) return null; // TODO: Internal Option Type here
+
+    var render = function render(props) {
+      // for performance, the menu options in state aren't changed when the
+      // focused option changes so we calculate additional props based on that
+      var isFocused = focusedOption === props.data;
+      props.innerRef = isFocused ? _this5.getFocusedOptionRef : undefined;
+      return React__default.createElement(Option, _extends$4$1({}, commonProps, props, {
+        isFocused: isFocused
+      }), _this5.formatOptionLabel(props.data, 'menu'));
+    };
+
+    var menuUI;
+
+    if (this.hasOptions()) {
+      menuUI = menuOptions.render.map(function (item) {
+        if (item.type === 'group') {
+          var type = item.type,
+              group = _objectWithoutPropertiesLoose$2$2(item, ["type"]);
+
+          var headingId = item.key + "-heading";
+          return React__default.createElement(Group, _extends$4$1({}, commonProps, group, {
+            Heading: GroupHeading,
+            headingProps: {
+              id: headingId
+            },
+            label: _this5.formatGroupLabel(item.data)
+          }), item.options.map(function (option) {
+            return render(option);
+          }));
+        } else if (item.type === 'option') {
+          return render(item);
         }
-      } else {
-        var _value = selectValue[0] ? this.getOptionValue(selectValue[0]) : '';
+      });
+    } else if (isLoading) {
+      var message = loadingMessage({
+        inputValue: inputValue
+      });
+      if (message === null) return null;
+      menuUI = React__default.createElement(LoadingMessage, commonProps, message);
+    } else {
+      var _message = noOptionsMessage({
+        inputValue: inputValue
+      });
 
+      if (_message === null) return null;
+      menuUI = React__default.createElement(NoOptionsMessage, commonProps, _message);
+    }
+
+    var menuPlacementProps = {
+      minMenuHeight: minMenuHeight,
+      maxMenuHeight: maxMenuHeight,
+      menuPlacement: menuPlacement,
+      menuPosition: menuPosition,
+      menuShouldScrollIntoView: menuShouldScrollIntoView
+    };
+    var menuElement = React__default.createElement(MenuPlacer, _extends$4$1({}, commonProps, menuPlacementProps), function (_ref8) {
+      var ref = _ref8.ref,
+          _ref8$placerProps = _ref8.placerProps,
+          placement = _ref8$placerProps.placement,
+          maxHeight = _ref8$placerProps.maxHeight;
+      return React__default.createElement(Menu, _extends$4$1({}, commonProps, menuPlacementProps, {
+        innerRef: ref,
+        innerProps: {
+          onMouseDown: _this5.onMenuMouseDown,
+          onMouseMove: _this5.onMenuMouseMove
+        },
+        isLoading: isLoading,
+        placement: placement
+      }), React__default.createElement(ScrollCaptorSwitch, {
+        isEnabled: captureMenuScroll,
+        onTopArrive: onMenuScrollToTop,
+        onBottomArrive: onMenuScrollToBottom
+      }, React__default.createElement(ScrollBlock, {
+        isEnabled: menuShouldBlockScroll
+      }, React__default.createElement(MenuList, _extends$4$1({}, commonProps, {
+        innerRef: _this5.getMenuListRef,
+        isLoading: isLoading,
+        maxHeight: maxHeight
+      }), menuUI))));
+    }); // positioning behaviour is almost identical for portalled and fixed,
+    // so we use the same component. the actual portalling logic is forked
+    // within the component based on `menuPosition`
+
+    return menuPortalTarget || menuPosition === 'fixed' ? React__default.createElement(MenuPortal, _extends$4$1({}, commonProps, {
+      appendTo: menuPortalTarget,
+      controlElement: this.controlRef,
+      menuPlacement: menuPlacement,
+      menuPosition: menuPosition
+    }), menuElement) : menuElement;
+  };
+
+  _proto.renderFormField = function renderFormField() {
+    var _this6 = this;
+
+    var _this$props19 = this.props,
+        delimiter = _this$props19.delimiter,
+        isDisabled = _this$props19.isDisabled,
+        isMulti = _this$props19.isMulti,
+        name = _this$props19.name;
+    var selectValue = this.state.selectValue;
+    if (!name || isDisabled) return;
+
+    if (isMulti) {
+      if (delimiter) {
+        var value = selectValue.map(function (opt) {
+          return _this6.getOptionValue(opt);
+        }).join(delimiter);
         return React__default.createElement("input", {
           name: name,
           type: "hidden",
-          value: _value
+          value: value
         });
+      } else {
+        var input = selectValue.length > 0 ? selectValue.map(function (opt, i) {
+          return React__default.createElement("input", {
+            key: "i-" + i,
+            name: name,
+            type: "hidden",
+            value: _this6.getOptionValue(opt)
+          });
+        }) : React__default.createElement("input", {
+          name: name,
+          type: "hidden"
+        });
+        return React__default.createElement("div", null, input);
       }
+    } else {
+      var _value2 = selectValue[0] ? this.getOptionValue(selectValue[0]) : '';
+
+      return React__default.createElement("input", {
+        name: name,
+        type: "hidden",
+        value: _value2
+      });
     }
-  }, {
-    key: "renderLiveRegion",
-    value: function renderLiveRegion() {
-      if (!this.state.isFocused) return null;
-      return React__default.createElement(A11yText, {
-        "aria-live": "polite"
-      }, React__default.createElement("p", {
-        id: "aria-selection-event"
-      }, "\xA0", this.state.ariaLiveSelection), React__default.createElement("p", {
-        id: "aria-context"
-      }, "\xA0", this.constructAriaLiveMessage()));
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      var _this$components4 = this.components,
-          Control = _this$components4.Control,
-          IndicatorsContainer = _this$components4.IndicatorsContainer,
-          SelectContainer = _this$components4.SelectContainer,
-          ValueContainer = _this$components4.ValueContainer;
-      var _this$props20 = this.props,
-          className = _this$props20.className,
-          id = _this$props20.id,
-          isDisabled = _this$props20.isDisabled,
-          menuIsOpen = _this$props20.menuIsOpen;
-      var isFocused = this.state.isFocused;
-      var commonProps = this.commonProps = this.getCommonProps();
-      return React__default.createElement(SelectContainer, _extends$1({}, commonProps, {
-        className: className,
-        innerProps: {
-          id: id,
-          onKeyDown: this.onKeyDown
-        },
-        isDisabled: isDisabled,
-        isFocused: isFocused
-      }), this.renderLiveRegion(), React__default.createElement(Control, _extends$1({}, commonProps, {
-        innerRef: this.getControlRef,
-        innerProps: {
-          onMouseDown: this.onControlMouseDown,
-          onTouchEnd: this.onControlTouchEnd
-        },
-        isDisabled: isDisabled,
-        isFocused: isFocused,
-        menuIsOpen: menuIsOpen
-      }), React__default.createElement(ValueContainer, _extends$1({}, commonProps, {
-        isDisabled: isDisabled
-      }), this.renderPlaceholderOrValue(), this.renderInput()), React__default.createElement(IndicatorsContainer, _extends$1({}, commonProps, {
-        isDisabled: isDisabled
-      }), this.renderClearIndicator(), this.renderLoadingIndicator(), this.renderIndicatorSeparator(), this.renderDropdownIndicator())), this.renderMenu(), this.renderFormField());
-    }
-  }]);
+  };
+
+  _proto.renderLiveRegion = function renderLiveRegion() {
+    if (!this.state.isFocused) return null;
+    return React__default.createElement(A11yText, {
+      "aria-live": "polite"
+    }, React__default.createElement("p", {
+      id: "aria-selection-event"
+    }, "\xA0", this.state.ariaLiveSelection), React__default.createElement("p", {
+      id: "aria-context"
+    }, "\xA0", this.constructAriaLiveMessage()));
+  };
+
+  _proto.render = function render() {
+    var _this$components4 = this.components,
+        Control = _this$components4.Control,
+        IndicatorsContainer = _this$components4.IndicatorsContainer,
+        SelectContainer = _this$components4.SelectContainer,
+        ValueContainer = _this$components4.ValueContainer;
+    var _this$props20 = this.props,
+        className = _this$props20.className,
+        id = _this$props20.id,
+        isDisabled = _this$props20.isDisabled,
+        menuIsOpen = _this$props20.menuIsOpen;
+    var isFocused = this.state.isFocused;
+    var commonProps = this.commonProps = this.getCommonProps();
+    return React__default.createElement(SelectContainer, _extends$4$1({}, commonProps, {
+      className: className,
+      innerProps: {
+        id: id,
+        onKeyDown: this.onKeyDown
+      },
+      isDisabled: isDisabled,
+      isFocused: isFocused
+    }), this.renderLiveRegion(), React__default.createElement(Control, _extends$4$1({}, commonProps, {
+      innerRef: this.getControlRef,
+      innerProps: {
+        onMouseDown: this.onControlMouseDown,
+        onTouchEnd: this.onControlTouchEnd
+      },
+      isDisabled: isDisabled,
+      isFocused: isFocused,
+      menuIsOpen: menuIsOpen
+    }), React__default.createElement(ValueContainer, _extends$4$1({}, commonProps, {
+      isDisabled: isDisabled
+    }), this.renderPlaceholderOrValue(), this.renderInput()), React__default.createElement(IndicatorsContainer, _extends$4$1({}, commonProps, {
+      isDisabled: isDisabled
+    }), this.renderClearIndicator(), this.renderLoadingIndicator(), this.renderIndicatorSeparator(), this.renderDropdownIndicator())), this.renderMenu(), this.renderFormField());
+  };
 
   return Select;
 }(React.Component);
 
-_defineProperty$1(Select, "defaultProps", defaultProps);
+Select.defaultProps = defaultProps;
 
+function _extends$c() { _extends$c = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$c.apply(this, arguments); }
+
+function _objectWithoutPropertiesLoose$4(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+
+function _inheritsLoose$5(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; subClass.__proto__ = superClass; }
 var defaultProps$1 = {
   defaultInputValue: '',
   defaultMenuIsOpen: false,
@@ -26134,38 +25834,32 @@ var manageState = function manageState(SelectComponent) {
   return _temp = _class =
   /*#__PURE__*/
   function (_Component) {
-    _inherits$1(StateManager, _Component);
+    _inheritsLoose$5(StateManager, _Component);
 
     function StateManager() {
-      var _getPrototypeOf2;
-
       var _this;
-
-      _classCallCheck$1(this, StateManager);
 
       for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
         args[_key] = arguments[_key];
       }
 
-      _this = _possibleConstructorReturn$1(this, (_getPrototypeOf2 = _getPrototypeOf(StateManager)).call.apply(_getPrototypeOf2, [this].concat(args)));
-
-      _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "select", void 0);
-
-      _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "state", {
+      _this = _Component.call.apply(_Component, [this].concat(args)) || this;
+      _this.select = void 0;
+      _this.state = {
         inputValue: _this.props.inputValue !== undefined ? _this.props.inputValue : _this.props.defaultInputValue,
         menuIsOpen: _this.props.menuIsOpen !== undefined ? _this.props.menuIsOpen : _this.props.defaultMenuIsOpen,
         value: _this.props.value !== undefined ? _this.props.value : _this.props.defaultValue
-      });
+      };
 
-      _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onChange", function (value, actionMeta) {
+      _this.onChange = function (value, actionMeta) {
         _this.callProp('onChange', value, actionMeta);
 
         _this.setState({
           value: value
         });
-      });
+      };
 
-      _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onInputChange", function (value, actionMeta) {
+      _this.onInputChange = function (value, actionMeta) {
         // TODO: for backwards compatibility, we allow the prop to return a new
         // value, but now inputValue is a controllable prop we probably shouldn't
         var newValue = _this.callProp('onInputChange', value, actionMeta);
@@ -26173,92 +25867,87 @@ var manageState = function manageState(SelectComponent) {
         _this.setState({
           inputValue: newValue !== undefined ? newValue : value
         });
-      });
+      };
 
-      _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onMenuOpen", function () {
+      _this.onMenuOpen = function () {
         _this.callProp('onMenuOpen');
 
         _this.setState({
           menuIsOpen: true
         });
-      });
+      };
 
-      _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onMenuClose", function () {
+      _this.onMenuClose = function () {
         _this.callProp('onMenuClose');
 
         _this.setState({
           menuIsOpen: false
         });
-      });
+      };
 
       return _this;
     }
 
-    _createClass$1(StateManager, [{
-      key: "focus",
-      value: function focus() {
-        this.select.focus();
-      }
-    }, {
-      key: "blur",
-      value: function blur() {
-        this.select.blur();
-      } // FIXME: untyped flow code, return any
+    var _proto = StateManager.prototype;
 
-    }, {
-      key: "getProp",
-      value: function getProp(key) {
-        return this.props[key] !== undefined ? this.props[key] : this.state[key];
-      } // FIXME: untyped flow code, return any
+    _proto.focus = function focus() {
+      this.select.focus();
+    };
 
-    }, {
-      key: "callProp",
-      value: function callProp(name) {
-        if (typeof this.props[name] === 'function') {
-          var _this$props;
+    _proto.blur = function blur() {
+      this.select.blur();
+    } // FIXME: untyped flow code, return any
+    ;
 
-          for (var _len2 = arguments.length, args = new Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
-            args[_key2 - 1] = arguments[_key2];
-          }
+    _proto.getProp = function getProp(key) {
+      return this.props[key] !== undefined ? this.props[key] : this.state[key];
+    } // FIXME: untyped flow code, return any
+    ;
 
-          return (_this$props = this.props)[name].apply(_this$props, args);
+    _proto.callProp = function callProp(name) {
+      if (typeof this.props[name] === 'function') {
+        var _this$props;
+
+        for (var _len2 = arguments.length, args = new Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
+          args[_key2 - 1] = arguments[_key2];
         }
-      }
-    }, {
-      key: "render",
-      value: function render() {
-        var _this2 = this;
 
-        var _this$props2 = this.props,
-            defaultInputValue = _this$props2.defaultInputValue,
-            defaultMenuIsOpen = _this$props2.defaultMenuIsOpen,
-            defaultValue = _this$props2.defaultValue,
-            props = _objectWithoutProperties$2(_this$props2, ["defaultInputValue", "defaultMenuIsOpen", "defaultValue"]);
-
-        return React__default.createElement(SelectComponent, _extends$1({}, props, {
-          ref: function ref(_ref) {
-            _this2.select = _ref;
-          },
-          inputValue: this.getProp('inputValue'),
-          menuIsOpen: this.getProp('menuIsOpen'),
-          onChange: this.onChange,
-          onInputChange: this.onInputChange,
-          onMenuClose: this.onMenuClose,
-          onMenuOpen: this.onMenuOpen,
-          value: this.getProp('value')
-        }));
+        return (_this$props = this.props)[name].apply(_this$props, args);
       }
-    }]);
+    };
+
+    _proto.render = function render() {
+      var _this2 = this;
+
+      var _this$props2 = this.props,
+          defaultInputValue = _this$props2.defaultInputValue,
+          defaultMenuIsOpen = _this$props2.defaultMenuIsOpen,
+          defaultValue = _this$props2.defaultValue,
+          props = _objectWithoutPropertiesLoose$4(_this$props2, ["defaultInputValue", "defaultMenuIsOpen", "defaultValue"]);
+
+      return React__default.createElement(SelectComponent, _extends$c({}, props, {
+        ref: function ref(_ref) {
+          _this2.select = _ref;
+        },
+        inputValue: this.getProp('inputValue'),
+        menuIsOpen: this.getProp('menuIsOpen'),
+        onChange: this.onChange,
+        onInputChange: this.onInputChange,
+        onMenuClose: this.onMenuClose,
+        onMenuOpen: this.onMenuOpen,
+        value: this.getProp('value')
+      }));
+    };
 
     return StateManager;
-  }(React.Component), _defineProperty$1(_class, "defaultProps", defaultProps$1), _temp;
+  }(React.Component), _class.defaultProps = defaultProps$1, _temp;
 };
 
 var index$5 = manageState(Select);
 
 function ownKeys$9(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread$b(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$9(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$9(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread$a(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$9(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$9(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function getBackgroundColor(variant) {
   switch (variant) {
@@ -26285,7 +25974,7 @@ var styleOverride = function styleOverride(_ref) {
       };
     },
     control: function control(provided, state) {
-      return _objectSpread$b({}, provided, {
+      return _objectSpread$a({}, provided, {
         backgroundColor: getBackgroundColor(variant),
         border: state.isDisabled && !hasShadow && variant !== 'borderless' ? "border: 1px solid ".concat(colors.gray.default) : 'none',
         borderColor: state.isDisabled ? colors.gray.default : null,
@@ -26328,11 +26017,11 @@ var styleOverride = function styleOverride(_ref) {
         color = colors.gray.light;
       }
 
-      return _objectSpread$b({}, defaultStyles, {
+      return _objectSpread$a({}, defaultStyles, {
         fontSize: fontSizes.small,
         color: colors.black,
         backgroundColor: color,
-        ':active': _objectSpread$b({}, defaultStyles[':active'], {
+        ':active': _objectSpread$a({}, defaultStyles[':active'], {
           backgroundColor: colors.gray.xlight
         })
       });
@@ -26748,7 +26437,7 @@ var Actions = styled__default.div(_templateObject5$2());
 
 function ownKeys$a(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread$c(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$a(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$a(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread$b(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$a(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$a(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function updateLanguageSets(formikLanguageSets, state) {
   var currentLanguageSets = state.languageSets;
@@ -26761,7 +26450,7 @@ function updateLanguageSets(formikLanguageSets, state) {
 
     return acc.concat(Object.assign({}, set));
   }, []);
-  return _objectSpread$c({}, state, {
+  return _objectSpread$b({}, state, {
     languageSets: newLanguageSets
   });
 }
@@ -28394,7 +28083,7 @@ var ReactModal = unwrapExports(lib$3);
 
 function ownKeys$b(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread$d(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$b(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$b(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread$c(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$b(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$b(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 var ModalWrapper = function ModalWrapper(_ref) {
   var isOpen = _ref.isOpen,
@@ -28410,7 +28099,7 @@ var ModalWrapper = function ModalWrapper(_ref) {
       alignItems: 'center',
       justifyContent: 'center'
     },
-    content: _objectSpread$d({
+    content: _objectSpread$c({
       top: 'unset',
       left: 'unset',
       right: 'unset',
@@ -28770,7 +28459,7 @@ var FadeOverlay = styled__default.div(_templateObject9());
 
 function ownKeys$c(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread$e(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$c(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$c(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread$d(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$c(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$c(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 ReactModal.setAppElement('body');
 
 var ModalWrapper$1 =
@@ -28851,7 +28540,7 @@ function (_Component) {
           alignItems: 'center',
           justifyContent: 'center'
         },
-        content: _objectSpread$e({
+        content: _objectSpread$d({
           position: 'relative',
           top: 'unset',
           left: 'unset',
@@ -28887,7 +28576,7 @@ function (_Component) {
         }
       }, title && React__default.createElement(Title, null, title), subtitle && React__default.createElement(Subtitle, null, subtitle), description && React__default.createElement(Description, null, description), actions && React__default.createElement(Actions$1, null, actions)), React__default.createElement(ContentWrapper$1, null, React__default.createElement(FadeOverlay, null), React__default.createElement(InnerContent, {
         hasHeader: hasHeader,
-        style: _objectSpread$e({}, contentStyle, {}, styleOverrides.content)
+        style: _objectSpread$d({}, contentStyle, {}, styleOverrides.content)
       }, children)), footer && React__default.createElement(Footer, {
         ref: function ref(node) {
           return _this2.footerRef = node;
@@ -29290,7 +28979,7 @@ module.exports = { "default": assign$1, __esModule: true };
 
 unwrapExports(assign$2);
 
-var _extends$2 = createCommonjsModule(function (module, exports) {
+var _extends$d = createCommonjsModule(function (module, exports) {
 
 exports.__esModule = true;
 
@@ -29315,7 +29004,7 @@ exports.default = _assign2.default || function (target) {
 };
 });
 
-var _extends$3 = unwrapExports(_extends$2);
+var _extends$e = unwrapExports(_extends$d);
 
 var classCallCheck$2 = createCommonjsModule(function (module, exports) {
 
@@ -29328,7 +29017,7 @@ exports.default = function (instance, Constructor) {
 };
 });
 
-var _classCallCheck$2 = unwrapExports(classCallCheck$2);
+var _classCallCheck$1 = unwrapExports(classCallCheck$2);
 
 // 19.1.2.4 / 15.2.3.6 Object.defineProperty(O, P, Attributes)
 _export(_export.S + _export.F * !_descriptors, 'Object', { defineProperty: _objectDp.f });
@@ -29373,7 +29062,7 @@ exports.default = function () {
 }();
 });
 
-var _createClass$2 = unwrapExports(createClass$2);
+var _createClass$1 = unwrapExports(createClass$2);
 
 // true  -> String#at
 // false -> String#codePointAt
@@ -30052,7 +29741,7 @@ exports.default = typeof _symbol2.default === "function" && _typeof(_iterator2.d
 };
 });
 
-var _typeof$1 = unwrapExports(_typeof_1$1);
+var _typeof = unwrapExports(_typeof_1$1);
 
 var possibleConstructorReturn$1 = createCommonjsModule(function (module, exports) {
 
@@ -30073,7 +29762,7 @@ exports.default = function (self, call) {
 };
 });
 
-var _possibleConstructorReturn$2 = unwrapExports(possibleConstructorReturn$1);
+var _possibleConstructorReturn$1 = unwrapExports(possibleConstructorReturn$1);
 
 // Works with __proto__ only. Old v8 can't work with null proto objects.
 /* eslint-disable no-proto */
@@ -30162,7 +29851,7 @@ exports.default = function (subClass, superClass) {
 };
 });
 
-var _inherits$2 = unwrapExports(inherits$1);
+var _inherits$1 = unwrapExports(inherits$1);
 
 var defineProperty$8 = createCommonjsModule(function (module, exports) {
 
@@ -30190,7 +29879,7 @@ exports.default = function (obj, key, value) {
 };
 });
 
-var _defineProperty$2 = unwrapExports(defineProperty$8);
+var _defineProperty$1 = unwrapExports(defineProperty$8);
 
 var Track = function Track(props) {
   var _ref, _ref2;
@@ -30203,9 +29892,9 @@ var Track = function Track(props) {
       style = props.style,
       reverse = props.reverse;
 
-  var positonStyle = vertical ? (_ref = {}, _defineProperty$2(_ref, reverse ? 'top' : 'bottom', offset + '%'), _defineProperty$2(_ref, reverse ? 'bottom' : 'top', 'auto'), _defineProperty$2(_ref, 'height', length + '%'), _ref) : (_ref2 = {}, _defineProperty$2(_ref2, reverse ? 'right' : 'left', offset + '%'), _defineProperty$2(_ref2, reverse ? 'left' : 'right', 'auto'), _defineProperty$2(_ref2, 'width', length + '%'), _ref2);
+  var positonStyle = vertical ? (_ref = {}, _defineProperty$1(_ref, reverse ? 'top' : 'bottom', offset + '%'), _defineProperty$1(_ref, reverse ? 'bottom' : 'top', 'auto'), _defineProperty$1(_ref, 'height', length + '%'), _ref) : (_ref2 = {}, _defineProperty$1(_ref2, reverse ? 'right' : 'left', offset + '%'), _defineProperty$1(_ref2, reverse ? 'left' : 'right', 'auto'), _defineProperty$1(_ref2, 'width', length + '%'), _ref2);
 
-  var elStyle = _extends$3({}, style, positonStyle);
+  var elStyle = _extends$e({}, style, positonStyle);
   return included ? React__default.createElement('div', { className: className, style: elStyle }) : null;
 };
 
@@ -30226,7 +29915,7 @@ exports.default = function (obj, keys) {
 };
 });
 
-var _objectWithoutProperties$3 = unwrapExports(objectWithoutProperties$1);
+var _objectWithoutProperties$2 = unwrapExports(objectWithoutProperties$1);
 
 // most Object methods by ES6 should accept primitives
 
@@ -30846,12 +30535,12 @@ var Steps = function Steps(_ref) {
     var offset = Math.abs(point - min) / range * 100 + '%';
 
     var isActived = !included && point === upperBound || included && point <= upperBound && point >= lowerBound;
-    var style = vertical ? _extends$3({}, dotStyle, _defineProperty$2({}, reverse ? 'top' : 'bottom', offset)) : _extends$3({}, dotStyle, _defineProperty$2({}, reverse ? 'right' : 'left', offset));
+    var style = vertical ? _extends$e({}, dotStyle, _defineProperty$1({}, reverse ? 'top' : 'bottom', offset)) : _extends$e({}, dotStyle, _defineProperty$1({}, reverse ? 'right' : 'left', offset));
     if (isActived) {
-      style = _extends$3({}, style, activeDotStyle);
+      style = _extends$e({}, style, activeDotStyle);
     }
 
-    var pointClassName = classnames((_classNames = {}, _defineProperty$2(_classNames, prefixCls + '-dot', true), _defineProperty$2(_classNames, prefixCls + '-dot-active', isActived), _defineProperty$2(_classNames, prefixCls + '-dot-reverse', reverse), _classNames));
+    var pointClassName = classnames((_classNames = {}, _defineProperty$1(_classNames, prefixCls + '-dot', true), _defineProperty$1(_classNames, prefixCls + '-dot-active', isActived), _defineProperty$1(_classNames, prefixCls + '-dot-reverse', reverse), _classNames));
 
     return React__default.createElement('span', { className: pointClassName, style: style, key: point });
   });
@@ -30907,19 +30596,19 @@ var Marks = function Marks(_ref) {
     }
 
     var isActive = !included && point === upperBound || included && point <= upperBound && point >= lowerBound;
-    var markClassName = classnames((_classNames = {}, _defineProperty$2(_classNames, className + '-text', true), _defineProperty$2(_classNames, className + '-text-active', isActive), _classNames));
+    var markClassName = classnames((_classNames = {}, _defineProperty$1(_classNames, className + '-text', true), _defineProperty$1(_classNames, className + '-text-active', isActive), _classNames));
 
-    var bottomStyle = _defineProperty$2({
+    var bottomStyle = _defineProperty$1({
       marginBottom: '-50%'
     }, reverse ? 'top' : 'bottom', (point - min) / range * 100 + '%');
 
-    var leftStyle = _defineProperty$2({
+    var leftStyle = _defineProperty$1({
       transform: 'translateX(-50%)',
       msTransform: 'translateX(-50%)'
     }, reverse ? 'right' : 'left', reverse ? (point - min / 4) / range * 100 + '%' : (point - min) / range * 100 + '%');
 
     var style = vertical ? bottomStyle : leftStyle;
-    var markStyle = markPointIsObject ? _extends$3({}, style, markPoint.style) : style;
+    var markStyle = markPointIsObject ? _extends$e({}, style, markPoint.style) : style;
     return React__default.createElement(
       'span',
       {
@@ -30958,20 +30647,20 @@ Marks.propTypes = {
 };
 
 var Handle = function (_React$Component) {
-  _inherits$2(Handle, _React$Component);
+  _inherits$1(Handle, _React$Component);
 
   function Handle() {
     var _ref;
 
     var _temp, _this, _ret;
 
-    _classCallCheck$2(this, Handle);
+    _classCallCheck$1(this, Handle);
 
     for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn$2(this, (_ref = Handle.__proto__ || Object.getPrototypeOf(Handle)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn$1(this, (_ref = Handle.__proto__ || Object.getPrototypeOf(Handle)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
       clickFocused: false
     }, _this.setHandleRef = function (node) {
       _this.handle = node;
@@ -30986,10 +30675,10 @@ var Handle = function (_React$Component) {
       _this.setClickFocus(false);
     }, _this.handleKeyDown = function () {
       _this.setClickFocus(false);
-    }, _temp), _possibleConstructorReturn$2(_this, _ret);
+    }, _temp), _possibleConstructorReturn$1(_this, _ret);
   }
 
-  _createClass$2(Handle, [{
+  _createClass$1(Handle, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
       // mouseup won't trigger if mouse moved out of handle,
@@ -31040,18 +30729,18 @@ var Handle = function (_React$Component) {
           max = _props.max,
           value = _props.value,
           tabIndex = _props.tabIndex,
-          restProps = _objectWithoutProperties$3(_props, ['prefixCls', 'vertical', 'reverse', 'offset', 'style', 'disabled', 'min', 'max', 'value', 'tabIndex']);
+          restProps = _objectWithoutProperties$2(_props, ['prefixCls', 'vertical', 'reverse', 'offset', 'style', 'disabled', 'min', 'max', 'value', 'tabIndex']);
 
-      var className = classnames(this.props.className, _defineProperty$2({}, prefixCls + '-handle-click-focused', this.state.clickFocused));
-      var positionStyle = vertical ? (_ref2 = {}, _defineProperty$2(_ref2, reverse ? 'top' : 'bottom', offset + '%'), _defineProperty$2(_ref2, reverse ? 'bottom' : 'top', 'auto'), _defineProperty$2(_ref2, 'transform', 'translateY(+50%)'), _ref2) : (_ref3 = {}, _defineProperty$2(_ref3, reverse ? 'right' : 'left', offset + '%'), _defineProperty$2(_ref3, reverse ? 'left' : 'right', 'auto'), _defineProperty$2(_ref3, 'transform', 'translateX(' + (reverse ? '+' : '-') + '50%)'), _ref3);
-      var elStyle = _extends$3({}, style, positionStyle);
+      var className = classnames(this.props.className, _defineProperty$1({}, prefixCls + '-handle-click-focused', this.state.clickFocused));
+      var positionStyle = vertical ? (_ref2 = {}, _defineProperty$1(_ref2, reverse ? 'top' : 'bottom', offset + '%'), _defineProperty$1(_ref2, reverse ? 'bottom' : 'top', 'auto'), _defineProperty$1(_ref2, 'transform', 'translateY(+50%)'), _ref2) : (_ref3 = {}, _defineProperty$1(_ref3, reverse ? 'right' : 'left', offset + '%'), _defineProperty$1(_ref3, reverse ? 'left' : 'right', 'auto'), _defineProperty$1(_ref3, 'transform', 'translateX(' + (reverse ? '+' : '-') + '50%)'), _ref3);
+      var elStyle = _extends$e({}, style, positionStyle);
 
       var _tabIndex = tabIndex || 0;
       if (disabled || tabIndex === null) {
         _tabIndex = null;
       }
 
-      return React__default.createElement('div', _extends$3({
+      return React__default.createElement('div', _extends$e({
         ref: this.setHandleRef,
         tabIndex: _tabIndex
       }, restProps, {
@@ -31230,7 +30919,7 @@ exports.default = function (arr) {
 };
 });
 
-var _toConsumableArray$1 = unwrapExports(toConsumableArray);
+var _toConsumableArray = unwrapExports(toConsumableArray);
 
 /**
  * @ignore
@@ -31892,7 +31581,7 @@ function getClosestPoint(val, _ref2) {
   var diffs = points.map(function (point) {
     return Math.abs(val - point);
   });
-  return points[diffs.indexOf(Math.min.apply(Math, _toConsumableArray$1(diffs)))];
+  return points[diffs.indexOf(Math.min.apply(Math, _toConsumableArray(diffs)))];
 }
 
 function getPrecision(step) {
@@ -32008,12 +31697,12 @@ function createSlider(Component) {
   var _class, _temp;
 
   return _temp = _class = function (_Component) {
-    _inherits$2(ComponentEnhancer, _Component);
+    _inherits$1(ComponentEnhancer, _Component);
 
     function ComponentEnhancer(props) {
-      _classCallCheck$2(this, ComponentEnhancer);
+      _classCallCheck$1(this, ComponentEnhancer);
 
-      var _this = _possibleConstructorReturn$2(this, (ComponentEnhancer.__proto__ || Object.getPrototypeOf(ComponentEnhancer)).call(this, props));
+      var _this = _possibleConstructorReturn$1(this, (ComponentEnhancer.__proto__ || Object.getPrototypeOf(ComponentEnhancer)).call(this, props));
 
       _this.onMouseDown = function (e) {
         if (e.button !== 0) {
@@ -32129,7 +31818,7 @@ function createSlider(Component) {
       return _this;
     }
 
-    _createClass$2(ComponentEnhancer, [{
+    _createClass$1(ComponentEnhancer, [{
       key: 'componentDidMount',
       value: function componentDidMount() {
         // Snapshot testing cannot handle refs, so be sure to null-check this.
@@ -32281,7 +31970,7 @@ function createSlider(Component) {
             tracks = _get$call.tracks,
             handles = _get$call.handles;
 
-        var sliderClassName = classnames(prefixCls, (_classNames = {}, _defineProperty$2(_classNames, prefixCls + '-with-marks', Object.keys(marks).length), _defineProperty$2(_classNames, prefixCls + '-disabled', disabled), _defineProperty$2(_classNames, prefixCls + '-vertical', vertical), _defineProperty$2(_classNames, className, className), _classNames));
+        var sliderClassName = classnames(prefixCls, (_classNames = {}, _defineProperty$1(_classNames, prefixCls + '-with-marks', Object.keys(marks).length), _defineProperty$1(_classNames, prefixCls + '-disabled', disabled), _defineProperty$1(_classNames, prefixCls + '-vertical', vertical), _defineProperty$1(_classNames, className, className), _classNames));
         return React__default.createElement(
           'div',
           {
@@ -32297,7 +31986,7 @@ function createSlider(Component) {
           },
           React__default.createElement('div', {
             className: prefixCls + '-rail',
-            style: _extends$3({}, maximumTrackStyle, railStyle)
+            style: _extends$e({}, maximumTrackStyle, railStyle)
           }),
           tracks,
           React__default.createElement(Steps, {
@@ -32334,7 +32023,7 @@ function createSlider(Component) {
     }]);
 
     return ComponentEnhancer;
-  }(Component), _class.displayName = 'ComponentEnhancer(' + Component.displayName + ')', _class.propTypes = _extends$3({}, Component.propTypes, {
+  }(Component), _class.displayName = 'ComponentEnhancer(' + Component.displayName + ')', _class.propTypes = _extends$e({}, Component.propTypes, {
     min: PropTypes.number,
     max: PropTypes.number,
     step: PropTypes.number,
@@ -32362,7 +32051,7 @@ function createSlider(Component) {
     autoFocus: PropTypes.bool,
     onFocus: PropTypes.func,
     onBlur: PropTypes.func
-  }), _class.defaultProps = _extends$3({}, Component.defaultProps, {
+  }), _class.defaultProps = _extends$e({}, Component.defaultProps, {
     prefixCls: 'rc-slider',
     className: '',
     min: 0,
@@ -32371,14 +32060,14 @@ function createSlider(Component) {
     marks: {},
     handle: function handle(_ref) {
       var index = _ref.index,
-          restProps = _objectWithoutProperties$3(_ref, ['index']);
+          restProps = _objectWithoutProperties$2(_ref, ['index']);
 
       delete restProps.dragging;
       if (restProps.value === null) {
         return null;
       }
 
-      return React__default.createElement(Handle, _extends$3({}, restProps, { key: index }));
+      return React__default.createElement(Handle, _extends$e({}, restProps, { key: index }));
     },
 
     onBeforeChange: noop$1,
@@ -32398,12 +32087,12 @@ function createSlider(Component) {
 }
 
 var Slider = function (_React$Component) {
-  _inherits$2(Slider, _React$Component);
+  _inherits$1(Slider, _React$Component);
 
   function Slider(props) {
-    _classCallCheck$2(this, Slider);
+    _classCallCheck$1(this, Slider);
 
-    var _this = _possibleConstructorReturn$2(this, (Slider.__proto__ || Object.getPrototypeOf(Slider)).call(this, props));
+    var _this = _possibleConstructorReturn$1(this, (Slider.__proto__ || Object.getPrototypeOf(Slider)).call(this, props));
 
     _this.onEnd = function (force) {
       var dragging = _this.state.dragging;
@@ -32428,7 +32117,7 @@ var Slider = function (_React$Component) {
     return _this;
   }
 
-  _createClass$2(Slider, [{
+  _createClass$1(Slider, [{
     key: 'componentDidUpdate',
     value: function componentDidUpdate(prevProps, prevState) {
       if (!('value' in this.props || 'min' in this.props || 'max' in this.props)) {
@@ -32453,7 +32142,7 @@ var Slider = function (_React$Component) {
     value: function onChange(state) {
       var props = this.props;
       var isNotControlled = !('value' in props);
-      var nextState = state.value > this.props.max ? _extends$3({}, state, { value: this.props.max }) : state;
+      var nextState = state.value > this.props.max ? _extends$e({}, state, { value: this.props.max }) : state;
       if (isNotControlled) {
         this.setState(nextState);
       }
@@ -32535,7 +32224,7 @@ var Slider = function (_React$Component) {
         return null;
       }
 
-      var mergedProps = _extends$3({}, this.props, nextProps);
+      var mergedProps = _extends$e({}, this.props, nextProps);
       var val = ensureValueInRange(v, mergedProps);
       return ensureValuePrecision(val, mergedProps);
     }
@@ -32589,7 +32278,7 @@ var Slider = function (_React$Component) {
         offset: 0,
         reverse: reverse,
         length: offset,
-        style: _extends$3({}, minimumTrackStyle, _trackStyle)
+        style: _extends$e({}, minimumTrackStyle, _trackStyle)
       });
 
       return { tracks: track, handles: handle };
@@ -32683,12 +32372,12 @@ var _trimAlignValue = function _trimAlignValue(_ref) {
 };
 
 var Range = function (_React$Component) {
-  _inherits$2(Range, _React$Component);
+  _inherits$1(Range, _React$Component);
 
   function Range(props) {
-    _classCallCheck$2(this, Range);
+    _classCallCheck$1(this, Range);
 
-    var _this = _possibleConstructorReturn$2(this, (Range.__proto__ || Object.getPrototypeOf(Range)).call(this, props));
+    var _this = _possibleConstructorReturn$1(this, (Range.__proto__ || Object.getPrototypeOf(Range)).call(this, props));
 
     _this.onEnd = function (force) {
       var handle = _this.state.handle;
@@ -32708,7 +32397,7 @@ var Range = function (_React$Component) {
         min = props.min,
         max = props.max;
 
-    var initialValue = Array.apply(undefined, _toConsumableArray$1(Array(count + 1))).map(function () {
+    var initialValue = Array.apply(undefined, _toConsumableArray(Array(count + 1))).map(function () {
       return min;
     });
     var defaultValue = 'defaultValue' in props ? props.defaultValue : initialValue;
@@ -32730,7 +32419,7 @@ var Range = function (_React$Component) {
     return _this;
   }
 
-  _createClass$2(Range, [{
+  _createClass$1(Range, [{
     key: 'componentDidUpdate',
     value: function componentDidUpdate(prevProps, prevState) {
       var _this2 = this;
@@ -32776,7 +32465,7 @@ var Range = function (_React$Component) {
         }
       }
 
-      var data = _extends$3({}, this.state, state);
+      var data = _extends$e({}, this.state, state);
       var changedValue = data.bounds;
       props.onChange(changedValue);
     }
@@ -32803,7 +32492,7 @@ var Range = function (_React$Component) {
       var prevValue = bounds[this.prevMovedHandleIndex];
       if (value === prevValue) return;
 
-      var nextBounds = [].concat(_toConsumableArray$1(state.bounds));
+      var nextBounds = [].concat(_toConsumableArray(state.bounds));
       nextBounds[this.prevMovedHandleIndex] = value;
       this.onChange({ bounds: nextBounds });
     }
@@ -32917,7 +32606,7 @@ var Range = function (_React$Component) {
 
       var cache = this._getPointsCache;
       if (!cache || cache.marks !== marks || cache.step !== step) {
-        var pointsObject = _extends$3({}, marks);
+        var pointsObject = _extends$e({}, marks);
         if (step !== null) {
           for (var point = min; point <= max; point += step) {
             pointsObject[point] = point;
@@ -32939,7 +32628,7 @@ var Range = function (_React$Component) {
       var state = this.state,
           props = this.props;
 
-      var nextBounds = [].concat(_toConsumableArray$1(state.bounds));
+      var nextBounds = [].concat(_toConsumableArray(state.bounds));
       var handle = state.handle === null ? state.recent : state.handle;
       nextBounds[handle] = value;
       var nextHandle = handle;
@@ -33084,7 +32773,7 @@ var Range = function (_React$Component) {
           _tabIndex = null;
         }
         return handleGenerator({
-          className: classnames((_classNames = {}, _defineProperty$2(_classNames, handleClassName, true), _defineProperty$2(_classNames, handleClassName + '-' + (i + 1), true), _classNames)),
+          className: classnames((_classNames = {}, _defineProperty$1(_classNames, handleClassName, true), _defineProperty$1(_classNames, handleClassName + '-' + (i + 1), true), _classNames)),
           prefixCls: prefixCls,
           vertical: vertical,
           offset: offsets[i],
@@ -33107,7 +32796,7 @@ var Range = function (_React$Component) {
         var _classNames2;
 
         var i = index + 1;
-        var trackClassName = classnames((_classNames2 = {}, _defineProperty$2(_classNames2, prefixCls + '-track', true), _defineProperty$2(_classNames2, prefixCls + '-track-' + i, true), _classNames2));
+        var trackClassName = classnames((_classNames2 = {}, _defineProperty$1(_classNames2, prefixCls + '-track', true), _defineProperty$1(_classNames2, prefixCls + '-track-' + i, true), _classNames2));
         return React__default.createElement(Track, {
           className: trackClassName,
           vertical: vertical,
@@ -33140,7 +32829,7 @@ var Range = function (_React$Component) {
         })) {
           return null;
         }
-        return _extends$3({}, state, {
+        return _extends$e({}, state, {
           bounds: nextBounds
         });
       }
@@ -33191,41 +32880,41 @@ function contains(root, n) {
   return false;
 }
 
-function _typeof$2(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof$2 = function _typeof(obj) { return typeof obj; }; } else { _typeof$2 = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof$2(obj); }
+function _typeof$1(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof$1 = function _typeof(obj) { return typeof obj; }; } else { _typeof$1 = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof$1(obj); }
 
-function _classCallCheck$3(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _classCallCheck$2(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-function _defineProperties$2(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+function _defineProperties$1(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
-function _createClass$3(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties$2(Constructor.prototype, protoProps); if (staticProps) _defineProperties$2(Constructor, staticProps); return Constructor; }
+function _createClass$2(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties$1(Constructor.prototype, protoProps); if (staticProps) _defineProperties$1(Constructor, staticProps); return Constructor; }
 
-function _possibleConstructorReturn$3(self, call) { if (call && (_typeof$2(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized$2(self); }
+function _possibleConstructorReturn$2(self, call) { if (call && (_typeof$1(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized$2(self); }
 
 function _assertThisInitialized$2(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
-function _getPrototypeOf$1(o) { _getPrototypeOf$1 = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf$1(o); }
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
-function _inherits$3(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf$1(subClass, superClass); }
+function _inherits$2(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
-function _setPrototypeOf$1(o, p) { _setPrototypeOf$1 = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf$1(o, p); }
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 var ContainerRender =
 /*#__PURE__*/
 function (_React$Component) {
-  _inherits$3(ContainerRender, _React$Component);
+  _inherits$2(ContainerRender, _React$Component);
 
   function ContainerRender() {
     var _getPrototypeOf2;
 
     var _this;
 
-    _classCallCheck$3(this, ContainerRender);
+    _classCallCheck$2(this, ContainerRender);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = _possibleConstructorReturn$3(this, (_getPrototypeOf2 = _getPrototypeOf$1(ContainerRender)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = _possibleConstructorReturn$2(this, (_getPrototypeOf2 = _getPrototypeOf(ContainerRender)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     _this.removeContainer = function () {
       if (_this.container) {
@@ -33261,7 +32950,7 @@ function (_React$Component) {
     return _this;
   }
 
-  _createClass$3(ContainerRender, [{
+  _createClass$2(ContainerRender, [{
     key: "componentDidMount",
     value: function componentDidMount() {
       if (this.props.autoMount) {
@@ -33311,36 +33000,36 @@ ContainerRender.defaultProps = {
   forceRender: false
 };
 
-function _typeof$3(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof$3 = function _typeof(obj) { return typeof obj; }; } else { _typeof$3 = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof$3(obj); }
+function _typeof$2(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof$2 = function _typeof(obj) { return typeof obj; }; } else { _typeof$2 = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof$2(obj); }
 
-function _classCallCheck$4(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _classCallCheck$3(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-function _defineProperties$3(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+function _defineProperties$2(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
-function _createClass$4(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties$3(Constructor.prototype, protoProps); if (staticProps) _defineProperties$3(Constructor, staticProps); return Constructor; }
+function _createClass$3(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties$2(Constructor.prototype, protoProps); if (staticProps) _defineProperties$2(Constructor, staticProps); return Constructor; }
 
-function _possibleConstructorReturn$4(self, call) { if (call && (_typeof$3(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized$3(self); }
+function _possibleConstructorReturn$3(self, call) { if (call && (_typeof$2(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized$3(self); }
 
 function _assertThisInitialized$3(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
-function _getPrototypeOf$2(o) { _getPrototypeOf$2 = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf$2(o); }
+function _getPrototypeOf$1(o) { _getPrototypeOf$1 = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf$1(o); }
 
-function _inherits$4(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf$2(subClass, superClass); }
+function _inherits$3(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf$1(subClass, superClass); }
 
-function _setPrototypeOf$2(o, p) { _setPrototypeOf$2 = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf$2(o, p); }
+function _setPrototypeOf$1(o, p) { _setPrototypeOf$1 = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf$1(o, p); }
 
 var Portal =
 /*#__PURE__*/
 function (_React$Component) {
-  _inherits$4(Portal, _React$Component);
+  _inherits$3(Portal, _React$Component);
 
   function Portal() {
-    _classCallCheck$4(this, Portal);
+    _classCallCheck$3(this, Portal);
 
-    return _possibleConstructorReturn$4(this, _getPrototypeOf$2(Portal).apply(this, arguments));
+    return _possibleConstructorReturn$3(this, _getPrototypeOf$1(Portal).apply(this, arguments));
   }
 
-  _createClass$4(Portal, [{
+  _createClass$3(Portal, [{
     key: "componentDidMount",
     value: function componentDidMount() {
       this.createContainer();
@@ -33401,7 +33090,7 @@ function isPointsEq(a1, a2, isAlignPoint) {
 
 function getAlignFromPlacement(builtinPlacements, placementStr, align) {
   var baseAlign = builtinPlacements[placementStr] || {};
-  return _extends$3({}, baseAlign, align);
+  return _extends$e({}, baseAlign, align);
 }
 
 function getAlignPopupClassName(builtinPlacements, prefixCls, align, isAlignPoint) {
@@ -33420,21 +33109,21 @@ function saveRef(name, component) {
   this[name] = component;
 }
 
-function _typeof$4(obj) {
+function _typeof$3(obj) {
   if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
-    _typeof$4 = function (obj) {
+    _typeof$3 = function (obj) {
       return typeof obj;
     };
   } else {
-    _typeof$4 = function (obj) {
+    _typeof$3 = function (obj) {
       return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
     };
   }
 
-  return _typeof$4(obj);
+  return _typeof$3(obj);
 }
 
-function _defineProperty$3(obj, key, value) {
+function _defineProperty$2(obj, key, value) {
   if (key in obj) {
     Object.defineProperty(obj, key, {
       value: value,
@@ -33469,7 +33158,7 @@ function _objectSpread2(target) {
 
     if (i % 2) {
       ownKeys$d(source, true).forEach(function (key) {
-        _defineProperty$3(target, key, source[key]);
+        _defineProperty$2(target, key, source[key]);
       });
     } else if (Object.getOwnPropertyDescriptors) {
       Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
@@ -33607,7 +33296,7 @@ function forceRelayout(elem) {
 function css$2(el, name, v) {
   var value = v;
 
-  if (_typeof$4(name) === 'object') {
+  if (_typeof$3(name) === 'object') {
     for (var i in name) {
       if (name.hasOwnProperty(i)) {
         css$2(el, i, name[i]);
@@ -34800,20 +34489,20 @@ function getPoint(point) {
 }
 
 var Align = function (_Component) {
-  _inherits$2(Align, _Component);
+  _inherits$1(Align, _Component);
 
   function Align() {
     var _ref;
 
     var _temp, _this, _ret;
 
-    _classCallCheck$2(this, Align);
+    _classCallCheck$1(this, Align);
 
     for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn$2(this, (_ref = Align.__proto__ || Object.getPrototypeOf(Align)).call.apply(_ref, [this].concat(args))), _this), _this.forceAlign = function () {
+    return _ret = (_temp = (_this = _possibleConstructorReturn$1(this, (_ref = Align.__proto__ || Object.getPrototypeOf(Align)).call.apply(_ref, [this].concat(args))), _this), _this.forceAlign = function () {
       var _this$props = _this.props,
           disabled = _this$props.disabled,
           target = _this$props.target,
@@ -34843,10 +34532,10 @@ var Align = function (_Component) {
           onAlign(source, result);
         }
       }
-    }, _temp), _possibleConstructorReturn$2(_this, _ret);
+    }, _temp), _possibleConstructorReturn$1(_this, _ret);
   }
 
-  _createClass$2(Align, [{
+  _createClass$1(Align, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
       var props = this.props;
@@ -35471,7 +35160,7 @@ function clearBrowserBugTimeout(node) {
 }
 
 var cssAnimation = function cssAnimation(node, transitionName, endCallback) {
-  var nameIsObj = (typeof transitionName === 'undefined' ? 'undefined' : _typeof$1(transitionName)) === 'object';
+  var nameIsObj = (typeof transitionName === 'undefined' ? 'undefined' : _typeof(transitionName)) === 'object';
   var className = nameIsObj ? transitionName.name : transitionName;
   var activeClassName = nameIsObj ? transitionName.active : transitionName + '-active';
   var end = endCallback;
@@ -35623,15 +35312,15 @@ var transitionMap = {
 };
 
 var AnimateChild = function (_React$Component) {
-  _inherits$2(AnimateChild, _React$Component);
+  _inherits$1(AnimateChild, _React$Component);
 
   function AnimateChild() {
-    _classCallCheck$2(this, AnimateChild);
+    _classCallCheck$1(this, AnimateChild);
 
-    return _possibleConstructorReturn$2(this, (AnimateChild.__proto__ || Object.getPrototypeOf(AnimateChild)).apply(this, arguments));
+    return _possibleConstructorReturn$1(this, (AnimateChild.__proto__ || Object.getPrototypeOf(AnimateChild)).apply(this, arguments));
   }
 
-  _createClass$2(AnimateChild, [{
+  _createClass$1(AnimateChild, [{
     key: 'componentWillUnmount',
     value: function componentWillUnmount() {
       this.stop();
@@ -35736,14 +35425,14 @@ function getChildrenFromProps(props) {
 function noop$2() {}
 
 var Animate = function (_React$Component) {
-  _inherits$2(Animate, _React$Component);
+  _inherits$1(Animate, _React$Component);
 
   // eslint-disable-line
 
   function Animate(props) {
-    _classCallCheck$2(this, Animate);
+    _classCallCheck$1(this, Animate);
 
-    var _this = _possibleConstructorReturn$2(this, (Animate.__proto__ || Object.getPrototypeOf(Animate)).call(this, props));
+    var _this = _possibleConstructorReturn$1(this, (Animate.__proto__ || Object.getPrototypeOf(Animate)).call(this, props));
 
     _initialiseProps.call(_this);
 
@@ -35759,7 +35448,7 @@ var Animate = function (_React$Component) {
     return _this;
   }
 
-  _createClass$2(Animate, [{
+  _createClass$1(Animate, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
       var _this2 = this;
@@ -35802,7 +35491,7 @@ var Animate = function (_React$Component) {
           var nextChild = currentChild && findChildInChildrenByKey(nextChildren, currentChild.key);
           var newChild = void 0;
           if ((!nextChild || !nextChild.props[showProp]) && currentChild.props[showProp]) {
-            newChild = React__default.cloneElement(nextChild || currentChild, _defineProperty$2({}, showProp, true));
+            newChild = React__default.cloneElement(nextChild || currentChild, _defineProperty$1({}, showProp, true));
           } else {
             newChild = nextChild;
           }
@@ -35932,7 +35621,7 @@ var Animate = function (_React$Component) {
       if (Component) {
         var passedProps = props;
         if (typeof Component === 'string') {
-          passedProps = _extends$3({
+          passedProps = _extends$e({
             className: props.className,
             style: props.style
           }, props.componentProps);
@@ -36062,12 +35751,12 @@ var _initialiseProps = function _initialiseProps() {
 var Animate$1 = unsafeLifecyclesPolyfill(Animate);
 
 var LazyRenderBox = function (_Component) {
-  _inherits$2(LazyRenderBox, _Component);
+  _inherits$1(LazyRenderBox, _Component);
 
   function LazyRenderBox() {
-    _classCallCheck$2(this, LazyRenderBox);
+    _classCallCheck$1(this, LazyRenderBox);
 
-    return _possibleConstructorReturn$2(this, _Component.apply(this, arguments));
+    return _possibleConstructorReturn$1(this, _Component.apply(this, arguments));
   }
 
   LazyRenderBox.prototype.shouldComponentUpdate = function shouldComponentUpdate(nextProps) {
@@ -36078,7 +35767,7 @@ var LazyRenderBox = function (_Component) {
     var _props = this.props,
         hiddenClassName = _props.hiddenClassName,
         visible = _props.visible,
-        props = _objectWithoutProperties$3(_props, ['hiddenClassName', 'visible']);
+        props = _objectWithoutProperties$2(_props, ['hiddenClassName', 'visible']);
 
     if (hiddenClassName || React__default.Children.count(props.children) > 1) {
       if (!visible && hiddenClassName) {
@@ -36101,12 +35790,12 @@ LazyRenderBox.propTypes = {
 };
 
 var PopupInner = function (_Component) {
-  _inherits$2(PopupInner, _Component);
+  _inherits$1(PopupInner, _Component);
 
   function PopupInner() {
-    _classCallCheck$2(this, PopupInner);
+    _classCallCheck$1(this, PopupInner);
 
-    return _possibleConstructorReturn$2(this, _Component.apply(this, arguments));
+    return _possibleConstructorReturn$1(this, _Component.apply(this, arguments));
   }
 
   PopupInner.prototype.render = function render() {
@@ -36148,12 +35837,12 @@ PopupInner.propTypes = {
 };
 
 var Popup$1 = function (_Component) {
-  _inherits$2(Popup, _Component);
+  _inherits$1(Popup, _Component);
 
   function Popup(props) {
-    _classCallCheck$2(this, Popup);
+    _classCallCheck$1(this, Popup);
 
-    var _this = _possibleConstructorReturn$2(this, _Component.call(this, props));
+    var _this = _possibleConstructorReturn$1(this, _Component.call(this, props));
 
     _initialiseProps$1.call(_this);
 
@@ -36266,7 +35955,7 @@ var Popup$1 = function (_Component) {
       }
     }
 
-    var newStyle = _extends$3({}, sizeStyle, style, this.getZIndexStyle());
+    var newStyle = _extends$e({}, sizeStyle, style, this.getZIndexStyle());
 
     var popupInnerProps = {
       className: className,
@@ -36299,7 +35988,7 @@ var Popup$1 = function (_Component) {
           },
           React__default.createElement(
             PopupInner,
-            _extends$3({
+            _extends$e({
               visible: true
             }, popupInnerProps),
             children
@@ -36332,7 +36021,7 @@ var Popup$1 = function (_Component) {
         },
         React__default.createElement(
           PopupInner,
-          _extends$3({
+          _extends$e({
             hiddenClassName: hiddenClassName
           }, popupInnerProps),
           children
@@ -36496,12 +36185,12 @@ var contextTypes = {
 };
 
 var Trigger$1 = function (_React$Component) {
-  _inherits$2(Trigger, _React$Component);
+  _inherits$1(Trigger, _React$Component);
 
   function Trigger(props) {
-    _classCallCheck$2(this, Trigger);
+    _classCallCheck$1(this, Trigger);
 
-    var _this = _possibleConstructorReturn$2(this, _React$Component.call(this, props));
+    var _this = _possibleConstructorReturn$1(this, _React$Component.call(this, props));
 
     _initialiseProps$2.call(_this);
 
@@ -37120,7 +36809,7 @@ var _initialiseProps$2 = function _initialiseProps() {
 
     return React__default.createElement(
       Popup$1,
-      _extends$3({
+      _extends$e({
         prefixCls: prefixCls,
         destroyPopupOnHide: destroyPopupOnHide,
         visible: popupVisible,
@@ -37270,12 +36959,12 @@ var placements$1 = {
 };
 
 var Content = function (_React$Component) {
-  _inherits$2(Content, _React$Component);
+  _inherits$1(Content, _React$Component);
 
   function Content() {
-    _classCallCheck$2(this, Content);
+    _classCallCheck$1(this, Content);
 
-    return _possibleConstructorReturn$2(this, _React$Component.apply(this, arguments));
+    return _possibleConstructorReturn$1(this, _React$Component.apply(this, arguments));
   }
 
   Content.prototype.componentDidUpdate = function componentDidUpdate() {
@@ -37310,18 +36999,18 @@ Content.propTypes = {
 };
 
 var Tooltip = function (_Component) {
-  _inherits$2(Tooltip, _Component);
+  _inherits$1(Tooltip, _Component);
 
   function Tooltip() {
     var _temp, _this, _ret;
 
-    _classCallCheck$2(this, Tooltip);
+    _classCallCheck$1(this, Tooltip);
 
     for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn$2(this, _Component.call.apply(_Component, [this].concat(args))), _this), _this.getPopupElement = function () {
+    return _ret = (_temp = (_this = _possibleConstructorReturn$1(this, _Component.call.apply(_Component, [this].concat(args))), _this), _this.getPopupElement = function () {
       var _this$props = _this.props,
           arrowContent = _this$props.arrowContent,
           overlay = _this$props.overlay,
@@ -37341,7 +37030,7 @@ var Tooltip = function (_Component) {
       })];
     }, _this.saveTrigger = function (node) {
       _this.trigger = node;
-    }, _temp), _possibleConstructorReturn$2(_this, _ret);
+    }, _temp), _possibleConstructorReturn$1(_this, _ret);
   }
 
   Tooltip.prototype.getPopupDomNode = function getPopupDomNode() {
@@ -37366,15 +37055,15 @@ var Tooltip = function (_Component) {
         destroyTooltipOnHide = _props.destroyTooltipOnHide,
         defaultVisible = _props.defaultVisible,
         getTooltipContainer = _props.getTooltipContainer,
-        restProps = _objectWithoutProperties$3(_props, ['overlayClassName', 'trigger', 'mouseEnterDelay', 'mouseLeaveDelay', 'overlayStyle', 'prefixCls', 'children', 'onVisibleChange', 'afterVisibleChange', 'transitionName', 'animation', 'placement', 'align', 'destroyTooltipOnHide', 'defaultVisible', 'getTooltipContainer']);
+        restProps = _objectWithoutProperties$2(_props, ['overlayClassName', 'trigger', 'mouseEnterDelay', 'mouseLeaveDelay', 'overlayStyle', 'prefixCls', 'children', 'onVisibleChange', 'afterVisibleChange', 'transitionName', 'animation', 'placement', 'align', 'destroyTooltipOnHide', 'defaultVisible', 'getTooltipContainer']);
 
-    var extraProps = _extends$3({}, restProps);
+    var extraProps = _extends$e({}, restProps);
     if ('visible' in this.props) {
       extraProps.popupVisible = this.props.visible;
     }
     return React__default.createElement(
       Trigger$1,
-      _extends$3({
+      _extends$e({
         popupClassName: overlayClassName,
         ref: this.saveTrigger,
         prefixCls: prefixCls,
@@ -37438,25 +37127,25 @@ function createSliderWithTooltip(Component) {
   var _class, _temp2;
 
   return _temp2 = _class = function (_React$Component) {
-    _inherits$2(ComponentWrapper, _React$Component);
+    _inherits$1(ComponentWrapper, _React$Component);
 
     function ComponentWrapper() {
       var _ref;
 
       var _temp, _this, _ret;
 
-      _classCallCheck$2(this, ComponentWrapper);
+      _classCallCheck$1(this, ComponentWrapper);
 
       for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
         args[_key] = arguments[_key];
       }
 
-      return _ret = (_temp = (_this = _possibleConstructorReturn$2(this, (_ref = ComponentWrapper.__proto__ || Object.getPrototypeOf(ComponentWrapper)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+      return _ret = (_temp = (_this = _possibleConstructorReturn$1(this, (_ref = ComponentWrapper.__proto__ || Object.getPrototypeOf(ComponentWrapper)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
         visibles: {}
       }, _this.handleTooltipVisibleChange = function (index, visible) {
         _this.setState(function (prevState) {
           return {
-            visibles: _extends$3({}, prevState.visibles, _defineProperty$2({}, index, visible))
+            visibles: _extends$e({}, prevState.visibles, _defineProperty$1({}, index, visible))
           };
         });
       }, _this.handleWithTooltip = function (_ref2) {
@@ -37464,7 +37153,7 @@ function createSliderWithTooltip(Component) {
             dragging = _ref2.dragging,
             index = _ref2.index,
             disabled = _ref2.disabled,
-            restProps = _objectWithoutProperties$3(_ref2, ['value', 'dragging', 'index', 'disabled']);
+            restProps = _objectWithoutProperties$2(_ref2, ['value', 'dragging', 'index', 'disabled']);
 
         var _this$props = _this.props,
             tipFormatter = _this$props.tipFormatter,
@@ -37479,7 +37168,7 @@ function createSliderWithTooltip(Component) {
             placement = _tipProps$placement === undefined ? 'top' : _tipProps$placement,
             _tipProps$visible = tipProps.visible,
             visible = _tipProps$visible === undefined ? false : _tipProps$visible,
-            restTooltipProps = _objectWithoutProperties$3(tipProps, ['prefixCls', 'overlay', 'placement', 'visible']);
+            restTooltipProps = _objectWithoutProperties$2(tipProps, ['prefixCls', 'overlay', 'placement', 'visible']);
 
         var handleStyleWithIndex = void 0;
         if (Array.isArray(handleStyle)) {
@@ -37490,15 +37179,15 @@ function createSliderWithTooltip(Component) {
 
         return React__default.createElement(
           Tooltip,
-          _extends$3({}, restTooltipProps, {
+          _extends$e({}, restTooltipProps, {
             prefixCls: prefixCls,
             overlay: overlay,
             placement: placement,
             visible: !disabled && (_this.state.visibles[index] || dragging) || visible,
             key: index
           }),
-          React__default.createElement(Handle, _extends$3({}, restProps, {
-            style: _extends$3({}, handleStyleWithIndex),
+          React__default.createElement(Handle, _extends$e({}, restProps, {
+            style: _extends$e({}, handleStyleWithIndex),
             value: value,
             onMouseEnter: function onMouseEnter() {
               return _this.handleTooltipVisibleChange(index, true);
@@ -37508,13 +37197,13 @@ function createSliderWithTooltip(Component) {
             }
           }))
         );
-      }, _temp), _possibleConstructorReturn$2(_this, _ret);
+      }, _temp), _possibleConstructorReturn$1(_this, _ret);
     }
 
-    _createClass$2(ComponentWrapper, [{
+    _createClass$1(ComponentWrapper, [{
       key: 'render',
       value: function render() {
-        return React__default.createElement(Component, _extends$3({}, this.props, { handle: this.handleWithTooltip }));
+        return React__default.createElement(Component, _extends$e({}, this.props, { handle: this.handleWithTooltip }));
       }
     }]);
 
@@ -38148,7 +37837,7 @@ var expandedIconStyles = {
 
 function ownKeys$e(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread$f(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$e(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$e(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread$e(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$e(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$e(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 var ExpandingSearchInput =
 /*#__PURE__*/
@@ -38204,7 +37893,7 @@ function (_Component) {
         }, 500)
       }, this.props)), React__default.createElement(Magnify$1, {
         onClick: this.toggleExpanded,
-        style: _objectSpread$f({}, iconAltStyling, {}, expanded && expandedIconStyles),
+        style: _objectSpread$e({}, iconAltStyling, {}, expanded && expandedIconStyles),
         bg: "white",
         size: fontSizes.large,
         color: colors.gray.dark
@@ -38271,7 +37960,7 @@ var ToggleLabel = styled__default.label(_templateObject3$9(), function (_ref) {
 
 function ownKeys$f(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread$g(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$f(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$f(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread$f(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$f(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$f(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 var Toggle =
 /*#__PURE__*/
@@ -38317,13 +38006,13 @@ defineProperty(Toggle, "defaultProps", {
   inputStyle: {}
 });
 
-defineProperty(Toggle, "propTypes", _objectSpread$g({
+defineProperty(Toggle, "propTypes", _objectSpread$f({
   checked: PropTypes.bool
 }, styledSystem.layout.propTypes, {}, styledSystem.space.propTypes));
 
 function ownKeys$g(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread$h(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$g(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$g(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread$g(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$g(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$g(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _templateObject$r() {
   var data = taggedTemplateLiteral(["\n  background-position: center;\n  background-size: cover;\n  background-repeat: no-repeat;\n  background-image: ", ";\n  ", "\n  ", "\n  ", "\n  ", "\n"]);
@@ -38344,7 +38033,7 @@ var BackgroundImage = styled__default.div(_templateObject$r(), image, styledSyst
 BackgroundImage.defaultProps = {
   theme: theme
 };
-BackgroundImage.propTypes = _objectSpread$h({
+BackgroundImage.propTypes = _objectSpread$g({
   source: PropTypes.string.isRequired
 }, styledSystem.space.propTypes, {}, styledSystem.background.propTypes, {}, styledSystem.layout.propTypes, {}, styledSystem.flexbox.propTypes);
 BackgroundImage.displayName = 'BackgroundImage';
@@ -38365,13 +38054,13 @@ function ___$insertStyle(css) {
   return css;
 }
 
-function _classCallCheck$5(instance, Constructor) {
+function _classCallCheck$4(instance, Constructor) {
   if (!(instance instanceof Constructor)) {
     throw new TypeError("Cannot call a class as a function");
   }
 }
 
-function _defineProperties$4(target, props) {
+function _defineProperties$3(target, props) {
   for (var i = 0; i < props.length; i++) {
     var descriptor = props[i];
     descriptor.enumerable = descriptor.enumerable || false;
@@ -38381,13 +38070,13 @@ function _defineProperties$4(target, props) {
   }
 }
 
-function _createClass$5(Constructor, protoProps, staticProps) {
-  if (protoProps) _defineProperties$4(Constructor.prototype, protoProps);
-  if (staticProps) _defineProperties$4(Constructor, staticProps);
+function _createClass$4(Constructor, protoProps, staticProps) {
+  if (protoProps) _defineProperties$3(Constructor.prototype, protoProps);
+  if (staticProps) _defineProperties$3(Constructor, staticProps);
   return Constructor;
 }
 
-function _defineProperty$4(obj, key, value) {
+function _defineProperty$3(obj, key, value) {
   if (key in obj) {
     Object.defineProperty(obj, key, {
       value: value,
@@ -38402,8 +38091,8 @@ function _defineProperty$4(obj, key, value) {
   return obj;
 }
 
-function _extends$4() {
-  _extends$4 = Object.assign || function (target) {
+function _extends$f() {
+  _extends$f = Object.assign || function (target) {
     for (var i = 1; i < arguments.length; i++) {
       var source = arguments[i];
 
@@ -38417,7 +38106,7 @@ function _extends$4() {
     return target;
   };
 
-  return _extends$4.apply(this, arguments);
+  return _extends$f.apply(this, arguments);
 }
 
 function ownKeys$h(object, enumerableOnly) {
@@ -38440,7 +38129,7 @@ function _objectSpread2$1(target) {
 
     if (i % 2) {
       ownKeys$h(Object(source), true).forEach(function (key) {
-        _defineProperty$4(target, key, source[key]);
+        _defineProperty$3(target, key, source[key]);
       });
     } else if (Object.getOwnPropertyDescriptors) {
       Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
@@ -38454,7 +38143,7 @@ function _objectSpread2$1(target) {
   return target;
 }
 
-function _inherits$5(subClass, superClass) {
+function _inherits$4(subClass, superClass) {
   if (typeof superClass !== "function" && superClass !== null) {
     throw new TypeError("Super expression must either be null or a function");
   }
@@ -38466,23 +38155,23 @@ function _inherits$5(subClass, superClass) {
       configurable: true
     }
   });
-  if (superClass) _setPrototypeOf$3(subClass, superClass);
+  if (superClass) _setPrototypeOf$2(subClass, superClass);
 }
 
-function _getPrototypeOf$3(o) {
-  _getPrototypeOf$3 = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
+function _getPrototypeOf$2(o) {
+  _getPrototypeOf$2 = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
     return o.__proto__ || Object.getPrototypeOf(o);
   };
-  return _getPrototypeOf$3(o);
+  return _getPrototypeOf$2(o);
 }
 
-function _setPrototypeOf$3(o, p) {
-  _setPrototypeOf$3 = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
+function _setPrototypeOf$2(o, p) {
+  _setPrototypeOf$2 = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
     o.__proto__ = p;
     return o;
   };
 
-  return _setPrototypeOf$3(o, p);
+  return _setPrototypeOf$2(o, p);
 }
 
 function _assertThisInitialized$4(self) {
@@ -38493,7 +38182,7 @@ function _assertThisInitialized$4(self) {
   return self;
 }
 
-function _possibleConstructorReturn$5(self, call) {
+function _possibleConstructorReturn$4(self, call) {
   if (call && (typeof call === "object" || typeof call === "function")) {
     return call;
   }
@@ -39565,7 +39254,7 @@ var customListeners = {
       // this is workaround for WeakMap, which is not supported in older browsers, such as IE
       Object.defineProperty(target, this.id, {
         configurable: true,
-        value: _defineProperty$4({}, event, listener)
+        value: _defineProperty$3({}, event, listener)
       });
     }
   },
@@ -40178,14 +39867,14 @@ var _class, _class2, _temp;
 var ReactTooltip = staticMethods(_class = windowListener(_class = customEvent(_class = isCapture(_class = getEffect(_class = bodyMode(_class = trackRemoval(_class = (_temp = _class2 =
 /*#__PURE__*/
 function (_React$Component) {
-  _inherits$5(ReactTooltip, _React$Component);
+  _inherits$4(ReactTooltip, _React$Component);
 
   function ReactTooltip(props) {
     var _this;
 
-    _classCallCheck$5(this, ReactTooltip);
+    _classCallCheck$4(this, ReactTooltip);
 
-    _this = _possibleConstructorReturn$5(this, _getPrototypeOf$3(ReactTooltip).call(this, props));
+    _this = _possibleConstructorReturn$4(this, _getPrototypeOf$2(ReactTooltip).call(this, props));
     _this.state = {
       place: props.place || "top",
       // Direction of tooltip
@@ -40231,7 +39920,7 @@ function (_React$Component) {
    */
 
 
-  _createClass$5(ReactTooltip, [{
+  _createClass$4(ReactTooltip, [{
     key: "bind",
     value: function bind(methodArray) {
       var _this2 = this;
@@ -40770,7 +40459,7 @@ function (_React$Component) {
       var wrapperClassName = [tooltipClass, extraClass].filter(Boolean).join(" ");
 
       if (html) {
-        return React__default.createElement(Wrapper, _extends$4({
+        return React__default.createElement(Wrapper, _extends$f({
           className: wrapperClassName,
           id: this.props.id,
           ref: function ref(_ref) {
@@ -40783,7 +40472,7 @@ function (_React$Component) {
           }
         }));
       } else {
-        return React__default.createElement(Wrapper, _extends$4({
+        return React__default.createElement(Wrapper, _extends$f({
           className: wrapperClassName,
           id: this.props.id
         }, ariaProps, {
@@ -40814,7 +40503,7 @@ function (_React$Component) {
   }]);
 
   return ReactTooltip;
-}(React__default.Component), _defineProperty$4(_class2, "propTypes", {
+}(React__default.Component), _defineProperty$3(_class2, "propTypes", {
   children: propTypes.any,
   place: propTypes.string,
   type: propTypes.string,
@@ -40847,12 +40536,12 @@ function (_React$Component) {
   possibleCustomEvents: propTypes.string,
   possibleCustomEventsOff: propTypes.string,
   clickable: propTypes.bool
-}), _defineProperty$4(_class2, "defaultProps", {
+}), _defineProperty$3(_class2, "defaultProps", {
   insecure: true,
   resizeHide: true,
   wrapper: "div",
   clickable: false
-}), _defineProperty$4(_class2, "supportedWrappers", ["div", "span"]), _defineProperty$4(_class2, "displayName", "ReactTooltip"), _temp)) || _class) || _class) || _class) || _class) || _class) || _class) || _class;
+}), _defineProperty$3(_class2, "supportedWrappers", ["div", "span"]), _defineProperty$3(_class2, "displayName", "ReactTooltip"), _temp)) || _class) || _class) || _class) || _class) || _class) || _class) || _class;
 
 var Tooltip$1 = ReactTooltip;
 
