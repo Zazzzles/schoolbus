@@ -16,6 +16,10 @@ module.exports = async ({ config }) => {
     }
   }
 
+  config.module.rules = config.module.rules.filter(
+    f => f.test.toString() !== '/\\.css$/'
+  );
+
   // NOTE: Let babel compile @lessondesk/material-icons by overriding excludes rule
   config.module.rules[0].exclude = function (modulePath) {
     return /node_modules/.test(modulePath) &&

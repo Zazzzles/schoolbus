@@ -1805,7 +1805,7 @@ var Container = styled__default.button.attrs({
       theme = _ref5.theme,
       count = _ref5.count,
       bordered = _ref5.bordered;
-  return count >= 0 && !active || bordered && !active ? "1px solid ".concat(theme.colors.gray.light) : 'none';
+  return "1px solid ".concat(count >= 0 && !active || bordered && !active ? theme.colors.gray.light : theme.colors.transparent);
 }, function (_ref6) {
   var theme = _ref6.theme;
   return theme.fontSizes.small;
@@ -2271,11 +2271,14 @@ var MEMO_STATICS = {
 };
 var TYPE_STATICS = {};
 TYPE_STATICS[reactIs.ForwardRef] = FORWARD_REF_STATICS;
+TYPE_STATICS[reactIs.Memo] = MEMO_STATICS;
 
 function getStatics(component) {
+  // React v16.11 and below
   if (reactIs.isMemo(component)) {
     return MEMO_STATICS;
-  }
+  } // React v16.12 and above
+
 
   return TYPE_STATICS[component['$$typeof']] || REACT_STATICS;
 }
@@ -2971,6 +2974,12 @@ var classnames = createCommonjsModule(function (module) {
 }());
 });
 
+function requiredArgs(required, args) {
+  if (args.length < required) {
+    throw new TypeError(required + ' argument' + required > 1 ? 's' : '' + ' required, but only ' + args.length + ' present');
+  }
+}
+
 /**
  * @name isDate
  * @category Common Helpers
@@ -3007,11 +3016,9 @@ var classnames = createCommonjsModule(function (module) {
  * var result = isDate({})
  * //=> false
  */
-function isDate(value) {
-  if (arguments.length < 1) {
-    throw new TypeError('1 argument required, but only ' + arguments.length + ' present');
-  }
 
+function isDate(value) {
+  requiredArgs(1, arguments);
   return value instanceof Date || typeof value === 'object' && Object.prototype.toString.call(value) === '[object Date]';
 }
 
@@ -3045,11 +3052,9 @@ function isDate(value) {
  * const result = toDate(1392098430000)
  * //=> Tue Feb 11 2014 11:30:30
  */
-function toDate(argument) {
-  if (arguments.length < 1) {
-    throw new TypeError('1 argument required, but only ' + arguments.length + ' present');
-  }
 
+function toDate(argument) {
+  requiredArgs(1, arguments);
   var argStr = Object.prototype.toString.call(argument); // Clone the date
 
   if (argument instanceof Date || typeof argument === 'object' && argStr === '[object Date]') {
@@ -3128,10 +3133,7 @@ function toDate(argument) {
  */
 
 function isValid(dirtyDate) {
-  if (arguments.length < 1) {
-    throw new TypeError('1 argument required, but only ' + arguments.length + ' present');
-  }
-
+  requiredArgs(1, arguments);
   var date = toDate(dirtyDate);
   return !isNaN(date);
 }
@@ -3664,7 +3666,7 @@ function toInteger(dirtyNumber) {
  * - [Changes that are common for the whole library](https://github.com/date-fns/date-fns/blob/master/docs/upgradeGuide.md#Common-Changes).
  *
  * @param {Date|Number} date - the date to be changed
- * @param {Number} amount - the amount of milliseconds to be added
+ * @param {Number} amount - the amount of milliseconds to be added. Positive decimals will be rounded using `Math.floor`, decimals less than zero will be rounded using `Math.ceil`.
  * @returns {Date} the new date with the milliseconds added
  * @throws {TypeError} 2 arguments required
  *
@@ -3675,10 +3677,7 @@ function toInteger(dirtyNumber) {
  */
 
 function addMilliseconds(dirtyDate, dirtyAmount) {
-  if (arguments.length < 2) {
-    throw new TypeError('2 arguments required, but only ' + arguments.length + ' present');
-  }
-
+  requiredArgs(2, arguments);
   var timestamp = toDate(dirtyDate).getTime();
   var amount = toInteger(dirtyAmount);
   return new Date(timestamp + amount);
@@ -3697,7 +3696,7 @@ function addMilliseconds(dirtyDate, dirtyAmount) {
  * - [Changes that are common for the whole library](https://github.com/date-fns/date-fns/blob/master/docs/upgradeGuide.md#Common-Changes).
  *
  * @param {Date|Number} date - the date to be changed
- * @param {Number} amount - the amount of milliseconds to be subtracted
+ * @param {Number} amount - the amount of milliseconds to be subtracted. Positive decimals will be rounded using `Math.floor`, decimals less than zero will be rounded using `Math.ceil`.
  * @returns {Date} the new date with the milliseconds subtracted
  * @throws {TypeError} 2 arguments required
  *
@@ -3708,10 +3707,7 @@ function addMilliseconds(dirtyDate, dirtyAmount) {
  */
 
 function subMilliseconds(dirtyDate, dirtyAmount) {
-  if (arguments.length < 2) {
-    throw new TypeError('2 arguments required, but only ' + arguments.length + ' present');
-  }
-
+  requiredArgs(2, arguments);
   var amount = toInteger(dirtyAmount);
   return addMilliseconds(dirtyDate, -amount);
 }
@@ -3812,10 +3808,7 @@ var MILLISECONDS_IN_DAY = 86400000; // This function will be a part of public AP
 // See issue: https://github.com/date-fns/date-fns/issues/376
 
 function getUTCDayOfYear(dirtyDate) {
-  if (arguments.length < 1) {
-    throw new TypeError('1 argument required, but only ' + arguments.length + ' present');
-  }
-
+  requiredArgs(1, arguments);
   var date = toDate(dirtyDate);
   var timestamp = date.getTime();
   date.setUTCMonth(0, 1);
@@ -3828,10 +3821,7 @@ function getUTCDayOfYear(dirtyDate) {
 // See issue: https://github.com/date-fns/date-fns/issues/376
 
 function startOfUTCISOWeek(dirtyDate) {
-  if (arguments.length < 1) {
-    throw new TypeError('1 argument required, but only ' + arguments.length + ' present');
-  }
-
+  requiredArgs(1, arguments);
   var weekStartsOn = 1;
   var date = toDate(dirtyDate);
   var day = date.getUTCDay();
@@ -3844,10 +3834,7 @@ function startOfUTCISOWeek(dirtyDate) {
 // See issue: https://github.com/date-fns/date-fns/issues/376
 
 function getUTCISOWeekYear(dirtyDate) {
-  if (arguments.length < 1) {
-    throw new TypeError('1 argument required, but only ' + arguments.length + ' present');
-  }
-
+  requiredArgs(1, arguments);
   var date = toDate(dirtyDate);
   var year = date.getUTCFullYear();
   var fourthOfJanuaryOfNextYear = new Date(0);
@@ -3871,10 +3858,7 @@ function getUTCISOWeekYear(dirtyDate) {
 // See issue: https://github.com/date-fns/date-fns/issues/376
 
 function startOfUTCISOWeekYear(dirtyDate) {
-  if (arguments.length < 1) {
-    throw new TypeError('1 argument required, but only ' + arguments.length + ' present');
-  }
-
+  requiredArgs(1, arguments);
   var year = getUTCISOWeekYear(dirtyDate);
   var fourthOfJanuary = new Date(0);
   fourthOfJanuary.setUTCFullYear(year, 0, 4);
@@ -3887,10 +3871,7 @@ var MILLISECONDS_IN_WEEK = 604800000; // This function will be a part of public 
 // See issue: https://github.com/date-fns/date-fns/issues/376
 
 function getUTCISOWeek(dirtyDate) {
-  if (arguments.length < 1) {
-    throw new TypeError('1 argument required, but only ' + arguments.length + ' present');
-  }
-
+  requiredArgs(1, arguments);
   var date = toDate(dirtyDate);
   var diff = startOfUTCISOWeek(date).getTime() - startOfUTCISOWeekYear(date).getTime(); // Round the number of days to the nearest integer
   // because the number of milliseconds in a week is not constant
@@ -3902,10 +3883,7 @@ function getUTCISOWeek(dirtyDate) {
 // See issue: https://github.com/date-fns/date-fns/issues/376
 
 function startOfUTCWeek(dirtyDate, dirtyOptions) {
-  if (arguments.length < 1) {
-    throw new TypeError('1 argument required, but only ' + arguments.length + ' present');
-  }
-
+  requiredArgs(1, arguments);
   var options = dirtyOptions || {};
   var locale = options.locale;
   var localeWeekStartsOn = locale && locale.options && locale.options.weekStartsOn;
@@ -3927,10 +3905,7 @@ function startOfUTCWeek(dirtyDate, dirtyOptions) {
 // See issue: https://github.com/date-fns/date-fns/issues/376
 
 function getUTCWeekYear(dirtyDate, dirtyOptions) {
-  if (arguments.length < 1) {
-    throw new TypeError('1 argument required, but only ' + arguments.length + ' present');
-  }
-
+  requiredArgs(1, arguments);
   var date = toDate(dirtyDate, dirtyOptions);
   var year = date.getUTCFullYear();
   var options = dirtyOptions || {};
@@ -3964,10 +3939,7 @@ function getUTCWeekYear(dirtyDate, dirtyOptions) {
 // See issue: https://github.com/date-fns/date-fns/issues/376
 
 function startOfUTCWeekYear(dirtyDate, dirtyOptions) {
-  if (arguments.length < 1) {
-    throw new TypeError('1 argument required, but only ' + arguments.length + ' present');
-  }
-
+  requiredArgs(1, arguments);
   var options = dirtyOptions || {};
   var locale = options.locale;
   var localeFirstWeekContainsDate = locale && locale.options && locale.options.firstWeekContainsDate;
@@ -3985,10 +3957,7 @@ var MILLISECONDS_IN_WEEK$1 = 604800000; // This function will be a part of publi
 // See issue: https://github.com/date-fns/date-fns/issues/376
 
 function getUTCWeek(dirtyDate, options) {
-  if (arguments.length < 1) {
-    throw new TypeError('1 argument required, but only ' + arguments.length + ' present');
-  }
-
+  requiredArgs(1, arguments);
   var date = toDate(dirtyDate);
   var diff = startOfUTCWeek(date, options).getTime() - startOfUTCWeekYear(date, options).getTime(); // Round the number of days to the nearest integer
   // because the number of milliseconds in a week is not constant
@@ -5311,10 +5280,7 @@ var unescapedLatinCharacterRegExp = /[a-zA-Z]/;
  */
 
 function format(dirtyDate, dirtyFormatStr, dirtyOptions) {
-  if (arguments.length < 2) {
-    throw new TypeError('2 arguments required, but only ' + arguments.length + ' present');
-  }
-
+  requiredArgs(2, arguments);
   var formatStr = String(dirtyFormatStr);
   var options = dirtyOptions || {};
   var locale$1 = options.locale || locale;
@@ -5421,7 +5387,7 @@ var MILLISECONDS_IN_MINUTE$1 = 60000;
  * - [Changes that are common for the whole library](https://github.com/date-fns/date-fns/blob/master/docs/upgradeGuide.md#Common-Changes).
  *
  * @param {Date|Number} date - the date to be changed
- * @param {Number} amount - the amount of minutes to be added
+ * @param {Number} amount - the amount of minutes to be added. Positive decimals will be rounded using `Math.floor`, decimals less than zero will be rounded using `Math.ceil`.
  * @returns {Date} the new date with the minutes added
  * @throws {TypeError} 2 arguments required
  *
@@ -5432,10 +5398,7 @@ var MILLISECONDS_IN_MINUTE$1 = 60000;
  */
 
 function addMinutes(dirtyDate, dirtyAmount) {
-  if (arguments.length < 2) {
-    throw new TypeError('2 arguments required, but only ' + arguments.length + ' present');
-  }
-
+  requiredArgs(2, arguments);
   var amount = toInteger(dirtyAmount);
   return addMilliseconds(dirtyDate, amount * MILLISECONDS_IN_MINUTE$1);
 }
@@ -5454,7 +5417,7 @@ var MILLISECONDS_IN_HOUR = 3600000;
  * - [Changes that are common for the whole library](https://github.com/date-fns/date-fns/blob/master/docs/upgradeGuide.md#Common-Changes).
  *
  * @param {Date|Number} date - the date to be changed
- * @param {Number} amount - the amount of hours to be added
+ * @param {Number} amount - the amount of hours to be added. Positive decimals will be rounded using `Math.floor`, decimals less than zero will be rounded using `Math.ceil`.
  * @returns {Date} the new date with the hours added
  * @throws {TypeError} 2 arguments required
  *
@@ -5465,10 +5428,7 @@ var MILLISECONDS_IN_HOUR = 3600000;
  */
 
 function addHours(dirtyDate, dirtyAmount) {
-  if (arguments.length < 2) {
-    throw new TypeError('2 arguments required, but only ' + arguments.length + ' present');
-  }
-
+  requiredArgs(2, arguments);
   var amount = toInteger(dirtyAmount);
   return addMilliseconds(dirtyDate, amount * MILLISECONDS_IN_HOUR);
 }
@@ -5486,7 +5446,7 @@ function addHours(dirtyDate, dirtyAmount) {
  * - [Changes that are common for the whole library](https://github.com/date-fns/date-fns/blob/master/docs/upgradeGuide.md#Common-Changes).
  *
  * @param {Date|Number} date - the date to be changed
- * @param {Number} amount - the amount of days to be added
+ * @param {Number} amount - the amount of days to be added. Positive decimals will be rounded using `Math.floor`, decimals less than zero will be rounded using `Math.ceil`.
  * @returns {Date} the new date with the days added
  * @throws {TypeError} 2 arguments required
  *
@@ -5497,10 +5457,7 @@ function addHours(dirtyDate, dirtyAmount) {
  */
 
 function addDays(dirtyDate, dirtyAmount) {
-  if (arguments.length < 2) {
-    throw new TypeError('2 arguments required, but only ' + arguments.length + ' present');
-  }
-
+  requiredArgs(2, arguments);
   var date = toDate(dirtyDate);
   var amount = toInteger(dirtyAmount);
   date.setDate(date.getDate() + amount);
@@ -5520,7 +5477,7 @@ function addDays(dirtyDate, dirtyAmount) {
  * - [Changes that are common for the whole library](https://github.com/date-fns/date-fns/blob/master/docs/upgradeGuide.md#Common-Changes).
  *
  * @param {Date|Number} date - the date to be changed
- * @param {Number} amount - the amount of weeks to be added
+ * @param {Number} amount - the amount of weeks to be added. Positive decimals will be rounded using `Math.floor`, decimals less than zero will be rounded using `Math.ceil`.
  * @returns {Date} the new date with the weeks added
  * @throws {TypeError} 2 arguments required
  *
@@ -5531,10 +5488,7 @@ function addDays(dirtyDate, dirtyAmount) {
  */
 
 function addWeeks(dirtyDate, dirtyAmount) {
-  if (arguments.length < 2) {
-    throw new TypeError('2 arguments required, but only ' + arguments.length + ' present');
-  }
-
+  requiredArgs(2, arguments);
   var amount = toInteger(dirtyAmount);
   var days = amount * 7;
   return addDays(dirtyDate, days);
@@ -5563,10 +5517,7 @@ function addWeeks(dirtyDate, dirtyAmount) {
  */
 
 function getDaysInMonth(dirtyDate) {
-  if (arguments.length < 1) {
-    throw new TypeError('1 argument required, but only ' + arguments.length + ' present');
-  }
-
+  requiredArgs(1, arguments);
   var date = toDate(dirtyDate);
   var year = date.getFullYear();
   var monthIndex = date.getMonth();
@@ -5589,7 +5540,7 @@ function getDaysInMonth(dirtyDate) {
  * - [Changes that are common for the whole library](https://github.com/date-fns/date-fns/blob/master/docs/upgradeGuide.md#Common-Changes).
  *
  * @param {Date|Number} date - the date to be changed
- * @param {Number} amount - the amount of months to be added
+ * @param {Number} amount - the amount of months to be added. Positive decimals will be rounded using `Math.floor`, decimals less than zero will be rounded using `Math.ceil`.
  * @returns {Date} the new date with the months added
  * @throws {TypeError} 2 arguments required
  *
@@ -5600,10 +5551,7 @@ function getDaysInMonth(dirtyDate) {
  */
 
 function addMonths(dirtyDate, dirtyAmount) {
-  if (arguments.length < 2) {
-    throw new TypeError('2 arguments required, but only ' + arguments.length + ' present');
-  }
-
+  requiredArgs(2, arguments);
   var date = toDate(dirtyDate);
   var amount = toInteger(dirtyAmount);
   var desiredMonth = date.getMonth() + amount;
@@ -5630,7 +5578,7 @@ function addMonths(dirtyDate, dirtyAmount) {
  * - [Changes that are common for the whole library](https://github.com/date-fns/date-fns/blob/master/docs/upgradeGuide.md#Common-Changes).
  *
  * @param {Date|Number} date - the date to be changed
- * @param {Number} amount - the amount of years to be added
+ * @param {Number} amount - the amount of years to be added. Positive decimals will be rounded using `Math.floor`, decimals less than zero will be rounded using `Math.ceil`.
  * @returns {Date} the new date with the years added
  * @throws {TypeError} 2 arguments required
  *
@@ -5641,10 +5589,7 @@ function addMonths(dirtyDate, dirtyAmount) {
  */
 
 function addYears(dirtyDate, dirtyAmount) {
-  if (arguments.length < 2) {
-    throw new TypeError('2 arguments required, but only ' + arguments.length + ' present');
-  }
-
+  requiredArgs(2, arguments);
   var amount = toInteger(dirtyAmount);
   return addMonths(dirtyDate, amount * 12);
 }
@@ -5662,7 +5607,7 @@ function addYears(dirtyDate, dirtyAmount) {
  * - [Changes that are common for the whole library](https://github.com/date-fns/date-fns/blob/master/docs/upgradeGuide.md#Common-Changes).
  *
  * @param {Date|Number} date - the date to be changed
- * @param {Number} amount - the amount of days to be subtracted
+ * @param {Number} amount - the amount of days to be subtracted. Positive decimals will be rounded using `Math.floor`, decimals less than zero will be rounded using `Math.ceil`.
  * @returns {Date} the new date with the days subtracted
  * @throws {TypeError} 2 arguments required
  *
@@ -5673,10 +5618,7 @@ function addYears(dirtyDate, dirtyAmount) {
  */
 
 function subDays(dirtyDate, dirtyAmount) {
-  if (arguments.length < 2) {
-    throw new TypeError('2 arguments required, but only ' + arguments.length + ' present');
-  }
-
+  requiredArgs(2, arguments);
   var amount = toInteger(dirtyAmount);
   return addDays(dirtyDate, -amount);
 }
@@ -5694,7 +5636,7 @@ function subDays(dirtyDate, dirtyAmount) {
  * - [Changes that are common for the whole library](https://github.com/date-fns/date-fns/blob/master/docs/upgradeGuide.md#Common-Changes).
  *
  * @param {Date|Number} date - the date to be changed
- * @param {Number} amount - the amount of weeks to be subtracted
+ * @param {Number} amount - the amount of weeks to be subtracted. Positive decimals will be rounded using `Math.floor`, decimals less than zero will be rounded using `Math.ceil`.
  * @returns {Date} the new date with the weeks subtracted
  * @throws {TypeError} 2 arguments required
  *
@@ -5705,10 +5647,7 @@ function subDays(dirtyDate, dirtyAmount) {
  */
 
 function subWeeks(dirtyDate, dirtyAmount) {
-  if (arguments.length < 2) {
-    throw new TypeError('2 arguments required, but only ' + arguments.length + ' present');
-  }
-
+  requiredArgs(2, arguments);
   var amount = toInteger(dirtyAmount);
   return addWeeks(dirtyDate, -amount);
 }
@@ -5726,7 +5665,7 @@ function subWeeks(dirtyDate, dirtyAmount) {
  * - [Changes that are common for the whole library](https://github.com/date-fns/date-fns/blob/master/docs/upgradeGuide.md#Common-Changes).
  *
  * @param {Date|Number} date - the date to be changed
- * @param {Number} amount - the amount of months to be subtracted
+ * @param {Number} amount - the amount of months to be subtracted. Positive decimals will be rounded using `Math.floor`, decimals less than zero will be rounded using `Math.ceil`.
  * @returns {Date} the new date with the months subtracted
  * @throws {TypeError} 2 arguments required
  *
@@ -5737,10 +5676,7 @@ function subWeeks(dirtyDate, dirtyAmount) {
  */
 
 function subMonths(dirtyDate, dirtyAmount) {
-  if (arguments.length < 2) {
-    throw new TypeError('2 arguments required, but only ' + arguments.length + ' present');
-  }
-
+  requiredArgs(2, arguments);
   var amount = toInteger(dirtyAmount);
   return addMonths(dirtyDate, -amount);
 }
@@ -5758,7 +5694,7 @@ function subMonths(dirtyDate, dirtyAmount) {
  * - [Changes that are common for the whole library](https://github.com/date-fns/date-fns/blob/master/docs/upgradeGuide.md#Common-Changes).
  *
  * @param {Date|Number} date - the date to be changed
- * @param {Number} amount - the amount of years to be subtracted
+ * @param {Number} amount - the amount of years to be subtracted. Positive decimals will be rounded using `Math.floor`, decimals less than zero will be rounded using `Math.ceil`.
  * @returns {Date} the new date with the years subtracted
  * @throws {TypeError} 2 arguments required
  *
@@ -5769,10 +5705,7 @@ function subMonths(dirtyDate, dirtyAmount) {
  */
 
 function subYears(dirtyDate, dirtyAmount) {
-  if (arguments.length < 2) {
-    throw new TypeError('2 arguments required, but only ' + arguments.length + ' present');
-  }
-
+  requiredArgs(2, arguments);
   var amount = toInteger(dirtyAmount);
   return addYears(dirtyDate, -amount);
 }
@@ -5800,10 +5733,7 @@ function subYears(dirtyDate, dirtyAmount) {
  */
 
 function getSeconds(dirtyDate) {
-  if (arguments.length < 1) {
-    throw new TypeError('1 argument required, but only ' + arguments.length + ' present');
-  }
-
+  requiredArgs(1, arguments);
   var date = toDate(dirtyDate);
   var seconds = date.getSeconds();
   return seconds;
@@ -5832,10 +5762,7 @@ function getSeconds(dirtyDate) {
  */
 
 function getMinutes(dirtyDate) {
-  if (arguments.length < 1) {
-    throw new TypeError('1 argument required, but only ' + arguments.length + ' present');
-  }
-
+  requiredArgs(1, arguments);
   var date = toDate(dirtyDate);
   var minutes = date.getMinutes();
   return minutes;
@@ -5864,10 +5791,7 @@ function getMinutes(dirtyDate) {
  */
 
 function getHours(dirtyDate) {
-  if (arguments.length < 1) {
-    throw new TypeError('1 argument required, but only ' + arguments.length + ' present');
-  }
-
+  requiredArgs(1, arguments);
   var date = toDate(dirtyDate);
   var hours = date.getHours();
   return hours;
@@ -5896,10 +5820,7 @@ function getHours(dirtyDate) {
  */
 
 function getDay(dirtyDate) {
-  if (arguments.length < 1) {
-    throw new TypeError('1 argument required, but only ' + arguments.length + ' present');
-  }
-
+  requiredArgs(1, arguments);
   var date = toDate(dirtyDate);
   var day = date.getDay();
   return day;
@@ -5928,13 +5849,251 @@ function getDay(dirtyDate) {
  */
 
 function getDate(dirtyDate) {
-  if (arguments.length < 1) {
-    throw new TypeError('1 argument required, but only ' + arguments.length + ' present');
-  }
-
+  requiredArgs(1, arguments);
   var date = toDate(dirtyDate);
   var dayOfMonth = date.getDate();
   return dayOfMonth;
+}
+
+/**
+ * @name startOfWeek
+ * @category Week Helpers
+ * @summary Return the start of a week for the given date.
+ *
+ * @description
+ * Return the start of a week for the given date.
+ * The result will be in the local timezone.
+ *
+ * ### v2.0.0 breaking changes:
+ *
+ * - [Changes that are common for the whole library](https://github.com/date-fns/date-fns/blob/master/docs/upgradeGuide.md#Common-Changes).
+ *
+ * @param {Date|Number} date - the original date
+ * @param {Object} [options] - an object with options.
+ * @param {Locale} [options.locale=defaultLocale] - the locale object. See [Locale]{@link https://date-fns.org/docs/Locale}
+ * @param {0|1|2|3|4|5|6} [options.weekStartsOn=0] - the index of the first day of the week (0 - Sunday)
+ * @returns {Date} the start of a week
+ * @throws {TypeError} 1 argument required
+ * @throws {RangeError} `options.weekStartsOn` must be between 0 and 6
+ *
+ * @example
+ * // The start of a week for 2 September 2014 11:55:00:
+ * var result = startOfWeek(new Date(2014, 8, 2, 11, 55, 0))
+ * //=> Sun Aug 31 2014 00:00:00
+ *
+ * @example
+ * // If the week starts on Monday, the start of the week for 2 September 2014 11:55:00:
+ * var result = startOfWeek(new Date(2014, 8, 2, 11, 55, 0), { weekStartsOn: 1 })
+ * //=> Mon Sep 01 2014 00:00:00
+ */
+
+function startOfWeek(dirtyDate, dirtyOptions) {
+  requiredArgs(1, arguments);
+  var options = dirtyOptions || {};
+  var locale = options.locale;
+  var localeWeekStartsOn = locale && locale.options && locale.options.weekStartsOn;
+  var defaultWeekStartsOn = localeWeekStartsOn == null ? 0 : toInteger(localeWeekStartsOn);
+  var weekStartsOn = options.weekStartsOn == null ? defaultWeekStartsOn : toInteger(options.weekStartsOn); // Test if weekStartsOn is between 0 and 6 _and_ is not NaN
+
+  if (!(weekStartsOn >= 0 && weekStartsOn <= 6)) {
+    throw new RangeError('weekStartsOn must be between 0 and 6 inclusively');
+  }
+
+  var date = toDate(dirtyDate);
+  var day = date.getDay();
+  var diff = (day < weekStartsOn ? 7 : 0) + day - weekStartsOn;
+  date.setDate(date.getDate() - diff);
+  date.setHours(0, 0, 0, 0);
+  return date;
+}
+
+/**
+ * @name getWeekYear
+ * @category Week-Numbering Year Helpers
+ * @summary Get the local week-numbering year of the given date.
+ *
+ * @description
+ * Get the local week-numbering year of the given date.
+ * The exact calculation depends on the values of
+ * `options.weekStartsOn` (which is the index of the first day of the week)
+ * and `options.firstWeekContainsDate` (which is the day of January, which is always in
+ * the first week of the week-numbering year)
+ *
+ * Week numbering: https://en.wikipedia.org/wiki/Week#Week_numbering
+ *
+ * ### v2.0.0 breaking changes:
+ *
+ * - [Changes that are common for the whole library](https://github.com/date-fns/date-fns/blob/master/docs/upgradeGuide.md#Common-Changes).
+ *
+ * @param {Date|Number} date - the given date
+ * @param {Object} [options] - an object with options.
+ * @param {Locale} [options.locale=defaultLocale] - the locale object. See [Locale]{@link https://date-fns.org/docs/Locale}
+ * @param {0|1|2|3|4|5|6} [options.weekStartsOn=0] - the index of the first day of the week (0 - Sunday)
+ * @param {1|2|3|4|5|6|7} [options.firstWeekContainsDate=1] - the day of January, which is always in the first week of the year
+ * @returns {Number} the local week-numbering year
+ * @throws {TypeError} 1 argument required
+ * @throws {RangeError} `options.weekStartsOn` must be between 0 and 6
+ * @throws {RangeError} `options.firstWeekContainsDate` must be between 1 and 7
+ *
+ * @example
+ * // Which week numbering year is 26 December 2004 with the default settings?
+ * var result = getWeekYear(new Date(2004, 11, 26))
+ * //=> 2005
+ *
+ * @example
+ * // Which week numbering year is 26 December 2004 if week starts on Saturday?
+ * var result = getWeekYear(new Date(2004, 11, 26), { weekStartsOn: 6 })
+ * //=> 2004
+ *
+ * @example
+ * // Which week numbering year is 26 December 2004 if the first week contains 4 January?
+ * var result = getWeekYear(new Date(2004, 11, 26), { firstWeekContainsDate: 4 })
+ * //=> 2004
+ */
+
+function getWeekYear(dirtyDate, dirtyOptions) {
+  requiredArgs(1, arguments);
+  var date = toDate(dirtyDate);
+  var year = date.getFullYear();
+  var options = dirtyOptions || {};
+  var locale = options.locale;
+  var localeFirstWeekContainsDate = locale && locale.options && locale.options.firstWeekContainsDate;
+  var defaultFirstWeekContainsDate = localeFirstWeekContainsDate == null ? 1 : toInteger(localeFirstWeekContainsDate);
+  var firstWeekContainsDate = options.firstWeekContainsDate == null ? defaultFirstWeekContainsDate : toInteger(options.firstWeekContainsDate); // Test if weekStartsOn is between 1 and 7 _and_ is not NaN
+
+  if (!(firstWeekContainsDate >= 1 && firstWeekContainsDate <= 7)) {
+    throw new RangeError('firstWeekContainsDate must be between 1 and 7 inclusively');
+  }
+
+  var firstWeekOfNextYear = new Date(0);
+  firstWeekOfNextYear.setFullYear(year + 1, 0, firstWeekContainsDate);
+  firstWeekOfNextYear.setHours(0, 0, 0, 0);
+  var startOfNextYear = startOfWeek(firstWeekOfNextYear, dirtyOptions);
+  var firstWeekOfThisYear = new Date(0);
+  firstWeekOfThisYear.setFullYear(year, 0, firstWeekContainsDate);
+  firstWeekOfThisYear.setHours(0, 0, 0, 0);
+  var startOfThisYear = startOfWeek(firstWeekOfThisYear, dirtyOptions);
+
+  if (date.getTime() >= startOfNextYear.getTime()) {
+    return year + 1;
+  } else if (date.getTime() >= startOfThisYear.getTime()) {
+    return year;
+  } else {
+    return year - 1;
+  }
+}
+
+/**
+ * @name startOfWeekYear
+ * @category Week-Numbering Year Helpers
+ * @summary Return the start of a local week-numbering year for the given date.
+ *
+ * @description
+ * Return the start of a local week-numbering year.
+ * The exact calculation depends on the values of
+ * `options.weekStartsOn` (which is the index of the first day of the week)
+ * and `options.firstWeekContainsDate` (which is the day of January, which is always in
+ * the first week of the week-numbering year)
+ *
+ * Week numbering: https://en.wikipedia.org/wiki/Week#Week_numbering
+ *
+ * ### v2.0.0 breaking changes:
+ *
+ * - [Changes that are common for the whole library](https://github.com/date-fns/date-fns/blob/master/docs/upgradeGuide.md#Common-Changes).
+ *
+ * @param {Date|Number} date - the original date
+ * @param {Object} [options] - an object with options.
+ * @param {Locale} [options.locale=defaultLocale] - the locale object. See [Locale]{@link https://date-fns.org/docs/Locale}
+ * @param {0|1|2|3|4|5|6} [options.weekStartsOn=0] - the index of the first day of the week (0 - Sunday)
+ * @param {1|2|3|4|5|6|7} [options.firstWeekContainsDate=1] - the day of January, which is always in the first week of the year
+ * @returns {Date} the start of a week-numbering year
+ * @throws {TypeError} 1 argument required
+ * @throws {RangeError} `options.weekStartsOn` must be between 0 and 6
+ * @throws {RangeError} `options.firstWeekContainsDate` must be between 1 and 7
+ *
+ * @example
+ * // The start of an a week-numbering year for 2 July 2005 with default settings:
+ * var result = startOfWeekYear(new Date(2005, 6, 2))
+ * //=> Sun Dec 26 2004 00:00:00
+ *
+ * @example
+ * // The start of a week-numbering year for 2 July 2005
+ * // if Monday is the first day of week
+ * // and 4 January is always in the first week of the year:
+ * var result = startOfWeekYear(new Date(2005, 6, 2), {
+ *   weekStartsOn: 1,
+ *   firstWeekContainsDate: 4
+ * })
+ * //=> Mon Jan 03 2005 00:00:00
+ */
+
+function startOfWeekYear(dirtyDate, dirtyOptions) {
+  requiredArgs(1, arguments);
+  var options = dirtyOptions || {};
+  var locale = options.locale;
+  var localeFirstWeekContainsDate = locale && locale.options && locale.options.firstWeekContainsDate;
+  var defaultFirstWeekContainsDate = localeFirstWeekContainsDate == null ? 1 : toInteger(localeFirstWeekContainsDate);
+  var firstWeekContainsDate = options.firstWeekContainsDate == null ? defaultFirstWeekContainsDate : toInteger(options.firstWeekContainsDate);
+  var year = getWeekYear(dirtyDate, dirtyOptions);
+  var firstWeek = new Date(0);
+  firstWeek.setFullYear(year, 0, firstWeekContainsDate);
+  firstWeek.setHours(0, 0, 0, 0);
+  var date = startOfWeek(firstWeek, dirtyOptions);
+  return date;
+}
+
+var MILLISECONDS_IN_WEEK$2 = 604800000;
+/**
+ * @name getWeek
+ * @category Week Helpers
+ * @summary Get the local week index of the given date.
+ *
+ * @description
+ * Get the local week index of the given date.
+ * The exact calculation depends on the values of
+ * `options.weekStartsOn` (which is the index of the first day of the week)
+ * and `options.firstWeekContainsDate` (which is the day of January, which is always in
+ * the first week of the week-numbering year)
+ *
+ * Week numbering: https://en.wikipedia.org/wiki/Week#Week_numbering
+ *
+ * ### v2.0.0 breaking changes:
+ *
+ * - [Changes that are common for the whole library](https://github.com/date-fns/date-fns/blob/master/docs/upgradeGuide.md#Common-Changes).
+ *
+ * @param {Date|Number} date - the given date
+ * @param {Object} [options] - an object with options.
+ * @param {Locale} [options.locale=defaultLocale] - the locale object. See [Locale]{@link https://date-fns.org/docs/Locale}
+ * @param {0|1|2|3|4|5|6} [options.weekStartsOn=0] - the index of the first day of the week (0 - Sunday)
+ * @param {1|2|3|4|5|6|7} [options.firstWeekContainsDate=1] - the day of January, which is always in the first week of the year
+ * @returns {Number} the week
+ * @throws {TypeError} 1 argument required
+ * @throws {RangeError} `options.weekStartsOn` must be between 0 and 6
+ * @throws {RangeError} `options.firstWeekContainsDate` must be between 1 and 7
+ *
+ * @example
+ * // Which week of the local week numbering year is 2 January 2005 with default options?
+ * var result = getISOWeek(new Date(2005, 0, 2))
+ * //=> 2
+ *
+ * // Which week of the local week numbering year is 2 January 2005,
+ * // if Monday is the first day of the week,
+ * // and the first week of the year always contains 4 January?
+ * var result = getISOWeek(new Date(2005, 0, 2), {
+ *   weekStartsOn: 1,
+ *   firstWeekContainsDate: 4
+ * })
+ * //=> 53
+ */
+
+function getWeek(dirtyDate, options) {
+  requiredArgs(1, arguments);
+  var date = toDate(dirtyDate);
+  var diff = startOfWeek(date, options).getTime() - startOfWeekYear(date, options).getTime(); // Round the number of days to the nearest integer
+  // because the number of milliseconds in a week is not constant
+  // (e.g. it's different in the week of the daylight saving time clock shift)
+
+  return Math.round(diff / MILLISECONDS_IN_WEEK$2) + 1;
 }
 
 /**
@@ -5960,10 +6119,7 @@ function getDate(dirtyDate) {
  */
 
 function getMonth(dirtyDate) {
-  if (arguments.length < 1) {
-    throw new TypeError('1 argument required, but only ' + arguments.length + ' present');
-  }
-
+  requiredArgs(1, arguments);
   var date = toDate(dirtyDate);
   var month = date.getMonth();
   return month;
@@ -5992,10 +6148,7 @@ function getMonth(dirtyDate) {
  */
 
 function getQuarter(dirtyDate) {
-  if (arguments.length < 1) {
-    throw new TypeError('1 argument required, but only ' + arguments.length + ' present');
-  }
-
+  requiredArgs(1, arguments);
   var date = toDate(dirtyDate);
   var quarter = Math.floor(date.getMonth() / 3) + 1;
   return quarter;
@@ -6024,10 +6177,7 @@ function getQuarter(dirtyDate) {
  */
 
 function getYear(dirtyDate) {
-  if (arguments.length < 1) {
-    throw new TypeError('1 argument required, but only ' + arguments.length + ' present');
-  }
-
+  requiredArgs(1, arguments);
   var date = toDate(dirtyDate);
   var year = date.getFullYear();
   return year;
@@ -6056,10 +6206,7 @@ function getYear(dirtyDate) {
  */
 
 function getTime(dirtyDate) {
-  if (arguments.length < 1) {
-    throw new TypeError('1 argument required, but only ' + arguments.length + ' present');
-  }
-
+  requiredArgs(1, arguments);
   var date = toDate(dirtyDate);
   var timestamp = date.getTime();
   return timestamp;
@@ -6089,10 +6236,7 @@ function getTime(dirtyDate) {
  */
 
 function setSeconds(dirtyDate, dirtySeconds) {
-  if (arguments.length < 2) {
-    throw new TypeError('2 arguments required, but only ' + arguments.length + ' present');
-  }
-
+  requiredArgs(2, arguments);
   var date = toDate(dirtyDate);
   var seconds = toInteger(dirtySeconds);
   date.setSeconds(seconds);
@@ -6123,10 +6267,7 @@ function setSeconds(dirtyDate, dirtySeconds) {
  */
 
 function setMinutes(dirtyDate, dirtyMinutes) {
-  if (arguments.length < 2) {
-    throw new TypeError('2 arguments required, but only ' + arguments.length + ' present');
-  }
-
+  requiredArgs(2, arguments);
   var date = toDate(dirtyDate);
   var minutes = toInteger(dirtyMinutes);
   date.setMinutes(minutes);
@@ -6157,10 +6298,7 @@ function setMinutes(dirtyDate, dirtyMinutes) {
  */
 
 function setHours(dirtyDate, dirtyHours) {
-  if (arguments.length < 2) {
-    throw new TypeError('2 arguments required, but only ' + arguments.length + ' present');
-  }
-
+  requiredArgs(2, arguments);
   var date = toDate(dirtyDate);
   var hours = toInteger(dirtyHours);
   date.setHours(hours);
@@ -6191,10 +6329,7 @@ function setHours(dirtyDate, dirtyHours) {
  */
 
 function setMonth(dirtyDate, dirtyMonth) {
-  if (arguments.length < 2) {
-    throw new TypeError('2 arguments required, but only ' + arguments.length + ' present');
-  }
-
+  requiredArgs(2, arguments);
   var date = toDate(dirtyDate);
   var month = toInteger(dirtyMonth);
   var year = date.getFullYear();
@@ -6233,10 +6368,7 @@ function setMonth(dirtyDate, dirtyMonth) {
  */
 
 function setQuarter(dirtyDate, dirtyQuarter) {
-  if (arguments.length < 2) {
-    throw new TypeError('2 arguments required, but only ' + arguments.length + ' present');
-  }
-
+  requiredArgs(2, arguments);
   var date = toDate(dirtyDate);
   var quarter = toInteger(dirtyQuarter);
   var oldQuarter = Math.floor(date.getMonth() / 3) + 1;
@@ -6268,10 +6400,7 @@ function setQuarter(dirtyDate, dirtyQuarter) {
  */
 
 function setYear(dirtyDate, dirtyYear) {
-  if (arguments.length < 2) {
-    throw new TypeError('2 arguments required, but only ' + arguments.length + ' present');
-  }
-
+  requiredArgs(2, arguments);
   var date = toDate(dirtyDate);
   var year = toInteger(dirtyYear); // Check if date is Invalid Date because Date.prototype.setFullYear ignores the value of Invalid Date
 
@@ -6324,10 +6453,7 @@ function setYear(dirtyDate, dirtyYear) {
  */
 
 function min(dirtyDatesArray) {
-  if (arguments.length < 1) {
-    throw new TypeError('1 argument required, but only ' + arguments.length + ' present');
-  }
-
+  requiredArgs(1, arguments);
   var datesArray; // `dirtyDatesArray` is Array, Set or Map, or object with custom `forEach` method
 
   if (dirtyDatesArray && typeof dirtyDatesArray.forEach === 'function') {
@@ -6391,10 +6517,7 @@ function min(dirtyDatesArray) {
  */
 
 function max(dirtyDatesArray) {
-  if (arguments.length < 1) {
-    throw new TypeError('1 argument required, but only ' + arguments.length + ' present');
-  }
-
+  requiredArgs(1, arguments);
   var datesArray; // `dirtyDatesArray` is Array, Set or Map, or object with custom `forEach` method
 
   if (dirtyDatesArray && typeof dirtyDatesArray.forEach === 'function') {
@@ -6441,10 +6564,7 @@ function max(dirtyDatesArray) {
  */
 
 function startOfDay(dirtyDate) {
-  if (arguments.length < 1) {
-    throw new TypeError('1 argument required, but only ' + arguments.length + ' present');
-  }
-
+  requiredArgs(1, arguments);
   var date = toDate(dirtyDate);
   date.setHours(0, 0, 0, 0);
   return date;
@@ -6487,10 +6607,7 @@ var MILLISECONDS_IN_DAY$1 = 86400000;
  */
 
 function differenceInCalendarDays(dirtyDateLeft, dirtyDateRight) {
-  if (arguments.length < 2) {
-    throw new TypeError('2 arguments required, but only ' + arguments.length + ' present');
-  }
-
+  requiredArgs(2, arguments);
   var startOfDayLeft = startOfDay(dirtyDateLeft);
   var startOfDayRight = startOfDay(dirtyDateRight);
   var timestampLeft = startOfDayLeft.getTime() - getTimezoneOffsetInMilliseconds(startOfDayLeft);
@@ -6528,126 +6645,12 @@ function differenceInCalendarDays(dirtyDateLeft, dirtyDateRight) {
  */
 
 function differenceInCalendarMonths(dirtyDateLeft, dirtyDateRight) {
-  if (arguments.length < 2) {
-    throw new TypeError('2 arguments required, but only ' + arguments.length + ' present');
-  }
-
+  requiredArgs(2, arguments);
   var dateLeft = toDate(dirtyDateLeft);
   var dateRight = toDate(dirtyDateRight);
   var yearDiff = dateLeft.getFullYear() - dateRight.getFullYear();
   var monthDiff = dateLeft.getMonth() - dateRight.getMonth();
   return yearDiff * 12 + monthDiff;
-}
-
-/**
- * @name startOfWeek
- * @category Week Helpers
- * @summary Return the start of a week for the given date.
- *
- * @description
- * Return the start of a week for the given date.
- * The result will be in the local timezone.
- *
- * ### v2.0.0 breaking changes:
- *
- * - [Changes that are common for the whole library](https://github.com/date-fns/date-fns/blob/master/docs/upgradeGuide.md#Common-Changes).
- *
- * @param {Date|Number} date - the original date
- * @param {Object} [options] - an object with options.
- * @param {Locale} [options.locale=defaultLocale] - the locale object. See [Locale]{@link https://date-fns.org/docs/Locale}
- * @param {0|1|2|3|4|5|6} [options.weekStartsOn=0] - the index of the first day of the week (0 - Sunday)
- * @returns {Date} the start of a week
- * @throws {TypeError} 1 argument required
- * @throws {RangeError} `options.weekStartsOn` must be between 0 and 6
- *
- * @example
- * // The start of a week for 2 September 2014 11:55:00:
- * var result = startOfWeek(new Date(2014, 8, 2, 11, 55, 0))
- * //=> Sun Aug 31 2014 00:00:00
- *
- * @example
- * // If the week starts on Monday, the start of the week for 2 September 2014 11:55:00:
- * var result = startOfWeek(new Date(2014, 8, 2, 11, 55, 0), { weekStartsOn: 1 })
- * //=> Mon Sep 01 2014 00:00:00
- */
-
-function startOfWeek(dirtyDate, dirtyOptions) {
-  if (arguments.length < 1) {
-    throw new TypeError('1 argument required, but only ' + arguments.length + ' present');
-  }
-
-  var options = dirtyOptions || {};
-  var locale = options.locale;
-  var localeWeekStartsOn = locale && locale.options && locale.options.weekStartsOn;
-  var defaultWeekStartsOn = localeWeekStartsOn == null ? 0 : toInteger(localeWeekStartsOn);
-  var weekStartsOn = options.weekStartsOn == null ? defaultWeekStartsOn : toInteger(options.weekStartsOn); // Test if weekStartsOn is between 0 and 6 _and_ is not NaN
-
-  if (!(weekStartsOn >= 0 && weekStartsOn <= 6)) {
-    throw new RangeError('weekStartsOn must be between 0 and 6 inclusively');
-  }
-
-  var date = toDate(dirtyDate);
-  var day = date.getDay();
-  var diff = (day < weekStartsOn ? 7 : 0) + day - weekStartsOn;
-  date.setDate(date.getDate() - diff);
-  date.setHours(0, 0, 0, 0);
-  return date;
-}
-
-var MILLISECONDS_IN_WEEK$2 = 604800000;
-/**
- * @name differenceInCalendarWeeks
- * @category Week Helpers
- * @summary Get the number of calendar weeks between the given dates.
- *
- * @description
- * Get the number of calendar weeks between the given dates.
- *
- * ### v2.0.0 breaking changes:
- *
- * - [Changes that are common for the whole library](https://github.com/date-fns/date-fns/blob/master/docs/upgradeGuide.md#Common-Changes).
- *
- * @param {Date|Number} dateLeft - the later date
- * @param {Date|Number} dateRight - the earlier date
- * @param {Object} [options] - an object with options.
- * @param {Locale} [options.locale=defaultLocale] - the locale object. See [Locale]{@link https://date-fns.org/docs/Locale}
- * @param {0|1|2|3|4|5|6} [options.weekStartsOn=0] - the index of the first day of the week (0 - Sunday)
- * @returns {Number} the number of calendar weeks
- * @throws {TypeError} 2 arguments required
- * @throws {RangeError} `options.weekStartsOn` must be between 0 and 6
- *
- * @example
- * // How many calendar weeks are between 5 July 2014 and 20 July 2014?
- * var result = differenceInCalendarWeeks(
- *   new Date(2014, 6, 20),
- *   new Date(2014, 6, 5)
- * )
- * //=> 3
- *
- * @example
- * // If the week starts on Monday,
- * // how many calendar weeks are between 5 July 2014 and 20 July 2014?
- * var result = differenceInCalendarWeeks(
- *   new Date(2014, 6, 20),
- *   new Date(2014, 6, 5),
- *   { weekStartsOn: 1 }
- * )
- * //=> 2
- */
-
-function differenceInCalendarWeeks(dirtyDateLeft, dirtyDateRight, dirtyOptions) {
-  if (arguments.length < 2) {
-    throw new TypeError('2 arguments required, but only ' + arguments.length + ' present');
-  }
-
-  var startOfWeekLeft = startOfWeek(dirtyDateLeft, dirtyOptions);
-  var startOfWeekRight = startOfWeek(dirtyDateRight, dirtyOptions);
-  var timestampLeft = startOfWeekLeft.getTime() - getTimezoneOffsetInMilliseconds(startOfWeekLeft);
-  var timestampRight = startOfWeekRight.getTime() - getTimezoneOffsetInMilliseconds(startOfWeekRight); // Round the number of days to the nearest integer
-  // because the number of milliseconds in a week is not constant
-  // (e.g. it's different in the week of the daylight saving time clock shift)
-
-  return Math.round((timestampLeft - timestampRight) / MILLISECONDS_IN_WEEK$2);
 }
 
 /**
@@ -6677,10 +6680,7 @@ function differenceInCalendarWeeks(dirtyDateLeft, dirtyDateRight, dirtyOptions) 
  */
 
 function differenceInCalendarYears(dirtyDateLeft, dirtyDateRight) {
-  if (arguments.length < 2) {
-    throw new TypeError('2 arguments required, but only ' + arguments.length + ' present');
-  }
-
+  requiredArgs(2, arguments);
   var dateLeft = toDate(dirtyDateLeft);
   var dateRight = toDate(dirtyDateRight);
   return dateLeft.getFullYear() - dateRight.getFullYear();
@@ -6710,10 +6710,7 @@ function differenceInCalendarYears(dirtyDateLeft, dirtyDateRight) {
  */
 
 function startOfMonth(dirtyDate) {
-  if (arguments.length < 1) {
-    throw new TypeError('1 argument required, but only ' + arguments.length + ' present');
-  }
-
+  requiredArgs(1, arguments);
   var date = toDate(dirtyDate);
   date.setDate(1);
   date.setHours(0, 0, 0, 0);
@@ -6744,49 +6741,11 @@ function startOfMonth(dirtyDate) {
  */
 
 function startOfQuarter(dirtyDate) {
-  if (arguments.length < 1) {
-    throw new TypeError('1 argument required, but only ' + arguments.length + ' present');
-  }
-
+  requiredArgs(1, arguments);
   var date = toDate(dirtyDate);
   var currentMonth = date.getMonth();
   var month = currentMonth - currentMonth % 3;
   date.setMonth(month, 1);
-  date.setHours(0, 0, 0, 0);
-  return date;
-}
-
-/**
- * @name startOfYear
- * @category Year Helpers
- * @summary Return the start of a year for the given date.
- *
- * @description
- * Return the start of a year for the given date.
- * The result will be in the local timezone.
- *
- * ### v2.0.0 breaking changes:
- *
- * - [Changes that are common for the whole library](https://github.com/date-fns/date-fns/blob/master/docs/upgradeGuide.md#Common-Changes).
- *
- * @param {Date|Number} date - the original date
- * @returns {Date} the start of a year
- * @throws {TypeError} 1 argument required
- *
- * @example
- * // The start of a year for 2 September 2014 11:55:00:
- * var result = startOfYear(new Date(2014, 8, 2, 11, 55, 00))
- * //=> Wed Jan 01 2014 00:00:00
- */
-
-function startOfYear(dirtyDate) {
-  if (arguments.length < 1) {
-    throw new TypeError('1 argument required, but only ' + arguments.length + ' present');
-  }
-
-  var cleanDate = toDate(dirtyDate);
-  var date = new Date(0);
-  date.setFullYear(cleanDate.getFullYear(), 0, 1);
   date.setHours(0, 0, 0, 0);
   return date;
 }
@@ -6815,66 +6774,8 @@ function startOfYear(dirtyDate) {
  */
 
 function endOfDay(dirtyDate) {
-  if (arguments.length < 1) {
-    throw new TypeError('1 argument required, but only ' + arguments.length + ' present');
-  }
-
+  requiredArgs(1, arguments);
   var date = toDate(dirtyDate);
-  date.setHours(23, 59, 59, 999);
-  return date;
-}
-
-/**
- * @name endOfWeek
- * @category Week Helpers
- * @summary Return the end of a week for the given date.
- *
- * @description
- * Return the end of a week for the given date.
- * The result will be in the local timezone.
- *
- * ### v2.0.0 breaking changes:
- *
- * - [Changes that are common for the whole library](https://github.com/date-fns/date-fns/blob/master/docs/upgradeGuide.md#Common-Changes).
- *
- * @param {Date|Number} date - the original date
- * @param {Object} [options] - an object with options.
- * @param {Locale} [options.locale=defaultLocale] - the locale object. See [Locale]{@link https://date-fns.org/docs/Locale}
- * @param {0|1|2|3|4|5|6} [options.weekStartsOn=0] - the index of the first day of the week (0 - Sunday)
- * @returns {Date} the end of a week
- * @throws {TypeError} 1 argument required
- * @throws {RangeError} `options.weekStartsOn` must be between 0 and 6
- *
- * @example
- * // The end of a week for 2 September 2014 11:55:00:
- * var result = endOfWeek(new Date(2014, 8, 2, 11, 55, 0))
- * //=> Sat Sep 06 2014 23:59:59.999
- *
- * @example
- * // If the week starts on Monday, the end of the week for 2 September 2014 11:55:00:
- * var result = endOfWeek(new Date(2014, 8, 2, 11, 55, 0), { weekStartsOn: 1 })
- * //=> Sun Sep 07 2014 23:59:59.999
- */
-
-function endOfWeek(dirtyDate, dirtyOptions) {
-  if (arguments.length < 1) {
-    throw new TypeError('1 argument required, but only ' + arguments.length + ' present');
-  }
-
-  var options = dirtyOptions || {};
-  var locale = options.locale;
-  var localeWeekStartsOn = locale && locale.options && locale.options.weekStartsOn;
-  var defaultWeekStartsOn = localeWeekStartsOn == null ? 0 : toInteger(localeWeekStartsOn);
-  var weekStartsOn = options.weekStartsOn == null ? defaultWeekStartsOn : toInteger(options.weekStartsOn); // Test if weekStartsOn is between 0 and 6 _and_ is not NaN
-
-  if (!(weekStartsOn >= 0 && weekStartsOn <= 6)) {
-    throw new RangeError('weekStartsOn must be between 0 and 6 inclusively');
-  }
-
-  var date = toDate(dirtyDate);
-  var day = date.getDay();
-  var diff = (day < weekStartsOn ? -7 : 0) + 6 - (day - weekStartsOn);
-  date.setDate(date.getDate() + diff);
   date.setHours(23, 59, 59, 999);
   return date;
 }
@@ -6906,10 +6807,7 @@ function endOfWeek(dirtyDate, dirtyOptions) {
  */
 
 function isEqual(dirtyLeftDate, dirtyRightDate) {
-  if (arguments.length < 2) {
-    throw new TypeError('2 arguments required, but only ' + arguments.length + ' present');
-  }
-
+  requiredArgs(2, arguments);
   var dateLeft = toDate(dirtyLeftDate);
   var dateRight = toDate(dirtyRightDate);
   return dateLeft.getTime() === dateRight.getTime();
@@ -6939,10 +6837,7 @@ function isEqual(dirtyLeftDate, dirtyRightDate) {
  */
 
 function isSameDay(dirtyDateLeft, dirtyDateRight) {
-  if (arguments.length < 2) {
-    throw new TypeError('2 arguments required, but only ' + arguments.length + ' present');
-  }
-
+  requiredArgs(2, arguments);
   var dateLeftStartOfDay = startOfDay(dirtyDateLeft);
   var dateRightStartOfDay = startOfDay(dirtyDateRight);
   return dateLeftStartOfDay.getTime() === dateRightStartOfDay.getTime();
@@ -6972,10 +6867,7 @@ function isSameDay(dirtyDateLeft, dirtyDateRight) {
  */
 
 function isSameMonth(dirtyDateLeft, dirtyDateRight) {
-  if (arguments.length < 2) {
-    throw new TypeError('2 arguments required, but only ' + arguments.length + ' present');
-  }
-
+  requiredArgs(2, arguments);
   var dateLeft = toDate(dirtyDateLeft);
   var dateRight = toDate(dirtyDateRight);
   return dateLeft.getFullYear() === dateRight.getFullYear() && dateLeft.getMonth() === dateRight.getMonth();
@@ -7005,10 +6897,7 @@ function isSameMonth(dirtyDateLeft, dirtyDateRight) {
  */
 
 function isSameYear(dirtyDateLeft, dirtyDateRight) {
-  if (arguments.length < 2) {
-    throw new TypeError('2 arguments required, but only ' + arguments.length + ' present');
-  }
-
+  requiredArgs(2, arguments);
   var dateLeft = toDate(dirtyDateLeft);
   var dateRight = toDate(dirtyDateRight);
   return dateLeft.getFullYear() === dateRight.getFullYear();
@@ -7038,10 +6927,7 @@ function isSameYear(dirtyDateLeft, dirtyDateRight) {
  */
 
 function isSameQuarter(dirtyDateLeft, dirtyDateRight) {
-  if (arguments.length < 2) {
-    throw new TypeError('2 arguments required, but only ' + arguments.length + ' present');
-  }
-
+  requiredArgs(2, arguments);
   var dateLeftStartOfQuarter = startOfQuarter(dirtyDateLeft);
   var dateRightStartOfQuarter = startOfQuarter(dirtyDateRight);
   return dateLeftStartOfQuarter.getTime() === dateRightStartOfQuarter.getTime();
@@ -7071,10 +6957,7 @@ function isSameQuarter(dirtyDateLeft, dirtyDateRight) {
  */
 
 function isAfter(dirtyDate, dirtyDateToCompare) {
-  if (arguments.length < 2) {
-    throw new TypeError('2 arguments required, but only ' + arguments.length + ' present');
-  }
-
+  requiredArgs(2, arguments);
   var date = toDate(dirtyDate);
   var dateToCompare = toDate(dirtyDateToCompare);
   return date.getTime() > dateToCompare.getTime();
@@ -7104,10 +6987,7 @@ function isAfter(dirtyDate, dirtyDateToCompare) {
  */
 
 function isBefore(dirtyDate, dirtyDateToCompare) {
-  if (arguments.length < 2) {
-    throw new TypeError('2 arguments required, but only ' + arguments.length + ' present');
-  }
-
+  requiredArgs(2, arguments);
   var date = toDate(dirtyDate);
   var dateToCompare = toDate(dirtyDateToCompare);
   return date.getTime() < dateToCompare.getTime();
@@ -7188,10 +7068,7 @@ function isBefore(dirtyDate, dirtyDateToCompare) {
  */
 
 function isWithinInterval(dirtyDate, dirtyInterval) {
-  if (arguments.length < 2) {
-    throw new TypeError('2 arguments required, but only ' + arguments.length + ' present');
-  }
-
+  requiredArgs(2, arguments);
   var interval = dirtyInterval || {};
   var time = toDate(dirtyDate).getTime();
   var startTime = toDate(interval.start).getTime();
@@ -7223,10 +7100,7 @@ function assign(target, dirtyObject) {
 // See issue: https://github.com/date-fns/date-fns/issues/376
 
 function setUTCDay(dirtyDate, dirtyDay, dirtyOptions) {
-  if (arguments.length < 2) {
-    throw new TypeError('2 arguments required, but only ' + arguments.length + ' present');
-  }
-
+  requiredArgs(2, arguments);
   var options = dirtyOptions || {};
   var locale = options.locale;
   var localeWeekStartsOn = locale && locale.options && locale.options.weekStartsOn;
@@ -7250,10 +7124,7 @@ function setUTCDay(dirtyDate, dirtyDay, dirtyOptions) {
 // See issue: https://github.com/date-fns/date-fns/issues/376
 
 function setUTCISODay(dirtyDate, dirtyDay) {
-  if (arguments.length < 2) {
-    throw new TypeError('2 arguments required, but only ' + arguments.length + ' present');
-  }
-
+  requiredArgs(2, arguments);
   var day = toInteger(dirtyDay);
 
   if (day % 7 === 0) {
@@ -7273,10 +7144,7 @@ function setUTCISODay(dirtyDate, dirtyDay) {
 // See issue: https://github.com/date-fns/date-fns/issues/376
 
 function setUTCISOWeek(dirtyDate, dirtyISOWeek) {
-  if (arguments.length < 2) {
-    throw new TypeError('2 arguments required, but only ' + arguments.length + ' present');
-  }
-
+  requiredArgs(2, arguments);
   var date = toDate(dirtyDate);
   var isoWeek = toInteger(dirtyISOWeek);
   var diff = getUTCISOWeek(date) - isoWeek;
@@ -7287,10 +7155,7 @@ function setUTCISOWeek(dirtyDate, dirtyISOWeek) {
 // See issue: https://github.com/date-fns/date-fns/issues/376
 
 function setUTCWeek(dirtyDate, dirtyWeek, options) {
-  if (arguments.length < 2) {
-    throw new TypeError('2 arguments required, but only ' + arguments.length + ' present');
-  }
-
+  requiredArgs(2, arguments);
   var date = toDate(dirtyDate);
   var week = toInteger(dirtyWeek);
   var diff = getUTCWeek(date, options) - week;
@@ -9018,7 +8883,7 @@ var unescapedLatinCharacterRegExp$1 = /[a-zA-Z]/;
  *    | BC 1 |   1 |   0 |
  *    | BC 2 |   2 |  -1 |
  *
- *    Also `yy` will try to guess the century of two digit year by proximity with `backupDate`:
+ *    Also `yy` will try to guess the century of two digit year by proximity with `referenceDate`:
  *
  *    `parse('50', 'yy', new Date(2018, 0, 1)) //=> Sat Jan 01 2050 00:00:00`
  *
@@ -9061,18 +8926,18 @@ var unescapedLatinCharacterRegExp$1 = /[a-zA-Z]/;
  * Units of an equal priority overwrite each other in the order of appearance.
  *
  * If no values of higher priority are parsed (e.g. when parsing string 'January 1st' without a year),
- * the values will be taken from 3rd argument `backupDate` which works as a context of parsing.
+ * the values will be taken from 3rd argument `referenceDate` which works as a context of parsing.
  *
- * `backupDate` must be passed for correct work of the function.
- * If you're not sure which `backupDate` to supply, create a new instance of Date:
+ * `referenceDate` must be passed for correct work of the function.
+ * If you're not sure which `referenceDate` to supply, create a new instance of Date:
  * `parse('02/11/2014', 'MM/dd/yyyy', new Date())`
  * In this case parsing will be done in the context of the current date.
- * If `backupDate` is `Invalid Date` or a value not convertible to valid `Date`,
+ * If `referenceDate` is `Invalid Date` or a value not convertible to valid `Date`,
  * then `Invalid Date` will be returned.
  *
  * The result may vary by locale.
  *
- * If `formatString` matches with `dateString` but does not provides tokens, `backupDate` will be returned.
+ * If `formatString` matches with `dateString` but does not provides tokens, `referenceDate` will be returned.
  *
  * If parsing failed, `Invalid Date` will be returned.
  * Invalid Date is a Date, whose time value is NaN.
@@ -9096,7 +8961,7 @@ var unescapedLatinCharacterRegExp$1 = /[a-zA-Z]/;
  *
  * @param {String} dateString - the string to parse
  * @param {String} formatString - the string of tokens
- * @param {Date|Number} backupDate - defines values missing from the parsed dateString
+ * @param {Date|Number} referenceDate - defines values missing from the parsed dateString
  * @param {Object} [options] - an object with options.
  * @param {Locale} [options.locale=defaultLocale] - the locale object. See [Locale]{@link https://date-fns.org/docs/Locale}
  * @param {0|1|2|3|4|5|6} [options.weekStartsOn=0] - the index of the first day of the week (0 - Sunday)
@@ -9130,11 +8995,8 @@ var unescapedLatinCharacterRegExp$1 = /[a-zA-Z]/;
  * //=> Sun Feb 28 2010 00:00:00
  */
 
-function parse(dirtyDateString, dirtyFormatString, dirtyBackupDate, dirtyOptions) {
-  if (arguments.length < 3) {
-    throw new TypeError('3 arguments required, but only ' + arguments.length + ' present');
-  }
-
+function parse(dirtyDateString, dirtyFormatString, dirtyReferenceDate, dirtyOptions) {
+  requiredArgs(3, arguments);
   var dateString = String(dirtyDateString);
   var formatString = String(dirtyFormatString);
   var options = dirtyOptions || {};
@@ -9162,7 +9024,7 @@ function parse(dirtyDateString, dirtyFormatString, dirtyBackupDate, dirtyOptions
 
   if (formatString === '') {
     if (dateString === '') {
-      return toDate(dirtyBackupDate);
+      return toDate(dirtyReferenceDate);
     } else {
       return new Date(NaN);
     }
@@ -9285,7 +9147,7 @@ function parse(dirtyDateString, dirtyFormatString, dirtyBackupDate, dirtyOptions
   }).map(function (setterArray) {
     return setterArray[0];
   });
-  var date = toDate(dirtyBackupDate);
+  var date = toDate(dirtyReferenceDate);
 
   if (isNaN(date)) {
     return new Date(NaN);
@@ -9402,10 +9264,7 @@ var timezoneRegex = /^([+-])(\d{2})(?::?(\d{2}))?$/;
  */
 
 function parseISO(argument, dirtyOptions) {
-  if (arguments.length < 1) {
-    throw new TypeError('1 argument required, but only ' + arguments.length + ' present');
-  }
-
+  requiredArgs(1, arguments);
   var options = dirtyOptions || {};
   var additionalDigits = options.additionalDigits == null ? DEFAULT_ADDITIONAL_DIGITS : toInteger(options.additionalDigits);
 
@@ -14077,7 +13936,7 @@ function Reference(props) {
   });
 }
 
-function oe(e){return (oe="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e})(e)}function ae(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function se(e,t){for(var r=0;r<t.length;r++){var n=t[r];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n);}}function pe(e,t,r){return t&&se(e.prototype,t),r&&se(e,r),e}function ie(e,t,r){return t in e?Object.defineProperty(e,t,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[t]=r,e}function ce(){return (ce=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var r=arguments[t];for(var n in r)Object.prototype.hasOwnProperty.call(r,n)&&(e[n]=r[n]);}return e}).apply(this,arguments)}function le(e,t){var r=Object.keys(e);if(Object.getOwnPropertySymbols){var n=Object.getOwnPropertySymbols(e);t&&(n=n.filter(function(t){return Object.getOwnPropertyDescriptor(e,t).enumerable})),r.push.apply(r,n);}return r}function de(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function");e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,writable:!0,configurable:!0}}),t&&he(e,t);}function ue(e){return (ue=Object.setPrototypeOf?Object.getPrototypeOf:function(e){return e.__proto__||Object.getPrototypeOf(e)})(e)}function he(e,t){return (he=Object.setPrototypeOf||function(e,t){return e.__proto__=t,e})(e,t)}function me(e){if(void 0===e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return e}function fe(e,t){return !t||"object"!=typeof t&&"function"!=typeof t?me(e):t}function ve(e,t){switch(e){case"P":return t.date({width:"short"});case"PP":return t.date({width:"medium"});case"PPP":return t.date({width:"long"});case"PPPP":default:return t.date({width:"full"})}}function ye(e,t){switch(e){case"p":return t.time({width:"short"});case"pp":return t.time({width:"medium"});case"ppp":return t.time({width:"long"});case"pppp":default:return t.time({width:"full"})}}var De={p:ye,P:function(e,t){var r,n=e.match(/(P+)(p+)?/),o=n[1],a=n[2];if(!a)return ve(e,t);switch(o){case"P":r=t.dateTime({width:"short"});break;case"PP":r=t.dateTime({width:"medium"});break;case"PPP":r=t.dateTime({width:"long"});break;case"PPPP":default:r=t.dateTime({width:"full"});}return r.replace("{{date}}",ve(o,t)).replace("{{time}}",ye(a,t))}},ge=/P+p+|P+|p+|''|'(''|[^'])+('|$)|./g;function we(e){var t=e?"string"==typeof e||e instanceof String?parseISO(e):toDate(e):new Date;return _e(t)?t:null}function ke(e,t,r,n){var a=null,s=Fe(r)||Le(),p=!0;return Array.isArray(t)?(t.forEach(function(t){var r=parse(e,t,new Date,{locale:s});n&&(p=_e(r)&&e===format(r,t,{awareOfUnicodeTokens:!0})),_e(r)&&p&&(a=r);}),a):(a=parse(e,t,new Date,{locale:s}),n?p=_e(a)&&e===format(a,t,{awareOfUnicodeTokens:!0}):_e(a)||(t=t.match(ge).map(function(e){var t=e[0];if("p"===t||"P"===t){var r=De[t];return s?r(e,s.formatLong):t}return e}).join(""),e.length>0&&(a=parse(e,t.slice(0,e.length),new Date)),_e(a)||(a=new Date(e))),_e(a)&&p?a:null)}function _e(e){return isValid(e)&&isAfter(e,new Date("1/1/1000"))}function Ce(e,t,r){if("en"===r)return format(e,t,{awareOfUnicodeTokens:!0});var n=Fe(r);return r&&!n&&console.warn('A locale object was not found for the provided string ["'.concat(r,'"].')),!n&&Le()&&Fe(Le())&&(n=Fe(Le())),format(e,t,{locale:n||null,awareOfUnicodeTokens:!0})}function be(e,t){var r=t.hour,n=void 0===r?0:r,o=t.minute,a=void 0===o?0:o,s=t.second;return setHours(setMinutes(setSeconds(e,void 0===s?0:s),a),n)}function Se(e,t){var r=Fe(t||Le());return startOfWeek(e,{locale:r})}function Me(e){return startOfMonth(e)}function Ee(e,t){return e&&t?isSameYear(e,t):!e&&!t}function Ne(e,t){return e&&t?isSameMonth(e,t):!e&&!t}function Oe(e,t){return e&&t?isSameQuarter(e,t):!e&&!t}function Pe(e,t){return e&&t?isSameDay(e,t):!e&&!t}function Te(e,t){return e&&t?isEqual(e,t):!e&&!t}function Ye(e,t,r){var n,o=startOfDay(t),a=endOfDay(r);try{n=isWithinInterval(e,{start:o,end:a});}catch(e){n=!1;}return n}function Le(){return ("undefined"!=typeof window?window:global).__localeId__}function Fe(e){if("string"==typeof e){var t="undefined"!=typeof window?window:global;return t.__localeData__?t.__localeData__[e]:null}return e}function We(e,t){return Ce(setMonth(we(),e),"LLL",t)}function Be(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},r=t.minDate,n=t.maxDate,o=t.excludeDates,a=t.includeDates,s=t.filterDate;return Qe(e,{minDate:r,maxDate:n})||o&&o.some(function(t){return Pe(e,t)})||a&&!a.some(function(t){return Pe(e,t)})||s&&!s(we(e))||!1}function Re(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},r=t.minDate,n=t.maxDate,o=t.excludeDates,a=t.includeDates,s=t.filterDate;return Qe(e,{minDate:r,maxDate:n})||o&&o.some(function(t){return Ne(e,t)})||a&&!a.some(function(t){return Ne(e,t)})||s&&!s(we(e))||!1}function je(e,t,r,n){var o=getYear(e),a=getMonth(e),s=getYear(t),p=getMonth(t),i=getYear(n);return o===s&&o===i?a<=r&&r<=p:o<s?i===o&&a<=r||i===s&&p>=r||i<s&&i>o:void 0}function He(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},r=t.minDate,n=t.maxDate,o=t.excludeDates,a=t.includeDates,s=t.filterDate;return Qe(e,{minDate:r,maxDate:n})||o&&o.some(function(t){return Oe(e,t)})||a&&!a.some(function(t){return Oe(e,t)})||s&&!s(we(e))||!1}function Ae(e,t,r,n){var o=getYear(e),a=getQuarter(e),s=getYear(t),p=getQuarter(t),i=getYear(n);return o===s&&o===i?a<=r&&r<=p:o<s?i===o&&a<=r||i===s&&p>=r||i<s&&i>o:void 0}function Qe(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},r=t.minDate,n=t.maxDate;return r&&differenceInCalendarDays(e,r)<0||n&&differenceInCalendarDays(e,n)>0}function Ve(e,t){for(var r=t.length,n=0;n<r;n++)if(getHours(t[n])===getHours(e)&&getMinutes(t[n])===getMinutes(e))return !0;return !1}function Ke(e,t){var r=t.minTime,n=t.maxTime;if(!r||!n)throw new Error("Both minTime and maxTime props required");var o,a=we(),s=setHours(setMinutes(a,getMinutes(e)),getHours(e)),p=setHours(setMinutes(a,getMinutes(r)),getHours(r)),i=setHours(setMinutes(a,getMinutes(n)),getHours(n));try{o=!isWithinInterval(s,{start:p,end:i});}catch(e){o=!1;}return o}function qe(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},r=t.minDate,n=t.includeDates,o=subMonths(e,1);return r&&differenceInCalendarMonths(r,o)>0||n&&n.every(function(e){return differenceInCalendarMonths(e,o)>0})||!1}function Ue(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},r=t.maxDate,n=t.includeDates,o=addMonths(e,1);return r&&differenceInCalendarMonths(o,r)>0||n&&n.every(function(e){return differenceInCalendarMonths(o,e)>0})||!1}function $e(e){var t=e.minDate,r=e.includeDates;if(r&&t){var n=r.filter(function(e){return differenceInCalendarDays(e,t)>=0});return min(n)}return r?min(r):t}function ze(e){var t=e.maxDate,r=e.includeDates;if(r&&t){var n=r.filter(function(e){return differenceInCalendarDays(e,t)<=0});return max(n)}return r?max(r):t}function Ge(){for(var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:[],t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:"react-datepicker__day--highlighted",n=new Map,o=0,a=e.length;o<a;o++){var s=e[o];if(isDate(s)){var p=Ce(s,"MM.dd.yyyy"),i=n.get(p)||[];i.includes(t)||(i.push(t),n.set(p,i));}else if("object"===oe(s)){var c=Object.keys(s),l=c[0],d=s[c[0]];if("string"==typeof l&&d.constructor===Array)for(var u=0,h=d.length;u<h;u++){var m=Ce(d[u],"MM.dd.yyyy"),f=n.get(m)||[];f.includes(l)||(f.push(l),n.set(m,f));}}}return n}function Je(e,t,r,n,o){for(var p=o.length,i=[],c=0;c<p;c++){var l=addMinutes(addHours(e,getHours(o[c])),getMinutes(o[c])),d=addMinutes(e,(r+1)*n);isAfter(l,t)&&isBefore(l,d)&&i.push(o[c]);}return i}function Xe(e){return e<10?"0".concat(e):"".concat(e)}function Ze(e,t,r,n){for(var o=[],a=0;a<2*t+1;a++){var s=e+t-a,p=!0;r&&(p=getYear(r)<=s),n&&p&&(p=getYear(n)>=s),p&&o.push(s);}return o}var et=onClickOutsideHOC(function(r){function n(t){var r;ae(this,n),ie(me(r=fe(this,ue(n).call(this,t))),"renderOptions",function(){var t=r.props.year,n=r.state.yearsList.map(function(n){return React__default.createElement("div",{className:t===n?"react-datepicker__year-option react-datepicker__year-option--selected_year":"react-datepicker__year-option",key:n,ref:n,onClick:r.onChange.bind(me(r),n)},t===n?React__default.createElement("span",{className:"react-datepicker__year-option--selected"},"✓"):"",n)}),o=r.props.minDate?getYear(r.props.minDate):null,a=r.props.maxDate?getYear(r.props.maxDate):null;return a&&r.state.yearsList.find(function(e){return e===a})||n.unshift(React__default.createElement("div",{className:"react-datepicker__year-option",ref:"upcoming",key:"upcoming",onClick:r.incrementYears},React__default.createElement("a",{className:"react-datepicker__navigation react-datepicker__navigation--years react-datepicker__navigation--years-upcoming"}))),o&&r.state.yearsList.find(function(e){return e===o})||n.push(React__default.createElement("div",{className:"react-datepicker__year-option",ref:"previous",key:"previous",onClick:r.decrementYears},React__default.createElement("a",{className:"react-datepicker__navigation react-datepicker__navigation--years react-datepicker__navigation--years-previous"}))),n}),ie(me(r),"onChange",function(e){r.props.onChange(e);}),ie(me(r),"handleClickOutside",function(){r.props.onCancel();}),ie(me(r),"shiftYears",function(e){var t=r.state.yearsList.map(function(t){return t+e});r.setState({yearsList:t});}),ie(me(r),"incrementYears",function(){return r.shiftYears(1)}),ie(me(r),"decrementYears",function(){return r.shiftYears(-1)});var o=t.yearDropdownItemNumber,a=t.scrollableYearDropdown,s=o||(a?10:5);return r.state={yearsList:Ze(r.props.year,s,r.props.minDate,r.props.maxDate)},r}return de(n,React__default.Component),pe(n,[{key:"render",value:function(){var r=classnames({"react-datepicker__year-dropdown":!0,"react-datepicker__year-dropdown--scrollable":this.props.scrollableYearDropdown});return React__default.createElement("div",{className:r},this.renderOptions())}}]),n}()),tt=function(t){function r(){var t,n;ae(this,r);for(var o=arguments.length,a=new Array(o),s=0;s<o;s++)a[s]=arguments[s];return ie(me(n=fe(this,(t=ue(r)).call.apply(t,[this].concat(a)))),"state",{dropdownVisible:!1}),ie(me(n),"renderSelectOptions",function(){for(var t=n.props.minDate?getYear(n.props.minDate):1900,r=n.props.maxDate?getYear(n.props.maxDate):2100,o=[],a=t;a<=r;a++)o.push(React__default.createElement("option",{key:a,value:a},a));return o}),ie(me(n),"onSelectChange",function(e){n.onChange(e.target.value);}),ie(me(n),"renderSelectMode",function(){return React__default.createElement("select",{value:n.props.year,className:"react-datepicker__year-select",onChange:n.onSelectChange},n.renderSelectOptions())}),ie(me(n),"renderReadView",function(t){return React__default.createElement("div",{key:"read",style:{visibility:t?"visible":"hidden"},className:"react-datepicker__year-read-view",onClick:function(e){return n.toggleDropdown(e)}},React__default.createElement("span",{className:"react-datepicker__year-read-view--down-arrow"}),React__default.createElement("span",{className:"react-datepicker__year-read-view--selected-year"},n.props.year))}),ie(me(n),"renderDropdown",function(){return React__default.createElement(et,{key:"dropdown",ref:"options",year:n.props.year,onChange:n.onChange,onCancel:n.toggleDropdown,minDate:n.props.minDate,maxDate:n.props.maxDate,scrollableYearDropdown:n.props.scrollableYearDropdown,yearDropdownItemNumber:n.props.yearDropdownItemNumber})}),ie(me(n),"renderScrollMode",function(){var e=n.state.dropdownVisible,t=[n.renderReadView(!e)];return e&&t.unshift(n.renderDropdown()),t}),ie(me(n),"onChange",function(e){n.toggleDropdown(),e!==n.props.year&&n.props.onChange(e);}),ie(me(n),"toggleDropdown",function(e){n.setState({dropdownVisible:!n.state.dropdownVisible},function(){n.props.adjustDateOnChange&&n.handleYearChange(n.props.date,e);});}),ie(me(n),"handleYearChange",function(e,t){n.onSelect(e,t),n.setOpen();}),ie(me(n),"onSelect",function(e,t){n.props.onSelect&&n.props.onSelect(e,t);}),ie(me(n),"setOpen",function(){n.props.setOpen&&n.props.setOpen(!0);}),n}return de(r,React__default.Component),pe(r,[{key:"render",value:function(){var t;switch(this.props.dropdownMode){case"scroll":t=this.renderScrollMode();break;case"select":t=this.renderSelectMode();}return React__default.createElement("div",{className:"react-datepicker__year-dropdown-container react-datepicker__year-dropdown-container--".concat(this.props.dropdownMode)},t)}}]),r}(),rt=onClickOutsideHOC(function(t){function r(){var t,n;ae(this,r);for(var o=arguments.length,a=new Array(o),s=0;s<o;s++)a[s]=arguments[s];return ie(me(n=fe(this,(t=ue(r)).call.apply(t,[this].concat(a)))),"renderOptions",function(){return n.props.monthNames.map(function(t,r){return React__default.createElement("div",{className:n.props.month===r?"react-datepicker__month-option react-datepicker__month-option--selected_month":"react-datepicker__month-option",key:t,ref:t,onClick:n.onChange.bind(me(n),r)},n.props.month===r?React__default.createElement("span",{className:"react-datepicker__month-option--selected"},"✓"):"",t)})}),ie(me(n),"onChange",function(e){return n.props.onChange(e)}),ie(me(n),"handleClickOutside",function(){return n.props.onCancel()}),n}return de(r,React__default.Component),pe(r,[{key:"render",value:function(){return React__default.createElement("div",{className:"react-datepicker__month-dropdown"},this.renderOptions())}}]),r}()),nt=function(t){function r(){var t,n;ae(this,r);for(var o=arguments.length,a=new Array(o),s=0;s<o;s++)a[s]=arguments[s];return ie(me(n=fe(this,(t=ue(r)).call.apply(t,[this].concat(a)))),"state",{dropdownVisible:!1}),ie(me(n),"renderSelectOptions",function(t){return t.map(function(t,r){return React__default.createElement("option",{key:r,value:r},t)})}),ie(me(n),"renderSelectMode",function(t){return React__default.createElement("select",{value:n.props.month,className:"react-datepicker__month-select",onChange:function(e){return n.onChange(e.target.value)}},n.renderSelectOptions(t))}),ie(me(n),"renderReadView",function(t,r){return React__default.createElement("div",{key:"read",style:{visibility:t?"visible":"hidden"},className:"react-datepicker__month-read-view",onClick:n.toggleDropdown},React__default.createElement("span",{className:"react-datepicker__month-read-view--down-arrow"}),React__default.createElement("span",{className:"react-datepicker__month-read-view--selected-month"},r[n.props.month]))}),ie(me(n),"renderDropdown",function(t){return React__default.createElement(rt,{key:"dropdown",ref:"options",month:n.props.month,monthNames:t,onChange:n.onChange,onCancel:n.toggleDropdown})}),ie(me(n),"renderScrollMode",function(e){var t=n.state.dropdownVisible,r=[n.renderReadView(!t,e)];return t&&r.unshift(n.renderDropdown(e)),r}),ie(me(n),"onChange",function(e){n.toggleDropdown(),e!==n.props.month&&n.props.onChange(e);}),ie(me(n),"toggleDropdown",function(){return n.setState({dropdownVisible:!n.state.dropdownVisible})}),n}return de(r,React__default.Component),pe(r,[{key:"render",value:function(){var t,r=this,n=[0,1,2,3,4,5,6,7,8,9,10,11].map(this.props.useShortMonthInDropdown?function(e){return We(e,r.props.locale)}:function(e){return t=e,n=r.props.locale,Ce(setMonth(we(),t),"LLLL",n);var t,n;});switch(this.props.dropdownMode){case"scroll":t=this.renderScrollMode(n);break;case"select":t=this.renderSelectMode(n);}return React__default.createElement("div",{className:"react-datepicker__month-dropdown-container react-datepicker__month-dropdown-container--".concat(this.props.dropdownMode)},t)}}]),r}();function ot(e,t){for(var r=[],n=Me(e),o=Me(t);!isAfter(n,o);)r.push(we(n)),n=addMonths(n,1);return r}var at=onClickOutsideHOC(function(r){function n(t){var r;return ae(this,n),ie(me(r=fe(this,ue(n).call(this,t))),"renderOptions",function(){return r.state.monthYearsList.map(function(t){var n=getTime(t),o=Ee(r.props.date,t)&&Ne(r.props.date,t);return React__default.createElement("div",{className:o?"react-datepicker__month-year-option --selected_month-year":"react-datepicker__month-year-option",key:n,ref:n,onClick:r.onChange.bind(me(r),n)},o?React__default.createElement("span",{className:"react-datepicker__month-year-option--selected"},"✓"):"",Ce(t,r.props.dateFormat))})}),ie(me(r),"onChange",function(e){return r.props.onChange(e)}),ie(me(r),"handleClickOutside",function(){r.props.onCancel();}),r.state={monthYearsList:ot(r.props.minDate,r.props.maxDate)},r}return de(n,React__default.Component),pe(n,[{key:"render",value:function(){var r=classnames({"react-datepicker__month-year-dropdown":!0,"react-datepicker__month-year-dropdown--scrollable":this.props.scrollableMonthYearDropdown});return React__default.createElement("div",{className:r},this.renderOptions())}}]),n}()),st=function(t){function r(){var t,n;ae(this,r);for(var o=arguments.length,a=new Array(o),s=0;s<o;s++)a[s]=arguments[s];return ie(me(n=fe(this,(t=ue(r)).call.apply(t,[this].concat(a)))),"state",{dropdownVisible:!1}),ie(me(n),"renderSelectOptions",function(){for(var t=Me(n.props.minDate),r=Me(n.props.maxDate),o=[];!isAfter(t,r);){var a=getTime(t);o.push(React__default.createElement("option",{key:a,value:a},Ce(t,n.props.dateFormat,n.props.locale))),t=addMonths(t,1);}return o}),ie(me(n),"onSelectChange",function(e){n.onChange(e.target.value);}),ie(me(n),"renderSelectMode",function(){return React__default.createElement("select",{value:getTime(Me(n.props.date)),className:"react-datepicker__month-year-select",onChange:n.onSelectChange},n.renderSelectOptions())}),ie(me(n),"renderReadView",function(t){var r=Ce(n.props.date,n.props.dateFormat,n.props.locale);return React__default.createElement("div",{key:"read",style:{visibility:t?"visible":"hidden"},className:"react-datepicker__month-year-read-view",onClick:function(e){return n.toggleDropdown(e)}},React__default.createElement("span",{className:"react-datepicker__month-year-read-view--down-arrow"}),React__default.createElement("span",{className:"react-datepicker__month-year-read-view--selected-month-year"},r))}),ie(me(n),"renderDropdown",function(){return React__default.createElement(at,{key:"dropdown",ref:"options",date:n.props.date,dateFormat:n.props.dateFormat,onChange:n.onChange,onCancel:n.toggleDropdown,minDate:n.props.minDate,maxDate:n.props.maxDate,scrollableMonthYearDropdown:n.props.scrollableMonthYearDropdown})}),ie(me(n),"renderScrollMode",function(){var e=n.state.dropdownVisible,t=[n.renderReadView(!e)];return e&&t.unshift(n.renderDropdown()),t}),ie(me(n),"onChange",function(e){n.toggleDropdown();var t=we(parseInt(e));Ee(n.props.date,t)&&Ne(n.props.date,t)||n.props.onChange(t);}),ie(me(n),"toggleDropdown",function(){return n.setState({dropdownVisible:!n.state.dropdownVisible})}),n}return de(r,React__default.Component),pe(r,[{key:"render",value:function(){var t;switch(this.props.dropdownMode){case"scroll":t=this.renderScrollMode();break;case"select":t=this.renderSelectMode();}return React__default.createElement("div",{className:"react-datepicker__month-year-dropdown-container react-datepicker__month-year-dropdown-container--".concat(this.props.dropdownMode)},t)}}]),r}(),pt=function(r){function n(){var e,r;ae(this,n);for(var o=arguments.length,a=new Array(o),s=0;s<o;s++)a[s]=arguments[s];return ie(me(r=fe(this,(e=ue(n)).call.apply(e,[this].concat(a)))),"handleClick",function(e){!r.isDisabled()&&r.props.onClick&&r.props.onClick(e);}),ie(me(r),"handleMouseEnter",function(e){!r.isDisabled()&&r.props.onMouseEnter&&r.props.onMouseEnter(e);}),ie(me(r),"isSameDay",function(e){return Pe(r.props.day,e)}),ie(me(r),"isKeyboardSelected",function(){return !r.props.disabledKeyboardNavigation&&!r.props.inline&&!r.isSameDay(r.props.selected)&&r.isSameDay(r.props.preSelection)}),ie(me(r),"isDisabled",function(){return Be(r.props.day,r.props)}),ie(me(r),"isExcluded",function(){return function(e){var t=(arguments.length>1&&void 0!==arguments[1]?arguments[1]:{}).excludeDates;return t&&t.some(function(t){return Pe(e,t)})||!1}(r.props.day,r.props)}),ie(me(r),"getHighLightedClass",function(e){var t=r.props,n=t.day,o=t.highlightDates;if(!o)return !1;var a=Ce(n,"MM.dd.yyyy");return o.get(a)}),ie(me(r),"isInRange",function(){var e=r.props,t=e.day,n=e.startDate,o=e.endDate;return !(!n||!o)&&Ye(t,n,o)}),ie(me(r),"isInSelectingRange",function(){var e=r.props,t=e.day,n=e.selectsStart,o=e.selectsEnd,a=e.selectingDate,s=e.startDate,p=e.endDate;return !(!n&&!o||!a||r.isDisabled())&&(n&&p&&(isBefore(a,p)||Te(a,p))?Ye(t,a,p):!(!o||!s||!isAfter(a,s)&&!Te(a,s))&&Ye(t,s,a))}),ie(me(r),"isSelectingRangeStart",function(){if(!r.isInSelectingRange())return !1;var e=r.props,t=e.day,n=e.selectingDate,o=e.startDate;return Pe(t,e.selectsStart?n:o)}),ie(me(r),"isSelectingRangeEnd",function(){if(!r.isInSelectingRange())return !1;var e=r.props,t=e.day,n=e.selectingDate,o=e.endDate;return Pe(t,e.selectsEnd?n:o)}),ie(me(r),"isRangeStart",function(){var e=r.props,t=e.day,n=e.startDate,o=e.endDate;return !(!n||!o)&&Pe(n,t)}),ie(me(r),"isRangeEnd",function(){var e=r.props,t=e.day,n=e.startDate,o=e.endDate;return !(!n||!o)&&Pe(o,t)}),ie(me(r),"isWeekend",function(){var e=getDay(r.props.day);return 0===e||6===e}),ie(me(r),"isOutsideMonth",function(){return void 0!==r.props.month&&r.props.month!==getMonth(r.props.day)}),ie(me(r),"getClassNames",function(e){var n,o=r.props.dayClassName?r.props.dayClassName(e):void 0;return classnames("react-datepicker__day",o,"react-datepicker__day--"+Ce(r.props.day,"ddd",n),{"react-datepicker__day--disabled":r.isDisabled(),"react-datepicker__day--excluded":r.isExcluded(),"react-datepicker__day--selected":r.isSameDay(r.props.selected),"react-datepicker__day--keyboard-selected":r.isKeyboardSelected(),"react-datepicker__day--range-start":r.isRangeStart(),"react-datepicker__day--range-end":r.isRangeEnd(),"react-datepicker__day--in-range":r.isInRange(),"react-datepicker__day--in-selecting-range":r.isInSelectingRange(),"react-datepicker__day--selecting-range-start":r.isSelectingRangeStart(),"react-datepicker__day--selecting-range-end":r.isSelectingRangeEnd(),"react-datepicker__day--today":r.isSameDay(we()),"react-datepicker__day--weekend":r.isWeekend(),"react-datepicker__day--outside-month":r.isOutsideMonth()},r.getHighLightedClass("react-datepicker__day--highlighted"))}),r}return de(n,React__default.Component),pe(n,[{key:"render",value:function(){return React__default.createElement("div",{className:this.getClassNames(this.props.day),onClick:this.handleClick,onMouseEnter:this.handleMouseEnter,"aria-label":"day-".concat(getDate(this.props.day)),role:"option","aria-disabled":this.isDisabled()},this.props.renderDayContents?this.props.renderDayContents(getDate(this.props.day),this.props.day):getDate(this.props.day))}}]),n}(),it=function(r){function n(){var e,t;ae(this,n);for(var r=arguments.length,o=new Array(r),a=0;a<r;a++)o[a]=arguments[a];return ie(me(t=fe(this,(e=ue(n)).call.apply(e,[this].concat(o)))),"handleClick",function(e){t.props.onClick&&t.props.onClick(e);}),t}return de(n,React__default.Component),pe(n,[{key:"render",value:function(){var r={"react-datepicker__week-number":!0,"react-datepicker__week-number--clickable":!!this.props.onClick};return React__default.createElement("div",{className:classnames(r),"aria-label":"week-".concat(this.props.weekNumber),onClick:this.handleClick},this.props.weekNumber)}}]),n}(),ct=function(t){function r(){var t,n;ae(this,r);for(var o=arguments.length,a=new Array(o),s=0;s<o;s++)a[s]=arguments[s];return ie(me(n=fe(this,(t=ue(r)).call.apply(t,[this].concat(a)))),"handleDayClick",function(e,t){n.props.onDayClick&&n.props.onDayClick(e,t);}),ie(me(n),"handleDayMouseEnter",function(e){n.props.onDayMouseEnter&&n.props.onDayMouseEnter(e);}),ie(me(n),"handleWeekClick",function(e,t,r){"function"==typeof n.props.onWeekSelect&&n.props.onWeekSelect(e,t,r),n.props.shouldCloseOnSelect&&n.props.setOpen(!1);}),ie(me(n),"formatWeekNumber",function(e){return n.props.formatWeekNumber?n.props.formatWeekNumber(e):function(e){return Ee(endOfWeek(e),e)?differenceInCalendarWeeks(e,startOfYear(e))+1:1}(e)}),ie(me(n),"renderDays",function(){var t=Se(n.props.day,n.props.locale),r=[],o=n.formatWeekNumber(t);if(n.props.showWeekNumber){var a=n.props.onWeekSelect?n.handleWeekClick.bind(me(n),t,o):void 0;r.push(React__default.createElement(it,{key:"W",weekNumber:o,onClick:a}));}return r.concat([0,1,2,3,4,5,6].map(function(r){var o=addDays(t,r);return React__default.createElement(pt,{key:r,day:o,month:n.props.month,onClick:n.handleDayClick.bind(me(n),o),onMouseEnter:n.handleDayMouseEnter.bind(me(n),o),minDate:n.props.minDate,maxDate:n.props.maxDate,excludeDates:n.props.excludeDates,includeDates:n.props.includeDates,inline:n.props.inline,highlightDates:n.props.highlightDates,selectingDate:n.props.selectingDate,filterDate:n.props.filterDate,preSelection:n.props.preSelection,selected:n.props.selected,selectsStart:n.props.selectsStart,selectsEnd:n.props.selectsEnd,startDate:n.props.startDate,endDate:n.props.endDate,dayClassName:n.props.dayClassName,renderDayContents:n.props.renderDayContents,disabledKeyboardNavigation:n.props.disabledKeyboardNavigation})}))}),n}return de(r,React__default.Component),pe(r,[{key:"render",value:function(){return React__default.createElement("div",{className:"react-datepicker__week"},this.renderDays())}}],[{key:"defaultProps",get:function(){return {shouldCloseOnSelect:!0}}}]),r}(),lt=6,dt=function(r){function n(){var r,o;ae(this,n);for(var a=arguments.length,s=new Array(a),c=0;c<a;c++)s[c]=arguments[c];return ie(me(o=fe(this,(r=ue(n)).call.apply(r,[this].concat(s)))),"handleDayClick",function(e,t){o.props.onDayClick&&o.props.onDayClick(e,t,o.props.orderInDisplay);}),ie(me(o),"handleDayMouseEnter",function(e){o.props.onDayMouseEnter&&o.props.onDayMouseEnter(e);}),ie(me(o),"handleMouseLeave",function(){o.props.onMouseLeave&&o.props.onMouseLeave();}),ie(me(o),"isRangeStartMonth",function(e){var t=o.props,r=t.day,n=t.startDate,a=t.endDate;return !(!n||!a)&&Ne(setMonth(r,e),n)}),ie(me(o),"isRangeStartQuarter",function(e){var t=o.props,r=t.day,n=t.startDate,a=t.endDate;return !(!n||!a)&&Oe(setQuarter(r,e),n)}),ie(me(o),"isRangeEndMonth",function(e){var t=o.props,r=t.day,n=t.startDate,a=t.endDate;return !(!n||!a)&&Ne(setMonth(r,e),a)}),ie(me(o),"isRangeEndQuarter",function(e){var t=o.props,r=t.day,n=t.startDate,a=t.endDate;return !(!n||!a)&&Oe(setQuarter(r,e),a)}),ie(me(o),"isWeekInMonth",function(e){var t=o.props.day,r=addDays(e,6);return Ne(e,t)||Ne(r,t)}),ie(me(o),"renderWeeks",function(){for(var t=[],r=o.props.fixedHeight,n=Se(Me(o.props.day),o.props.locale),a=0,s=!1;t.push(React__default.createElement(ct,{key:a,day:n,month:getMonth(o.props.day),onDayClick:o.handleDayClick,onDayMouseEnter:o.handleDayMouseEnter,onWeekSelect:o.props.onWeekSelect,formatWeekNumber:o.props.formatWeekNumber,locale:o.props.locale,minDate:o.props.minDate,maxDate:o.props.maxDate,excludeDates:o.props.excludeDates,includeDates:o.props.includeDates,inline:o.props.inline,highlightDates:o.props.highlightDates,selectingDate:o.props.selectingDate,filterDate:o.props.filterDate,preSelection:o.props.preSelection,selected:o.props.selected,selectsStart:o.props.selectsStart,selectsEnd:o.props.selectsEnd,showWeekNumber:o.props.showWeekNumbers,startDate:o.props.startDate,endDate:o.props.endDate,dayClassName:o.props.dayClassName,setOpen:o.props.setOpen,shouldCloseOnSelect:o.props.shouldCloseOnSelect,disabledKeyboardNavigation:o.props.disabledKeyboardNavigation,renderDayContents:o.props.renderDayContents})),!s;){a++,n=addWeeks(n,1);var p=r&&a>=lt,c=!r&&!o.isWeekInMonth(n);if(p||c){if(!o.props.peekNextMonth)break;s=!0;}}return t}),ie(me(o),"onMonthClick",function(e,t){o.handleDayClick(Me(setMonth(o.props.day,t)),e);}),ie(me(o),"onQuarterClick",function(e,t){var r;o.handleDayClick((r=setQuarter(o.props.day,t),startOfQuarter(r)),e);}),ie(me(o),"getMonthClassNames",function(e){var r=o.props,n=r.day,a=r.startDate,s=r.endDate,p=r.selected,i=r.minDate,c=r.maxDate;return classnames("react-datepicker__month-text","react-datepicker__month-".concat(e),{"react-datepicker__month--disabled":(i||c)&&Re(setMonth(n,e),o.props),"react-datepicker__month--selected":getMonth(n)===e&&getYear(n)===getYear(p),"react-datepicker__month--in-range":je(a,s,e,n),"react-datepicker__month--range-start":o.isRangeStartMonth(e),"react-datepicker__month--range-end":o.isRangeEndMonth(e)})}),ie(me(o),"getQuarterClassNames",function(e){var r=o.props,n=r.day,a=r.startDate,s=r.endDate,p=r.selected,i=r.minDate,c=r.maxDate;return classnames("react-datepicker__quarter-text","react-datepicker__quarter-".concat(e),{"react-datepicker__quarter--disabled":(i||c)&&He(setQuarter(n,e),o.props),"react-datepicker__quarter--selected":getQuarter(n)===e&&getYear(n)===getYear(p),"react-datepicker__quarter--in-range":Ae(a,s,e,n),"react-datepicker__quarter--range-start":o.isRangeStartQuarter(e),"react-datepicker__quarter--range-end":o.isRangeEndQuarter(e)})}),ie(me(o),"renderMonths",function(){return [[0,1,2],[3,4,5],[6,7,8],[9,10,11]].map(function(t,r){return React__default.createElement("div",{className:"react-datepicker__month-wrapper",key:r},t.map(function(t,r){return React__default.createElement("div",{key:r,onClick:function(e){o.onMonthClick(e,t);},className:o.getMonthClassNames(t)},We(t,o.props.locale))}))})}),ie(me(o),"renderQuarters",function(){return React__default.createElement("div",{className:"react-datepicker__quarter-wrapper"},[1,2,3,4].map(function(t,r){return React__default.createElement("div",{key:r,onClick:function(e){o.onQuarterClick(e,t);},className:o.getQuarterClassNames(t)},(n=t,a=o.props.locale,Ce(setQuarter(we(),n),"QQQ",a)));var n,a;}))}),ie(me(o),"getClassNames",function(){var e=o.props,r=e.selectingDate,n=e.selectsStart,a=e.selectsEnd,s=e.showMonthYearPicker,p=e.showQuarterYearPicker;return classnames("react-datepicker__month",{"react-datepicker__month--selecting-range":r&&(n||a)},{"react-datepicker__monthPicker":s},{"react-datepicker__quarterPicker":p})}),o}return de(n,React__default.Component),pe(n,[{key:"render",value:function(){var t=this.props,r=t.showMonthYearPicker,n=t.showQuarterYearPicker;return React__default.createElement("div",{className:this.getClassNames(),onMouseLeave:this.handleMouseLeave,role:"listbox","aria-label":"month-"+Ce(this.props.day,"yyyy-MM")},r?this.renderMonths():n?this.renderQuarters():this.renderWeeks())}}]),n}(),ut=function(t){function r(){var t,n;ae(this,r);for(var o=arguments.length,s=new Array(o),p=0;p<o;p++)s[p]=arguments[p];return ie(me(n=fe(this,(t=ue(r)).call.apply(t,[this].concat(s)))),"state",{height:null}),ie(me(n),"handleClick",function(e){(n.props.minTime||n.props.maxTime)&&Ke(e,n.props)||n.props.excludeTimes&&Ve(e,n.props.excludeTimes)||n.props.includeTimes&&!Ve(e,n.props.includeTimes)||n.props.onChange(e);}),ie(me(n),"liClasses",function(e,t,r){var o=["react-datepicker__time-list-item"];return n.props.selected&&t===getHours(e)&&r===getMinutes(e)&&o.push("react-datepicker__time-list-item--selected"),((n.props.minTime||n.props.maxTime)&&Ke(e,n.props)||n.props.excludeTimes&&Ve(e,n.props.excludeTimes)||n.props.includeTimes&&!Ve(e,n.props.includeTimes))&&o.push("react-datepicker__time-list-item--disabled"),n.props.injectTimes&&(60*getHours(e)+getMinutes(e))%n.props.intervals!=0&&o.push("react-datepicker__time-list-item--injected"),o.join(" ")}),ie(me(n),"renderTimes",function(){for(var t,r=[],o=n.props.format?n.props.format:"p",s=n.props.intervals,p=n.props.selected||n.props.openToDate||we(),i=getHours(p),c=getMinutes(p),l=(t=we(),startOfDay(t)),d=1440/s,u=n.props.injectTimes&&n.props.injectTimes.sort(function(e,t){return e-t}),h=0;h<d;h++){var m=addMinutes(l,h*s);if(r.push(m),u){var f=Je(l,m,h,s,u);r=r.concat(f);}}return r.map(function(t,r){return React__default.createElement("li",{key:r,onClick:n.handleClick.bind(me(n),t),className:n.liClasses(t,i,c),ref:function(e){i===getHours(t)&&c>=getMinutes(t)&&(n.centerLi=e);}},Ce(t,o,n.props.locale))})}),n}return de(r,React__default.Component),pe(r,[{key:"componentDidMount",value:function(){this.list.scrollTop=r.calcCenterPosition(this.props.monthRef?this.props.monthRef.clientHeight-this.header.clientHeight:this.list.clientHeight,this.centerLi),this.props.monthRef&&this.header&&this.setState({height:this.props.monthRef.clientHeight-this.header.clientHeight});}},{key:"render",value:function(){var t=this,r=this.state.height;return React__default.createElement("div",{className:"react-datepicker__time-container ".concat(this.props.todayButton?"react-datepicker__time-container--with-today-button":"")},React__default.createElement("div",{className:"react-datepicker__header react-datepicker__header--time",ref:function(e){t.header=e;}},React__default.createElement("div",{className:"react-datepicker-time__header"},this.props.timeCaption)),React__default.createElement("div",{className:"react-datepicker__time"},React__default.createElement("div",{className:"react-datepicker__time-box"},React__default.createElement("ul",{className:"react-datepicker__time-list",ref:function(e){t.list=e;},style:r?{height:r}:{}},this.renderTimes()))))}}],[{key:"defaultProps",get:function(){return {intervals:30,onTimeChange:function(){},todayButton:null,timeCaption:"Time"}}}]),r}();ie(ut,"calcCenterPosition",function(e,t){return t.offsetTop-(e/2-t.clientHeight/2)});var ht=function(t){function r(e){var t;return ae(this,r),ie(me(t=fe(this,ue(r).call(this,e))),"onTimeChange",function(e){t.setState({time:e});var r=new Date;r.setHours(e.split(":")[0]),r.setMinutes(e.split(":")[1]),t.props.onChange(r);}),t.state={time:t.props.timeString},t}return de(r,React__default.Component),pe(r,[{key:"render",value:function(){var t=this,r=this.state.time,n=this.props.timeString;return React__default.createElement("div",{className:"react-datepicker__input-time-container"},React__default.createElement("div",{className:"react-datepicker-time__caption"},this.props.timeInputLabel),React__default.createElement("div",{className:"react-datepicker-time__input-container"},React__default.createElement("div",{className:"react-datepicker-time__input"},React__default.createElement("input",{type:"time",className:"react-datepicker-time__input",placeholder:"Time",name:"time-input",required:!0,value:r,onChange:function(e){t.onTimeChange(e.target.value||n);}}))))}}]),r}();function mt(t){var r=t.className,n=t.children,o=t.showPopperArrow,a=t.arrowProps,s=void 0===a?{}:a;return React__default.createElement("div",{className:r},o&&React__default.createElement("div",ce({className:"react-datepicker__triangle"},s)),n)}var ft=["react-datepicker__year-select","react-datepicker__month-select","react-datepicker__month-year-select"],vt=function(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},t=(e.className||"").split(/\s+/);return ft.some(function(e){return t.indexOf(e)>=0})},yt=function(r){function n(t){var r;return ae(this,n),ie(me(r=fe(this,ue(n).call(this,t))),"handleClickOutside",function(e){r.props.onClickOutside(e);}),ie(me(r),"setClickOutsideRef",function(){return r.containerRef.current}),ie(me(r),"handleDropdownFocus",function(e){vt(e.target)&&r.props.onDropdownFocus();}),ie(me(r),"getDateInView",function(){var e=r.props,t=e.preSelection,n=e.selected,o=e.openToDate,a=$e(r.props),s=ze(r.props),p=we(),i=o||n||t;return i||(a&&isBefore(p,a)?a:s&&isAfter(p,s)?s:p)}),ie(me(r),"increaseMonth",function(){r.setState(function(e){var t=e.date;return {date:addMonths(t,1)}},function(){return r.handleMonthChange(r.state.date)});}),ie(me(r),"decreaseMonth",function(){r.setState(function(e){var t=e.date;return {date:subMonths(t,1)}},function(){return r.handleMonthChange(r.state.date)});}),ie(me(r),"handleDayClick",function(e,t,n){return r.props.onSelect(e,t,n)}),ie(me(r),"handleDayMouseEnter",function(e){r.setState({selectingDate:e}),r.props.onDayMouseEnter&&r.props.onDayMouseEnter(e);}),ie(me(r),"handleMonthMouseLeave",function(){r.setState({selectingDate:null}),r.props.onMonthMouseLeave&&r.props.onMonthMouseLeave();}),ie(me(r),"handleYearChange",function(e){r.props.onYearChange&&r.props.onYearChange(e);}),ie(me(r),"handleMonthChange",function(e){r.props.onMonthChange&&r.props.onMonthChange(e),r.props.adjustDateOnChange&&(r.props.onSelect&&r.props.onSelect(e),r.props.setOpen&&r.props.setOpen(!0));}),ie(me(r),"handleMonthYearChange",function(e){r.handleYearChange(e),r.handleMonthChange(e);}),ie(me(r),"changeYear",function(e){r.setState(function(t){var r=t.date;return {date:setYear(r,e)}},function(){return r.handleYearChange(r.state.date)});}),ie(me(r),"changeMonth",function(e){r.setState(function(t){var r=t.date;return {date:setMonth(r,e)}},function(){return r.handleMonthChange(r.state.date)});}),ie(me(r),"changeMonthYear",function(e){r.setState(function(t){var r=t.date;return {date:setYear(setMonth(r,getMonth(e)),getYear(e))}},function(){return r.handleMonthYearChange(r.state.date)});}),ie(me(r),"header",function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:r.state.date,n=Se(t,r.props.locale),o=[];return r.props.showWeekNumbers&&o.push(React__default.createElement("div",{key:"W",className:"react-datepicker__day-name"},r.props.weekLabel||"#")),o.concat([0,1,2,3,4,5,6].map(function(t){var o=addDays(n,t),a=r.formatWeekday(o,r.props.locale);return React__default.createElement("div",{key:t,className:"react-datepicker__day-name"},a)}))}),ie(me(r),"formatWeekday",function(e,t){return r.props.formatWeekDay?function(e,t,r){return t(Ce(e,"EEEE",r))}(e,r.props.formatWeekDay,t):r.props.useWeekdaysShort?function(e,t){return Ce(e,"EEE",t)}(e,t):function(e,t){return Ce(e,"EEEEEE",t)}(e,t)}),ie(me(r),"decreaseYear",function(){r.setState(function(e){var t=e.date;return {date:subYears(t,1)}},function(){return r.handleYearChange(r.state.date)});}),ie(me(r),"renderPreviousButton",function(){if(!r.props.renderCustomHeader){var t=r.props.showMonthYearPicker?function(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},r=t.minDate,n=t.includeDates,o=subYears(e,1);return r&&differenceInCalendarYears(r,o)>0||n&&n.every(function(e){return differenceInCalendarYears(e,o)>0})||!1}(r.state.date,r.props):qe(r.state.date,r.props);if((r.props.forceShowMonthNavigation||r.props.showDisabledMonthNavigation||!t)&&!r.props.showTimeSelectOnly){var n=["react-datepicker__navigation","react-datepicker__navigation--previous"],o=r.decreaseMonth;return (r.props.showMonthYearPicker||r.props.showQuarterYearPicker)&&(o=r.decreaseYear),t&&r.props.showDisabledMonthNavigation&&(n.push("react-datepicker__navigation--previous--disabled"),o=null),React__default.createElement("button",{type:"button",className:n.join(" "),onClick:o},r.props.showMonthYearPicker||r.props.showQuarterYearPicker?r.props.previousYearButtonLabel:r.props.previousMonthButtonLabel)}}}),ie(me(r),"increaseYear",function(){r.setState(function(e){var t=e.date;return {date:addYears(t,1)}},function(){return r.handleYearChange(r.state.date)});}),ie(me(r),"renderNextButton",function(){if(!r.props.renderCustomHeader){var t=r.props.showMonthYearPicker?function(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},r=t.maxDate,n=t.includeDates,o=addYears(e,1);return r&&differenceInCalendarYears(o,r)>0||n&&n.every(function(e){return differenceInCalendarYears(o,e)>0})||!1}(r.state.date,r.props):Ue(r.state.date,r.props);if((r.props.forceShowMonthNavigation||r.props.showDisabledMonthNavigation||!t)&&!r.props.showTimeSelectOnly){var n=["react-datepicker__navigation","react-datepicker__navigation--next"];r.props.showTimeSelect&&n.push("react-datepicker__navigation--next--with-time"),r.props.todayButton&&n.push("react-datepicker__navigation--next--with-today-button");var o=r.increaseMonth;return (r.props.showMonthYearPicker||r.props.showQuarterYearPicker)&&(o=r.increaseYear),t&&r.props.showDisabledMonthNavigation&&(n.push("react-datepicker__navigation--next--disabled"),o=null),React__default.createElement("button",{type:"button",className:n.join(" "),onClick:o},r.props.showMonthYearPicker||r.props.showQuarterYearPicker?r.props.nextYearButtonLabel:r.props.nextMonthButtonLabel)}}}),ie(me(r),"renderCurrentMonth",function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:r.state.date,n=["react-datepicker__current-month"];return r.props.showYearDropdown&&n.push("react-datepicker__current-month--hasYearDropdown"),r.props.showMonthDropdown&&n.push("react-datepicker__current-month--hasMonthDropdown"),r.props.showMonthYearDropdown&&n.push("react-datepicker__current-month--hasMonthYearDropdown"),React__default.createElement("div",{className:n.join(" ")},Ce(t,r.props.dateFormat,r.props.locale))}),ie(me(r),"renderYearDropdown",function(){var t=arguments.length>0&&void 0!==arguments[0]&&arguments[0];if(r.props.showYearDropdown&&!t)return React__default.createElement(tt,{adjustDateOnChange:r.props.adjustDateOnChange,date:r.state.date,onSelect:r.props.onSelect,setOpen:r.props.setOpen,dropdownMode:r.props.dropdownMode,onChange:r.changeYear,minDate:r.props.minDate,maxDate:r.props.maxDate,year:getYear(r.state.date),scrollableYearDropdown:r.props.scrollableYearDropdown,yearDropdownItemNumber:r.props.yearDropdownItemNumber})}),ie(me(r),"renderMonthDropdown",function(){var t=arguments.length>0&&void 0!==arguments[0]&&arguments[0];if(r.props.showMonthDropdown&&!t)return React__default.createElement(nt,{dropdownMode:r.props.dropdownMode,locale:r.props.locale,onChange:r.changeMonth,month:getMonth(r.state.date),useShortMonthInDropdown:r.props.useShortMonthInDropdown})}),ie(me(r),"renderMonthYearDropdown",function(){var t=arguments.length>0&&void 0!==arguments[0]&&arguments[0];if(r.props.showMonthYearDropdown&&!t)return React__default.createElement(st,{dropdownMode:r.props.dropdownMode,locale:r.props.locale,dateFormat:r.props.dateFormat,onChange:r.changeMonthYear,minDate:r.props.minDate,maxDate:r.props.maxDate,date:r.state.date,scrollableMonthYearDropdown:r.props.scrollableMonthYearDropdown})}),ie(me(r),"renderTodayButton",function(){if(r.props.todayButton&&!r.props.showTimeSelectOnly)return React__default.createElement("div",{className:"react-datepicker__today-button",onClick:function(e){return r.props.onSelect(startOfDay(we()),e)}},r.props.todayButton)}),ie(me(r),"renderDefaultHeader",function(t){var n=t.monthDate,o=t.i;return React__default.createElement("div",{className:"react-datepicker__header"},r.renderCurrentMonth(n),React__default.createElement("div",{className:"react-datepicker__header__dropdown react-datepicker__header__dropdown--".concat(r.props.dropdownMode),onFocus:r.handleDropdownFocus},r.renderMonthDropdown(0!==o),r.renderMonthYearDropdown(0!==o),r.renderYearDropdown(0!==o)),React__default.createElement("div",{className:"react-datepicker__day-names"},r.header(n)))}),ie(me(r),"renderCustomHeader",function(t){var n=t.monthDate;if(0!==t.i)return null;var o=qe(r.state.date,r.props),a=Ue(r.state.date,r.props);return React__default.createElement("div",{className:"react-datepicker__header react-datepicker__header--custom",onFocus:r.props.onDropdownFocus},r.props.renderCustomHeader(function(e){for(var t=1;t<arguments.length;t++){var r=null!=arguments[t]?arguments[t]:{};t%2?le(r,!0).forEach(function(t){ie(e,t,r[t]);}):Object.getOwnPropertyDescriptors?Object.defineProperties(e,Object.getOwnPropertyDescriptors(r)):le(r).forEach(function(t){Object.defineProperty(e,t,Object.getOwnPropertyDescriptor(r,t));});}return e}({},r.state,{changeMonth:r.changeMonth,changeYear:r.changeYear,decreaseMonth:r.decreaseMonth,increaseMonth:r.increaseMonth,prevMonthButtonDisabled:o,nextMonthButtonDisabled:a})),React__default.createElement("div",{className:"react-datepicker__day-names"},r.header(n)))}),ie(me(r),"renderYearHeader",function(){return React__default.createElement("div",{className:"react-datepicker__header react-datepicker-year-header"},getYear(r.state.date))}),ie(me(r),"renderMonths",function(){if(!r.props.showTimeSelectOnly){for(var t=[],n=r.props.showPreviousMonths?r.props.monthsShown-1:0,o=subMonths(r.state.date,n),a=0;a<r.props.monthsShown;++a){var s=a-r.props.monthSelectedIn,p=addMonths(o,s),i="month-".concat(a);t.push(React__default.createElement("div",{key:i,ref:function(e){r.monthContainer=e;},className:"react-datepicker__month-container"},r.props.showMonthYearPicker||r.props.showQuarterYearPicker?r.renderYearHeader({monthDate:p,i:a}):r.props.renderCustomHeader?r.renderCustomHeader({monthDate:p,i:a}):r.renderDefaultHeader({monthDate:p,i:a}),React__default.createElement(dt,{onChange:r.changeMonthYear,day:p,dayClassName:r.props.dayClassName,onDayClick:r.handleDayClick,onDayMouseEnter:r.handleDayMouseEnter,onMouseLeave:r.handleMonthMouseLeave,onWeekSelect:r.props.onWeekSelect,orderInDisplay:a,formatWeekNumber:r.props.formatWeekNumber,locale:r.props.locale,minDate:r.props.minDate,maxDate:r.props.maxDate,excludeDates:r.props.excludeDates,highlightDates:r.props.highlightDates,selectingDate:r.state.selectingDate,includeDates:r.props.includeDates,inline:r.props.inline,fixedHeight:r.props.fixedHeight,filterDate:r.props.filterDate,preSelection:r.props.preSelection,selected:r.props.selected,selectsStart:r.props.selectsStart,selectsEnd:r.props.selectsEnd,showWeekNumbers:r.props.showWeekNumbers,startDate:r.props.startDate,endDate:r.props.endDate,peekNextMonth:r.props.peekNextMonth,setOpen:r.props.setOpen,shouldCloseOnSelect:r.props.shouldCloseOnSelect,renderDayContents:r.props.renderDayContents,disabledKeyboardNavigation:r.props.disabledKeyboardNavigation,showMonthYearPicker:r.props.showMonthYearPicker,showQuarterYearPicker:r.props.showQuarterYearPicker})));}return t}}),ie(me(r),"renderTimeSection",function(){if(r.props.showTimeSelect&&(r.state.monthContainer||r.props.showTimeSelectOnly))return React__default.createElement(ut,{selected:r.props.selected,openToDate:r.props.openToDate,onChange:r.props.onTimeChange,format:r.props.timeFormat,includeTimes:r.props.includeTimes,intervals:r.props.timeIntervals,minTime:r.props.minTime,maxTime:r.props.maxTime,excludeTimes:r.props.excludeTimes,timeCaption:r.props.timeCaption,todayButton:r.props.todayButton,showMonthDropdown:r.props.showMonthDropdown,showMonthYearDropdown:r.props.showMonthYearDropdown,showYearDropdown:r.props.showYearDropdown,withPortal:r.props.withPortal,monthRef:r.state.monthContainer,injectTimes:r.props.injectTimes,locale:r.props.locale})}),ie(me(r),"renderInputTimeSection",function(){var t=new Date(r.props.selected),n="".concat(Xe(t.getHours()),":").concat(Xe(t.getMinutes()));if(r.props.showTimeInput)return React__default.createElement(ht,{timeString:n,timeInputLabel:r.props.timeInputLabel,onChange:r.props.onTimeChange})}),r.containerRef=React__default.createRef(),r.state={date:r.getDateInView(),selectingDate:null,monthContainer:null},r}return de(n,React__default.Component),pe(n,null,[{key:"defaultProps",get:function(){return {onDropdownFocus:function(){},monthsShown:1,monthSelectedIn:0,forceShowMonthNavigation:!1,timeCaption:"Time",previousYearButtonLabel:"Previous Year",nextYearButtonLabel:"Next Year",previousMonthButtonLabel:"Previous Month",nextMonthButtonLabel:"Next Month"}}}]),pe(n,[{key:"componentDidMount",value:function(){var e=this;this.props.showTimeSelect&&(this.assignMonthContainer=void e.setState({monthContainer:e.monthContainer}));}},{key:"componentDidUpdate",value:function(e){this.props.preSelection&&!Pe(this.props.preSelection,e.preSelection)?this.setState({date:this.props.preSelection}):this.props.openToDate&&!Pe(this.props.openToDate,e.openToDate)&&this.setState({date:this.props.openToDate});}},{key:"render",value:function(){var r=this.props.container||mt;return React__default.createElement("div",{ref:this.containerRef},React__default.createElement(r,{className:classnames("react-datepicker",this.props.className,{"react-datepicker--time-only":this.props.showTimeSelectOnly}),showPopperArrow:this.props.showPopperArrow},this.renderPreviousButton(),this.renderNextButton(),this.renderMonths(),this.renderTodayButton(),this.renderTimeSection(),this.renderInputTimeSection(),this.props.children))}}]),n}(),Dt=function(r){function n(){return ae(this,n),fe(this,ue(n).apply(this,arguments))}return de(n,React__default.Component),pe(n,[{key:"render",value:function(){var r,n=this.props,o=n.className,a=n.wrapperClassName,s=n.hidePopper,p=n.popperComponent,i=n.popperModifiers,c=n.popperPlacement,l=n.popperProps,d=n.targetComponent;if(!s){var u=classnames("react-datepicker-popper",o);r=React__default.createElement(Popper$1,ce({modifiers:i,placement:c},l),function(t){var r=t.ref,n=t.style,o=t.placement,a=t.arrowProps;return React__default.createElement("div",ce({ref:r,style:n},{className:u,"data-placement":o}),React__default.cloneElement(p,{arrowProps:a}))});}this.props.popperContainer&&(r=React__default.createElement(this.props.popperContainer,{},r));var h=classnames("react-datepicker-wrapper",a);return React__default.createElement(Manager,{className:"react-datepicker-manager"},React__default.createElement(Reference,null,function(t){var r=t.ref;return React__default.createElement("div",{ref:r,className:h},d)}),r)}}],[{key:"defaultProps",get:function(){return {hidePopper:!0,popperModifiers:{preventOverflow:{enabled:!0,escapeWithReference:!0,boundariesElement:"viewport"}},popperProps:{},popperPlacement:"bottom-start"}}}]),n}(),gt="react-datepicker-ignore-onclickoutside",wt=onClickOutsideHOC(yt);var kt="Date input not valid.",_t=function(n){function o(n){var a;return ae(this,o),ie(me(a=fe(this,ue(o).call(this,n))),"getPreSelection",function(){return a.props.openToDate?a.props.openToDate:a.props.selectsEnd&&a.props.startDate?a.props.startDate:a.props.selectsStart&&a.props.endDate?a.props.endDate:we()}),ie(me(a),"calcInitialState",function(){var e=a.getPreSelection(),t=$e(a.props),r=ze(a.props),n=t&&isBefore(e,t)?t:r&&isAfter(e,r)?r:e;return {open:a.props.startOpen||!1,preventFocus:!1,preSelection:a.props.selected?a.props.selected:n,highlightDates:Ge(a.props.highlightDates),focused:!1}}),ie(me(a),"clearPreventFocusTimeout",function(){a.preventFocusTimeout&&clearTimeout(a.preventFocusTimeout);}),ie(me(a),"setFocus",function(){a.input&&a.input.focus&&a.input.focus();}),ie(me(a),"setBlur",function(){a.input&&a.input.blur&&a.input.blur(),a.cancelFocusInput();}),ie(me(a),"setOpen",function(e){var t=arguments.length>1&&void 0!==arguments[1]&&arguments[1];a.setState({open:e,preSelection:e&&a.state.open?a.state.preSelection:a.calcInitialState().preSelection,lastPreSelectChange:bt},function(){e||a.setState(function(e){return {focused:!!t&&e.focused}},function(){!t&&a.setBlur(),a.setState({inputValue:null});});});}),ie(me(a),"inputOk",function(){return isDate(a.state.preSelection)}),ie(me(a),"isCalendarOpen",function(){return void 0===a.props.open?a.state.open&&!a.props.disabled&&!a.props.readOnly:a.props.open}),ie(me(a),"handleFocus",function(e){a.state.preventFocus||(a.props.onFocus(e),a.props.preventOpenOnFocus||a.props.readOnly||a.setOpen(!0)),a.setState({focused:!0});}),ie(me(a),"cancelFocusInput",function(){clearTimeout(a.inputFocusTimeout),a.inputFocusTimeout=null;}),ie(me(a),"deferFocusInput",function(){a.cancelFocusInput(),a.inputFocusTimeout=setTimeout(function(){return a.setFocus()},1);}),ie(me(a),"handleDropdownFocus",function(){a.cancelFocusInput();}),ie(me(a),"handleBlur",function(e){!a.state.open||a.props.withPortal||a.props.showTimeInput?a.props.onBlur(e):a.deferFocusInput(),a.setState({focused:!1});}),ie(me(a),"handleCalendarClickOutside",function(e){a.props.inline||a.setOpen(!1),a.props.onClickOutside(e),a.props.withPortal&&e.preventDefault();}),ie(me(a),"handleChange",function(){for(var e=arguments.length,t=new Array(e),r=0;r<e;r++)t[r]=arguments[r];var n=t[0];if(!a.props.onChangeRaw||(a.props.onChangeRaw.apply(me(a),t),"function"==typeof n.isDefaultPrevented&&!n.isDefaultPrevented())){a.setState({inputValue:n.target.value,lastPreSelectChange:Ct});var o=ke(n.target.value,a.props.dateFormat,a.props.locale,a.props.strictParsing);!o&&n.target.value||a.setSelected(o,n,!0);}}),ie(me(a),"handleSelect",function(e,t,r){a.setState({preventFocus:!0},function(){return a.preventFocusTimeout=setTimeout(function(){return a.setState({preventFocus:!1})},50),a.preventFocusTimeout}),a.setSelected(e,t,void 0,r),!a.props.shouldCloseOnSelect||a.props.showTimeSelect?a.setPreSelection(e):a.props.inline||a.setOpen(!1);}),ie(me(a),"setSelected",function(e,t,r,n){var o=e;if(null===o||!Be(o,a.props)){if(!Te(a.props.selected,o)||a.props.allowSameDay){if(null!==o){if(a.props.selected){var s=a.props.selected;r&&(s=we(o)),o=be(o,{hour:getHours(s),minute:getMinutes(s),second:getSeconds(s)});}a.props.inline||a.setState({preSelection:o}),a.props.inline&&a.props.monthsShown>1&&!a.props.inlineFocusSelectedMonth&&a.setState({monthSelectedIn:n});}a.props.onChange(o,t);}a.props.onSelect(o,t),r||a.setState({inputValue:null});}}),ie(me(a),"setPreSelection",function(e){var t=void 0!==a.props.minDate,r=void 0!==a.props.maxDate,n=!0;e&&(t&&r?n=Ye(e,a.props.minDate,a.props.maxDate):t?n=isAfter(e,a.props.minDate):r&&(n=isBefore(e,a.props.maxDate))),n&&a.setState({preSelection:e});}),ie(me(a),"handleTimeChange",function(e){var t=be(a.props.selected?a.props.selected:a.getPreSelection(),{hour:getHours(e),minute:getMinutes(e)});a.setState({preSelection:t}),a.props.onChange(t),a.props.shouldCloseOnSelect&&a.setOpen(!1),a.props.showTimeInput&&a.setOpen(!0),a.setState({inputValue:null});}),ie(me(a),"onInputClick",function(){a.props.disabled||a.props.readOnly||a.setOpen(!0),a.props.onInputClick();}),ie(me(a),"onInputKeyDown",function(e){a.props.onKeyDown(e);var t=e.key;if(a.state.open||a.props.inline||a.props.preventOpenOnFocus){var r=we(a.state.preSelection);if("Enter"===t)e.preventDefault(),a.inputOk()&&a.state.lastPreSelectChange===bt?(a.handleSelect(r,e),!a.props.shouldCloseOnSelect&&a.setPreSelection(r)):a.setOpen(!1);else if("Escape"===t)e.preventDefault(),a.setOpen(!1),a.inputOk()||a.props.onInputError({code:1,msg:kt});else if("Tab"===t)a.setOpen(!1,!0);else if(!a.props.disabledKeyboardNavigation){var n;switch(t){case"ArrowLeft":n=subDays(r,1);break;case"ArrowRight":n=addDays(r,1);break;case"ArrowUp":n=subWeeks(r,1);break;case"ArrowDown":n=addWeeks(r,1);break;case"PageUp":n=subMonths(r,1);break;case"PageDown":n=addMonths(r,1);break;case"Home":n=subYears(r,1);break;case"End":n=addYears(r,1);}if(!n)return void(a.props.onInputError&&a.props.onInputError({code:1,msg:kt}));e.preventDefault(),a.setState({lastPreSelectChange:bt}),a.props.adjustDateOnChange&&a.setSelected(n),a.setPreSelection(n);}}else"ArrowDown"!==t&&"ArrowUp"!==t||a.onInputClick();}),ie(me(a),"onClearClick",function(e){e&&e.preventDefault&&e.preventDefault(),a.props.onChange(null,e),a.setState({inputValue:null});}),ie(me(a),"clear",function(){a.onClearClick();}),ie(me(a),"renderCalendar",function(){return a.props.inline||a.isCalendarOpen()?React__default.createElement(wt,{ref:function(e){a.calendar=e;},locale:a.props.locale,adjustDateOnChange:a.props.adjustDateOnChange,setOpen:a.setOpen,shouldCloseOnSelect:a.props.shouldCloseOnSelect,dateFormat:a.props.dateFormatCalendar,useWeekdaysShort:a.props.useWeekdaysShort,formatWeekDay:a.props.formatWeekDay,dropdownMode:a.props.dropdownMode,selected:a.props.selected,preSelection:a.state.preSelection,onSelect:a.handleSelect,onWeekSelect:a.props.onWeekSelect,openToDate:a.props.openToDate,minDate:a.props.minDate,maxDate:a.props.maxDate,selectsStart:a.props.selectsStart,selectsEnd:a.props.selectsEnd,startDate:a.props.startDate,endDate:a.props.endDate,excludeDates:a.props.excludeDates,filterDate:a.props.filterDate,onClickOutside:a.handleCalendarClickOutside,formatWeekNumber:a.props.formatWeekNumber,highlightDates:a.state.highlightDates,includeDates:a.props.includeDates,includeTimes:a.props.includeTimes,injectTimes:a.props.injectTimes,inline:a.props.inline,peekNextMonth:a.props.peekNextMonth,showMonthDropdown:a.props.showMonthDropdown,showPreviousMonths:a.props.showPreviousMonths,useShortMonthInDropdown:a.props.useShortMonthInDropdown,showMonthYearDropdown:a.props.showMonthYearDropdown,showWeekNumbers:a.props.showWeekNumbers,showYearDropdown:a.props.showYearDropdown,withPortal:a.props.withPortal,forceShowMonthNavigation:a.props.forceShowMonthNavigation,showDisabledMonthNavigation:a.props.showDisabledMonthNavigation,scrollableYearDropdown:a.props.scrollableYearDropdown,scrollableMonthYearDropdown:a.props.scrollableMonthYearDropdown,todayButton:a.props.todayButton,weekLabel:a.props.weekLabel,outsideClickIgnoreClass:gt,fixedHeight:a.props.fixedHeight,monthsShown:a.props.monthsShown,monthSelectedIn:a.state.monthSelectedIn,onDropdownFocus:a.handleDropdownFocus,onMonthChange:a.props.onMonthChange,onYearChange:a.props.onYearChange,dayClassName:a.props.dayClassName,showTimeSelect:a.props.showTimeSelect,showTimeSelectOnly:a.props.showTimeSelectOnly,onTimeChange:a.handleTimeChange,timeFormat:a.props.timeFormat,timeIntervals:a.props.timeIntervals,minTime:a.props.minTime,maxTime:a.props.maxTime,excludeTimes:a.props.excludeTimes,timeCaption:a.props.timeCaption,className:a.props.calendarClassName,container:a.props.calendarContainer,yearDropdownItemNumber:a.props.yearDropdownItemNumber,previousMonthButtonLabel:a.props.previousMonthButtonLabel,nextMonthButtonLabel:a.props.nextMonthButtonLabel,previousYearButtonLabel:a.props.previousYearButtonLabel,nextYearButtonLabel:a.props.nextYearButtonLabel,timeInputLabel:a.props.timeInputLabel,disabledKeyboardNavigation:a.props.disabledKeyboardNavigation,renderCustomHeader:a.props.renderCustomHeader,popperProps:a.props.popperProps,renderDayContents:a.props.renderDayContents,onDayMouseEnter:a.props.onDayMouseEnter,onMonthMouseLeave:a.props.onMonthMouseLeave,showTimeInput:a.props.showTimeInput,showMonthYearPicker:a.props.showMonthYearPicker,showQuarterYearPicker:a.props.showQuarterYearPicker,showPopperArrow:a.props.showPopperArrow},a.props.children):null}),ie(me(a),"renderDateInput",function(){var r,n,o,s,p,i=classnames(a.props.className,ie({},gt,a.state.open)),c=a.props.customInput||React__default.createElement("input",{type:"text"}),l=a.props.customInputRef||"ref",d="string"==typeof a.props.value?a.props.value:"string"==typeof a.state.inputValue?a.state.inputValue:(n=a.props.selected,o=a.props,s=o.dateFormat,p=o.locale,n&&Ce(n,Array.isArray(s)?s[0]:s,p)||"");return React__default.cloneElement(c,(ie(r={},l,function(e){a.input=e;}),ie(r,"value",d),ie(r,"onBlur",a.handleBlur),ie(r,"onChange",a.handleChange),ie(r,"onClick",a.onInputClick),ie(r,"onFocus",a.handleFocus),ie(r,"onKeyDown",a.onInputKeyDown),ie(r,"id",a.props.id),ie(r,"name",a.props.name),ie(r,"autoFocus",a.props.autoFocus),ie(r,"placeholder",a.props.placeholderText),ie(r,"disabled",a.props.disabled),ie(r,"autoComplete",a.props.autoComplete),ie(r,"className",classnames(c.props.className,i)),ie(r,"title",a.props.title),ie(r,"readOnly",a.props.readOnly),ie(r,"required",a.props.required),ie(r,"tabIndex",a.props.tabIndex),ie(r,"aria-labelledby",a.props.ariaLabelledBy),r))}),ie(me(a),"renderClearButton",function(){return a.props.isClearable&&null!=a.props.selected?React__default.createElement("button",{type:"button",className:"react-datepicker__close-icon","aria-label":"Close",onClick:a.onClearClick,title:a.props.clearButtonTitle,tabIndex:-1}):null}),a.state=a.calcInitialState(),a}return de(o,React__default.Component),pe(o,null,[{key:"defaultProps",get:function(){return {allowSameDay:!1,dateFormat:"MM/dd/yyyy",dateFormatCalendar:"LLLL yyyy",onChange:function(){},disabled:!1,disabledKeyboardNavigation:!1,dropdownMode:"scroll",onFocus:function(){},onBlur:function(){},onKeyDown:function(){},onInputClick:function(){},onSelect:function(){},onClickOutside:function(){},onMonthChange:function(){},onCalendarOpen:function(){},onCalendarClose:function(){},preventOpenOnFocus:!1,onYearChange:function(){},onInputError:function(){},monthsShown:1,readOnly:!1,withPortal:!1,shouldCloseOnSelect:!0,showTimeSelect:!1,showTimeInput:!1,showPreviousMonths:!1,showMonthYearPicker:!1,showQuarterYearPicker:!1,strictParsing:!1,timeIntervals:30,timeCaption:"Time",previousMonthButtonLabel:"Previous Month",nextMonthButtonLabel:"Next Month",previousYearButtonLabel:"Previous Year",nextYearButtonLabel:"Next Year",timeInputLabel:"Time",renderDayContents:function(e){return e},inlineFocusSelectedMonth:!1,showPopperArrow:!0}}}]),pe(o,[{key:"componentDidUpdate",value:function(e,t){var r,n;e.inline&&(r=e.selected,n=this.props.selected,r&&n?getMonth(r)!==getMonth(n)||getYear(r)!==getYear(n):r!==n)&&this.setPreSelection(this.props.selected),void 0!==this.state.monthSelectedIn&&e.monthsShown!==this.props.monthsShown&&this.setState({monthSelectedIn:0}),e.highlightDates!==this.props.highlightDates&&this.setState({highlightDates:Ge(this.props.highlightDates)}),t.focused||Te(e.selected,this.props.selected)||this.setState({inputValue:null}),t.open!==this.state.open&&(!1===t.open&&!0===this.state.open&&this.props.onCalendarOpen(),!0===t.open&&!1===this.state.open&&this.props.onCalendarClose());}},{key:"componentWillUnmount",value:function(){this.clearPreventFocusTimeout();}},{key:"render",value:function(){var t=this.renderCalendar();return this.props.inline&&!this.props.withPortal?t:this.props.withPortal?React__default.createElement("div",null,this.props.inline?null:React__default.createElement("div",{className:"react-datepicker__input-container"},this.renderDateInput(),this.renderClearButton()),this.state.open||this.props.inline?React__default.createElement("div",{className:"react-datepicker__portal"},t):null):React__default.createElement(Dt,{className:this.props.popperClassName,wrapperClassName:this.props.wrapperClassName,hidePopper:!this.isCalendarOpen(),popperModifiers:this.props.popperModifiers,targetComponent:React__default.createElement("div",{className:"react-datepicker__input-container"},this.renderDateInput(),this.renderClearButton()),popperContainer:this.props.popperContainer,popperComponent:t,popperPlacement:this.props.popperPlacement,popperProps:this.props.popperProps})}}]),o}(),Ct="input",bt="navigate";
+function re(e){return (re="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e})(e)}function ne(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function oe(e,t){for(var r=0;r<t.length;r++){var n=t[r];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n);}}function ae(e,t,r){return t&&oe(e.prototype,t),r&&oe(e,r),e}function se(e,t,r){return t in e?Object.defineProperty(e,t,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[t]=r,e}function pe(){return (pe=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var r=arguments[t];for(var n in r)Object.prototype.hasOwnProperty.call(r,n)&&(e[n]=r[n]);}return e}).apply(this,arguments)}function ie(e,t){var r=Object.keys(e);if(Object.getOwnPropertySymbols){var n=Object.getOwnPropertySymbols(e);t&&(n=n.filter((function(t){return Object.getOwnPropertyDescriptor(e,t).enumerable}))),r.push.apply(r,n);}return r}function ce(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function");e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,writable:!0,configurable:!0}}),t&&de(e,t);}function le(e){return (le=Object.setPrototypeOf?Object.getPrototypeOf:function(e){return e.__proto__||Object.getPrototypeOf(e)})(e)}function de(e,t){return (de=Object.setPrototypeOf||function(e,t){return e.__proto__=t,e})(e,t)}function ue(e){if(void 0===e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return e}function he(e,t){return !t||"object"!=typeof t&&"function"!=typeof t?ue(e):t}function me(e,t){switch(e){case"P":return t.date({width:"short"});case"PP":return t.date({width:"medium"});case"PPP":return t.date({width:"long"});case"PPPP":default:return t.date({width:"full"})}}function fe(e,t){switch(e){case"p":return t.time({width:"short"});case"pp":return t.time({width:"medium"});case"ppp":return t.time({width:"long"});case"pppp":default:return t.time({width:"full"})}}var ve={p:fe,P:function(e,t){var r,n=e.match(/(P+)(p+)?/),o=n[1],a=n[2];if(!a)return me(e,t);switch(o){case"P":r=t.dateTime({width:"short"});break;case"PP":r=t.dateTime({width:"medium"});break;case"PPP":r=t.dateTime({width:"long"});break;case"PPPP":default:r=t.dateTime({width:"full"});}return r.replace("{{date}}",me(o,t)).replace("{{time}}",fe(a,t))}},ye=/P+p+|P+|p+|''|'(''|[^'])+('|$)|./g;function De(e){var t=e?"string"==typeof e||e instanceof String?parseISO(e):toDate(e):new Date;return we(t)?t:null}function ge(e,t,r,n){var a=null,s=Ie(r)||Ye(),p=!0;return Array.isArray(t)?(t.forEach((function(t){var r=parse(e,t,new Date,{locale:s});n&&(p=we(r)&&e===format(r,t,{awareOfUnicodeTokens:!0})),we(r)&&p&&(a=r);})),a):(a=parse(e,t,new Date,{locale:s}),n?p=we(a)&&e===format(a,t,{awareOfUnicodeTokens:!0}):we(a)||(t=t.match(ye).map((function(e){var t=e[0];if("p"===t||"P"===t){var r=ve[t];return s?r(e,s.formatLong):t}return e})).join(""),e.length>0&&(a=parse(e,t.slice(0,e.length),new Date)),we(a)||(a=new Date(e))),we(a)&&p?a:null)}function we(e){return isValid(e)&&isAfter(e,new Date("1/1/1000"))}function ke(e,t,r){if("en"===r)return format(e,t,{awareOfUnicodeTokens:!0});var n=Ie(r);return r&&!n&&console.warn('A locale object was not found for the provided string ["'.concat(r,'"].')),!n&&Ye()&&Ie(Ye())&&(n=Ie(Ye())),format(e,t,{locale:n||null,awareOfUnicodeTokens:!0})}function be(e,t){var r=t.hour,n=void 0===r?0:r,o=t.minute,a=void 0===o?0:o,s=t.second;return setHours(setMinutes(setSeconds(e,void 0===s?0:s),a),n)}function Ce(e,t){var r=Ie(t||Ye());return startOfWeek(e,{locale:r})}function _e(e){return startOfMonth(e)}function Se(e,t){return e&&t?isSameYear(e,t):!e&&!t}function Me(e,t){return e&&t?isSameMonth(e,t):!e&&!t}function Ee(e,t){return e&&t?isSameQuarter(e,t):!e&&!t}function Ne(e,t){return e&&t?isSameDay(e,t):!e&&!t}function Pe(e,t){return e&&t?isEqual(e,t):!e&&!t}function xe(e,t,r){var n,o=startOfDay(t),a=endOfDay(r);try{n=isWithinInterval(e,{start:o,end:a});}catch(e){n=!1;}return n}function Ye(){return ("undefined"!=typeof window?window:global).__localeId__}function Ie(e){if("string"==typeof e){var t="undefined"!=typeof window?window:global;return t.__localeData__?t.__localeData__[e]:null}return e}function Le(e,t){return ke(setMonth(De(),e),"LLL",t)}function Fe(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},r=t.minDate,n=t.maxDate,o=t.excludeDates,a=t.includeDates,s=t.filterDate;return je(e,{minDate:r,maxDate:n})||o&&o.some((function(t){return Ne(e,t)}))||a&&!a.some((function(t){return Ne(e,t)}))||s&&!s(De(e))||!1}function We(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},r=t.minDate,n=t.maxDate,o=t.excludeDates,a=t.includeDates,s=t.filterDate;return je(e,{minDate:r,maxDate:n})||o&&o.some((function(t){return Me(e,t)}))||a&&!a.some((function(t){return Me(e,t)}))||s&&!s(De(e))||!1}function Ae(e,t,r,n){var o=getYear(e),a=getMonth(e),s=getYear(t),p=getMonth(t),i=getYear(n);return o===s&&o===i?a<=r&&r<=p:o<s?i===o&&a<=r||i===s&&p>=r||i<s&&i>o:void 0}function Be(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},r=t.minDate,n=t.maxDate,o=t.excludeDates,a=t.includeDates,s=t.filterDate;return je(e,{minDate:r,maxDate:n})||o&&o.some((function(t){return Ee(e,t)}))||a&&!a.some((function(t){return Ee(e,t)}))||s&&!s(De(e))||!1}function Re(e,t,r,n){var o=getYear(e),a=getQuarter(e),s=getYear(t),p=getQuarter(t),i=getYear(n);return o===s&&o===i?a<=r&&r<=p:o<s?i===o&&a<=r||i===s&&p>=r||i<s&&i>o:void 0}function je(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},r=t.minDate,n=t.maxDate;return r&&differenceInCalendarDays(e,r)<0||n&&differenceInCalendarDays(e,n)>0}function Ke(e,t){for(var r=t.length,n=0;n<r;n++)if(getHours(t[n])===getHours(e)&&getMinutes(t[n])===getMinutes(e))return !0;return !1}function He(e,t){var r=t.minTime,n=t.maxTime;if(!r||!n)throw new Error("Both minTime and maxTime props required");var o,a=De(),s=setHours(setMinutes(a,getMinutes(e)),getHours(e)),p=setHours(setMinutes(a,getMinutes(r)),getHours(r)),i=setHours(setMinutes(a,getMinutes(n)),getHours(n));try{o=!isWithinInterval(s,{start:p,end:i});}catch(e){o=!1;}return o}function Qe(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},r=t.minDate,n=t.includeDates,o=subMonths(e,1);return r&&differenceInCalendarMonths(r,o)>0||n&&n.every((function(e){return differenceInCalendarMonths(e,o)>0}))||!1}function Ve(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},r=t.maxDate,n=t.includeDates,o=addMonths(e,1);return r&&differenceInCalendarMonths(o,r)>0||n&&n.every((function(e){return differenceInCalendarMonths(o,e)>0}))||!1}function qe(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},r=t.minDate,n=t.includeDates,o=subYears(e,1);return r&&differenceInCalendarYears(r,o)>0||n&&n.every((function(e){return differenceInCalendarYears(e,o)>0}))||!1}function Ue(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},r=t.maxDate,n=t.includeDates,o=addYears(e,1);return r&&differenceInCalendarYears(o,r)>0||n&&n.every((function(e){return differenceInCalendarYears(o,e)>0}))||!1}function $e(e){var t=e.minDate,r=e.includeDates;if(r&&t){var n=r.filter((function(e){return differenceInCalendarDays(e,t)>=0}));return min(n)}return r?min(r):t}function ze(e){var t=e.maxDate,r=e.includeDates;if(r&&t){var n=r.filter((function(e){return differenceInCalendarDays(e,t)<=0}));return max(n)}return r?max(r):t}function Ge(){for(var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:[],t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:"react-datepicker__day--highlighted",n=new Map,o=0,a=e.length;o<a;o++){var s=e[o];if(isDate(s)){var p=ke(s,"MM.dd.yyyy"),i=n.get(p)||[];i.includes(t)||(i.push(t),n.set(p,i));}else if("object"===re(s)){var c=Object.keys(s),l=c[0],d=s[c[0]];if("string"==typeof l&&d.constructor===Array)for(var u=0,h=d.length;u<h;u++){var m=ke(d[u],"MM.dd.yyyy"),f=n.get(m)||[];f.includes(l)||(f.push(l),n.set(m,f));}}}return n}function Je(e,t,r,n,o){for(var p=o.length,i=[],c=0;c<p;c++){var l=addMinutes(addHours(e,getHours(o[c])),getMinutes(o[c])),d=addMinutes(e,(r+1)*n);isAfter(l,t)&&isBefore(l,d)&&i.push(o[c]);}return i}function Xe(e){return e<10?"0".concat(e):"".concat(e)}function Ze(e,t,r,n){for(var o=[],a=0;a<2*t+1;a++){var s=e+t-a,p=!0;r&&(p=getYear(r)<=s),n&&p&&(p=getYear(n)>=s),p&&o.push(s);}return o}var et=onClickOutsideHOC(function(r){function n(t){var r;ne(this,n),se(ue(r=he(this,le(n).call(this,t))),"renderOptions",(function(){var t=r.props.year,n=r.state.yearsList.map((function(n){return React__default.createElement("div",{className:t===n?"react-datepicker__year-option react-datepicker__year-option--selected_year":"react-datepicker__year-option",key:n,ref:n,onClick:r.onChange.bind(ue(r),n)},t===n?React__default.createElement("span",{className:"react-datepicker__year-option--selected"},"✓"):"",n)})),o=r.props.minDate?getYear(r.props.minDate):null,a=r.props.maxDate?getYear(r.props.maxDate):null;return a&&r.state.yearsList.find((function(e){return e===a}))||n.unshift(React__default.createElement("div",{className:"react-datepicker__year-option",ref:"upcoming",key:"upcoming",onClick:r.incrementYears},React__default.createElement("a",{className:"react-datepicker__navigation react-datepicker__navigation--years react-datepicker__navigation--years-upcoming"}))),o&&r.state.yearsList.find((function(e){return e===o}))||n.push(React__default.createElement("div",{className:"react-datepicker__year-option",ref:"previous",key:"previous",onClick:r.decrementYears},React__default.createElement("a",{className:"react-datepicker__navigation react-datepicker__navigation--years react-datepicker__navigation--years-previous"}))),n})),se(ue(r),"onChange",(function(e){r.props.onChange(e);})),se(ue(r),"handleClickOutside",(function(){r.props.onCancel();})),se(ue(r),"shiftYears",(function(e){var t=r.state.yearsList.map((function(t){return t+e}));r.setState({yearsList:t});})),se(ue(r),"incrementYears",(function(){return r.shiftYears(1)})),se(ue(r),"decrementYears",(function(){return r.shiftYears(-1)}));var o=t.yearDropdownItemNumber,a=t.scrollableYearDropdown,s=o||(a?10:5);return r.state={yearsList:Ze(r.props.year,s,r.props.minDate,r.props.maxDate)},r}return ce(n,React__default.Component),ae(n,[{key:"render",value:function(){var r=classnames({"react-datepicker__year-dropdown":!0,"react-datepicker__year-dropdown--scrollable":this.props.scrollableYearDropdown});return React__default.createElement("div",{className:r},this.renderOptions())}}]),n}()),tt=function(t){function r(){var t,n;ne(this,r);for(var o=arguments.length,a=new Array(o),s=0;s<o;s++)a[s]=arguments[s];return se(ue(n=he(this,(t=le(r)).call.apply(t,[this].concat(a)))),"state",{dropdownVisible:!1}),se(ue(n),"renderSelectOptions",(function(){for(var t=n.props.minDate?getYear(n.props.minDate):1900,r=n.props.maxDate?getYear(n.props.maxDate):2100,o=[],a=t;a<=r;a++)o.push(React__default.createElement("option",{key:a,value:a},a));return o})),se(ue(n),"onSelectChange",(function(e){n.onChange(e.target.value);})),se(ue(n),"renderSelectMode",(function(){return React__default.createElement("select",{value:n.props.year,className:"react-datepicker__year-select",onChange:n.onSelectChange},n.renderSelectOptions())})),se(ue(n),"renderReadView",(function(t){return React__default.createElement("div",{key:"read",style:{visibility:t?"visible":"hidden"},className:"react-datepicker__year-read-view",onClick:function(e){return n.toggleDropdown(e)}},React__default.createElement("span",{className:"react-datepicker__year-read-view--down-arrow"}),React__default.createElement("span",{className:"react-datepicker__year-read-view--selected-year"},n.props.year))})),se(ue(n),"renderDropdown",(function(){return React__default.createElement(et,{key:"dropdown",ref:"options",year:n.props.year,onChange:n.onChange,onCancel:n.toggleDropdown,minDate:n.props.minDate,maxDate:n.props.maxDate,scrollableYearDropdown:n.props.scrollableYearDropdown,yearDropdownItemNumber:n.props.yearDropdownItemNumber})})),se(ue(n),"renderScrollMode",(function(){var e=n.state.dropdownVisible,t=[n.renderReadView(!e)];return e&&t.unshift(n.renderDropdown()),t})),se(ue(n),"onChange",(function(e){n.toggleDropdown(),e!==n.props.year&&n.props.onChange(e);})),se(ue(n),"toggleDropdown",(function(e){n.setState({dropdownVisible:!n.state.dropdownVisible},(function(){n.props.adjustDateOnChange&&n.handleYearChange(n.props.date,e);}));})),se(ue(n),"handleYearChange",(function(e,t){n.onSelect(e,t),n.setOpen();})),se(ue(n),"onSelect",(function(e,t){n.props.onSelect&&n.props.onSelect(e,t);})),se(ue(n),"setOpen",(function(){n.props.setOpen&&n.props.setOpen(!0);})),n}return ce(r,React__default.Component),ae(r,[{key:"render",value:function(){var t;switch(this.props.dropdownMode){case"scroll":t=this.renderScrollMode();break;case"select":t=this.renderSelectMode();}return React__default.createElement("div",{className:"react-datepicker__year-dropdown-container react-datepicker__year-dropdown-container--".concat(this.props.dropdownMode)},t)}}]),r}(),rt=onClickOutsideHOC(function(t){function r(){var t,n;ne(this,r);for(var o=arguments.length,a=new Array(o),s=0;s<o;s++)a[s]=arguments[s];return se(ue(n=he(this,(t=le(r)).call.apply(t,[this].concat(a)))),"renderOptions",(function(){return n.props.monthNames.map((function(t,r){return React__default.createElement("div",{className:n.props.month===r?"react-datepicker__month-option react-datepicker__month-option--selected_month":"react-datepicker__month-option",key:t,ref:t,onClick:n.onChange.bind(ue(n),r)},n.props.month===r?React__default.createElement("span",{className:"react-datepicker__month-option--selected"},"✓"):"",t)}))})),se(ue(n),"onChange",(function(e){return n.props.onChange(e)})),se(ue(n),"handleClickOutside",(function(){return n.props.onCancel()})),n}return ce(r,React__default.Component),ae(r,[{key:"render",value:function(){return React__default.createElement("div",{className:"react-datepicker__month-dropdown"},this.renderOptions())}}]),r}()),nt=function(t){function r(){var t,n;ne(this,r);for(var o=arguments.length,a=new Array(o),s=0;s<o;s++)a[s]=arguments[s];return se(ue(n=he(this,(t=le(r)).call.apply(t,[this].concat(a)))),"state",{dropdownVisible:!1}),se(ue(n),"renderSelectOptions",(function(t){return t.map((function(t,r){return React__default.createElement("option",{key:r,value:r},t)}))})),se(ue(n),"renderSelectMode",(function(t){return React__default.createElement("select",{value:n.props.month,className:"react-datepicker__month-select",onChange:function(e){return n.onChange(e.target.value)}},n.renderSelectOptions(t))})),se(ue(n),"renderReadView",(function(t,r){return React__default.createElement("div",{key:"read",style:{visibility:t?"visible":"hidden"},className:"react-datepicker__month-read-view",onClick:n.toggleDropdown},React__default.createElement("span",{className:"react-datepicker__month-read-view--down-arrow"}),React__default.createElement("span",{className:"react-datepicker__month-read-view--selected-month"},r[n.props.month]))})),se(ue(n),"renderDropdown",(function(t){return React__default.createElement(rt,{key:"dropdown",ref:"options",month:n.props.month,monthNames:t,onChange:n.onChange,onCancel:n.toggleDropdown})})),se(ue(n),"renderScrollMode",(function(e){var t=n.state.dropdownVisible,r=[n.renderReadView(!t,e)];return t&&r.unshift(n.renderDropdown(e)),r})),se(ue(n),"onChange",(function(e){n.toggleDropdown(),e!==n.props.month&&n.props.onChange(e);})),se(ue(n),"toggleDropdown",(function(){return n.setState({dropdownVisible:!n.state.dropdownVisible})})),n}return ce(r,React__default.Component),ae(r,[{key:"render",value:function(){var t,r=this,n=[0,1,2,3,4,5,6,7,8,9,10,11].map(this.props.useShortMonthInDropdown?function(e){return Le(e,r.props.locale)}:function(e){return t=e,n=r.props.locale,ke(setMonth(De(),t),"LLLL",n);var t,n;});switch(this.props.dropdownMode){case"scroll":t=this.renderScrollMode(n);break;case"select":t=this.renderSelectMode(n);}return React__default.createElement("div",{className:"react-datepicker__month-dropdown-container react-datepicker__month-dropdown-container--".concat(this.props.dropdownMode)},t)}}]),r}();function ot(e,t){for(var r=[],n=_e(e),o=_e(t);!isAfter(n,o);)r.push(De(n)),n=addMonths(n,1);return r}var at=onClickOutsideHOC(function(r){function n(t){var r;return ne(this,n),se(ue(r=he(this,le(n).call(this,t))),"renderOptions",(function(){return r.state.monthYearsList.map((function(t){var n=getTime(t),o=Se(r.props.date,t)&&Me(r.props.date,t);return React__default.createElement("div",{className:o?"react-datepicker__month-year-option --selected_month-year":"react-datepicker__month-year-option",key:n,ref:n,onClick:r.onChange.bind(ue(r),n)},o?React__default.createElement("span",{className:"react-datepicker__month-year-option--selected"},"✓"):"",ke(t,r.props.dateFormat))}))})),se(ue(r),"onChange",(function(e){return r.props.onChange(e)})),se(ue(r),"handleClickOutside",(function(){r.props.onCancel();})),r.state={monthYearsList:ot(r.props.minDate,r.props.maxDate)},r}return ce(n,React__default.Component),ae(n,[{key:"render",value:function(){var r=classnames({"react-datepicker__month-year-dropdown":!0,"react-datepicker__month-year-dropdown--scrollable":this.props.scrollableMonthYearDropdown});return React__default.createElement("div",{className:r},this.renderOptions())}}]),n}()),st=function(t){function r(){var t,n;ne(this,r);for(var o=arguments.length,a=new Array(o),s=0;s<o;s++)a[s]=arguments[s];return se(ue(n=he(this,(t=le(r)).call.apply(t,[this].concat(a)))),"state",{dropdownVisible:!1}),se(ue(n),"renderSelectOptions",(function(){for(var t=_e(n.props.minDate),r=_e(n.props.maxDate),o=[];!isAfter(t,r);){var a=getTime(t);o.push(React__default.createElement("option",{key:a,value:a},ke(t,n.props.dateFormat,n.props.locale))),t=addMonths(t,1);}return o})),se(ue(n),"onSelectChange",(function(e){n.onChange(e.target.value);})),se(ue(n),"renderSelectMode",(function(){return React__default.createElement("select",{value:getTime(_e(n.props.date)),className:"react-datepicker__month-year-select",onChange:n.onSelectChange},n.renderSelectOptions())})),se(ue(n),"renderReadView",(function(t){var r=ke(n.props.date,n.props.dateFormat,n.props.locale);return React__default.createElement("div",{key:"read",style:{visibility:t?"visible":"hidden"},className:"react-datepicker__month-year-read-view",onClick:function(e){return n.toggleDropdown(e)}},React__default.createElement("span",{className:"react-datepicker__month-year-read-view--down-arrow"}),React__default.createElement("span",{className:"react-datepicker__month-year-read-view--selected-month-year"},r))})),se(ue(n),"renderDropdown",(function(){return React__default.createElement(at,{key:"dropdown",ref:"options",date:n.props.date,dateFormat:n.props.dateFormat,onChange:n.onChange,onCancel:n.toggleDropdown,minDate:n.props.minDate,maxDate:n.props.maxDate,scrollableMonthYearDropdown:n.props.scrollableMonthYearDropdown})})),se(ue(n),"renderScrollMode",(function(){var e=n.state.dropdownVisible,t=[n.renderReadView(!e)];return e&&t.unshift(n.renderDropdown()),t})),se(ue(n),"onChange",(function(e){n.toggleDropdown();var t=De(parseInt(e));Se(n.props.date,t)&&Me(n.props.date,t)||n.props.onChange(t);})),se(ue(n),"toggleDropdown",(function(){return n.setState({dropdownVisible:!n.state.dropdownVisible})})),n}return ce(r,React__default.Component),ae(r,[{key:"render",value:function(){var t;switch(this.props.dropdownMode){case"scroll":t=this.renderScrollMode();break;case"select":t=this.renderSelectMode();}return React__default.createElement("div",{className:"react-datepicker__month-year-dropdown-container react-datepicker__month-year-dropdown-container--".concat(this.props.dropdownMode)},t)}}]),r}(),pt=function(r){function n(){var r,o;ne(this,n);for(var a=arguments.length,s=new Array(a),p=0;p<a;p++)s[p]=arguments[p];return se(ue(o=he(this,(r=le(n)).call.apply(r,[this].concat(s)))),"dayEl",React__default.createRef()),se(ue(o),"handleClick",(function(e){!o.isDisabled()&&o.props.onClick&&o.props.onClick(e);})),se(ue(o),"handleMouseEnter",(function(e){!o.isDisabled()&&o.props.onMouseEnter&&o.props.onMouseEnter(e);})),se(ue(o),"handleOnKeyDown",(function(e){" "===e.key&&(e.preventDefault(),e.key="Enter"),o.props.handleOnKeyDown(e);})),se(ue(o),"isSameDay",(function(e){return Ne(o.props.day,e)})),se(ue(o),"isKeyboardSelected",(function(){return !o.props.disabledKeyboardNavigation&&!o.props.inline&&!o.isSameDay(o.props.selected)&&o.isSameDay(o.props.preSelection)})),se(ue(o),"isDisabled",(function(){return Fe(o.props.day,o.props)})),se(ue(o),"isExcluded",(function(){return function(e){var t=(arguments.length>1&&void 0!==arguments[1]?arguments[1]:{}).excludeDates;return t&&t.some((function(t){return Ne(e,t)}))||!1}(o.props.day,o.props)})),se(ue(o),"getHighLightedClass",(function(e){var t=o.props,r=t.day,n=t.highlightDates;if(!n)return !1;var a=ke(r,"MM.dd.yyyy");return n.get(a)})),se(ue(o),"isInRange",(function(){var e=o.props,t=e.day,r=e.startDate,n=e.endDate;return !(!r||!n)&&xe(t,r,n)})),se(ue(o),"isInSelectingRange",(function(){var e=o.props,t=e.day,r=e.selectsStart,n=e.selectsEnd,a=e.selectingDate,s=e.startDate,p=e.endDate;return !(!r&&!n||!a||o.isDisabled())&&(r&&p&&(isBefore(a,p)||Pe(a,p))?xe(t,a,p):!(!n||!s||!isAfter(a,s)&&!Pe(a,s))&&xe(t,s,a))})),se(ue(o),"isSelectingRangeStart",(function(){if(!o.isInSelectingRange())return !1;var e=o.props,t=e.day,r=e.selectingDate,n=e.startDate;return Ne(t,e.selectsStart?r:n)})),se(ue(o),"isSelectingRangeEnd",(function(){if(!o.isInSelectingRange())return !1;var e=o.props,t=e.day,r=e.selectingDate,n=e.endDate;return Ne(t,e.selectsEnd?r:n)})),se(ue(o),"isRangeStart",(function(){var e=o.props,t=e.day,r=e.startDate,n=e.endDate;return !(!r||!n)&&Ne(r,t)})),se(ue(o),"isRangeEnd",(function(){var e=o.props,t=e.day,r=e.startDate,n=e.endDate;return !(!r||!n)&&Ne(n,t)})),se(ue(o),"isWeekend",(function(){var e=getDay(o.props.day);return 0===e||6===e})),se(ue(o),"isOutsideMonth",(function(){return void 0!==o.props.month&&o.props.month!==getMonth(o.props.day)})),se(ue(o),"getClassNames",(function(e){var r,n=o.props.dayClassName?o.props.dayClassName(e):void 0;return classnames("react-datepicker__day",n,"react-datepicker__day--"+ke(o.props.day,"ddd",r),{"react-datepicker__day--disabled":o.isDisabled(),"react-datepicker__day--excluded":o.isExcluded(),"react-datepicker__day--selected":o.isSameDay(o.props.selected),"react-datepicker__day--keyboard-selected":o.isKeyboardSelected(),"react-datepicker__day--range-start":o.isRangeStart(),"react-datepicker__day--range-end":o.isRangeEnd(),"react-datepicker__day--in-range":o.isInRange(),"react-datepicker__day--in-selecting-range":o.isInSelectingRange(),"react-datepicker__day--selecting-range-start":o.isSelectingRangeStart(),"react-datepicker__day--selecting-range-end":o.isSelectingRangeEnd(),"react-datepicker__day--today":o.isSameDay(De()),"react-datepicker__day--weekend":o.isWeekend(),"react-datepicker__day--outside-month":o.isOutsideMonth()},o.getHighLightedClass("react-datepicker__day--highlighted"))})),se(ue(o),"getAriaLabel",(function(){var e=o.props,t=e.day,r=e.ariaLabelPrefixWhenEnabled,n=void 0===r?"Choose":r,a=e.ariaLabelPrefixWhenDisabled,s=void 0===a?"Not available":a,p=o.isDisabled()||o.isExcluded()?s:n;return "".concat(p," ").concat(ke(t,"PPPP"))})),se(ue(o),"getTabIndex",(function(e,t){var r=e||o.props.selected,n=t||o.props.preSelection;return o.isKeyboardSelected()||o.isSameDay(r)&&Ne(n,r)?0:-1})),se(ue(o),"render",(function(){return React__default.createElement("div",{ref:o.dayEl,className:o.getClassNames(o.props.day),onKeyDown:o.handleOnKeyDown,onClick:o.handleClick,onMouseEnter:o.handleMouseEnter,tabIndex:o.getTabIndex(),"aria-label":o.getAriaLabel(),role:"option","aria-disabled":o.isDisabled()},o.props.renderDayContents?o.props.renderDayContents(getDate(o.props.day),o.props.day):getDate(o.props.day))})),o}return ce(n,React__default.Component),ae(n,[{key:"componentDidMount",value:function(){0===this.getTabIndex()&&this.isSameDay(this.props.preSelection)&&(!document.activeElement||document.activeElement===document.body)&&this.dayEl.current.focus();}},{key:"componentDidUpdate",value:function(e){0===this.getTabIndex()&&this.isSameDay(this.props.preSelection)!==this.isSameDay(e.preSelection)&&!e.isInputFocused&&this.dayEl.current.focus();}}]),n}(),it=function(r){function n(){var e,t;ne(this,n);for(var r=arguments.length,o=new Array(r),a=0;a<r;a++)o[a]=arguments[a];return se(ue(t=he(this,(e=le(n)).call.apply(e,[this].concat(o)))),"handleClick",(function(e){t.props.onClick&&t.props.onClick(e);})),t}return ce(n,React__default.Component),ae(n,[{key:"render",value:function(){var r=this.props,n=r.weekNumber,o=r.ariaLabelPrefix,a=void 0===o?"week ":o,s={"react-datepicker__week-number":!0,"react-datepicker__week-number--clickable":!!r.onClick};return React__default.createElement("div",{className:classnames(s),"aria-label":"".concat(a," ").concat(this.props.weekNumber),onClick:this.handleClick},n)}}]),n}(),ct=function(t){function r(){var t,n;ne(this,r);for(var o=arguments.length,a=new Array(o),s=0;s<o;s++)a[s]=arguments[s];return se(ue(n=he(this,(t=le(r)).call.apply(t,[this].concat(a)))),"handleDayClick",(function(e,t){n.props.onDayClick&&n.props.onDayClick(e,t);})),se(ue(n),"handleDayMouseEnter",(function(e){n.props.onDayMouseEnter&&n.props.onDayMouseEnter(e);})),se(ue(n),"handleWeekClick",(function(e,t,r){"function"==typeof n.props.onWeekSelect&&n.props.onWeekSelect(e,t,r),n.props.shouldCloseOnSelect&&n.props.setOpen(!1);})),se(ue(n),"formatWeekNumber",(function(e){return n.props.formatWeekNumber?n.props.formatWeekNumber(e):function(e,t){var r=t&&Ie(t)||Ye()&&Ie(Ye());return getWeek(e,r?{locale:r}:null)}(e,n.props.locale)})),se(ue(n),"renderDays",(function(){var t=Ce(n.props.day,n.props.locale),r=[],o=n.formatWeekNumber(t);if(n.props.showWeekNumber){var a=n.props.onWeekSelect?n.handleWeekClick.bind(ue(n),t,o):void 0;r.push(React__default.createElement(it,{key:"W",weekNumber:o,onClick:a,ariaLabelPrefix:n.props.ariaLabelPrefix}));}return r.concat([0,1,2,3,4,5,6].map((function(r){var o=addDays(t,r);return React__default.createElement(pt,{ariaLabelPrefixWhenEnabled:n.props.chooseDayAriaLabelPrefix,ariaLabelPrefixWhenDisabled:n.props.disabledDayAriaLabelPrefix,key:o.valueOf(),day:o,month:n.props.month,onClick:n.handleDayClick.bind(ue(n),o),onMouseEnter:n.handleDayMouseEnter.bind(ue(n),o),minDate:n.props.minDate,maxDate:n.props.maxDate,excludeDates:n.props.excludeDates,includeDates:n.props.includeDates,inline:n.props.inline,highlightDates:n.props.highlightDates,selectingDate:n.props.selectingDate,filterDate:n.props.filterDate,preSelection:n.props.preSelection,selected:n.props.selected,selectsStart:n.props.selectsStart,selectsEnd:n.props.selectsEnd,startDate:n.props.startDate,endDate:n.props.endDate,dayClassName:n.props.dayClassName,renderDayContents:n.props.renderDayContents,disabledKeyboardNavigation:n.props.disabledKeyboardNavigation,handleOnKeyDown:n.props.handleOnKeyDown,isInputFocused:n.props.isInputFocused})})))})),n}return ce(r,React__default.Component),ae(r,[{key:"render",value:function(){return React__default.createElement("div",{className:"react-datepicker__week"},this.renderDays())}}],[{key:"defaultProps",get:function(){return {shouldCloseOnSelect:!0}}}]),r}(),lt=6,dt=function(r){function n(){var r,o;ne(this,n);for(var a=arguments.length,s=new Array(a),c=0;c<a;c++)s[c]=arguments[c];return se(ue(o=he(this,(r=le(n)).call.apply(r,[this].concat(s)))),"handleDayClick",(function(e,t){o.props.onDayClick&&o.props.onDayClick(e,t,o.props.orderInDisplay);})),se(ue(o),"handleDayMouseEnter",(function(e){o.props.onDayMouseEnter&&o.props.onDayMouseEnter(e);})),se(ue(o),"handleMouseLeave",(function(){o.props.onMouseLeave&&o.props.onMouseLeave();})),se(ue(o),"isRangeStartMonth",(function(e){var t=o.props,r=t.day,n=t.startDate,a=t.endDate;return !(!n||!a)&&Me(setMonth(r,e),n)})),se(ue(o),"isRangeStartQuarter",(function(e){var t=o.props,r=t.day,n=t.startDate,a=t.endDate;return !(!n||!a)&&Ee(setQuarter(r,e),n)})),se(ue(o),"isRangeEndMonth",(function(e){var t=o.props,r=t.day,n=t.startDate,a=t.endDate;return !(!n||!a)&&Me(setMonth(r,e),a)})),se(ue(o),"isRangeEndQuarter",(function(e){var t=o.props,r=t.day,n=t.startDate,a=t.endDate;return !(!n||!a)&&Ee(setQuarter(r,e),a)})),se(ue(o),"isWeekInMonth",(function(e){var t=o.props.day,r=addDays(e,6);return Me(e,t)||Me(r,t)})),se(ue(o),"renderWeeks",(function(){for(var t=[],r=o.props.fixedHeight,n=Ce(_e(o.props.day),o.props.locale),a=0,s=!1;t.push(React__default.createElement(ct,{ariaLabelPrefix:o.props.weekAriaLabelPrefix,chooseDayAriaLabelPrefix:o.props.chooseDayAriaLabelPrefix,disabledDayAriaLabelPrefix:o.props.disabledDayAriaLabelPrefix,key:a,day:n,month:getMonth(o.props.day),onDayClick:o.handleDayClick,onDayMouseEnter:o.handleDayMouseEnter,onWeekSelect:o.props.onWeekSelect,formatWeekNumber:o.props.formatWeekNumber,locale:o.props.locale,minDate:o.props.minDate,maxDate:o.props.maxDate,excludeDates:o.props.excludeDates,includeDates:o.props.includeDates,inline:o.props.inline,highlightDates:o.props.highlightDates,selectingDate:o.props.selectingDate,filterDate:o.props.filterDate,preSelection:o.props.preSelection,selected:o.props.selected,selectsStart:o.props.selectsStart,selectsEnd:o.props.selectsEnd,showWeekNumber:o.props.showWeekNumbers,startDate:o.props.startDate,endDate:o.props.endDate,dayClassName:o.props.dayClassName,setOpen:o.props.setOpen,shouldCloseOnSelect:o.props.shouldCloseOnSelect,disabledKeyboardNavigation:o.props.disabledKeyboardNavigation,renderDayContents:o.props.renderDayContents,handleOnKeyDown:o.props.handleOnKeyDown,isInputFocused:o.props.isInputFocused})),!s;){a++,n=addWeeks(n,1);var p=r&&a>=lt,c=!r&&!o.isWeekInMonth(n);if(p||c){if(!o.props.peekNextMonth)break;s=!0;}}return t})),se(ue(o),"onMonthClick",(function(e,t){o.handleDayClick(_e(setMonth(o.props.day,t)),e);})),se(ue(o),"onQuarterClick",(function(e,t){var r;o.handleDayClick((r=setQuarter(o.props.day,t),startOfQuarter(r)),e);})),se(ue(o),"getMonthClassNames",(function(e){var r=o.props,n=r.day,a=r.startDate,s=r.endDate,p=r.selected,i=r.minDate,c=r.maxDate;return classnames("react-datepicker__month-text","react-datepicker__month-".concat(e),{"react-datepicker__month--disabled":(i||c)&&We(setMonth(n,e),o.props),"react-datepicker__month--selected":getMonth(n)===e&&getYear(n)===getYear(p),"react-datepicker__month--in-range":Ae(a,s,e,n),"react-datepicker__month--range-start":o.isRangeStartMonth(e),"react-datepicker__month--range-end":o.isRangeEndMonth(e)})})),se(ue(o),"getQuarterClassNames",(function(e){var r=o.props,n=r.day,a=r.startDate,s=r.endDate,p=r.selected,i=r.minDate,c=r.maxDate;return classnames("react-datepicker__quarter-text","react-datepicker__quarter-".concat(e),{"react-datepicker__quarter--disabled":(i||c)&&Be(setQuarter(n,e),o.props),"react-datepicker__quarter--selected":getQuarter(n)===e&&getYear(n)===getYear(p),"react-datepicker__quarter--in-range":Re(a,s,e,n),"react-datepicker__quarter--range-start":o.isRangeStartQuarter(e),"react-datepicker__quarter--range-end":o.isRangeEndQuarter(e)})})),se(ue(o),"renderMonths",(function(){return [[0,1,2],[3,4,5],[6,7,8],[9,10,11]].map((function(t,r){return React__default.createElement("div",{className:"react-datepicker__month-wrapper",key:r},t.map((function(t,r){return React__default.createElement("div",{key:r,onClick:function(e){o.onMonthClick(e,t);},className:o.getMonthClassNames(t)},Le(t,o.props.locale))})))}))})),se(ue(o),"renderQuarters",(function(){return React__default.createElement("div",{className:"react-datepicker__quarter-wrapper"},[1,2,3,4].map((function(t,r){return React__default.createElement("div",{key:r,onClick:function(e){o.onQuarterClick(e,t);},className:o.getQuarterClassNames(t)},(n=t,a=o.props.locale,ke(setQuarter(De(),n),"QQQ",a)));var n,a;})))})),se(ue(o),"getClassNames",(function(){var e=o.props,r=e.selectingDate,n=e.selectsStart,a=e.selectsEnd,s=e.showMonthYearPicker,p=e.showQuarterYearPicker;return classnames("react-datepicker__month",{"react-datepicker__month--selecting-range":r&&(n||a)},{"react-datepicker__monthPicker":s},{"react-datepicker__quarterPicker":p})})),o}return ce(n,React__default.Component),ae(n,[{key:"render",value:function(){var t=this.props,r=t.showMonthYearPicker,n=t.showQuarterYearPicker,o=t.day,a=t.ariaLabelPrefix,s=void 0===a?"month ":a;return React__default.createElement("div",{className:this.getClassNames(),onMouseLeave:this.handleMouseLeave,role:"listbox","aria-label":"".concat(s," ").concat(ke(o,"yyyy-MM"))},r?this.renderMonths():n?this.renderQuarters():this.renderWeeks())}}]),n}(),ut=function(t){function r(){var t,n;ne(this,r);for(var o=arguments.length,s=new Array(o),p=0;p<o;p++)s[p]=arguments[p];return se(ue(n=he(this,(t=le(r)).call.apply(t,[this].concat(s)))),"state",{height:null}),se(ue(n),"handleClick",(function(e){(n.props.minTime||n.props.maxTime)&&He(e,n.props)||n.props.excludeTimes&&Ke(e,n.props.excludeTimes)||n.props.includeTimes&&!Ke(e,n.props.includeTimes)||n.props.onChange(e);})),se(ue(n),"liClasses",(function(e,t,r){var o=["react-datepicker__time-list-item",n.props.timeClassName?n.props.timeClassName(e,t,r):void 0];return n.props.selected&&t===getHours(e)&&r===getMinutes(e)&&o.push("react-datepicker__time-list-item--selected"),((n.props.minTime||n.props.maxTime)&&He(e,n.props)||n.props.excludeTimes&&Ke(e,n.props.excludeTimes)||n.props.includeTimes&&!Ke(e,n.props.includeTimes))&&o.push("react-datepicker__time-list-item--disabled"),n.props.injectTimes&&(60*getHours(e)+getMinutes(e))%n.props.intervals!=0&&o.push("react-datepicker__time-list-item--injected"),o.join(" ")})),se(ue(n),"renderTimes",(function(){for(var t,r=[],o=n.props.format?n.props.format:"p",s=n.props.intervals,p=n.props.selected||n.props.openToDate||De(),i=getHours(p),c=getMinutes(p),l=(t=De(),startOfDay(t)),d=1440/s,u=n.props.injectTimes&&n.props.injectTimes.sort((function(e,t){return e-t})),h=0;h<d;h++){var m=addMinutes(l,h*s);if(r.push(m),u){var f=Je(l,m,h,s,u);r=r.concat(f);}}return r.map((function(t,r){return React__default.createElement("li",{key:r,onClick:n.handleClick.bind(ue(n),t),className:n.liClasses(t,i,c),ref:function(e){i===getHours(t)&&c>=getMinutes(t)&&(n.centerLi=e);}},ke(t,o,n.props.locale))}))})),n}return ce(r,React__default.Component),ae(r,[{key:"componentDidMount",value:function(){this.list.scrollTop=r.calcCenterPosition(this.props.monthRef?this.props.monthRef.clientHeight-this.header.clientHeight:this.list.clientHeight,this.centerLi),this.props.monthRef&&this.header&&this.setState({height:this.props.monthRef.clientHeight-this.header.clientHeight});}},{key:"render",value:function(){var t=this,r=this.state.height;return React__default.createElement("div",{className:"react-datepicker__time-container ".concat(this.props.todayButton?"react-datepicker__time-container--with-today-button":"")},React__default.createElement("div",{className:"react-datepicker__header react-datepicker__header--time",ref:function(e){t.header=e;}},React__default.createElement("div",{className:"react-datepicker-time__header"},this.props.timeCaption)),React__default.createElement("div",{className:"react-datepicker__time"},React__default.createElement("div",{className:"react-datepicker__time-box"},React__default.createElement("ul",{className:"react-datepicker__time-list",ref:function(e){t.list=e;},style:r?{height:r}:{}},this.renderTimes()))))}}],[{key:"defaultProps",get:function(){return {intervals:30,onTimeChange:function(){},todayButton:null,timeCaption:"Time"}}}]),r}();se(ut,"calcCenterPosition",(function(e,t){return t.offsetTop-(e/2-t.clientHeight/2)}));var ht=function(t){function r(t){var n;return ne(this,r),se(ue(n=he(this,le(r).call(this,t))),"onTimeChange",(function(e){n.setState({time:e});var t=new Date;t.setHours(e.split(":")[0]),t.setMinutes(e.split(":")[1]),n.props.onChange(t);})),se(ue(n),"renderTimeInput",(function(){var t=n.state.time,r=n.props,o=r.timeString,a=r.customTimeInput;return a?React__default.cloneElement(a,{value:t,onChange:n.onTimeChange}):React__default.createElement("input",{type:"time",className:"react-datepicker-time__input",placeholder:"Time",name:"time-input",required:!0,value:t,onChange:function(e){n.onTimeChange(e.target.value||o);}})})),n.state={time:n.props.timeString},n}return ce(r,React__default.Component),ae(r,[{key:"render",value:function(){return React__default.createElement("div",{className:"react-datepicker__input-time-container"},React__default.createElement("div",{className:"react-datepicker-time__caption"},this.props.timeInputLabel),React__default.createElement("div",{className:"react-datepicker-time__input-container"},React__default.createElement("div",{className:"react-datepicker-time__input"},this.renderTimeInput())))}}]),r}();function mt(t){var r=t.className,n=t.children,o=t.showPopperArrow,a=t.arrowProps,s=void 0===a?{}:a;return React__default.createElement("div",{className:r},o&&React__default.createElement("div",pe({className:"react-datepicker__triangle"},s)),n)}var ft=["react-datepicker__year-select","react-datepicker__month-select","react-datepicker__month-year-select"],vt=function(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},t=(e.className||"").split(/\s+/);return ft.some((function(e){return t.indexOf(e)>=0}))},yt=function(r){function n(t){var r;return ne(this,n),se(ue(r=he(this,le(n).call(this,t))),"handleClickOutside",(function(e){r.props.onClickOutside(e);})),se(ue(r),"setClickOutsideRef",(function(){return r.containerRef.current})),se(ue(r),"handleDropdownFocus",(function(e){vt(e.target)&&r.props.onDropdownFocus();})),se(ue(r),"getDateInView",(function(){var e=r.props,t=e.preSelection,n=e.selected,o=e.openToDate,a=$e(r.props),s=ze(r.props),p=De(),i=o||n||t;return i||(a&&isBefore(p,a)?a:s&&isAfter(p,s)?s:p)})),se(ue(r),"increaseMonth",(function(){r.setState((function(e){var t=e.date;return {date:addMonths(t,1)}}),(function(){return r.handleMonthChange(r.state.date)}));})),se(ue(r),"decreaseMonth",(function(){r.setState((function(e){var t=e.date;return {date:subMonths(t,1)}}),(function(){return r.handleMonthChange(r.state.date)}));})),se(ue(r),"handleDayClick",(function(e,t,n){return r.props.onSelect(e,t,n)})),se(ue(r),"handleDayMouseEnter",(function(e){r.setState({selectingDate:e}),r.props.onDayMouseEnter&&r.props.onDayMouseEnter(e);})),se(ue(r),"handleMonthMouseLeave",(function(){r.setState({selectingDate:null}),r.props.onMonthMouseLeave&&r.props.onMonthMouseLeave();})),se(ue(r),"handleYearChange",(function(e){r.props.onYearChange&&r.props.onYearChange(e);})),se(ue(r),"handleMonthChange",(function(e){r.props.onMonthChange&&r.props.onMonthChange(e),r.props.adjustDateOnChange&&(r.props.onSelect&&r.props.onSelect(e),r.props.setOpen&&r.props.setOpen(!0));})),se(ue(r),"handleMonthYearChange",(function(e){r.handleYearChange(e),r.handleMonthChange(e);})),se(ue(r),"changeYear",(function(e){r.setState((function(t){var r=t.date;return {date:setYear(r,e)}}),(function(){return r.handleYearChange(r.state.date)}));})),se(ue(r),"changeMonth",(function(e){r.setState((function(t){var r=t.date;return {date:setMonth(r,e)}}),(function(){return r.handleMonthChange(r.state.date)}));})),se(ue(r),"changeMonthYear",(function(e){r.setState((function(t){var r=t.date;return {date:setYear(setMonth(r,getMonth(e)),getYear(e))}}),(function(){return r.handleMonthYearChange(r.state.date)}));})),se(ue(r),"header",(function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:r.state.date,n=Ce(t,r.props.locale),o=[];return r.props.showWeekNumbers&&o.push(React__default.createElement("div",{key:"W",className:"react-datepicker__day-name"},r.props.weekLabel||"#")),o.concat([0,1,2,3,4,5,6].map((function(t){var o=addDays(n,t),a=r.formatWeekday(o,r.props.locale);return React__default.createElement("div",{key:t,className:"react-datepicker__day-name"},a)})))})),se(ue(r),"formatWeekday",(function(e,t){return r.props.formatWeekDay?function(e,t,r){return t(ke(e,"EEEE",r))}(e,r.props.formatWeekDay,t):r.props.useWeekdaysShort?function(e,t){return ke(e,"EEE",t)}(e,t):function(e,t){return ke(e,"EEEEEE",t)}(e,t)})),se(ue(r),"decreaseYear",(function(){r.setState((function(e){var t=e.date;return {date:subYears(t,1)}}),(function(){return r.handleYearChange(r.state.date)}));})),se(ue(r),"renderPreviousButton",(function(){if(!r.props.renderCustomHeader){var t=r.props.showMonthYearPicker?qe(r.state.date,r.props):Qe(r.state.date,r.props);if((r.props.forceShowMonthNavigation||r.props.showDisabledMonthNavigation||!t)&&!r.props.showTimeSelectOnly){var n=["react-datepicker__navigation","react-datepicker__navigation--previous"],o=r.decreaseMonth;(r.props.showMonthYearPicker||r.props.showQuarterYearPicker)&&(o=r.decreaseYear),t&&r.props.showDisabledMonthNavigation&&(n.push("react-datepicker__navigation--previous--disabled"),o=null);var a=r.props.showMonthYearPicker||r.props.showQuarterYearPicker,s=r.props,p=s.previousMonthAriaLabel,i=void 0===p?"Previous Month":p,c=s.previousYearAriaLabel,l=void 0===c?"Previous Year":c;return React__default.createElement("button",{type:"button",className:n.join(" "),onClick:o,"aria-label":a?l:i},a?r.props.previousYearButtonLabel:r.props.previousMonthButtonLabel)}}})),se(ue(r),"increaseYear",(function(){r.setState((function(e){var t=e.date;return {date:addYears(t,1)}}),(function(){return r.handleYearChange(r.state.date)}));})),se(ue(r),"renderNextButton",(function(){if(!r.props.renderCustomHeader){var t=r.props.showMonthYearPicker?Ue(r.state.date,r.props):Ve(r.state.date,r.props);if((r.props.forceShowMonthNavigation||r.props.showDisabledMonthNavigation||!t)&&!r.props.showTimeSelectOnly){var n=["react-datepicker__navigation","react-datepicker__navigation--next"];r.props.showTimeSelect&&n.push("react-datepicker__navigation--next--with-time"),r.props.todayButton&&n.push("react-datepicker__navigation--next--with-today-button");var o=r.increaseMonth;(r.props.showMonthYearPicker||r.props.showQuarterYearPicker)&&(o=r.increaseYear),t&&r.props.showDisabledMonthNavigation&&(n.push("react-datepicker__navigation--next--disabled"),o=null);var a=r.props.showMonthYearPicker||r.props.showQuarterYearPicker,s=r.props,p=s.nextMonthAriaLabel,i=void 0===p?"Next Month":p,c=s.nextYearAriaLabel,l=void 0===c?"Next Year":c;return React__default.createElement("button",{type:"button",className:n.join(" "),onClick:o,"aria-label":a?l:i},a?r.props.nextYearButtonLabel:r.props.nextMonthButtonLabel)}}})),se(ue(r),"renderCurrentMonth",(function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:r.state.date,n=["react-datepicker__current-month"];return r.props.showYearDropdown&&n.push("react-datepicker__current-month--hasYearDropdown"),r.props.showMonthDropdown&&n.push("react-datepicker__current-month--hasMonthDropdown"),r.props.showMonthYearDropdown&&n.push("react-datepicker__current-month--hasMonthYearDropdown"),React__default.createElement("div",{className:n.join(" ")},ke(t,r.props.dateFormat,r.props.locale))})),se(ue(r),"renderYearDropdown",(function(){var t=arguments.length>0&&void 0!==arguments[0]&&arguments[0];if(r.props.showYearDropdown&&!t)return React__default.createElement(tt,{adjustDateOnChange:r.props.adjustDateOnChange,date:r.state.date,onSelect:r.props.onSelect,setOpen:r.props.setOpen,dropdownMode:r.props.dropdownMode,onChange:r.changeYear,minDate:r.props.minDate,maxDate:r.props.maxDate,year:getYear(r.state.date),scrollableYearDropdown:r.props.scrollableYearDropdown,yearDropdownItemNumber:r.props.yearDropdownItemNumber})})),se(ue(r),"renderMonthDropdown",(function(){var t=arguments.length>0&&void 0!==arguments[0]&&arguments[0];if(r.props.showMonthDropdown&&!t)return React__default.createElement(nt,{dropdownMode:r.props.dropdownMode,locale:r.props.locale,onChange:r.changeMonth,month:getMonth(r.state.date),useShortMonthInDropdown:r.props.useShortMonthInDropdown})})),se(ue(r),"renderMonthYearDropdown",(function(){var t=arguments.length>0&&void 0!==arguments[0]&&arguments[0];if(r.props.showMonthYearDropdown&&!t)return React__default.createElement(st,{dropdownMode:r.props.dropdownMode,locale:r.props.locale,dateFormat:r.props.dateFormat,onChange:r.changeMonthYear,minDate:r.props.minDate,maxDate:r.props.maxDate,date:r.state.date,scrollableMonthYearDropdown:r.props.scrollableMonthYearDropdown})})),se(ue(r),"renderTodayButton",(function(){if(r.props.todayButton&&!r.props.showTimeSelectOnly)return React__default.createElement("div",{className:"react-datepicker__today-button",onClick:function(e){return r.props.onSelect(startOfDay(De()),e)}},r.props.todayButton)})),se(ue(r),"renderDefaultHeader",(function(t){var n=t.monthDate,o=t.i;return React__default.createElement("div",{className:"react-datepicker__header"},r.renderCurrentMonth(n),React__default.createElement("div",{className:"react-datepicker__header__dropdown react-datepicker__header__dropdown--".concat(r.props.dropdownMode),onFocus:r.handleDropdownFocus},r.renderMonthDropdown(0!==o),r.renderMonthYearDropdown(0!==o),r.renderYearDropdown(0!==o)),React__default.createElement("div",{className:"react-datepicker__day-names"},r.header(n)))})),se(ue(r),"renderCustomHeader",(function(t){var n=t.monthDate;if(0!==t.i)return null;var o=Qe(r.state.date,r.props),a=Ve(r.state.date,r.props),s=qe(r.state.date,r.props),p=Ue(r.state.date,r.props);return React__default.createElement("div",{className:"react-datepicker__header react-datepicker__header--custom",onFocus:r.props.onDropdownFocus},r.props.renderCustomHeader(function(e){for(var t=1;t<arguments.length;t++){var r=null!=arguments[t]?arguments[t]:{};t%2?ie(Object(r),!0).forEach((function(t){se(e,t,r[t]);})):Object.getOwnPropertyDescriptors?Object.defineProperties(e,Object.getOwnPropertyDescriptors(r)):ie(Object(r)).forEach((function(t){Object.defineProperty(e,t,Object.getOwnPropertyDescriptor(r,t));}));}return e}({},r.state,{changeMonth:r.changeMonth,changeYear:r.changeYear,decreaseMonth:r.decreaseMonth,increaseMonth:r.increaseMonth,decreaseYear:r.decreaseYear,increaseYear:r.increaseYear,prevMonthButtonDisabled:o,nextMonthButtonDisabled:a,prevYearButtonDisabled:s,nextYearButtonDisabled:p})),React__default.createElement("div",{className:"react-datepicker__day-names"},r.header(n)))})),se(ue(r),"renderYearHeader",(function(){return React__default.createElement("div",{className:"react-datepicker__header react-datepicker-year-header"},getYear(r.state.date))})),se(ue(r),"renderHeader",(function(e){switch(!0){case void 0!==r.props.renderCustomHeader:return r.renderCustomHeader(e);case r.props.showMonthYearPicker||r.props.showQuarterYearPicker:return r.renderYearHeader(e);default:return r.renderDefaultHeader(e)}})),se(ue(r),"renderMonths",(function(){if(!r.props.showTimeSelectOnly){for(var t=[],n=r.props.showPreviousMonths?r.props.monthsShown-1:0,o=subMonths(r.state.date,n),a=0;a<r.props.monthsShown;++a){var s=a-r.props.monthSelectedIn,p=addMonths(o,s),i="month-".concat(a);t.push(React__default.createElement("div",{key:i,ref:function(e){r.monthContainer=e;},className:"react-datepicker__month-container"},r.renderHeader({monthDate:p,i:a}),React__default.createElement(dt,{chooseDayAriaLabelPrefix:r.props.chooseDayAriaLabelPrefix,disabledDayAriaLabelPrefix:r.props.disabledDayAriaLabelPrefix,weekAriaLabelPrefix:r.props.weekAriaLabelPrefix,onChange:r.changeMonthYear,day:p,dayClassName:r.props.dayClassName,monthClassName:r.props.monthClassName,onDayClick:r.handleDayClick,handleOnKeyDown:r.props.handleOnKeyDown,onDayMouseEnter:r.handleDayMouseEnter,onMouseLeave:r.handleMonthMouseLeave,onWeekSelect:r.props.onWeekSelect,orderInDisplay:a,formatWeekNumber:r.props.formatWeekNumber,locale:r.props.locale,minDate:r.props.minDate,maxDate:r.props.maxDate,excludeDates:r.props.excludeDates,highlightDates:r.props.highlightDates,selectingDate:r.state.selectingDate,includeDates:r.props.includeDates,inline:r.props.inline,fixedHeight:r.props.fixedHeight,filterDate:r.props.filterDate,preSelection:r.props.preSelection,selected:r.props.selected,selectsStart:r.props.selectsStart,selectsEnd:r.props.selectsEnd,showWeekNumbers:r.props.showWeekNumbers,startDate:r.props.startDate,endDate:r.props.endDate,peekNextMonth:r.props.peekNextMonth,setOpen:r.props.setOpen,shouldCloseOnSelect:r.props.shouldCloseOnSelect,renderDayContents:r.props.renderDayContents,disabledKeyboardNavigation:r.props.disabledKeyboardNavigation,showMonthYearPicker:r.props.showMonthYearPicker,showQuarterYearPicker:r.props.showQuarterYearPicker,isInputFocused:r.props.isInputFocused})));}return t}})),se(ue(r),"renderTimeSection",(function(){if(r.props.showTimeSelect&&(r.state.monthContainer||r.props.showTimeSelectOnly))return React__default.createElement(ut,{selected:r.props.selected,openToDate:r.props.openToDate,onChange:r.props.onTimeChange,timeClassName:r.props.timeClassName,format:r.props.timeFormat,includeTimes:r.props.includeTimes,intervals:r.props.timeIntervals,minTime:r.props.minTime,maxTime:r.props.maxTime,excludeTimes:r.props.excludeTimes,timeCaption:r.props.timeCaption,todayButton:r.props.todayButton,showMonthDropdown:r.props.showMonthDropdown,showMonthYearDropdown:r.props.showMonthYearDropdown,showYearDropdown:r.props.showYearDropdown,withPortal:r.props.withPortal,monthRef:r.state.monthContainer,injectTimes:r.props.injectTimes,locale:r.props.locale})})),se(ue(r),"renderInputTimeSection",(function(){var t=new Date(r.props.selected),n="".concat(Xe(t.getHours()),":").concat(Xe(t.getMinutes()));if(r.props.showTimeInput)return React__default.createElement(ht,{timeString:n,timeInputLabel:r.props.timeInputLabel,onChange:r.props.onTimeChange,customTimeInput:r.props.customTimeInput})})),r.containerRef=React__default.createRef(),r.state={date:r.getDateInView(),selectingDate:null,monthContainer:null},r}return ce(n,React__default.Component),ae(n,null,[{key:"defaultProps",get:function(){return {onDropdownFocus:function(){},monthsShown:1,monthSelectedIn:0,forceShowMonthNavigation:!1,timeCaption:"Time",previousYearButtonLabel:"Previous Year",nextYearButtonLabel:"Next Year",previousMonthButtonLabel:"Previous Month",nextMonthButtonLabel:"Next Month",customTimeInput:null}}}]),ae(n,[{key:"componentDidMount",value:function(){var e=this;this.props.showTimeSelect&&(this.assignMonthContainer=void e.setState({monthContainer:e.monthContainer}));}},{key:"componentDidUpdate",value:function(e){this.props.preSelection&&!Ne(this.props.preSelection,e.preSelection)?this.setState({date:this.props.preSelection}):this.props.openToDate&&!Ne(this.props.openToDate,e.openToDate)&&this.setState({date:this.props.openToDate});}},{key:"render",value:function(){var r=this.props.container||mt;return React__default.createElement("div",{ref:this.containerRef},React__default.createElement(r,{className:classnames("react-datepicker",this.props.className,{"react-datepicker--time-only":this.props.showTimeSelectOnly}),showPopperArrow:this.props.showPopperArrow},this.renderPreviousButton(),this.renderNextButton(),this.renderMonths(),this.renderTodayButton(),this.renderTimeSection(),this.renderInputTimeSection(),this.props.children))}}]),n}(),Dt="[tabindex], a, button, input, select, textarea",gt=function(e){return !e.disabled&&-1!==e.tabIndex},wt=function(t){function r(t){var n;return ne(this,r),se(ue(n=he(this,le(r).call(this,t))),"getTabChildren",(function(){return Array.prototype.slice.call(n.tabLoopRef.current.querySelectorAll(Dt),1,-1).filter(gt)})),se(ue(n),"handleFocusStart",(function(e){var t=n.getTabChildren();t&&t.length>1&&t[t.length-1].focus();})),se(ue(n),"handleFocusEnd",(function(e){var t=n.getTabChildren();t&&t.length>1&&t[0].focus();})),n.tabLoopRef=React__default.createRef(),n}return ce(r,React__default.Component),ae(r,null,[{key:"defaultProps",get:function(){return {enableTabLoop:!0}}}]),ae(r,[{key:"render",value:function(){return this.props.enableTabLoop?React__default.createElement("div",{className:"react-datepicker__tab-loop",ref:this.tabLoopRef},React__default.createElement("div",{className:"react-datepicker__tab-loop__start",tabIndex:"0",onFocus:this.handleFocusStart}),this.props.children,React__default.createElement("div",{className:"react-datepicker__tab-loop__end",tabIndex:"0",onFocus:this.handleFocusEnd})):this.props.children}}]),r}(),kt=function(r){function n(){return ne(this,n),he(this,le(n).apply(this,arguments))}return ce(n,React__default.Component),ae(n,[{key:"render",value:function(){var r,n=this.props,o=n.className,a=n.wrapperClassName,s=n.hidePopper,p=n.popperComponent,i=n.popperModifiers,c=n.popperPlacement,l=n.popperProps,d=n.targetComponent,u=n.enableTabLoop,h=n.popperOnKeyDown;if(!s){var m=classnames("react-datepicker-popper",o);r=React__default.createElement(Popper$1,pe({modifiers:i,placement:c},l),(function(t){var r=t.ref,n=t.style,o=t.placement,a=t.arrowProps;return React__default.createElement(wt,{enableTabLoop:u},React__default.createElement("div",pe({ref:r,style:n},{className:m,"data-placement":o,onKeyDown:h}),React__default.cloneElement(p,{arrowProps:a})))}));}this.props.popperContainer&&(r=React__default.createElement(this.props.popperContainer,{},r));var f=classnames("react-datepicker-wrapper",a);return React__default.createElement(Manager,{className:"react-datepicker-manager"},React__default.createElement(Reference,null,(function(t){var r=t.ref;return React__default.createElement("div",{ref:r,className:f},d)})),r)}}],[{key:"defaultProps",get:function(){return {hidePopper:!0,popperModifiers:{preventOverflow:{enabled:!0,escapeWithReference:!0,boundariesElement:"viewport"}},popperProps:{},popperPlacement:"bottom-start"}}}]),n}(),bt="react-datepicker-ignore-onclickoutside",Ct=onClickOutsideHOC(yt);var _t="Date input not valid.",St=function(n){function o(n){var a;return ne(this,o),se(ue(a=he(this,le(o).call(this,n))),"getPreSelection",(function(){return a.props.openToDate?a.props.openToDate:a.props.selectsEnd&&a.props.startDate?a.props.startDate:a.props.selectsStart&&a.props.endDate?a.props.endDate:De()})),se(ue(a),"calcInitialState",(function(){var e=a.getPreSelection(),t=$e(a.props),r=ze(a.props),n=t&&isBefore(e,t)?t:r&&isAfter(e,r)?r:e;return {open:a.props.startOpen||!1,preventFocus:!1,preSelection:a.props.selected?a.props.selected:n,highlightDates:Ge(a.props.highlightDates),focused:!1}})),se(ue(a),"clearPreventFocusTimeout",(function(){a.preventFocusTimeout&&clearTimeout(a.preventFocusTimeout);})),se(ue(a),"setFocus",(function(){a.input&&a.input.focus&&a.input.focus();})),se(ue(a),"setBlur",(function(){a.input&&a.input.blur&&a.input.blur(),a.cancelFocusInput();})),se(ue(a),"setOpen",(function(e){var t=arguments.length>1&&void 0!==arguments[1]&&arguments[1];a.setState({open:e,preSelection:e&&a.state.open?a.state.preSelection:a.calcInitialState().preSelection,lastPreSelectChange:Et},(function(){e||a.setState((function(e){return {focused:!!t&&e.focused}}),(function(){!t&&a.setBlur(),a.setState({inputValue:null});}));}));})),se(ue(a),"inputOk",(function(){return isDate(a.state.preSelection)})),se(ue(a),"isCalendarOpen",(function(){return void 0===a.props.open?a.state.open&&!a.props.disabled&&!a.props.readOnly:a.props.open})),se(ue(a),"handleFocus",(function(e){a.state.preventFocus||(a.props.onFocus(e),a.props.preventOpenOnFocus||a.props.readOnly||a.setOpen(!0)),a.setState({focused:!0});})),se(ue(a),"cancelFocusInput",(function(){clearTimeout(a.inputFocusTimeout),a.inputFocusTimeout=null;})),se(ue(a),"deferFocusInput",(function(){a.cancelFocusInput(),a.inputFocusTimeout=setTimeout((function(){return a.setFocus()}),1);})),se(ue(a),"handleDropdownFocus",(function(){a.cancelFocusInput();})),se(ue(a),"handleBlur",(function(e){(!a.state.open||a.props.withPortal||a.props.showTimeInput)&&a.props.onBlur(e),a.setState({focused:!1});})),se(ue(a),"handleCalendarClickOutside",(function(e){a.props.inline||a.setOpen(!1),a.props.onClickOutside(e),a.props.withPortal&&e.preventDefault();})),se(ue(a),"handleChange",(function(){for(var e=arguments.length,t=new Array(e),r=0;r<e;r++)t[r]=arguments[r];var n=t[0];if(!a.props.onChangeRaw||(a.props.onChangeRaw.apply(ue(a),t),"function"==typeof n.isDefaultPrevented&&!n.isDefaultPrevented())){a.setState({inputValue:n.target.value,lastPreSelectChange:Mt});var o=ge(n.target.value,a.props.dateFormat,a.props.locale,a.props.strictParsing);!o&&n.target.value||a.setSelected(o,n,!0);}})),se(ue(a),"handleSelect",(function(e,t,r){a.setState({preventFocus:!0},(function(){return a.preventFocusTimeout=setTimeout((function(){return a.setState({preventFocus:!1})}),50),a.preventFocusTimeout})),a.setSelected(e,t,void 0,r),!a.props.shouldCloseOnSelect||a.props.showTimeSelect?a.setPreSelection(e):a.props.inline||a.setOpen(!1);})),se(ue(a),"setSelected",(function(e,t,r,n){var o=e;if(null===o||!Fe(o,a.props)){if(!Pe(a.props.selected,o)||a.props.allowSameDay){if(null!==o){if(a.props.selected){var s=a.props.selected;r&&(s=De(o)),o=be(o,{hour:getHours(s),minute:getMinutes(s),second:getSeconds(s)});}a.props.inline||a.setState({preSelection:o}),a.props.inline&&a.props.monthsShown>1&&!a.props.inlineFocusSelectedMonth&&a.setState({monthSelectedIn:n});}a.props.onChange(o,t);}a.props.onSelect(o,t),r||a.setState({inputValue:null});}})),se(ue(a),"setPreSelection",(function(e){var t=void 0!==a.props.minDate,r=void 0!==a.props.maxDate,n=!0;e&&(t&&r?n=xe(e,a.props.minDate,a.props.maxDate):t?n=isAfter(e,a.props.minDate):r&&(n=isBefore(e,a.props.maxDate))),n&&a.setState({preSelection:e});})),se(ue(a),"handleTimeChange",(function(e){var t=be(a.props.selected?a.props.selected:a.getPreSelection(),{hour:getHours(e),minute:getMinutes(e)});a.setState({preSelection:t}),a.props.onChange(t),a.props.shouldCloseOnSelect&&a.setOpen(!1),a.props.showTimeInput&&a.setOpen(!0),a.setState({inputValue:null});})),se(ue(a),"onInputClick",(function(){a.props.disabled||a.props.readOnly||a.setOpen(!0),a.props.onInputClick();})),se(ue(a),"onInputKeyDown",(function(e){a.props.onKeyDown(e);var t=e.key;if(a.state.open||a.props.inline||a.props.preventOpenOnFocus){if(a.state.open){if("ArrowDown"===t||"ArrowUp"===t){e.preventDefault();var r=a.calendar.componentNode&&a.calendar.componentNode.querySelector('.react-datepicker__day[tabindex="0"]');return void(r&&r.focus())}var n=De(a.state.preSelection);"Enter"===t?(e.preventDefault(),a.inputOk()&&a.state.lastPreSelectChange===Et?(a.handleSelect(n,e),!a.props.shouldCloseOnSelect&&a.setPreSelection(n)):a.setOpen(!1)):"Escape"===t&&(e.preventDefault(),a.setOpen(!1)),a.inputOk()||a.props.onInputError({code:1,msg:_t});}}else"ArrowDown"!==t&&"ArrowUp"!==t&&"Enter"!==t||a.onInputClick();})),se(ue(a),"onDayKeyDown",(function(e){a.props.onKeyDown(e);var t=e.key,r=De(a.state.preSelection);if("Enter"===t)e.preventDefault(),a.handleSelect(r,e),!a.props.shouldCloseOnSelect&&a.setPreSelection(r);else if("Escape"===t)e.preventDefault(),a.setOpen(!1),a.inputOk()||a.props.onInputError({code:1,msg:_t});else if(!a.props.disabledKeyboardNavigation){var n;switch(t){case"ArrowLeft":n=subDays(r,1);break;case"ArrowRight":n=addDays(r,1);break;case"ArrowUp":n=subWeeks(r,1);break;case"ArrowDown":n=addWeeks(r,1);break;case"PageUp":n=subMonths(r,1);break;case"PageDown":n=addMonths(r,1);break;case"Home":n=subYears(r,1);break;case"End":n=addYears(r,1);}if(!n)return void(a.props.onInputError&&a.props.onInputError({code:1,msg:_t}));e.preventDefault(),a.setState({lastPreSelectChange:Et}),a.props.adjustDateOnChange&&a.setSelected(n),a.setPreSelection(n);}})),se(ue(a),"onPopperKeyDown",(function(e){"Escape"===e.key&&(e.preventDefault(),a.setState({preventFocus:!0},(function(){a.setOpen(!1),setTimeout(a.setFocus);})));})),se(ue(a),"onClearClick",(function(e){e&&e.preventDefault&&e.preventDefault(),a.props.onChange(null,e),a.setState({inputValue:null});})),se(ue(a),"clear",(function(){a.onClearClick();})),se(ue(a),"renderCalendar",(function(){return a.props.inline||a.isCalendarOpen()?React__default.createElement(Ct,{ref:function(e){a.calendar=e;},locale:a.props.locale,chooseDayAriaLabelPrefix:a.props.chooseDayAriaLabelPrefix,disabledDayAriaLabelPrefix:a.props.disabledDayAriaLabelPrefix,weekAriaLabelPrefix:a.props.weekAriaLabelPrefix,adjustDateOnChange:a.props.adjustDateOnChange,setOpen:a.setOpen,shouldCloseOnSelect:a.props.shouldCloseOnSelect,dateFormat:a.props.dateFormatCalendar,useWeekdaysShort:a.props.useWeekdaysShort,formatWeekDay:a.props.formatWeekDay,dropdownMode:a.props.dropdownMode,selected:a.props.selected,preSelection:a.state.preSelection,onSelect:a.handleSelect,onWeekSelect:a.props.onWeekSelect,openToDate:a.props.openToDate,minDate:a.props.minDate,maxDate:a.props.maxDate,selectsStart:a.props.selectsStart,selectsEnd:a.props.selectsEnd,startDate:a.props.startDate,endDate:a.props.endDate,excludeDates:a.props.excludeDates,filterDate:a.props.filterDate,onClickOutside:a.handleCalendarClickOutside,formatWeekNumber:a.props.formatWeekNumber,highlightDates:a.state.highlightDates,includeDates:a.props.includeDates,includeTimes:a.props.includeTimes,injectTimes:a.props.injectTimes,inline:a.props.inline,peekNextMonth:a.props.peekNextMonth,showMonthDropdown:a.props.showMonthDropdown,showPreviousMonths:a.props.showPreviousMonths,useShortMonthInDropdown:a.props.useShortMonthInDropdown,showMonthYearDropdown:a.props.showMonthYearDropdown,showWeekNumbers:a.props.showWeekNumbers,showYearDropdown:a.props.showYearDropdown,withPortal:a.props.withPortal,forceShowMonthNavigation:a.props.forceShowMonthNavigation,showDisabledMonthNavigation:a.props.showDisabledMonthNavigation,scrollableYearDropdown:a.props.scrollableYearDropdown,scrollableMonthYearDropdown:a.props.scrollableMonthYearDropdown,todayButton:a.props.todayButton,weekLabel:a.props.weekLabel,outsideClickIgnoreClass:bt,fixedHeight:a.props.fixedHeight,monthsShown:a.props.monthsShown,monthSelectedIn:a.state.monthSelectedIn,onDropdownFocus:a.handleDropdownFocus,onMonthChange:a.props.onMonthChange,onYearChange:a.props.onYearChange,dayClassName:a.props.dayClassName,monthClassName:a.props.monthClassName,timeClassName:a.props.timeClassName,showTimeSelect:a.props.showTimeSelect,showTimeSelectOnly:a.props.showTimeSelectOnly,onTimeChange:a.handleTimeChange,timeFormat:a.props.timeFormat,timeIntervals:a.props.timeIntervals,minTime:a.props.minTime,maxTime:a.props.maxTime,excludeTimes:a.props.excludeTimes,timeCaption:a.props.timeCaption,className:a.props.calendarClassName,container:a.props.calendarContainer,yearDropdownItemNumber:a.props.yearDropdownItemNumber,previousMonthButtonLabel:a.props.previousMonthButtonLabel,nextMonthButtonLabel:a.props.nextMonthButtonLabel,previousYearButtonLabel:a.props.previousYearButtonLabel,nextYearButtonLabel:a.props.nextYearButtonLabel,timeInputLabel:a.props.timeInputLabel,disabledKeyboardNavigation:a.props.disabledKeyboardNavigation,renderCustomHeader:a.props.renderCustomHeader,popperProps:a.props.popperProps,renderDayContents:a.props.renderDayContents,onDayMouseEnter:a.props.onDayMouseEnter,onMonthMouseLeave:a.props.onMonthMouseLeave,showTimeInput:a.props.showTimeInput,showMonthYearPicker:a.props.showMonthYearPicker,showQuarterYearPicker:a.props.showQuarterYearPicker,showPopperArrow:a.props.showPopperArrow,excludeScrollbar:a.props.excludeScrollbar,handleOnKeyDown:a.onDayKeyDown,isInputFocused:a.state.focused,customTimeInput:a.props.customTimeInput},a.props.children):null})),se(ue(a),"renderDateInput",(function(){var r,n,o,s,p,i=classnames(a.props.className,se({},bt,a.state.open)),c=a.props.customInput||React__default.createElement("input",{type:"text"}),l=a.props.customInputRef||"ref",d="string"==typeof a.props.value?a.props.value:"string"==typeof a.state.inputValue?a.state.inputValue:(n=a.props.selected,o=a.props,s=o.dateFormat,p=o.locale,n&&ke(n,Array.isArray(s)?s[0]:s,p)||"");return React__default.cloneElement(c,(se(r={},l,(function(e){a.input=e;})),se(r,"value",d),se(r,"onBlur",a.handleBlur),se(r,"onChange",a.handleChange),se(r,"onClick",a.onInputClick),se(r,"onFocus",a.handleFocus),se(r,"onKeyDown",a.onInputKeyDown),se(r,"id",a.props.id),se(r,"name",a.props.name),se(r,"autoFocus",a.props.autoFocus),se(r,"placeholder",a.props.placeholderText),se(r,"disabled",a.props.disabled),se(r,"autoComplete",a.props.autoComplete),se(r,"className",classnames(c.props.className,i)),se(r,"title",a.props.title),se(r,"readOnly",a.props.readOnly),se(r,"required",a.props.required),se(r,"tabIndex",a.props.tabIndex),se(r,"aria-labelledby",a.props.ariaLabelledBy),r))})),se(ue(a),"renderClearButton",(function(){var t=a.props,r=t.isClearable,n=t.selected,o=t.clearButtonTitle,s=t.ariaLabelClose,p=void 0===s?"Close":s;return r&&null!=n?React__default.createElement("button",{type:"button",className:"react-datepicker__close-icon","aria-label":p,onClick:a.onClearClick,title:o,tabIndex:-1}):null})),a.state=a.calcInitialState(),a}return ce(o,React__default.Component),ae(o,null,[{key:"defaultProps",get:function(){return {allowSameDay:!1,dateFormat:"MM/dd/yyyy",dateFormatCalendar:"LLLL yyyy",onChange:function(){},disabled:!1,disabledKeyboardNavigation:!1,dropdownMode:"scroll",onFocus:function(){},onBlur:function(){},onKeyDown:function(){},onInputClick:function(){},onSelect:function(){},onClickOutside:function(){},onMonthChange:function(){},onCalendarOpen:function(){},onCalendarClose:function(){},preventOpenOnFocus:!1,onYearChange:function(){},onInputError:function(){},monthsShown:1,readOnly:!1,withPortal:!1,shouldCloseOnSelect:!0,showTimeSelect:!1,showTimeInput:!1,showPreviousMonths:!1,showMonthYearPicker:!1,showQuarterYearPicker:!1,strictParsing:!1,timeIntervals:30,timeCaption:"Time",previousMonthButtonLabel:"Previous Month",nextMonthButtonLabel:"Next Month",previousYearButtonLabel:"Previous Year",nextYearButtonLabel:"Next Year",timeInputLabel:"Time",enableTabLoop:!0,renderDayContents:function(e){return e},inlineFocusSelectedMonth:!1,showPopperArrow:!0,excludeScrollbar:!0,customTimeInput:null}}}]),ae(o,[{key:"componentDidUpdate",value:function(e,t){var r,n;e.inline&&(r=e.selected,n=this.props.selected,r&&n?getMonth(r)!==getMonth(n)||getYear(r)!==getYear(n):r!==n)&&this.setPreSelection(this.props.selected),void 0!==this.state.monthSelectedIn&&e.monthsShown!==this.props.monthsShown&&this.setState({monthSelectedIn:0}),e.highlightDates!==this.props.highlightDates&&this.setState({highlightDates:Ge(this.props.highlightDates)}),t.focused||Pe(e.selected,this.props.selected)||this.setState({inputValue:null}),t.open!==this.state.open&&(!1===t.open&&!0===this.state.open&&this.props.onCalendarOpen(),!0===t.open&&!1===this.state.open&&this.props.onCalendarClose());}},{key:"componentWillUnmount",value:function(){this.clearPreventFocusTimeout();}},{key:"render",value:function(){var t=this.renderCalendar();return this.props.inline&&!this.props.withPortal?t:this.props.withPortal?React__default.createElement("div",null,this.props.inline?null:React__default.createElement("div",{className:"react-datepicker__input-container"},this.renderDateInput(),this.renderClearButton()),this.state.open||this.props.inline?React__default.createElement("div",{className:"react-datepicker__portal"},t):null):React__default.createElement(kt,{className:this.props.popperClassName,wrapperClassName:this.props.wrapperClassName,hidePopper:!this.isCalendarOpen(),popperModifiers:this.props.popperModifiers,targetComponent:React__default.createElement("div",{className:"react-datepicker__input-container"},this.renderDateInput(),this.renderClearButton()),popperContainer:this.props.popperContainer,popperComponent:t,popperPlacement:this.props.popperPlacement,popperProps:this.props.popperProps,popperOnKeyDown:this.onPopperKeyDown,enableTabLoop:this.props.enableTabLoop})}}]),o}(),Mt="input",Et="navigate";
 
 function _templateObject$f() {
   var data = taggedTemplateLiteral(["\n  background-color: ", ";\n  border: 1px solid\n    ", ";\n  font-family: inherit;\n  font-size: ", ";\n  padding: 0.6em 1em;\n  height: 38px;\n  border-radius: ", ";\n  width: 100%;\n\n  ::placeholder {\n    color: ", ";\n  }\n"]);
@@ -14088,7 +13947,7 @@ function _templateObject$f() {
 
   return data;
 }
-var StyledDatePicker = styled__default(_t)(_templateObject$f(), function (_ref) {
+var StyledDatePicker = styled__default(St)(_templateObject$f(), function (_ref) {
   var disabled = _ref.disabled,
       theme = _ref.theme;
   return disabled ? theme.colors.transparent : theme.colors.gray.xlight;
@@ -21415,7 +21274,7 @@ module.exports=function(e){var t={};function r(n){if(t[n])return t[n].exports;va
   Copyright (c) 2017 Jed Watson.
   Licensed under the MIT License (MIT), see
   http://jedwatson.github.io/classnames
-*/!function(){var r={}.hasOwnProperty;function a(){for(var e=[],t=0;t<arguments.length;t++){var n=arguments[t];if(n){var o=typeof n;if("string"===o||"number"===o)e.push(n);else if(Array.isArray(n)&&n.length){var i=a.apply(null,n);i&&e.push(i);}else if("object"===o)for(var u in n)r.call(n,u)&&n[u]&&e.push(u);}}return e.join(" ")}e.exports?(a.default=a,e.exports=a):void 0===(n=function(){return a}.apply(t,[]))||(e.exports=n);}();},function(e,t,r){(function(t){var r=1/0,n=17976931348623157e292,a=NaN,o="[object Symbol]",i=/^\s+|\s+$/g,u=/^[-+]0x[0-9a-f]+$/i,c=/^0b[01]+$/i,s=/^0o[0-7]+$/i,l=parseInt,f="object"==typeof t&&t&&t.Object===Object&&t,p="object"==typeof self&&self&&self.Object===Object&&self,d=f||p||Function("return this")(),h=Object.prototype.toString,m=d.Symbol,y=m?m.prototype:void 0,g=y?y.toString:void 0;function b(e){if("string"==typeof e)return e;if(C(e))return g?g.call(e):"";var t=e+"";return "0"==t&&1/e==-r?"-0":t}function v(e){var t=typeof e;return !!e&&("object"==t||"function"==t)}function C(e){return "symbol"==typeof e||function(e){return !!e&&"object"==typeof e}(e)&&h.call(e)==o}function _(e){return e?(e=function(e){if("number"==typeof e)return e;if(C(e))return a;if(v(e)){var t="function"==typeof e.valueOf?e.valueOf():e;e=v(t)?t+"":t;}if("string"!=typeof e)return 0===e?e:+e;e=e.replace(i,"");var r=c.test(e);return r||s.test(e)?l(e.slice(2),r?2:8):u.test(e)?a:+e}(e))===r||e===-r?(e<0?-1:1)*n:e==e?e:0:0===e?e:0}e.exports=function(e,t,r){var n,a,o,i;return e=null==(n=e)?"":b(n),a=function(e){var t=_(e),r=t%1;return t==t?r?t-r:t:0}(r),o=0,i=e.length,a==a&&(void 0!==i&&(a=a<=i?a:i),void 0!==o&&(a=a>=o?a:o)),r=a,t=b(t),e.slice(r,r+t.length)==t};}).call(this,r(3));},function(e,t){var r;r=function(){return this}();try{r=r||new Function("return this")();}catch(e){"object"==typeof window&&(r=window);}e.exports=r;},function(e,t,r){(function(t){var r="Expected a function",n="__lodash_hash_undefined__",a="[object Function]",o="[object GeneratorFunction]",i=/^\[object .+?Constructor\]$/,u="object"==typeof t&&t&&t.Object===Object&&t,c="object"==typeof self&&self&&self.Object===Object&&self,s=u||c||Function("return this")();var l,f=Array.prototype,p=Function.prototype,d=Object.prototype,h=s["__core-js_shared__"],m=(l=/[^.]+$/.exec(h&&h.keys&&h.keys.IE_PROTO||""))?"Symbol(src)_1."+l:"",y=p.toString,g=d.hasOwnProperty,b=d.toString,v=RegExp("^"+y.call(g).replace(/[\\^$.*+?()[\]{}|]/g,"\\$&").replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g,"$1.*?")+"$"),C=f.splice,_=T(s,"Map"),w=T(Object,"create");function S(e){var t=-1,r=e?e.length:0;for(this.clear();++t<r;){var n=e[t];this.set(n[0],n[1]);}}function j(e){var t=-1,r=e?e.length:0;for(this.clear();++t<r;){var n=e[t];this.set(n[0],n[1]);}}function x(e){var t=-1,r=e?e.length:0;for(this.clear();++t<r;){var n=e[t];this.set(n[0],n[1]);}}function k(e,t){for(var r,n,a=e.length;a--;)if((r=e[a][0])===(n=t)||r!=r&&n!=n)return a;return -1}function O(e){return !(!I(e)||(t=e,m&&m in t))&&(function(e){var t=I(e)?b.call(e):"";return t==a||t==o}(e)||function(e){var t=!1;if(null!=e&&"function"!=typeof e.toString)try{t=!!(e+"");}catch(e){}return t}(e)?v:i).test(function(e){if(null!=e){try{return y.call(e)}catch(e){}try{return e+""}catch(e){}}return ""}(e));var t;}function E(e,t){var r,n,a=e.__data__;return ("string"==(n=typeof(r=t))||"number"==n||"symbol"==n||"boolean"==n?"__proto__"!==r:null===r)?a["string"==typeof t?"string":"hash"]:a.map}function T(e,t){var r=function(e,t){return null==e?void 0:e[t]}(e,t);return O(r)?r:void 0}function N(e,t){if("function"!=typeof e||t&&"function"!=typeof t)throw new TypeError(r);var n=function(){var r=arguments,a=t?t.apply(this,r):r[0],o=n.cache;if(o.has(a))return o.get(a);var i=e.apply(this,r);return n.cache=o.set(a,i),i};return n.cache=new(N.Cache||x),n}function I(e){var t=typeof e;return !!e&&("object"==t||"function"==t)}S.prototype.clear=function(){this.__data__=w?w(null):{};},S.prototype.delete=function(e){return this.has(e)&&delete this.__data__[e]},S.prototype.get=function(e){var t=this.__data__;if(w){var r=t[e];return r===n?void 0:r}return g.call(t,e)?t[e]:void 0},S.prototype.has=function(e){var t=this.__data__;return w?void 0!==t[e]:g.call(t,e)},S.prototype.set=function(e,t){return this.__data__[e]=w&&void 0===t?n:t,this},j.prototype.clear=function(){this.__data__=[];},j.prototype.delete=function(e){var t=this.__data__,r=k(t,e);return !(r<0)&&(r==t.length-1?t.pop():C.call(t,r,1),!0)},j.prototype.get=function(e){var t=this.__data__,r=k(t,e);return r<0?void 0:t[r][1]},j.prototype.has=function(e){return k(this.__data__,e)>-1},j.prototype.set=function(e,t){var r=this.__data__,n=k(r,e);return n<0?r.push([e,t]):r[n][1]=t,this},x.prototype.clear=function(){this.__data__={hash:new S,map:new(_||j),string:new S};},x.prototype.delete=function(e){return E(this,e).delete(e)},x.prototype.get=function(e){return E(this,e).get(e)},x.prototype.has=function(e){return E(this,e).has(e)},x.prototype.set=function(e,t){return E(this,e).set(e,t),this},N.Cache=x,e.exports=N;}).call(this,r(3));},function(e,t,r){(function(t){var r="Expected a function",n=NaN,a="[object Symbol]",o=/^\s+|\s+$/g,i=/^[-+]0x[0-9a-f]+$/i,u=/^0b[01]+$/i,c=/^0o[0-7]+$/i,s=parseInt,l="object"==typeof t&&t&&t.Object===Object&&t,f="object"==typeof self&&self&&self.Object===Object&&self,p=l||f||Function("return this")(),d=Object.prototype.toString,h=Math.max,m=Math.min,y=function(){return p.Date.now()};function g(e){var t=typeof e;return !!e&&("object"==t||"function"==t)}function b(e){if("number"==typeof e)return e;if(function(e){return "symbol"==typeof e||function(e){return !!e&&"object"==typeof e}(e)&&d.call(e)==a}(e))return n;if(g(e)){var t="function"==typeof e.valueOf?e.valueOf():e;e=g(t)?t+"":t;}if("string"!=typeof e)return 0===e?e:+e;e=e.replace(o,"");var r=u.test(e);return r||c.test(e)?s(e.slice(2),r?2:8):i.test(e)?n:+e}e.exports=function(e,t,n){var a,o,i,u,c,s,l=0,f=!1,p=!1,d=!0;if("function"!=typeof e)throw new TypeError(r);function v(t){var r=a,n=o;return a=o=void 0,l=t,u=e.apply(n,r)}function C(e){var r=e-s;return void 0===s||r>=t||r<0||p&&e-l>=i}function _(){var e=y();if(C(e))return w(e);c=setTimeout(_,function(e){var r=t-(e-s);return p?m(r,i-(e-l)):r}(e));}function w(e){return c=void 0,d&&a?v(e):(a=o=void 0,u)}function S(){var e=y(),r=C(e);if(a=arguments,o=this,s=e,r){if(void 0===c)return function(e){return l=e,c=setTimeout(_,t),f?v(e):u}(s);if(p)return c=setTimeout(_,t),v(s)}return void 0===c&&(c=setTimeout(_,t)),u}return t=b(t)||0,g(n)&&(f=!!n.leading,i=(p="maxWait"in n)?h(b(n.maxWait)||0,t):i,d="trailing"in n?!!n.trailing:d),S.cancel=function(){void 0!==c&&clearTimeout(c),l=0,a=s=o=c=void 0;},S.flush=function(){return void 0===c?u:w(y())},S};}).call(this,r(3));},function(e,t,r){(function(e,r){var n=200,a="Expected a function",o="__lodash_hash_undefined__",i=1,u=2,c=1/0,s=9007199254740991,l="[object Arguments]",f="[object Array]",p="[object Boolean]",d="[object Date]",h="[object Error]",m="[object Function]",y="[object GeneratorFunction]",g="[object Map]",b="[object Number]",v="[object Object]",C="[object RegExp]",_="[object Set]",w="[object String]",S="[object Symbol]",j="[object ArrayBuffer]",x="[object DataView]",k=/\.|\[(?:[^[\]]*|(["'])(?:(?!\1)[^\\]|\\.)*?\1)\]/,O=/^\w*$/,E=/^\./,T=/[^.[\]]+|\[(?:(-?\d+(?:\.\d+)?)|(["'])((?:(?!\2)[^\\]|\\.)*?)\2)\]|(?=(?:\.|\[\])(?:\.|\[\]|$))/g,N=/\\(\\)?/g,I=/^\[object .+?Constructor\]$/,D=/^(?:0|[1-9]\d*)$/,A={};A["[object Float32Array]"]=A["[object Float64Array]"]=A["[object Int8Array]"]=A["[object Int16Array]"]=A["[object Int32Array]"]=A["[object Uint8Array]"]=A["[object Uint8ClampedArray]"]=A["[object Uint16Array]"]=A["[object Uint32Array]"]=!0,A[l]=A[f]=A[j]=A[p]=A[x]=A[d]=A[h]=A[m]=A[g]=A[b]=A[v]=A[C]=A[_]=A[w]=A["[object WeakMap]"]=!1;var P="object"==typeof e&&e&&e.Object===Object&&e,F="object"==typeof self&&self&&self.Object===Object&&self,M=P||F||Function("return this")(),R=t&&!t.nodeType&&t,z=R&&"object"==typeof r&&r&&!r.nodeType&&r,L=z&&z.exports===R&&P.process,B=function(){try{return L&&L.binding("util")}catch(e){}}(),$=B&&B.isTypedArray;function G(e,t,r,n){var a=-1,o=e?e.length:0;for(n&&o&&(r=e[++a]);++a<o;)r=t(r,e[a],a,e);return r}function K(e,t){for(var r=-1,n=e?e.length:0;++r<n;)if(t(e[r],r,e))return !0;return !1}function U(e,t,r,n,a){return a(e,(function(e,a,o){r=n?(n=!1,e):t(r,e,a,o);})),r}function V(e){var t=!1;if(null!=e&&"function"!=typeof e.toString)try{t=!!(e+"");}catch(e){}return t}function q(e){var t=-1,r=Array(e.size);return e.forEach((function(e,n){r[++t]=[n,e];})),r}function W(e){var t=-1,r=Array(e.size);return e.forEach((function(e){r[++t]=e;})),r}var H,J,Z,Q=Array.prototype,Y=Function.prototype,X=Object.prototype,ee=M["__core-js_shared__"],te=(H=/[^.]+$/.exec(ee&&ee.keys&&ee.keys.IE_PROTO||""))?"Symbol(src)_1."+H:"",re=Y.toString,ne=X.hasOwnProperty,ae=X.toString,oe=RegExp("^"+re.call(ne).replace(/[\\^$.*+?()[\]{}|]/g,"\\$&").replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g,"$1.*?")+"$"),ie=M.Symbol,ue=M.Uint8Array,ce=X.propertyIsEnumerable,se=Q.splice,le=(J=Object.keys,Z=Object,function(e){return J(Z(e))}),fe=Ve(M,"DataView"),pe=Ve(M,"Map"),de=Ve(M,"Promise"),he=Ve(M,"Set"),me=Ve(M,"WeakMap"),ye=Ve(Object,"create"),ge=Xe(fe),be=Xe(pe),ve=Xe(de),Ce=Xe(he),_e=Xe(me),we=ie?ie.prototype:void 0,Se=we?we.valueOf:void 0,je=we?we.toString:void 0;function xe(e){var t=-1,r=e?e.length:0;for(this.clear();++t<r;){var n=e[t];this.set(n[0],n[1]);}}function ke(e){var t=-1,r=e?e.length:0;for(this.clear();++t<r;){var n=e[t];this.set(n[0],n[1]);}}function Oe(e){var t=-1,r=e?e.length:0;for(this.clear();++t<r;){var n=e[t];this.set(n[0],n[1]);}}function Ee(e){var t=-1,r=e?e.length:0;for(this.__data__=new Oe;++t<r;)this.add(e[t]);}function Te(e){this.__data__=new ke(e);}function Ne(e,t){var r=nt(e)||rt(e)?function(e,t){for(var r=-1,n=Array(e);++r<e;)n[r]=t(r);return n}(e.length,String):[],n=r.length,a=!!n;for(var o in e)!t&&!ne.call(e,o)||a&&("length"==o||We(o,n))||r.push(o);return r}function Ie(e,t){for(var r=e.length;r--;)if(tt(e[r][0],t))return r;return -1}xe.prototype.clear=function(){this.__data__=ye?ye(null):{};},xe.prototype.delete=function(e){return this.has(e)&&delete this.__data__[e]},xe.prototype.get=function(e){var t=this.__data__;if(ye){var r=t[e];return r===o?void 0:r}return ne.call(t,e)?t[e]:void 0},xe.prototype.has=function(e){var t=this.__data__;return ye?void 0!==t[e]:ne.call(t,e)},xe.prototype.set=function(e,t){return this.__data__[e]=ye&&void 0===t?o:t,this},ke.prototype.clear=function(){this.__data__=[];},ke.prototype.delete=function(e){var t=this.__data__,r=Ie(t,e);return !(r<0)&&(r==t.length-1?t.pop():se.call(t,r,1),!0)},ke.prototype.get=function(e){var t=this.__data__,r=Ie(t,e);return r<0?void 0:t[r][1]},ke.prototype.has=function(e){return Ie(this.__data__,e)>-1},ke.prototype.set=function(e,t){var r=this.__data__,n=Ie(r,e);return n<0?r.push([e,t]):r[n][1]=t,this},Oe.prototype.clear=function(){this.__data__={hash:new xe,map:new(pe||ke),string:new xe};},Oe.prototype.delete=function(e){return Ue(this,e).delete(e)},Oe.prototype.get=function(e){return Ue(this,e).get(e)},Oe.prototype.has=function(e){return Ue(this,e).has(e)},Oe.prototype.set=function(e,t){return Ue(this,e).set(e,t),this},Ee.prototype.add=Ee.prototype.push=function(e){return this.__data__.set(e,o),this},Ee.prototype.has=function(e){return this.__data__.has(e)},Te.prototype.clear=function(){this.__data__=new ke;},Te.prototype.delete=function(e){return this.__data__.delete(e)},Te.prototype.get=function(e){return this.__data__.get(e)},Te.prototype.has=function(e){return this.__data__.has(e)},Te.prototype.set=function(e,t){var r=this.__data__;if(r instanceof ke){var a=r.__data__;if(!pe||a.length<n-1)return a.push([e,t]),this;r=this.__data__=new Oe(a);}return r.set(e,t),this};var De,Pe=(De=function(e,t){return e&&Fe(e,t,ft)},function(e,t){if(null==e)return e;if(!at(e))return De(e,t);for(var r=e.length,n=-1,a=Object(e);(++n<r)&&!1!==t(a[n],n,a););return e}),Fe=function(e){return function(t,r,n){for(var a=-1,o=Object(t),i=n(t),u=i.length;u--;){var c=i[e?u:++a];if(!1===r(o[c],c,o))break}return t}}();function Me(e,t){for(var r=0,n=(t=He(t,e)?[t]:Ge(t)).length;null!=e&&r<n;)e=e[Ye(t[r++])];return r&&r==n?e:void 0}function Re(e,t){return null!=e&&t in Object(e)}function ze(e,t,r,n,a){return e===t||(null==e||null==t||!ut(e)&&!ct(t)?e!=e&&t!=t:function(e,t,r,n,a,o){var c=nt(e),s=nt(t),m=f,y=f;c||(m=(m=qe(e))==l?v:m);s||(y=(y=qe(t))==l?v:y);var k=m==v&&!V(e),O=y==v&&!V(t),E=m==y;if(E&&!k)return o||(o=new Te),c||lt(e)?Ke(e,t,r,n,a,o):function(e,t,r,n,a,o,c){switch(r){case x:if(e.byteLength!=t.byteLength||e.byteOffset!=t.byteOffset)return !1;e=e.buffer,t=t.buffer;case j:return !(e.byteLength!=t.byteLength||!n(new ue(e),new ue(t)));case p:case d:case b:return tt(+e,+t);case h:return e.name==t.name&&e.message==t.message;case C:case w:return e==t+"";case g:var s=q;case _:var l=o&u;if(s||(s=W),e.size!=t.size&&!l)return !1;var f=c.get(e);if(f)return f==t;o|=i,c.set(e,t);var m=Ke(s(e),s(t),n,a,o,c);return c.delete(e),m;case S:if(Se)return Se.call(e)==Se.call(t)}return !1}(e,t,m,r,n,a,o);if(!(a&u)){var T=k&&ne.call(e,"__wrapped__"),N=O&&ne.call(t,"__wrapped__");if(T||N){var I=T?e.value():e,D=N?t.value():t;return o||(o=new Te),r(I,D,n,a,o)}}if(!E)return !1;return o||(o=new Te),function(e,t,r,n,a,o){var i=a&u,c=ft(e),s=c.length,l=ft(t).length;if(s!=l&&!i)return !1;var f=s;for(;f--;){var p=c[f];if(!(i?p in t:ne.call(t,p)))return !1}var d=o.get(e);if(d&&o.get(t))return d==t;var h=!0;o.set(e,t),o.set(t,e);var m=i;for(;++f<s;){p=c[f];var y=e[p],g=t[p];if(n)var b=i?n(g,y,p,t,e,o):n(y,g,p,e,t,o);if(!(void 0===b?y===g||r(y,g,n,a,o):b)){h=!1;break}m||(m="constructor"==p);}if(h&&!m){var v=e.constructor,C=t.constructor;v!=C&&"constructor"in e&&"constructor"in t&&!("function"==typeof v&&v instanceof v&&"function"==typeof C&&C instanceof C)&&(h=!1);}return o.delete(e),o.delete(t),h}(e,t,r,n,a,o)}(e,t,ze,r,n,a))}function Le(e){return !(!ut(e)||function(e){return !!te&&te in e}(e))&&(ot(e)||V(e)?oe:I).test(Xe(e))}function Be(e){return "function"==typeof e?e:null==e?pt:"object"==typeof e?nt(e)?function(e,t){if(He(e)&&Je(t))return Ze(Ye(e),t);return function(r){var n=function(e,t,r){var n=null==e?void 0:Me(e,t);return void 0===n?r:n}(r,e);return void 0===n&&n===t?function(e,t){return null!=e&&function(e,t,r){t=He(t,e)?[t]:Ge(t);var n,a=-1,o=t.length;for(;++a<o;){var i=Ye(t[a]);if(!(n=null!=e&&r(e,i)))break;e=e[i];}if(n)return n;return !!(o=e?e.length:0)&&it(o)&&We(i,o)&&(nt(e)||rt(e))}(e,t,Re)}(r,e):ze(t,n,void 0,i|u)}}(e[0],e[1]):function(e){var t=function(e){var t=ft(e),r=t.length;for(;r--;){var n=t[r],a=e[n];t[r]=[n,a,Je(a)];}return t}(e);if(1==t.length&&t[0][2])return Ze(t[0][0],t[0][1]);return function(r){return r===e||function(e,t,r,n){var a=r.length,o=a,c=!n;if(null==e)return !o;for(e=Object(e);a--;){var s=r[a];if(c&&s[2]?s[1]!==e[s[0]]:!(s[0]in e))return !1}for(;++a<o;){var l=(s=r[a])[0],f=e[l],p=s[1];if(c&&s[2]){if(void 0===f&&!(l in e))return !1}else{var d=new Te;if(n)var h=n(f,p,l,e,t,d);if(!(void 0===h?ze(p,f,n,i|u,d):h))return !1}}return !0}(r,e,t)}}(e):He(t=e)?(r=Ye(t),function(e){return null==e?void 0:e[r]}):function(e){return function(t){return Me(t,e)}}(t);var t,r;}function $e(e){if(r=(t=e)&&t.constructor,n="function"==typeof r&&r.prototype||X,t!==n)return le(e);var t,r,n,a=[];for(var o in Object(e))ne.call(e,o)&&"constructor"!=o&&a.push(o);return a}function Ge(e){return nt(e)?e:Qe(e)}function Ke(e,t,r,n,a,o){var c=a&u,s=e.length,l=t.length;if(s!=l&&!(c&&l>s))return !1;var f=o.get(e);if(f&&o.get(t))return f==t;var p=-1,d=!0,h=a&i?new Ee:void 0;for(o.set(e,t),o.set(t,e);++p<s;){var m=e[p],y=t[p];if(n)var g=c?n(y,m,p,t,e,o):n(m,y,p,e,t,o);if(void 0!==g){if(g)continue;d=!1;break}if(h){if(!K(t,(function(e,t){if(!h.has(t)&&(m===e||r(m,e,n,a,o)))return h.add(t)}))){d=!1;break}}else if(m!==y&&!r(m,y,n,a,o)){d=!1;break}}return o.delete(e),o.delete(t),d}function Ue(e,t){var r,n,a=e.__data__;return ("string"==(n=typeof(r=t))||"number"==n||"symbol"==n||"boolean"==n?"__proto__"!==r:null===r)?a["string"==typeof t?"string":"hash"]:a.map}function Ve(e,t){var r=function(e,t){return null==e?void 0:e[t]}(e,t);return Le(r)?r:void 0}var qe=function(e){return ae.call(e)};function We(e,t){return !!(t=null==t?s:t)&&("number"==typeof e||D.test(e))&&e>-1&&e%1==0&&e<t}function He(e,t){if(nt(e))return !1;var r=typeof e;return !("number"!=r&&"symbol"!=r&&"boolean"!=r&&null!=e&&!st(e))||(O.test(e)||!k.test(e)||null!=t&&e in Object(t))}function Je(e){return e==e&&!ut(e)}function Ze(e,t){return function(r){return null!=r&&(r[e]===t&&(void 0!==t||e in Object(r)))}}(fe&&qe(new fe(new ArrayBuffer(1)))!=x||pe&&qe(new pe)!=g||de&&"[object Promise]"!=qe(de.resolve())||he&&qe(new he)!=_||me&&"[object WeakMap]"!=qe(new me))&&(qe=function(e){var t=ae.call(e),r=t==v?e.constructor:void 0,n=r?Xe(r):void 0;if(n)switch(n){case ge:return x;case be:return g;case ve:return "[object Promise]";case Ce:return _;case _e:return "[object WeakMap]"}return t});var Qe=et((function(e){var t;e=null==(t=e)?"":function(e){if("string"==typeof e)return e;if(st(e))return je?je.call(e):"";var t=e+"";return "0"==t&&1/e==-c?"-0":t}(t);var r=[];return E.test(e)&&r.push(""),e.replace(T,(function(e,t,n,a){r.push(n?a.replace(N,"$1"):t||e);})),r}));function Ye(e){if("string"==typeof e||st(e))return e;var t=e+"";return "0"==t&&1/e==-c?"-0":t}function Xe(e){if(null!=e){try{return re.call(e)}catch(e){}try{return e+""}catch(e){}}return ""}function et(e,t){if("function"!=typeof e||t&&"function"!=typeof t)throw new TypeError(a);var r=function(){var n=arguments,a=t?t.apply(this,n):n[0],o=r.cache;if(o.has(a))return o.get(a);var i=e.apply(this,n);return r.cache=o.set(a,i),i};return r.cache=new(et.Cache||Oe),r}function tt(e,t){return e===t||e!=e&&t!=t}function rt(e){return function(e){return ct(e)&&at(e)}(e)&&ne.call(e,"callee")&&(!ce.call(e,"callee")||ae.call(e)==l)}et.Cache=Oe;var nt=Array.isArray;function at(e){return null!=e&&it(e.length)&&!ot(e)}function ot(e){var t=ut(e)?ae.call(e):"";return t==m||t==y}function it(e){return "number"==typeof e&&e>-1&&e%1==0&&e<=s}function ut(e){var t=typeof e;return !!e&&("object"==t||"function"==t)}function ct(e){return !!e&&"object"==typeof e}function st(e){return "symbol"==typeof e||ct(e)&&ae.call(e)==S}var lt=$?function(e){return function(t){return e(t)}}($):function(e){return ct(e)&&it(e.length)&&!!A[ae.call(e)]};function ft(e){return at(e)?Ne(e):$e(e)}function pt(e){return e}r.exports=function(e,t,r){var n=nt(e)?G:U,a=arguments.length<3;return n(e,Be(t),r,a,Pe)};}).call(this,r(3),r(7)(e));},function(e,t){e.exports=function(e){return e.webpackPolyfill||(e.deprecate=function(){},e.paths=[],e.children||(e.children=[]),Object.defineProperty(e,"loaded",{enumerable:!0,get:function(){return e.l}}),Object.defineProperty(e,"id",{enumerable:!0,get:function(){return e.i}}),e.webpackPolyfill=1),e};},function(e,t,r){function n(e,t,r){return t in e?Object.defineProperty(e,t,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[t]=r,e}function a(e){if(Symbol.iterator in Object(e)||"[object Arguments]"===Object.prototype.toString.call(e))return Array.from(e)}function o(e){return function(e){if(Array.isArray(e)){for(var t=0,r=new Array(e.length);t<e.length;t++)r[t]=e[t];return r}}(e)||a(e)||function(){throw new TypeError("Invalid attempt to spread non-iterable instance")}()}function i(e){return function(e){if(Array.isArray(e))return e}(e)||a(e)||function(){throw new TypeError("Invalid attempt to destructure non-iterable instance")}()}function u(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function c(e,t){for(var r=0;r<t.length;r++){var n=t[r];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n);}}function s(e){return (s="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e})(e)}function l(e){return (l="function"==typeof Symbol&&"symbol"===s(Symbol.iterator)?function(e){return s(e)}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":s(e)})(e)}function f(e){if(void 0===e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return e}function p(e){return (p=Object.setPrototypeOf?Object.getPrototypeOf:function(e){return e.__proto__||Object.getPrototypeOf(e)})(e)}function d(e,t){return (d=Object.setPrototypeOf||function(e,t){return e.__proto__=t,e})(e,t)}r.r(t);var h=r(0),m=r.n(h),y=r(5),g=r.n(y),b=r(4),v=r.n(b),C=r(6),_=r.n(C),w=r(2),S=r.n(w),j=r(1),x=r.n(j);var k=[["Afghanistan",["asia"],"af","93"],["Albania",["europe"],"al","355"],["Algeria",["africa","north-africa"],"dz","213"],["American Samoa",["oceania"],"as","1684"],["Andorra",["europe"],"ad","376"],["Angola",["africa"],"ao","244"],["Anguilla",["america","carribean"],"ai","1264"],["Antigua and Barbuda",["america","carribean"],"ag","1268"],["Argentina",["america","south-america"],"ar","54","+.. (..) ........"],["Armenia",["asia","ex-ussr"],"am","374"],["Aruba",["america","carribean"],"aw","297"],["Australia",["oceania"],"au","61","+.. ... ... ..."],["Austria",["europe","eu-union"],"at","43"],["Azerbaijan",["asia","ex-ussr"],"az","994"],["Bahamas",["america","carribean"],"bs","1242"],["Bahrain",["middle-east"],"bh","973"],["Bangladesh",["asia"],"bd","880"],["Barbados",["america","carribean"],"bb","1246"],["Belarus",["europe","ex-ussr"],"by","375","+... (..) ... .. .."],["Belgium",["europe","eu-union"],"be","32","+.. ... .. .. .."],["Belize",["america","central-america"],"bz","501"],["Benin",["africa"],"bj","229"],["Bermuda",["america","north-america"],"bm","1441"],["Bhutan",["asia"],"bt","975"],["Bolivia",["america","south-america"],"bo","591"],["Bosnia and Herzegovina",["europe","ex-yugos"],"ba","387"],["Botswana",["africa"],"bw","267"],["Brazil",["america","south-america"],"br","55","+.. (..) ........."],["British Indian Ocean Territory",["asia"],"io","246"],["British Virgin Islands",["america","carribean"],"vg","1284"],["Brunei",["asia"],"bn","673"],["Bulgaria",["europe","eu-union"],"bg","359"],["Burkina Faso",["africa"],"bf","226"],["Burundi",["africa"],"bi","257"],["Cambodia",["asia"],"kh","855"],["Cameroon",["africa"],"cm","237"],["Canada",["america","north-america"],"ca","1","+. (...) ...-....",1,["204","226","236","249","250","289","306","343","365","387","403","416","418","431","437","438","450","506","514","519","548","579","581","587","604","613","639","647","672","705","709","742","778","780","782","807","819","825","867","873","902","905"]],["Cape Verde",["africa"],"cv","238"],["Caribbean Netherlands",["america","carribean"],"bq","599","",1],["Cayman Islands",["america","carribean"],"ky","1345"],["Central African Republic",["africa"],"cf","236"],["Chad",["africa"],"td","235"],["Chile",["america","south-america"],"cl","56"],["China",["asia"],"cn","86","+.. ..-........."],["Colombia",["america","south-america"],"co","57"],["Comoros",["africa"],"km","269"],["Congo",["africa"],"cd","243"],["Congo",["africa"],"cg","242"],["Cook Islands",["oceania"],"ck","682"],["Costa Rica",["america","central-america"],"cr","506","+... ....-...."],["Côte d’Ivoire",["africa"],"ci","225"],["Croatia",["europe","eu-union","ex-yugos"],"hr","385"],["Cuba",["america","carribean"],"cu","53"],["Curaçao",["america","carribean"],"cw","599","",0],["Cyprus",["europe","eu-union"],"cy","357","+... .. ......"],["Czech Republic",["europe","eu-union"],"cz","420"],["Denmark",["europe","eu-union","baltic"],"dk","45","+.. .. .. .. .."],["Djibouti",["africa"],"dj","253"],["Dominica",["america","carribean"],"dm","1767"],["Dominican Republic",["america","carribean"],"do","1","",2,["809","829","849"]],["Ecuador",["america","south-america"],"ec","593"],["Egypt",["africa","north-africa"],"eg","20"],["El Salvador",["america","central-america"],"sv","503","+... ....-...."],["Equatorial Guinea",["africa"],"gq","240"],["Eritrea",["africa"],"er","291"],["Estonia",["europe","eu-union","ex-ussr","baltic"],"ee","372","+... .... ......"],["Ethiopia",["africa"],"et","251"],["Falkland Islands",["america","south-america"],"fk","500"],["Faroe Islands",["europe"],"fo","298"],["Fiji",["oceania"],"fj","679"],["Finland",["europe","eu-union","baltic"],"fi","358","+... .. ... .. .."],["France",["europe","eu-union"],"fr","33","+.. . .. .. .. .."],["French Guiana",["america","south-america"],"gf","594"],["French Polynesia",["oceania"],"pf","689"],["Gabon",["africa"],"ga","241"],["Gambia",["africa"],"gm","220"],["Georgia",["asia","ex-ussr"],"ge","995"],["Germany",["europe","eu-union","baltic"],"de","49","+.. .... ........"],["Ghana",["africa"],"gh","233"],["Gibraltar",["europe"],"gi","350"],["Greece",["europe","eu-union"],"gr","30"],["Greenland",["america"],"gl","299"],["Grenada",["america","carribean"],"gd","1473"],["Guadeloupe",["america","carribean"],"gp","590","",0],["Guam",["oceania"],"gu","1671"],["Guatemala",["america","central-america"],"gt","502","+... ....-...."],["Guinea",["africa"],"gn","224"],["Guinea-Bissau",["africa"],"gw","245"],["Guyana",["america","south-america"],"gy","592"],["Haiti",["america","carribean"],"ht","509","+... ....-...."],["Honduras",["america","central-america"],"hn","504"],["Hong Kong",["asia"],"hk","852","+... .... ...."],["Hungary",["europe","eu-union"],"hu","36"],["Iceland",["europe"],"is","354","+... ... ...."],["India",["asia"],"in","91","+.. .....-....."],["Indonesia",["asia"],"id","62"],["Iran",["middle-east"],"ir","98"],["Iraq",["middle-east"],"iq","964"],["Ireland",["europe","eu-union"],"ie","353","+... .. ......."],["Israel",["middle-east"],"il","972","+... ... ... ...."],["Italy",["europe","eu-union"],"it","39","+.. ... .......",0],["Jamaica",["america","carribean"],"jm","1876"],["Japan",["asia"],"jp","81","+.. .. .... ...."],["Jordan",["middle-east"],"jo","962"],["Kazakhstan",["asia","ex-ussr"],"kz","7","+. ... ...-..-..",1,["310","311","312","313","315","318","321","324","325","326","327","336","7172","73622"]],["Kenya",["africa"],"ke","254"],["Kiribati",["oceania"],"ki","686"],["Kosovo",["europe","ex-yugos"],"xk","383"],["Kuwait",["middle-east"],"kw","965"],["Kyrgyzstan",["asia","ex-ussr"],"kg","996"],["Laos",["asia"],"la","856"],["Latvia",["europe","eu-union","ex-ussr","baltic"],"lv","371"],["Lebanon",["middle-east"],"lb","961"],["Lesotho",["africa"],"ls","266"],["Liberia",["africa"],"lr","231"],["Libya",["africa","north-africa"],"ly","218"],["Liechtenstein",["europe"],"li","423"],["Lithuania",["europe","eu-union","ex-ussr","baltic"],"lt","370"],["Luxembourg",["europe","eu-union"],"lu","352"],["Macau",["asia"],"mo","853"],["Macedonia",["europe","ex-yugos"],"mk","389"],["Madagascar",["africa"],"mg","261"],["Malawi",["africa"],"mw","265"],["Malaysia",["asia"],"my","60","+.. ..-....-...."],["Maldives",["asia"],"mv","960"],["Mali",["africa"],"ml","223"],["Malta",["europe","eu-union"],"mt","356"],["Marshall Islands",["oceania"],"mh","692"],["Martinique",["america","carribean"],"mq","596"],["Mauritania",["africa"],"mr","222"],["Mauritius",["africa"],"mu","230"],["Mexico",["america","central-america"],"mx","52"],["Micronesia",["oceania"],"fm","691"],["Moldova",["europe"],"md","373","+... (..) ..-..-.."],["Monaco",["europe"],"mc","377"],["Mongolia",["asia"],"mn","976"],["Montenegro",["europe","ex-yugos"],"me","382"],["Montserrat",["america","carribean"],"ms","1664"],["Morocco",["africa","north-africa"],"ma","212"],["Mozambique",["africa"],"mz","258"],["Myanmar",["asia"],"mm","95"],["Namibia",["africa"],"na","264"],["Nauru",["africa"],"nr","674"],["Nepal",["asia"],"np","977"],["Netherlands",["europe","eu-union"],"nl","31","+.. .. ........"],["New Caledonia",["oceania"],"nc","687"],["New Zealand",["oceania"],"nz","64","+.. ...-...-...."],["Nicaragua",["america","central-america"],"ni","505"],["Niger",["africa"],"ne","227"],["Nigeria",["africa"],"ng","234"],["Niue",["asia"],"nu","683"],["Norfolk Island",["oceania"],"nf","672"],["North Korea",["asia"],"kp","850"],["Northern Mariana Islands",["oceania"],"mp","1670"],["Norway",["europe","baltic"],"no","47","+.. ... .. ..."],["Oman",["middle-east"],"om","968"],["Pakistan",["asia"],"pk","92","+.. ...-......."],["Palau",["oceania"],"pw","680"],["Palestine",["middle-east"],"ps","970"],["Panama",["america","central-america"],"pa","507"],["Papua New Guinea",["oceania"],"pg","675"],["Paraguay",["america","south-america"],"py","595"],["Peru",["america","south-america"],"pe","51"],["Philippines",["asia"],"ph","63","+.. .... ......."],["Poland",["europe","eu-union","baltic"],"pl","48","+.. ...-...-..."],["Portugal",["europe","eu-union"],"pt","351"],["Puerto Rico",["america","carribean"],"pr","1","",3,["787","939"]],["Qatar",["middle-east"],"qa","974"],["Réunion",["africa"],"re","262"],["Romania",["europe","eu-union"],"ro","40"],["Russia",["europe","asia","ex-ussr","baltic"],"ru","7","+. (...) ...-..-..",0],["Rwanda",["africa"],"rw","250"],["Saint Barthélemy",["america","carribean"],"bl","590","",1],["Saint Helena",["africa"],"sh","290"],["Saint Kitts and Nevis",["america","carribean"],"kn","1869"],["Saint Lucia",["america","carribean"],"lc","1758"],["Saint Martin",["america","carribean"],"mf","590","",2],["Saint Pierre and Miquelon",["america","north-america"],"pm","508"],["Saint Vincent and the Grenadines",["america","carribean"],"vc","1784"],["Samoa",["oceania"],"ws","685"],["San Marino",["europe"],"sm","378"],["São Tomé and Príncipe",["africa"],"st","239"],["Saudi Arabia",["middle-east"],"sa","966"],["Senegal",["africa"],"sn","221"],["Serbia",["europe","ex-yugos"],"rs","381"],["Seychelles",["africa"],"sc","248"],["Sierra Leone",["africa"],"sl","232"],["Singapore",["asia"],"sg","65","+.. ....-...."],["Sint Maarten",["america","carribean"],"sx","1721"],["Slovakia",["europe","eu-union"],"sk","421"],["Slovenia",["europe","eu-union","ex-yugos"],"si","386"],["Solomon Islands",["oceania"],"sb","677"],["Somalia",["africa"],"so","252"],["South Africa",["africa"],"za","27"],["South Korea",["asia"],"kr","82","+.. ... .... ...."],["South Sudan",["africa","north-africa"],"ss","211"],["Spain",["europe","eu-union"],"es","34","+.. ... ... ..."],["Sri Lanka",["asia"],"lk","94"],["Sudan",["africa"],"sd","249"],["Suriname",["america","south-america"],"sr","597"],["Swaziland",["africa"],"sz","268"],["Sweden",["europe","eu-union","baltic"],"se","46","+.. (...) ...-..."],["Switzerland",["europe"],"ch","41","+.. .. ... .. .."],["Syria",["middle-east"],"sy","963"],["Taiwan",["asia"],"tw","886"],["Tajikistan",["asia","ex-ussr"],"tj","992"],["Tanzania",["africa"],"tz","255"],["Thailand",["asia"],"th","66"],["Timor-Leste",["asia"],"tl","670"],["Togo",["africa"],"tg","228"],["Tokelau",["oceania"],"tk","690"],["Tonga",["oceania"],"to","676"],["Trinidad and Tobago",["america","carribean"],"tt","1868"],["Tunisia",["africa","north-africa"],"tn","216"],["Turkey",["europe"],"tr","90","+.. ... ... .. .."],["Turkmenistan",["asia","ex-ussr"],"tm","993"],["Turks and Caicos Islands",["america","carribean"],"tc","1649"],["Tuvalu",["asia"],"tv","688"],["U.S. Virgin Islands",["america","carribean"],"vi","1340"],["Uganda",["africa"],"ug","256"],["Ukraine",["europe","ex-ussr"],"ua","380","+... (..) ... .. .."],["United Arab Emirates",["middle-east"],"ae","971"],["United Kingdom",["europe","eu-union"],"gb","44","+.. .... ......"],["United States",["america","north-america"],"us","1","+. (...) ...-....",0,["907","205","251","256","334","479","501","870","480","520","602","623","928","209","213","310","323","408","415","510","530","559","562","619","626","650","661","707","714","760","805","818","831","858","909","916","925","949","951","303","719","970","203","860","202","302","239","305","321","352","386","407","561","727","772","813","850","863","904","941","954","229","404","478","706","770","912","808","319","515","563","641","712","208","217","309","312","618","630","708","773","815","847","219","260","317","574","765","812","316","620","785","913","270","502","606","859","225","318","337","504","985","413","508","617","781","978","301","410","207","231","248","269","313","517","586","616","734","810","906","989","218","320","507","612","651","763","952","314","417","573","636","660","816","228","601","662","406","252","336","704","828","910","919","701","308","402","603","201","609","732","856","908","973","505","575","702","775","212","315","516","518","585","607","631","716","718","845","914","216","330","419","440","513","614","740","937","405","580","918","503","541","215","412","570","610","717","724","814","401","803","843","864","605","423","615","731","865","901","931","210","214","254","281","325","361","409","432","512","713","806","817","830","903","915","936","940","956","972","979","435","801","276","434","540","703","757","804","802","206","253","360","425","509","262","414","608","715","920","304","307"]],["Uruguay",["america","south-america"],"uy","598"],["Uzbekistan",["asia","ex-ussr"],"uz","998"],["Vanuatu",["oceania"],"vu","678"],["Vatican City",["europe"],"va","39","+.. .. .... ....",1],["Venezuela",["america","south-america"],"ve","58"],["Vietnam",["asia"],"vn","84"],["Wallis and Futuna",["oceania"],"wf","681"],["Yemen",["middle-east"],"ye","967"],["Zambia",["africa"],"zm","260"],["Zimbabwe",["africa"],"zw","263"]];function O(e){var t,r;return r="boolean"==typeof e,(t=[]).concat.apply(t,o(k.map((function(t){var a={name:t[0],regions:t[1],iso2:t[2],dialCode:t[3],format:t[4]||void 0,priority:t[5]||0,hasAreaCodes:!!t[6]},o=[];return t[6]&&(r||e.includes(t[2]))&&t[6].map((function(e){var r=function(e){for(var t=1;t<arguments.length;t++){var r=null!=arguments[t]?arguments[t]:{},a=Object.keys(r);"function"==typeof Object.getOwnPropertySymbols&&(a=a.concat(Object.getOwnPropertySymbols(r).filter((function(e){return Object.getOwnPropertyDescriptor(r,e).enumerable})))),a.forEach((function(t){n(e,t,r[t]);}));}return e}({},a);r.regions=t[1],r.dialCode=t[3]+e,r.isAreaCode=!0,o.push(r);})),o.length>0?(a.mainCode=!0,[a].concat(o)):[a]}))))}var E=function e(t,r,n,a,o,i,c,s,l,f){var p=this;u(this,e),this.filterRegions=function(e,t){if("string"==typeof e){var r=e;return t.filter((function(e){return e.regions.some((function(e){return e===r}))}))}return t.filter((function(t){return e.map((function(e){return t.regions.some((function(t){return t===e}))})).some((function(e){return e}))}))},this.getFilteredCountryList=function(e,t,r){return 0===e.length?t:r?e.map((function(e){var r=t.find((function(t){return t.iso2===e}));if(r)return r})).filter((function(e){return e})):t.filter((function(t){return e.some((function(e){return e===t.iso2}))}))},this.extendCountries=function(e,t,r,n,a){for(var o=0;o<e.length;o++)void 0!==t[e[o].iso2]?e[o].localName=t[e[o].iso2]:void 0!==t[e[o].name]&&(e[o].localName=t[e[o].name]),void 0!==r[e[o].iso2]?e[o].format=r[e[o].iso2]:void 0!==r[e[o].name]&&(e[o].format=r[e[o].name]);if(Object.keys(n).length>0){var i=function(){for(var t=[],r=null,o=0;o<e.length;o++)if(t.push(e[o]),void 0!==n[e[o].iso2]){if(r||(r=e[o]),e[o+1]&&e[o+1].iso2===r.iso2)continue;p.getCustomAreas(r,n[e[o].iso2]).forEach((function(e){t.push(e);})),r=null;}else if(void 0!==n[e[o].name]){if(r||(r=e[o]),e[o+1]&&e[o+1].iso2===r.iso2)continue;p.getCustomAreas(r,n[e[o].name]).forEach((function(e){t.push(e);})),r=null;}return {v:"+"==a?t:p.modifyPredecessor(t,a)}}();if("object"==typeof i)return i.v}return "+"==a?e:p.modifyPredecessor(e,a)},this.getCustomAreas=function(e,t){for(var r=[],n=0;n<t.length;n++){var a=JSON.parse(JSON.stringify(e));a.dialCode+=t[n],r.push(a);}return r},this.modifyPredecessor=function(e,t){return e.map((function(e){return e.format&&"+"==e.format.slice(0,1)&&(e.format=t+e.format.slice(1)),e}))},this.excludeCountries=function(e,t){return 0===t.length?e:e.filter((function(e){return !t.includes(e.iso2)}))};var d=t?O(t):k.map((function(e){return {name:e[0],regions:e[1],iso2:e[2],dialCode:e[3],format:e[4]||void 0,priority:e[5]||0,hasAreaCodes:!!e[6]}}));r&&(d=this.filterRegions(r,d)),this.onlyCountries=this.excludeCountries(this.extendCountries(this.getFilteredCountryList(n,d,i.includes("onlyCountries")),c,s,l,f),o),this.preferredCountries=0===a.length?[]:this.extendCountries(this.getFilteredCountryList(a,d,i.includes("preferredCountries")),c,s,l,f);},T=function(e){function t(e){var r;u(this,t),(r=function(e,t){return !t||"object"!==l(t)&&"function"!=typeof t?f(e):t}(this,p(t).call(this,e))).getProbableCandidate=v()((function(e){return e&&0!==e.length?r.state.onlyCountries.filter((function(t){return S()(t.name.toLowerCase(),e.toLowerCase())}),f(f(r)))[0]:null})),r.guessSelectedCountry=v()((function(e,t,n){var a=t.find((function(e){return e.iso2==n}));if(""===e.trim())return a;var o=t.reduce((function(t,r){if(S()(e,r.dialCode)){if(r.dialCode.length>t.dialCode.length)return r;if(r.dialCode.length===t.dialCode.length&&r.priority<t.priority)return r}return t}),{dialCode:"",priority:10001},f(f(r)));return o.name?o:a})),r.updateCountry=function(e){var t;(t=e.indexOf(0)>="0"&&e.indexOf(0)<="9"?r.state.onlyCountries.find((function(t){return t.dialCode==+e})):r.state.onlyCountries.find((function(t){return t.iso2==e})))&&t.dialCode&&r.setState({country:e,selectedCountry:t,formattedNumber:r.props.disableCountryCode?"":r.props.prefix+t.dialCode});},r.getDefaultMask=function(e){return r.props.prefix+"".padEnd(e.dialCode.length,".")+" "+r.props.defaultMask},r.scrollTo=function(e,t){if(e){var n=r.dropdownRef;if(n&&document.body){var a=n.offsetHeight,o=n.getBoundingClientRect().top+document.body.scrollTop,i=o+a,u=e,c=u.getBoundingClientRect(),s=u.offsetHeight,l=c.top+document.body.scrollTop,f=l+s,p=l-o+n.scrollTop,d=a/2-s/2;if(r.props.enableSearch?l<o+32:l<o)t&&(p-=d),n.scrollTop=p;else if(f>i){t&&(p+=d);var h=a-s;n.scrollTop=p-h;}}}},r.scrollToTop=function(){var e=r.dropdownRef;e&&document.body&&(e.scrollTop=0);},r.formatNumber=function(e,t){var n,a=r.props,o=a.disableCountryCode,u=a.enableLongNumbers,c=a.autoFormat;if(o&&t?((n=t.split(" ")).shift(),n=n.join(" ")):n=t,!e||0===e.length)return o?"":r.props.prefix;if(e&&e.length<2||!n||!c)return o?e:r.props.prefix+e;var s,l=_()(n,(function(e,t){if(0===e.remainingText.length)return e;if("."!==t)return {formattedText:e.formattedText+t,remainingText:e.remainingText};var r=i(e.remainingText),n=r[0],a=r.slice(1);return {formattedText:e.formattedText+n,remainingText:a}}),{formattedText:"",remainingText:e.split("")});return (s=u?l.formattedText+l.remainingText.join(""):l.formattedText).includes("(")&&!s.includes(")")&&(s+=")"),s},r.cursorToEnd=function(){var e=r.numberInputRef;e.focus();var t=e.value.length;e.setSelectionRange(t,t);},r.getElement=function(e){return r["flag_no_".concat(e)]},r.getCountryData=function(){return r.state.selectedCountry?{name:r.state.selectedCountry.name||"",dialCode:r.state.selectedCountry.dialCode||"",countryCode:r.state.selectedCountry.iso2||"",format:r.state.selectedCountry.format||""}:{}},r.handleFlagDropdownClick=function(){if(r.state.showDropdown||!r.props.disabled){var e,t=r.state,n=t.preferredCountries,a=t.selectedCountry,o=n.concat(r.state.onlyCountries);e=n.includes(a)?n.findIndex((function(e){return e==a})):r.props.enableAreaCodes?o.findIndex((function(e){return e==a})):o.findIndex((function(e){return e.iso2==a.iso2})),r.setState({showDropdown:!r.state.showDropdown,highlightCountryIndex:e},(function(){r.state.showDropdown&&r.scrollTo(r.getElement(r.state.highlightCountryIndex));}));}},r.handleInput=function(e){var t=r.props.disableCountryCode?"":r.props.prefix,n=r.state.selectedCountry,a=r.state.freezeSelection;if(!r.props.countryCodeEditable){var o=n.hasAreaCodes?r.state.onlyCountries.find((function(e){return e.iso2===n.iso2&&e.mainCode})).dialCode:n.dialCode,i=r.props.prefix+o;if(e.target.value.slice(0,i.length)!==i)return}if(!(e.target.value.replace(/\D/g,"").length>15)&&e.target.value!==r.state.formattedNumber){if(e.preventDefault?e.preventDefault():e.returnValue=!1,e.target.value.length>0){var u=e.target.value.replace(/\D/g,"");(!r.state.freezeSelection||r.state.selectedCountry.dialCode.length>u.length)&&(n=r.guessSelectedCountry(u.substring(0,6),r.state.onlyCountries,r.state.country)||r.state.selectedCountry,a=!1),t=n?r.formatNumber(u,n.format||r.getDefaultMask(n)):u,n=n.dialCode?n:r.state.selectedCountry;}var c=e.target.selectionStart,s=r.state.formattedNumber,l=t.length-s.length;r.setState({formattedNumber:t,freezeSelection:a,selectedCountry:n},(function(){l>0&&(c-=l),")"==t.charAt(t.length-1)?r.numberInputRef.setSelectionRange(t.length-1,t.length-1):c>0&&s.length>=t.length&&r.numberInputRef.setSelectionRange(c,c),r.props.onChange&&r.props.onChange(r.state.formattedNumber,r.getCountryData(),e);}));}},r.handleInputClick=function(e){r.setState({showDropdown:!1}),r.props.onClick&&r.props.onClick(e,r.getCountryData());},r.handleDoubleClick=function(e){var t=e.target.value.length;e.target.setSelectionRange(0,t);},r.handleFlagItemClick=function(e){var t=r.state.selectedCountry,n=r.state.onlyCountries.find((function(t){return t==e}));if(n){var a=r.state.formattedNumber.replace(" ","").replace("(","").replace(")","").replace("-",""),o=a.length>1?a.replace(t.dialCode,n.dialCode):n.dialCode,i=r.formatNumber(o.replace(/\D/g,""),n.format||r.getDefaultMask(n));r.setState({showDropdown:!1,selectedCountry:n,freezeSelection:!0,formattedNumber:i},(function(){r.cursorToEnd(),r.props.onChange&&r.props.onChange(i.replace(/[^0-9]+/g,""),r.getCountryData());}));}},r.handleInputFocus=function(e){r.numberInputRef&&r.numberInputRef.value===r.props.prefix&&r.state.selectedCountry&&!r.props.disableCountryCode&&r.setState({formattedNumber:r.props.prefix+r.state.selectedCountry.dialCode},(function(){r.props.jumpCursorToEnd&&setTimeout(r.cursorToEnd,0);})),r.setState({placeholder:""}),r.props.onFocus&&r.props.onFocus(e,r.getCountryData()),r.props.jumpCursorToEnd&&setTimeout(r.cursorToEnd,0);},r.handleInputBlur=function(e){e.target.value||r.setState({placeholder:r.props.placeholder}),r.props.onBlur&&r.props.onBlur(e,r.getCountryData());},r.handleInputCopy=function(e){if(r.props.copyNumbersOnly){var t=window.getSelection().toString().replace(/[^0-9]+/g,"");e.clipboardData.setData("text/plain",t),e.preventDefault();}},r.getHighlightCountryIndex=function(e){var t=r.state.highlightCountryIndex+e;return t<0||t>=r.state.onlyCountries.length+r.state.preferredCountries.length?t-e:r.props.enableSearch&&t>r.getSearchFilteredCountries().length?0:t},r.searchCountry=function(){var e=r.getProbableCandidate(r.state.queryString)||r.state.onlyCountries[0],t=r.state.onlyCountries.findIndex((function(t){return t==e}))+r.state.preferredCountries.length;r.scrollTo(r.getElement(t),!0),r.setState({queryString:"",highlightCountryIndex:t});},r.handleKeydown=function(e){var t=r.props.keys,n=e.target.id;if("flag-dropdown"===n&&e.which===t.ENTER&&!r.state.showDropdown)return r.handleFlagDropdownClick();if("phone-form-control"===n&&(e.which===t.ENTER||e.which===t.ESC))return e.target.blur();if(r.state.showDropdown&&!r.props.disabled&&("search-box"!==n||e.which===t.UP||e.which===t.DOWN||e.which===t.ENTER||e.which===t.ESC&&""===e.target.value)){e.preventDefault?e.preventDefault():e.returnValue=!1;var a=function(e){r.setState({highlightCountryIndex:r.getHighlightCountryIndex(e)},(function(){r.scrollTo(r.getElement(r.state.highlightCountryIndex),!0);}));};switch(e.which){case t.DOWN:a(1);break;case t.UP:a(-1);break;case t.ENTER:r.props.enableSearch?r.handleFlagItemClick(r.getSearchFilteredCountries()[r.state.highlightCountryIndex]||r.getSearchFilteredCountries()[0],e):r.handleFlagItemClick([].concat(o(r.state.preferredCountries),o(r.state.onlyCountries))[r.state.highlightCountryIndex],e);break;case t.ESC:r.setState({showDropdown:!1},r.cursorToEnd);break;default:(e.which>=t.A&&e.which<=t.Z||e.which===t.SPACE)&&r.setState({queryString:r.state.queryString+String.fromCharCode(e.which)},r.state.debouncedQueryStingSearcher);}}},r.handleInputKeyDown=function(e){var t=r.props.keys;e.which===t.ENTER&&r.props.onEnterKeyPress(e),r.props.onKeyDown&&r.props.onKeyDown(e);},r.handleClickOutside=function(e){r.dropdownRef&&!r.dropdownContainerRef.contains(e.target)&&r.state.showDropdown&&r.setState({showDropdown:!1});},r.handleSearchChange=function(e){var t=e.currentTarget.value,n=r.state,a=n.preferredCountries,o=n.selectedCountry,i=0;if(""===t&&o){var u=r.state.onlyCountries;i=a.concat(u).findIndex((function(e){return e==o})),setTimeout((function(){return r.scrollTo(r.getElement(i))}),100);}r.setState({searchValue:t,highlightCountryIndex:i});},r.getDropdownCountryName=function(e){return e.localName||e.name},r.getSearchFilteredCountries=function(){var e=r.state,t=e.preferredCountries,n=e.onlyCountries,a=e.searchValue,i=r.props.enableSearch,u=t.concat(n),c=a.trim().toLowerCase();if(i&&c){var s=u.filter((function(e){e.name,e.localName;var t=e.iso2;e.dialCode;return ["".concat(t)].some((function(e){return e.toLowerCase().includes(c)}))})),l=u.filter((function(e){var t=e.name,n=e.localName,a=(e.iso2,e.dialCode);return ["".concat(t),"".concat(n),r.props.prefix+a].some((function(e){return e.toLowerCase().includes(c)}))}));return r.scrollToTop(),o(new Set([].concat(s,l)))}return u},r.getCountryDropdownList=function(){var e,t=r.state,a=t.preferredCountries,o=t.highlightCountryIndex,i=t.showDropdown,u=t.searchValue,c=r.props,s=c.enableSearch,l=c.disableSearchIcon,f=c.searchClass,p=c.searchStyle,d=c.searchPlaceholder,h=c.autocompleteSearch,y=r.getSearchFilteredCountries().map((function(e,t){var n=x()({country:!0,preferred:"us"===e.iso2||"gb"===e.iso2,active:"us"===e.iso2,highlight:o===t}),a="flag ".concat(e.iso2);return m.a.createElement("li",{ref:function(e){return r["flag_no_".concat(t)]=e},key:"flag_no_".concat(t),"data-flag-key":"flag_no_".concat(t),className:n,"data-dial-code":"1",tabIndex:"0","data-country-code":e.iso2,onClick:function(){return r.handleFlagItemClick(e)}},m.a.createElement("div",{className:a}),m.a.createElement("span",{className:"country-name"},r.getDropdownCountryName(e)),m.a.createElement("span",{className:"dial-code"},e.format?r.formatNumber(e.dialCode,e.format):r.props.prefix+e.dialCode))})),g=m.a.createElement("li",{key:"dashes",className:"divider"});a.length>0&&(!s||s&&!u.trim())&&y.splice(a.length,0,g);var b=x()((n(e={},r.props.dropdownClass,!0),n(e,"country-list",!0),n(e,"hide",!i),e));return m.a.createElement("ul",{ref:function(e){return r.dropdownRef=e},className:b,style:r.props.dropdownStyle},s&&m.a.createElement("li",{className:x()(n({search:!0},f,f))},!l&&m.a.createElement("span",{className:x()(n({"search-emoji":!0},"".concat(f,"-emoji"),f)),role:"img","aria-label":"Magnifying glass"},"🔎"),m.a.createElement("input",{className:x()(n({"search-box":!0},"".concat(f,"-box"),f)),style:p,id:"search-box",type:"search",placeholder:d,autoFocus:!0,autoComplete:h?"on":"off",value:u,onChange:r.handleSearchChange})),y.length>0?y:m.a.createElement("li",{className:"no-entries-message"},m.a.createElement("span",null,"No entries to show.")))};var a,c=new E(e.enableAreaCodes,e.regions,e.onlyCountries,e.preferredCountries,e.excludeCountries,e.preserveOrder,e.localization,e.masks,e.areaCodes,e.prefix),s=c.onlyCountries,d=c.preferredCountries,h=e.value.replace(/[^0-9\.]+/g,"")||"";a=h.length>1?r.guessSelectedCountry(h.substring(0,6),s,e.country)||0:e.country&&s.find((function(t){return t.iso2==e.country}))||0;var y,b=h.length<2&&a&&!S()(h.replace(/\D/g,""),a.dialCode)?a.dialCode:"";y=""===h&&0===a?"":r.formatNumber((e.disableCountryCode?"":b)+h.replace(/\D/g,""),a.name?a.format:void 0);var C=s.findIndex((function(e){return e==a}));return r.state={formattedNumber:y,onlyCountries:s,preferredCountries:d,country:e.country,selectedCountry:a,highlightCountryIndex:C,queryString:"",showDropdown:!1,freezeSelection:!1,debouncedQueryStingSearcher:g()(r.searchCountry,250),searchValue:""},r}var r,a;return function(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function");e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,writable:!0,configurable:!0}}),t&&d(e,t);}(t,e),r=t,(a=[{key:"componentDidMount",value:function(){document.addEventListener&&document.addEventListener("mousedown",this.handleClickOutside);}},{key:"componentWillUnmount",value:function(){document.removeEventListener&&document.removeEventListener("mousedown",this.handleClickOutside);}},{key:"UNSAFE_componentWillReceiveProps",value:function(e){e.country&&e.country!==this.state.country?this.updateCountry(e.country):e.value!==this.state.formattedNumber&&this.updateFormattedNumber(e.value);}},{key:"updateFormattedNumber",value:function(e){var t,r=this.state,n=r.onlyCountries,a=r.country,o=e,i=e;if(S()(o,this.props.prefix))o=o.replace(/\D/g,""),i=(t=this.guessSelectedCountry(o.substring(0,6),n,a)||this.state.selectedCountry)?this.formatNumber(o,t.format||this.getDefaultMask(t)):o;else{var u=(t=this.state.selectedCountry||n.find((function(e){return e.iso2==a})))&&!S()(o.replace(/\D/g,""),t.dialCode)?t.dialCode:"";i=this.formatNumber((this.props.disableCountryCode?"":u)+o.replace(/\D/g,""),t?t.format||this.getDefaultMask(t):void 0);}this.setState({selectedCountry:t,formattedNumber:i});}},{key:"render",value:function(){var e,t,r=this,a=this.state,o=a.onlyCountries,i=a.selectedCountry,u=a.showDropdown,c=a.formattedNumber,s=this.props,l=s.disableDropdown,f=s.renderStringAsFlag,p=x()({arrow:!0,up:u}),d=x()((n(e={},this.props.inputClass,!0),n(e,"form-control",!0),n(e,"invalid-number",!this.props.isValid(c.replace(/\D/g,""),o)),n(e,"open",u),e)),h=x()({"selected-flag":!0,open:u}),y=x()((n(t={},this.props.buttonClass,!0),n(t,"flag-dropdown",!0),n(t,"open",u),t)),g="flag ".concat(i&&i.iso2);return m.a.createElement("div",{className:this.props.containerClass,style:this.props.style||this.props.containerStyle,onKeyDown:this.handleKeydown},m.a.createElement("input",Object.assign({className:d,id:"phone-form-control",style:this.props.inputStyle,onChange:this.handleInput,onClick:this.handleInputClick,onDoubleClick:this.handleDoubleClick,onFocus:this.handleInputFocus,onBlur:this.handleInputBlur,onCopy:this.handleInputCopy,value:c,ref:function(e){return r.numberInputRef=e},onKeyDown:this.handleInputKeyDown,placeholder:this.props.placeholder,disabled:this.props.disabled,type:"tel"},this.props.inputProps)),m.a.createElement("div",{className:y,id:"flag-dropdown",style:this.props.buttonStyle,ref:function(e){return r.dropdownContainerRef=e},tabIndex:"0",role:"button"},f?m.a.createElement("div",{className:h},f):m.a.createElement("div",{onClick:l?void 0:this.handleFlagDropdownClick,className:h,title:i?"".concat(i.name,": + ").concat(i.dialCode):""},m.a.createElement("div",{className:g},!l&&m.a.createElement("div",{className:p}))),u&&this.getCountryDropdownList()))}}])&&c(r.prototype,a),t}(m.a.Component);T.defaultProps={country:"",value:"",onlyCountries:[],preferredCountries:[],excludeCountries:[],placeholder:"1 (702) 123-4567",searchPlaceholder:"search",flagsImagePath:"./flags.png",disabled:!1,containerStyle:{},inputStyle:{},buttonStyle:{},dropdownStyle:{},searchStyle:{},containerClass:"react-tel-input",inputClass:"",buttonClass:"",dropdownClass:"",searchClass:"",autoFormat:!0,enableAreaCodes:!1,isValid:function(e,t){return !0},disableCountryCode:!1,disableDropdown:!1,enableLongNumbers:!1,countryCodeEditable:!0,enableSearch:!1,disableSearchIcon:!1,regions:"",inputProps:{},localization:{},masks:{},areaCodes:{},preserveOrder:[],defaultMask:"... ... ... ... ..",prefix:"+",copyNumbersOnly:!0,renderStringAsFlag:"",autocompleteSearch:!1,jumpCursorToEnd:!0,onEnterKeyPress:function(){},keys:{UP:38,DOWN:40,RIGHT:39,LEFT:37,ENTER:13,ESC:27,PLUS:43,A:65,Z:90,SPACE:32}};t.default=T;}]);
+*/!function(){var r={}.hasOwnProperty;function a(){for(var e=[],t=0;t<arguments.length;t++){var n=arguments[t];if(n){var o=typeof n;if("string"===o||"number"===o)e.push(n);else if(Array.isArray(n)&&n.length){var i=a.apply(null,n);i&&e.push(i);}else if("object"===o)for(var u in n)r.call(n,u)&&n[u]&&e.push(u);}}return e.join(" ")}e.exports?(a.default=a,e.exports=a):void 0===(n=function(){return a}.apply(t,[]))||(e.exports=n);}();},function(e,t,r){(function(t){var r=1/0,n=17976931348623157e292,a=NaN,o="[object Symbol]",i=/^\s+|\s+$/g,u=/^[-+]0x[0-9a-f]+$/i,c=/^0b[01]+$/i,s=/^0o[0-7]+$/i,l=parseInt,f="object"==typeof t&&t&&t.Object===Object&&t,p="object"==typeof self&&self&&self.Object===Object&&self,d=f||p||Function("return this")(),h=Object.prototype.toString,y=d.Symbol,m=y?y.prototype:void 0,g=m?m.toString:void 0;function b(e){if("string"==typeof e)return e;if(C(e))return g?g.call(e):"";var t=e+"";return "0"==t&&1/e==-r?"-0":t}function v(e){var t=typeof e;return !!e&&("object"==t||"function"==t)}function C(e){return "symbol"==typeof e||function(e){return !!e&&"object"==typeof e}(e)&&h.call(e)==o}function _(e){return e?(e=function(e){if("number"==typeof e)return e;if(C(e))return a;if(v(e)){var t="function"==typeof e.valueOf?e.valueOf():e;e=v(t)?t+"":t;}if("string"!=typeof e)return 0===e?e:+e;e=e.replace(i,"");var r=c.test(e);return r||s.test(e)?l(e.slice(2),r?2:8):u.test(e)?a:+e}(e))===r||e===-r?(e<0?-1:1)*n:e==e?e:0:0===e?e:0}e.exports=function(e,t,r){var n,a,o,i;return e=null==(n=e)?"":b(n),a=function(e){var t=_(e),r=t%1;return t==t?r?t-r:t:0}(r),o=0,i=e.length,a==a&&(void 0!==i&&(a=a<=i?a:i),void 0!==o&&(a=a>=o?a:o)),r=a,t=b(t),e.slice(r,r+t.length)==t};}).call(this,r(3));},function(e,t){var r;r=function(){return this}();try{r=r||new Function("return this")();}catch(e){"object"==typeof window&&(r=window);}e.exports=r;},function(e,t,r){(function(t){var r="Expected a function",n="__lodash_hash_undefined__",a="[object Function]",o="[object GeneratorFunction]",i=/^\[object .+?Constructor\]$/,u="object"==typeof t&&t&&t.Object===Object&&t,c="object"==typeof self&&self&&self.Object===Object&&self,s=u||c||Function("return this")();var l,f=Array.prototype,p=Function.prototype,d=Object.prototype,h=s["__core-js_shared__"],y=(l=/[^.]+$/.exec(h&&h.keys&&h.keys.IE_PROTO||""))?"Symbol(src)_1."+l:"",m=p.toString,g=d.hasOwnProperty,b=d.toString,v=RegExp("^"+m.call(g).replace(/[\\^$.*+?()[\]{}|]/g,"\\$&").replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g,"$1.*?")+"$"),C=f.splice,_=N(s,"Map"),w=N(Object,"create");function S(e){var t=-1,r=e?e.length:0;for(this.clear();++t<r;){var n=e[t];this.set(n[0],n[1]);}}function j(e){var t=-1,r=e?e.length:0;for(this.clear();++t<r;){var n=e[t];this.set(n[0],n[1]);}}function x(e){var t=-1,r=e?e.length:0;for(this.clear();++t<r;){var n=e[t];this.set(n[0],n[1]);}}function k(e,t){for(var r,n,a=e.length;a--;)if((r=e[a][0])===(n=t)||r!=r&&n!=n)return a;return -1}function O(e){return !(!I(e)||(t=e,y&&y in t))&&(function(e){var t=I(e)?b.call(e):"";return t==a||t==o}(e)||function(e){var t=!1;if(null!=e&&"function"!=typeof e.toString)try{t=!!(e+"");}catch(e){}return t}(e)?v:i).test(function(e){if(null!=e){try{return m.call(e)}catch(e){}try{return e+""}catch(e){}}return ""}(e));var t;}function E(e,t){var r,n,a=e.__data__;return ("string"==(n=typeof(r=t))||"number"==n||"symbol"==n||"boolean"==n?"__proto__"!==r:null===r)?a["string"==typeof t?"string":"hash"]:a.map}function N(e,t){var r=function(e,t){return null==e?void 0:e[t]}(e,t);return O(r)?r:void 0}function T(e,t){if("function"!=typeof e||t&&"function"!=typeof t)throw new TypeError(r);var n=function(){var r=arguments,a=t?t.apply(this,r):r[0],o=n.cache;if(o.has(a))return o.get(a);var i=e.apply(this,r);return n.cache=o.set(a,i),i};return n.cache=new(T.Cache||x),n}function I(e){var t=typeof e;return !!e&&("object"==t||"function"==t)}S.prototype.clear=function(){this.__data__=w?w(null):{};},S.prototype.delete=function(e){return this.has(e)&&delete this.__data__[e]},S.prototype.get=function(e){var t=this.__data__;if(w){var r=t[e];return r===n?void 0:r}return g.call(t,e)?t[e]:void 0},S.prototype.has=function(e){var t=this.__data__;return w?void 0!==t[e]:g.call(t,e)},S.prototype.set=function(e,t){return this.__data__[e]=w&&void 0===t?n:t,this},j.prototype.clear=function(){this.__data__=[];},j.prototype.delete=function(e){var t=this.__data__,r=k(t,e);return !(r<0)&&(r==t.length-1?t.pop():C.call(t,r,1),!0)},j.prototype.get=function(e){var t=this.__data__,r=k(t,e);return r<0?void 0:t[r][1]},j.prototype.has=function(e){return k(this.__data__,e)>-1},j.prototype.set=function(e,t){var r=this.__data__,n=k(r,e);return n<0?r.push([e,t]):r[n][1]=t,this},x.prototype.clear=function(){this.__data__={hash:new S,map:new(_||j),string:new S};},x.prototype.delete=function(e){return E(this,e).delete(e)},x.prototype.get=function(e){return E(this,e).get(e)},x.prototype.has=function(e){return E(this,e).has(e)},x.prototype.set=function(e,t){return E(this,e).set(e,t),this},T.Cache=x,e.exports=T;}).call(this,r(3));},function(e,t,r){(function(t){var r="Expected a function",n=NaN,a="[object Symbol]",o=/^\s+|\s+$/g,i=/^[-+]0x[0-9a-f]+$/i,u=/^0b[01]+$/i,c=/^0o[0-7]+$/i,s=parseInt,l="object"==typeof t&&t&&t.Object===Object&&t,f="object"==typeof self&&self&&self.Object===Object&&self,p=l||f||Function("return this")(),d=Object.prototype.toString,h=Math.max,y=Math.min,m=function(){return p.Date.now()};function g(e){var t=typeof e;return !!e&&("object"==t||"function"==t)}function b(e){if("number"==typeof e)return e;if(function(e){return "symbol"==typeof e||function(e){return !!e&&"object"==typeof e}(e)&&d.call(e)==a}(e))return n;if(g(e)){var t="function"==typeof e.valueOf?e.valueOf():e;e=g(t)?t+"":t;}if("string"!=typeof e)return 0===e?e:+e;e=e.replace(o,"");var r=u.test(e);return r||c.test(e)?s(e.slice(2),r?2:8):i.test(e)?n:+e}e.exports=function(e,t,n){var a,o,i,u,c,s,l=0,f=!1,p=!1,d=!0;if("function"!=typeof e)throw new TypeError(r);function v(t){var r=a,n=o;return a=o=void 0,l=t,u=e.apply(n,r)}function C(e){var r=e-s;return void 0===s||r>=t||r<0||p&&e-l>=i}function _(){var e=m();if(C(e))return w(e);c=setTimeout(_,function(e){var r=t-(e-s);return p?y(r,i-(e-l)):r}(e));}function w(e){return c=void 0,d&&a?v(e):(a=o=void 0,u)}function S(){var e=m(),r=C(e);if(a=arguments,o=this,s=e,r){if(void 0===c)return function(e){return l=e,c=setTimeout(_,t),f?v(e):u}(s);if(p)return c=setTimeout(_,t),v(s)}return void 0===c&&(c=setTimeout(_,t)),u}return t=b(t)||0,g(n)&&(f=!!n.leading,i=(p="maxWait"in n)?h(b(n.maxWait)||0,t):i,d="trailing"in n?!!n.trailing:d),S.cancel=function(){void 0!==c&&clearTimeout(c),l=0,a=s=o=c=void 0;},S.flush=function(){return void 0===c?u:w(m())},S};}).call(this,r(3));},function(e,t,r){(function(e,r){var n=200,a="Expected a function",o="__lodash_hash_undefined__",i=1,u=2,c=1/0,s=9007199254740991,l="[object Arguments]",f="[object Array]",p="[object Boolean]",d="[object Date]",h="[object Error]",y="[object Function]",m="[object GeneratorFunction]",g="[object Map]",b="[object Number]",v="[object Object]",C="[object RegExp]",_="[object Set]",w="[object String]",S="[object Symbol]",j="[object ArrayBuffer]",x="[object DataView]",k=/\.|\[(?:[^[\]]*|(["'])(?:(?!\1)[^\\]|\\.)*?\1)\]/,O=/^\w*$/,E=/^\./,N=/[^.[\]]+|\[(?:(-?\d+(?:\.\d+)?)|(["'])((?:(?!\2)[^\\]|\\.)*?)\2)\]|(?=(?:\.|\[\])(?:\.|\[\]|$))/g,T=/\\(\\)?/g,I=/^\[object .+?Constructor\]$/,D=/^(?:0|[1-9]\d*)$/,A={};A["[object Float32Array]"]=A["[object Float64Array]"]=A["[object Int8Array]"]=A["[object Int16Array]"]=A["[object Int32Array]"]=A["[object Uint8Array]"]=A["[object Uint8ClampedArray]"]=A["[object Uint16Array]"]=A["[object Uint32Array]"]=!0,A[l]=A[f]=A[j]=A[p]=A[x]=A[d]=A[h]=A[y]=A[g]=A[b]=A[v]=A[C]=A[_]=A[w]=A["[object WeakMap]"]=!1;var P="object"==typeof e&&e&&e.Object===Object&&e,F="object"==typeof self&&self&&self.Object===Object&&self,M=P||F||Function("return this")(),R=t&&!t.nodeType&&t,z=R&&"object"==typeof r&&r&&!r.nodeType&&r,L=z&&z.exports===R&&P.process,B=function(){try{return L&&L.binding("util")}catch(e){}}(),$=B&&B.isTypedArray;function G(e,t,r,n){var a=-1,o=e?e.length:0;for(n&&o&&(r=e[++a]);++a<o;)r=t(r,e[a],a,e);return r}function K(e,t){for(var r=-1,n=e?e.length:0;++r<n;)if(t(e[r],r,e))return !0;return !1}function U(e,t,r,n,a){return a(e,(function(e,a,o){r=n?(n=!1,e):t(r,e,a,o);})),r}function V(e){var t=!1;if(null!=e&&"function"!=typeof e.toString)try{t=!!(e+"");}catch(e){}return t}function q(e){var t=-1,r=Array(e.size);return e.forEach((function(e,n){r[++t]=[n,e];})),r}function W(e){var t=-1,r=Array(e.size);return e.forEach((function(e){r[++t]=e;})),r}var H,J,Z,Q=Array.prototype,Y=Function.prototype,X=Object.prototype,ee=M["__core-js_shared__"],te=(H=/[^.]+$/.exec(ee&&ee.keys&&ee.keys.IE_PROTO||""))?"Symbol(src)_1."+H:"",re=Y.toString,ne=X.hasOwnProperty,ae=X.toString,oe=RegExp("^"+re.call(ne).replace(/[\\^$.*+?()[\]{}|]/g,"\\$&").replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g,"$1.*?")+"$"),ie=M.Symbol,ue=M.Uint8Array,ce=X.propertyIsEnumerable,se=Q.splice,le=(J=Object.keys,Z=Object,function(e){return J(Z(e))}),fe=Ve(M,"DataView"),pe=Ve(M,"Map"),de=Ve(M,"Promise"),he=Ve(M,"Set"),ye=Ve(M,"WeakMap"),me=Ve(Object,"create"),ge=Xe(fe),be=Xe(pe),ve=Xe(de),Ce=Xe(he),_e=Xe(ye),we=ie?ie.prototype:void 0,Se=we?we.valueOf:void 0,je=we?we.toString:void 0;function xe(e){var t=-1,r=e?e.length:0;for(this.clear();++t<r;){var n=e[t];this.set(n[0],n[1]);}}function ke(e){var t=-1,r=e?e.length:0;for(this.clear();++t<r;){var n=e[t];this.set(n[0],n[1]);}}function Oe(e){var t=-1,r=e?e.length:0;for(this.clear();++t<r;){var n=e[t];this.set(n[0],n[1]);}}function Ee(e){var t=-1,r=e?e.length:0;for(this.__data__=new Oe;++t<r;)this.add(e[t]);}function Ne(e){this.__data__=new ke(e);}function Te(e,t){var r=nt(e)||rt(e)?function(e,t){for(var r=-1,n=Array(e);++r<e;)n[r]=t(r);return n}(e.length,String):[],n=r.length,a=!!n;for(var o in e)!t&&!ne.call(e,o)||a&&("length"==o||We(o,n))||r.push(o);return r}function Ie(e,t){for(var r=e.length;r--;)if(tt(e[r][0],t))return r;return -1}xe.prototype.clear=function(){this.__data__=me?me(null):{};},xe.prototype.delete=function(e){return this.has(e)&&delete this.__data__[e]},xe.prototype.get=function(e){var t=this.__data__;if(me){var r=t[e];return r===o?void 0:r}return ne.call(t,e)?t[e]:void 0},xe.prototype.has=function(e){var t=this.__data__;return me?void 0!==t[e]:ne.call(t,e)},xe.prototype.set=function(e,t){return this.__data__[e]=me&&void 0===t?o:t,this},ke.prototype.clear=function(){this.__data__=[];},ke.prototype.delete=function(e){var t=this.__data__,r=Ie(t,e);return !(r<0)&&(r==t.length-1?t.pop():se.call(t,r,1),!0)},ke.prototype.get=function(e){var t=this.__data__,r=Ie(t,e);return r<0?void 0:t[r][1]},ke.prototype.has=function(e){return Ie(this.__data__,e)>-1},ke.prototype.set=function(e,t){var r=this.__data__,n=Ie(r,e);return n<0?r.push([e,t]):r[n][1]=t,this},Oe.prototype.clear=function(){this.__data__={hash:new xe,map:new(pe||ke),string:new xe};},Oe.prototype.delete=function(e){return Ue(this,e).delete(e)},Oe.prototype.get=function(e){return Ue(this,e).get(e)},Oe.prototype.has=function(e){return Ue(this,e).has(e)},Oe.prototype.set=function(e,t){return Ue(this,e).set(e,t),this},Ee.prototype.add=Ee.prototype.push=function(e){return this.__data__.set(e,o),this},Ee.prototype.has=function(e){return this.__data__.has(e)},Ne.prototype.clear=function(){this.__data__=new ke;},Ne.prototype.delete=function(e){return this.__data__.delete(e)},Ne.prototype.get=function(e){return this.__data__.get(e)},Ne.prototype.has=function(e){return this.__data__.has(e)},Ne.prototype.set=function(e,t){var r=this.__data__;if(r instanceof ke){var a=r.__data__;if(!pe||a.length<n-1)return a.push([e,t]),this;r=this.__data__=new Oe(a);}return r.set(e,t),this};var De,Pe=(De=function(e,t){return e&&Fe(e,t,ft)},function(e,t){if(null==e)return e;if(!at(e))return De(e,t);for(var r=e.length,n=-1,a=Object(e);(++n<r)&&!1!==t(a[n],n,a););return e}),Fe=function(e){return function(t,r,n){for(var a=-1,o=Object(t),i=n(t),u=i.length;u--;){var c=i[e?u:++a];if(!1===r(o[c],c,o))break}return t}}();function Me(e,t){for(var r=0,n=(t=He(t,e)?[t]:Ge(t)).length;null!=e&&r<n;)e=e[Ye(t[r++])];return r&&r==n?e:void 0}function Re(e,t){return null!=e&&t in Object(e)}function ze(e,t,r,n,a){return e===t||(null==e||null==t||!ut(e)&&!ct(t)?e!=e&&t!=t:function(e,t,r,n,a,o){var c=nt(e),s=nt(t),y=f,m=f;c||(y=(y=qe(e))==l?v:y);s||(m=(m=qe(t))==l?v:m);var k=y==v&&!V(e),O=m==v&&!V(t),E=y==m;if(E&&!k)return o||(o=new Ne),c||lt(e)?Ke(e,t,r,n,a,o):function(e,t,r,n,a,o,c){switch(r){case x:if(e.byteLength!=t.byteLength||e.byteOffset!=t.byteOffset)return !1;e=e.buffer,t=t.buffer;case j:return !(e.byteLength!=t.byteLength||!n(new ue(e),new ue(t)));case p:case d:case b:return tt(+e,+t);case h:return e.name==t.name&&e.message==t.message;case C:case w:return e==t+"";case g:var s=q;case _:var l=o&u;if(s||(s=W),e.size!=t.size&&!l)return !1;var f=c.get(e);if(f)return f==t;o|=i,c.set(e,t);var y=Ke(s(e),s(t),n,a,o,c);return c.delete(e),y;case S:if(Se)return Se.call(e)==Se.call(t)}return !1}(e,t,y,r,n,a,o);if(!(a&u)){var N=k&&ne.call(e,"__wrapped__"),T=O&&ne.call(t,"__wrapped__");if(N||T){var I=N?e.value():e,D=T?t.value():t;return o||(o=new Ne),r(I,D,n,a,o)}}if(!E)return !1;return o||(o=new Ne),function(e,t,r,n,a,o){var i=a&u,c=ft(e),s=c.length,l=ft(t).length;if(s!=l&&!i)return !1;var f=s;for(;f--;){var p=c[f];if(!(i?p in t:ne.call(t,p)))return !1}var d=o.get(e);if(d&&o.get(t))return d==t;var h=!0;o.set(e,t),o.set(t,e);var y=i;for(;++f<s;){p=c[f];var m=e[p],g=t[p];if(n)var b=i?n(g,m,p,t,e,o):n(m,g,p,e,t,o);if(!(void 0===b?m===g||r(m,g,n,a,o):b)){h=!1;break}y||(y="constructor"==p);}if(h&&!y){var v=e.constructor,C=t.constructor;v!=C&&"constructor"in e&&"constructor"in t&&!("function"==typeof v&&v instanceof v&&"function"==typeof C&&C instanceof C)&&(h=!1);}return o.delete(e),o.delete(t),h}(e,t,r,n,a,o)}(e,t,ze,r,n,a))}function Le(e){return !(!ut(e)||function(e){return !!te&&te in e}(e))&&(ot(e)||V(e)?oe:I).test(Xe(e))}function Be(e){return "function"==typeof e?e:null==e?pt:"object"==typeof e?nt(e)?function(e,t){if(He(e)&&Je(t))return Ze(Ye(e),t);return function(r){var n=function(e,t,r){var n=null==e?void 0:Me(e,t);return void 0===n?r:n}(r,e);return void 0===n&&n===t?function(e,t){return null!=e&&function(e,t,r){t=He(t,e)?[t]:Ge(t);var n,a=-1,o=t.length;for(;++a<o;){var i=Ye(t[a]);if(!(n=null!=e&&r(e,i)))break;e=e[i];}if(n)return n;return !!(o=e?e.length:0)&&it(o)&&We(i,o)&&(nt(e)||rt(e))}(e,t,Re)}(r,e):ze(t,n,void 0,i|u)}}(e[0],e[1]):function(e){var t=function(e){var t=ft(e),r=t.length;for(;r--;){var n=t[r],a=e[n];t[r]=[n,a,Je(a)];}return t}(e);if(1==t.length&&t[0][2])return Ze(t[0][0],t[0][1]);return function(r){return r===e||function(e,t,r,n){var a=r.length,o=a,c=!n;if(null==e)return !o;for(e=Object(e);a--;){var s=r[a];if(c&&s[2]?s[1]!==e[s[0]]:!(s[0]in e))return !1}for(;++a<o;){var l=(s=r[a])[0],f=e[l],p=s[1];if(c&&s[2]){if(void 0===f&&!(l in e))return !1}else{var d=new Ne;if(n)var h=n(f,p,l,e,t,d);if(!(void 0===h?ze(p,f,n,i|u,d):h))return !1}}return !0}(r,e,t)}}(e):He(t=e)?(r=Ye(t),function(e){return null==e?void 0:e[r]}):function(e){return function(t){return Me(t,e)}}(t);var t,r;}function $e(e){if(r=(t=e)&&t.constructor,n="function"==typeof r&&r.prototype||X,t!==n)return le(e);var t,r,n,a=[];for(var o in Object(e))ne.call(e,o)&&"constructor"!=o&&a.push(o);return a}function Ge(e){return nt(e)?e:Qe(e)}function Ke(e,t,r,n,a,o){var c=a&u,s=e.length,l=t.length;if(s!=l&&!(c&&l>s))return !1;var f=o.get(e);if(f&&o.get(t))return f==t;var p=-1,d=!0,h=a&i?new Ee:void 0;for(o.set(e,t),o.set(t,e);++p<s;){var y=e[p],m=t[p];if(n)var g=c?n(m,y,p,t,e,o):n(y,m,p,e,t,o);if(void 0!==g){if(g)continue;d=!1;break}if(h){if(!K(t,(function(e,t){if(!h.has(t)&&(y===e||r(y,e,n,a,o)))return h.add(t)}))){d=!1;break}}else if(y!==m&&!r(y,m,n,a,o)){d=!1;break}}return o.delete(e),o.delete(t),d}function Ue(e,t){var r,n,a=e.__data__;return ("string"==(n=typeof(r=t))||"number"==n||"symbol"==n||"boolean"==n?"__proto__"!==r:null===r)?a["string"==typeof t?"string":"hash"]:a.map}function Ve(e,t){var r=function(e,t){return null==e?void 0:e[t]}(e,t);return Le(r)?r:void 0}var qe=function(e){return ae.call(e)};function We(e,t){return !!(t=null==t?s:t)&&("number"==typeof e||D.test(e))&&e>-1&&e%1==0&&e<t}function He(e,t){if(nt(e))return !1;var r=typeof e;return !("number"!=r&&"symbol"!=r&&"boolean"!=r&&null!=e&&!st(e))||(O.test(e)||!k.test(e)||null!=t&&e in Object(t))}function Je(e){return e==e&&!ut(e)}function Ze(e,t){return function(r){return null!=r&&(r[e]===t&&(void 0!==t||e in Object(r)))}}(fe&&qe(new fe(new ArrayBuffer(1)))!=x||pe&&qe(new pe)!=g||de&&"[object Promise]"!=qe(de.resolve())||he&&qe(new he)!=_||ye&&"[object WeakMap]"!=qe(new ye))&&(qe=function(e){var t=ae.call(e),r=t==v?e.constructor:void 0,n=r?Xe(r):void 0;if(n)switch(n){case ge:return x;case be:return g;case ve:return "[object Promise]";case Ce:return _;case _e:return "[object WeakMap]"}return t});var Qe=et((function(e){var t;e=null==(t=e)?"":function(e){if("string"==typeof e)return e;if(st(e))return je?je.call(e):"";var t=e+"";return "0"==t&&1/e==-c?"-0":t}(t);var r=[];return E.test(e)&&r.push(""),e.replace(N,(function(e,t,n,a){r.push(n?a.replace(T,"$1"):t||e);})),r}));function Ye(e){if("string"==typeof e||st(e))return e;var t=e+"";return "0"==t&&1/e==-c?"-0":t}function Xe(e){if(null!=e){try{return re.call(e)}catch(e){}try{return e+""}catch(e){}}return ""}function et(e,t){if("function"!=typeof e||t&&"function"!=typeof t)throw new TypeError(a);var r=function(){var n=arguments,a=t?t.apply(this,n):n[0],o=r.cache;if(o.has(a))return o.get(a);var i=e.apply(this,n);return r.cache=o.set(a,i),i};return r.cache=new(et.Cache||Oe),r}function tt(e,t){return e===t||e!=e&&t!=t}function rt(e){return function(e){return ct(e)&&at(e)}(e)&&ne.call(e,"callee")&&(!ce.call(e,"callee")||ae.call(e)==l)}et.Cache=Oe;var nt=Array.isArray;function at(e){return null!=e&&it(e.length)&&!ot(e)}function ot(e){var t=ut(e)?ae.call(e):"";return t==y||t==m}function it(e){return "number"==typeof e&&e>-1&&e%1==0&&e<=s}function ut(e){var t=typeof e;return !!e&&("object"==t||"function"==t)}function ct(e){return !!e&&"object"==typeof e}function st(e){return "symbol"==typeof e||ct(e)&&ae.call(e)==S}var lt=$?function(e){return function(t){return e(t)}}($):function(e){return ct(e)&&it(e.length)&&!!A[ae.call(e)]};function ft(e){return at(e)?Te(e):$e(e)}function pt(e){return e}r.exports=function(e,t,r){var n=nt(e)?G:U,a=arguments.length<3;return n(e,Be(t),r,a,Pe)};}).call(this,r(3),r(7)(e));},function(e,t){e.exports=function(e){return e.webpackPolyfill||(e.deprecate=function(){},e.paths=[],e.children||(e.children=[]),Object.defineProperty(e,"loaded",{enumerable:!0,get:function(){return e.l}}),Object.defineProperty(e,"id",{enumerable:!0,get:function(){return e.i}}),e.webpackPolyfill=1),e};},function(e,t,r){function n(e,t,r){return t in e?Object.defineProperty(e,t,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[t]=r,e}function a(e){if(Symbol.iterator in Object(e)||"[object Arguments]"===Object.prototype.toString.call(e))return Array.from(e)}function o(e){return function(e){if(Array.isArray(e)){for(var t=0,r=new Array(e.length);t<e.length;t++)r[t]=e[t];return r}}(e)||a(e)||function(){throw new TypeError("Invalid attempt to spread non-iterable instance")}()}function i(e){return function(e){if(Array.isArray(e))return e}(e)||a(e)||function(){throw new TypeError("Invalid attempt to destructure non-iterable instance")}()}function u(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function c(e,t){for(var r=0;r<t.length;r++){var n=t[r];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n);}}function s(e){return (s="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e})(e)}function l(e){return (l="function"==typeof Symbol&&"symbol"===s(Symbol.iterator)?function(e){return s(e)}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":s(e)})(e)}function f(e){if(void 0===e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return e}function p(e){return (p=Object.setPrototypeOf?Object.getPrototypeOf:function(e){return e.__proto__||Object.getPrototypeOf(e)})(e)}function d(e,t){return (d=Object.setPrototypeOf||function(e,t){return e.__proto__=t,e})(e,t)}r.r(t);var h=r(0),y=r.n(h),m=r(5),g=r.n(m),b=r(4),v=r.n(b),C=r(6),_=r.n(C),w=r(2),S=r.n(w),j=r(1),x=r.n(j);var k=[["Afghanistan",["asia"],"af","93"],["Albania",["europe"],"al","355"],["Algeria",["africa","north-africa"],"dz","213"],["American Samoa",["oceania"],"as","1684"],["Andorra",["europe"],"ad","376"],["Angola",["africa"],"ao","244"],["Anguilla",["america","carribean"],"ai","1264"],["Antigua and Barbuda",["america","carribean"],"ag","1268"],["Argentina",["america","south-america"],"ar","54","(..) ........"],["Armenia",["asia","ex-ussr"],"am","374"],["Aruba",["america","carribean"],"aw","297"],["Australia",["oceania"],"au","61","... ... ..."],["Austria",["europe","eu-union"],"at","43"],["Azerbaijan",["asia","ex-ussr"],"az","994"],["Bahamas",["america","carribean"],"bs","1242"],["Bahrain",["middle-east"],"bh","973"],["Bangladesh",["asia"],"bd","880"],["Barbados",["america","carribean"],"bb","1246"],["Belarus",["europe","ex-ussr"],"by","375","(..) ... .. .."],["Belgium",["europe","eu-union"],"be","32","... .. .. .."],["Belize",["america","central-america"],"bz","501"],["Benin",["africa"],"bj","229"],["Bermuda",["america","north-america"],"bm","1441"],["Bhutan",["asia"],"bt","975"],["Bolivia",["america","south-america"],"bo","591"],["Bosnia and Herzegovina",["europe","ex-yugos"],"ba","387"],["Botswana",["africa"],"bw","267"],["Brazil",["america","south-america"],"br","55","(..) ........."],["British Indian Ocean Territory",["asia"],"io","246"],["British Virgin Islands",["america","carribean"],"vg","1284"],["Brunei",["asia"],"bn","673"],["Bulgaria",["europe","eu-union"],"bg","359"],["Burkina Faso",["africa"],"bf","226"],["Burundi",["africa"],"bi","257"],["Cambodia",["asia"],"kh","855"],["Cameroon",["africa"],"cm","237"],["Canada",["america","north-america"],"ca","1","(...) ...-....",1,["204","226","236","249","250","289","306","343","365","387","403","416","418","431","437","438","450","506","514","519","548","579","581","587","604","613","639","647","672","705","709","742","778","780","782","807","819","825","867","873","902","905"]],["Cape Verde",["africa"],"cv","238"],["Caribbean Netherlands",["america","carribean"],"bq","599","",1],["Cayman Islands",["america","carribean"],"ky","1345"],["Central African Republic",["africa"],"cf","236"],["Chad",["africa"],"td","235"],["Chile",["america","south-america"],"cl","56"],["China",["asia"],"cn","86","..-........."],["Colombia",["america","south-america"],"co","57"],["Comoros",["africa"],"km","269"],["Congo",["africa"],"cd","243"],["Congo",["africa"],"cg","242"],["Cook Islands",["oceania"],"ck","682"],["Costa Rica",["america","central-america"],"cr","506","....-...."],["Côte d’Ivoire",["africa"],"ci","225"],["Croatia",["europe","eu-union","ex-yugos"],"hr","385"],["Cuba",["america","carribean"],"cu","53"],["Curaçao",["america","carribean"],"cw","599","",0],["Cyprus",["europe","eu-union"],"cy","357",".. ......"],["Czech Republic",["europe","eu-union"],"cz","420"],["Denmark",["europe","eu-union","baltic"],"dk","45",".. .. .. .."],["Djibouti",["africa"],"dj","253"],["Dominica",["america","carribean"],"dm","1767"],["Dominican Republic",["america","carribean"],"do","1","",2,["809","829","849"]],["Ecuador",["america","south-america"],"ec","593"],["Egypt",["africa","north-africa"],"eg","20"],["El Salvador",["america","central-america"],"sv","503","....-...."],["Equatorial Guinea",["africa"],"gq","240"],["Eritrea",["africa"],"er","291"],["Estonia",["europe","eu-union","ex-ussr","baltic"],"ee","372",".... ......"],["Ethiopia",["africa"],"et","251"],["Falkland Islands",["america","south-america"],"fk","500"],["Faroe Islands",["europe"],"fo","298"],["Fiji",["oceania"],"fj","679"],["Finland",["europe","eu-union","baltic"],"fi","358",".. ... .. .."],["France",["europe","eu-union"],"fr","33",". .. .. .. .."],["French Guiana",["america","south-america"],"gf","594"],["French Polynesia",["oceania"],"pf","689"],["Gabon",["africa"],"ga","241"],["Gambia",["africa"],"gm","220"],["Georgia",["asia","ex-ussr"],"ge","995"],["Germany",["europe","eu-union","baltic"],"de","49",".... ........"],["Ghana",["africa"],"gh","233"],["Gibraltar",["europe"],"gi","350"],["Greece",["europe","eu-union"],"gr","30"],["Greenland",["america"],"gl","299"],["Grenada",["america","carribean"],"gd","1473"],["Guadeloupe",["america","carribean"],"gp","590","",0],["Guam",["oceania"],"gu","1671"],["Guatemala",["america","central-america"],"gt","502","....-...."],["Guinea",["africa"],"gn","224"],["Guinea-Bissau",["africa"],"gw","245"],["Guyana",["america","south-america"],"gy","592"],["Haiti",["america","carribean"],"ht","509","....-...."],["Honduras",["america","central-america"],"hn","504"],["Hong Kong",["asia"],"hk","852",".... ...."],["Hungary",["europe","eu-union"],"hu","36"],["Iceland",["europe"],"is","354","... ...."],["India",["asia"],"in","91",".....-....."],["Indonesia",["asia"],"id","62"],["Iran",["middle-east"],"ir","98"],["Iraq",["middle-east"],"iq","964"],["Ireland",["europe","eu-union"],"ie","353",".. ......."],["Israel",["middle-east"],"il","972","... ... ...."],["Italy",["europe","eu-union"],"it","39","... .......",0],["Jamaica",["america","carribean"],"jm","1876"],["Japan",["asia"],"jp","81",".. .... ...."],["Jordan",["middle-east"],"jo","962"],["Kazakhstan",["asia","ex-ussr"],"kz","7","... ...-..-..",1,["310","311","312","313","315","318","321","324","325","326","327","336","7172","73622"]],["Kenya",["africa"],"ke","254"],["Kiribati",["oceania"],"ki","686"],["Kosovo",["europe","ex-yugos"],"xk","383"],["Kuwait",["middle-east"],"kw","965"],["Kyrgyzstan",["asia","ex-ussr"],"kg","996"],["Laos",["asia"],"la","856"],["Latvia",["europe","eu-union","ex-ussr","baltic"],"lv","371"],["Lebanon",["middle-east"],"lb","961"],["Lesotho",["africa"],"ls","266"],["Liberia",["africa"],"lr","231"],["Libya",["africa","north-africa"],"ly","218"],["Liechtenstein",["europe"],"li","423"],["Lithuania",["europe","eu-union","ex-ussr","baltic"],"lt","370"],["Luxembourg",["europe","eu-union"],"lu","352"],["Macau",["asia"],"mo","853"],["Macedonia",["europe","ex-yugos"],"mk","389"],["Madagascar",["africa"],"mg","261"],["Malawi",["africa"],"mw","265"],["Malaysia",["asia"],"my","60","..-....-...."],["Maldives",["asia"],"mv","960"],["Mali",["africa"],"ml","223"],["Malta",["europe","eu-union"],"mt","356"],["Marshall Islands",["oceania"],"mh","692"],["Martinique",["america","carribean"],"mq","596"],["Mauritania",["africa"],"mr","222"],["Mauritius",["africa"],"mu","230"],["Mexico",["america","central-america"],"mx","52"],["Micronesia",["oceania"],"fm","691"],["Moldova",["europe"],"md","373","(..) ..-..-.."],["Monaco",["europe"],"mc","377"],["Mongolia",["asia"],"mn","976"],["Montenegro",["europe","ex-yugos"],"me","382"],["Montserrat",["america","carribean"],"ms","1664"],["Morocco",["africa","north-africa"],"ma","212"],["Mozambique",["africa"],"mz","258"],["Myanmar",["asia"],"mm","95"],["Namibia",["africa"],"na","264"],["Nauru",["africa"],"nr","674"],["Nepal",["asia"],"np","977"],["Netherlands",["europe","eu-union"],"nl","31",".. ........"],["New Caledonia",["oceania"],"nc","687"],["New Zealand",["oceania"],"nz","64","...-...-...."],["Nicaragua",["america","central-america"],"ni","505"],["Niger",["africa"],"ne","227"],["Nigeria",["africa"],"ng","234"],["Niue",["asia"],"nu","683"],["Norfolk Island",["oceania"],"nf","672"],["North Korea",["asia"],"kp","850"],["Northern Mariana Islands",["oceania"],"mp","1670"],["Norway",["europe","baltic"],"no","47","... .. ..."],["Oman",["middle-east"],"om","968"],["Pakistan",["asia"],"pk","92","...-......."],["Palau",["oceania"],"pw","680"],["Palestine",["middle-east"],"ps","970"],["Panama",["america","central-america"],"pa","507"],["Papua New Guinea",["oceania"],"pg","675"],["Paraguay",["america","south-america"],"py","595"],["Peru",["america","south-america"],"pe","51"],["Philippines",["asia"],"ph","63",".... ......."],["Poland",["europe","eu-union","baltic"],"pl","48","...-...-..."],["Portugal",["europe","eu-union"],"pt","351"],["Puerto Rico",["america","carribean"],"pr","1","",3,["787","939"]],["Qatar",["middle-east"],"qa","974"],["Réunion",["africa"],"re","262"],["Romania",["europe","eu-union"],"ro","40"],["Russia",["europe","asia","ex-ussr","baltic"],"ru","7","(...) ...-..-..",0],["Rwanda",["africa"],"rw","250"],["Saint Barthélemy",["america","carribean"],"bl","590","",1],["Saint Helena",["africa"],"sh","290"],["Saint Kitts and Nevis",["america","carribean"],"kn","1869"],["Saint Lucia",["america","carribean"],"lc","1758"],["Saint Martin",["america","carribean"],"mf","590","",2],["Saint Pierre and Miquelon",["america","north-america"],"pm","508"],["Saint Vincent and the Grenadines",["america","carribean"],"vc","1784"],["Samoa",["oceania"],"ws","685"],["San Marino",["europe"],"sm","378"],["São Tomé and Príncipe",["africa"],"st","239"],["Saudi Arabia",["middle-east"],"sa","966"],["Senegal",["africa"],"sn","221"],["Serbia",["europe","ex-yugos"],"rs","381"],["Seychelles",["africa"],"sc","248"],["Sierra Leone",["africa"],"sl","232"],["Singapore",["asia"],"sg","65","....-...."],["Sint Maarten",["america","carribean"],"sx","1721"],["Slovakia",["europe","eu-union"],"sk","421"],["Slovenia",["europe","eu-union","ex-yugos"],"si","386"],["Solomon Islands",["oceania"],"sb","677"],["Somalia",["africa"],"so","252"],["South Africa",["africa"],"za","27"],["South Korea",["asia"],"kr","82","... .... ...."],["South Sudan",["africa","north-africa"],"ss","211"],["Spain",["europe","eu-union"],"es","34","... ... ..."],["Sri Lanka",["asia"],"lk","94"],["Sudan",["africa"],"sd","249"],["Suriname",["america","south-america"],"sr","597"],["Swaziland",["africa"],"sz","268"],["Sweden",["europe","eu-union","baltic"],"se","46","(...) ...-..."],["Switzerland",["europe"],"ch","41",".. ... .. .."],["Syria",["middle-east"],"sy","963"],["Taiwan",["asia"],"tw","886"],["Tajikistan",["asia","ex-ussr"],"tj","992"],["Tanzania",["africa"],"tz","255"],["Thailand",["asia"],"th","66"],["Timor-Leste",["asia"],"tl","670"],["Togo",["africa"],"tg","228"],["Tokelau",["oceania"],"tk","690"],["Tonga",["oceania"],"to","676"],["Trinidad and Tobago",["america","carribean"],"tt","1868"],["Tunisia",["africa","north-africa"],"tn","216"],["Turkey",["europe"],"tr","90","... ... .. .."],["Turkmenistan",["asia","ex-ussr"],"tm","993"],["Turks and Caicos Islands",["america","carribean"],"tc","1649"],["Tuvalu",["asia"],"tv","688"],["U.S. Virgin Islands",["america","carribean"],"vi","1340"],["Uganda",["africa"],"ug","256"],["Ukraine",["europe","ex-ussr"],"ua","380","(..) ... .. .."],["United Arab Emirates",["middle-east"],"ae","971"],["United Kingdom",["europe","eu-union"],"gb","44",".... ......"],["United States",["america","north-america"],"us","1","(...) ...-....",0,["907","205","251","256","334","479","501","870","480","520","602","623","928","209","213","310","323","408","415","510","530","559","562","619","626","650","661","707","714","760","805","818","831","858","909","916","925","949","951","303","719","970","203","860","202","302","239","305","321","352","386","407","561","727","772","813","850","863","904","941","954","229","404","478","706","770","912","808","319","515","563","641","712","208","217","309","312","618","630","708","773","815","847","219","260","317","574","765","812","316","620","785","913","270","502","606","859","225","318","337","504","985","413","508","617","781","978","301","410","207","231","248","269","313","517","586","616","734","810","906","989","218","320","507","612","651","763","952","314","417","573","636","660","816","228","601","662","406","252","336","704","828","910","919","701","308","402","603","201","609","732","856","908","973","505","575","702","775","212","315","516","518","585","607","631","716","718","845","914","216","330","419","440","513","614","740","937","405","580","918","503","541","215","412","570","610","717","724","814","401","803","843","864","605","423","615","731","865","901","931","210","214","254","281","325","361","409","432","512","713","806","817","830","903","915","936","940","956","972","979","435","801","276","434","540","703","757","804","802","206","253","360","425","509","262","414","608","715","920","304","307"]],["Uruguay",["america","south-america"],"uy","598"],["Uzbekistan",["asia","ex-ussr"],"uz","998"],["Vanuatu",["oceania"],"vu","678"],["Vatican City",["europe"],"va","39",".. .... ....",1],["Venezuela",["america","south-america"],"ve","58"],["Vietnam",["asia"],"vn","84"],["Wallis and Futuna",["oceania"],"wf","681"],["Yemen",["middle-east"],"ye","967"],["Zambia",["africa"],"zm","260"],["Zimbabwe",["africa"],"zw","263"]];function O(e,t,r,n,a){return !r||a?e+"".padEnd(t.length,".")+" "+n:e+"".padEnd(t.length,".")+" "+r}function E(e,t,r,a){var i,u;return u="boolean"==typeof e,(i=[]).concat.apply(i,o(k.map((function(o){var i={name:o[0],regions:o[1],iso2:o[2],dialCode:o[3],format:O(t,o[3],o[4],r,a),priority:o[5]||0,hasAreaCodes:!!o[6]},c=[];return o[6]&&(u||e.includes(o[2]))&&o[6].map((function(e){var t=function(e){for(var t=1;t<arguments.length;t++){var r=null!=arguments[t]?arguments[t]:{},a=Object.keys(r);"function"==typeof Object.getOwnPropertySymbols&&(a=a.concat(Object.getOwnPropertySymbols(r).filter((function(e){return Object.getOwnPropertyDescriptor(r,e).enumerable})))),a.forEach((function(t){n(e,t,r[t]);}));}return e}({},i);t.regions=o[1],t.dialCode=o[3]+e,t.isAreaCode=!0,c.push(t);})),c.length>0?(i.mainCode=!0,[i].concat(c)):[i]}))))}var N=function e(t,r,n,a,o,i,c,s,l,f,p,d,h){var y=this;u(this,e),this.filterRegions=function(e,t){if("string"==typeof e){var r=e;return t.filter((function(e){return e.regions.some((function(e){return e===r}))}))}return t.filter((function(t){return e.map((function(e){return t.regions.some((function(t){return t===e}))})).some((function(e){return e}))}))},this.getFilteredCountryList=function(e,t,r){return 0===e.length?t:r?e.map((function(e){var r=t.find((function(t){return t.iso2===e}));if(r)return r})).filter((function(e){return e})):t.filter((function(t){return e.some((function(e){return e===t.iso2}))}))},this.extendCountries=function(e,t,r,n,a){for(var o=0;o<e.length;o++)void 0!==t[e[o].iso2]?e[o].localName=t[e[o].iso2]:void 0!==t[e[o].name]&&(e[o].localName=t[e[o].name]),void 0!==r[e[o].iso2]?e[o].format=r[e[o].iso2]:void 0!==r[e[o].name]&&(e[o].format=r[e[o].name]);if(Object.keys(n).length>0){var i=function(){for(var t=[],r=null,o=0;o<e.length;o++)if(t.push(e[o]),void 0!==n[e[o].iso2]){if(r||(r=e[o]),e[o+1]&&e[o+1].iso2===r.iso2)continue;y.getCustomAreas(r,n[e[o].iso2]).forEach((function(e){t.push(e);})),r=null;}else if(void 0!==n[e[o].name]){if(r||(r=e[o]),e[o+1]&&e[o+1].iso2===r.iso2)continue;y.getCustomAreas(r,n[e[o].name]).forEach((function(e){t.push(e);})),r=null;}return {v:y.modifyPriority(t,a)}}();if("object"==typeof i)return i.v}return y.modifyPriority(e,a)},this.getCustomAreas=function(e,t){for(var r=[],n=0;n<t.length;n++){var a=JSON.parse(JSON.stringify(e));a.dialCode+=t[n],r.push(a);}return r},this.modifyPriority=function(e,t){if(t){var r=Object.keys(t);e.forEach((function(e){r.includes(e.iso2)&&Object.keys(t).forEach((function(r){r===e.iso2&&(e.priority=t[r]);}));}));}return e},this.excludeCountries=function(e,t){return 0===t.length?e:e.filter((function(e){return !t.includes(e.iso2)}))};var m=t?E(t,f,p,d):function(e,t,r){return k.map((function(n){return {name:n[0],regions:n[1],iso2:n[2],dialCode:n[3],format:O(e,n[3],n[4],t,r),priority:n[5]||0}}))}(f,p,d);r&&(m=this.filterRegions(r,m)),this.onlyCountries=this.excludeCountries(this.extendCountries(this.getFilteredCountryList(n,m,i.includes("onlyCountries")),c,s,l,h),o),this.preferredCountries=0===a.length?[]:this.extendCountries(this.getFilteredCountryList(a,m,i.includes("preferredCountries")),c,s,l,h);},T=function(e){function t(e){var r;u(this,t),(r=function(e,t){return !t||"object"!==l(t)&&"function"!=typeof t?f(e):t}(this,p(t).call(this,e))).getProbableCandidate=v()((function(e){return e&&0!==e.length?r.state.onlyCountries.filter((function(t){return S()(t.name.toLowerCase(),e.toLowerCase())}),f(f(r)))[0]:null})),r.guessSelectedCountry=v()((function(e,t,n){var a=t.find((function(e){return e.iso2==n}));if(""===e.trim())return a;var o=t.reduce((function(t,r){if(S()(e,r.dialCode)){if(r.dialCode.length>t.dialCode.length)return r;if(r.dialCode.length===t.dialCode.length&&r.priority<t.priority)return r}return t}),{dialCode:"",priority:10001},f(f(r)));return o.name?o:a})),r.updateCountry=function(e){var t;(t=e.indexOf(0)>="0"&&e.indexOf(0)<="9"?r.state.onlyCountries.find((function(t){return t.dialCode==+e})):r.state.onlyCountries.find((function(t){return t.iso2==e})))&&t.dialCode&&r.setState({country:e,selectedCountry:t,formattedNumber:r.props.disableCountryCode?"":r.props.prefix+t.dialCode});},r.scrollTo=function(e,t){if(e){var n=r.dropdownRef;if(n&&document.body){var a=n.offsetHeight,o=n.getBoundingClientRect().top+document.body.scrollTop,i=o+a,u=e,c=u.getBoundingClientRect(),s=u.offsetHeight,l=c.top+document.body.scrollTop,f=l+s,p=l-o+n.scrollTop,d=a/2-s/2;if(r.props.enableSearch?l<o+32:l<o)t&&(p-=d),n.scrollTop=p;else if(f>i){t&&(p+=d);var h=a-s;n.scrollTop=p-h;}}}},r.scrollToTop=function(){var e=r.dropdownRef;e&&document.body&&(e.scrollTop=0);},r.formatNumber=function(e,t){var n,a=r.props,o=a.disableCountryCode,u=a.enableLongNumbers,c=a.autoFormat;if(o&&t?((n=t.split(" ")).shift(),n=n.join(" ")):n=t,!e||0===e.length)return o?"":r.props.prefix;if(e&&e.length<2||!n||!c)return o?e:r.props.prefix+e;var s,l=_()(n,(function(e,t){if(0===e.remainingText.length)return e;if("."!==t)return {formattedText:e.formattedText+t,remainingText:e.remainingText};var r=i(e.remainingText),n=r[0],a=r.slice(1);return {formattedText:e.formattedText+n,remainingText:a}}),{formattedText:"",remainingText:e.split("")});return (s=u?l.formattedText+l.remainingText.join(""):l.formattedText).includes("(")&&!s.includes(")")&&(s+=")"),s},r.cursorToEnd=function(){var e=r.numberInputRef;e.focus();var t=e.value.length;e.setSelectionRange(t,t);},r.getElement=function(e){return r["flag_no_".concat(e)]},r.getCountryData=function(){return r.state.selectedCountry?{name:r.state.selectedCountry.name||"",dialCode:r.state.selectedCountry.dialCode||"",countryCode:r.state.selectedCountry.iso2||"",format:r.state.selectedCountry.format||""}:{}},r.handleFlagDropdownClick=function(){if(r.state.showDropdown||!r.props.disabled){var e,t=r.state,n=t.preferredCountries,a=t.selectedCountry,o=n.concat(r.state.onlyCountries);e=n.includes(a)?n.findIndex((function(e){return e==a})):r.props.enableAreaCodes?o.findIndex((function(e){return e==a})):o.findIndex((function(e){return e.iso2==a.iso2})),r.setState({showDropdown:!r.state.showDropdown,highlightCountryIndex:e},(function(){r.state.showDropdown&&r.scrollTo(r.getElement(r.state.highlightCountryIndex));}));}},r.handleInput=function(e){var t=r.props.disableCountryCode?"":r.props.prefix,n=r.state.selectedCountry,a=r.state.freezeSelection;if(!r.props.countryCodeEditable){var o=n.hasAreaCodes?r.state.onlyCountries.find((function(e){return e.iso2===n.iso2&&e.mainCode})).dialCode:n.dialCode,i=r.props.prefix+o;if(e.target.value.slice(0,i.length)!==i)return}if(!(e.target.value.replace(/\D/g,"").length>15)&&e.target.value!==r.state.formattedNumber){if(e.preventDefault?e.preventDefault():e.returnValue=!1,r.props.onChange&&e.persist(),e.target.value.length>0){var u=e.target.value.replace(/\D/g,"");(!r.state.freezeSelection||r.state.selectedCountry.dialCode.length>u.length)&&(n=r.guessSelectedCountry(u.substring(0,6),r.state.onlyCountries,r.state.country)||r.state.selectedCountry,a=!1),t=n?r.formatNumber(u,n.format):u,n=n.dialCode?n:r.state.selectedCountry;}var c=e.target.selectionStart,s=r.state.formattedNumber,l=t.length-s.length;r.setState({formattedNumber:t,freezeSelection:a,selectedCountry:n},(function(){l>0&&(c-=l),")"==t.charAt(t.length-1)?r.numberInputRef.setSelectionRange(t.length-1,t.length-1):c>0&&s.length>=t.length&&r.numberInputRef.setSelectionRange(c,c),r.props.onChange&&r.props.onChange(r.state.formattedNumber,r.getCountryData(),e);}));}},r.handleInputClick=function(e){r.setState({showDropdown:!1}),r.props.onClick&&r.props.onClick(e,r.getCountryData());},r.handleDoubleClick=function(e){var t=e.target.value.length;e.target.setSelectionRange(0,t);},r.handleFlagItemClick=function(e){var t=r.state.selectedCountry,n=r.state.onlyCountries.find((function(t){return t==e}));if(n){var a=r.state.formattedNumber.replace(" ","").replace("(","").replace(")","").replace("-",""),o=a.length>1?a.replace(t.dialCode,n.dialCode):n.dialCode,i=r.formatNumber(o.replace(/\D/g,""),n.format);r.setState({showDropdown:!1,selectedCountry:n,freezeSelection:!0,formattedNumber:i},(function(){r.cursorToEnd(),r.props.onChange&&r.props.onChange(i.replace(/[^0-9]+/g,""),r.getCountryData());}));}},r.handleInputFocus=function(e){r.numberInputRef&&r.numberInputRef.value===r.props.prefix&&r.state.selectedCountry&&!r.props.disableCountryCode&&r.setState({formattedNumber:r.props.prefix+r.state.selectedCountry.dialCode},(function(){r.props.jumpCursorToEnd&&setTimeout(r.cursorToEnd,0);})),r.setState({placeholder:""}),r.props.onFocus&&r.props.onFocus(e,r.getCountryData()),r.props.jumpCursorToEnd&&setTimeout(r.cursorToEnd,0);},r.handleInputBlur=function(e){e.target.value||r.setState({placeholder:r.props.placeholder}),r.props.onBlur&&r.props.onBlur(e,r.getCountryData());},r.handleInputCopy=function(e){if(r.props.copyNumbersOnly){var t=window.getSelection().toString().replace(/[^0-9]+/g,"");e.clipboardData.setData("text/plain",t),e.preventDefault();}},r.getHighlightCountryIndex=function(e){var t=r.state.highlightCountryIndex+e;return t<0||t>=r.state.onlyCountries.length+r.state.preferredCountries.length?t-e:r.props.enableSearch&&t>r.getSearchFilteredCountries().length?0:t},r.searchCountry=function(){var e=r.getProbableCandidate(r.state.queryString)||r.state.onlyCountries[0],t=r.state.onlyCountries.findIndex((function(t){return t==e}))+r.state.preferredCountries.length;r.scrollTo(r.getElement(t),!0),r.setState({queryString:"",highlightCountryIndex:t});},r.handleKeydown=function(e){var t=r.props.keys,n=e.target.className;if(n.includes("flag-dropdown")&&e.which===t.ENTER&&!r.state.showDropdown)return r.handleFlagDropdownClick();if(n.includes("form-control")&&(e.which===t.ENTER||e.which===t.ESC))return e.target.blur();if(r.state.showDropdown&&!r.props.disabled&&(!n.includes("search-box")||e.which===t.UP||e.which===t.DOWN||e.which===t.ENTER||e.which===t.ESC&&""===e.target.value)){e.preventDefault?e.preventDefault():e.returnValue=!1;var a=function(e){r.setState({highlightCountryIndex:r.getHighlightCountryIndex(e)},(function(){r.scrollTo(r.getElement(r.state.highlightCountryIndex),!0);}));};switch(e.which){case t.DOWN:a(1);break;case t.UP:a(-1);break;case t.ENTER:r.props.enableSearch?r.handleFlagItemClick(r.getSearchFilteredCountries()[r.state.highlightCountryIndex]||r.getSearchFilteredCountries()[0],e):r.handleFlagItemClick([].concat(o(r.state.preferredCountries),o(r.state.onlyCountries))[r.state.highlightCountryIndex],e);break;case t.ESC:r.setState({showDropdown:!1},r.cursorToEnd);break;default:(e.which>=t.A&&e.which<=t.Z||e.which===t.SPACE)&&r.setState({queryString:r.state.queryString+String.fromCharCode(e.which)},r.state.debouncedQueryStingSearcher);}}},r.handleInputKeyDown=function(e){var t=r.props.keys;e.which===t.ENTER&&r.props.onEnterKeyPress(e),r.props.onKeyDown&&r.props.onKeyDown(e);},r.handleClickOutside=function(e){r.dropdownRef&&!r.dropdownContainerRef.contains(e.target)&&r.state.showDropdown&&r.setState({showDropdown:!1});},r.handleSearchChange=function(e){var t=e.currentTarget.value,n=r.state,a=n.preferredCountries,o=n.selectedCountry,i=0;if(""===t&&o){var u=r.state.onlyCountries;i=a.concat(u).findIndex((function(e){return e==o})),setTimeout((function(){return r.scrollTo(r.getElement(i))}),100);}r.setState({searchValue:t,highlightCountryIndex:i});},r.getDropdownCountryName=function(e){return e.localName||e.name},r.getSearchFilteredCountries=function(){var e=r.state,t=e.preferredCountries,n=e.onlyCountries,a=e.searchValue,i=r.props.enableSearch,u=t.concat(n),c=a.trim().toLowerCase();if(i&&c){var s=u.filter((function(e){e.name,e.localName;var t=e.iso2;e.dialCode;return ["".concat(t)].some((function(e){return e.toLowerCase().includes(c)}))})),l=u.filter((function(e){var t=e.name,n=e.localName,a=(e.iso2,e.dialCode);return ["".concat(t),"".concat(n),r.props.prefix+a].some((function(e){return e.toLowerCase().includes(c)}))}));return r.scrollToTop(),o(new Set([].concat(s,l)))}return u},r.getCountryDropdownList=function(){var e,t=r.state,a=t.preferredCountries,o=t.highlightCountryIndex,i=t.showDropdown,u=t.searchValue,c=r.props,s=c.enableSearch,l=c.disableSearchIcon,f=c.searchClass,p=c.searchStyle,d=c.searchPlaceholder,h=c.autocompleteSearch,m=r.getSearchFilteredCountries().map((function(e,t){var n=x()({country:!0,preferred:"us"===e.iso2||"gb"===e.iso2,active:"us"===e.iso2,highlight:o===t}),a="flag ".concat(e.iso2);return y.a.createElement("li",{ref:function(e){return r["flag_no_".concat(t)]=e},key:"flag_no_".concat(t),"data-flag-key":"flag_no_".concat(t),className:n,"data-dial-code":"1",tabIndex:r.props.tabIndex,"data-country-code":e.iso2,onClick:function(){return r.handleFlagItemClick(e)}},y.a.createElement("div",{className:a}),y.a.createElement("span",{className:"country-name"},r.getDropdownCountryName(e)),y.a.createElement("span",{className:"dial-code"},e.format?r.formatNumber(e.dialCode,e.format):r.props.prefix+e.dialCode))})),g=y.a.createElement("li",{key:"dashes",className:"divider"});a.length>0&&(!s||s&&!u.trim())&&m.splice(a.length,0,g);var b=x()((n(e={},r.props.dropdownClass,!0),n(e,"country-list",!0),n(e,"hide",!i),e));return y.a.createElement("ul",{ref:function(e){return r.dropdownRef=e},className:b,style:r.props.dropdownStyle},s&&y.a.createElement("li",{className:x()(n({search:!0},f,f))},!l&&y.a.createElement("span",{className:x()(n({"search-emoji":!0},"".concat(f,"-emoji"),f)),role:"img","aria-label":"Magnifying glass"},"🔎"),y.a.createElement("input",{className:x()(n({"search-box":!0},"".concat(f,"-box"),f)),style:p,type:"search",placeholder:d,autoFocus:!0,autoComplete:h?"on":"off",value:u,onChange:r.handleSearchChange})),m.length>0?m:y.a.createElement("li",{className:"no-entries-message"},y.a.createElement("span",null,"No entries to show.")))};var a,c=new N(e.enableAreaCodes,e.regions,e.onlyCountries,e.preferredCountries,e.excludeCountries,e.preserveOrder,e.localization,e.masks,e.areaCodes,e.prefix,e.defaultMask,e.alwaysDefaultMask,e.priority),s=c.onlyCountries,d=c.preferredCountries,h=e.value.replace(/[^0-9\.]+/g,"")||"";a=h.length>1?r.guessSelectedCountry(h.substring(0,6),s,e.country)||0:e.country&&s.find((function(t){return t.iso2==e.country}))||0;var m,b=h.length<2&&a&&!S()(h.replace(/\D/g,""),a.dialCode)?a.dialCode:"";m=""===h&&0===a?"":r.formatNumber((e.disableCountryCode?"":b)+h.replace(/\D/g,""),a.name?a.format:void 0);var C=s.findIndex((function(e){return e==a}));return r.state={formattedNumber:m,onlyCountries:s,preferredCountries:d,country:e.country,selectedCountry:a,highlightCountryIndex:C,queryString:"",showDropdown:!1,freezeSelection:!1,debouncedQueryStingSearcher:g()(r.searchCountry,250),searchValue:""},r}var r,a;return function(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function");e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,writable:!0,configurable:!0}}),t&&d(e,t);}(t,e),r=t,(a=[{key:"componentDidMount",value:function(){document.addEventListener&&document.addEventListener("mousedown",this.handleClickOutside);}},{key:"componentWillUnmount",value:function(){document.removeEventListener&&document.removeEventListener("mousedown",this.handleClickOutside);}},{key:"UNSAFE_componentWillReceiveProps",value:function(e){e.country&&e.country!==this.state.country?this.updateCountry(e.country):e.value!==this.state.formattedNumber&&this.updateFormattedNumber(e.value);}},{key:"updateFormattedNumber",value:function(e){var t,r=this.state,n=r.onlyCountries,a=r.country,o=e,i=e;if(S()(o,this.props.prefix))o=o.replace(/\D/g,""),i=(t=this.guessSelectedCountry(o.substring(0,6),n,a)||this.state.selectedCountry)?this.formatNumber(o,t.format):o;else{var u=(t=this.state.selectedCountry||n.find((function(e){return e.iso2==a})))&&!S()(o.replace(/\D/g,""),t.dialCode)?t.dialCode:"";i=this.formatNumber((this.props.disableCountryCode?"":u)+o.replace(/\D/g,""),t?t.format:void 0);}this.setState({selectedCountry:t,formattedNumber:i});}},{key:"render",value:function(){var e,t,r=this,a=this.state,o=a.onlyCountries,i=a.selectedCountry,u=a.showDropdown,c=a.formattedNumber,s=this.props,l=s.disableDropdown,f=s.renderStringAsFlag,p=x()({arrow:!0,up:u}),d=x()((n(e={},this.props.inputClass,!0),n(e,"form-control",!0),n(e,"invalid-number",!this.props.isValid(c.replace(/\D/g,""),o)),n(e,"open",u),e)),h=x()({"selected-flag":!0,open:u}),m=x()((n(t={},this.props.buttonClass,!0),n(t,"flag-dropdown",!0),n(t,"open",u),t)),g="flag ".concat(i&&i.iso2);return y.a.createElement("div",{className:this.props.containerClass,style:this.props.style||this.props.containerStyle,onKeyDown:this.handleKeydown},y.a.createElement("input",Object.assign({className:d,style:this.props.inputStyle,onChange:this.handleInput,onClick:this.handleInputClick,onDoubleClick:this.handleDoubleClick,onFocus:this.handleInputFocus,onBlur:this.handleInputBlur,onCopy:this.handleInputCopy,value:c,ref:function(e){return r.numberInputRef=e},onKeyDown:this.handleInputKeyDown,placeholder:this.props.placeholder,disabled:this.props.disabled,type:"tel"},this.props.inputProps)),y.a.createElement("div",{className:m,style:this.props.buttonStyle,ref:function(e){return r.dropdownContainerRef=e},tabIndex:this.props.tabIndex,role:"button"},f?y.a.createElement("div",{className:h},f):y.a.createElement("div",{onClick:l?void 0:this.handleFlagDropdownClick,className:h,title:i?"".concat(i.name,": + ").concat(i.dialCode):""},y.a.createElement("div",{className:g},!l&&y.a.createElement("div",{className:p}))),u&&this.getCountryDropdownList()))}}])&&c(r.prototype,a),t}(y.a.Component);T.defaultProps={country:"",value:"",onlyCountries:[],preferredCountries:[],excludeCountries:[],placeholder:"1 (702) 123-4567",searchPlaceholder:"search",flagsImagePath:"./flags.png",disabled:!1,containerStyle:{},inputStyle:{},buttonStyle:{},dropdownStyle:{},searchStyle:{},containerClass:"react-tel-input",inputClass:"",buttonClass:"",dropdownClass:"",searchClass:"",autoFormat:!0,enableAreaCodes:!1,isValid:function(e,t){return !0},disableCountryCode:!1,disableDropdown:!1,enableLongNumbers:!1,countryCodeEditable:!0,enableSearch:!1,disableSearchIcon:!1,regions:"",inputProps:{},localization:{},masks:{},areaCodes:{},preserveOrder:[],defaultMask:"... ... ... ... ..",alwaysDefaultMask:!1,prefix:"+",copyNumbersOnly:!0,renderStringAsFlag:"",autocompleteSearch:!1,jumpCursorToEnd:!0,tabIndex:"0",priority:null,onEnterKeyPress:function(){},keys:{UP:38,DOWN:40,RIGHT:39,LEFT:37,ENTER:13,ESC:27,PLUS:43,A:65,Z:90,SPACE:32}};t.default=T;}]);
 });
 
 var ReactPhoneInput = unwrapExports(lib$2);
@@ -21487,164 +21346,6 @@ TelInput.defaultProps = {
 };
 var index$4 = formik.connect(TelInput);
 
-function _objectWithoutProperties$2(source, excluded) {
-  if (source == null) return {};
-  var target = _objectWithoutPropertiesLoose$1(source, excluded);
-  var key, i;
-
-  if (Object.getOwnPropertySymbols) {
-    var sourceSymbolKeys = Object.getOwnPropertySymbols(source);
-
-    for (i = 0; i < sourceSymbolKeys.length; i++) {
-      key = sourceSymbolKeys[i];
-      if (excluded.indexOf(key) >= 0) continue;
-      if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue;
-      target[key] = source[key];
-    }
-  }
-
-  return target;
-}
-
-function _arrayWithoutHoles(arr) {
-  if (Array.isArray(arr)) {
-    for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) {
-      arr2[i] = arr[i];
-    }
-
-    return arr2;
-  }
-}
-
-function _iterableToArray(iter) {
-  if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter);
-}
-
-function _nonIterableSpread() {
-  throw new TypeError("Invalid attempt to spread non-iterable instance");
-}
-
-function _toConsumableArray(arr) {
-  return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread();
-}
-
-function _defineProperty$1(obj, key, value) {
-  if (key in obj) {
-    Object.defineProperty(obj, key, {
-      value: value,
-      enumerable: true,
-      configurable: true,
-      writable: true
-    });
-  } else {
-    obj[key] = value;
-  }
-
-  return obj;
-}
-
-function _objectSpread$a(target) {
-  for (var i = 1; i < arguments.length; i++) {
-    var source = arguments[i] != null ? arguments[i] : {};
-    var ownKeys = Object.keys(Object(source));
-
-    if (typeof Object.getOwnPropertySymbols === 'function') {
-      ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {
-        return Object.getOwnPropertyDescriptor(source, sym).enumerable;
-      }));
-    }
-
-    ownKeys.forEach(function (key) {
-      _defineProperty$1(target, key, source[key]);
-    });
-  }
-
-  return target;
-}
-
-function _classCallCheck$1(instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
-  }
-}
-
-function _defineProperties$1(target, props) {
-  for (var i = 0; i < props.length; i++) {
-    var descriptor = props[i];
-    descriptor.enumerable = descriptor.enumerable || false;
-    descriptor.configurable = true;
-    if ("value" in descriptor) descriptor.writable = true;
-    Object.defineProperty(target, descriptor.key, descriptor);
-  }
-}
-
-function _createClass$1(Constructor, protoProps, staticProps) {
-  if (protoProps) _defineProperties$1(Constructor.prototype, protoProps);
-  if (staticProps) _defineProperties$1(Constructor, staticProps);
-  return Constructor;
-}
-
-function _typeof(obj) {
-  if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
-    _typeof = function _typeof(obj) {
-      return typeof obj;
-    };
-  } else {
-    _typeof = function _typeof(obj) {
-      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
-    };
-  }
-
-  return _typeof(obj);
-}
-
-function _assertThisInitialized$1(self) {
-  if (self === void 0) {
-    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-  }
-
-  return self;
-}
-
-function _possibleConstructorReturn$1(self, call) {
-  if (call && (_typeof(call) === "object" || typeof call === "function")) {
-    return call;
-  }
-
-  return _assertThisInitialized$1(self);
-}
-
-function _getPrototypeOf(o) {
-  _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
-    return o.__proto__ || Object.getPrototypeOf(o);
-  };
-  return _getPrototypeOf(o);
-}
-
-function _setPrototypeOf(o, p) {
-  _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
-    o.__proto__ = p;
-    return o;
-  };
-
-  return _setPrototypeOf(o, p);
-}
-
-function _inherits$1(subClass, superClass) {
-  if (typeof superClass !== "function" && superClass !== null) {
-    throw new TypeError("Super expression must either be null or a function");
-  }
-
-  subClass.prototype = Object.create(superClass && superClass.prototype, {
-    constructor: {
-      value: subClass,
-      writable: true,
-      configurable: true
-    }
-  });
-  if (superClass) _setPrototypeOf(subClass, superClass);
-}
-
 function areInputsEqual(newInputs, lastInputs) {
     if (newInputs.length !== lastInputs.length) {
         return false;
@@ -21713,7 +21414,7 @@ function classNames(prefix, state, className) {
   if (state && prefix) {
     for (var key in state) {
       if (state.hasOwnProperty(key) && state[key]) {
-        arr.push("".concat(applyPrefixToName(prefix, key)));
+        arr.push("" + applyPrefixToName(prefix, key));
       }
     }
   }
@@ -21729,7 +21430,7 @@ function classNames(prefix, state, className) {
 
 var cleanValue = function cleanValue(value) {
   if (Array.isArray(value)) return value.filter(Boolean);
-  if (_typeof(value) === 'object' && value !== null) return [value];
+  if (typeof value === 'object' && value !== null) return [value];
   return [];
 }; // ==============================
 // Scroll Helpers
@@ -21793,9 +21494,15 @@ function easeOutCubic(t, b, c, d) {
   return c * ((t = t / d - 1) * t * t + 1) + b;
 }
 
-function animatedScrollTo(element, to) {
-  var duration = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 200;
-  var callback = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : noop;
+function animatedScrollTo(element, to, duration, callback) {
+  if (duration === void 0) {
+    duration = 200;
+  }
+
+  if (callback === void 0) {
+    callback = noop;
+  }
+
   var start = getScrollTop(element);
   var change = to - start;
   var increment = 10;
@@ -21863,18 +21570,6 @@ function isMobileDevice() {
   } catch (e) {
     return false;
   }
-}
-
-function _taggedTemplateLiteral$1(strings, raw) {
-  if (!raw) {
-    raw = strings.slice(0);
-  }
-
-  return Object.freeze(Object.defineProperties(strings, {
-    raw: {
-      value: Object.freeze(raw)
-    }
-  }));
 }
 
 var AutosizeInput_1 = createCommonjsModule(function (module, exports) {
@@ -22149,6 +21844,9 @@ exports.default = AutosizeInput;
 
 var AutosizeInput = unwrapExports(AutosizeInput_1);
 
+function _extends$2() { _extends$2 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$2.apply(this, arguments); }
+
+function _inheritsLoose$2(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; subClass.__proto__ = superClass; }
 function getMenuPlacement(_ref) {
   var maxHeight = _ref.maxHeight,
       menuEl = _ref.menuEl,
@@ -22305,7 +22003,7 @@ function getMenuPlacement(_ref) {
       };
 
     default:
-      throw new Error("Invalid placement provided \"".concat(placement, "\"."));
+      throw new Error("Invalid placement provided \"" + placement + "\".");
   } // fulfil contract with flow: implicit return value of undefined
 
 
@@ -22335,33 +22033,28 @@ var menuCSS = function menuCSS(_ref2) {
       colors = _ref2$theme.colors;
   return _ref3 = {
     label: 'menu'
-  }, _defineProperty$1(_ref3, alignToControl(placement), '100%'), _defineProperty$1(_ref3, "backgroundColor", colors.neutral0), _defineProperty$1(_ref3, "borderRadius", borderRadius), _defineProperty$1(_ref3, "boxShadow", '0 0 0 1px hsla(0, 0%, 0%, 0.1), 0 4px 11px hsla(0, 0%, 0%, 0.1)'), _defineProperty$1(_ref3, "marginBottom", spacing.menuGutter), _defineProperty$1(_ref3, "marginTop", spacing.menuGutter), _defineProperty$1(_ref3, "position", 'absolute'), _defineProperty$1(_ref3, "width", '100%'), _defineProperty$1(_ref3, "zIndex", 1), _ref3;
+  }, _ref3[alignToControl(placement)] = '100%', _ref3.backgroundColor = colors.neutral0, _ref3.borderRadius = borderRadius, _ref3.boxShadow = '0 0 0 1px hsla(0, 0%, 0%, 0.1), 0 4px 11px hsla(0, 0%, 0%, 0.1)', _ref3.marginBottom = spacing.menuGutter, _ref3.marginTop = spacing.menuGutter, _ref3.position = 'absolute', _ref3.width = '100%', _ref3.zIndex = 1, _ref3;
 }; // NOTE: internal only
 
 var MenuPlacer =
 /*#__PURE__*/
 function (_Component) {
-  _inherits$1(MenuPlacer, _Component);
+  _inheritsLoose$2(MenuPlacer, _Component);
 
   function MenuPlacer() {
-    var _getPrototypeOf2;
-
     var _this;
-
-    _classCallCheck$1(this, MenuPlacer);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = _possibleConstructorReturn$1(this, (_getPrototypeOf2 = _getPrototypeOf(MenuPlacer)).call.apply(_getPrototypeOf2, [this].concat(args)));
-
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "state", {
+    _this = _Component.call.apply(_Component, [this].concat(args)) || this;
+    _this.state = {
       maxHeight: _this.props.maxMenuHeight,
       placement: null
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "getPlacement", function (ref) {
+    _this.getPlacement = function (ref) {
       var _this$props = _this.props,
           minMenuHeight = _this$props.minMenuHeight,
           maxMenuHeight = _this$props.maxMenuHeight,
@@ -22386,37 +22079,35 @@ function (_Component) {
       if (getPortalPlacement) getPortalPlacement(state);
 
       _this.setState(state);
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "getUpdatedProps", function () {
+    _this.getUpdatedProps = function () {
       var menuPlacement = _this.props.menuPlacement;
       var placement = _this.state.placement || coercePlacement(menuPlacement);
-      return _objectSpread$a({}, _this.props, {
+      return _extends$2({}, _this.props, {
         placement: placement,
         maxHeight: _this.state.maxHeight
       });
-    });
+    };
 
     return _this;
   }
 
-  _createClass$1(MenuPlacer, [{
-    key: "render",
-    value: function render() {
-      var children = this.props.children;
-      return children({
-        ref: this.getPlacement,
-        placerProps: this.getUpdatedProps()
-      });
-    }
-  }]);
+  var _proto = MenuPlacer.prototype;
+
+  _proto.render = function render() {
+    var children = this.props.children;
+    return children({
+      ref: this.getPlacement,
+      placerProps: this.getUpdatedProps()
+    });
+  };
 
   return MenuPlacer;
 }(React.Component);
-
-_defineProperty$1(MenuPlacer, "contextTypes", {
+MenuPlacer.contextTypes = {
   getPortalPlacement: PropTypes.func
-});
+};
 
 var Menu = function Menu(props) {
   var children = props.children,
@@ -22425,7 +22116,7 @@ var Menu = function Menu(props) {
       getStyles = props.getStyles,
       innerRef = props.innerRef,
       innerProps = props.innerProps;
-  return jsx("div", _extends$1({
+  return jsx("div", _extends$2({
     css: getStyles('menu', props),
     className: cx({
       menu: true
@@ -22475,7 +22166,7 @@ var noticeCSS = function noticeCSS(_ref5) {
       colors = _ref5$theme.colors;
   return {
     color: colors.neutral40,
-    padding: "".concat(baseUnit * 2, "px ").concat(baseUnit * 3, "px"),
+    padding: baseUnit * 2 + "px " + baseUnit * 3 + "px",
     textAlign: 'center'
   };
 };
@@ -22488,7 +22179,7 @@ var NoOptionsMessage = function NoOptionsMessage(props) {
       cx = props.cx,
       getStyles = props.getStyles,
       innerProps = props.innerProps;
-  return jsx("div", _extends$1({
+  return jsx("div", _extends$2({
     css: getStyles('noOptionsMessage', props),
     className: cx({
       'menu-notice': true,
@@ -22505,7 +22196,7 @@ var LoadingMessage = function LoadingMessage(props) {
       cx = props.cx,
       getStyles = props.getStyles,
       innerProps = props.innerProps;
-  return jsx("div", _extends$1({
+  return jsx("div", _extends$2({
     css: getStyles('loadingMessage', props),
     className: cx({
       'menu-notice': true,
@@ -22534,26 +22225,21 @@ var menuPortalCSS = function menuPortalCSS(_ref6) {
 var MenuPortal =
 /*#__PURE__*/
 function (_Component2) {
-  _inherits$1(MenuPortal, _Component2);
+  _inheritsLoose$2(MenuPortal, _Component2);
 
   function MenuPortal() {
-    var _getPrototypeOf3;
-
     var _this2;
-
-    _classCallCheck$1(this, MenuPortal);
 
     for (var _len2 = arguments.length, args = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
       args[_key2] = arguments[_key2];
     }
 
-    _this2 = _possibleConstructorReturn$1(this, (_getPrototypeOf3 = _getPrototypeOf(MenuPortal)).call.apply(_getPrototypeOf3, [this].concat(args)));
-
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this2)), "state", {
+    _this2 = _Component2.call.apply(_Component2, [this].concat(args)) || this;
+    _this2.state = {
       placement: null
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this2)), "getPortalPlacement", function (_ref7) {
+    _this2.getPortalPlacement = function (_ref7) {
       var placement = _ref7.placement;
       var initialPlacement = coercePlacement(_this2.props.menuPlacement); // avoid re-renders if the placement has not changed
 
@@ -22562,58 +22248,55 @@ function (_Component2) {
           placement: placement
         });
       }
-    });
+    };
 
     return _this2;
   }
 
-  _createClass$1(MenuPortal, [{
-    key: "getChildContext",
-    value: function getChildContext() {
-      return {
-        getPortalPlacement: this.getPortalPlacement
-      };
-    } // callback for occassions where the menu must "flip"
+  var _proto2 = MenuPortal.prototype;
 
-  }, {
-    key: "render",
-    value: function render() {
-      var _this$props2 = this.props,
-          appendTo = _this$props2.appendTo,
-          children = _this$props2.children,
-          controlElement = _this$props2.controlElement,
-          menuPlacement = _this$props2.menuPlacement,
-          position = _this$props2.menuPosition,
-          getStyles = _this$props2.getStyles;
-      var isFixed = position === 'fixed'; // bail early if required elements aren't present
+  _proto2.getChildContext = function getChildContext() {
+    return {
+      getPortalPlacement: this.getPortalPlacement
+    };
+  } // callback for occassions where the menu must "flip"
+  ;
 
-      if (!appendTo && !isFixed || !controlElement) {
-        return null;
-      }
+  _proto2.render = function render() {
+    var _this$props2 = this.props,
+        appendTo = _this$props2.appendTo,
+        children = _this$props2.children,
+        controlElement = _this$props2.controlElement,
+        menuPlacement = _this$props2.menuPlacement,
+        position = _this$props2.menuPosition,
+        getStyles = _this$props2.getStyles;
+    var isFixed = position === 'fixed'; // bail early if required elements aren't present
 
-      var placement = this.state.placement || coercePlacement(menuPlacement);
-      var rect = getBoundingClientObj(controlElement);
-      var scrollDistance = isFixed ? 0 : window.pageYOffset;
-      var offset = rect[placement] + scrollDistance;
-      var state = {
-        offset: offset,
-        position: position,
-        rect: rect
-      }; // same wrapper element whether fixed or portalled
-
-      var menuWrapper = jsx("div", {
-        css: getStyles('menuPortal', state)
-      }, children);
-      return appendTo ? ReactDOM.createPortal(menuWrapper, appendTo) : menuWrapper;
+    if (!appendTo && !isFixed || !controlElement) {
+      return null;
     }
-  }]);
+
+    var placement = this.state.placement || coercePlacement(menuPlacement);
+    var rect = getBoundingClientObj(controlElement);
+    var scrollDistance = isFixed ? 0 : window.pageYOffset;
+    var offset = rect[placement] + scrollDistance;
+    var state = {
+      offset: offset,
+      position: position,
+      rect: rect
+    }; // same wrapper element whether fixed or portalled
+
+    var menuWrapper = jsx("div", {
+      css: getStyles('menuPortal', state)
+    }, children);
+    return appendTo ? ReactDOM.createPortal(menuWrapper, appendTo) : menuWrapper;
+  };
 
   return MenuPortal;
 }(React.Component);
-
-_defineProperty$1(MenuPortal, "childContextTypes", {
+MenuPortal.childContextTypes = {
   getPortalPlacement: PropTypes.func
-});
+};
 
 var isArray = Array.isArray;
 var keyList = Object.keys;
@@ -22623,7 +22306,7 @@ function equal(a, b) {
   // fast-deep-equal index.js 2.0.1
   if (a === b) return true;
 
-  if (a && b && _typeof(a) == 'object' && _typeof(b) == 'object') {
+  if (a && b && typeof a == 'object' && typeof b == 'object') {
     var arrA = isArray(a),
         arrB = isArray(b),
         i,
@@ -22705,6 +22388,7 @@ function exportedEqual(a, b) {
   }
 }
 
+function _extends$1$1() { _extends$1$1 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$1$1.apply(this, arguments); }
 var containerCSS = function containerCSS(_ref) {
   var isDisabled = _ref.isDisabled,
       isRtl = _ref.isRtl;
@@ -22724,7 +22408,7 @@ var SelectContainer = function SelectContainer(props) {
       innerProps = props.innerProps,
       isDisabled = props.isDisabled,
       isRtl = props.isRtl;
-  return jsx("div", _extends$1({
+  return jsx("div", _extends$1$1({
     css: getStyles('container', props),
     className: cx({
       '--is-disabled': isDisabled,
@@ -22742,46 +22426,28 @@ var valueContainerCSS = function valueContainerCSS(_ref2) {
     display: 'flex',
     flex: 1,
     flexWrap: 'wrap',
-    padding: "".concat(spacing.baseUnit / 2, "px ").concat(spacing.baseUnit * 2, "px"),
+    padding: spacing.baseUnit / 2 + "px " + spacing.baseUnit * 2 + "px",
     WebkitOverflowScrolling: 'touch',
     position: 'relative',
     overflow: 'hidden'
   };
 };
-var ValueContainer =
-/*#__PURE__*/
-function (_Component) {
-  _inherits$1(ValueContainer, _Component);
-
-  function ValueContainer() {
-    _classCallCheck$1(this, ValueContainer);
-
-    return _possibleConstructorReturn$1(this, _getPrototypeOf(ValueContainer).apply(this, arguments));
-  }
-
-  _createClass$1(ValueContainer, [{
-    key: "render",
-    value: function render() {
-      var _this$props = this.props,
-          children = _this$props.children,
-          className = _this$props.className,
-          cx = _this$props.cx,
-          isMulti = _this$props.isMulti,
-          getStyles = _this$props.getStyles,
-          hasValue = _this$props.hasValue;
-      return jsx("div", {
-        css: getStyles('valueContainer', this.props),
-        className: cx({
-          'value-container': true,
-          'value-container--is-multi': isMulti,
-          'value-container--has-value': hasValue
-        }, className)
-      }, children);
-    }
-  }]);
-
-  return ValueContainer;
-}(React.Component); // ==============================
+var ValueContainer = function ValueContainer(props) {
+  var children = props.children,
+      className = props.className,
+      cx = props.cx,
+      isMulti = props.isMulti,
+      getStyles = props.getStyles,
+      hasValue = props.hasValue;
+  return jsx("div", {
+    css: getStyles('valueContainer', props),
+    className: cx({
+      'value-container': true,
+      'value-container--is-multi': isMulti,
+      'value-container--has-value': hasValue
+    }, className)
+  }, children);
+}; // ==============================
 // Indicator Container
 // ==============================
 
@@ -22807,7 +22473,7 @@ var IndicatorsContainer = function IndicatorsContainer(props) {
 };
 
 function _templateObject$h() {
-  var data = _taggedTemplateLiteral$1(["\n  0%, 80%, 100% { opacity: 0; }\n  40% { opacity: 1; }\n"]);
+  var data = _taggedTemplateLiteralLoose(["\n  0%, 80%, 100% { opacity: 0; }\n  40% { opacity: 1; }\n"]);
 
   _templateObject$h = function _templateObject() {
     return data;
@@ -22815,6 +22481,12 @@ function _templateObject$h() {
 
   return data;
 }
+
+function _taggedTemplateLiteralLoose(strings, raw) { if (!raw) { raw = strings.slice(0); } strings.raw = raw; return strings; }
+
+function _extends$2$1() { _extends$2$1 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$2$1.apply(this, arguments); }
+
+function _objectWithoutPropertiesLoose$2(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 
 var _ref2 = process.env.NODE_ENV === "production" ? {
   name: "19bqh2r",
@@ -22830,9 +22502,9 @@ var _ref2 = process.env.NODE_ENV === "production" ? {
 // ==============================
 var Svg = function Svg(_ref) {
   var size = _ref.size,
-      props = _objectWithoutProperties$2(_ref, ["size"]);
+      props = _objectWithoutPropertiesLoose$2(_ref, ["size"]);
 
-  return jsx("svg", _extends$1({
+  return jsx("svg", _extends$2$1({
     height: size,
     width: size,
     viewBox: "0 0 20 20",
@@ -22843,14 +22515,14 @@ var Svg = function Svg(_ref) {
 };
 
 var CrossIcon = function CrossIcon(props) {
-  return jsx(Svg, _extends$1({
+  return jsx(Svg, _extends$2$1({
     size: 20
   }, props), jsx("path", {
     d: "M14.348 14.849c-0.469 0.469-1.229 0.469-1.697 0l-2.651-3.030-2.651 3.029c-0.469 0.469-1.229 0.469-1.697 0-0.469-0.469-0.469-1.229 0-1.697l2.758-3.15-2.759-3.152c-0.469-0.469-0.469-1.228 0-1.697s1.228-0.469 1.697 0l2.652 3.031 2.651-3.031c0.469-0.469 1.228-0.469 1.697 0s0.469 1.229 0 1.697l-2.758 3.152 2.758 3.15c0.469 0.469 0.469 1.229 0 1.698z"
   }));
 };
 var DownChevron = function DownChevron(props) {
-  return jsx(Svg, _extends$1({
+  return jsx(Svg, _extends$2$1({
     size: 20
   }, props), jsx("path", {
     d: "M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"
@@ -22883,7 +22555,7 @@ var DropdownIndicator = function DropdownIndicator(props) {
       cx = props.cx,
       getStyles = props.getStyles,
       innerProps = props.innerProps;
-  return jsx("div", _extends$1({}, innerProps, {
+  return jsx("div", _extends$2$1({}, innerProps, {
     css: getStyles('dropdownIndicator', props),
     className: cx({
       indicator: true,
@@ -22898,7 +22570,7 @@ var ClearIndicator = function ClearIndicator(props) {
       cx = props.cx,
       getStyles = props.getStyles,
       innerProps = props.innerProps;
-  return jsx("div", _extends$1({}, innerProps, {
+  return jsx("div", _extends$2$1({}, innerProps, {
     css: getStyles('clearIndicator', props),
     className: cx({
       indicator: true,
@@ -22928,7 +22600,7 @@ var IndicatorSeparator = function IndicatorSeparator(props) {
       cx = props.cx,
       getStyles = props.getStyles,
       innerProps = props.innerProps;
-  return jsx("span", _extends$1({}, innerProps, {
+  return jsx("span", _extends$2$1({}, innerProps, {
     css: getStyles('indicatorSeparator', props),
     className: cx({
       'indicator-separator': true
@@ -22967,7 +22639,7 @@ var LoadingDot = function LoadingDot(_ref6) {
     css:
     /*#__PURE__*/
     css({
-      animation: "".concat(loadingDotAnimations, " 1s ease-in-out ").concat(delay, "ms infinite;"),
+      animation: loadingDotAnimations + " 1s ease-in-out " + delay + "ms infinite;",
       backgroundColor: 'currentColor',
       borderRadius: '1em',
       display: 'inline-block',
@@ -22985,7 +22657,7 @@ var LoadingIndicator = function LoadingIndicator(props) {
       getStyles = props.getStyles,
       innerProps = props.innerProps,
       isRtl = props.isRtl;
-  return jsx("div", _extends$1({}, innerProps, {
+  return jsx("div", _extends$2$1({}, innerProps, {
     css: getStyles('loadingIndicator', props),
     className: cx({
       indicator: true,
@@ -23006,6 +22678,7 @@ LoadingIndicator.defaultProps = {
   size: 4
 };
 
+function _extends$3() { _extends$3 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$3.apply(this, arguments); }
 var css$1 = function css(_ref) {
   var isDisabled = _ref.isDisabled,
       isFocused = _ref.isFocused,
@@ -23021,7 +22694,7 @@ var css$1 = function css(_ref) {
     borderRadius: borderRadius,
     borderStyle: 'solid',
     borderWidth: 1,
-    boxShadow: isFocused ? "0 0 0 1px ".concat(colors.primary) : null,
+    boxShadow: isFocused ? "0 0 0 1px " + colors.primary : null,
     cursor: 'default',
     display: 'flex',
     flexWrap: 'wrap',
@@ -23046,7 +22719,7 @@ var Control = function Control(props) {
       innerRef = props.innerRef,
       innerProps = props.innerProps,
       menuIsOpen = props.menuIsOpen;
-  return jsx("div", _extends$1({
+  return jsx("div", _extends$3({
     ref: innerRef,
     css: getStyles('control', props),
     className: cx({
@@ -23058,6 +22731,9 @@ var Control = function Control(props) {
   }, innerProps), children);
 };
 
+function _objectWithoutPropertiesLoose$1$1(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+
+function _extends$4() { _extends$4 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$4.apply(this, arguments); }
 var groupCSS = function groupCSS(_ref) {
   var spacing = _ref.theme.spacing;
   return {
@@ -23081,7 +22757,7 @@ var Group = function Group(props) {
     className: cx({
       group: true
     }, className)
-  }, jsx(Heading, _extends$1({}, headingProps, {
+  }, jsx(Heading, _extends$4({}, headingProps, {
     selectProps: selectProps,
     theme: theme,
     getStyles: getStyles,
@@ -23110,10 +22786,10 @@ var GroupHeading = function GroupHeading(props) {
       getStyles = props.getStyles,
       theme = props.theme,
       selectProps = props.selectProps,
-      cleanProps = _objectWithoutProperties$2(props, ["className", "cx", "getStyles", "theme", "selectProps"]);
+      cleanProps = _objectWithoutPropertiesLoose$1$1(props, ["className", "cx", "getStyles", "theme", "selectProps"]);
 
-  return jsx("div", _extends$1({
-    css: getStyles('groupHeading', _objectSpread$a({
+  return jsx("div", _extends$4({
+    css: getStyles('groupHeading', _extends$4({
       theme: theme
     }, cleanProps)),
     className: cx({
@@ -23122,6 +22798,9 @@ var GroupHeading = function GroupHeading(props) {
   }, cleanProps));
 };
 
+function _extends$5() { _extends$5 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$5.apply(this, arguments); }
+
+function _objectWithoutPropertiesLoose$2$1(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 var inputCSS = function inputCSS(_ref) {
   var isDisabled = _ref.isDisabled,
       _ref$theme = _ref.theme,
@@ -23158,13 +22837,13 @@ var Input$1 = function Input(_ref2) {
       isDisabled = _ref2.isDisabled,
       theme = _ref2.theme,
       selectProps = _ref2.selectProps,
-      props = _objectWithoutProperties$2(_ref2, ["className", "cx", "getStyles", "innerRef", "isHidden", "isDisabled", "theme", "selectProps"]);
+      props = _objectWithoutPropertiesLoose$2$1(_ref2, ["className", "cx", "getStyles", "innerRef", "isHidden", "isDisabled", "theme", "selectProps"]);
 
   return jsx("div", {
-    css: getStyles('input', _objectSpread$a({
+    css: getStyles('input', _extends$5({
       theme: theme
     }, props))
-  }, jsx(AutosizeInput, _extends$1({
+  }, jsx(AutosizeInput, _extends$5({
     className: cx({
       input: true
     }, className),
@@ -23174,6 +22853,7 @@ var Input$1 = function Input(_ref2) {
   }, props)));
 };
 
+function _extends$6() { _extends$6 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$6.apply(this, arguments); }
 var multiValueCSS = function multiValueCSS(_ref) {
   var _ref$theme = _ref.theme,
       spacing = _ref$theme.spacing,
@@ -23231,102 +22911,65 @@ var MultiValueGeneric = function MultiValueGeneric(_ref4) {
 };
 var MultiValueContainer = MultiValueGeneric;
 var MultiValueLabel = MultiValueGeneric;
-var MultiValueRemove =
-/*#__PURE__*/
-function (_Component) {
-  _inherits$1(MultiValueRemove, _Component);
+function MultiValueRemove(_ref5) {
+  var children = _ref5.children,
+      innerProps = _ref5.innerProps;
+  return jsx("div", innerProps, children || jsx(CrossIcon, {
+    size: 14
+  }));
+}
 
-  function MultiValueRemove() {
-    _classCallCheck$1(this, MultiValueRemove);
+var MultiValue = function MultiValue(props) {
+  var children = props.children,
+      className = props.className,
+      components = props.components,
+      cx = props.cx,
+      data = props.data,
+      getStyles = props.getStyles,
+      innerProps = props.innerProps,
+      isDisabled = props.isDisabled,
+      removeProps = props.removeProps,
+      selectProps = props.selectProps;
+  var Container = components.Container,
+      Label = components.Label,
+      Remove = components.Remove;
+  return jsx(ClassNames, null, function (_ref6) {
+    var css = _ref6.css,
+        emotionCx = _ref6.cx;
+    return jsx(Container, {
+      data: data,
+      innerProps: _extends$6({}, innerProps, {
+        className: emotionCx(css(getStyles('multiValue', props)), cx({
+          'multi-value': true,
+          'multi-value--is-disabled': isDisabled
+        }, className))
+      }),
+      selectProps: selectProps
+    }, jsx(Label, {
+      data: data,
+      innerProps: {
+        className: emotionCx(css(getStyles('multiValueLabel', props)), cx({
+          'multi-value__label': true
+        }, className))
+      },
+      selectProps: selectProps
+    }, children), jsx(Remove, {
+      data: data,
+      innerProps: _extends$6({
+        className: emotionCx(css(getStyles('multiValueRemove', props)), cx({
+          'multi-value__remove': true
+        }, className))
+      }, removeProps),
+      selectProps: selectProps
+    }));
+  });
+};
 
-    return _possibleConstructorReturn$1(this, _getPrototypeOf(MultiValueRemove).apply(this, arguments));
-  }
-
-  _createClass$1(MultiValueRemove, [{
-    key: "render",
-    value: function render() {
-      var _this$props = this.props,
-          children = _this$props.children,
-          innerProps = _this$props.innerProps;
-      return jsx("div", innerProps, children || jsx(CrossIcon, {
-        size: 14
-      }));
-    }
-  }]);
-
-  return MultiValueRemove;
-}(React.Component);
-
-var MultiValue =
-/*#__PURE__*/
-function (_Component2) {
-  _inherits$1(MultiValue, _Component2);
-
-  function MultiValue() {
-    _classCallCheck$1(this, MultiValue);
-
-    return _possibleConstructorReturn$1(this, _getPrototypeOf(MultiValue).apply(this, arguments));
-  }
-
-  _createClass$1(MultiValue, [{
-    key: "render",
-    value: function render() {
-      var _this = this;
-
-      var _this$props2 = this.props,
-          children = _this$props2.children,
-          className = _this$props2.className,
-          components = _this$props2.components,
-          cx = _this$props2.cx,
-          data = _this$props2.data,
-          getStyles = _this$props2.getStyles,
-          innerProps = _this$props2.innerProps,
-          isDisabled = _this$props2.isDisabled,
-          removeProps = _this$props2.removeProps,
-          selectProps = _this$props2.selectProps;
-      var Container = components.Container,
-          Label = components.Label,
-          Remove = components.Remove;
-      return jsx(ClassNames, null, function (_ref5) {
-        var css = _ref5.css,
-            emotionCx = _ref5.cx;
-        return jsx(Container, {
-          data: data,
-          innerProps: _objectSpread$a({}, innerProps, {
-            className: emotionCx(css(getStyles('multiValue', _this.props)), cx({
-              'multi-value': true,
-              'multi-value--is-disabled': isDisabled
-            }, className))
-          }),
-          selectProps: selectProps
-        }, jsx(Label, {
-          data: data,
-          innerProps: {
-            className: emotionCx(css(getStyles('multiValueLabel', _this.props)), cx({
-              'multi-value__label': true
-            }, className))
-          },
-          selectProps: selectProps
-        }, children), jsx(Remove, {
-          data: data,
-          innerProps: _objectSpread$a({
-            className: emotionCx(css(getStyles('multiValueRemove', _this.props)), cx({
-              'multi-value__remove': true
-            }, className))
-          }, removeProps),
-          selectProps: selectProps
-        }));
-      });
-    }
-  }]);
-
-  return MultiValue;
-}(React.Component);
-
-_defineProperty$1(MultiValue, "defaultProps", {
+MultiValue.defaultProps = {
   cropWithEllipsis: true
-});
+};
 
+function _extends$7() { _extends$7 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$7.apply(this, arguments); }
 var optionCSS = function optionCSS(_ref) {
   var isDisabled = _ref.isDisabled,
       isFocused = _ref.isFocused,
@@ -23341,7 +22984,7 @@ var optionCSS = function optionCSS(_ref) {
     cursor: 'default',
     display: 'block',
     fontSize: 'inherit',
-    padding: "".concat(spacing.baseUnit * 2, "px ").concat(spacing.baseUnit * 3, "px"),
+    padding: spacing.baseUnit * 2 + "px " + spacing.baseUnit * 3 + "px",
     width: '100%',
     userSelect: 'none',
     WebkitTapHighlightColor: 'rgba(0, 0, 0, 0)',
@@ -23362,7 +23005,7 @@ var Option = function Option(props) {
       isSelected = props.isSelected,
       innerRef = props.innerRef,
       innerProps = props.innerProps;
-  return jsx("div", _extends$1({
+  return jsx("div", _extends$7({
     css: getStyles('option', props),
     className: cx({
       option: true,
@@ -23374,6 +23017,7 @@ var Option = function Option(props) {
   }, innerProps), children);
 };
 
+function _extends$8() { _extends$8 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$8.apply(this, arguments); }
 var placeholderCSS = function placeholderCSS(_ref) {
   var _ref$theme = _ref.theme,
       spacing = _ref$theme.spacing,
@@ -23395,7 +23039,7 @@ var Placeholder = function Placeholder(props) {
       cx = props.cx,
       getStyles = props.getStyles,
       innerProps = props.innerProps;
-  return jsx("div", _extends$1({
+  return jsx("div", _extends$8({
     css: getStyles('placeholder', props),
     className: cx({
       placeholder: true
@@ -23403,6 +23047,7 @@ var Placeholder = function Placeholder(props) {
   }, innerProps), children);
 };
 
+function _extends$9() { _extends$9 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$9.apply(this, arguments); }
 var css$1$1 = function css(_ref) {
   var isDisabled = _ref.isDisabled,
       _ref$theme = _ref.theme,
@@ -23413,7 +23058,7 @@ var css$1$1 = function css(_ref) {
     color: isDisabled ? colors.neutral40 : colors.neutral80,
     marginLeft: spacing.baseUnit / 2,
     marginRight: spacing.baseUnit / 2,
-    maxWidth: "calc(100% - ".concat(spacing.baseUnit * 2, "px)"),
+    maxWidth: "calc(100% - " + spacing.baseUnit * 2 + "px)",
     overflow: 'hidden',
     position: 'absolute',
     textOverflow: 'ellipsis',
@@ -23430,7 +23075,7 @@ var SingleValue = function SingleValue(props) {
       getStyles = props.getStyles,
       isDisabled = props.isDisabled,
       innerProps = props.innerProps;
-  return jsx("div", _extends$1({
+  return jsx("div", _extends$9({
     css: getStyles('singleValue', props),
     className: cx({
       'single-value': true,
@@ -23439,6 +23084,7 @@ var SingleValue = function SingleValue(props) {
   }, innerProps), children);
 };
 
+function _extends$a() { _extends$a = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$a.apply(this, arguments); }
 var components = {
   ClearIndicator: ClearIndicator,
   Control: Control,
@@ -23467,7 +23113,7 @@ var components = {
   ValueContainer: ValueContainer
 };
 var defaultComponents = function defaultComponents(props) {
-  return _objectSpread$a({}, components, props.components);
+  return _extends$a({}, components, props.components);
 };
 
 var diacritics = [{
@@ -23731,17 +23377,19 @@ var stripDiacritics = function stripDiacritics(str) {
   return str;
 };
 
+function _extends$b() { _extends$b = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$b.apply(this, arguments); }
+
 var trimString = function trimString(str) {
   return str.replace(/^\s+|\s+$/g, '');
 };
 
 var defaultStringify = function defaultStringify(option) {
-  return "".concat(option.label, " ").concat(option.value);
+  return option.label + " " + option.value;
 };
 
 var createFilter = function createFilter(config) {
   return function (option, rawInput) {
-    var _ignoreCase$ignoreAcc = _objectSpread$a({
+    var _ignoreCase$ignoreAcc = _extends$b({
       ignoreCase: true,
       ignoreAccents: true,
       stringify: defaultStringify,
@@ -23771,6 +23419,8 @@ var createFilter = function createFilter(config) {
   };
 };
 
+function _extends$1$2() { _extends$1$2 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$1$2.apply(this, arguments); }
+
 var _ref = process.env.NODE_ENV === "production" ? {
   name: "1laao21-a11yText",
   styles: "label:a11yText;z-index:9999;border:0;clip:rect(1px, 1px, 1px, 1px);height:1px;width:1px;position:absolute;overflow:hidden;padding:0;white-space:nowrap;"
@@ -23781,93 +23431,75 @@ var _ref = process.env.NODE_ENV === "production" ? {
 };
 
 var A11yText = function A11yText(props) {
-  return jsx("span", _extends$1({
+  return jsx("span", _extends$1$2({
     css: _ref
   }, props));
 };
 
-var DummyInput =
-/*#__PURE__*/
-function (_Component) {
-  _inherits$1(DummyInput, _Component);
+function _extends$2$2() { _extends$2$2 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$2$2.apply(this, arguments); }
 
-  function DummyInput() {
-    _classCallCheck$1(this, DummyInput);
+function _objectWithoutPropertiesLoose$3(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+function DummyInput(_ref) {
+  var inProp = _ref.in,
+      out = _ref.out,
+      onExited = _ref.onExited,
+      appear = _ref.appear,
+      enter = _ref.enter,
+      exit = _ref.exit,
+      innerRef = _ref.innerRef,
+      emotion = _ref.emotion,
+      props = _objectWithoutPropertiesLoose$3(_ref, ["in", "out", "onExited", "appear", "enter", "exit", "innerRef", "emotion"]);
 
-    return _possibleConstructorReturn$1(this, _getPrototypeOf(DummyInput).apply(this, arguments));
-  }
+  return jsx("input", _extends$2$2({
+    ref: innerRef
+  }, props, {
+    css:
+    /*#__PURE__*/
+    css({
+      label: 'dummyInput',
+      // get rid of any default styles
+      background: 0,
+      border: 0,
+      fontSize: 'inherit',
+      outline: 0,
+      padding: 0,
+      // important! without `width` browsers won't allow focus
+      width: 1,
+      // remove cursor on desktop
+      color: 'transparent',
+      // remove cursor on mobile whilst maintaining "scroll into view" behaviour
+      left: -100,
+      opacity: 0,
+      position: 'relative',
+      transform: 'scale(0)'
+    }, process.env.NODE_ENV === "production" ? "" : "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIkR1bW15SW5wdXQuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBbUJNIiwiZmlsZSI6IkR1bW15SW5wdXQuanMiLCJzb3VyY2VzQ29udGVudCI6WyIvLyBAZmxvd1xuLyoqIEBqc3gganN4ICovXG5pbXBvcnQgeyBqc3ggfSBmcm9tICdAZW1vdGlvbi9jb3JlJztcblxuZXhwb3J0IGRlZmF1bHQgZnVuY3Rpb24gRHVtbXlJbnB1dCh7XG4gIGluOiBpblByb3AsXG4gIG91dCxcbiAgb25FeGl0ZWQsXG4gIGFwcGVhcixcbiAgZW50ZXIsXG4gIGV4aXQsXG4gIGlubmVyUmVmLFxuICBlbW90aW9uLFxuICAuLi5wcm9wc1xufTogYW55KSB7XG4gIHJldHVybiAoXG4gICAgPGlucHV0XG4gICAgICByZWY9e2lubmVyUmVmfVxuICAgICAgey4uLnByb3BzfVxuICAgICAgY3NzPXt7XG4gICAgICAgIGxhYmVsOiAnZHVtbXlJbnB1dCcsXG4gICAgICAgIC8vIGdldCByaWQgb2YgYW55IGRlZmF1bHQgc3R5bGVzXG4gICAgICAgIGJhY2tncm91bmQ6IDAsXG4gICAgICAgIGJvcmRlcjogMCxcbiAgICAgICAgZm9udFNpemU6ICdpbmhlcml0JyxcbiAgICAgICAgb3V0bGluZTogMCxcbiAgICAgICAgcGFkZGluZzogMCxcbiAgICAgICAgLy8gaW1wb3J0YW50ISB3aXRob3V0IGB3aWR0aGAgYnJvd3NlcnMgd29uJ3QgYWxsb3cgZm9jdXNcbiAgICAgICAgd2lkdGg6IDEsXG5cbiAgICAgICAgLy8gcmVtb3ZlIGN1cnNvciBvbiBkZXNrdG9wXG4gICAgICAgIGNvbG9yOiAndHJhbnNwYXJlbnQnLFxuXG4gICAgICAgIC8vIHJlbW92ZSBjdXJzb3Igb24gbW9iaWxlIHdoaWxzdCBtYWludGFpbmluZyBcInNjcm9sbCBpbnRvIHZpZXdcIiBiZWhhdmlvdXJcbiAgICAgICAgbGVmdDogLTEwMCxcbiAgICAgICAgb3BhY2l0eTogMCxcbiAgICAgICAgcG9zaXRpb246ICdyZWxhdGl2ZScsXG4gICAgICAgIHRyYW5zZm9ybTogJ3NjYWxlKDApJyxcbiAgICAgIH19XG4gICAgLz5cbiAgKTtcbn1cbiJdfQ== */")
+  }));
+}
 
-  _createClass$1(DummyInput, [{
-    key: "render",
-    value: function render() {
-      var _this$props = this.props,
-          inProp = _this$props.in,
-          out = _this$props.out,
-          onExited = _this$props.onExited,
-          appear = _this$props.appear,
-          enter = _this$props.enter,
-          exit = _this$props.exit,
-          innerRef = _this$props.innerRef,
-          emotion = _this$props.emotion,
-          props = _objectWithoutProperties$2(_this$props, ["in", "out", "onExited", "appear", "enter", "exit", "innerRef", "emotion"]);
-
-      return jsx("input", _extends$1({
-        ref: innerRef
-      }, props, {
-        css:
-        /*#__PURE__*/
-        css({
-          label: 'dummyInput',
-          // get rid of any default styles
-          background: 0,
-          border: 0,
-          fontSize: 'inherit',
-          outline: 0,
-          padding: 0,
-          // important! without `width` browsers won't allow focus
-          width: 1,
-          // remove cursor on desktop
-          color: 'transparent',
-          // remove cursor on mobile whilst maintaining "scroll into view" behaviour
-          left: -100,
-          opacity: 0,
-          position: 'relative',
-          transform: 'scale(0)'
-        }, process.env.NODE_ENV === "production" ? "" : "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIkR1bW15SW5wdXQuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBWVEiLCJmaWxlIjoiRHVtbXlJbnB1dC5qcyIsInNvdXJjZXNDb250ZW50IjpbIi8vIEBmbG93XG4vKiogQGpzeCBqc3ggKi9cbmltcG9ydCB7IENvbXBvbmVudCB9IGZyb20gJ3JlYWN0JztcbmltcG9ydCB7IGpzeCB9IGZyb20gJ0BlbW90aW9uL2NvcmUnO1xuXG5leHBvcnQgZGVmYXVsdCBjbGFzcyBEdW1teUlucHV0IGV4dGVuZHMgQ29tcG9uZW50PGFueT4ge1xuICByZW5kZXIgKCkge1xuICAgIGNvbnN0IHsgaW46IGluUHJvcCwgb3V0LCBvbkV4aXRlZCwgYXBwZWFyLCBlbnRlciwgZXhpdCwgaW5uZXJSZWYsIGVtb3Rpb24sIC4uLnByb3BzIH0gPSB0aGlzLnByb3BzO1xuICAgIHJldHVybihcbiAgICAgIDxpbnB1dFxuICAgICAgICByZWY9e2lubmVyUmVmfVxuICAgICAgICB7Li4ucHJvcHN9XG4gICAgICAgIGNzcz17e1xuICAgICAgICAgIGxhYmVsOiAnZHVtbXlJbnB1dCcsXG4gICAgICAgICAgLy8gZ2V0IHJpZCBvZiBhbnkgZGVmYXVsdCBzdHlsZXNcbiAgICAgICAgICBiYWNrZ3JvdW5kOiAwLFxuICAgICAgICAgIGJvcmRlcjogMCxcbiAgICAgICAgICBmb250U2l6ZTogJ2luaGVyaXQnLFxuICAgICAgICAgIG91dGxpbmU6IDAsXG4gICAgICAgICAgcGFkZGluZzogMCxcbiAgICAgICAgICAvLyBpbXBvcnRhbnQhIHdpdGhvdXQgYHdpZHRoYCBicm93c2VycyB3b24ndCBhbGxvdyBmb2N1c1xuICAgICAgICAgIHdpZHRoOiAxLFxuXG4gICAgICAgICAgLy8gcmVtb3ZlIGN1cnNvciBvbiBkZXNrdG9wXG4gICAgICAgICAgY29sb3I6ICd0cmFuc3BhcmVudCcsXG5cbiAgICAgICAgICAvLyByZW1vdmUgY3Vyc29yIG9uIG1vYmlsZSB3aGlsc3QgbWFpbnRhaW5pbmcgXCJzY3JvbGwgaW50byB2aWV3XCIgYmVoYXZpb3VyXG4gICAgICAgICAgbGVmdDogLTEwMCxcbiAgICAgICAgICBvcGFjaXR5OiAwLFxuICAgICAgICAgIHBvc2l0aW9uOiAncmVsYXRpdmUnLFxuICAgICAgICAgIHRyYW5zZm9ybTogJ3NjYWxlKDApJyxcbiAgICAgICAgfX1cbiAgICAgIC8+XG4gICAgKTtcbiAgfVxufVxuIl19 */")
-      }));
-    }
-  }]);
-
-  return DummyInput;
-}(React.Component);
+function _inheritsLoose$3(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; subClass.__proto__ = superClass; }
 
 var NodeResolver =
 /*#__PURE__*/
 function (_Component) {
-  _inherits$1(NodeResolver, _Component);
+  _inheritsLoose$3(NodeResolver, _Component);
 
   function NodeResolver() {
-    _classCallCheck$1(this, NodeResolver);
-
-    return _possibleConstructorReturn$1(this, _getPrototypeOf(NodeResolver).apply(this, arguments));
+    return _Component.apply(this, arguments) || this;
   }
 
-  _createClass$1(NodeResolver, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      this.props.innerRef(ReactDOM.findDOMNode(this));
-    }
-  }, {
-    key: "componentWillUnmount",
-    value: function componentWillUnmount() {
-      this.props.innerRef(null);
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      return this.props.children;
-    }
-  }]);
+  var _proto = NodeResolver.prototype;
+
+  _proto.componentDidMount = function componentDidMount() {
+    this.props.innerRef(ReactDOM.findDOMNode(this));
+  };
+
+  _proto.componentWillUnmount = function componentWillUnmount() {
+    this.props.innerRef(null);
+  };
+
+  _proto.render = function render() {
+    return this.props.children;
+  };
 
   return NodeResolver;
 }(React.Component);
@@ -23904,136 +23536,129 @@ function isTouchDevice() {
   return 'ontouchstart' in window || navigator.maxTouchPoints;
 }
 
+function _inheritsLoose$1$1(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; subClass.__proto__ = superClass; }
 var canUseDOM = !!(typeof window !== 'undefined' && window.document && window.document.createElement);
 var activeScrollLocks = 0;
 
 var ScrollLock =
 /*#__PURE__*/
 function (_Component) {
-  _inherits$1(ScrollLock, _Component);
+  _inheritsLoose$1$1(ScrollLock, _Component);
 
   function ScrollLock() {
-    var _getPrototypeOf2;
-
     var _this;
-
-    _classCallCheck$1(this, ScrollLock);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = _possibleConstructorReturn$1(this, (_getPrototypeOf2 = _getPrototypeOf(ScrollLock)).call.apply(_getPrototypeOf2, [this].concat(args)));
-
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "originalStyles", {});
-
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "listenerOptions", {
+    _this = _Component.call.apply(_Component, [this].concat(args)) || this;
+    _this.originalStyles = {};
+    _this.listenerOptions = {
       capture: false,
       passive: false
-    });
-
+    };
     return _this;
   }
 
-  _createClass$1(ScrollLock, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      var _this2 = this;
+  var _proto = ScrollLock.prototype;
 
-      if (!canUseDOM) return;
-      var _this$props = this.props,
-          accountForScrollbars = _this$props.accountForScrollbars,
-          touchScrollTarget = _this$props.touchScrollTarget;
-      var target = document.body;
-      var targetStyle = target && target.style;
+  _proto.componentDidMount = function componentDidMount() {
+    var _this2 = this;
 
-      if (accountForScrollbars) {
-        // store any styles already applied to the body
-        STYLE_KEYS.forEach(function (key) {
-          var val = targetStyle && targetStyle[key];
-          _this2.originalStyles[key] = val;
-        });
-      } // apply the lock styles and padding if this is the first scroll lock
+    if (!canUseDOM) return;
+    var _this$props = this.props,
+        accountForScrollbars = _this$props.accountForScrollbars,
+        touchScrollTarget = _this$props.touchScrollTarget;
+    var target = document.body;
+    var targetStyle = target && target.style;
+
+    if (accountForScrollbars) {
+      // store any styles already applied to the body
+      STYLE_KEYS.forEach(function (key) {
+        var val = targetStyle && targetStyle[key];
+        _this2.originalStyles[key] = val;
+      });
+    } // apply the lock styles and padding if this is the first scroll lock
 
 
-      if (accountForScrollbars && activeScrollLocks < 1) {
-        var currentPadding = parseInt(this.originalStyles.paddingRight, 10) || 0;
-        var clientWidth = document.body ? document.body.clientWidth : 0;
-        var adjustedPadding = window.innerWidth - clientWidth + currentPadding || 0;
-        Object.keys(LOCK_STYLES).forEach(function (key) {
-          var val = LOCK_STYLES[key];
-
-          if (targetStyle) {
-            targetStyle[key] = val;
-          }
-        });
+    if (accountForScrollbars && activeScrollLocks < 1) {
+      var currentPadding = parseInt(this.originalStyles.paddingRight, 10) || 0;
+      var clientWidth = document.body ? document.body.clientWidth : 0;
+      var adjustedPadding = window.innerWidth - clientWidth + currentPadding || 0;
+      Object.keys(LOCK_STYLES).forEach(function (key) {
+        var val = LOCK_STYLES[key];
 
         if (targetStyle) {
-          targetStyle.paddingRight = "".concat(adjustedPadding, "px");
+          targetStyle[key] = val;
         }
-      } // account for touch devices
+      });
+
+      if (targetStyle) {
+        targetStyle.paddingRight = adjustedPadding + "px";
+      }
+    } // account for touch devices
 
 
-      if (target && isTouchDevice()) {
-        // Mobile Safari ignores { overflow: hidden } declaration on the body.
-        target.addEventListener('touchmove', preventTouchMove, this.listenerOptions); // Allow scroll on provided target
+    if (target && isTouchDevice()) {
+      // Mobile Safari ignores { overflow: hidden } declaration on the body.
+      target.addEventListener('touchmove', preventTouchMove, this.listenerOptions); // Allow scroll on provided target
 
-        if (touchScrollTarget) {
-          touchScrollTarget.addEventListener('touchstart', preventInertiaScroll, this.listenerOptions);
-          touchScrollTarget.addEventListener('touchmove', allowTouchMove, this.listenerOptions);
+      if (touchScrollTarget) {
+        touchScrollTarget.addEventListener('touchstart', preventInertiaScroll, this.listenerOptions);
+        touchScrollTarget.addEventListener('touchmove', allowTouchMove, this.listenerOptions);
+      }
+    } // increment active scroll locks
+
+
+    activeScrollLocks += 1;
+  };
+
+  _proto.componentWillUnmount = function componentWillUnmount() {
+    var _this3 = this;
+
+    if (!canUseDOM) return;
+    var _this$props2 = this.props,
+        accountForScrollbars = _this$props2.accountForScrollbars,
+        touchScrollTarget = _this$props2.touchScrollTarget;
+    var target = document.body;
+    var targetStyle = target && target.style; // safely decrement active scroll locks
+
+    activeScrollLocks = Math.max(activeScrollLocks - 1, 0); // reapply original body styles, if any
+
+    if (accountForScrollbars && activeScrollLocks < 1) {
+      STYLE_KEYS.forEach(function (key) {
+        var val = _this3.originalStyles[key];
+
+        if (targetStyle) {
+          targetStyle[key] = val;
         }
-      } // increment active scroll locks
+      });
+    } // remove touch listeners
 
 
-      activeScrollLocks += 1;
-    }
-  }, {
-    key: "componentWillUnmount",
-    value: function componentWillUnmount() {
-      var _this3 = this;
+    if (target && isTouchDevice()) {
+      target.removeEventListener('touchmove', preventTouchMove, this.listenerOptions);
 
-      if (!canUseDOM) return;
-      var _this$props2 = this.props,
-          accountForScrollbars = _this$props2.accountForScrollbars,
-          touchScrollTarget = _this$props2.touchScrollTarget;
-      var target = document.body;
-      var targetStyle = target && target.style; // safely decrement active scroll locks
-
-      activeScrollLocks = Math.max(activeScrollLocks - 1, 0); // reapply original body styles, if any
-
-      if (accountForScrollbars && activeScrollLocks < 1) {
-        STYLE_KEYS.forEach(function (key) {
-          var val = _this3.originalStyles[key];
-
-          if (targetStyle) {
-            targetStyle[key] = val;
-          }
-        });
-      } // remove touch listeners
-
-
-      if (target && isTouchDevice()) {
-        target.removeEventListener('touchmove', preventTouchMove, this.listenerOptions);
-
-        if (touchScrollTarget) {
-          touchScrollTarget.removeEventListener('touchstart', preventInertiaScroll, this.listenerOptions);
-          touchScrollTarget.removeEventListener('touchmove', allowTouchMove, this.listenerOptions);
-        }
+      if (touchScrollTarget) {
+        touchScrollTarget.removeEventListener('touchstart', preventInertiaScroll, this.listenerOptions);
+        touchScrollTarget.removeEventListener('touchmove', allowTouchMove, this.listenerOptions);
       }
     }
-  }, {
-    key: "render",
-    value: function render() {
-      return null;
-    }
-  }]);
+  };
+
+  _proto.render = function render() {
+    return null;
+  };
 
   return ScrollLock;
 }(React.Component);
 
-_defineProperty$1(ScrollLock, "defaultProps", {
+ScrollLock.defaultProps = {
   accountForScrollbars: true
-});
+};
+
+function _inheritsLoose$2$1(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; subClass.__proto__ = superClass; }
 
 var _ref$1 = process.env.NODE_ENV === "production" ? {
   name: "1dsbpcp",
@@ -24051,110 +23676,100 @@ var _ref$1 = process.env.NODE_ENV === "production" ? {
 var ScrollBlock =
 /*#__PURE__*/
 function (_PureComponent) {
-  _inherits$1(ScrollBlock, _PureComponent);
+  _inheritsLoose$2$1(ScrollBlock, _PureComponent);
 
   function ScrollBlock() {
-    var _getPrototypeOf2;
-
     var _this;
-
-    _classCallCheck$1(this, ScrollBlock);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = _possibleConstructorReturn$1(this, (_getPrototypeOf2 = _getPrototypeOf(ScrollBlock)).call.apply(_getPrototypeOf2, [this].concat(args)));
-
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "state", {
+    _this = _PureComponent.call.apply(_PureComponent, [this].concat(args)) || this;
+    _this.state = {
       touchScrollTarget: null
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "getScrollTarget", function (ref) {
+    _this.getScrollTarget = function (ref) {
       if (ref === _this.state.touchScrollTarget) return;
 
       _this.setState({
         touchScrollTarget: ref
       });
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "blurSelectInput", function () {
+    _this.blurSelectInput = function () {
       if (document.activeElement) {
         document.activeElement.blur();
       }
-    });
+    };
 
     return _this;
   }
 
-  _createClass$1(ScrollBlock, [{
-    key: "render",
-    value: function render() {
-      var _this$props = this.props,
-          children = _this$props.children,
-          isEnabled = _this$props.isEnabled;
-      var touchScrollTarget = this.state.touchScrollTarget; // bail early if not enabled
+  var _proto = ScrollBlock.prototype;
 
-      if (!isEnabled) return children;
-      /*
-       * Div
-       * ------------------------------
-       * blocks scrolling on non-body elements behind the menu
-        * NodeResolver
-       * ------------------------------
-       * we need a reference to the scrollable element to "unlock" scroll on
-       * mobile devices
-        * ScrollLock
-       * ------------------------------
-       * actually does the scroll locking
-       */
+  _proto.render = function render() {
+    var _this$props = this.props,
+        children = _this$props.children,
+        isEnabled = _this$props.isEnabled;
+    var touchScrollTarget = this.state.touchScrollTarget; // bail early if not enabled
 
-      return jsx("div", null, jsx("div", {
-        onClick: this.blurSelectInput,
-        css: _ref$1
-      }), jsx(NodeResolver, {
-        innerRef: this.getScrollTarget
-      }, children), touchScrollTarget ? jsx(ScrollLock, {
-        touchScrollTarget: touchScrollTarget
-      }) : null);
-    }
-  }]);
+    if (!isEnabled) return children;
+    /*
+     * Div
+     * ------------------------------
+     * blocks scrolling on non-body elements behind the menu
+      * NodeResolver
+     * ------------------------------
+     * we need a reference to the scrollable element to "unlock" scroll on
+     * mobile devices
+      * ScrollLock
+     * ------------------------------
+     * actually does the scroll locking
+     */
+
+    return jsx("div", null, jsx("div", {
+      onClick: this.blurSelectInput,
+      css: _ref$1
+    }), jsx(NodeResolver, {
+      innerRef: this.getScrollTarget
+    }, children), touchScrollTarget ? jsx(ScrollLock, {
+      touchScrollTarget: touchScrollTarget
+    }) : null);
+  };
 
   return ScrollBlock;
 }(React.PureComponent);
 
+function _objectWithoutPropertiesLoose$1$2(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+
+function _inheritsLoose$3$1(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; subClass.__proto__ = superClass; }
+
 var ScrollCaptor =
 /*#__PURE__*/
 function (_Component) {
-  _inherits$1(ScrollCaptor, _Component);
+  _inheritsLoose$3$1(ScrollCaptor, _Component);
 
   function ScrollCaptor() {
-    var _getPrototypeOf2;
-
     var _this;
-
-    _classCallCheck$1(this, ScrollCaptor);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = _possibleConstructorReturn$1(this, (_getPrototypeOf2 = _getPrototypeOf(ScrollCaptor)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = _Component.call.apply(_Component, [this].concat(args)) || this;
+    _this.isBottom = false;
+    _this.isTop = false;
+    _this.scrollTarget = void 0;
+    _this.touchStart = void 0;
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "isBottom", false);
-
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "isTop", false);
-
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "scrollTarget", void 0);
-
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "touchStart", void 0);
-
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "cancelScroll", function (event) {
+    _this.cancelScroll = function (event) {
       event.preventDefault();
       event.stopPropagation();
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "handleEventDelta", function (event, delta) {
+    _this.handleEventDelta = function (event, delta) {
       var _this$props = _this.props,
           onBottomArrive = _this$props.onBottomArrive,
           onBottomLeave = _this$props.onBottomLeave,
@@ -24202,128 +23817,106 @@ function (_Component) {
       if (shouldCancelScroll) {
         _this.cancelScroll(event);
       }
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onWheel", function (event) {
+    _this.onWheel = function (event) {
       _this.handleEventDelta(event, event.deltaY);
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onTouchStart", function (event) {
+    _this.onTouchStart = function (event) {
       // set touch start so we can calculate touchmove delta
       _this.touchStart = event.changedTouches[0].clientY;
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onTouchMove", function (event) {
+    _this.onTouchMove = function (event) {
       var deltaY = _this.touchStart - event.changedTouches[0].clientY;
 
       _this.handleEventDelta(event, deltaY);
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "getScrollTarget", function (ref) {
+    _this.getScrollTarget = function (ref) {
       _this.scrollTarget = ref;
-    });
+    };
 
     return _this;
   }
 
-  _createClass$1(ScrollCaptor, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      this.startListening(this.scrollTarget);
-    }
-  }, {
-    key: "componentWillUnmount",
-    value: function componentWillUnmount() {
-      this.stopListening(this.scrollTarget);
-    }
-  }, {
-    key: "startListening",
-    value: function startListening(el) {
-      // bail early if no element is available to attach to
-      if (!el) return; // all the if statements are to appease Flow 😢
+  var _proto = ScrollCaptor.prototype;
 
-      if (typeof el.addEventListener === 'function') {
-        el.addEventListener('wheel', this.onWheel, false);
-      }
+  _proto.componentDidMount = function componentDidMount() {
+    this.startListening(this.scrollTarget);
+  };
 
-      if (typeof el.addEventListener === 'function') {
-        el.addEventListener('touchstart', this.onTouchStart, false);
-      }
+  _proto.componentWillUnmount = function componentWillUnmount() {
+    this.stopListening(this.scrollTarget);
+  };
 
-      if (typeof el.addEventListener === 'function') {
-        el.addEventListener('touchmove', this.onTouchMove, false);
-      }
+  _proto.startListening = function startListening(el) {
+    // bail early if no element is available to attach to
+    if (!el) return; // all the if statements are to appease Flow 😢
+
+    if (typeof el.addEventListener === 'function') {
+      el.addEventListener('wheel', this.onWheel, false);
     }
-  }, {
-    key: "stopListening",
-    value: function stopListening(el) {
-      // all the if statements are to appease Flow 😢
-      if (typeof el.removeEventListener === 'function') {
-        el.removeEventListener('wheel', this.onWheel, false);
-      }
 
-      if (typeof el.removeEventListener === 'function') {
-        el.removeEventListener('touchstart', this.onTouchStart, false);
-      }
+    if (typeof el.addEventListener === 'function') {
+      el.addEventListener('touchstart', this.onTouchStart, false);
+    }
 
-      if (typeof el.removeEventListener === 'function') {
-        el.removeEventListener('touchmove', this.onTouchMove, false);
-      }
+    if (typeof el.addEventListener === 'function') {
+      el.addEventListener('touchmove', this.onTouchMove, false);
     }
-  }, {
-    key: "render",
-    value: function render() {
-      return React__default.createElement(NodeResolver, {
-        innerRef: this.getScrollTarget
-      }, this.props.children);
+  };
+
+  _proto.stopListening = function stopListening(el) {
+    // all the if statements are to appease Flow 😢
+    if (typeof el.removeEventListener === 'function') {
+      el.removeEventListener('wheel', this.onWheel, false);
     }
-  }]);
+
+    if (typeof el.removeEventListener === 'function') {
+      el.removeEventListener('touchstart', this.onTouchStart, false);
+    }
+
+    if (typeof el.removeEventListener === 'function') {
+      el.removeEventListener('touchmove', this.onTouchMove, false);
+    }
+  };
+
+  _proto.render = function render() {
+    return React__default.createElement(NodeResolver, {
+      innerRef: this.getScrollTarget
+    }, this.props.children);
+  };
 
   return ScrollCaptor;
 }(React.Component);
 
-var ScrollCaptorSwitch =
-/*#__PURE__*/
-function (_Component2) {
-  _inherits$1(ScrollCaptorSwitch, _Component2);
+function ScrollCaptorSwitch(_ref) {
+  var _ref$isEnabled = _ref.isEnabled,
+      isEnabled = _ref$isEnabled === void 0 ? true : _ref$isEnabled,
+      props = _objectWithoutPropertiesLoose$1$2(_ref, ["isEnabled"]);
 
-  function ScrollCaptorSwitch() {
-    _classCallCheck$1(this, ScrollCaptorSwitch);
+  return isEnabled ? React__default.createElement(ScrollCaptor, props) : props.children;
+}
 
-    return _possibleConstructorReturn$1(this, _getPrototypeOf(ScrollCaptorSwitch).apply(this, arguments));
+var instructionsAriaMessage = function instructionsAriaMessage(event, context) {
+  if (context === void 0) {
+    context = {};
   }
 
-  _createClass$1(ScrollCaptorSwitch, [{
-    key: "render",
-    value: function render() {
-      var _this$props2 = this.props,
-          isEnabled = _this$props2.isEnabled,
-          props = _objectWithoutProperties$2(_this$props2, ["isEnabled"]);
-
-      return isEnabled ? React__default.createElement(ScrollCaptor, props) : this.props.children;
-    }
-  }]);
-
-  return ScrollCaptorSwitch;
-}(React.Component);
-
-_defineProperty$1(ScrollCaptorSwitch, "defaultProps", {
-  isEnabled: true
-});
-
-var instructionsAriaMessage = function instructionsAriaMessage(event) {
-  var context = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-  var isSearchable = context.isSearchable,
-      isMulti = context.isMulti,
-      label = context.label,
-      isDisabled = context.isDisabled;
+  var _context = context,
+      isSearchable = _context.isSearchable,
+      isMulti = _context.isMulti,
+      label = _context.label,
+      isDisabled = _context.isDisabled;
 
   switch (event) {
     case 'menu':
-      return "Use Up and Down to choose options".concat(isDisabled ? '' : ', press Enter to select the currently focused option', ", press Escape to exit the menu, press Tab to select the option and exit the menu.");
+      return "Use Up and Down to choose options" + (isDisabled ? '' : ', press Enter to select the currently focused option') + ", press Escape to exit the menu, press Tab to select the option and exit the menu.";
 
     case 'input':
-      return "".concat(label ? label : 'Select', " is focused ").concat(isSearchable ? ',type to refine list' : '', ", press Down to open the menu, ").concat(isMulti ? ' press left to focus selected values' : '');
+      return (label ? label : 'Select') + " is focused " + (isSearchable ? ',type to refine list' : '') + ", press Down to open the menu, " + (isMulti ? ' press left to focus selected values' : '');
 
     case 'value':
       return 'Use left and right to toggle between focused values, press Backspace to remove the currently focused value';
@@ -24338,28 +23931,28 @@ var valueEventAriaMessage = function valueEventAriaMessage(event, context) {
     case 'deselect-option':
     case 'pop-value':
     case 'remove-value':
-      return "option ".concat(value, ", deselected.");
+      return "option " + value + ", deselected.";
 
     case 'select-option':
-      return isDisabled ? "option ".concat(value, " is disabled. Select another option.") : "option ".concat(value, ", selected.");
+      return isDisabled ? "option " + value + " is disabled. Select another option." : "option " + value + ", selected.";
   }
 };
 var valueFocusAriaMessage = function valueFocusAriaMessage(_ref) {
   var focusedValue = _ref.focusedValue,
       getOptionLabel = _ref.getOptionLabel,
       selectValue = _ref.selectValue;
-  return "value ".concat(getOptionLabel(focusedValue), " focused, ").concat(selectValue.indexOf(focusedValue) + 1, " of ").concat(selectValue.length, ".");
+  return "value " + getOptionLabel(focusedValue) + " focused, " + (selectValue.indexOf(focusedValue) + 1) + " of " + selectValue.length + ".";
 };
 var optionFocusAriaMessage = function optionFocusAriaMessage(_ref2) {
   var focusedOption = _ref2.focusedOption,
       getOptionLabel = _ref2.getOptionLabel,
       options = _ref2.options;
-  return "option ".concat(getOptionLabel(focusedOption), " focused").concat(focusedOption.isDisabled ? ' disabled' : '', ", ").concat(options.indexOf(focusedOption) + 1, " of ").concat(options.length, ".");
+  return "option " + getOptionLabel(focusedOption) + " focused" + (focusedOption.isDisabled ? ' disabled' : '') + ", " + (options.indexOf(focusedOption) + 1) + " of " + options.length + ".";
 };
 var resultsAriaMessage = function resultsAriaMessage(_ref3) {
   var inputValue = _ref3.inputValue,
       screenReaderMessage = _ref3.screenReaderMessage;
-  return "".concat(screenReaderMessage).concat(inputValue ? ' for search term ' + inputValue : '', ".");
+  return "" + screenReaderMessage + (inputValue ? ' for search term ' + inputValue : '') + ".";
 };
 
 var formatGroupLabel = function formatGroupLabel(group) {
@@ -24374,7 +23967,6 @@ var getOptionValue = function getOptionValue(option) {
 var isOptionDisabled = function isOptionDisabled(option) {
   return !!option.isDisabled;
 };
-
 var defaultStyles = {
   clearIndicator: clearIndicatorCSS,
   container: containerCSS,
@@ -24437,6 +24029,13 @@ var defaultTheme = {
   spacing: spacing
 };
 
+function _objectWithoutPropertiesLoose$2$2(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+
+function _extends$4$1() { _extends$4$1 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$4$1.apply(this, arguments); }
+
+function _inheritsLoose$4(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; subClass.__proto__ = superClass; }
+
+function _assertThisInitialized$1(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 var defaultProps = {
   backspaceRemovesValue: true,
   blurInputOnSelect: isTouchCapable(),
@@ -24476,7 +24075,7 @@ var defaultProps = {
   placeholder: 'Select...',
   screenReaderStatus: function screenReaderStatus(_ref) {
     var count = _ref.count;
-    return "".concat(count, " result").concat(count !== 1 ? 's' : '', " available");
+    return count + " result" + (count !== 1 ? 's' : '') + " available";
   },
   styles: {},
   tabIndex: '0',
@@ -24487,7 +24086,7 @@ var instanceId = 1;
 var Select =
 /*#__PURE__*/
 function (_Component) {
-  _inherits$1(Select, _Component);
+  _inheritsLoose$4(Select, _Component);
 
   // Misc. Instance Properties
   // ------------------------------
@@ -24499,11 +24098,8 @@ function (_Component) {
   function Select(_props) {
     var _this;
 
-    _classCallCheck$1(this, Select);
-
-    _this = _possibleConstructorReturn$1(this, _getPrototypeOf(Select).call(this, _props));
-
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "state", {
+    _this = _Component.call(this, _props) || this;
+    _this.state = {
       ariaLiveSelection: '',
       ariaLiveContext: '',
       focusedOption: null,
@@ -24515,80 +24111,67 @@ function (_Component) {
         focusable: []
       },
       selectValue: []
-    });
+    };
+    _this.blockOptionHover = false;
+    _this.isComposing = false;
+    _this.clearFocusValueOnUpdate = false;
+    _this.commonProps = void 0;
+    _this.components = void 0;
+    _this.hasGroups = false;
+    _this.initialTouchX = 0;
+    _this.initialTouchY = 0;
+    _this.inputIsHiddenAfterUpdate = void 0;
+    _this.instancePrefix = '';
+    _this.openAfterFocus = false;
+    _this.scrollToFocusedOptionOnUpdate = false;
+    _this.userIsDragging = void 0;
+    _this.controlRef = null;
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "blockOptionHover", false);
-
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "isComposing", false);
-
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "clearFocusValueOnUpdate", false);
-
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "commonProps", void 0);
-
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "components", void 0);
-
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "hasGroups", false);
-
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "initialTouchX", 0);
-
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "initialTouchY", 0);
-
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "inputIsHiddenAfterUpdate", void 0);
-
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "instancePrefix", '');
-
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "openAfterFocus", false);
-
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "scrollToFocusedOptionOnUpdate", false);
-
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "userIsDragging", void 0);
-
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "controlRef", null);
-
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "getControlRef", function (ref) {
+    _this.getControlRef = function (ref) {
       _this.controlRef = ref;
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "focusedOptionRef", null);
+    _this.focusedOptionRef = null;
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "getFocusedOptionRef", function (ref) {
+    _this.getFocusedOptionRef = function (ref) {
       _this.focusedOptionRef = ref;
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "menuListRef", null);
+    _this.menuListRef = null;
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "getMenuListRef", function (ref) {
+    _this.getMenuListRef = function (ref) {
       _this.menuListRef = ref;
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "inputRef", null);
+    _this.inputRef = null;
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "getInputRef", function (ref) {
+    _this.getInputRef = function (ref) {
       _this.inputRef = ref;
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "cacheComponents", function (components) {
+    _this.cacheComponents = function (components) {
       _this.components = defaultComponents({
         components: components
       });
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "focus", _this.focusInput);
+    _this.focus = _this.focusInput;
+    _this.blur = _this.blurInput;
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "blur", _this.blurInput);
-
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onChange", function (newValue, actionMeta) {
+    _this.onChange = function (newValue, actionMeta) {
       var _this$props = _this.props,
           onChange = _this$props.onChange,
           name = _this$props.name;
-      onChange(newValue, _objectSpread$a({}, actionMeta, {
+      onChange(newValue, _extends$4$1({}, actionMeta, {
         name: name
       }));
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "setValue", function (newValue) {
-      var action = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'set-value';
-      var option = arguments.length > 2 ? arguments[2] : undefined;
+    _this.setValue = function (newValue, action, option) {
+      if (action === void 0) {
+        action = 'set-value';
+      }
+
       var _this$props2 = _this.props,
           closeMenuOnSelect = _this$props2.closeMenuOnSelect,
           isMulti = _this$props2.isMulti;
@@ -24610,9 +24193,9 @@ function (_Component) {
         action: action,
         option: option
       });
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "selectOption", function (newValue) {
+    _this.selectOption = function (newValue) {
       var _this$props3 = _this.props,
           blurInputOnSelect = _this$props3.blurInputOnSelect,
           isMulti = _this$props3.isMulti;
@@ -24634,7 +24217,7 @@ function (_Component) {
           });
         } else {
           if (!_this.isOptionDisabled(newValue, selectValue)) {
-            _this.setValue([].concat(_toConsumableArray(selectValue), [newValue]), 'select-option', newValue);
+            _this.setValue([].concat(selectValue, [newValue]), 'select-option', newValue);
 
             _this.announceAriaLiveSelection({
               event: 'select-option',
@@ -24678,9 +24261,9 @@ function (_Component) {
       if (blurInputOnSelect) {
         _this.blurInput();
       }
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "removeValue", function (removedValue) {
+    _this.removeValue = function (removedValue) {
       var selectValue = _this.state.selectValue;
 
       var candidate = _this.getOptionValue(removedValue);
@@ -24702,17 +24285,17 @@ function (_Component) {
       });
 
       _this.focusInput();
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "clearValue", function () {
+    _this.clearValue = function () {
       var isMulti = _this.props.isMulti;
 
       _this.onChange(isMulti ? [] : null, {
         action: 'clear'
       });
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "popValue", function () {
+    _this.popValue = function () {
       var selectValue = _this.state.selectValue;
       var lastSelectedValue = selectValue[selectValue.length - 1];
       var newValue = selectValue.slice(0, selectValue.length - 1);
@@ -24728,28 +24311,28 @@ function (_Component) {
         action: 'pop-value',
         removedValue: lastSelectedValue
       });
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "getOptionLabel", function (data) {
+    _this.getOptionLabel = function (data) {
       return _this.props.getOptionLabel(data);
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "getOptionValue", function (data) {
+    _this.getOptionValue = function (data) {
       return _this.props.getOptionValue(data);
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "getStyles", function (key, props) {
+    _this.getStyles = function (key, props) {
       var base = defaultStyles[key](props);
       base.boxSizing = 'border-box';
       var custom = _this.props.styles[key];
       return custom ? custom(base, props) : base;
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "getElementId", function (element) {
-      return "".concat(_this.instancePrefix, "-").concat(element);
-    });
+    _this.getElementId = function (element) {
+      return _this.instancePrefix + "-" + element;
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "getActiveDescendentId", function () {
+    _this.getActiveDescendentId = function () {
       var menuIsOpen = _this.props.menuIsOpen;
       var _this$state = _this.state,
           menuOptions = _this$state.menuOptions,
@@ -24758,29 +24341,29 @@ function (_Component) {
       var index = menuOptions.focusable.indexOf(focusedOption);
       var option = menuOptions.render[index];
       return option && option.key;
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "announceAriaLiveSelection", function (_ref2) {
+    _this.announceAriaLiveSelection = function (_ref2) {
       var event = _ref2.event,
           context = _ref2.context;
 
       _this.setState({
         ariaLiveSelection: valueEventAriaMessage(event, context)
       });
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "announceAriaLiveContext", function (_ref3) {
+    _this.announceAriaLiveContext = function (_ref3) {
       var event = _ref3.event,
           context = _ref3.context;
 
       _this.setState({
-        ariaLiveContext: instructionsAriaMessage(event, _objectSpread$a({}, context, {
+        ariaLiveContext: instructionsAriaMessage(event, _extends$4$1({}, context, {
           label: _this.props['aria-label']
         }))
       });
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onMenuMouseDown", function (event) {
+    _this.onMenuMouseDown = function (event) {
       if (event.button !== 0) {
         return;
       }
@@ -24789,13 +24372,13 @@ function (_Component) {
       event.preventDefault();
 
       _this.focusInput();
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onMenuMouseMove", function (event) {
+    _this.onMenuMouseMove = function (event) {
       _this.blockOptionHover = false;
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onControlMouseDown", function (event) {
+    _this.onControlMouseDown = function (event) {
       var openMenuOnClick = _this.props.openMenuOnClick;
 
       if (!_this.state.isFocused) {
@@ -24809,19 +24392,19 @@ function (_Component) {
           _this.openMenu('first');
         }
       } else {
-        //$FlowFixMe
-        if (event.target.tagName !== 'INPUT') {
+        if ( // $FlowFixMe
+        event.target.tagName !== 'INPUT' && event.target.tagName !== 'TEXTAREA') {
           _this.onMenuClose();
         }
-      } //$FlowFixMe
+      }
 
-
-      if (event.target.tagName !== 'INPUT') {
+      if ( // $FlowFixMe
+      event.target.tagName !== 'INPUT' && event.target.tagName !== 'TEXTAREA') {
         event.preventDefault();
       }
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onDropdownIndicatorMouseDown", function (event) {
+    _this.onDropdownIndicatorMouseDown = function (event) {
       // ignore mouse events that weren't triggered by the primary button
       if (event && event.type === 'mousedown' && event.button !== 0) {
         return;
@@ -24844,9 +24427,9 @@ function (_Component) {
 
       event.preventDefault();
       event.stopPropagation();
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onClearIndicatorMouseDown", function (event) {
+    _this.onClearIndicatorMouseDown = function (event) {
       // ignore mouse events that weren't triggered by the primary button
       if (event && event.type === 'mousedown' && event.button !== 0) {
         return;
@@ -24864,9 +24447,9 @@ function (_Component) {
           return _this.focusInput();
         });
       }
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onScroll", function (event) {
+    _this.onScroll = function (event) {
       if (typeof _this.props.closeMenuOnScroll === 'boolean') {
         if (event.target instanceof HTMLElement && isDocumentElement(event.target)) {
           _this.props.onMenuClose();
@@ -24876,17 +24459,17 @@ function (_Component) {
           _this.props.onMenuClose();
         }
       }
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onCompositionStart", function () {
+    _this.onCompositionStart = function () {
       _this.isComposing = true;
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onCompositionEnd", function () {
+    _this.onCompositionEnd = function () {
       _this.isComposing = false;
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onTouchStart", function (_ref4) {
+    _this.onTouchStart = function (_ref4) {
       var touches = _ref4.touches;
       var touch = touches.item(0);
 
@@ -24897,9 +24480,9 @@ function (_Component) {
       _this.initialTouchX = touch.clientX;
       _this.initialTouchY = touch.clientY;
       _this.userIsDragging = false;
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onTouchMove", function (_ref5) {
+    _this.onTouchMove = function (_ref5) {
       var touches = _ref5.touches;
       var touch = touches.item(0);
 
@@ -24911,9 +24494,9 @@ function (_Component) {
       var deltaY = Math.abs(touch.clientY - _this.initialTouchY);
       var moveThreshold = 5;
       _this.userIsDragging = deltaX > moveThreshold || deltaY > moveThreshold;
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onTouchEnd", function (event) {
+    _this.onTouchEnd = function (event) {
       if (_this.userIsDragging) return; // close the menu if the user taps outside
       // we're checking on event.target here instead of event.currentTarget, because we want to assert information
       // on events on child elements, not the document (which we've attached this handler to).
@@ -24925,27 +24508,27 @@ function (_Component) {
 
       _this.initialTouchX = 0;
       _this.initialTouchY = 0;
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onControlTouchEnd", function (event) {
+    _this.onControlTouchEnd = function (event) {
       if (_this.userIsDragging) return;
 
       _this.onControlMouseDown(event);
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onClearIndicatorTouchEnd", function (event) {
+    _this.onClearIndicatorTouchEnd = function (event) {
       if (_this.userIsDragging) return;
 
       _this.onClearIndicatorMouseDown(event);
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onDropdownIndicatorTouchEnd", function (event) {
+    _this.onDropdownIndicatorTouchEnd = function (event) {
       if (_this.userIsDragging) return;
 
       _this.onDropdownIndicatorMouseDown(event);
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "handleInputChange", function (event) {
+    _this.handleInputChange = function (event) {
       var inputValue = event.currentTarget.value;
       _this.inputIsHiddenAfterUpdate = false;
 
@@ -24954,9 +24537,9 @@ function (_Component) {
       });
 
       _this.onMenuOpen();
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onInputFocus", function (event) {
+    _this.onInputFocus = function (event) {
       var _this$props5 = _this.props,
           isSearchable = _this$props5.isSearchable,
           isMulti = _this$props5.isMulti;
@@ -24984,9 +24567,9 @@ function (_Component) {
       }
 
       _this.openAfterFocus = false;
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onInputBlur", function (event) {
+    _this.onInputBlur = function (event) {
       if (_this.menuListRef && _this.menuListRef.contains(document.activeElement)) {
         _this.inputRef.focus();
 
@@ -25007,9 +24590,9 @@ function (_Component) {
         focusedValue: null,
         isFocused: false
       });
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onOptionHover", function (focusedOption) {
+    _this.onOptionHover = function (focusedOption) {
       if (_this.blockOptionHover || _this.state.focusedOption === focusedOption) {
         return;
       }
@@ -25017,17 +24600,17 @@ function (_Component) {
       _this.setState({
         focusedOption: focusedOption
       });
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "shouldHideSelectedOptions", function () {
+    _this.shouldHideSelectedOptions = function () {
       var _this$props6 = _this.props,
           hideSelectedOptions = _this$props6.hideSelectedOptions,
           isMulti = _this$props6.isMulti;
       if (hideSelectedOptions === undefined) return isMulti;
       return hideSelectedOptions;
-    });
+    };
 
-    _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onKeyDown", function (event) {
+    _this.onKeyDown = function (event) {
       var _this$props7 = _this.props,
           isMulti = _this$props7.isMulti,
           backspaceRemovesValue = _this$props7.backspaceRemovesValue,
@@ -25204,522 +24787,23 @@ function (_Component) {
       }
 
       event.preventDefault();
-    });
-
-    var value = _props.value;
-    _this.cacheComponents = memoizeOne(_this.cacheComponents, exportedEqual).bind(_assertThisInitialized$1(_assertThisInitialized$1(_this)));
-
-    _this.cacheComponents(_props.components);
-
-    _this.instancePrefix = 'react-select-' + (_this.props.instanceId || ++instanceId);
-
-    var _selectValue = cleanValue(value);
-
-    var _menuOptions = _props.menuIsOpen ? _this.buildMenuOptions(_props, _selectValue) : {
-      render: [],
-      focusable: []
     };
 
-    _this.state.menuOptions = _menuOptions;
-    _this.state.selectValue = _selectValue;
-    return _this;
-  }
-
-  _createClass$1(Select, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      this.startListeningComposition();
-      this.startListeningToTouch();
-
-      if (this.props.closeMenuOnScroll && document && document.addEventListener) {
-        // Listen to all scroll events, and filter them out inside of 'onScroll'
-        document.addEventListener('scroll', this.onScroll, true);
-      }
-
-      if (this.props.autoFocus) {
-        this.focusInput();
-      }
-    }
-  }, {
-    key: "UNSAFE_componentWillReceiveProps",
-    value: function UNSAFE_componentWillReceiveProps(nextProps) {
-      var _this$props8 = this.props,
-          options = _this$props8.options,
-          value = _this$props8.value,
-          menuIsOpen = _this$props8.menuIsOpen,
-          inputValue = _this$props8.inputValue; // re-cache custom components
-
-      this.cacheComponents(nextProps.components); // rebuild the menu options
-
-      if (nextProps.value !== value || nextProps.options !== options || nextProps.menuIsOpen !== menuIsOpen || nextProps.inputValue !== inputValue) {
-        var selectValue = cleanValue(nextProps.value);
-        var menuOptions = nextProps.menuIsOpen ? this.buildMenuOptions(nextProps, selectValue) : {
-          render: [],
-          focusable: []
-        };
-        var focusedValue = this.getNextFocusedValue(selectValue);
-        var focusedOption = this.getNextFocusedOption(menuOptions.focusable);
-        this.setState({
-          menuOptions: menuOptions,
-          selectValue: selectValue,
-          focusedOption: focusedOption,
-          focusedValue: focusedValue
-        });
-      } // some updates should toggle the state of the input visibility
-
-
-      if (this.inputIsHiddenAfterUpdate != null) {
-        this.setState({
-          inputIsHidden: this.inputIsHiddenAfterUpdate
-        });
-        delete this.inputIsHiddenAfterUpdate;
-      }
-    }
-  }, {
-    key: "componentDidUpdate",
-    value: function componentDidUpdate(prevProps) {
-      var _this$props9 = this.props,
-          isDisabled = _this$props9.isDisabled,
-          menuIsOpen = _this$props9.menuIsOpen;
-      var isFocused = this.state.isFocused;
-
-      if ( // ensure focus is restored correctly when the control becomes enabled
-      isFocused && !isDisabled && prevProps.isDisabled || // ensure focus is on the Input when the menu opens
-      isFocused && menuIsOpen && !prevProps.menuIsOpen) {
-        this.focusInput();
-      } // scroll the focused option into view if necessary
-
-
-      if (this.menuListRef && this.focusedOptionRef && this.scrollToFocusedOptionOnUpdate) {
-        scrollIntoView(this.menuListRef, this.focusedOptionRef);
-      }
-
-      this.scrollToFocusedOptionOnUpdate = false;
-    }
-  }, {
-    key: "componentWillUnmount",
-    value: function componentWillUnmount() {
-      this.stopListeningComposition();
-      this.stopListeningToTouch();
-      document.removeEventListener('scroll', this.onScroll, true);
-    }
-  }, {
-    key: "onMenuOpen",
-    // ==============================
-    // Consumer Handlers
-    // ==============================
-    value: function onMenuOpen() {
-      this.props.onMenuOpen();
-    }
-  }, {
-    key: "onMenuClose",
-    value: function onMenuClose() {
-      var _this$props10 = this.props,
-          isSearchable = _this$props10.isSearchable,
-          isMulti = _this$props10.isMulti;
-      this.announceAriaLiveContext({
-        event: 'input',
-        context: {
-          isSearchable: isSearchable,
-          isMulti: isMulti
-        }
-      });
-      this.onInputChange('', {
-        action: 'menu-close'
-      });
-      this.props.onMenuClose();
-    }
-  }, {
-    key: "onInputChange",
-    value: function onInputChange(newValue, actionMeta) {
-      this.props.onInputChange(newValue, actionMeta);
-    } // ==============================
-    // Methods
-    // ==============================
-
-  }, {
-    key: "focusInput",
-    value: function focusInput() {
-      if (!this.inputRef) return;
-      this.inputRef.focus();
-    }
-  }, {
-    key: "blurInput",
-    value: function blurInput() {
-      if (!this.inputRef) return;
-      this.inputRef.blur();
-    } // aliased for consumers
-
-  }, {
-    key: "openMenu",
-    value: function openMenu(focusOption) {
-      var _this$state3 = this.state,
-          menuOptions = _this$state3.menuOptions,
-          selectValue = _this$state3.selectValue,
-          isFocused = _this$state3.isFocused;
-      var isMulti = this.props.isMulti;
-      var openAtIndex = focusOption === 'first' ? 0 : menuOptions.focusable.length - 1;
-
-      if (!isMulti) {
-        var selectedIndex = menuOptions.focusable.indexOf(selectValue[0]);
-
-        if (selectedIndex > -1) {
-          openAtIndex = selectedIndex;
-        }
-      } // only scroll if the menu isn't already open
-
-
-      this.scrollToFocusedOptionOnUpdate = !(isFocused && this.menuListRef);
-      this.inputIsHiddenAfterUpdate = false;
-      this.onMenuOpen();
-      this.setState({
-        focusedValue: null,
-        focusedOption: menuOptions.focusable[openAtIndex]
-      });
-      this.announceAriaLiveContext({
-        event: 'menu'
-      });
-    }
-  }, {
-    key: "focusValue",
-    value: function focusValue(direction) {
-      var _this$props11 = this.props,
-          isMulti = _this$props11.isMulti,
-          isSearchable = _this$props11.isSearchable;
-      var _this$state4 = this.state,
-          selectValue = _this$state4.selectValue,
-          focusedValue = _this$state4.focusedValue; // Only multiselects support value focusing
-
-      if (!isMulti) return;
-      this.setState({
-        focusedOption: null
-      });
-      var focusedIndex = selectValue.indexOf(focusedValue);
-
-      if (!focusedValue) {
-        focusedIndex = -1;
-        this.announceAriaLiveContext({
-          event: 'value'
-        });
-      }
-
-      var lastIndex = selectValue.length - 1;
-      var nextFocus = -1;
-      if (!selectValue.length) return;
-
-      switch (direction) {
-        case 'previous':
-          if (focusedIndex === 0) {
-            // don't cycle from the start to the end
-            nextFocus = 0;
-          } else if (focusedIndex === -1) {
-            // if nothing is focused, focus the last value first
-            nextFocus = lastIndex;
-          } else {
-            nextFocus = focusedIndex - 1;
-          }
-
-          break;
-
-        case 'next':
-          if (focusedIndex > -1 && focusedIndex < lastIndex) {
-            nextFocus = focusedIndex + 1;
-          }
-
-          break;
-      }
-
-      if (nextFocus === -1) {
-        this.announceAriaLiveContext({
-          event: 'input',
-          context: {
-            isSearchable: isSearchable,
-            isMulti: isMulti
-          }
-        });
-      }
-
-      this.setState({
-        inputIsHidden: nextFocus !== -1,
-        focusedValue: selectValue[nextFocus]
-      });
-    }
-  }, {
-    key: "focusOption",
-    value: function focusOption() {
-      var direction = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'first';
-      var pageSize = this.props.pageSize;
-      var _this$state5 = this.state,
-          focusedOption = _this$state5.focusedOption,
-          menuOptions = _this$state5.menuOptions;
-      var options = menuOptions.focusable;
-      if (!options.length) return;
-      var nextFocus = 0; // handles 'first'
-
-      var focusedIndex = options.indexOf(focusedOption);
-
-      if (!focusedOption) {
-        focusedIndex = -1;
-        this.announceAriaLiveContext({
-          event: 'menu'
-        });
-      }
-
-      if (direction === 'up') {
-        nextFocus = focusedIndex > 0 ? focusedIndex - 1 : options.length - 1;
-      } else if (direction === 'down') {
-        nextFocus = (focusedIndex + 1) % options.length;
-      } else if (direction === 'pageup') {
-        nextFocus = focusedIndex - pageSize;
-        if (nextFocus < 0) nextFocus = 0;
-      } else if (direction === 'pagedown') {
-        nextFocus = focusedIndex + pageSize;
-        if (nextFocus > options.length - 1) nextFocus = options.length - 1;
-      } else if (direction === 'last') {
-        nextFocus = options.length - 1;
-      }
-
-      this.scrollToFocusedOptionOnUpdate = true;
-      this.setState({
-        focusedOption: options[nextFocus],
-        focusedValue: null
-      });
-      this.announceAriaLiveContext({
-        event: 'menu',
-        context: {
-          isDisabled: isOptionDisabled(options[nextFocus])
-        }
-      });
-    }
-  }, {
-    key: "getTheme",
-    // ==============================
-    // Getters
-    // ==============================
-    value: function getTheme() {
-      // Use the default theme if there are no customizations.
-      if (!this.props.theme) {
-        return defaultTheme;
-      } // If the theme prop is a function, assume the function
-      // knows how to merge the passed-in default theme with
-      // its own modifications.
-
-
-      if (typeof this.props.theme === 'function') {
-        return this.props.theme(defaultTheme);
-      } // Otherwise, if a plain theme object was passed in,
-      // overlay it with the default theme.
-
-
-      return _objectSpread$a({}, defaultTheme, this.props.theme);
-    }
-  }, {
-    key: "getCommonProps",
-    value: function getCommonProps() {
-      var clearValue = this.clearValue,
-          getStyles = this.getStyles,
-          setValue = this.setValue,
-          selectOption = this.selectOption,
-          props = this.props;
-      var classNamePrefix = props.classNamePrefix,
-          isMulti = props.isMulti,
-          isRtl = props.isRtl,
-          options = props.options;
-      var selectValue = this.state.selectValue;
-      var hasValue = this.hasValue();
-
-      var getValue = function getValue() {
-        return selectValue;
-      };
-
-      var cx = classNames.bind(null, classNamePrefix);
-      return {
-        cx: cx,
-        clearValue: clearValue,
-        getStyles: getStyles,
-        getValue: getValue,
-        hasValue: hasValue,
-        isMulti: isMulti,
-        isRtl: isRtl,
-        options: options,
-        selectOption: selectOption,
-        setValue: setValue,
-        selectProps: props,
-        theme: this.getTheme()
-      };
-    }
-  }, {
-    key: "getNextFocusedValue",
-    value: function getNextFocusedValue(nextSelectValue) {
-      if (this.clearFocusValueOnUpdate) {
-        this.clearFocusValueOnUpdate = false;
-        return null;
-      }
-
-      var _this$state6 = this.state,
-          focusedValue = _this$state6.focusedValue,
-          lastSelectValue = _this$state6.selectValue;
-      var lastFocusedIndex = lastSelectValue.indexOf(focusedValue);
-
-      if (lastFocusedIndex > -1) {
-        var nextFocusedIndex = nextSelectValue.indexOf(focusedValue);
-
-        if (nextFocusedIndex > -1) {
-          // the focused value is still in the selectValue, return it
-          return focusedValue;
-        } else if (lastFocusedIndex < nextSelectValue.length) {
-          // the focusedValue is not present in the next selectValue array by
-          // reference, so return the new value at the same index
-          return nextSelectValue[lastFocusedIndex];
-        }
-      }
-
-      return null;
-    }
-  }, {
-    key: "getNextFocusedOption",
-    value: function getNextFocusedOption(options) {
-      var lastFocusedOption = this.state.focusedOption;
-      return lastFocusedOption && options.indexOf(lastFocusedOption) > -1 ? lastFocusedOption : options[0];
-    }
-  }, {
-    key: "hasValue",
-    value: function hasValue() {
-      var selectValue = this.state.selectValue;
-      return selectValue.length > 0;
-    }
-  }, {
-    key: "hasOptions",
-    value: function hasOptions() {
-      return !!this.state.menuOptions.render.length;
-    }
-  }, {
-    key: "countOptions",
-    value: function countOptions() {
-      return this.state.menuOptions.focusable.length;
-    }
-  }, {
-    key: "isClearable",
-    value: function isClearable() {
-      var _this$props12 = this.props,
-          isClearable = _this$props12.isClearable,
-          isMulti = _this$props12.isMulti; // single select, by default, IS NOT clearable
-      // multi select, by default, IS clearable
-
-      if (isClearable === undefined) return isMulti;
-      return isClearable;
-    }
-  }, {
-    key: "isOptionDisabled",
-    value: function isOptionDisabled(option, selectValue) {
-      return typeof this.props.isOptionDisabled === 'function' ? this.props.isOptionDisabled(option, selectValue) : false;
-    }
-  }, {
-    key: "isOptionSelected",
-    value: function isOptionSelected(option, selectValue) {
-      var _this2 = this;
-
-      if (selectValue.indexOf(option) > -1) return true;
-
-      if (typeof this.props.isOptionSelected === 'function') {
-        return this.props.isOptionSelected(option, selectValue);
-      }
-
-      var candidate = this.getOptionValue(option);
-      return selectValue.some(function (i) {
-        return _this2.getOptionValue(i) === candidate;
-      });
-    }
-  }, {
-    key: "filterOption",
-    value: function filterOption(option, inputValue) {
-      return this.props.filterOption ? this.props.filterOption(option, inputValue) : true;
-    }
-  }, {
-    key: "formatOptionLabel",
-    value: function formatOptionLabel(data, context) {
-      if (typeof this.props.formatOptionLabel === 'function') {
-        var inputValue = this.props.inputValue;
-        var selectValue = this.state.selectValue;
-        return this.props.formatOptionLabel(data, {
-          context: context,
-          inputValue: inputValue,
-          selectValue: selectValue
-        });
-      } else {
-        return this.getOptionLabel(data);
-      }
-    }
-  }, {
-    key: "formatGroupLabel",
-    value: function formatGroupLabel(data) {
-      return this.props.formatGroupLabel(data);
-    } // ==============================
-    // Mouse Handlers
-    // ==============================
-
-  }, {
-    key: "startListeningComposition",
-    // ==============================
-    // Composition Handlers
-    // ==============================
-    value: function startListeningComposition() {
-      if (document && document.addEventListener) {
-        document.addEventListener('compositionstart', this.onCompositionStart, false);
-        document.addEventListener('compositionend', this.onCompositionEnd, false);
-      }
-    }
-  }, {
-    key: "stopListeningComposition",
-    value: function stopListeningComposition() {
-      if (document && document.removeEventListener) {
-        document.removeEventListener('compositionstart', this.onCompositionStart);
-        document.removeEventListener('compositionend', this.onCompositionEnd);
-      }
-    }
-  }, {
-    key: "startListeningToTouch",
-    // ==============================
-    // Touch Handlers
-    // ==============================
-    value: function startListeningToTouch() {
-      if (document && document.addEventListener) {
-        document.addEventListener('touchstart', this.onTouchStart, false);
-        document.addEventListener('touchmove', this.onTouchMove, false);
-        document.addEventListener('touchend', this.onTouchEnd, false);
-      }
-    }
-  }, {
-    key: "stopListeningToTouch",
-    value: function stopListeningToTouch() {
-      if (document && document.removeEventListener) {
-        document.removeEventListener('touchstart', this.onTouchStart);
-        document.removeEventListener('touchmove', this.onTouchMove);
-        document.removeEventListener('touchend', this.onTouchEnd);
-      }
-    }
-  }, {
-    key: "buildMenuOptions",
-    // ==============================
-    // Menu Options
-    // ==============================
-    value: function buildMenuOptions(props, selectValue) {
-      var _this3 = this;
-
+    _this.buildMenuOptions = function (props, selectValue) {
       var _props$inputValue = props.inputValue,
           inputValue = _props$inputValue === void 0 ? '' : _props$inputValue,
           options = props.options;
 
       var toOption = function toOption(option, id) {
-        var isDisabled = _this3.isOptionDisabled(option, selectValue);
+        var isDisabled = _this.isOptionDisabled(option, selectValue);
 
-        var isSelected = _this3.isOptionSelected(option, selectValue);
+        var isSelected = _this.isOptionSelected(option, selectValue);
 
-        var label = _this3.getOptionLabel(option);
+        var label = _this.getOptionLabel(option);
 
-        var value = _this3.getOptionValue(option);
+        var value = _this.getOptionValue(option);
 
-        if (_this3.shouldHideSelectedOptions() && isSelected || !_this3.filterOption({
+        if (_this.shouldHideSelectedOptions() && isSelected || !_this.filterOption({
           label: label,
           value: value,
           data: option
@@ -25728,12 +24812,12 @@ function (_Component) {
         }
 
         var onHover = isDisabled ? undefined : function () {
-          return _this3.onOptionHover(option);
+          return _this.onOptionHover(option);
         };
         var onSelect = isDisabled ? undefined : function () {
-          return _this3.selectOption(option);
+          return _this.selectOption(option);
         };
-        var optionId = "".concat(_this3.getElementId('option'), "-").concat(id);
+        var optionId = _this.getElementId('option') + "-" + id;
         return {
           innerProps: {
             id: optionId,
@@ -25755,16 +24839,16 @@ function (_Component) {
       return options.reduce(function (acc, item, itemIndex) {
         if (item.options) {
           // TODO needs a tidier implementation
-          if (!_this3.hasGroups) _this3.hasGroups = true;
+          if (!_this.hasGroups) _this.hasGroups = true;
           var items = item.options;
           var children = items.map(function (child, i) {
-            var option = toOption(child, "".concat(itemIndex, "-").concat(i));
+            var option = toOption(child, itemIndex + "-" + i);
             if (option) acc.focusable.push(child);
             return option;
           }).filter(Boolean);
 
           if (children.length) {
-            var groupId = "".concat(_this3.getElementId('group'), "-").concat(itemIndex);
+            var groupId = _this.getElementId('group') + "-" + itemIndex;
             acc.render.push({
               type: 'group',
               key: groupId,
@@ -25773,7 +24857,7 @@ function (_Component) {
             });
           }
         } else {
-          var option = toOption(item, "".concat(itemIndex));
+          var option = toOption(item, "" + itemIndex);
 
           if (option) {
             acc.render.push(option);
@@ -25786,483 +24870,958 @@ function (_Component) {
         render: [],
         focusable: []
       });
-    } // ==============================
-    // Renderers
-    // ==============================
+    };
 
-  }, {
-    key: "constructAriaLiveMessage",
-    value: function constructAriaLiveMessage() {
-      var _this$state7 = this.state,
-          ariaLiveContext = _this$state7.ariaLiveContext,
-          selectValue = _this$state7.selectValue,
-          focusedValue = _this$state7.focusedValue,
-          focusedOption = _this$state7.focusedOption;
-      var _this$props13 = this.props,
-          options = _this$props13.options,
-          menuIsOpen = _this$props13.menuIsOpen,
-          inputValue = _this$props13.inputValue,
-          screenReaderStatus = _this$props13.screenReaderStatus; // An aria live message representing the currently focused value in the select.
+    var _value = _props.value;
+    _this.cacheComponents = memoizeOne(_this.cacheComponents, exportedEqual).bind(_assertThisInitialized$1(_assertThisInitialized$1(_this)));
 
-      var focusedValueMsg = focusedValue ? valueFocusAriaMessage({
-        focusedValue: focusedValue,
-        getOptionLabel: this.getOptionLabel,
-        selectValue: selectValue
-      }) : ''; // An aria live message representing the currently focused option in the select.
+    _this.cacheComponents(_props.components);
 
-      var focusedOptionMsg = focusedOption && menuIsOpen ? optionFocusAriaMessage({
-        focusedOption: focusedOption,
-        getOptionLabel: this.getOptionLabel,
-        options: options
-      }) : ''; // An aria live message representing the set of focusable results and current searchterm/inputvalue.
+    _this.instancePrefix = 'react-select-' + (_this.props.instanceId || ++instanceId);
 
-      var resultsMsg = resultsAriaMessage({
-        inputValue: inputValue,
-        screenReaderMessage: screenReaderStatus({
-          count: this.countOptions()
-        })
-      });
-      return "".concat(focusedValueMsg, " ").concat(focusedOptionMsg, " ").concat(resultsMsg, " ").concat(ariaLiveContext);
+    var _selectValue = cleanValue(_value);
+
+    _this.buildMenuOptions = memoizeOne(_this.buildMenuOptions, function (newArgs, lastArgs) {
+      var _ref6 = newArgs,
+          newProps = _ref6[0],
+          newSelectValue = _ref6[1];
+      var _ref7 = lastArgs,
+          lastProps = _ref7[0],
+          lastSelectValue = _ref7[1];
+      return exportedEqual(newSelectValue, lastSelectValue) && exportedEqual(newProps.inputValue, lastProps.inputValue) && exportedEqual(newProps.options, lastProps.options);
+    }).bind(_assertThisInitialized$1(_assertThisInitialized$1(_this)));
+
+    var _menuOptions = _props.menuIsOpen ? _this.buildMenuOptions(_props, _selectValue) : {
+      render: [],
+      focusable: []
+    };
+
+    _this.state.menuOptions = _menuOptions;
+    _this.state.selectValue = _selectValue;
+    return _this;
+  }
+
+  var _proto = Select.prototype;
+
+  _proto.componentDidMount = function componentDidMount() {
+    this.startListeningComposition();
+    this.startListeningToTouch();
+
+    if (this.props.closeMenuOnScroll && document && document.addEventListener) {
+      // Listen to all scroll events, and filter them out inside of 'onScroll'
+      document.addEventListener('scroll', this.onScroll, true);
     }
-  }, {
-    key: "renderInput",
-    value: function renderInput() {
-      var _this$props14 = this.props,
-          isDisabled = _this$props14.isDisabled,
-          isSearchable = _this$props14.isSearchable,
-          inputId = _this$props14.inputId,
-          inputValue = _this$props14.inputValue,
-          tabIndex = _this$props14.tabIndex;
-      var Input = this.components.Input;
-      var inputIsHidden = this.state.inputIsHidden;
-      var id = inputId || this.getElementId('input');
 
-      if (!isSearchable) {
-        // use a dummy input to maintain focus/blur functionality
-        return React__default.createElement(DummyInput, {
-          id: id,
-          innerRef: this.getInputRef,
-          onBlur: this.onInputBlur,
-          onChange: noop,
-          onFocus: this.onInputFocus,
-          readOnly: true,
-          disabled: isDisabled,
-          tabIndex: tabIndex,
-          value: ""
-        });
-      } // aria attributes makes the JSX "noisy", separated for clarity
+    if (this.props.autoFocus) {
+      this.focusInput();
+    }
+  };
 
+  _proto.UNSAFE_componentWillReceiveProps = function UNSAFE_componentWillReceiveProps(nextProps) {
+    var _this$props8 = this.props,
+        options = _this$props8.options,
+        value = _this$props8.value,
+        menuIsOpen = _this$props8.menuIsOpen,
+        inputValue = _this$props8.inputValue; // re-cache custom components
 
-      var ariaAttributes = {
-        'aria-autocomplete': 'list',
-        'aria-label': this.props['aria-label'],
-        'aria-labelledby': this.props['aria-labelledby']
+    this.cacheComponents(nextProps.components); // rebuild the menu options
+
+    if (nextProps.value !== value || nextProps.options !== options || nextProps.menuIsOpen !== menuIsOpen || nextProps.inputValue !== inputValue) {
+      var selectValue = cleanValue(nextProps.value);
+      var menuOptions = nextProps.menuIsOpen ? this.buildMenuOptions(nextProps, selectValue) : {
+        render: [],
+        focusable: []
       };
-      var _this$commonProps = this.commonProps,
-          cx = _this$commonProps.cx,
-          theme = _this$commonProps.theme,
-          selectProps = _this$commonProps.selectProps;
-      return React__default.createElement(Input, _extends$1({
-        autoCapitalize: "none",
-        autoComplete: "off",
-        autoCorrect: "off",
-        cx: cx,
-        getStyles: this.getStyles,
+      var focusedValue = this.getNextFocusedValue(selectValue);
+      var focusedOption = this.getNextFocusedOption(menuOptions.focusable);
+      this.setState({
+        menuOptions: menuOptions,
+        selectValue: selectValue,
+        focusedOption: focusedOption,
+        focusedValue: focusedValue
+      });
+    } // some updates should toggle the state of the input visibility
+
+
+    if (this.inputIsHiddenAfterUpdate != null) {
+      this.setState({
+        inputIsHidden: this.inputIsHiddenAfterUpdate
+      });
+      delete this.inputIsHiddenAfterUpdate;
+    }
+  };
+
+  _proto.componentDidUpdate = function componentDidUpdate(prevProps) {
+    var _this$props9 = this.props,
+        isDisabled = _this$props9.isDisabled,
+        menuIsOpen = _this$props9.menuIsOpen;
+    var isFocused = this.state.isFocused;
+
+    if ( // ensure focus is restored correctly when the control becomes enabled
+    isFocused && !isDisabled && prevProps.isDisabled || // ensure focus is on the Input when the menu opens
+    isFocused && menuIsOpen && !prevProps.menuIsOpen) {
+      this.focusInput();
+    } // scroll the focused option into view if necessary
+
+
+    if (this.menuListRef && this.focusedOptionRef && this.scrollToFocusedOptionOnUpdate) {
+      scrollIntoView(this.menuListRef, this.focusedOptionRef);
+      this.scrollToFocusedOptionOnUpdate = false;
+    }
+  };
+
+  _proto.componentWillUnmount = function componentWillUnmount() {
+    this.stopListeningComposition();
+    this.stopListeningToTouch();
+    document.removeEventListener('scroll', this.onScroll, true);
+  };
+
+  // ==============================
+  // Consumer Handlers
+  // ==============================
+  _proto.onMenuOpen = function onMenuOpen() {
+    this.props.onMenuOpen();
+  };
+
+  _proto.onMenuClose = function onMenuClose() {
+    var _this$props10 = this.props,
+        isSearchable = _this$props10.isSearchable,
+        isMulti = _this$props10.isMulti;
+    this.announceAriaLiveContext({
+      event: 'input',
+      context: {
+        isSearchable: isSearchable,
+        isMulti: isMulti
+      }
+    });
+    this.onInputChange('', {
+      action: 'menu-close'
+    });
+    this.props.onMenuClose();
+  };
+
+  _proto.onInputChange = function onInputChange(newValue, actionMeta) {
+    this.props.onInputChange(newValue, actionMeta);
+  } // ==============================
+  // Methods
+  // ==============================
+  ;
+
+  _proto.focusInput = function focusInput() {
+    if (!this.inputRef) return;
+    this.inputRef.focus();
+  };
+
+  _proto.blurInput = function blurInput() {
+    if (!this.inputRef) return;
+    this.inputRef.blur();
+  } // aliased for consumers
+  ;
+
+  _proto.openMenu = function openMenu(focusOption) {
+    var _this2 = this;
+
+    var _this$state3 = this.state,
+        selectValue = _this$state3.selectValue,
+        isFocused = _this$state3.isFocused;
+    var menuOptions = this.buildMenuOptions(this.props, selectValue);
+    var isMulti = this.props.isMulti;
+    var openAtIndex = focusOption === 'first' ? 0 : menuOptions.focusable.length - 1;
+
+    if (!isMulti) {
+      var selectedIndex = menuOptions.focusable.indexOf(selectValue[0]);
+
+      if (selectedIndex > -1) {
+        openAtIndex = selectedIndex;
+      }
+    } // only scroll if the menu isn't already open
+
+
+    this.scrollToFocusedOptionOnUpdate = !(isFocused && this.menuListRef);
+    this.inputIsHiddenAfterUpdate = false;
+    this.setState({
+      menuOptions: menuOptions,
+      focusedValue: null,
+      focusedOption: menuOptions.focusable[openAtIndex]
+    }, function () {
+      _this2.onMenuOpen();
+
+      _this2.announceAriaLiveContext({
+        event: 'menu'
+      });
+    });
+  };
+
+  _proto.focusValue = function focusValue(direction) {
+    var _this$props11 = this.props,
+        isMulti = _this$props11.isMulti,
+        isSearchable = _this$props11.isSearchable;
+    var _this$state4 = this.state,
+        selectValue = _this$state4.selectValue,
+        focusedValue = _this$state4.focusedValue; // Only multiselects support value focusing
+
+    if (!isMulti) return;
+    this.setState({
+      focusedOption: null
+    });
+    var focusedIndex = selectValue.indexOf(focusedValue);
+
+    if (!focusedValue) {
+      focusedIndex = -1;
+      this.announceAriaLiveContext({
+        event: 'value'
+      });
+    }
+
+    var lastIndex = selectValue.length - 1;
+    var nextFocus = -1;
+    if (!selectValue.length) return;
+
+    switch (direction) {
+      case 'previous':
+        if (focusedIndex === 0) {
+          // don't cycle from the start to the end
+          nextFocus = 0;
+        } else if (focusedIndex === -1) {
+          // if nothing is focused, focus the last value first
+          nextFocus = lastIndex;
+        } else {
+          nextFocus = focusedIndex - 1;
+        }
+
+        break;
+
+      case 'next':
+        if (focusedIndex > -1 && focusedIndex < lastIndex) {
+          nextFocus = focusedIndex + 1;
+        }
+
+        break;
+    }
+
+    if (nextFocus === -1) {
+      this.announceAriaLiveContext({
+        event: 'input',
+        context: {
+          isSearchable: isSearchable,
+          isMulti: isMulti
+        }
+      });
+    }
+
+    this.setState({
+      inputIsHidden: nextFocus !== -1,
+      focusedValue: selectValue[nextFocus]
+    });
+  };
+
+  _proto.focusOption = function focusOption(direction) {
+    if (direction === void 0) {
+      direction = 'first';
+    }
+
+    var pageSize = this.props.pageSize;
+    var _this$state5 = this.state,
+        focusedOption = _this$state5.focusedOption,
+        menuOptions = _this$state5.menuOptions;
+    var options = menuOptions.focusable;
+    if (!options.length) return;
+    var nextFocus = 0; // handles 'first'
+
+    var focusedIndex = options.indexOf(focusedOption);
+
+    if (!focusedOption) {
+      focusedIndex = -1;
+      this.announceAriaLiveContext({
+        event: 'menu'
+      });
+    }
+
+    if (direction === 'up') {
+      nextFocus = focusedIndex > 0 ? focusedIndex - 1 : options.length - 1;
+    } else if (direction === 'down') {
+      nextFocus = (focusedIndex + 1) % options.length;
+    } else if (direction === 'pageup') {
+      nextFocus = focusedIndex - pageSize;
+      if (nextFocus < 0) nextFocus = 0;
+    } else if (direction === 'pagedown') {
+      nextFocus = focusedIndex + pageSize;
+      if (nextFocus > options.length - 1) nextFocus = options.length - 1;
+    } else if (direction === 'last') {
+      nextFocus = options.length - 1;
+    }
+
+    this.scrollToFocusedOptionOnUpdate = true;
+    this.setState({
+      focusedOption: options[nextFocus],
+      focusedValue: null
+    });
+    this.announceAriaLiveContext({
+      event: 'menu',
+      context: {
+        isDisabled: isOptionDisabled(options[nextFocus])
+      }
+    });
+  };
+
+  // ==============================
+  // Getters
+  // ==============================
+  _proto.getTheme = function getTheme() {
+    // Use the default theme if there are no customizations.
+    if (!this.props.theme) {
+      return defaultTheme;
+    } // If the theme prop is a function, assume the function
+    // knows how to merge the passed-in default theme with
+    // its own modifications.
+
+
+    if (typeof this.props.theme === 'function') {
+      return this.props.theme(defaultTheme);
+    } // Otherwise, if a plain theme object was passed in,
+    // overlay it with the default theme.
+
+
+    return _extends$4$1({}, defaultTheme, this.props.theme);
+  };
+
+  _proto.getCommonProps = function getCommonProps() {
+    var clearValue = this.clearValue,
+        getStyles = this.getStyles,
+        setValue = this.setValue,
+        selectOption = this.selectOption,
+        props = this.props;
+    var classNamePrefix = props.classNamePrefix,
+        isMulti = props.isMulti,
+        isRtl = props.isRtl,
+        options = props.options;
+    var selectValue = this.state.selectValue;
+    var hasValue = this.hasValue();
+
+    var getValue = function getValue() {
+      return selectValue;
+    };
+
+    var cx = classNames.bind(null, classNamePrefix);
+    return {
+      cx: cx,
+      clearValue: clearValue,
+      getStyles: getStyles,
+      getValue: getValue,
+      hasValue: hasValue,
+      isMulti: isMulti,
+      isRtl: isRtl,
+      options: options,
+      selectOption: selectOption,
+      setValue: setValue,
+      selectProps: props,
+      theme: this.getTheme()
+    };
+  };
+
+  _proto.getNextFocusedValue = function getNextFocusedValue(nextSelectValue) {
+    if (this.clearFocusValueOnUpdate) {
+      this.clearFocusValueOnUpdate = false;
+      return null;
+    }
+
+    var _this$state6 = this.state,
+        focusedValue = _this$state6.focusedValue,
+        lastSelectValue = _this$state6.selectValue;
+    var lastFocusedIndex = lastSelectValue.indexOf(focusedValue);
+
+    if (lastFocusedIndex > -1) {
+      var nextFocusedIndex = nextSelectValue.indexOf(focusedValue);
+
+      if (nextFocusedIndex > -1) {
+        // the focused value is still in the selectValue, return it
+        return focusedValue;
+      } else if (lastFocusedIndex < nextSelectValue.length) {
+        // the focusedValue is not present in the next selectValue array by
+        // reference, so return the new value at the same index
+        return nextSelectValue[lastFocusedIndex];
+      }
+    }
+
+    return null;
+  };
+
+  _proto.getNextFocusedOption = function getNextFocusedOption(options) {
+    var lastFocusedOption = this.state.focusedOption;
+    return lastFocusedOption && options.indexOf(lastFocusedOption) > -1 ? lastFocusedOption : options[0];
+  };
+
+  _proto.hasValue = function hasValue() {
+    var selectValue = this.state.selectValue;
+    return selectValue.length > 0;
+  };
+
+  _proto.hasOptions = function hasOptions() {
+    return !!this.state.menuOptions.render.length;
+  };
+
+  _proto.countOptions = function countOptions() {
+    return this.state.menuOptions.focusable.length;
+  };
+
+  _proto.isClearable = function isClearable() {
+    var _this$props12 = this.props,
+        isClearable = _this$props12.isClearable,
+        isMulti = _this$props12.isMulti; // single select, by default, IS NOT clearable
+    // multi select, by default, IS clearable
+
+    if (isClearable === undefined) return isMulti;
+    return isClearable;
+  };
+
+  _proto.isOptionDisabled = function isOptionDisabled(option, selectValue) {
+    return typeof this.props.isOptionDisabled === 'function' ? this.props.isOptionDisabled(option, selectValue) : false;
+  };
+
+  _proto.isOptionSelected = function isOptionSelected(option, selectValue) {
+    var _this3 = this;
+
+    if (selectValue.indexOf(option) > -1) return true;
+
+    if (typeof this.props.isOptionSelected === 'function') {
+      return this.props.isOptionSelected(option, selectValue);
+    }
+
+    var candidate = this.getOptionValue(option);
+    return selectValue.some(function (i) {
+      return _this3.getOptionValue(i) === candidate;
+    });
+  };
+
+  _proto.filterOption = function filterOption(option, inputValue) {
+    return this.props.filterOption ? this.props.filterOption(option, inputValue) : true;
+  };
+
+  _proto.formatOptionLabel = function formatOptionLabel(data, context) {
+    if (typeof this.props.formatOptionLabel === 'function') {
+      var inputValue = this.props.inputValue;
+      var selectValue = this.state.selectValue;
+      return this.props.formatOptionLabel(data, {
+        context: context,
+        inputValue: inputValue,
+        selectValue: selectValue
+      });
+    } else {
+      return this.getOptionLabel(data);
+    }
+  };
+
+  _proto.formatGroupLabel = function formatGroupLabel(data) {
+    return this.props.formatGroupLabel(data);
+  } // ==============================
+  // Mouse Handlers
+  // ==============================
+  ;
+
+  // ==============================
+  // Composition Handlers
+  // ==============================
+  _proto.startListeningComposition = function startListeningComposition() {
+    if (document && document.addEventListener) {
+      document.addEventListener('compositionstart', this.onCompositionStart, false);
+      document.addEventListener('compositionend', this.onCompositionEnd, false);
+    }
+  };
+
+  _proto.stopListeningComposition = function stopListeningComposition() {
+    if (document && document.removeEventListener) {
+      document.removeEventListener('compositionstart', this.onCompositionStart);
+      document.removeEventListener('compositionend', this.onCompositionEnd);
+    }
+  };
+
+  // ==============================
+  // Touch Handlers
+  // ==============================
+  _proto.startListeningToTouch = function startListeningToTouch() {
+    if (document && document.addEventListener) {
+      document.addEventListener('touchstart', this.onTouchStart, false);
+      document.addEventListener('touchmove', this.onTouchMove, false);
+      document.addEventListener('touchend', this.onTouchEnd, false);
+    }
+  };
+
+  _proto.stopListeningToTouch = function stopListeningToTouch() {
+    if (document && document.removeEventListener) {
+      document.removeEventListener('touchstart', this.onTouchStart);
+      document.removeEventListener('touchmove', this.onTouchMove);
+      document.removeEventListener('touchend', this.onTouchEnd);
+    }
+  };
+
+  // ==============================
+  // Renderers
+  // ==============================
+  _proto.constructAriaLiveMessage = function constructAriaLiveMessage() {
+    var _this$state7 = this.state,
+        ariaLiveContext = _this$state7.ariaLiveContext,
+        selectValue = _this$state7.selectValue,
+        focusedValue = _this$state7.focusedValue,
+        focusedOption = _this$state7.focusedOption;
+    var _this$props13 = this.props,
+        options = _this$props13.options,
+        menuIsOpen = _this$props13.menuIsOpen,
+        inputValue = _this$props13.inputValue,
+        screenReaderStatus = _this$props13.screenReaderStatus; // An aria live message representing the currently focused value in the select.
+
+    var focusedValueMsg = focusedValue ? valueFocusAriaMessage({
+      focusedValue: focusedValue,
+      getOptionLabel: this.getOptionLabel,
+      selectValue: selectValue
+    }) : ''; // An aria live message representing the currently focused option in the select.
+
+    var focusedOptionMsg = focusedOption && menuIsOpen ? optionFocusAriaMessage({
+      focusedOption: focusedOption,
+      getOptionLabel: this.getOptionLabel,
+      options: options
+    }) : ''; // An aria live message representing the set of focusable results and current searchterm/inputvalue.
+
+    var resultsMsg = resultsAriaMessage({
+      inputValue: inputValue,
+      screenReaderMessage: screenReaderStatus({
+        count: this.countOptions()
+      })
+    });
+    return focusedValueMsg + " " + focusedOptionMsg + " " + resultsMsg + " " + ariaLiveContext;
+  };
+
+  _proto.renderInput = function renderInput() {
+    var _this$props14 = this.props,
+        isDisabled = _this$props14.isDisabled,
+        isSearchable = _this$props14.isSearchable,
+        inputId = _this$props14.inputId,
+        inputValue = _this$props14.inputValue,
+        tabIndex = _this$props14.tabIndex;
+    var Input = this.components.Input;
+    var inputIsHidden = this.state.inputIsHidden;
+    var id = inputId || this.getElementId('input'); // aria attributes makes the JSX "noisy", separated for clarity
+
+    var ariaAttributes = {
+      'aria-autocomplete': 'list',
+      'aria-label': this.props['aria-label'],
+      'aria-labelledby': this.props['aria-labelledby']
+    };
+
+    if (!isSearchable) {
+      // use a dummy input to maintain focus/blur functionality
+      return React__default.createElement(DummyInput, _extends$4$1({
         id: id,
         innerRef: this.getInputRef,
-        isDisabled: isDisabled,
-        isHidden: inputIsHidden,
         onBlur: this.onInputBlur,
-        onChange: this.handleInputChange,
+        onChange: noop,
         onFocus: this.onInputFocus,
-        selectProps: selectProps,
-        spellCheck: "false",
+        readOnly: true,
+        disabled: isDisabled,
         tabIndex: tabIndex,
-        theme: theme,
-        type: "text",
-        value: inputValue
+        value: ""
       }, ariaAttributes));
     }
-  }, {
-    key: "renderPlaceholderOrValue",
-    value: function renderPlaceholderOrValue() {
-      var _this4 = this;
 
-      var _this$components = this.components,
-          MultiValue = _this$components.MultiValue,
-          MultiValueContainer = _this$components.MultiValueContainer,
-          MultiValueLabel = _this$components.MultiValueLabel,
-          MultiValueRemove = _this$components.MultiValueRemove,
-          SingleValue = _this$components.SingleValue,
-          Placeholder = _this$components.Placeholder;
-      var commonProps = this.commonProps;
-      var _this$props15 = this.props,
-          controlShouldRenderValue = _this$props15.controlShouldRenderValue,
-          isDisabled = _this$props15.isDisabled,
-          isMulti = _this$props15.isMulti,
-          inputValue = _this$props15.inputValue,
-          placeholder = _this$props15.placeholder;
-      var _this$state8 = this.state,
-          selectValue = _this$state8.selectValue,
-          focusedValue = _this$state8.focusedValue,
-          isFocused = _this$state8.isFocused;
+    var _this$commonProps = this.commonProps,
+        cx = _this$commonProps.cx,
+        theme = _this$commonProps.theme,
+        selectProps = _this$commonProps.selectProps;
+    return React__default.createElement(Input, _extends$4$1({
+      autoCapitalize: "none",
+      autoComplete: "off",
+      autoCorrect: "off",
+      cx: cx,
+      getStyles: this.getStyles,
+      id: id,
+      innerRef: this.getInputRef,
+      isDisabled: isDisabled,
+      isHidden: inputIsHidden,
+      onBlur: this.onInputBlur,
+      onChange: this.handleInputChange,
+      onFocus: this.onInputFocus,
+      selectProps: selectProps,
+      spellCheck: "false",
+      tabIndex: tabIndex,
+      theme: theme,
+      type: "text",
+      value: inputValue
+    }, ariaAttributes));
+  };
 
-      if (!this.hasValue() || !controlShouldRenderValue) {
-        return inputValue ? null : React__default.createElement(Placeholder, _extends$1({}, commonProps, {
-          key: "placeholder",
-          isDisabled: isDisabled,
-          isFocused: isFocused
-        }), placeholder);
-      }
+  _proto.renderPlaceholderOrValue = function renderPlaceholderOrValue() {
+    var _this4 = this;
 
-      if (isMulti) {
-        var selectValues = selectValue.map(function (opt, index) {
-          var isOptionFocused = opt === focusedValue;
-          return React__default.createElement(MultiValue, _extends$1({}, commonProps, {
-            components: {
-              Container: MultiValueContainer,
-              Label: MultiValueLabel,
-              Remove: MultiValueRemove
-            },
-            isFocused: isOptionFocused,
-            isDisabled: isDisabled,
-            key: _this4.getOptionValue(opt),
-            index: index,
-            removeProps: {
-              onClick: function onClick() {
-                return _this4.removeValue(opt);
-              },
-              onTouchEnd: function onTouchEnd() {
-                return _this4.removeValue(opt);
-              },
-              onMouseDown: function onMouseDown(e) {
-                e.preventDefault();
-                e.stopPropagation();
-              }
-            },
-            data: opt
-          }), _this4.formatOptionLabel(opt, 'value'));
-        });
-        return selectValues;
-      }
+    var _this$components = this.components,
+        MultiValue = _this$components.MultiValue,
+        MultiValueContainer = _this$components.MultiValueContainer,
+        MultiValueLabel = _this$components.MultiValueLabel,
+        MultiValueRemove = _this$components.MultiValueRemove,
+        SingleValue = _this$components.SingleValue,
+        Placeholder = _this$components.Placeholder;
+    var commonProps = this.commonProps;
+    var _this$props15 = this.props,
+        controlShouldRenderValue = _this$props15.controlShouldRenderValue,
+        isDisabled = _this$props15.isDisabled,
+        isMulti = _this$props15.isMulti,
+        inputValue = _this$props15.inputValue,
+        placeholder = _this$props15.placeholder;
+    var _this$state8 = this.state,
+        selectValue = _this$state8.selectValue,
+        focusedValue = _this$state8.focusedValue,
+        isFocused = _this$state8.isFocused;
 
-      if (inputValue) {
-        return null;
-      }
-
-      var singleValue = selectValue[0];
-      return React__default.createElement(SingleValue, _extends$1({}, commonProps, {
-        data: singleValue,
-        isDisabled: isDisabled
-      }), this.formatOptionLabel(singleValue, 'value'));
-    }
-  }, {
-    key: "renderClearIndicator",
-    value: function renderClearIndicator() {
-      var ClearIndicator = this.components.ClearIndicator;
-      var commonProps = this.commonProps;
-      var _this$props16 = this.props,
-          isDisabled = _this$props16.isDisabled,
-          isLoading = _this$props16.isLoading;
-      var isFocused = this.state.isFocused;
-
-      if (!this.isClearable() || !ClearIndicator || isDisabled || !this.hasValue() || isLoading) {
-        return null;
-      }
-
-      var innerProps = {
-        onMouseDown: this.onClearIndicatorMouseDown,
-        onTouchEnd: this.onClearIndicatorTouchEnd,
-        'aria-hidden': 'true'
-      };
-      return React__default.createElement(ClearIndicator, _extends$1({}, commonProps, {
-        innerProps: innerProps,
-        isFocused: isFocused
-      }));
-    }
-  }, {
-    key: "renderLoadingIndicator",
-    value: function renderLoadingIndicator() {
-      var LoadingIndicator = this.components.LoadingIndicator;
-      var commonProps = this.commonProps;
-      var _this$props17 = this.props,
-          isDisabled = _this$props17.isDisabled,
-          isLoading = _this$props17.isLoading;
-      var isFocused = this.state.isFocused;
-      if (!LoadingIndicator || !isLoading) return null;
-      var innerProps = {
-        'aria-hidden': 'true'
-      };
-      return React__default.createElement(LoadingIndicator, _extends$1({}, commonProps, {
-        innerProps: innerProps,
+    if (!this.hasValue() || !controlShouldRenderValue) {
+      return inputValue ? null : React__default.createElement(Placeholder, _extends$4$1({}, commonProps, {
+        key: "placeholder",
         isDisabled: isDisabled,
         isFocused: isFocused
-      }));
+      }), placeholder);
     }
-  }, {
-    key: "renderIndicatorSeparator",
-    value: function renderIndicatorSeparator() {
-      var _this$components2 = this.components,
-          DropdownIndicator = _this$components2.DropdownIndicator,
-          IndicatorSeparator = _this$components2.IndicatorSeparator; // separator doesn't make sense without the dropdown indicator
 
-      if (!DropdownIndicator || !IndicatorSeparator) return null;
-      var commonProps = this.commonProps;
-      var isDisabled = this.props.isDisabled;
-      var isFocused = this.state.isFocused;
-      return React__default.createElement(IndicatorSeparator, _extends$1({}, commonProps, {
-        isDisabled: isDisabled,
-        isFocused: isFocused
-      }));
-    }
-  }, {
-    key: "renderDropdownIndicator",
-    value: function renderDropdownIndicator() {
-      var DropdownIndicator = this.components.DropdownIndicator;
-      if (!DropdownIndicator) return null;
-      var commonProps = this.commonProps;
-      var isDisabled = this.props.isDisabled;
-      var isFocused = this.state.isFocused;
-      var innerProps = {
-        onMouseDown: this.onDropdownIndicatorMouseDown,
-        onTouchEnd: this.onDropdownIndicatorTouchEnd,
-        'aria-hidden': 'true'
-      };
-      return React__default.createElement(DropdownIndicator, _extends$1({}, commonProps, {
-        innerProps: innerProps,
-        isDisabled: isDisabled,
-        isFocused: isFocused
-      }));
-    }
-  }, {
-    key: "renderMenu",
-    value: function renderMenu() {
-      var _this5 = this;
-
-      var _this$components3 = this.components,
-          Group = _this$components3.Group,
-          GroupHeading = _this$components3.GroupHeading,
-          Menu = _this$components3.Menu,
-          MenuList = _this$components3.MenuList,
-          MenuPortal = _this$components3.MenuPortal,
-          LoadingMessage = _this$components3.LoadingMessage,
-          NoOptionsMessage = _this$components3.NoOptionsMessage,
-          Option = _this$components3.Option;
-      var commonProps = this.commonProps;
-      var _this$state9 = this.state,
-          focusedOption = _this$state9.focusedOption,
-          menuOptions = _this$state9.menuOptions;
-      var _this$props18 = this.props,
-          captureMenuScroll = _this$props18.captureMenuScroll,
-          inputValue = _this$props18.inputValue,
-          isLoading = _this$props18.isLoading,
-          loadingMessage = _this$props18.loadingMessage,
-          minMenuHeight = _this$props18.minMenuHeight,
-          maxMenuHeight = _this$props18.maxMenuHeight,
-          menuIsOpen = _this$props18.menuIsOpen,
-          menuPlacement = _this$props18.menuPlacement,
-          menuPosition = _this$props18.menuPosition,
-          menuPortalTarget = _this$props18.menuPortalTarget,
-          menuShouldBlockScroll = _this$props18.menuShouldBlockScroll,
-          menuShouldScrollIntoView = _this$props18.menuShouldScrollIntoView,
-          noOptionsMessage = _this$props18.noOptionsMessage,
-          onMenuScrollToTop = _this$props18.onMenuScrollToTop,
-          onMenuScrollToBottom = _this$props18.onMenuScrollToBottom;
-      if (!menuIsOpen) return null; // TODO: Internal Option Type here
-
-      var render = function render(props) {
-        // for performance, the menu options in state aren't changed when the
-        // focused option changes so we calculate additional props based on that
-        var isFocused = focusedOption === props.data;
-        props.innerRef = isFocused ? _this5.getFocusedOptionRef : undefined;
-        return React__default.createElement(Option, _extends$1({}, commonProps, props, {
-          isFocused: isFocused
-        }), _this5.formatOptionLabel(props.data, 'menu'));
-      };
-
-      var menuUI;
-
-      if (this.hasOptions()) {
-        menuUI = menuOptions.render.map(function (item) {
-          if (item.type === 'group') {
-            var type = item.type,
-                group = _objectWithoutProperties$2(item, ["type"]);
-
-            var headingId = "".concat(item.key, "-heading");
-            return React__default.createElement(Group, _extends$1({}, commonProps, group, {
-              Heading: GroupHeading,
-              headingProps: {
-                id: headingId
-              },
-              label: _this5.formatGroupLabel(item.data)
-            }), item.options.map(function (option) {
-              return render(option);
-            }));
-          } else if (item.type === 'option') {
-            return render(item);
-          }
-        });
-      } else if (isLoading) {
-        var message = loadingMessage({
-          inputValue: inputValue
-        });
-        if (message === null) return null;
-        menuUI = React__default.createElement(LoadingMessage, commonProps, message);
-      } else {
-        var _message = noOptionsMessage({
-          inputValue: inputValue
-        });
-
-        if (_message === null) return null;
-        menuUI = React__default.createElement(NoOptionsMessage, commonProps, _message);
-      }
-
-      var menuPlacementProps = {
-        minMenuHeight: minMenuHeight,
-        maxMenuHeight: maxMenuHeight,
-        menuPlacement: menuPlacement,
-        menuPosition: menuPosition,
-        menuShouldScrollIntoView: menuShouldScrollIntoView
-      };
-      var menuElement = React__default.createElement(MenuPlacer, _extends$1({}, commonProps, menuPlacementProps), function (_ref6) {
-        var ref = _ref6.ref,
-            _ref6$placerProps = _ref6.placerProps,
-            placement = _ref6$placerProps.placement,
-            maxHeight = _ref6$placerProps.maxHeight;
-        return React__default.createElement(Menu, _extends$1({}, commonProps, menuPlacementProps, {
-          innerRef: ref,
-          innerProps: {
-            onMouseDown: _this5.onMenuMouseDown,
-            onMouseMove: _this5.onMenuMouseMove
+    if (isMulti) {
+      var selectValues = selectValue.map(function (opt, index) {
+        var isOptionFocused = opt === focusedValue;
+        return React__default.createElement(MultiValue, _extends$4$1({}, commonProps, {
+          components: {
+            Container: MultiValueContainer,
+            Label: MultiValueLabel,
+            Remove: MultiValueRemove
           },
-          isLoading: isLoading,
-          placement: placement
-        }), React__default.createElement(ScrollCaptorSwitch, {
-          isEnabled: captureMenuScroll,
-          onTopArrive: onMenuScrollToTop,
-          onBottomArrive: onMenuScrollToBottom
-        }, React__default.createElement(ScrollBlock, {
-          isEnabled: menuShouldBlockScroll
-        }, React__default.createElement(MenuList, _extends$1({}, commonProps, {
-          innerRef: _this5.getMenuListRef,
-          isLoading: isLoading,
-          maxHeight: maxHeight
-        }), menuUI))));
-      }); // positioning behaviour is almost identical for portalled and fixed,
-      // so we use the same component. the actual portalling logic is forked
-      // within the component based on `menuPosition`
-
-      return menuPortalTarget || menuPosition === 'fixed' ? React__default.createElement(MenuPortal, _extends$1({}, commonProps, {
-        appendTo: menuPortalTarget,
-        controlElement: this.controlRef,
-        menuPlacement: menuPlacement,
-        menuPosition: menuPosition
-      }), menuElement) : menuElement;
+          isFocused: isOptionFocused,
+          isDisabled: isDisabled,
+          key: _this4.getOptionValue(opt),
+          index: index,
+          removeProps: {
+            onClick: function onClick() {
+              return _this4.removeValue(opt);
+            },
+            onTouchEnd: function onTouchEnd() {
+              return _this4.removeValue(opt);
+            },
+            onMouseDown: function onMouseDown(e) {
+              e.preventDefault();
+              e.stopPropagation();
+            }
+          },
+          data: opt
+        }), _this4.formatOptionLabel(opt, 'value'));
+      });
+      return selectValues;
     }
-  }, {
-    key: "renderFormField",
-    value: function renderFormField() {
-      var _this6 = this;
 
-      var _this$props19 = this.props,
-          delimiter = _this$props19.delimiter,
-          isDisabled = _this$props19.isDisabled,
-          isMulti = _this$props19.isMulti,
-          name = _this$props19.name;
-      var selectValue = this.state.selectValue;
-      if (!name || isDisabled) return;
+    if (inputValue) {
+      return null;
+    }
 
-      if (isMulti) {
-        if (delimiter) {
-          var value = selectValue.map(function (opt) {
-            return _this6.getOptionValue(opt);
-          }).join(delimiter);
-          return React__default.createElement("input", {
-            name: name,
-            type: "hidden",
-            value: value
-          });
-        } else {
-          var input = selectValue.length > 0 ? selectValue.map(function (opt, i) {
-            return React__default.createElement("input", {
-              key: "i-".concat(i),
-              name: name,
-              type: "hidden",
-              value: _this6.getOptionValue(opt)
-            });
-          }) : React__default.createElement("input", {
-            name: name,
-            type: "hidden"
-          });
-          return React__default.createElement("div", null, input);
+    var singleValue = selectValue[0];
+    return React__default.createElement(SingleValue, _extends$4$1({}, commonProps, {
+      data: singleValue,
+      isDisabled: isDisabled
+    }), this.formatOptionLabel(singleValue, 'value'));
+  };
+
+  _proto.renderClearIndicator = function renderClearIndicator() {
+    var ClearIndicator = this.components.ClearIndicator;
+    var commonProps = this.commonProps;
+    var _this$props16 = this.props,
+        isDisabled = _this$props16.isDisabled,
+        isLoading = _this$props16.isLoading;
+    var isFocused = this.state.isFocused;
+
+    if (!this.isClearable() || !ClearIndicator || isDisabled || !this.hasValue() || isLoading) {
+      return null;
+    }
+
+    var innerProps = {
+      onMouseDown: this.onClearIndicatorMouseDown,
+      onTouchEnd: this.onClearIndicatorTouchEnd,
+      'aria-hidden': 'true'
+    };
+    return React__default.createElement(ClearIndicator, _extends$4$1({}, commonProps, {
+      innerProps: innerProps,
+      isFocused: isFocused
+    }));
+  };
+
+  _proto.renderLoadingIndicator = function renderLoadingIndicator() {
+    var LoadingIndicator = this.components.LoadingIndicator;
+    var commonProps = this.commonProps;
+    var _this$props17 = this.props,
+        isDisabled = _this$props17.isDisabled,
+        isLoading = _this$props17.isLoading;
+    var isFocused = this.state.isFocused;
+    if (!LoadingIndicator || !isLoading) return null;
+    var innerProps = {
+      'aria-hidden': 'true'
+    };
+    return React__default.createElement(LoadingIndicator, _extends$4$1({}, commonProps, {
+      innerProps: innerProps,
+      isDisabled: isDisabled,
+      isFocused: isFocused
+    }));
+  };
+
+  _proto.renderIndicatorSeparator = function renderIndicatorSeparator() {
+    var _this$components2 = this.components,
+        DropdownIndicator = _this$components2.DropdownIndicator,
+        IndicatorSeparator = _this$components2.IndicatorSeparator; // separator doesn't make sense without the dropdown indicator
+
+    if (!DropdownIndicator || !IndicatorSeparator) return null;
+    var commonProps = this.commonProps;
+    var isDisabled = this.props.isDisabled;
+    var isFocused = this.state.isFocused;
+    return React__default.createElement(IndicatorSeparator, _extends$4$1({}, commonProps, {
+      isDisabled: isDisabled,
+      isFocused: isFocused
+    }));
+  };
+
+  _proto.renderDropdownIndicator = function renderDropdownIndicator() {
+    var DropdownIndicator = this.components.DropdownIndicator;
+    if (!DropdownIndicator) return null;
+    var commonProps = this.commonProps;
+    var isDisabled = this.props.isDisabled;
+    var isFocused = this.state.isFocused;
+    var innerProps = {
+      onMouseDown: this.onDropdownIndicatorMouseDown,
+      onTouchEnd: this.onDropdownIndicatorTouchEnd,
+      'aria-hidden': 'true'
+    };
+    return React__default.createElement(DropdownIndicator, _extends$4$1({}, commonProps, {
+      innerProps: innerProps,
+      isDisabled: isDisabled,
+      isFocused: isFocused
+    }));
+  };
+
+  _proto.renderMenu = function renderMenu() {
+    var _this5 = this;
+
+    var _this$components3 = this.components,
+        Group = _this$components3.Group,
+        GroupHeading = _this$components3.GroupHeading,
+        Menu = _this$components3.Menu,
+        MenuList = _this$components3.MenuList,
+        MenuPortal = _this$components3.MenuPortal,
+        LoadingMessage = _this$components3.LoadingMessage,
+        NoOptionsMessage = _this$components3.NoOptionsMessage,
+        Option = _this$components3.Option;
+    var commonProps = this.commonProps;
+    var _this$state9 = this.state,
+        focusedOption = _this$state9.focusedOption,
+        menuOptions = _this$state9.menuOptions;
+    var _this$props18 = this.props,
+        captureMenuScroll = _this$props18.captureMenuScroll,
+        inputValue = _this$props18.inputValue,
+        isLoading = _this$props18.isLoading,
+        loadingMessage = _this$props18.loadingMessage,
+        minMenuHeight = _this$props18.minMenuHeight,
+        maxMenuHeight = _this$props18.maxMenuHeight,
+        menuIsOpen = _this$props18.menuIsOpen,
+        menuPlacement = _this$props18.menuPlacement,
+        menuPosition = _this$props18.menuPosition,
+        menuPortalTarget = _this$props18.menuPortalTarget,
+        menuShouldBlockScroll = _this$props18.menuShouldBlockScroll,
+        menuShouldScrollIntoView = _this$props18.menuShouldScrollIntoView,
+        noOptionsMessage = _this$props18.noOptionsMessage,
+        onMenuScrollToTop = _this$props18.onMenuScrollToTop,
+        onMenuScrollToBottom = _this$props18.onMenuScrollToBottom;
+    if (!menuIsOpen) return null; // TODO: Internal Option Type here
+
+    var render = function render(props) {
+      // for performance, the menu options in state aren't changed when the
+      // focused option changes so we calculate additional props based on that
+      var isFocused = focusedOption === props.data;
+      props.innerRef = isFocused ? _this5.getFocusedOptionRef : undefined;
+      return React__default.createElement(Option, _extends$4$1({}, commonProps, props, {
+        isFocused: isFocused
+      }), _this5.formatOptionLabel(props.data, 'menu'));
+    };
+
+    var menuUI;
+
+    if (this.hasOptions()) {
+      menuUI = menuOptions.render.map(function (item) {
+        if (item.type === 'group') {
+          var type = item.type,
+              group = _objectWithoutPropertiesLoose$2$2(item, ["type"]);
+
+          var headingId = item.key + "-heading";
+          return React__default.createElement(Group, _extends$4$1({}, commonProps, group, {
+            Heading: GroupHeading,
+            headingProps: {
+              id: headingId
+            },
+            label: _this5.formatGroupLabel(item.data)
+          }), item.options.map(function (option) {
+            return render(option);
+          }));
+        } else if (item.type === 'option') {
+          return render(item);
         }
-      } else {
-        var _value = selectValue[0] ? this.getOptionValue(selectValue[0]) : '';
+      });
+    } else if (isLoading) {
+      var message = loadingMessage({
+        inputValue: inputValue
+      });
+      if (message === null) return null;
+      menuUI = React__default.createElement(LoadingMessage, commonProps, message);
+    } else {
+      var _message = noOptionsMessage({
+        inputValue: inputValue
+      });
 
+      if (_message === null) return null;
+      menuUI = React__default.createElement(NoOptionsMessage, commonProps, _message);
+    }
+
+    var menuPlacementProps = {
+      minMenuHeight: minMenuHeight,
+      maxMenuHeight: maxMenuHeight,
+      menuPlacement: menuPlacement,
+      menuPosition: menuPosition,
+      menuShouldScrollIntoView: menuShouldScrollIntoView
+    };
+    var menuElement = React__default.createElement(MenuPlacer, _extends$4$1({}, commonProps, menuPlacementProps), function (_ref8) {
+      var ref = _ref8.ref,
+          _ref8$placerProps = _ref8.placerProps,
+          placement = _ref8$placerProps.placement,
+          maxHeight = _ref8$placerProps.maxHeight;
+      return React__default.createElement(Menu, _extends$4$1({}, commonProps, menuPlacementProps, {
+        innerRef: ref,
+        innerProps: {
+          onMouseDown: _this5.onMenuMouseDown,
+          onMouseMove: _this5.onMenuMouseMove
+        },
+        isLoading: isLoading,
+        placement: placement
+      }), React__default.createElement(ScrollCaptorSwitch, {
+        isEnabled: captureMenuScroll,
+        onTopArrive: onMenuScrollToTop,
+        onBottomArrive: onMenuScrollToBottom
+      }, React__default.createElement(ScrollBlock, {
+        isEnabled: menuShouldBlockScroll
+      }, React__default.createElement(MenuList, _extends$4$1({}, commonProps, {
+        innerRef: _this5.getMenuListRef,
+        isLoading: isLoading,
+        maxHeight: maxHeight
+      }), menuUI))));
+    }); // positioning behaviour is almost identical for portalled and fixed,
+    // so we use the same component. the actual portalling logic is forked
+    // within the component based on `menuPosition`
+
+    return menuPortalTarget || menuPosition === 'fixed' ? React__default.createElement(MenuPortal, _extends$4$1({}, commonProps, {
+      appendTo: menuPortalTarget,
+      controlElement: this.controlRef,
+      menuPlacement: menuPlacement,
+      menuPosition: menuPosition
+    }), menuElement) : menuElement;
+  };
+
+  _proto.renderFormField = function renderFormField() {
+    var _this6 = this;
+
+    var _this$props19 = this.props,
+        delimiter = _this$props19.delimiter,
+        isDisabled = _this$props19.isDisabled,
+        isMulti = _this$props19.isMulti,
+        name = _this$props19.name;
+    var selectValue = this.state.selectValue;
+    if (!name || isDisabled) return;
+
+    if (isMulti) {
+      if (delimiter) {
+        var value = selectValue.map(function (opt) {
+          return _this6.getOptionValue(opt);
+        }).join(delimiter);
         return React__default.createElement("input", {
           name: name,
           type: "hidden",
-          value: _value
+          value: value
         });
+      } else {
+        var input = selectValue.length > 0 ? selectValue.map(function (opt, i) {
+          return React__default.createElement("input", {
+            key: "i-" + i,
+            name: name,
+            type: "hidden",
+            value: _this6.getOptionValue(opt)
+          });
+        }) : React__default.createElement("input", {
+          name: name,
+          type: "hidden"
+        });
+        return React__default.createElement("div", null, input);
       }
+    } else {
+      var _value2 = selectValue[0] ? this.getOptionValue(selectValue[0]) : '';
+
+      return React__default.createElement("input", {
+        name: name,
+        type: "hidden",
+        value: _value2
+      });
     }
-  }, {
-    key: "renderLiveRegion",
-    value: function renderLiveRegion() {
-      if (!this.state.isFocused) return null;
-      return React__default.createElement(A11yText, {
-        "aria-live": "polite"
-      }, React__default.createElement("p", {
-        id: "aria-selection-event"
-      }, "\xA0", this.state.ariaLiveSelection), React__default.createElement("p", {
-        id: "aria-context"
-      }, "\xA0", this.constructAriaLiveMessage()));
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      var _this$components4 = this.components,
-          Control = _this$components4.Control,
-          IndicatorsContainer = _this$components4.IndicatorsContainer,
-          SelectContainer = _this$components4.SelectContainer,
-          ValueContainer = _this$components4.ValueContainer;
-      var _this$props20 = this.props,
-          className = _this$props20.className,
-          id = _this$props20.id,
-          isDisabled = _this$props20.isDisabled,
-          menuIsOpen = _this$props20.menuIsOpen;
-      var isFocused = this.state.isFocused;
-      var commonProps = this.commonProps = this.getCommonProps();
-      return React__default.createElement(SelectContainer, _extends$1({}, commonProps, {
-        className: className,
-        innerProps: {
-          id: id,
-          onKeyDown: this.onKeyDown
-        },
-        isDisabled: isDisabled,
-        isFocused: isFocused
-      }), this.renderLiveRegion(), React__default.createElement(Control, _extends$1({}, commonProps, {
-        innerRef: this.getControlRef,
-        innerProps: {
-          onMouseDown: this.onControlMouseDown,
-          onTouchEnd: this.onControlTouchEnd
-        },
-        isDisabled: isDisabled,
-        isFocused: isFocused,
-        menuIsOpen: menuIsOpen
-      }), React__default.createElement(ValueContainer, _extends$1({}, commonProps, {
-        isDisabled: isDisabled
-      }), this.renderPlaceholderOrValue(), this.renderInput()), React__default.createElement(IndicatorsContainer, _extends$1({}, commonProps, {
-        isDisabled: isDisabled
-      }), this.renderClearIndicator(), this.renderLoadingIndicator(), this.renderIndicatorSeparator(), this.renderDropdownIndicator())), this.renderMenu(), this.renderFormField());
-    }
-  }]);
+  };
+
+  _proto.renderLiveRegion = function renderLiveRegion() {
+    if (!this.state.isFocused) return null;
+    return React__default.createElement(A11yText, {
+      "aria-live": "polite"
+    }, React__default.createElement("p", {
+      id: "aria-selection-event"
+    }, "\xA0", this.state.ariaLiveSelection), React__default.createElement("p", {
+      id: "aria-context"
+    }, "\xA0", this.constructAriaLiveMessage()));
+  };
+
+  _proto.render = function render() {
+    var _this$components4 = this.components,
+        Control = _this$components4.Control,
+        IndicatorsContainer = _this$components4.IndicatorsContainer,
+        SelectContainer = _this$components4.SelectContainer,
+        ValueContainer = _this$components4.ValueContainer;
+    var _this$props20 = this.props,
+        className = _this$props20.className,
+        id = _this$props20.id,
+        isDisabled = _this$props20.isDisabled,
+        menuIsOpen = _this$props20.menuIsOpen;
+    var isFocused = this.state.isFocused;
+    var commonProps = this.commonProps = this.getCommonProps();
+    return React__default.createElement(SelectContainer, _extends$4$1({}, commonProps, {
+      className: className,
+      innerProps: {
+        id: id,
+        onKeyDown: this.onKeyDown
+      },
+      isDisabled: isDisabled,
+      isFocused: isFocused
+    }), this.renderLiveRegion(), React__default.createElement(Control, _extends$4$1({}, commonProps, {
+      innerRef: this.getControlRef,
+      innerProps: {
+        onMouseDown: this.onControlMouseDown,
+        onTouchEnd: this.onControlTouchEnd
+      },
+      isDisabled: isDisabled,
+      isFocused: isFocused,
+      menuIsOpen: menuIsOpen
+    }), React__default.createElement(ValueContainer, _extends$4$1({}, commonProps, {
+      isDisabled: isDisabled
+    }), this.renderPlaceholderOrValue(), this.renderInput()), React__default.createElement(IndicatorsContainer, _extends$4$1({}, commonProps, {
+      isDisabled: isDisabled
+    }), this.renderClearIndicator(), this.renderLoadingIndicator(), this.renderIndicatorSeparator(), this.renderDropdownIndicator())), this.renderMenu(), this.renderFormField());
+  };
 
   return Select;
 }(React.Component);
 
-_defineProperty$1(Select, "defaultProps", defaultProps);
+Select.defaultProps = defaultProps;
 
+function _extends$c() { _extends$c = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$c.apply(this, arguments); }
+
+function _objectWithoutPropertiesLoose$4(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+
+function _inheritsLoose$5(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; subClass.__proto__ = superClass; }
 var defaultProps$1 = {
   defaultInputValue: '',
   defaultMenuIsOpen: false,
@@ -26275,38 +25834,32 @@ var manageState = function manageState(SelectComponent) {
   return _temp = _class =
   /*#__PURE__*/
   function (_Component) {
-    _inherits$1(StateManager, _Component);
+    _inheritsLoose$5(StateManager, _Component);
 
     function StateManager() {
-      var _getPrototypeOf2;
-
       var _this;
-
-      _classCallCheck$1(this, StateManager);
 
       for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
         args[_key] = arguments[_key];
       }
 
-      _this = _possibleConstructorReturn$1(this, (_getPrototypeOf2 = _getPrototypeOf(StateManager)).call.apply(_getPrototypeOf2, [this].concat(args)));
-
-      _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "select", void 0);
-
-      _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "state", {
+      _this = _Component.call.apply(_Component, [this].concat(args)) || this;
+      _this.select = void 0;
+      _this.state = {
         inputValue: _this.props.inputValue !== undefined ? _this.props.inputValue : _this.props.defaultInputValue,
         menuIsOpen: _this.props.menuIsOpen !== undefined ? _this.props.menuIsOpen : _this.props.defaultMenuIsOpen,
         value: _this.props.value !== undefined ? _this.props.value : _this.props.defaultValue
-      });
+      };
 
-      _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onChange", function (value, actionMeta) {
+      _this.onChange = function (value, actionMeta) {
         _this.callProp('onChange', value, actionMeta);
 
         _this.setState({
           value: value
         });
-      });
+      };
 
-      _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onInputChange", function (value, actionMeta) {
+      _this.onInputChange = function (value, actionMeta) {
         // TODO: for backwards compatibility, we allow the prop to return a new
         // value, but now inputValue is a controllable prop we probably shouldn't
         var newValue = _this.callProp('onInputChange', value, actionMeta);
@@ -26314,92 +25867,87 @@ var manageState = function manageState(SelectComponent) {
         _this.setState({
           inputValue: newValue !== undefined ? newValue : value
         });
-      });
+      };
 
-      _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onMenuOpen", function () {
+      _this.onMenuOpen = function () {
         _this.callProp('onMenuOpen');
 
         _this.setState({
           menuIsOpen: true
         });
-      });
+      };
 
-      _defineProperty$1(_assertThisInitialized$1(_assertThisInitialized$1(_this)), "onMenuClose", function () {
+      _this.onMenuClose = function () {
         _this.callProp('onMenuClose');
 
         _this.setState({
           menuIsOpen: false
         });
-      });
+      };
 
       return _this;
     }
 
-    _createClass$1(StateManager, [{
-      key: "focus",
-      value: function focus() {
-        this.select.focus();
-      }
-    }, {
-      key: "blur",
-      value: function blur() {
-        this.select.blur();
-      } // FIXME: untyped flow code, return any
+    var _proto = StateManager.prototype;
 
-    }, {
-      key: "getProp",
-      value: function getProp(key) {
-        return this.props[key] !== undefined ? this.props[key] : this.state[key];
-      } // FIXME: untyped flow code, return any
+    _proto.focus = function focus() {
+      this.select.focus();
+    };
 
-    }, {
-      key: "callProp",
-      value: function callProp(name) {
-        if (typeof this.props[name] === 'function') {
-          var _this$props;
+    _proto.blur = function blur() {
+      this.select.blur();
+    } // FIXME: untyped flow code, return any
+    ;
 
-          for (var _len2 = arguments.length, args = new Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
-            args[_key2 - 1] = arguments[_key2];
-          }
+    _proto.getProp = function getProp(key) {
+      return this.props[key] !== undefined ? this.props[key] : this.state[key];
+    } // FIXME: untyped flow code, return any
+    ;
 
-          return (_this$props = this.props)[name].apply(_this$props, args);
+    _proto.callProp = function callProp(name) {
+      if (typeof this.props[name] === 'function') {
+        var _this$props;
+
+        for (var _len2 = arguments.length, args = new Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
+          args[_key2 - 1] = arguments[_key2];
         }
-      }
-    }, {
-      key: "render",
-      value: function render() {
-        var _this2 = this;
 
-        var _this$props2 = this.props,
-            defaultInputValue = _this$props2.defaultInputValue,
-            defaultMenuIsOpen = _this$props2.defaultMenuIsOpen,
-            defaultValue = _this$props2.defaultValue,
-            props = _objectWithoutProperties$2(_this$props2, ["defaultInputValue", "defaultMenuIsOpen", "defaultValue"]);
-
-        return React__default.createElement(SelectComponent, _extends$1({}, props, {
-          ref: function ref(_ref) {
-            _this2.select = _ref;
-          },
-          inputValue: this.getProp('inputValue'),
-          menuIsOpen: this.getProp('menuIsOpen'),
-          onChange: this.onChange,
-          onInputChange: this.onInputChange,
-          onMenuClose: this.onMenuClose,
-          onMenuOpen: this.onMenuOpen,
-          value: this.getProp('value')
-        }));
+        return (_this$props = this.props)[name].apply(_this$props, args);
       }
-    }]);
+    };
+
+    _proto.render = function render() {
+      var _this2 = this;
+
+      var _this$props2 = this.props,
+          defaultInputValue = _this$props2.defaultInputValue,
+          defaultMenuIsOpen = _this$props2.defaultMenuIsOpen,
+          defaultValue = _this$props2.defaultValue,
+          props = _objectWithoutPropertiesLoose$4(_this$props2, ["defaultInputValue", "defaultMenuIsOpen", "defaultValue"]);
+
+      return React__default.createElement(SelectComponent, _extends$c({}, props, {
+        ref: function ref(_ref) {
+          _this2.select = _ref;
+        },
+        inputValue: this.getProp('inputValue'),
+        menuIsOpen: this.getProp('menuIsOpen'),
+        onChange: this.onChange,
+        onInputChange: this.onInputChange,
+        onMenuClose: this.onMenuClose,
+        onMenuOpen: this.onMenuOpen,
+        value: this.getProp('value')
+      }));
+    };
 
     return StateManager;
-  }(React.Component), _defineProperty$1(_class, "defaultProps", defaultProps$1), _temp;
+  }(React.Component), _class.defaultProps = defaultProps$1, _temp;
 };
 
 var index$5 = manageState(Select);
 
 function ownKeys$9(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread$b(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$9(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$9(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread$a(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$9(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$9(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function getBackgroundColor(variant) {
   switch (variant) {
@@ -26426,7 +25974,7 @@ var styleOverride = function styleOverride(_ref) {
       };
     },
     control: function control(provided, state) {
-      return _objectSpread$b({}, provided, {
+      return _objectSpread$a({}, provided, {
         backgroundColor: getBackgroundColor(variant),
         border: state.isDisabled && !hasShadow && variant !== 'borderless' ? "border: 1px solid ".concat(colors.gray.default) : 'none',
         borderColor: state.isDisabled ? colors.gray.default : null,
@@ -26469,11 +26017,11 @@ var styleOverride = function styleOverride(_ref) {
         color = colors.gray.light;
       }
 
-      return _objectSpread$b({}, defaultStyles, {
+      return _objectSpread$a({}, defaultStyles, {
         fontSize: fontSizes.small,
         color: colors.black,
         backgroundColor: color,
-        ':active': _objectSpread$b({}, defaultStyles[':active'], {
+        ':active': _objectSpread$a({}, defaultStyles[':active'], {
           backgroundColor: colors.gray.xlight
         })
       });
@@ -26889,7 +26437,7 @@ var Actions = styled__default.div(_templateObject5$2());
 
 function ownKeys$a(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread$c(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$a(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$a(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread$b(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$a(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$a(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function updateLanguageSets(formikLanguageSets, state) {
   var currentLanguageSets = state.languageSets;
@@ -26902,7 +26450,7 @@ function updateLanguageSets(formikLanguageSets, state) {
 
     return acc.concat(Object.assign({}, set));
   }, []);
-  return _objectSpread$c({}, state, {
+  return _objectSpread$b({}, state, {
     languageSets: newLanguageSets
   });
 }
@@ -27195,6 +26743,8 @@ function scopeTab(node, event) {
     return;
   }
 
+  var target = void 0;
+
   var shiftKey = event.shiftKey;
   var head = tabbable[0];
   var tail = tabbable[tabbable.length - 1];
@@ -27206,7 +26756,6 @@ function scopeTab(node, event) {
     target = tail;
   }
 
-  var target;
   if (tail === document.activeElement && !shiftKey) {
     target = head;
   }
@@ -27245,9 +26794,11 @@ function scopeTab(node, event) {
     x += shiftKey ? -1 : 1;
   }
 
+  target = tabbable[x];
+
   // If the tabbable element does not exist,
   // focus head/tail based on shiftKey
-  if (typeof tabbable[x] === "undefined") {
+  if (typeof target === "undefined") {
     event.preventDefault();
     target = shiftKey ? tail : head;
     target.focus();
@@ -27256,7 +26807,7 @@ function scopeTab(node, event) {
 
   event.preventDefault();
 
-  tabbable[x].focus();
+  target.focus();
 }
 module.exports = exports["default"];
 });
@@ -27520,6 +27071,133 @@ var classList_1 = classList.dumpClassLists;
 var classList_2 = classList.add;
 var classList_3 = classList.remove;
 
+var portalOpenInstances_1 = createCommonjsModule(function (module, exports) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+// Tracks portals that are open and emits events to subscribers
+
+var PortalOpenInstances = function PortalOpenInstances() {
+  var _this = this;
+
+  _classCallCheck(this, PortalOpenInstances);
+
+  this.register = function (openInstance) {
+    if (_this.openInstances.indexOf(openInstance) !== -1) {
+      if (process.env.NODE_ENV !== "production") {
+        // eslint-disable-next-line no-console
+        console.warn("React-Modal: Cannot register modal instance that's already open");
+      }
+      return;
+    }
+    _this.openInstances.push(openInstance);
+    _this.emit("register");
+  };
+
+  this.deregister = function (openInstance) {
+    var index = _this.openInstances.indexOf(openInstance);
+    if (index === -1) {
+      if (process.env.NODE_ENV !== "production") {
+        // eslint-disable-next-line no-console
+        console.warn("React-Modal: Unable to deregister " + openInstance + " as " + "it was never registered");
+      }
+      return;
+    }
+    _this.openInstances.splice(index, 1);
+    _this.emit("deregister");
+  };
+
+  this.subscribe = function (callback) {
+    _this.subscribers.push(callback);
+  };
+
+  this.emit = function (eventType) {
+    _this.subscribers.forEach(function (subscriber) {
+      return subscriber(eventType,
+      // shallow copy to avoid accidental mutation
+      _this.openInstances.slice());
+    });
+  };
+
+  this.openInstances = [];
+  this.subscribers = [];
+};
+
+var portalOpenInstances = new PortalOpenInstances();
+
+exports.default = portalOpenInstances;
+module.exports = exports["default"];
+});
+
+unwrapExports(portalOpenInstances_1);
+
+var bodyTrap_1 = createCommonjsModule(function (module) {
+
+
+
+var _portalOpenInstances2 = _interopRequireDefault(portalOpenInstances_1);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// Body focus trap see Issue #742
+
+var before = void 0,
+    after = void 0,
+    instances = [];
+
+function focusContent() {
+  if (instances.length === 0) {
+    if (process.env.NODE_ENV !== "production") {
+      // eslint-disable-next-line no-console
+      console.warn("React-Modal: Open instances > 0 expected");
+    }
+    return;
+  }
+  instances[instances.length - 1].focusContent();
+}
+
+function bodyTrap(eventType, openInstances) {
+  if (!before || !after) {
+    before = document.createElement("div");
+    before.setAttribute("data-react-modal-body-trap", "");
+    before.style.position = "absolute";
+    before.style.opacity = "0";
+    before.setAttribute("tabindex", "0");
+    before.addEventListener("focus", focusContent);
+    after = before.cloneNode();
+    after.addEventListener("focus", focusContent);
+  }
+
+  instances = openInstances;
+
+  if (instances.length > 0) {
+    // Add focus trap
+    if (document.body.firstChild !== before) {
+      document.body.insertBefore(before, document.body.firstChild);
+    }
+    if (document.body.lastChild !== after) {
+      document.body.appendChild(after);
+    }
+  } else {
+    // Remove focus trap
+    if (before.parentElement) {
+      before.parentElement.removeChild(before);
+    }
+    if (after.parentElement) {
+      after.parentElement.removeChild(after);
+    }
+  }
+}
+
+_portalOpenInstances2.default.subscribe(bodyTrap);
+});
+
+unwrapExports(bodyTrap_1);
+
 var ModalPortal_1 = createCommonjsModule(function (module, exports) {
 
 Object.defineProperty(exports, "__esModule", {
@@ -27559,6 +27237,12 @@ var classList$1 = _interopRequireWildcard(classList);
 
 
 var _safeHTMLElement2 = _interopRequireDefault(safeHTMLElement);
+
+
+
+var _portalOpenInstances2 = _interopRequireDefault(portalOpenInstances_1);
+
+
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -27633,6 +27317,8 @@ var ModalPortal = function (_Component) {
       if (_this.props.onAfterClose) {
         _this.props.onAfterClose();
       }
+
+      _portalOpenInstances2.default.deregister(_this);
     };
 
     _this.open = function () {
@@ -27839,6 +27525,8 @@ var ModalPortal = function (_Component) {
         ariaHiddenInstances += 1;
         ariaAppHider$1.hide(appElement);
       }
+
+      _portalOpenInstances2.default.register(this);
     }
 
     // Don't steal focus from inner elements
@@ -28175,7 +27863,12 @@ var Modal = function (_Component) {
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Modal.__proto__ || Object.getPrototypeOf(Modal)).call.apply(_ref, [this].concat(args))), _this), _this.removePortal = function () {
       !isReact16 && _reactDom2.default.unmountComponentAtNode(_this.node);
       var parent = getParentElement(_this.props.parentSelector);
-      parent.removeChild(_this.node);
+      if (parent) {
+        parent.removeChild(_this.node);
+      } else {
+        // eslint-disable-next-line no-console
+        console.warn('React-Modal: "parentSelector" prop did not returned any DOM ' + "element. Make sure that the parent element is unmounted to " + "avoid any memory leaks.");
+      }
     }, _this.portalRef = function (ref) {
       _this.portal = ref;
     }, _this.renderPortal = function (props) {
@@ -28390,7 +28083,7 @@ var ReactModal = unwrapExports(lib$3);
 
 function ownKeys$b(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread$d(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$b(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$b(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread$c(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$b(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$b(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 var ModalWrapper = function ModalWrapper(_ref) {
   var isOpen = _ref.isOpen,
@@ -28406,7 +28099,7 @@ var ModalWrapper = function ModalWrapper(_ref) {
       alignItems: 'center',
       justifyContent: 'center'
     },
-    content: _objectSpread$d({
+    content: _objectSpread$c({
       top: 'unset',
       left: 'unset',
       right: 'unset',
@@ -28766,7 +28459,7 @@ var FadeOverlay = styled__default.div(_templateObject9());
 
 function ownKeys$c(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread$e(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$c(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$c(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread$d(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$c(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$c(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 ReactModal.setAppElement('body');
 
 var ModalWrapper$1 =
@@ -28847,7 +28540,7 @@ function (_Component) {
           alignItems: 'center',
           justifyContent: 'center'
         },
-        content: _objectSpread$e({
+        content: _objectSpread$d({
           position: 'relative',
           top: 'unset',
           left: 'unset',
@@ -28883,7 +28576,7 @@ function (_Component) {
         }
       }, title && React__default.createElement(Title, null, title), subtitle && React__default.createElement(Subtitle, null, subtitle), description && React__default.createElement(Description, null, description), actions && React__default.createElement(Actions$1, null, actions)), React__default.createElement(ContentWrapper$1, null, React__default.createElement(FadeOverlay, null), React__default.createElement(InnerContent, {
         hasHeader: hasHeader,
-        style: _objectSpread$e({}, contentStyle, {}, styleOverrides.content)
+        style: _objectSpread$d({}, contentStyle, {}, styleOverrides.content)
       }, children)), footer && React__default.createElement(Footer, {
         ref: function ref(node) {
           return _this2.footerRef = node;
@@ -29286,7 +28979,7 @@ module.exports = { "default": assign$1, __esModule: true };
 
 unwrapExports(assign$2);
 
-var _extends$2 = createCommonjsModule(function (module, exports) {
+var _extends$d = createCommonjsModule(function (module, exports) {
 
 exports.__esModule = true;
 
@@ -29311,7 +29004,7 @@ exports.default = _assign2.default || function (target) {
 };
 });
 
-var _extends$3 = unwrapExports(_extends$2);
+var _extends$e = unwrapExports(_extends$d);
 
 var classCallCheck$2 = createCommonjsModule(function (module, exports) {
 
@@ -29324,7 +29017,7 @@ exports.default = function (instance, Constructor) {
 };
 });
 
-var _classCallCheck$2 = unwrapExports(classCallCheck$2);
+var _classCallCheck$1 = unwrapExports(classCallCheck$2);
 
 // 19.1.2.4 / 15.2.3.6 Object.defineProperty(O, P, Attributes)
 _export(_export.S + _export.F * !_descriptors, 'Object', { defineProperty: _objectDp.f });
@@ -29369,7 +29062,7 @@ exports.default = function () {
 }();
 });
 
-var _createClass$2 = unwrapExports(createClass$2);
+var _createClass$1 = unwrapExports(createClass$2);
 
 // true  -> String#at
 // false -> String#codePointAt
@@ -30048,7 +29741,7 @@ exports.default = typeof _symbol2.default === "function" && _typeof(_iterator2.d
 };
 });
 
-var _typeof$1 = unwrapExports(_typeof_1$1);
+var _typeof = unwrapExports(_typeof_1$1);
 
 var possibleConstructorReturn$1 = createCommonjsModule(function (module, exports) {
 
@@ -30069,7 +29762,7 @@ exports.default = function (self, call) {
 };
 });
 
-var _possibleConstructorReturn$2 = unwrapExports(possibleConstructorReturn$1);
+var _possibleConstructorReturn$1 = unwrapExports(possibleConstructorReturn$1);
 
 // Works with __proto__ only. Old v8 can't work with null proto objects.
 /* eslint-disable no-proto */
@@ -30158,7 +29851,7 @@ exports.default = function (subClass, superClass) {
 };
 });
 
-var _inherits$2 = unwrapExports(inherits$1);
+var _inherits$1 = unwrapExports(inherits$1);
 
 var defineProperty$8 = createCommonjsModule(function (module, exports) {
 
@@ -30186,7 +29879,7 @@ exports.default = function (obj, key, value) {
 };
 });
 
-var _defineProperty$2 = unwrapExports(defineProperty$8);
+var _defineProperty$1 = unwrapExports(defineProperty$8);
 
 var Track = function Track(props) {
   var _ref, _ref2;
@@ -30199,9 +29892,9 @@ var Track = function Track(props) {
       style = props.style,
       reverse = props.reverse;
 
-  var positonStyle = vertical ? (_ref = {}, _defineProperty$2(_ref, reverse ? 'top' : 'bottom', offset + '%'), _defineProperty$2(_ref, reverse ? 'bottom' : 'top', 'auto'), _defineProperty$2(_ref, 'height', length + '%'), _ref) : (_ref2 = {}, _defineProperty$2(_ref2, reverse ? 'right' : 'left', offset + '%'), _defineProperty$2(_ref2, reverse ? 'left' : 'right', 'auto'), _defineProperty$2(_ref2, 'width', length + '%'), _ref2);
+  var positonStyle = vertical ? (_ref = {}, _defineProperty$1(_ref, reverse ? 'top' : 'bottom', offset + '%'), _defineProperty$1(_ref, reverse ? 'bottom' : 'top', 'auto'), _defineProperty$1(_ref, 'height', length + '%'), _ref) : (_ref2 = {}, _defineProperty$1(_ref2, reverse ? 'right' : 'left', offset + '%'), _defineProperty$1(_ref2, reverse ? 'left' : 'right', 'auto'), _defineProperty$1(_ref2, 'width', length + '%'), _ref2);
 
-  var elStyle = _extends$3({}, style, positonStyle);
+  var elStyle = _extends$e({}, style, positonStyle);
   return included ? React__default.createElement('div', { className: className, style: elStyle }) : null;
 };
 
@@ -30222,7 +29915,7 @@ exports.default = function (obj, keys) {
 };
 });
 
-var _objectWithoutProperties$3 = unwrapExports(objectWithoutProperties$1);
+var _objectWithoutProperties$2 = unwrapExports(objectWithoutProperties$1);
 
 // most Object methods by ES6 should accept primitives
 
@@ -30842,12 +30535,12 @@ var Steps = function Steps(_ref) {
     var offset = Math.abs(point - min) / range * 100 + '%';
 
     var isActived = !included && point === upperBound || included && point <= upperBound && point >= lowerBound;
-    var style = vertical ? _extends$3({}, dotStyle, _defineProperty$2({}, reverse ? 'top' : 'bottom', offset)) : _extends$3({}, dotStyle, _defineProperty$2({}, reverse ? 'right' : 'left', offset));
+    var style = vertical ? _extends$e({}, dotStyle, _defineProperty$1({}, reverse ? 'top' : 'bottom', offset)) : _extends$e({}, dotStyle, _defineProperty$1({}, reverse ? 'right' : 'left', offset));
     if (isActived) {
-      style = _extends$3({}, style, activeDotStyle);
+      style = _extends$e({}, style, activeDotStyle);
     }
 
-    var pointClassName = classnames((_classNames = {}, _defineProperty$2(_classNames, prefixCls + '-dot', true), _defineProperty$2(_classNames, prefixCls + '-dot-active', isActived), _defineProperty$2(_classNames, prefixCls + '-dot-reverse', reverse), _classNames));
+    var pointClassName = classnames((_classNames = {}, _defineProperty$1(_classNames, prefixCls + '-dot', true), _defineProperty$1(_classNames, prefixCls + '-dot-active', isActived), _defineProperty$1(_classNames, prefixCls + '-dot-reverse', reverse), _classNames));
 
     return React__default.createElement('span', { className: pointClassName, style: style, key: point });
   });
@@ -30903,19 +30596,19 @@ var Marks = function Marks(_ref) {
     }
 
     var isActive = !included && point === upperBound || included && point <= upperBound && point >= lowerBound;
-    var markClassName = classnames((_classNames = {}, _defineProperty$2(_classNames, className + '-text', true), _defineProperty$2(_classNames, className + '-text-active', isActive), _classNames));
+    var markClassName = classnames((_classNames = {}, _defineProperty$1(_classNames, className + '-text', true), _defineProperty$1(_classNames, className + '-text-active', isActive), _classNames));
 
-    var bottomStyle = _defineProperty$2({
+    var bottomStyle = _defineProperty$1({
       marginBottom: '-50%'
     }, reverse ? 'top' : 'bottom', (point - min) / range * 100 + '%');
 
-    var leftStyle = _defineProperty$2({
+    var leftStyle = _defineProperty$1({
       transform: 'translateX(-50%)',
       msTransform: 'translateX(-50%)'
     }, reverse ? 'right' : 'left', reverse ? (point - min / 4) / range * 100 + '%' : (point - min) / range * 100 + '%');
 
     var style = vertical ? bottomStyle : leftStyle;
-    var markStyle = markPointIsObject ? _extends$3({}, style, markPoint.style) : style;
+    var markStyle = markPointIsObject ? _extends$e({}, style, markPoint.style) : style;
     return React__default.createElement(
       'span',
       {
@@ -30954,20 +30647,20 @@ Marks.propTypes = {
 };
 
 var Handle = function (_React$Component) {
-  _inherits$2(Handle, _React$Component);
+  _inherits$1(Handle, _React$Component);
 
   function Handle() {
     var _ref;
 
     var _temp, _this, _ret;
 
-    _classCallCheck$2(this, Handle);
+    _classCallCheck$1(this, Handle);
 
     for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn$2(this, (_ref = Handle.__proto__ || Object.getPrototypeOf(Handle)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn$1(this, (_ref = Handle.__proto__ || Object.getPrototypeOf(Handle)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
       clickFocused: false
     }, _this.setHandleRef = function (node) {
       _this.handle = node;
@@ -30982,10 +30675,10 @@ var Handle = function (_React$Component) {
       _this.setClickFocus(false);
     }, _this.handleKeyDown = function () {
       _this.setClickFocus(false);
-    }, _temp), _possibleConstructorReturn$2(_this, _ret);
+    }, _temp), _possibleConstructorReturn$1(_this, _ret);
   }
 
-  _createClass$2(Handle, [{
+  _createClass$1(Handle, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
       // mouseup won't trigger if mouse moved out of handle,
@@ -31036,18 +30729,18 @@ var Handle = function (_React$Component) {
           max = _props.max,
           value = _props.value,
           tabIndex = _props.tabIndex,
-          restProps = _objectWithoutProperties$3(_props, ['prefixCls', 'vertical', 'reverse', 'offset', 'style', 'disabled', 'min', 'max', 'value', 'tabIndex']);
+          restProps = _objectWithoutProperties$2(_props, ['prefixCls', 'vertical', 'reverse', 'offset', 'style', 'disabled', 'min', 'max', 'value', 'tabIndex']);
 
-      var className = classnames(this.props.className, _defineProperty$2({}, prefixCls + '-handle-click-focused', this.state.clickFocused));
-      var positionStyle = vertical ? (_ref2 = {}, _defineProperty$2(_ref2, reverse ? 'top' : 'bottom', offset + '%'), _defineProperty$2(_ref2, reverse ? 'bottom' : 'top', 'auto'), _defineProperty$2(_ref2, 'transform', 'translateY(+50%)'), _ref2) : (_ref3 = {}, _defineProperty$2(_ref3, reverse ? 'right' : 'left', offset + '%'), _defineProperty$2(_ref3, reverse ? 'left' : 'right', 'auto'), _defineProperty$2(_ref3, 'transform', 'translateX(' + (reverse ? '+' : '-') + '50%)'), _ref3);
-      var elStyle = _extends$3({}, style, positionStyle);
+      var className = classnames(this.props.className, _defineProperty$1({}, prefixCls + '-handle-click-focused', this.state.clickFocused));
+      var positionStyle = vertical ? (_ref2 = {}, _defineProperty$1(_ref2, reverse ? 'top' : 'bottom', offset + '%'), _defineProperty$1(_ref2, reverse ? 'bottom' : 'top', 'auto'), _defineProperty$1(_ref2, 'transform', 'translateY(+50%)'), _ref2) : (_ref3 = {}, _defineProperty$1(_ref3, reverse ? 'right' : 'left', offset + '%'), _defineProperty$1(_ref3, reverse ? 'left' : 'right', 'auto'), _defineProperty$1(_ref3, 'transform', 'translateX(' + (reverse ? '+' : '-') + '50%)'), _ref3);
+      var elStyle = _extends$e({}, style, positionStyle);
 
       var _tabIndex = tabIndex || 0;
       if (disabled || tabIndex === null) {
         _tabIndex = null;
       }
 
-      return React__default.createElement('div', _extends$3({
+      return React__default.createElement('div', _extends$e({
         ref: this.setHandleRef,
         tabIndex: _tabIndex
       }, restProps, {
@@ -31226,7 +30919,7 @@ exports.default = function (arr) {
 };
 });
 
-var _toConsumableArray$1 = unwrapExports(toConsumableArray);
+var _toConsumableArray = unwrapExports(toConsumableArray);
 
 /**
  * @ignore
@@ -31888,7 +31581,7 @@ function getClosestPoint(val, _ref2) {
   var diffs = points.map(function (point) {
     return Math.abs(val - point);
   });
-  return points[diffs.indexOf(Math.min.apply(Math, _toConsumableArray$1(diffs)))];
+  return points[diffs.indexOf(Math.min.apply(Math, _toConsumableArray(diffs)))];
 }
 
 function getPrecision(step) {
@@ -32004,12 +31697,12 @@ function createSlider(Component) {
   var _class, _temp;
 
   return _temp = _class = function (_Component) {
-    _inherits$2(ComponentEnhancer, _Component);
+    _inherits$1(ComponentEnhancer, _Component);
 
     function ComponentEnhancer(props) {
-      _classCallCheck$2(this, ComponentEnhancer);
+      _classCallCheck$1(this, ComponentEnhancer);
 
-      var _this = _possibleConstructorReturn$2(this, (ComponentEnhancer.__proto__ || Object.getPrototypeOf(ComponentEnhancer)).call(this, props));
+      var _this = _possibleConstructorReturn$1(this, (ComponentEnhancer.__proto__ || Object.getPrototypeOf(ComponentEnhancer)).call(this, props));
 
       _this.onMouseDown = function (e) {
         if (e.button !== 0) {
@@ -32125,7 +31818,7 @@ function createSlider(Component) {
       return _this;
     }
 
-    _createClass$2(ComponentEnhancer, [{
+    _createClass$1(ComponentEnhancer, [{
       key: 'componentDidMount',
       value: function componentDidMount() {
         // Snapshot testing cannot handle refs, so be sure to null-check this.
@@ -32277,7 +31970,7 @@ function createSlider(Component) {
             tracks = _get$call.tracks,
             handles = _get$call.handles;
 
-        var sliderClassName = classnames(prefixCls, (_classNames = {}, _defineProperty$2(_classNames, prefixCls + '-with-marks', Object.keys(marks).length), _defineProperty$2(_classNames, prefixCls + '-disabled', disabled), _defineProperty$2(_classNames, prefixCls + '-vertical', vertical), _defineProperty$2(_classNames, className, className), _classNames));
+        var sliderClassName = classnames(prefixCls, (_classNames = {}, _defineProperty$1(_classNames, prefixCls + '-with-marks', Object.keys(marks).length), _defineProperty$1(_classNames, prefixCls + '-disabled', disabled), _defineProperty$1(_classNames, prefixCls + '-vertical', vertical), _defineProperty$1(_classNames, className, className), _classNames));
         return React__default.createElement(
           'div',
           {
@@ -32293,7 +31986,7 @@ function createSlider(Component) {
           },
           React__default.createElement('div', {
             className: prefixCls + '-rail',
-            style: _extends$3({}, maximumTrackStyle, railStyle)
+            style: _extends$e({}, maximumTrackStyle, railStyle)
           }),
           tracks,
           React__default.createElement(Steps, {
@@ -32330,7 +32023,7 @@ function createSlider(Component) {
     }]);
 
     return ComponentEnhancer;
-  }(Component), _class.displayName = 'ComponentEnhancer(' + Component.displayName + ')', _class.propTypes = _extends$3({}, Component.propTypes, {
+  }(Component), _class.displayName = 'ComponentEnhancer(' + Component.displayName + ')', _class.propTypes = _extends$e({}, Component.propTypes, {
     min: PropTypes.number,
     max: PropTypes.number,
     step: PropTypes.number,
@@ -32358,7 +32051,7 @@ function createSlider(Component) {
     autoFocus: PropTypes.bool,
     onFocus: PropTypes.func,
     onBlur: PropTypes.func
-  }), _class.defaultProps = _extends$3({}, Component.defaultProps, {
+  }), _class.defaultProps = _extends$e({}, Component.defaultProps, {
     prefixCls: 'rc-slider',
     className: '',
     min: 0,
@@ -32367,14 +32060,14 @@ function createSlider(Component) {
     marks: {},
     handle: function handle(_ref) {
       var index = _ref.index,
-          restProps = _objectWithoutProperties$3(_ref, ['index']);
+          restProps = _objectWithoutProperties$2(_ref, ['index']);
 
       delete restProps.dragging;
       if (restProps.value === null) {
         return null;
       }
 
-      return React__default.createElement(Handle, _extends$3({}, restProps, { key: index }));
+      return React__default.createElement(Handle, _extends$e({}, restProps, { key: index }));
     },
 
     onBeforeChange: noop$1,
@@ -32394,12 +32087,12 @@ function createSlider(Component) {
 }
 
 var Slider = function (_React$Component) {
-  _inherits$2(Slider, _React$Component);
+  _inherits$1(Slider, _React$Component);
 
   function Slider(props) {
-    _classCallCheck$2(this, Slider);
+    _classCallCheck$1(this, Slider);
 
-    var _this = _possibleConstructorReturn$2(this, (Slider.__proto__ || Object.getPrototypeOf(Slider)).call(this, props));
+    var _this = _possibleConstructorReturn$1(this, (Slider.__proto__ || Object.getPrototypeOf(Slider)).call(this, props));
 
     _this.onEnd = function (force) {
       var dragging = _this.state.dragging;
@@ -32424,7 +32117,7 @@ var Slider = function (_React$Component) {
     return _this;
   }
 
-  _createClass$2(Slider, [{
+  _createClass$1(Slider, [{
     key: 'componentDidUpdate',
     value: function componentDidUpdate(prevProps, prevState) {
       if (!('value' in this.props || 'min' in this.props || 'max' in this.props)) {
@@ -32449,7 +32142,7 @@ var Slider = function (_React$Component) {
     value: function onChange(state) {
       var props = this.props;
       var isNotControlled = !('value' in props);
-      var nextState = state.value > this.props.max ? _extends$3({}, state, { value: this.props.max }) : state;
+      var nextState = state.value > this.props.max ? _extends$e({}, state, { value: this.props.max }) : state;
       if (isNotControlled) {
         this.setState(nextState);
       }
@@ -32531,7 +32224,7 @@ var Slider = function (_React$Component) {
         return null;
       }
 
-      var mergedProps = _extends$3({}, this.props, nextProps);
+      var mergedProps = _extends$e({}, this.props, nextProps);
       var val = ensureValueInRange(v, mergedProps);
       return ensureValuePrecision(val, mergedProps);
     }
@@ -32585,7 +32278,7 @@ var Slider = function (_React$Component) {
         offset: 0,
         reverse: reverse,
         length: offset,
-        style: _extends$3({}, minimumTrackStyle, _trackStyle)
+        style: _extends$e({}, minimumTrackStyle, _trackStyle)
       });
 
       return { tracks: track, handles: handle };
@@ -32679,12 +32372,12 @@ var _trimAlignValue = function _trimAlignValue(_ref) {
 };
 
 var Range = function (_React$Component) {
-  _inherits$2(Range, _React$Component);
+  _inherits$1(Range, _React$Component);
 
   function Range(props) {
-    _classCallCheck$2(this, Range);
+    _classCallCheck$1(this, Range);
 
-    var _this = _possibleConstructorReturn$2(this, (Range.__proto__ || Object.getPrototypeOf(Range)).call(this, props));
+    var _this = _possibleConstructorReturn$1(this, (Range.__proto__ || Object.getPrototypeOf(Range)).call(this, props));
 
     _this.onEnd = function (force) {
       var handle = _this.state.handle;
@@ -32704,7 +32397,7 @@ var Range = function (_React$Component) {
         min = props.min,
         max = props.max;
 
-    var initialValue = Array.apply(undefined, _toConsumableArray$1(Array(count + 1))).map(function () {
+    var initialValue = Array.apply(undefined, _toConsumableArray(Array(count + 1))).map(function () {
       return min;
     });
     var defaultValue = 'defaultValue' in props ? props.defaultValue : initialValue;
@@ -32726,7 +32419,7 @@ var Range = function (_React$Component) {
     return _this;
   }
 
-  _createClass$2(Range, [{
+  _createClass$1(Range, [{
     key: 'componentDidUpdate',
     value: function componentDidUpdate(prevProps, prevState) {
       var _this2 = this;
@@ -32772,7 +32465,7 @@ var Range = function (_React$Component) {
         }
       }
 
-      var data = _extends$3({}, this.state, state);
+      var data = _extends$e({}, this.state, state);
       var changedValue = data.bounds;
       props.onChange(changedValue);
     }
@@ -32799,7 +32492,7 @@ var Range = function (_React$Component) {
       var prevValue = bounds[this.prevMovedHandleIndex];
       if (value === prevValue) return;
 
-      var nextBounds = [].concat(_toConsumableArray$1(state.bounds));
+      var nextBounds = [].concat(_toConsumableArray(state.bounds));
       nextBounds[this.prevMovedHandleIndex] = value;
       this.onChange({ bounds: nextBounds });
     }
@@ -32913,7 +32606,7 @@ var Range = function (_React$Component) {
 
       var cache = this._getPointsCache;
       if (!cache || cache.marks !== marks || cache.step !== step) {
-        var pointsObject = _extends$3({}, marks);
+        var pointsObject = _extends$e({}, marks);
         if (step !== null) {
           for (var point = min; point <= max; point += step) {
             pointsObject[point] = point;
@@ -32935,7 +32628,7 @@ var Range = function (_React$Component) {
       var state = this.state,
           props = this.props;
 
-      var nextBounds = [].concat(_toConsumableArray$1(state.bounds));
+      var nextBounds = [].concat(_toConsumableArray(state.bounds));
       var handle = state.handle === null ? state.recent : state.handle;
       nextBounds[handle] = value;
       var nextHandle = handle;
@@ -33080,7 +32773,7 @@ var Range = function (_React$Component) {
           _tabIndex = null;
         }
         return handleGenerator({
-          className: classnames((_classNames = {}, _defineProperty$2(_classNames, handleClassName, true), _defineProperty$2(_classNames, handleClassName + '-' + (i + 1), true), _classNames)),
+          className: classnames((_classNames = {}, _defineProperty$1(_classNames, handleClassName, true), _defineProperty$1(_classNames, handleClassName + '-' + (i + 1), true), _classNames)),
           prefixCls: prefixCls,
           vertical: vertical,
           offset: offsets[i],
@@ -33103,7 +32796,7 @@ var Range = function (_React$Component) {
         var _classNames2;
 
         var i = index + 1;
-        var trackClassName = classnames((_classNames2 = {}, _defineProperty$2(_classNames2, prefixCls + '-track', true), _defineProperty$2(_classNames2, prefixCls + '-track-' + i, true), _classNames2));
+        var trackClassName = classnames((_classNames2 = {}, _defineProperty$1(_classNames2, prefixCls + '-track', true), _defineProperty$1(_classNames2, prefixCls + '-track-' + i, true), _classNames2));
         return React__default.createElement(Track, {
           className: trackClassName,
           vertical: vertical,
@@ -33136,7 +32829,7 @@ var Range = function (_React$Component) {
         })) {
           return null;
         }
-        return _extends$3({}, state, {
+        return _extends$e({}, state, {
           bounds: nextBounds
         });
       }
@@ -33187,41 +32880,41 @@ function contains(root, n) {
   return false;
 }
 
-function _typeof$2(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof$2 = function _typeof(obj) { return typeof obj; }; } else { _typeof$2 = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof$2(obj); }
+function _typeof$1(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof$1 = function _typeof(obj) { return typeof obj; }; } else { _typeof$1 = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof$1(obj); }
 
-function _classCallCheck$3(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _classCallCheck$2(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-function _defineProperties$2(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+function _defineProperties$1(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
-function _createClass$3(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties$2(Constructor.prototype, protoProps); if (staticProps) _defineProperties$2(Constructor, staticProps); return Constructor; }
+function _createClass$2(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties$1(Constructor.prototype, protoProps); if (staticProps) _defineProperties$1(Constructor, staticProps); return Constructor; }
 
-function _possibleConstructorReturn$3(self, call) { if (call && (_typeof$2(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized$2(self); }
+function _possibleConstructorReturn$2(self, call) { if (call && (_typeof$1(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized$2(self); }
 
 function _assertThisInitialized$2(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
-function _getPrototypeOf$1(o) { _getPrototypeOf$1 = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf$1(o); }
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
-function _inherits$3(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf$1(subClass, superClass); }
+function _inherits$2(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
-function _setPrototypeOf$1(o, p) { _setPrototypeOf$1 = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf$1(o, p); }
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 var ContainerRender =
 /*#__PURE__*/
 function (_React$Component) {
-  _inherits$3(ContainerRender, _React$Component);
+  _inherits$2(ContainerRender, _React$Component);
 
   function ContainerRender() {
     var _getPrototypeOf2;
 
     var _this;
 
-    _classCallCheck$3(this, ContainerRender);
+    _classCallCheck$2(this, ContainerRender);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = _possibleConstructorReturn$3(this, (_getPrototypeOf2 = _getPrototypeOf$1(ContainerRender)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = _possibleConstructorReturn$2(this, (_getPrototypeOf2 = _getPrototypeOf(ContainerRender)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     _this.removeContainer = function () {
       if (_this.container) {
@@ -33257,7 +32950,7 @@ function (_React$Component) {
     return _this;
   }
 
-  _createClass$3(ContainerRender, [{
+  _createClass$2(ContainerRender, [{
     key: "componentDidMount",
     value: function componentDidMount() {
       if (this.props.autoMount) {
@@ -33307,36 +33000,36 @@ ContainerRender.defaultProps = {
   forceRender: false
 };
 
-function _typeof$3(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof$3 = function _typeof(obj) { return typeof obj; }; } else { _typeof$3 = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof$3(obj); }
+function _typeof$2(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof$2 = function _typeof(obj) { return typeof obj; }; } else { _typeof$2 = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof$2(obj); }
 
-function _classCallCheck$4(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _classCallCheck$3(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-function _defineProperties$3(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+function _defineProperties$2(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
-function _createClass$4(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties$3(Constructor.prototype, protoProps); if (staticProps) _defineProperties$3(Constructor, staticProps); return Constructor; }
+function _createClass$3(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties$2(Constructor.prototype, protoProps); if (staticProps) _defineProperties$2(Constructor, staticProps); return Constructor; }
 
-function _possibleConstructorReturn$4(self, call) { if (call && (_typeof$3(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized$3(self); }
+function _possibleConstructorReturn$3(self, call) { if (call && (_typeof$2(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized$3(self); }
 
 function _assertThisInitialized$3(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
-function _getPrototypeOf$2(o) { _getPrototypeOf$2 = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf$2(o); }
+function _getPrototypeOf$1(o) { _getPrototypeOf$1 = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf$1(o); }
 
-function _inherits$4(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf$2(subClass, superClass); }
+function _inherits$3(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf$1(subClass, superClass); }
 
-function _setPrototypeOf$2(o, p) { _setPrototypeOf$2 = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf$2(o, p); }
+function _setPrototypeOf$1(o, p) { _setPrototypeOf$1 = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf$1(o, p); }
 
 var Portal =
 /*#__PURE__*/
 function (_React$Component) {
-  _inherits$4(Portal, _React$Component);
+  _inherits$3(Portal, _React$Component);
 
   function Portal() {
-    _classCallCheck$4(this, Portal);
+    _classCallCheck$3(this, Portal);
 
-    return _possibleConstructorReturn$4(this, _getPrototypeOf$2(Portal).apply(this, arguments));
+    return _possibleConstructorReturn$3(this, _getPrototypeOf$1(Portal).apply(this, arguments));
   }
 
-  _createClass$4(Portal, [{
+  _createClass$3(Portal, [{
     key: "componentDidMount",
     value: function componentDidMount() {
       this.createContainer();
@@ -33397,7 +33090,7 @@ function isPointsEq(a1, a2, isAlignPoint) {
 
 function getAlignFromPlacement(builtinPlacements, placementStr, align) {
   var baseAlign = builtinPlacements[placementStr] || {};
-  return _extends$3({}, baseAlign, align);
+  return _extends$e({}, baseAlign, align);
 }
 
 function getAlignPopupClassName(builtinPlacements, prefixCls, align, isAlignPoint) {
@@ -33416,21 +33109,21 @@ function saveRef(name, component) {
   this[name] = component;
 }
 
-function _typeof$4(obj) {
+function _typeof$3(obj) {
   if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
-    _typeof$4 = function (obj) {
+    _typeof$3 = function (obj) {
       return typeof obj;
     };
   } else {
-    _typeof$4 = function (obj) {
+    _typeof$3 = function (obj) {
       return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
     };
   }
 
-  return _typeof$4(obj);
+  return _typeof$3(obj);
 }
 
-function _defineProperty$3(obj, key, value) {
+function _defineProperty$2(obj, key, value) {
   if (key in obj) {
     Object.defineProperty(obj, key, {
       value: value,
@@ -33465,7 +33158,7 @@ function _objectSpread2(target) {
 
     if (i % 2) {
       ownKeys$d(source, true).forEach(function (key) {
-        _defineProperty$3(target, key, source[key]);
+        _defineProperty$2(target, key, source[key]);
       });
     } else if (Object.getOwnPropertyDescriptors) {
       Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
@@ -33603,7 +33296,7 @@ function forceRelayout(elem) {
 function css$2(el, name, v) {
   var value = v;
 
-  if (_typeof$4(name) === 'object') {
+  if (_typeof$3(name) === 'object') {
     for (var i in name) {
       if (name.hasOwnProperty(i)) {
         css$2(el, i, name[i]);
@@ -34796,20 +34489,20 @@ function getPoint(point) {
 }
 
 var Align = function (_Component) {
-  _inherits$2(Align, _Component);
+  _inherits$1(Align, _Component);
 
   function Align() {
     var _ref;
 
     var _temp, _this, _ret;
 
-    _classCallCheck$2(this, Align);
+    _classCallCheck$1(this, Align);
 
     for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn$2(this, (_ref = Align.__proto__ || Object.getPrototypeOf(Align)).call.apply(_ref, [this].concat(args))), _this), _this.forceAlign = function () {
+    return _ret = (_temp = (_this = _possibleConstructorReturn$1(this, (_ref = Align.__proto__ || Object.getPrototypeOf(Align)).call.apply(_ref, [this].concat(args))), _this), _this.forceAlign = function () {
       var _this$props = _this.props,
           disabled = _this$props.disabled,
           target = _this$props.target,
@@ -34839,10 +34532,10 @@ var Align = function (_Component) {
           onAlign(source, result);
         }
       }
-    }, _temp), _possibleConstructorReturn$2(_this, _ret);
+    }, _temp), _possibleConstructorReturn$1(_this, _ret);
   }
 
-  _createClass$2(Align, [{
+  _createClass$1(Align, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
       var props = this.props;
@@ -35245,7 +34938,7 @@ try {
  * Whitespace regexp.
  */
 
-var re = /\s+/;
+var re$1 = /\s+/;
 
 /**
  * toString reference.
@@ -35403,7 +35096,7 @@ ClassList.prototype.toggle = function(name, force){
 ClassList.prototype.array = function(){
   var className = this.el.getAttribute('class') || '';
   var str = className.replace(/^\s+|\s+$/g, '');
-  var arr = str.split(re);
+  var arr = str.split(re$1);
   if ('' === arr[0]) arr.shift();
   return arr;
 };
@@ -35467,7 +35160,7 @@ function clearBrowserBugTimeout(node) {
 }
 
 var cssAnimation = function cssAnimation(node, transitionName, endCallback) {
-  var nameIsObj = (typeof transitionName === 'undefined' ? 'undefined' : _typeof$1(transitionName)) === 'object';
+  var nameIsObj = (typeof transitionName === 'undefined' ? 'undefined' : _typeof(transitionName)) === 'object';
   var className = nameIsObj ? transitionName.name : transitionName;
   var activeClassName = nameIsObj ? transitionName.active : transitionName + '-active';
   var end = endCallback;
@@ -35619,15 +35312,15 @@ var transitionMap = {
 };
 
 var AnimateChild = function (_React$Component) {
-  _inherits$2(AnimateChild, _React$Component);
+  _inherits$1(AnimateChild, _React$Component);
 
   function AnimateChild() {
-    _classCallCheck$2(this, AnimateChild);
+    _classCallCheck$1(this, AnimateChild);
 
-    return _possibleConstructorReturn$2(this, (AnimateChild.__proto__ || Object.getPrototypeOf(AnimateChild)).apply(this, arguments));
+    return _possibleConstructorReturn$1(this, (AnimateChild.__proto__ || Object.getPrototypeOf(AnimateChild)).apply(this, arguments));
   }
 
-  _createClass$2(AnimateChild, [{
+  _createClass$1(AnimateChild, [{
     key: 'componentWillUnmount',
     value: function componentWillUnmount() {
       this.stop();
@@ -35732,14 +35425,14 @@ function getChildrenFromProps(props) {
 function noop$2() {}
 
 var Animate = function (_React$Component) {
-  _inherits$2(Animate, _React$Component);
+  _inherits$1(Animate, _React$Component);
 
   // eslint-disable-line
 
   function Animate(props) {
-    _classCallCheck$2(this, Animate);
+    _classCallCheck$1(this, Animate);
 
-    var _this = _possibleConstructorReturn$2(this, (Animate.__proto__ || Object.getPrototypeOf(Animate)).call(this, props));
+    var _this = _possibleConstructorReturn$1(this, (Animate.__proto__ || Object.getPrototypeOf(Animate)).call(this, props));
 
     _initialiseProps.call(_this);
 
@@ -35755,7 +35448,7 @@ var Animate = function (_React$Component) {
     return _this;
   }
 
-  _createClass$2(Animate, [{
+  _createClass$1(Animate, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
       var _this2 = this;
@@ -35798,7 +35491,7 @@ var Animate = function (_React$Component) {
           var nextChild = currentChild && findChildInChildrenByKey(nextChildren, currentChild.key);
           var newChild = void 0;
           if ((!nextChild || !nextChild.props[showProp]) && currentChild.props[showProp]) {
-            newChild = React__default.cloneElement(nextChild || currentChild, _defineProperty$2({}, showProp, true));
+            newChild = React__default.cloneElement(nextChild || currentChild, _defineProperty$1({}, showProp, true));
           } else {
             newChild = nextChild;
           }
@@ -35928,7 +35621,7 @@ var Animate = function (_React$Component) {
       if (Component) {
         var passedProps = props;
         if (typeof Component === 'string') {
-          passedProps = _extends$3({
+          passedProps = _extends$e({
             className: props.className,
             style: props.style
           }, props.componentProps);
@@ -36058,12 +35751,12 @@ var _initialiseProps = function _initialiseProps() {
 var Animate$1 = unsafeLifecyclesPolyfill(Animate);
 
 var LazyRenderBox = function (_Component) {
-  _inherits$2(LazyRenderBox, _Component);
+  _inherits$1(LazyRenderBox, _Component);
 
   function LazyRenderBox() {
-    _classCallCheck$2(this, LazyRenderBox);
+    _classCallCheck$1(this, LazyRenderBox);
 
-    return _possibleConstructorReturn$2(this, _Component.apply(this, arguments));
+    return _possibleConstructorReturn$1(this, _Component.apply(this, arguments));
   }
 
   LazyRenderBox.prototype.shouldComponentUpdate = function shouldComponentUpdate(nextProps) {
@@ -36074,7 +35767,7 @@ var LazyRenderBox = function (_Component) {
     var _props = this.props,
         hiddenClassName = _props.hiddenClassName,
         visible = _props.visible,
-        props = _objectWithoutProperties$3(_props, ['hiddenClassName', 'visible']);
+        props = _objectWithoutProperties$2(_props, ['hiddenClassName', 'visible']);
 
     if (hiddenClassName || React__default.Children.count(props.children) > 1) {
       if (!visible && hiddenClassName) {
@@ -36097,12 +35790,12 @@ LazyRenderBox.propTypes = {
 };
 
 var PopupInner = function (_Component) {
-  _inherits$2(PopupInner, _Component);
+  _inherits$1(PopupInner, _Component);
 
   function PopupInner() {
-    _classCallCheck$2(this, PopupInner);
+    _classCallCheck$1(this, PopupInner);
 
-    return _possibleConstructorReturn$2(this, _Component.apply(this, arguments));
+    return _possibleConstructorReturn$1(this, _Component.apply(this, arguments));
   }
 
   PopupInner.prototype.render = function render() {
@@ -36144,12 +35837,12 @@ PopupInner.propTypes = {
 };
 
 var Popup$1 = function (_Component) {
-  _inherits$2(Popup, _Component);
+  _inherits$1(Popup, _Component);
 
   function Popup(props) {
-    _classCallCheck$2(this, Popup);
+    _classCallCheck$1(this, Popup);
 
-    var _this = _possibleConstructorReturn$2(this, _Component.call(this, props));
+    var _this = _possibleConstructorReturn$1(this, _Component.call(this, props));
 
     _initialiseProps$1.call(_this);
 
@@ -36262,7 +35955,7 @@ var Popup$1 = function (_Component) {
       }
     }
 
-    var newStyle = _extends$3({}, sizeStyle, style, this.getZIndexStyle());
+    var newStyle = _extends$e({}, sizeStyle, style, this.getZIndexStyle());
 
     var popupInnerProps = {
       className: className,
@@ -36295,7 +35988,7 @@ var Popup$1 = function (_Component) {
           },
           React__default.createElement(
             PopupInner,
-            _extends$3({
+            _extends$e({
               visible: true
             }, popupInnerProps),
             children
@@ -36328,7 +36021,7 @@ var Popup$1 = function (_Component) {
         },
         React__default.createElement(
           PopupInner,
-          _extends$3({
+          _extends$e({
             hiddenClassName: hiddenClassName
           }, popupInnerProps),
           children
@@ -36492,12 +36185,12 @@ var contextTypes = {
 };
 
 var Trigger$1 = function (_React$Component) {
-  _inherits$2(Trigger, _React$Component);
+  _inherits$1(Trigger, _React$Component);
 
   function Trigger(props) {
-    _classCallCheck$2(this, Trigger);
+    _classCallCheck$1(this, Trigger);
 
-    var _this = _possibleConstructorReturn$2(this, _React$Component.call(this, props));
+    var _this = _possibleConstructorReturn$1(this, _React$Component.call(this, props));
 
     _initialiseProps$2.call(_this);
 
@@ -37116,7 +36809,7 @@ var _initialiseProps$2 = function _initialiseProps() {
 
     return React__default.createElement(
       Popup$1,
-      _extends$3({
+      _extends$e({
         prefixCls: prefixCls,
         destroyPopupOnHide: destroyPopupOnHide,
         visible: popupVisible,
@@ -37266,12 +36959,12 @@ var placements$1 = {
 };
 
 var Content = function (_React$Component) {
-  _inherits$2(Content, _React$Component);
+  _inherits$1(Content, _React$Component);
 
   function Content() {
-    _classCallCheck$2(this, Content);
+    _classCallCheck$1(this, Content);
 
-    return _possibleConstructorReturn$2(this, _React$Component.apply(this, arguments));
+    return _possibleConstructorReturn$1(this, _React$Component.apply(this, arguments));
   }
 
   Content.prototype.componentDidUpdate = function componentDidUpdate() {
@@ -37306,18 +36999,18 @@ Content.propTypes = {
 };
 
 var Tooltip = function (_Component) {
-  _inherits$2(Tooltip, _Component);
+  _inherits$1(Tooltip, _Component);
 
   function Tooltip() {
     var _temp, _this, _ret;
 
-    _classCallCheck$2(this, Tooltip);
+    _classCallCheck$1(this, Tooltip);
 
     for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn$2(this, _Component.call.apply(_Component, [this].concat(args))), _this), _this.getPopupElement = function () {
+    return _ret = (_temp = (_this = _possibleConstructorReturn$1(this, _Component.call.apply(_Component, [this].concat(args))), _this), _this.getPopupElement = function () {
       var _this$props = _this.props,
           arrowContent = _this$props.arrowContent,
           overlay = _this$props.overlay,
@@ -37337,7 +37030,7 @@ var Tooltip = function (_Component) {
       })];
     }, _this.saveTrigger = function (node) {
       _this.trigger = node;
-    }, _temp), _possibleConstructorReturn$2(_this, _ret);
+    }, _temp), _possibleConstructorReturn$1(_this, _ret);
   }
 
   Tooltip.prototype.getPopupDomNode = function getPopupDomNode() {
@@ -37362,15 +37055,15 @@ var Tooltip = function (_Component) {
         destroyTooltipOnHide = _props.destroyTooltipOnHide,
         defaultVisible = _props.defaultVisible,
         getTooltipContainer = _props.getTooltipContainer,
-        restProps = _objectWithoutProperties$3(_props, ['overlayClassName', 'trigger', 'mouseEnterDelay', 'mouseLeaveDelay', 'overlayStyle', 'prefixCls', 'children', 'onVisibleChange', 'afterVisibleChange', 'transitionName', 'animation', 'placement', 'align', 'destroyTooltipOnHide', 'defaultVisible', 'getTooltipContainer']);
+        restProps = _objectWithoutProperties$2(_props, ['overlayClassName', 'trigger', 'mouseEnterDelay', 'mouseLeaveDelay', 'overlayStyle', 'prefixCls', 'children', 'onVisibleChange', 'afterVisibleChange', 'transitionName', 'animation', 'placement', 'align', 'destroyTooltipOnHide', 'defaultVisible', 'getTooltipContainer']);
 
-    var extraProps = _extends$3({}, restProps);
+    var extraProps = _extends$e({}, restProps);
     if ('visible' in this.props) {
       extraProps.popupVisible = this.props.visible;
     }
     return React__default.createElement(
       Trigger$1,
-      _extends$3({
+      _extends$e({
         popupClassName: overlayClassName,
         ref: this.saveTrigger,
         prefixCls: prefixCls,
@@ -37434,25 +37127,25 @@ function createSliderWithTooltip(Component) {
   var _class, _temp2;
 
   return _temp2 = _class = function (_React$Component) {
-    _inherits$2(ComponentWrapper, _React$Component);
+    _inherits$1(ComponentWrapper, _React$Component);
 
     function ComponentWrapper() {
       var _ref;
 
       var _temp, _this, _ret;
 
-      _classCallCheck$2(this, ComponentWrapper);
+      _classCallCheck$1(this, ComponentWrapper);
 
       for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
         args[_key] = arguments[_key];
       }
 
-      return _ret = (_temp = (_this = _possibleConstructorReturn$2(this, (_ref = ComponentWrapper.__proto__ || Object.getPrototypeOf(ComponentWrapper)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+      return _ret = (_temp = (_this = _possibleConstructorReturn$1(this, (_ref = ComponentWrapper.__proto__ || Object.getPrototypeOf(ComponentWrapper)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
         visibles: {}
       }, _this.handleTooltipVisibleChange = function (index, visible) {
         _this.setState(function (prevState) {
           return {
-            visibles: _extends$3({}, prevState.visibles, _defineProperty$2({}, index, visible))
+            visibles: _extends$e({}, prevState.visibles, _defineProperty$1({}, index, visible))
           };
         });
       }, _this.handleWithTooltip = function (_ref2) {
@@ -37460,7 +37153,7 @@ function createSliderWithTooltip(Component) {
             dragging = _ref2.dragging,
             index = _ref2.index,
             disabled = _ref2.disabled,
-            restProps = _objectWithoutProperties$3(_ref2, ['value', 'dragging', 'index', 'disabled']);
+            restProps = _objectWithoutProperties$2(_ref2, ['value', 'dragging', 'index', 'disabled']);
 
         var _this$props = _this.props,
             tipFormatter = _this$props.tipFormatter,
@@ -37475,7 +37168,7 @@ function createSliderWithTooltip(Component) {
             placement = _tipProps$placement === undefined ? 'top' : _tipProps$placement,
             _tipProps$visible = tipProps.visible,
             visible = _tipProps$visible === undefined ? false : _tipProps$visible,
-            restTooltipProps = _objectWithoutProperties$3(tipProps, ['prefixCls', 'overlay', 'placement', 'visible']);
+            restTooltipProps = _objectWithoutProperties$2(tipProps, ['prefixCls', 'overlay', 'placement', 'visible']);
 
         var handleStyleWithIndex = void 0;
         if (Array.isArray(handleStyle)) {
@@ -37486,15 +37179,15 @@ function createSliderWithTooltip(Component) {
 
         return React__default.createElement(
           Tooltip,
-          _extends$3({}, restTooltipProps, {
+          _extends$e({}, restTooltipProps, {
             prefixCls: prefixCls,
             overlay: overlay,
             placement: placement,
             visible: !disabled && (_this.state.visibles[index] || dragging) || visible,
             key: index
           }),
-          React__default.createElement(Handle, _extends$3({}, restProps, {
-            style: _extends$3({}, handleStyleWithIndex),
+          React__default.createElement(Handle, _extends$e({}, restProps, {
+            style: _extends$e({}, handleStyleWithIndex),
             value: value,
             onMouseEnter: function onMouseEnter() {
               return _this.handleTooltipVisibleChange(index, true);
@@ -37504,13 +37197,13 @@ function createSliderWithTooltip(Component) {
             }
           }))
         );
-      }, _temp), _possibleConstructorReturn$2(_this, _ret);
+      }, _temp), _possibleConstructorReturn$1(_this, _ret);
     }
 
-    _createClass$2(ComponentWrapper, [{
+    _createClass$1(ComponentWrapper, [{
       key: 'render',
       value: function render() {
-        return React__default.createElement(Component, _extends$3({}, this.props, { handle: this.handleWithTooltip }));
+        return React__default.createElement(Component, _extends$e({}, this.props, { handle: this.handleWithTooltip }));
       }
     }]);
 
@@ -38144,7 +37837,7 @@ var expandedIconStyles = {
 
 function ownKeys$e(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread$f(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$e(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$e(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread$e(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$e(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$e(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 var ExpandingSearchInput =
 /*#__PURE__*/
@@ -38200,7 +37893,7 @@ function (_Component) {
         }, 500)
       }, this.props)), React__default.createElement(Magnify$1, {
         onClick: this.toggleExpanded,
-        style: _objectSpread$f({}, iconAltStyling, {}, expanded && expandedIconStyles),
+        style: _objectSpread$e({}, iconAltStyling, {}, expanded && expandedIconStyles),
         bg: "white",
         size: fontSizes.large,
         color: colors.gray.dark
@@ -38267,7 +37960,7 @@ var ToggleLabel = styled__default.label(_templateObject3$9(), function (_ref) {
 
 function ownKeys$f(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread$g(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$f(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$f(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread$f(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$f(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$f(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 var Toggle =
 /*#__PURE__*/
@@ -38313,13 +38006,13 @@ defineProperty(Toggle, "defaultProps", {
   inputStyle: {}
 });
 
-defineProperty(Toggle, "propTypes", _objectSpread$g({
+defineProperty(Toggle, "propTypes", _objectSpread$f({
   checked: PropTypes.bool
 }, styledSystem.layout.propTypes, {}, styledSystem.space.propTypes));
 
 function ownKeys$g(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread$h(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$g(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$g(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread$g(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$g(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$g(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _templateObject$r() {
   var data = taggedTemplateLiteral(["\n  background-position: center;\n  background-size: cover;\n  background-repeat: no-repeat;\n  background-image: ", ";\n  ", "\n  ", "\n  ", "\n  ", "\n"]);
@@ -38340,57 +38033,1116 @@ var BackgroundImage = styled__default.div(_templateObject$r(), image, styledSyst
 BackgroundImage.defaultProps = {
   theme: theme
 };
-BackgroundImage.propTypes = _objectSpread$h({
+BackgroundImage.propTypes = _objectSpread$g({
   source: PropTypes.string.isRequired
 }, styledSystem.space.propTypes, {}, styledSystem.background.propTypes, {}, styledSystem.layout.propTypes, {}, styledSystem.flexbox.propTypes);
 BackgroundImage.displayName = 'BackgroundImage';
 
-var constant = createCommonjsModule(function (module, exports) {
+function ___$insertStyle(css) {
+  if (!css) {
+    return;
+  }
+  if (typeof window === 'undefined') {
+    return;
+  }
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+  var style = document.createElement('style');
+
+  style.setAttribute('type', 'text/css');
+  style.innerHTML = css;
+  document.head.appendChild(style);
+  return css;
+}
+
+function _classCallCheck$4(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
+
+function _defineProperties$3(target, props) {
+  for (var i = 0; i < props.length; i++) {
+    var descriptor = props[i];
+    descriptor.enumerable = descriptor.enumerable || false;
+    descriptor.configurable = true;
+    if ("value" in descriptor) descriptor.writable = true;
+    Object.defineProperty(target, descriptor.key, descriptor);
+  }
+}
+
+function _createClass$4(Constructor, protoProps, staticProps) {
+  if (protoProps) _defineProperties$3(Constructor.prototype, protoProps);
+  if (staticProps) _defineProperties$3(Constructor, staticProps);
+  return Constructor;
+}
+
+function _defineProperty$3(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+
+function _extends$f() {
+  _extends$f = Object.assign || function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+
+    return target;
+  };
+
+  return _extends$f.apply(this, arguments);
+}
+
+function ownKeys$h(object, enumerableOnly) {
+  var keys = Object.keys(object);
+
+  if (Object.getOwnPropertySymbols) {
+    var symbols = Object.getOwnPropertySymbols(object);
+    if (enumerableOnly) symbols = symbols.filter(function (sym) {
+      return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+    });
+    keys.push.apply(keys, symbols);
+  }
+
+  return keys;
+}
+
+function _objectSpread2$1(target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i] != null ? arguments[i] : {};
+
+    if (i % 2) {
+      ownKeys$h(Object(source), true).forEach(function (key) {
+        _defineProperty$3(target, key, source[key]);
+      });
+    } else if (Object.getOwnPropertyDescriptors) {
+      Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
+    } else {
+      ownKeys$h(Object(source)).forEach(function (key) {
+        Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+      });
+    }
+  }
+
+  return target;
+}
+
+function _inherits$4(subClass, superClass) {
+  if (typeof superClass !== "function" && superClass !== null) {
+    throw new TypeError("Super expression must either be null or a function");
+  }
+
+  subClass.prototype = Object.create(superClass && superClass.prototype, {
+    constructor: {
+      value: subClass,
+      writable: true,
+      configurable: true
+    }
+  });
+  if (superClass) _setPrototypeOf$2(subClass, superClass);
+}
+
+function _getPrototypeOf$2(o) {
+  _getPrototypeOf$2 = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
+    return o.__proto__ || Object.getPrototypeOf(o);
+  };
+  return _getPrototypeOf$2(o);
+}
+
+function _setPrototypeOf$2(o, p) {
+  _setPrototypeOf$2 = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
+    o.__proto__ = p;
+    return o;
+  };
+
+  return _setPrototypeOf$2(o, p);
+}
+
+function _assertThisInitialized$4(self) {
+  if (self === void 0) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  }
+
+  return self;
+}
+
+function _possibleConstructorReturn$4(self, call) {
+  if (call && (typeof call === "object" || typeof call === "function")) {
+    return call;
+  }
+
+  return _assertThisInitialized$4(self);
+}
+
+function createCommonjsModule$1(fn, module) {
+	return module = { exports: {} }, fn(module, module.exports), module.exports;
+}
+
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ * 
+ */
+
+function makeEmptyFunction(arg) {
+  return function () {
+    return arg;
+  };
+}
+
+/**
+ * This function accepts and discards inputs; it has no side effects. This is
+ * primarily useful idiomatically for overridable function endpoints which
+ * always need to be callable, since JS lacks a null-call idiom ala Cocoa.
+ */
+var emptyFunction = function emptyFunction() {};
+
+emptyFunction.thatReturns = makeEmptyFunction;
+emptyFunction.thatReturnsFalse = makeEmptyFunction(false);
+emptyFunction.thatReturnsTrue = makeEmptyFunction(true);
+emptyFunction.thatReturnsNull = makeEmptyFunction(null);
+emptyFunction.thatReturnsThis = function () {
+  return this;
+};
+emptyFunction.thatReturnsArgument = function (arg) {
+  return arg;
+};
+
+var emptyFunction_1 = emptyFunction;
+
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ */
+
+/**
+ * Use invariant() to assert state which your program assumes to be true.
+ *
+ * Provide sprintf-style format (only %s is supported) and arguments
+ * to provide information about what broke and what you were
+ * expecting.
+ *
+ * The invariant message will be stripped in production, but the invariant
+ * will remain to ensure logic does not differ in production.
+ */
+
+var validateFormat = function validateFormat(format) {};
+
+if (process.env.NODE_ENV !== 'production') {
+  validateFormat = function validateFormat(format) {
+    if (format === undefined) {
+      throw new Error('invariant requires an error message argument');
+    }
+  };
+}
+
+function invariant(condition, format, a, b, c, d, e, f) {
+  validateFormat(format);
+
+  if (!condition) {
+    var error;
+    if (format === undefined) {
+      error = new Error('Minified exception occurred; use the non-minified dev environment ' + 'for the full error message and additional helpful warnings.');
+    } else {
+      var args = [a, b, c, d, e, f];
+      var argIndex = 0;
+      error = new Error(format.replace(/%s/g, function () {
+        return args[argIndex++];
+      }));
+      error.name = 'Invariant Violation';
+    }
+
+    error.framesToPop = 1; // we don't care about invariant's own frame
+    throw error;
+  }
+}
+
+var invariant_1 = invariant;
+
+/**
+ * Similar to invariant but only logs a warning if the condition is not met.
+ * This can be used to log issues in development environments in critical
+ * paths. Removing the logging code for production environments will keep the
+ * same logic and follow the same code paths.
+ */
+
+var warning$1 = emptyFunction_1;
+
+if (process.env.NODE_ENV !== 'production') {
+  var printWarning$1 = function printWarning(format) {
+    for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+      args[_key - 1] = arguments[_key];
+    }
+
+    var argIndex = 0;
+    var message = 'Warning: ' + format.replace(/%s/g, function () {
+      return args[argIndex++];
+    });
+    if (typeof console !== 'undefined') {
+      console.error(message);
+    }
+    try {
+      // --- Welcome to debugging React ---
+      // This error was thrown as a convenience so that you can use this stack
+      // to find the callsite that caused this warning to fire.
+      throw new Error(message);
+    } catch (x) {}
+  };
+
+  warning$1 = function warning(condition, format) {
+    if (format === undefined) {
+      throw new Error('`warning(condition, format, ...args)` requires a warning ' + 'message argument');
+    }
+
+    if (format.indexOf('Failed Composite propType: ') === 0) {
+      return; // Ignore CompositeComponent proptype check.
+    }
+
+    if (!condition) {
+      for (var _len2 = arguments.length, args = Array(_len2 > 2 ? _len2 - 2 : 0), _key2 = 2; _key2 < _len2; _key2++) {
+        args[_key2 - 2] = arguments[_key2];
+      }
+
+      printWarning$1.apply(undefined, [format].concat(args));
+    }
+  };
+}
+
+var warning_1$1 = warning$1;
+
+/*
+object-assign
+(c) Sindre Sorhus
+@license MIT
+*/
+/* eslint-disable no-unused-vars */
+var getOwnPropertySymbols$2 = Object.getOwnPropertySymbols;
+var hasOwnProperty$4 = Object.prototype.hasOwnProperty;
+var propIsEnumerable$1 = Object.prototype.propertyIsEnumerable;
+
+function toObject$1(val) {
+	if (val === null || val === undefined) {
+		throw new TypeError('Object.assign cannot be called with null or undefined');
+	}
+
+	return Object(val);
+}
+
+function shouldUseNative$1() {
+	try {
+		if (!Object.assign) {
+			return false;
+		}
+
+		// Detect buggy property enumeration order in older V8 versions.
+
+		// https://bugs.chromium.org/p/v8/issues/detail?id=4118
+		var test1 = new String('abc');  // eslint-disable-line no-new-wrappers
+		test1[5] = 'de';
+		if (Object.getOwnPropertyNames(test1)[0] === '5') {
+			return false;
+		}
+
+		// https://bugs.chromium.org/p/v8/issues/detail?id=3056
+		var test2 = {};
+		for (var i = 0; i < 10; i++) {
+			test2['_' + String.fromCharCode(i)] = i;
+		}
+		var order2 = Object.getOwnPropertyNames(test2).map(function (n) {
+			return test2[n];
+		});
+		if (order2.join('') !== '0123456789') {
+			return false;
+		}
+
+		// https://bugs.chromium.org/p/v8/issues/detail?id=3056
+		var test3 = {};
+		'abcdefghijklmnopqrst'.split('').forEach(function (letter) {
+			test3[letter] = letter;
+		});
+		if (Object.keys(Object.assign({}, test3)).join('') !==
+				'abcdefghijklmnopqrst') {
+			return false;
+		}
+
+		return true;
+	} catch (err) {
+		// We don't expect any of the above to throw, but better to be safe.
+		return false;
+	}
+}
+
+var objectAssign$1 = shouldUseNative$1() ? Object.assign : function (target, source) {
+	var from;
+	var to = toObject$1(target);
+	var symbols;
+
+	for (var s = 1; s < arguments.length; s++) {
+		from = Object(arguments[s]);
+
+		for (var key in from) {
+			if (hasOwnProperty$4.call(from, key)) {
+				to[key] = from[key];
+			}
+		}
+
+		if (getOwnPropertySymbols$2) {
+			symbols = getOwnPropertySymbols$2(from);
+			for (var i = 0; i < symbols.length; i++) {
+				if (propIsEnumerable$1.call(from, symbols[i])) {
+					to[symbols[i]] = from[symbols[i]];
+				}
+			}
+		}
+	}
+
+	return to;
+};
+
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
+
+var ReactPropTypesSecret_1 = ReactPropTypesSecret;
+
+if (process.env.NODE_ENV !== 'production') {
+  var invariant$1 = invariant_1;
+  var warning$1$1 = warning_1$1;
+  var ReactPropTypesSecret$1 = ReactPropTypesSecret_1;
+  var loggedTypeFailures = {};
+}
+
+/**
+ * Assert that the values match with the type specs.
+ * Error messages are memorized and will only be shown once.
+ *
+ * @param {object} typeSpecs Map of name to a ReactPropType
+ * @param {object} values Runtime values that need to be type-checked
+ * @param {string} location e.g. "prop", "context", "child context"
+ * @param {string} componentName Name of the component for error messages.
+ * @param {?Function} getStack Returns the component stack.
+ * @private
+ */
+function checkPropTypes(typeSpecs, values, location, componentName, getStack) {
+  if (process.env.NODE_ENV !== 'production') {
+    for (var typeSpecName in typeSpecs) {
+      if (typeSpecs.hasOwnProperty(typeSpecName)) {
+        var error;
+        // Prop type validation may throw. In case they do, we don't want to
+        // fail the render phase where it didn't fail before. So we log it.
+        // After these have been cleaned up, we'll let them throw.
+        try {
+          // This is intentionally an invariant that gets caught. It's the same
+          // behavior as without this statement except with a better message.
+          invariant$1(typeof typeSpecs[typeSpecName] === 'function', '%s: %s type `%s` is invalid; it must be a function, usually from ' + 'the `prop-types` package, but received `%s`.', componentName || 'React class', location, typeSpecName, typeof typeSpecs[typeSpecName]);
+          error = typeSpecs[typeSpecName](values, typeSpecName, componentName, location, null, ReactPropTypesSecret$1);
+        } catch (ex) {
+          error = ex;
+        }
+        warning$1$1(!error || error instanceof Error, '%s: type specification of %s `%s` is invalid; the type checker ' + 'function must return `null` or an `Error` but returned a %s. ' + 'You may have forgotten to pass an argument to the type checker ' + 'creator (arrayOf, instanceOf, objectOf, oneOf, oneOfType, and ' + 'shape all require an argument).', componentName || 'React class', location, typeSpecName, typeof error);
+        if (error instanceof Error && !(error.message in loggedTypeFailures)) {
+          // Only monitor this failure once because there tends to be a lot of the
+          // same error.
+          loggedTypeFailures[error.message] = true;
+
+          var stack = getStack ? getStack() : '';
+
+          warning$1$1(false, 'Failed %s type: %s%s', location, error.message, stack != null ? stack : '');
+        }
+      }
+    }
+  }
+}
+
+var checkPropTypes_1 = checkPropTypes;
+
+var factoryWithTypeCheckers = function(isValidElement, throwOnDirectAccess) {
+  /* global Symbol */
+  var ITERATOR_SYMBOL = typeof Symbol === 'function' && Symbol.iterator;
+  var FAUX_ITERATOR_SYMBOL = '@@iterator'; // Before Symbol spec.
+
+  /**
+   * Returns the iterator method function contained on the iterable object.
+   *
+   * Be sure to invoke the function with the iterable as context:
+   *
+   *     var iteratorFn = getIteratorFn(myIterable);
+   *     if (iteratorFn) {
+   *       var iterator = iteratorFn.call(myIterable);
+   *       ...
+   *     }
+   *
+   * @param {?object} maybeIterable
+   * @return {?function}
+   */
+  function getIteratorFn(maybeIterable) {
+    var iteratorFn = maybeIterable && (ITERATOR_SYMBOL && maybeIterable[ITERATOR_SYMBOL] || maybeIterable[FAUX_ITERATOR_SYMBOL]);
+    if (typeof iteratorFn === 'function') {
+      return iteratorFn;
+    }
+  }
+
+  /**
+   * Collection of methods that allow declaration and validation of props that are
+   * supplied to React components. Example usage:
+   *
+   *   var Props = require('ReactPropTypes');
+   *   var MyArticle = React.createClass({
+   *     propTypes: {
+   *       // An optional string prop named "description".
+   *       description: Props.string,
+   *
+   *       // A required enum prop named "category".
+   *       category: Props.oneOf(['News','Photos']).isRequired,
+   *
+   *       // A prop named "dialog" that requires an instance of Dialog.
+   *       dialog: Props.instanceOf(Dialog).isRequired
+   *     },
+   *     render: function() { ... }
+   *   });
+   *
+   * A more formal specification of how these methods are used:
+   *
+   *   type := array|bool|func|object|number|string|oneOf([...])|instanceOf(...)
+   *   decl := ReactPropTypes.{type}(.isRequired)?
+   *
+   * Each and every declaration produces a function with the same signature. This
+   * allows the creation of custom validation functions. For example:
+   *
+   *  var MyLink = React.createClass({
+   *    propTypes: {
+   *      // An optional string or URI prop named "href".
+   *      href: function(props, propName, componentName) {
+   *        var propValue = props[propName];
+   *        if (propValue != null && typeof propValue !== 'string' &&
+   *            !(propValue instanceof URI)) {
+   *          return new Error(
+   *            'Expected a string or an URI for ' + propName + ' in ' +
+   *            componentName
+   *          );
+   *        }
+   *      }
+   *    },
+   *    render: function() {...}
+   *  });
+   *
+   * @internal
+   */
+
+  var ANONYMOUS = '<<anonymous>>';
+
+  // Important!
+  // Keep this list in sync with production version in `./factoryWithThrowingShims.js`.
+  var ReactPropTypes = {
+    array: createPrimitiveTypeChecker('array'),
+    bool: createPrimitiveTypeChecker('boolean'),
+    func: createPrimitiveTypeChecker('function'),
+    number: createPrimitiveTypeChecker('number'),
+    object: createPrimitiveTypeChecker('object'),
+    string: createPrimitiveTypeChecker('string'),
+    symbol: createPrimitiveTypeChecker('symbol'),
+
+    any: createAnyTypeChecker(),
+    arrayOf: createArrayOfTypeChecker,
+    element: createElementTypeChecker(),
+    instanceOf: createInstanceTypeChecker,
+    node: createNodeChecker(),
+    objectOf: createObjectOfTypeChecker,
+    oneOf: createEnumTypeChecker,
+    oneOfType: createUnionTypeChecker,
+    shape: createShapeTypeChecker,
+    exact: createStrictShapeTypeChecker,
+  };
+
+  /**
+   * inlined Object.is polyfill to avoid requiring consumers ship their own
+   * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is
+   */
+  /*eslint-disable no-self-compare*/
+  function is(x, y) {
+    // SameValue algorithm
+    if (x === y) {
+      // Steps 1-5, 7-10
+      // Steps 6.b-6.e: +0 != -0
+      return x !== 0 || 1 / x === 1 / y;
+    } else {
+      // Step 6.a: NaN == NaN
+      return x !== x && y !== y;
+    }
+  }
+  /*eslint-enable no-self-compare*/
+
+  /**
+   * We use an Error-like object for backward compatibility as people may call
+   * PropTypes directly and inspect their output. However, we don't use real
+   * Errors anymore. We don't inspect their stack anyway, and creating them
+   * is prohibitively expensive if they are created too often, such as what
+   * happens in oneOfType() for any type before the one that matched.
+   */
+  function PropTypeError(message) {
+    this.message = message;
+    this.stack = '';
+  }
+  // Make `instanceof Error` still work for returned errors.
+  PropTypeError.prototype = Error.prototype;
+
+  function createChainableTypeChecker(validate) {
+    if (process.env.NODE_ENV !== 'production') {
+      var manualPropTypeCallCache = {};
+      var manualPropTypeWarningCount = 0;
+    }
+    function checkType(isRequired, props, propName, componentName, location, propFullName, secret) {
+      componentName = componentName || ANONYMOUS;
+      propFullName = propFullName || propName;
+
+      if (secret !== ReactPropTypesSecret_1) {
+        if (throwOnDirectAccess) {
+          // New behavior only for users of `prop-types` package
+          invariant_1(
+            false,
+            'Calling PropTypes validators directly is not supported by the `prop-types` package. ' +
+            'Use `PropTypes.checkPropTypes()` to call them. ' +
+            'Read more at http://fb.me/use-check-prop-types'
+          );
+        } else if (process.env.NODE_ENV !== 'production' && typeof console !== 'undefined') {
+          // Old behavior for people using React.PropTypes
+          var cacheKey = componentName + ':' + propName;
+          if (
+            !manualPropTypeCallCache[cacheKey] &&
+            // Avoid spamming the console because they are often not actionable except for lib authors
+            manualPropTypeWarningCount < 3
+          ) {
+            warning_1$1(
+              false,
+              'You are manually calling a React.PropTypes validation ' +
+              'function for the `%s` prop on `%s`. This is deprecated ' +
+              'and will throw in the standalone `prop-types` package. ' +
+              'You may be seeing this warning due to a third-party PropTypes ' +
+              'library. See https://fb.me/react-warning-dont-call-proptypes ' + 'for details.',
+              propFullName,
+              componentName
+            );
+            manualPropTypeCallCache[cacheKey] = true;
+            manualPropTypeWarningCount++;
+          }
+        }
+      }
+      if (props[propName] == null) {
+        if (isRequired) {
+          if (props[propName] === null) {
+            return new PropTypeError('The ' + location + ' `' + propFullName + '` is marked as required ' + ('in `' + componentName + '`, but its value is `null`.'));
+          }
+          return new PropTypeError('The ' + location + ' `' + propFullName + '` is marked as required in ' + ('`' + componentName + '`, but its value is `undefined`.'));
+        }
+        return null;
+      } else {
+        return validate(props, propName, componentName, location, propFullName);
+      }
+    }
+
+    var chainedCheckType = checkType.bind(null, false);
+    chainedCheckType.isRequired = checkType.bind(null, true);
+
+    return chainedCheckType;
+  }
+
+  function createPrimitiveTypeChecker(expectedType) {
+    function validate(props, propName, componentName, location, propFullName, secret) {
+      var propValue = props[propName];
+      var propType = getPropType(propValue);
+      if (propType !== expectedType) {
+        // `propValue` being instance of, say, date/regexp, pass the 'object'
+        // check, but we can offer a more precise error message here rather than
+        // 'of type `object`'.
+        var preciseType = getPreciseType(propValue);
+
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + preciseType + '` supplied to `' + componentName + '`, expected ') + ('`' + expectedType + '`.'));
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+
+  function createAnyTypeChecker() {
+    return createChainableTypeChecker(emptyFunction_1.thatReturnsNull);
+  }
+
+  function createArrayOfTypeChecker(typeChecker) {
+    function validate(props, propName, componentName, location, propFullName) {
+      if (typeof typeChecker !== 'function') {
+        return new PropTypeError('Property `' + propFullName + '` of component `' + componentName + '` has invalid PropType notation inside arrayOf.');
+      }
+      var propValue = props[propName];
+      if (!Array.isArray(propValue)) {
+        var propType = getPropType(propValue);
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + propType + '` supplied to `' + componentName + '`, expected an array.'));
+      }
+      for (var i = 0; i < propValue.length; i++) {
+        var error = typeChecker(propValue, i, componentName, location, propFullName + '[' + i + ']', ReactPropTypesSecret_1);
+        if (error instanceof Error) {
+          return error;
+        }
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+
+  function createElementTypeChecker() {
+    function validate(props, propName, componentName, location, propFullName) {
+      var propValue = props[propName];
+      if (!isValidElement(propValue)) {
+        var propType = getPropType(propValue);
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + propType + '` supplied to `' + componentName + '`, expected a single ReactElement.'));
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+
+  function createInstanceTypeChecker(expectedClass) {
+    function validate(props, propName, componentName, location, propFullName) {
+      if (!(props[propName] instanceof expectedClass)) {
+        var expectedClassName = expectedClass.name || ANONYMOUS;
+        var actualClassName = getClassName(props[propName]);
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + actualClassName + '` supplied to `' + componentName + '`, expected ') + ('instance of `' + expectedClassName + '`.'));
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+
+  function createEnumTypeChecker(expectedValues) {
+    if (!Array.isArray(expectedValues)) {
+      process.env.NODE_ENV !== 'production' ? warning_1$1(false, 'Invalid argument supplied to oneOf, expected an instance of array.') : void 0;
+      return emptyFunction_1.thatReturnsNull;
+    }
+
+    function validate(props, propName, componentName, location, propFullName) {
+      var propValue = props[propName];
+      for (var i = 0; i < expectedValues.length; i++) {
+        if (is(propValue, expectedValues[i])) {
+          return null;
+        }
+      }
+
+      var valuesString = JSON.stringify(expectedValues);
+      return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of value `' + propValue + '` ' + ('supplied to `' + componentName + '`, expected one of ' + valuesString + '.'));
+    }
+    return createChainableTypeChecker(validate);
+  }
+
+  function createObjectOfTypeChecker(typeChecker) {
+    function validate(props, propName, componentName, location, propFullName) {
+      if (typeof typeChecker !== 'function') {
+        return new PropTypeError('Property `' + propFullName + '` of component `' + componentName + '` has invalid PropType notation inside objectOf.');
+      }
+      var propValue = props[propName];
+      var propType = getPropType(propValue);
+      if (propType !== 'object') {
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + propType + '` supplied to `' + componentName + '`, expected an object.'));
+      }
+      for (var key in propValue) {
+        if (propValue.hasOwnProperty(key)) {
+          var error = typeChecker(propValue, key, componentName, location, propFullName + '.' + key, ReactPropTypesSecret_1);
+          if (error instanceof Error) {
+            return error;
+          }
+        }
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+
+  function createUnionTypeChecker(arrayOfTypeCheckers) {
+    if (!Array.isArray(arrayOfTypeCheckers)) {
+      process.env.NODE_ENV !== 'production' ? warning_1$1(false, 'Invalid argument supplied to oneOfType, expected an instance of array.') : void 0;
+      return emptyFunction_1.thatReturnsNull;
+    }
+
+    for (var i = 0; i < arrayOfTypeCheckers.length; i++) {
+      var checker = arrayOfTypeCheckers[i];
+      if (typeof checker !== 'function') {
+        warning_1$1(
+          false,
+          'Invalid argument supplied to oneOfType. Expected an array of check functions, but ' +
+          'received %s at index %s.',
+          getPostfixForTypeWarning(checker),
+          i
+        );
+        return emptyFunction_1.thatReturnsNull;
+      }
+    }
+
+    function validate(props, propName, componentName, location, propFullName) {
+      for (var i = 0; i < arrayOfTypeCheckers.length; i++) {
+        var checker = arrayOfTypeCheckers[i];
+        if (checker(props, propName, componentName, location, propFullName, ReactPropTypesSecret_1) == null) {
+          return null;
+        }
+      }
+
+      return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` supplied to ' + ('`' + componentName + '`.'));
+    }
+    return createChainableTypeChecker(validate);
+  }
+
+  function createNodeChecker() {
+    function validate(props, propName, componentName, location, propFullName) {
+      if (!isNode(props[propName])) {
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` supplied to ' + ('`' + componentName + '`, expected a ReactNode.'));
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+
+  function createShapeTypeChecker(shapeTypes) {
+    function validate(props, propName, componentName, location, propFullName) {
+      var propValue = props[propName];
+      var propType = getPropType(propValue);
+      if (propType !== 'object') {
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type `' + propType + '` ' + ('supplied to `' + componentName + '`, expected `object`.'));
+      }
+      for (var key in shapeTypes) {
+        var checker = shapeTypes[key];
+        if (!checker) {
+          continue;
+        }
+        var error = checker(propValue, key, componentName, location, propFullName + '.' + key, ReactPropTypesSecret_1);
+        if (error) {
+          return error;
+        }
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+
+  function createStrictShapeTypeChecker(shapeTypes) {
+    function validate(props, propName, componentName, location, propFullName) {
+      var propValue = props[propName];
+      var propType = getPropType(propValue);
+      if (propType !== 'object') {
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type `' + propType + '` ' + ('supplied to `' + componentName + '`, expected `object`.'));
+      }
+      // We need to check all keys in case some are required but missing from
+      // props.
+      var allKeys = objectAssign$1({}, props[propName], shapeTypes);
+      for (var key in allKeys) {
+        var checker = shapeTypes[key];
+        if (!checker) {
+          return new PropTypeError(
+            'Invalid ' + location + ' `' + propFullName + '` key `' + key + '` supplied to `' + componentName + '`.' +
+            '\nBad object: ' + JSON.stringify(props[propName], null, '  ') +
+            '\nValid keys: ' +  JSON.stringify(Object.keys(shapeTypes), null, '  ')
+          );
+        }
+        var error = checker(propValue, key, componentName, location, propFullName + '.' + key, ReactPropTypesSecret_1);
+        if (error) {
+          return error;
+        }
+      }
+      return null;
+    }
+
+    return createChainableTypeChecker(validate);
+  }
+
+  function isNode(propValue) {
+    switch (typeof propValue) {
+      case 'number':
+      case 'string':
+      case 'undefined':
+        return true;
+      case 'boolean':
+        return !propValue;
+      case 'object':
+        if (Array.isArray(propValue)) {
+          return propValue.every(isNode);
+        }
+        if (propValue === null || isValidElement(propValue)) {
+          return true;
+        }
+
+        var iteratorFn = getIteratorFn(propValue);
+        if (iteratorFn) {
+          var iterator = iteratorFn.call(propValue);
+          var step;
+          if (iteratorFn !== propValue.entries) {
+            while (!(step = iterator.next()).done) {
+              if (!isNode(step.value)) {
+                return false;
+              }
+            }
+          } else {
+            // Iterator will provide entry [k,v] tuples rather than values.
+            while (!(step = iterator.next()).done) {
+              var entry = step.value;
+              if (entry) {
+                if (!isNode(entry[1])) {
+                  return false;
+                }
+              }
+            }
+          }
+        } else {
+          return false;
+        }
+
+        return true;
+      default:
+        return false;
+    }
+  }
+
+  function isSymbol(propType, propValue) {
+    // Native Symbol.
+    if (propType === 'symbol') {
+      return true;
+    }
+
+    // 19.4.3.5 Symbol.prototype[@@toStringTag] === 'Symbol'
+    if (propValue['@@toStringTag'] === 'Symbol') {
+      return true;
+    }
+
+    // Fallback for non-spec compliant Symbols which are polyfilled.
+    if (typeof Symbol === 'function' && propValue instanceof Symbol) {
+      return true;
+    }
+
+    return false;
+  }
+
+  // Equivalent of `typeof` but with special handling for array and regexp.
+  function getPropType(propValue) {
+    var propType = typeof propValue;
+    if (Array.isArray(propValue)) {
+      return 'array';
+    }
+    if (propValue instanceof RegExp) {
+      // Old webkits (at least until Android 4.0) return 'function' rather than
+      // 'object' for typeof a RegExp. We'll normalize this here so that /bla/
+      // passes PropTypes.object.
+      return 'object';
+    }
+    if (isSymbol(propType, propValue)) {
+      return 'symbol';
+    }
+    return propType;
+  }
+
+  // This handles more types than `getPropType`. Only used for error messages.
+  // See `createPrimitiveTypeChecker`.
+  function getPreciseType(propValue) {
+    if (typeof propValue === 'undefined' || propValue === null) {
+      return '' + propValue;
+    }
+    var propType = getPropType(propValue);
+    if (propType === 'object') {
+      if (propValue instanceof Date) {
+        return 'date';
+      } else if (propValue instanceof RegExp) {
+        return 'regexp';
+      }
+    }
+    return propType;
+  }
+
+  // Returns a string that is postfixed to a warning about an invalid type.
+  // For example, "undefined" or "of type array"
+  function getPostfixForTypeWarning(value) {
+    var type = getPreciseType(value);
+    switch (type) {
+      case 'array':
+      case 'object':
+        return 'an ' + type;
+      case 'boolean':
+      case 'date':
+      case 'regexp':
+        return 'a ' + type;
+      default:
+        return type;
+    }
+  }
+
+  // Returns class name of the object, if any.
+  function getClassName(propValue) {
+    if (!propValue.constructor || !propValue.constructor.name) {
+      return ANONYMOUS;
+    }
+    return propValue.constructor.name;
+  }
+
+  ReactPropTypes.checkPropTypes = checkPropTypes_1;
+  ReactPropTypes.PropTypes = ReactPropTypes;
+
+  return ReactPropTypes;
+};
+
+var factoryWithThrowingShims = function() {
+  function shim(props, propName, componentName, location, propFullName, secret) {
+    if (secret === ReactPropTypesSecret_1) {
+      // It is still safe when called from React.
+      return;
+    }
+    invariant_1(
+      false,
+      'Calling PropTypes validators directly is not supported by the `prop-types` package. ' +
+      'Use PropTypes.checkPropTypes() to call them. ' +
+      'Read more at http://fb.me/use-check-prop-types'
+    );
+  }  shim.isRequired = shim;
+  function getShim() {
+    return shim;
+  }  // Important!
+  // Keep this list in sync with production version in `./factoryWithTypeCheckers.js`.
+  var ReactPropTypes = {
+    array: shim,
+    bool: shim,
+    func: shim,
+    number: shim,
+    object: shim,
+    string: shim,
+    symbol: shim,
+
+    any: shim,
+    arrayOf: getShim,
+    element: shim,
+    instanceOf: getShim,
+    node: shim,
+    objectOf: getShim,
+    oneOf: getShim,
+    oneOfType: getShim,
+    shape: getShim,
+    exact: getShim
+  };
+
+  ReactPropTypes.checkPropTypes = emptyFunction_1;
+  ReactPropTypes.PropTypes = ReactPropTypes;
+
+  return ReactPropTypes;
+};
+
+var propTypes = createCommonjsModule$1(function (module) {
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+if (process.env.NODE_ENV !== 'production') {
+  var REACT_ELEMENT_TYPE = (typeof Symbol === 'function' &&
+    Symbol.for &&
+    Symbol.for('react.element')) ||
+    0xeac7;
+
+  var isValidElement = function(object) {
+    return typeof object === 'object' &&
+      object !== null &&
+      object.$$typeof === REACT_ELEMENT_TYPE;
+  };
+
+  // By explicitly using `prop-types` you are opting into new development behavior.
+  // http://fb.me/prop-types-in-prod
+  var throwOnDirectAccess = true;
+  module.exports = factoryWithTypeCheckers(isValidElement, throwOnDirectAccess);
+} else {
+  // By explicitly using `prop-types` you are opting into new production behavior.
+  // http://fb.me/prop-types-in-prod
+  module.exports = factoryWithThrowingShims();
+}
 });
-exports.default = {
 
+var CONSTANT = {
   GLOBAL: {
-    HIDE: '__react_tooltip_hide_event',
-    REBUILD: '__react_tooltip_rebuild_event',
-    SHOW: '__react_tooltip_show_event'
+    HIDE: "__react_tooltip_hide_event",
+    REBUILD: "__react_tooltip_rebuild_event",
+    SHOW: "__react_tooltip_show_event"
   }
 };
-});
 
-unwrapExports(constant);
+/**
+ * Static methods for react-tooltip
+ */
 
-var staticMethods = createCommonjsModule(function (module, exports) {
+var dispatchGlobalEvent = function dispatchGlobalEvent(eventName, opts) {
+  // Compatible with IE
+  // @see http://stackoverflow.com/questions/26596123/internet-explorer-9-10-11-event-constructor-doesnt-work
+  var event;
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+  if (typeof window.CustomEvent === "function") {
+    event = new window.CustomEvent(eventName, {
+      detail: opts
+    });
+  } else {
+    event = document.createEvent("Event");
+    event.initEvent(eventName, false, true);
+    event.detail = opts;
+  }
 
-exports.default = function (target) {
+  window.dispatchEvent(event);
+};
+
+function staticMethods (target) {
   /**
    * Hide all tooltip
    * @trigger ReactTooltip.hide()
    */
   target.hide = function (target) {
-    dispatchGlobalEvent(_constant2.default.GLOBAL.HIDE, { target: target });
+    dispatchGlobalEvent(CONSTANT.GLOBAL.HIDE, {
+      target: target
+    });
   };
-
   /**
    * Rebuild all tooltip
    * @trigger ReactTooltip.rebuild()
    */
-  target.rebuild = function () {
-    dispatchGlobalEvent(_constant2.default.GLOBAL.REBUILD);
-  };
 
+
+  target.rebuild = function () {
+    dispatchGlobalEvent(CONSTANT.GLOBAL.REBUILD);
+  };
   /**
    * Show specific tooltip
    * @trigger ReactTooltip.show()
    */
+
+
   target.show = function (target) {
-    dispatchGlobalEvent(_constant2.default.GLOBAL.SHOW, { target: target });
+    dispatchGlobalEvent(CONSTANT.GLOBAL.SHOW, {
+      target: target
+    });
   };
 
   target.prototype.globalRebuild = function () {
@@ -38404,7 +39156,9 @@ exports.default = function (target) {
     if (this.mount) {
       // Create a fake event, specific show will limit the type to `solid`
       // only `float` type cares e.clientX e.clientY
-      var e = { currentTarget: event.detail.target };
+      var e = {
+        currentTarget: event.detail.target
+      };
       this.showTooltip(e, true);
     }
   };
@@ -38412,143 +39166,50 @@ exports.default = function (target) {
   target.prototype.globalHide = function (event) {
     if (this.mount) {
       var hasTarget = event && event.detail && event.detail.target && true || false;
-      this.hideTooltip({ currentTarget: hasTarget && event.detail.target }, hasTarget);
+      this.hideTooltip({
+        currentTarget: hasTarget && event.detail.target
+      }, hasTarget);
     }
   };
-};
+}
 
-
-
-var _constant2 = _interopRequireDefault(constant);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var dispatchGlobalEvent = function dispatchGlobalEvent(eventName, opts) {
-  // Compatible with IE
-  // @see http://stackoverflow.com/questions/26596123/internet-explorer-9-10-11-event-constructor-doesnt-work
-  var event = void 0;
-
-  if (typeof window.CustomEvent === 'function') {
-    event = new window.CustomEvent(eventName, { detail: opts });
-  } else {
-    event = document.createEvent('Event');
-    event.initEvent(eventName, false, true);
-    event.detail = opts;
-  }
-
-  window.dispatchEvent(event);
-}; /**
-    * Static methods for react-tooltip
-    */
-});
-
-unwrapExports(staticMethods);
-
-var windowListener = createCommonjsModule(function (module, exports) {
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-exports.default = function (target) {
+/**
+ * Events that should be bound to the window
+ */
+function windowListener (target) {
   target.prototype.bindWindowEvents = function (resizeHide) {
     // ReactTooltip.hide
-    window.removeEventListener(_constant2.default.GLOBAL.HIDE, this.globalHide);
-    window.addEventListener(_constant2.default.GLOBAL.HIDE, this.globalHide, false);
+    window.removeEventListener(CONSTANT.GLOBAL.HIDE, this.globalHide);
+    window.addEventListener(CONSTANT.GLOBAL.HIDE, this.globalHide, false); // ReactTooltip.rebuild
 
-    // ReactTooltip.rebuild
-    window.removeEventListener(_constant2.default.GLOBAL.REBUILD, this.globalRebuild);
-    window.addEventListener(_constant2.default.GLOBAL.REBUILD, this.globalRebuild, false);
+    window.removeEventListener(CONSTANT.GLOBAL.REBUILD, this.globalRebuild);
+    window.addEventListener(CONSTANT.GLOBAL.REBUILD, this.globalRebuild, false); // ReactTooltip.show
 
-    // ReactTooltip.show
-    window.removeEventListener(_constant2.default.GLOBAL.SHOW, this.globalShow);
-    window.addEventListener(_constant2.default.GLOBAL.SHOW, this.globalShow, false);
+    window.removeEventListener(CONSTANT.GLOBAL.SHOW, this.globalShow);
+    window.addEventListener(CONSTANT.GLOBAL.SHOW, this.globalShow, false); // Resize
 
-    // Resize
     if (resizeHide) {
-      window.removeEventListener('resize', this.onWindowResize);
-      window.addEventListener('resize', this.onWindowResize, false);
+      window.removeEventListener("resize", this.onWindowResize);
+      window.addEventListener("resize", this.onWindowResize, false);
     }
   };
 
   target.prototype.unbindWindowEvents = function () {
-    window.removeEventListener(_constant2.default.GLOBAL.HIDE, this.globalHide);
-    window.removeEventListener(_constant2.default.GLOBAL.REBUILD, this.globalRebuild);
-    window.removeEventListener(_constant2.default.GLOBAL.SHOW, this.globalShow);
-    window.removeEventListener('resize', this.onWindowResize);
+    window.removeEventListener(CONSTANT.GLOBAL.HIDE, this.globalHide);
+    window.removeEventListener(CONSTANT.GLOBAL.REBUILD, this.globalRebuild);
+    window.removeEventListener(CONSTANT.GLOBAL.SHOW, this.globalShow);
+    window.removeEventListener("resize", this.onWindowResize);
   };
-
   /**
    * invoked by resize event of window
    */
+
+
   target.prototype.onWindowResize = function () {
     if (!this.mount) return;
     this.hideTooltip();
   };
-};
-
-
-
-var _constant2 = _interopRequireDefault(constant);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-});
-
-unwrapExports(windowListener);
-
-var customEvent = createCommonjsModule(function (module, exports) {
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-exports.default = function (target) {
-  target.prototype.isCustomEvent = function (ele) {
-    var event = this.state.event;
-
-    return event || !!ele.getAttribute('data-event');
-  };
-
-  /* Bind listener for custom event */
-  target.prototype.customBindListener = function (ele) {
-    var _this = this;
-
-    var _state = this.state,
-        event = _state.event,
-        eventOff = _state.eventOff;
-
-    var dataEvent = ele.getAttribute('data-event') || event;
-    var dataEventOff = ele.getAttribute('data-event-off') || eventOff;
-
-    dataEvent.split(' ').forEach(function (event) {
-      ele.removeEventListener(event, customListeners.get(ele, event));
-      var customListener = checkStatus.bind(_this, dataEventOff);
-      customListeners.set(ele, event, customListener);
-      ele.addEventListener(event, customListener, false);
-    });
-    if (dataEventOff) {
-      dataEventOff.split(' ').forEach(function (event) {
-        ele.removeEventListener(event, _this.hideTooltip);
-        ele.addEventListener(event, _this.hideTooltip, false);
-      });
-    }
-  };
-
-  /* Unbind listener for custom event */
-  target.prototype.customUnbindListener = function (ele) {
-    var _state2 = this.state,
-        event = _state2.event,
-        eventOff = _state2.eventOff;
-
-    var dataEvent = event || ele.getAttribute('data-event');
-    var dataEventOff = eventOff || ele.getAttribute('data-event-off');
-
-    ele.removeEventListener(dataEvent, customListeners.get(ele, event));
-    if (dataEventOff) ele.removeEventListener(dataEventOff, this.hideTooltip);
-  };
-};
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+}
 
 /**
  * Custom events to control showing and hiding of tooltip
@@ -38557,20 +39218,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
  * - `event` {String}
  * - `eventOff` {String}
  */
-
 var checkStatus = function checkStatus(dataEventOff, e) {
   var show = this.state.show;
   var id = this.props.id;
-
-  var dataIsCapture = e.currentTarget.getAttribute('data-iscapture');
-  var isCapture = dataIsCapture && dataIsCapture === 'true' || this.props.isCapture;
-  var currentItem = e.currentTarget.getAttribute('currentItem');
-
+  var isCapture = this.isCapture(e.currentTarget);
+  var currentItem = e.currentTarget.getAttribute("currentItem");
   if (!isCapture) e.stopPropagation();
-  if (show && currentItem === 'true') {
+
+  if (show && currentItem === "true") {
     if (!dataEventOff) this.hideTooltip(e);
   } else {
-    e.currentTarget.setAttribute('currentItem', 'true');
+    e.currentTarget.setAttribute("currentItem", "true");
     setUntargetItems(e.currentTarget, this.getTargetArray(id));
     this.showTooltip(e);
   }
@@ -38579,15 +39237,15 @@ var checkStatus = function checkStatus(dataEventOff, e) {
 var setUntargetItems = function setUntargetItems(currentTarget, targetArray) {
   for (var i = 0; i < targetArray.length; i++) {
     if (currentTarget !== targetArray[i]) {
-      targetArray[i].setAttribute('currentItem', 'false');
+      targetArray[i].setAttribute("currentItem", "false");
     } else {
-      targetArray[i].setAttribute('currentItem', 'true');
+      targetArray[i].setAttribute("currentItem", "true");
     }
   }
 };
 
 var customListeners = {
-  id: '9b69f92e-d3fe-498b-b1b4-c5e63a51b0cf',
+  id: "9b69f92e-d3fe-498b-b1b4-c5e63a51b0cf",
   set: function set(target, event, listener) {
     if (this.id in target) {
       var map = target[this.id];
@@ -38596,90 +39254,201 @@ var customListeners = {
       // this is workaround for WeakMap, which is not supported in older browsers, such as IE
       Object.defineProperty(target, this.id, {
         configurable: true,
-        value: _defineProperty({}, event, listener)
+        value: _defineProperty$3({}, event, listener)
       });
     }
   },
   get: function get(target, event) {
     var map = target[this.id];
+
     if (map !== undefined) {
       return map[event];
     }
   }
 };
-});
-
-unwrapExports(customEvent);
-
-var isCapture = createCommonjsModule(function (module, exports) {
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-exports.default = function (target) {
-  target.prototype.isCapture = function (currentTarget) {
-    return currentTarget && currentTarget.getAttribute('data-iscapture') === 'true' || this.props.isCapture || false;
+function customEvent (target) {
+  target.prototype.isCustomEvent = function (ele) {
+    var event = this.state.event;
+    return event || !!ele.getAttribute("data-event");
   };
-};
-});
+  /* Bind listener for custom event */
 
-unwrapExports(isCapture);
 
-var getEffect = createCommonjsModule(function (module, exports) {
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-exports.default = function (target) {
-  target.prototype.getEffect = function (currentTarget) {
-    var dataEffect = currentTarget.getAttribute('data-effect');
-    return dataEffect || this.props.effect || 'float';
-  };
-};
-});
-
-unwrapExports(getEffect);
-
-var trackRemoval = createCommonjsModule(function (module, exports) {
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-exports.default = function (target) {
-  target.prototype.bindRemovalTracker = function () {
+  target.prototype.customBindListener = function (ele) {
     var _this = this;
 
-    var MutationObserver = getMutationObserverClass();
-    if (MutationObserver == null) return;
-
-    var observer = new MutationObserver(function (mutations) {
-      for (var m1 = 0; m1 < mutations.length; m1++) {
-        var mutation = mutations[m1];
-        for (var m2 = 0; m2 < mutation.removedNodes.length; m2++) {
-          var element = mutation.removedNodes[m2];
-          if (element === _this.state.currentTarget) {
-            _this.hideTooltip();
-            return;
-          }
-        }
-      }
+    var _this$state = this.state,
+        event = _this$state.event,
+        eventOff = _this$state.eventOff;
+    var dataEvent = ele.getAttribute("data-event") || event;
+    var dataEventOff = ele.getAttribute("data-event-off") || eventOff;
+    dataEvent.split(" ").forEach(function (event) {
+      ele.removeEventListener(event, customListeners.get(ele, event));
+      var customListener = checkStatus.bind(_this, dataEventOff);
+      customListeners.set(ele, event, customListener);
+      ele.addEventListener(event, customListener, false);
     });
 
-    observer.observe(window.document, { childList: true, subtree: true });
-
-    this.removalTracker = observer;
-  };
-
-  target.prototype.unbindRemovalTracker = function () {
-    if (this.removalTracker) {
-      this.removalTracker.disconnect();
-      this.removalTracker = null;
+    if (dataEventOff) {
+      dataEventOff.split(" ").forEach(function (event) {
+        ele.removeEventListener(event, _this.hideTooltip);
+        ele.addEventListener(event, _this.hideTooltip, false);
+      });
     }
   };
+  /* Unbind listener for custom event */
+
+
+  target.prototype.customUnbindListener = function (ele) {
+    var _this$state2 = this.state,
+        event = _this$state2.event,
+        eventOff = _this$state2.eventOff;
+    var dataEvent = event || ele.getAttribute("data-event");
+    var dataEventOff = eventOff || ele.getAttribute("data-event-off");
+    ele.removeEventListener(dataEvent, customListeners.get(ele, event));
+    if (dataEventOff) ele.removeEventListener(dataEventOff, this.hideTooltip);
+  };
+}
+
+/**
+ * Util method to judge if it should follow capture model
+ */
+function isCapture (target) {
+  target.prototype.isCapture = function (currentTarget) {
+    return currentTarget && currentTarget.getAttribute("data-iscapture") === "true" || this.props.isCapture || false;
+  };
+}
+
+/**
+ * Util method to get effect
+ */
+function getEffect (target) {
+  target.prototype.getEffect = function (currentTarget) {
+    var dataEffect = currentTarget.getAttribute("data-effect");
+    return dataEffect || this.props.effect || "float";
+  };
+}
+
+/**
+ * Util method to get effect
+ */
+
+var makeProxy = function makeProxy(e) {
+  var proxy = {};
+
+  for (var key in e) {
+    if (typeof e[key] === "function") {
+      proxy[key] = e[key].bind(e);
+    } else {
+      proxy[key] = e[key];
+    }
+  }
+
+  return proxy;
 };
+
+var bodyListener = function bodyListener(callback, options, e) {
+  var _options$respectEffec = options.respectEffect,
+      respectEffect = _options$respectEffec === void 0 ? false : _options$respectEffec,
+      _options$customEvent = options.customEvent,
+      customEvent = _options$customEvent === void 0 ? false : _options$customEvent;
+  var id = this.props.id;
+  var tip = e.target.getAttribute("data-tip") || null;
+  var forId = e.target.getAttribute("data-for") || null;
+  var target = e.target;
+
+  if (this.isCustomEvent(target) && !customEvent) {
+    return;
+  }
+
+  var isTargetBelongsToTooltip = id == null && forId == null || forId === id;
+
+  if (tip != null && (!respectEffect || this.getEffect(target) === "float") && isTargetBelongsToTooltip) {
+    var proxy = makeProxy(e);
+    proxy.currentTarget = target;
+    callback(proxy);
+  }
+};
+
+var findCustomEvents = function findCustomEvents(targetArray, dataAttribute) {
+  var events = {};
+  targetArray.forEach(function (target) {
+    var event = target.getAttribute(dataAttribute);
+    if (event) event.split(" ").forEach(function (event) {
+      return events[event] = true;
+    });
+  });
+  return events;
+};
+
+var getBody = function getBody() {
+  return document.getElementsByTagName("body")[0];
+};
+
+function bodyMode (target) {
+  target.prototype.isBodyMode = function () {
+    return !!this.props.bodyMode;
+  };
+
+  target.prototype.bindBodyListener = function (targetArray) {
+    var _this = this;
+
+    var _this$state = this.state,
+        event = _this$state.event,
+        eventOff = _this$state.eventOff,
+        possibleCustomEvents = _this$state.possibleCustomEvents,
+        possibleCustomEventsOff = _this$state.possibleCustomEventsOff;
+    var body = getBody();
+    var customEvents = findCustomEvents(targetArray, "data-event");
+    var customEventsOff = findCustomEvents(targetArray, "data-event-off");
+    if (event != null) customEvents[event] = true;
+    if (eventOff != null) customEventsOff[eventOff] = true;
+    possibleCustomEvents.split(" ").forEach(function (event) {
+      return customEvents[event] = true;
+    });
+    possibleCustomEventsOff.split(" ").forEach(function (event) {
+      return customEventsOff[event] = true;
+    });
+    this.unbindBodyListener(body);
+    var listeners = this.bodyModeListeners = {};
+
+    if (event == null) {
+      listeners.mouseover = bodyListener.bind(this, this.showTooltip, {});
+      listeners.mousemove = bodyListener.bind(this, this.updateTooltip, {
+        respectEffect: true
+      });
+      listeners.mouseout = bodyListener.bind(this, this.hideTooltip, {});
+    }
+
+    for (var _event in customEvents) {
+      listeners[_event] = bodyListener.bind(this, function (e) {
+        var targetEventOff = e.currentTarget.getAttribute("data-event-off") || eventOff;
+        checkStatus.call(_this, targetEventOff, e);
+      }, {
+        customEvent: true
+      });
+    }
+
+    for (var _event2 in customEventsOff) {
+      listeners[_event2] = bodyListener.bind(this, this.hideTooltip, {
+        customEvent: true
+      });
+    }
+
+    for (var _event3 in listeners) {
+      body.addEventListener(_event3, listeners[_event3]);
+    }
+  };
+
+  target.prototype.unbindBodyListener = function (body) {
+    body = body || getBody();
+    var listeners = this.bodyModeListeners;
+
+    for (var event in listeners) {
+      body.removeEventListener(event, listeners[event]);
+    }
+  };
+}
 
 /**
  * Tracking target removing from DOM.
@@ -38689,22 +39458,64 @@ exports.default = function (target) {
  *
  * If MutationObserver is not available, this feature just doesn't work.
  */
-
 // https://hacks.mozilla.org/2012/05/dom-mutationobserver-reacting-to-dom-changes-without-killing-browser-performance/
 var getMutationObserverClass = function getMutationObserverClass() {
   return window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver;
 };
-});
 
-unwrapExports(trackRemoval);
+function trackRemoval (target) {
+  target.prototype.bindRemovalTracker = function () {
+    var _this = this;
 
-var getPosition = createCommonjsModule(function (module, exports) {
+    var MutationObserver = getMutationObserverClass();
+    if (MutationObserver == null) return;
+    var observer = new MutationObserver(function (mutations) {
+      for (var m1 = 0; m1 < mutations.length; m1++) {
+        var mutation = mutations[m1];
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+        for (var m2 = 0; m2 < mutation.removedNodes.length; m2++) {
+          var element = mutation.removedNodes[m2];
 
-exports.default = function (e, target, node, place, desiredPlace, effect, offset) {
+          if (element === _this.state.currentTarget) {
+            _this.hideTooltip();
+
+            return;
+          }
+        }
+      }
+    });
+    observer.observe(window.document, {
+      childList: true,
+      subtree: true
+    });
+    this.removalTracker = observer;
+  };
+
+  target.prototype.unbindRemovalTracker = function () {
+    if (this.removalTracker) {
+      this.removalTracker.disconnect();
+      this.removalTracker = null;
+    }
+  };
+}
+
+/**
+ * Calculate the position of tooltip
+ *
+ * @params
+ * - `e` {Event} the event of current mouse
+ * - `target` {Element} the currentTarget of the event
+ * - `node` {DOM} the react-tooltip object
+ * - `place` {String} top / right / bottom / left
+ * - `effect` {String} float / solid
+ * - `offset` {Object} the offset to default position
+ *
+ * @return {Object}
+ * - `isNewState` {Bool} required
+ * - `newState` {Object}
+ * - `position` {Object} {left: {Number}, top: {Number}}
+ */
+function getPosition (e, target, node, place, desiredPlace, effect, offset) {
   var _getDimensions = getDimensions(node),
       tipWidth = _getDimensions.width,
       tipHeight = _getDimensions.height;
@@ -38726,31 +39537,30 @@ exports.default = function (e, target, node, place, desiredPlace, effect, offset
   var windowWidth = window.innerWidth;
   var windowHeight = window.innerHeight;
 
-  var _getParent = getParent(node),
+  var _getParent = getParent$2(node),
       parentTop = _getParent.parentTop,
-      parentLeft = _getParent.parentLeft;
-
-  // Get the edge offset of the tooltip
+      parentLeft = _getParent.parentLeft; // Get the edge offset of the tooltip
 
 
   var getTipOffsetLeft = function getTipOffsetLeft(place) {
     var offset_X = defaultOffset[place].l;
     return mouseX + offset_X + extraOffset_X;
   };
+
   var getTipOffsetRight = function getTipOffsetRight(place) {
     var offset_X = defaultOffset[place].r;
     return mouseX + offset_X + extraOffset_X;
   };
+
   var getTipOffsetTop = function getTipOffsetTop(place) {
     var offset_Y = defaultOffset[place].t;
     return mouseY + offset_Y + extraOffset_Y;
   };
+
   var getTipOffsetBottom = function getTipOffsetBottom(place) {
     var offset_Y = defaultOffset[place].b;
     return mouseY + offset_Y + extraOffset_Y;
-  };
-
-  //
+  }; //
   // Functions to test whether the tooltip's sides are inside
   // the client window for a given orientation p
   //
@@ -38764,42 +39574,52 @@ exports.default = function (e, target, node, place, desiredPlace, effect, offset
   //       |
   //  Bottom side
   //
+
+
   var outsideLeft = function outsideLeft(p) {
     return getTipOffsetLeft(p) < 0;
   };
+
   var outsideRight = function outsideRight(p) {
     return getTipOffsetRight(p) > windowWidth;
   };
+
   var outsideTop = function outsideTop(p) {
     return getTipOffsetTop(p) < 0;
   };
+
   var outsideBottom = function outsideBottom(p) {
     return getTipOffsetBottom(p) > windowHeight;
-  };
+  }; // Check whether the tooltip with orientation p is completely inside the client window
 
-  // Check whether the tooltip with orientation p is completely inside the client window
+
   var outside = function outside(p) {
     return outsideLeft(p) || outsideRight(p) || outsideTop(p) || outsideBottom(p);
   };
+
   var inside = function inside(p) {
     return !outside(p);
   };
 
-  var placesList = ['top', 'bottom', 'left', 'right'];
+  var placesList = ["top", "bottom", "left", "right"];
   var insideList = [];
+
   for (var i = 0; i < 4; i++) {
     var p = placesList[i];
+
     if (inside(p)) {
       insideList.push(p);
     }
   }
 
   var isNewState = false;
-  var newPlace = void 0;
-  if (inside(desiredPlace) && desiredPlace !== place) {
+  var newPlace;
+  var shouldUpdatePlace = desiredPlace !== place;
+
+  if (inside(desiredPlace) && shouldUpdatePlace) {
     isNewState = true;
     newPlace = desiredPlace;
-  } else if (insideList.length > 0 && outside(desiredPlace) && outside(place)) {
+  } else if (insideList.length > 0 && shouldUpdatePlace && outside(desiredPlace) && outside(place)) {
     isNewState = true;
     newPlace = insideList[0];
   }
@@ -38807,7 +39627,9 @@ exports.default = function (e, target, node, place, desiredPlace, effect, offset
   if (isNewState) {
     return {
       isNewState: true,
-      newState: { place: newPlace }
+      newState: {
+        place: newPlace
+      }
     };
   }
 
@@ -38818,7 +39640,7 @@ exports.default = function (e, target, node, place, desiredPlace, effect, offset
       top: parseInt(getTipOffsetTop(place) - parentTop, 10)
     }
   };
-};
+}
 
 var getDimensions = function getDimensions(node) {
   var _node$getBoundingClie = node.getBoundingClientRect(),
@@ -38829,25 +39651,9 @@ var getDimensions = function getDimensions(node) {
     height: parseInt(height, 10),
     width: parseInt(width, 10)
   };
-};
+}; // Get current mouse offset
 
-// Get current mouse offset
-/**
- * Calculate the position of tooltip
- *
- * @params
- * - `e` {Event} the event of current mouse
- * - `target` {Element} the currentTarget of the event
- * - `node` {DOM} the react-tooltip object
- * - `place` {String} top / right / bottom / left
- * - `effect` {String} float / solid
- * - `offset` {Object} the offset to default position
- *
- * @return {Object}
- * - `isNewState` {Bool} required
- * - `newState` {Object}
- * - `position` {Object} {left: {Number}, top: {Number}}
- */
+
 var getCurrentOffset = function getCurrentOffset(e, currentTarget, effect) {
   var boundingClientRect = currentTarget.getBoundingClientRect();
   var targetTop = boundingClientRect.top;
@@ -38857,30 +39663,31 @@ var getCurrentOffset = function getCurrentOffset(e, currentTarget, effect) {
       targetWidth = _getDimensions3.width,
       targetHeight = _getDimensions3.height;
 
-  if (effect === 'float') {
+  if (effect === "float") {
     return {
       mouseX: e.clientX,
       mouseY: e.clientY
     };
   }
+
   return {
     mouseX: targetLeft + targetWidth / 2,
     mouseY: targetTop + targetHeight / 2
   };
-};
-
-// List all possibility of tooltip final offset
+}; // List all possibility of tooltip final offset
 // This is useful in judging if it is necessary for tooltip to switch position when out of window
+
+
 var getDefaultPosition = function getDefaultPosition(effect, targetWidth, targetHeight, tipWidth, tipHeight) {
-  var top = void 0;
-  var right = void 0;
-  var bottom = void 0;
-  var left = void 0;
+  var top;
+  var right;
+  var bottom;
+  var left;
   var disToMouse = 3;
   var triangleHeight = 2;
   var cursorHeight = 12; // Optimize for float bottom only, cause the cursor will hide the tooltip
 
-  if (effect === 'float') {
+  if (effect === "float") {
     top = {
       l: -(tipWidth / 2),
       r: tipWidth / 2,
@@ -38905,7 +39712,7 @@ var getDefaultPosition = function getDefaultPosition(effect, targetWidth, target
       t: -(tipHeight / 2),
       b: tipHeight / 2
     };
-  } else if (effect === 'solid') {
+  } else if (effect === "solid") {
     top = {
       l: -(tipWidth / 2),
       r: tipWidth / 2,
@@ -38932,91 +39739,93 @@ var getDefaultPosition = function getDefaultPosition(effect, targetWidth, target
     };
   }
 
-  return { top: top, bottom: bottom, left: left, right: right };
-};
+  return {
+    top: top,
+    bottom: bottom,
+    left: left,
+    right: right
+  };
+}; // Consider additional offset into position calculation
 
-// Consider additional offset into position calculation
+
 var calculateOffset = function calculateOffset(offset) {
   var extraOffset_X = 0;
   var extraOffset_Y = 0;
 
-  if (Object.prototype.toString.apply(offset) === '[object String]') {
-    offset = JSON.parse(offset.toString().replace(/\'/g, '\"'));
+  if (Object.prototype.toString.apply(offset) === "[object String]") {
+    offset = JSON.parse(offset.toString().replace(/\'/g, '"'));
   }
+
   for (var key in offset) {
-    if (key === 'top') {
+    if (key === "top") {
       extraOffset_Y -= parseInt(offset[key], 10);
-    } else if (key === 'bottom') {
+    } else if (key === "bottom") {
       extraOffset_Y += parseInt(offset[key], 10);
-    } else if (key === 'left') {
+    } else if (key === "left") {
       extraOffset_X -= parseInt(offset[key], 10);
-    } else if (key === 'right') {
+    } else if (key === "right") {
       extraOffset_X += parseInt(offset[key], 10);
     }
   }
 
-  return { extraOffset_X: extraOffset_X, extraOffset_Y: extraOffset_Y };
-};
+  return {
+    extraOffset_X: extraOffset_X,
+    extraOffset_Y: extraOffset_Y
+  };
+}; // Get the offset of the parent elements
 
-// Get the offset of the parent elements
-var getParent = function getParent(currentTarget) {
+
+var getParent$2 = function getParent(currentTarget) {
   var currentParent = currentTarget;
+
   while (currentParent) {
-    if (window.getComputedStyle(currentParent).getPropertyValue('transform') !== 'none') break;
+    if (window.getComputedStyle(currentParent).getPropertyValue("transform") !== "none") break;
     currentParent = currentParent.parentElement;
   }
 
   var parentTop = currentParent && currentParent.getBoundingClientRect().top || 0;
   var parentLeft = currentParent && currentParent.getBoundingClientRect().left || 0;
-
-  return { parentTop: parentTop, parentLeft: parentLeft };
+  return {
+    parentTop: parentTop,
+    parentLeft: parentLeft
+  };
 };
-});
 
-unwrapExports(getPosition);
-
-var getTipContent = createCommonjsModule(function (module, exports) {
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-exports.default = function (tip, children, getContent, multiline) {
+/**
+ * To get the tooltip content
+ * it may comes from data-tip or this.props.children
+ * it should support multiline
+ *
+ * @params
+ * - `tip` {String} value of data-tip
+ * - `children` {ReactElement} this.props.children
+ * - `multiline` {Any} could be Bool(true/false) or String('true'/'false')
+ *
+ * @return
+ * - String or react component
+ */
+function getTipContent (tip, children, getContent, multiline) {
   if (children) return children;
   if (getContent !== undefined && getContent !== null) return getContent; // getContent can be 0, '', etc.
+
   if (getContent === null) return null; // Tip not exist and children is null or undefined
 
   var regexp = /<br\s*\/?>/;
-  if (!multiline || multiline === 'false' || !regexp.test(tip)) {
+
+  if (!multiline || multiline === "false" || !regexp.test(tip)) {
     // No trim(), so that user can keep their input
     return tip;
-  }
+  } // Multiline tooltip content
 
-  // Multiline tooltip content
+
   return tip.split(regexp).map(function (d, i) {
-    return _react2.default.createElement(
-      'span',
-      { key: i, className: 'multi-line' },
-      d
-    );
+    return React__default.createElement("span", {
+      key: i,
+      className: "multi-line"
+    }, d);
   });
-};
+}
 
-
-
-var _react2 = _interopRequireDefault(React__default);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-});
-
-unwrapExports(getTipContent);
-
-var aria = createCommonjsModule(function (module, exports) {
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.parseAria = parseAria;
 /**
  * Support aria- and role in ReactTooltip
  *
@@ -39027,159 +39836,77 @@ function parseAria(props) {
   var ariaObj = {};
   Object.keys(props).filter(function (prop) {
     // aria-xxx and role is acceptable
-    return (/(^aria-\w+$|^role$)/.test(prop)
-    );
+    return /(^aria-\w+$|^role$)/.test(prop);
   }).forEach(function (prop) {
     ariaObj[prop] = props[prop];
   });
-
   return ariaObj;
 }
-});
 
-unwrapExports(aria);
-var aria_1 = aria.parseAria;
-
-var nodeListToArray = createCommonjsModule(function (module, exports) {
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-exports.default = function (nodeList) {
+/**
+ * Convert nodelist to array
+ * @see https://github.com/facebook/fbjs/blob/e66ba20ad5be433eb54423f2b097d829324d9de6/packages/fbjs/src/core/createArrayFromMixed.js#L24
+ * NodeLists are functions in Safari
+ */
+function nodeListToArray (nodeList) {
   var length = nodeList.length;
+
   if (nodeList.hasOwnProperty) {
     return Array.prototype.slice.call(nodeList);
   }
+
   return new Array(length).fill().map(function (index) {
     return nodeList[index];
   });
-};
-});
+}
 
-unwrapExports(nodeListToArray);
-
-var style = createCommonjsModule(function (module, exports) {
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = '.__react_component_tooltip{border-radius:3px;display:inline-block;font-size:13px;left:-999em;opacity:0;padding:8px 21px;position:fixed;pointer-events:none;transition:opacity 0.3s ease-out;top:-999em;visibility:hidden;z-index:999}.__react_component_tooltip.allow_hover,.__react_component_tooltip.allow_click{pointer-events:auto}.__react_component_tooltip:before,.__react_component_tooltip:after{content:"";width:0;height:0;position:absolute}.__react_component_tooltip.show{opacity:0.9;margin-top:0px;margin-left:0px;visibility:visible}.__react_component_tooltip.type-dark{color:#fff;background-color:#222}.__react_component_tooltip.type-dark.place-top:after{border-top-color:#222;border-top-style:solid;border-top-width:6px}.__react_component_tooltip.type-dark.place-bottom:after{border-bottom-color:#222;border-bottom-style:solid;border-bottom-width:6px}.__react_component_tooltip.type-dark.place-left:after{border-left-color:#222;border-left-style:solid;border-left-width:6px}.__react_component_tooltip.type-dark.place-right:after{border-right-color:#222;border-right-style:solid;border-right-width:6px}.__react_component_tooltip.type-dark.border{border:1px solid #fff}.__react_component_tooltip.type-dark.border.place-top:before{border-top:8px solid #fff}.__react_component_tooltip.type-dark.border.place-bottom:before{border-bottom:8px solid #fff}.__react_component_tooltip.type-dark.border.place-left:before{border-left:8px solid #fff}.__react_component_tooltip.type-dark.border.place-right:before{border-right:8px solid #fff}.__react_component_tooltip.type-success{color:#fff;background-color:#8DC572}.__react_component_tooltip.type-success.place-top:after{border-top-color:#8DC572;border-top-style:solid;border-top-width:6px}.__react_component_tooltip.type-success.place-bottom:after{border-bottom-color:#8DC572;border-bottom-style:solid;border-bottom-width:6px}.__react_component_tooltip.type-success.place-left:after{border-left-color:#8DC572;border-left-style:solid;border-left-width:6px}.__react_component_tooltip.type-success.place-right:after{border-right-color:#8DC572;border-right-style:solid;border-right-width:6px}.__react_component_tooltip.type-success.border{border:1px solid #fff}.__react_component_tooltip.type-success.border.place-top:before{border-top:8px solid #fff}.__react_component_tooltip.type-success.border.place-bottom:before{border-bottom:8px solid #fff}.__react_component_tooltip.type-success.border.place-left:before{border-left:8px solid #fff}.__react_component_tooltip.type-success.border.place-right:before{border-right:8px solid #fff}.__react_component_tooltip.type-warning{color:#fff;background-color:#F0AD4E}.__react_component_tooltip.type-warning.place-top:after{border-top-color:#F0AD4E;border-top-style:solid;border-top-width:6px}.__react_component_tooltip.type-warning.place-bottom:after{border-bottom-color:#F0AD4E;border-bottom-style:solid;border-bottom-width:6px}.__react_component_tooltip.type-warning.place-left:after{border-left-color:#F0AD4E;border-left-style:solid;border-left-width:6px}.__react_component_tooltip.type-warning.place-right:after{border-right-color:#F0AD4E;border-right-style:solid;border-right-width:6px}.__react_component_tooltip.type-warning.border{border:1px solid #fff}.__react_component_tooltip.type-warning.border.place-top:before{border-top:8px solid #fff}.__react_component_tooltip.type-warning.border.place-bottom:before{border-bottom:8px solid #fff}.__react_component_tooltip.type-warning.border.place-left:before{border-left:8px solid #fff}.__react_component_tooltip.type-warning.border.place-right:before{border-right:8px solid #fff}.__react_component_tooltip.type-error{color:#fff;background-color:#BE6464}.__react_component_tooltip.type-error.place-top:after{border-top-color:#BE6464;border-top-style:solid;border-top-width:6px}.__react_component_tooltip.type-error.place-bottom:after{border-bottom-color:#BE6464;border-bottom-style:solid;border-bottom-width:6px}.__react_component_tooltip.type-error.place-left:after{border-left-color:#BE6464;border-left-style:solid;border-left-width:6px}.__react_component_tooltip.type-error.place-right:after{border-right-color:#BE6464;border-right-style:solid;border-right-width:6px}.__react_component_tooltip.type-error.border{border:1px solid #fff}.__react_component_tooltip.type-error.border.place-top:before{border-top:8px solid #fff}.__react_component_tooltip.type-error.border.place-bottom:before{border-bottom:8px solid #fff}.__react_component_tooltip.type-error.border.place-left:before{border-left:8px solid #fff}.__react_component_tooltip.type-error.border.place-right:before{border-right:8px solid #fff}.__react_component_tooltip.type-info{color:#fff;background-color:#337AB7}.__react_component_tooltip.type-info.place-top:after{border-top-color:#337AB7;border-top-style:solid;border-top-width:6px}.__react_component_tooltip.type-info.place-bottom:after{border-bottom-color:#337AB7;border-bottom-style:solid;border-bottom-width:6px}.__react_component_tooltip.type-info.place-left:after{border-left-color:#337AB7;border-left-style:solid;border-left-width:6px}.__react_component_tooltip.type-info.place-right:after{border-right-color:#337AB7;border-right-style:solid;border-right-width:6px}.__react_component_tooltip.type-info.border{border:1px solid #fff}.__react_component_tooltip.type-info.border.place-top:before{border-top:8px solid #fff}.__react_component_tooltip.type-info.border.place-bottom:before{border-bottom:8px solid #fff}.__react_component_tooltip.type-info.border.place-left:before{border-left:8px solid #fff}.__react_component_tooltip.type-info.border.place-right:before{border-right:8px solid #fff}.__react_component_tooltip.type-light{color:#222;background-color:#fff}.__react_component_tooltip.type-light.place-top:after{border-top-color:#fff;border-top-style:solid;border-top-width:6px}.__react_component_tooltip.type-light.place-bottom:after{border-bottom-color:#fff;border-bottom-style:solid;border-bottom-width:6px}.__react_component_tooltip.type-light.place-left:after{border-left-color:#fff;border-left-style:solid;border-left-width:6px}.__react_component_tooltip.type-light.place-right:after{border-right-color:#fff;border-right-style:solid;border-right-width:6px}.__react_component_tooltip.type-light.border{border:1px solid #222}.__react_component_tooltip.type-light.border.place-top:before{border-top:8px solid #222}.__react_component_tooltip.type-light.border.place-bottom:before{border-bottom:8px solid #222}.__react_component_tooltip.type-light.border.place-left:before{border-left:8px solid #222}.__react_component_tooltip.type-light.border.place-right:before{border-right:8px solid #222}.__react_component_tooltip.place-top{margin-top:-10px}.__react_component_tooltip.place-top:before{border-left:10px solid transparent;border-right:10px solid transparent;bottom:-8px;left:50%;margin-left:-10px}.__react_component_tooltip.place-top:after{border-left:8px solid transparent;border-right:8px solid transparent;bottom:-6px;left:50%;margin-left:-8px}.__react_component_tooltip.place-bottom{margin-top:10px}.__react_component_tooltip.place-bottom:before{border-left:10px solid transparent;border-right:10px solid transparent;top:-8px;left:50%;margin-left:-10px}.__react_component_tooltip.place-bottom:after{border-left:8px solid transparent;border-right:8px solid transparent;top:-6px;left:50%;margin-left:-8px}.__react_component_tooltip.place-left{margin-left:-10px}.__react_component_tooltip.place-left:before{border-top:6px solid transparent;border-bottom:6px solid transparent;right:-8px;top:50%;margin-top:-5px}.__react_component_tooltip.place-left:after{border-top:5px solid transparent;border-bottom:5px solid transparent;right:-6px;top:50%;margin-top:-4px}.__react_component_tooltip.place-right{margin-left:10px}.__react_component_tooltip.place-right:before{border-top:6px solid transparent;border-bottom:6px solid transparent;left:-8px;top:50%;margin-top:-5px}.__react_component_tooltip.place-right:after{border-top:5px solid transparent;border-bottom:5px solid transparent;left:-6px;top:50%;margin-top:-4px}.__react_component_tooltip .multi-line{display:block;padding:2px 0px;text-align:center}';
-});
-
-unwrapExports(style);
-
-var dist = createCommonjsModule(function (module) {
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+___$insertStyle(".__react_component_tooltip {\n  border-radius: 3px;\n  display: inline-block;\n  font-size: 13px;\n  left: -999em;\n  opacity: 0;\n  padding: 8px 21px;\n  position: fixed;\n  pointer-events: none;\n  transition: opacity 0.3s ease-out;\n  top: -999em;\n  visibility: hidden;\n  z-index: 999;\n}\n.__react_component_tooltip.allow_hover, .__react_component_tooltip.allow_click {\n  pointer-events: auto;\n}\n.__react_component_tooltip:before, .__react_component_tooltip:after {\n  content: \"\";\n  width: 0;\n  height: 0;\n  position: absolute;\n}\n.__react_component_tooltip.show {\n  opacity: 0.9;\n  margin-top: 0px;\n  margin-left: 0px;\n  visibility: visible;\n}\n.__react_component_tooltip.type-dark {\n  color: #fff;\n  background-color: #222;\n}\n.__react_component_tooltip.type-dark.place-top:after {\n  border-top-color: #222;\n  border-top-style: solid;\n  border-top-width: 6px;\n}\n.__react_component_tooltip.type-dark.place-bottom:after {\n  border-bottom-color: #222;\n  border-bottom-style: solid;\n  border-bottom-width: 6px;\n}\n.__react_component_tooltip.type-dark.place-left:after {\n  border-left-color: #222;\n  border-left-style: solid;\n  border-left-width: 6px;\n}\n.__react_component_tooltip.type-dark.place-right:after {\n  border-right-color: #222;\n  border-right-style: solid;\n  border-right-width: 6px;\n}\n.__react_component_tooltip.type-dark.border {\n  border: 1px solid #fff;\n}\n.__react_component_tooltip.type-dark.border.place-top:before {\n  border-top: 8px solid #fff;\n}\n.__react_component_tooltip.type-dark.border.place-bottom:before {\n  border-bottom: 8px solid #fff;\n}\n.__react_component_tooltip.type-dark.border.place-left:before {\n  border-left: 8px solid #fff;\n}\n.__react_component_tooltip.type-dark.border.place-right:before {\n  border-right: 8px solid #fff;\n}\n.__react_component_tooltip.type-success {\n  color: #fff;\n  background-color: #8DC572;\n}\n.__react_component_tooltip.type-success.place-top:after {\n  border-top-color: #8DC572;\n  border-top-style: solid;\n  border-top-width: 6px;\n}\n.__react_component_tooltip.type-success.place-bottom:after {\n  border-bottom-color: #8DC572;\n  border-bottom-style: solid;\n  border-bottom-width: 6px;\n}\n.__react_component_tooltip.type-success.place-left:after {\n  border-left-color: #8DC572;\n  border-left-style: solid;\n  border-left-width: 6px;\n}\n.__react_component_tooltip.type-success.place-right:after {\n  border-right-color: #8DC572;\n  border-right-style: solid;\n  border-right-width: 6px;\n}\n.__react_component_tooltip.type-success.border {\n  border: 1px solid #fff;\n}\n.__react_component_tooltip.type-success.border.place-top:before {\n  border-top: 8px solid #fff;\n}\n.__react_component_tooltip.type-success.border.place-bottom:before {\n  border-bottom: 8px solid #fff;\n}\n.__react_component_tooltip.type-success.border.place-left:before {\n  border-left: 8px solid #fff;\n}\n.__react_component_tooltip.type-success.border.place-right:before {\n  border-right: 8px solid #fff;\n}\n.__react_component_tooltip.type-warning {\n  color: #fff;\n  background-color: #F0AD4E;\n}\n.__react_component_tooltip.type-warning.place-top:after {\n  border-top-color: #F0AD4E;\n  border-top-style: solid;\n  border-top-width: 6px;\n}\n.__react_component_tooltip.type-warning.place-bottom:after {\n  border-bottom-color: #F0AD4E;\n  border-bottom-style: solid;\n  border-bottom-width: 6px;\n}\n.__react_component_tooltip.type-warning.place-left:after {\n  border-left-color: #F0AD4E;\n  border-left-style: solid;\n  border-left-width: 6px;\n}\n.__react_component_tooltip.type-warning.place-right:after {\n  border-right-color: #F0AD4E;\n  border-right-style: solid;\n  border-right-width: 6px;\n}\n.__react_component_tooltip.type-warning.border {\n  border: 1px solid #fff;\n}\n.__react_component_tooltip.type-warning.border.place-top:before {\n  border-top: 8px solid #fff;\n}\n.__react_component_tooltip.type-warning.border.place-bottom:before {\n  border-bottom: 8px solid #fff;\n}\n.__react_component_tooltip.type-warning.border.place-left:before {\n  border-left: 8px solid #fff;\n}\n.__react_component_tooltip.type-warning.border.place-right:before {\n  border-right: 8px solid #fff;\n}\n.__react_component_tooltip.type-error {\n  color: #fff;\n  background-color: #BE6464;\n}\n.__react_component_tooltip.type-error.place-top:after {\n  border-top-color: #BE6464;\n  border-top-style: solid;\n  border-top-width: 6px;\n}\n.__react_component_tooltip.type-error.place-bottom:after {\n  border-bottom-color: #BE6464;\n  border-bottom-style: solid;\n  border-bottom-width: 6px;\n}\n.__react_component_tooltip.type-error.place-left:after {\n  border-left-color: #BE6464;\n  border-left-style: solid;\n  border-left-width: 6px;\n}\n.__react_component_tooltip.type-error.place-right:after {\n  border-right-color: #BE6464;\n  border-right-style: solid;\n  border-right-width: 6px;\n}\n.__react_component_tooltip.type-error.border {\n  border: 1px solid #fff;\n}\n.__react_component_tooltip.type-error.border.place-top:before {\n  border-top: 8px solid #fff;\n}\n.__react_component_tooltip.type-error.border.place-bottom:before {\n  border-bottom: 8px solid #fff;\n}\n.__react_component_tooltip.type-error.border.place-left:before {\n  border-left: 8px solid #fff;\n}\n.__react_component_tooltip.type-error.border.place-right:before {\n  border-right: 8px solid #fff;\n}\n.__react_component_tooltip.type-info {\n  color: #fff;\n  background-color: #337AB7;\n}\n.__react_component_tooltip.type-info.place-top:after {\n  border-top-color: #337AB7;\n  border-top-style: solid;\n  border-top-width: 6px;\n}\n.__react_component_tooltip.type-info.place-bottom:after {\n  border-bottom-color: #337AB7;\n  border-bottom-style: solid;\n  border-bottom-width: 6px;\n}\n.__react_component_tooltip.type-info.place-left:after {\n  border-left-color: #337AB7;\n  border-left-style: solid;\n  border-left-width: 6px;\n}\n.__react_component_tooltip.type-info.place-right:after {\n  border-right-color: #337AB7;\n  border-right-style: solid;\n  border-right-width: 6px;\n}\n.__react_component_tooltip.type-info.border {\n  border: 1px solid #fff;\n}\n.__react_component_tooltip.type-info.border.place-top:before {\n  border-top: 8px solid #fff;\n}\n.__react_component_tooltip.type-info.border.place-bottom:before {\n  border-bottom: 8px solid #fff;\n}\n.__react_component_tooltip.type-info.border.place-left:before {\n  border-left: 8px solid #fff;\n}\n.__react_component_tooltip.type-info.border.place-right:before {\n  border-right: 8px solid #fff;\n}\n.__react_component_tooltip.type-light {\n  color: #222;\n  background-color: #fff;\n}\n.__react_component_tooltip.type-light.place-top:after {\n  border-top-color: #fff;\n  border-top-style: solid;\n  border-top-width: 6px;\n}\n.__react_component_tooltip.type-light.place-bottom:after {\n  border-bottom-color: #fff;\n  border-bottom-style: solid;\n  border-bottom-width: 6px;\n}\n.__react_component_tooltip.type-light.place-left:after {\n  border-left-color: #fff;\n  border-left-style: solid;\n  border-left-width: 6px;\n}\n.__react_component_tooltip.type-light.place-right:after {\n  border-right-color: #fff;\n  border-right-style: solid;\n  border-right-width: 6px;\n}\n.__react_component_tooltip.type-light.border {\n  border: 1px solid #222;\n}\n.__react_component_tooltip.type-light.border.place-top:before {\n  border-top: 8px solid #222;\n}\n.__react_component_tooltip.type-light.border.place-bottom:before {\n  border-bottom: 8px solid #222;\n}\n.__react_component_tooltip.type-light.border.place-left:before {\n  border-left: 8px solid #222;\n}\n.__react_component_tooltip.type-light.border.place-right:before {\n  border-right: 8px solid #222;\n}\n.__react_component_tooltip.place-top {\n  margin-top: -10px;\n}\n.__react_component_tooltip.place-top:before {\n  border-left: 10px solid transparent;\n  border-right: 10px solid transparent;\n  bottom: -8px;\n  left: 50%;\n  margin-left: -10px;\n}\n.__react_component_tooltip.place-top:after {\n  border-left: 8px solid transparent;\n  border-right: 8px solid transparent;\n  bottom: -6px;\n  left: 50%;\n  margin-left: -8px;\n}\n.__react_component_tooltip.place-bottom {\n  margin-top: 10px;\n}\n.__react_component_tooltip.place-bottom:before {\n  border-left: 10px solid transparent;\n  border-right: 10px solid transparent;\n  top: -8px;\n  left: 50%;\n  margin-left: -10px;\n}\n.__react_component_tooltip.place-bottom:after {\n  border-left: 8px solid transparent;\n  border-right: 8px solid transparent;\n  top: -6px;\n  left: 50%;\n  margin-left: -8px;\n}\n.__react_component_tooltip.place-left {\n  margin-left: -10px;\n}\n.__react_component_tooltip.place-left:before {\n  border-top: 6px solid transparent;\n  border-bottom: 6px solid transparent;\n  right: -8px;\n  top: 50%;\n  margin-top: -5px;\n}\n.__react_component_tooltip.place-left:after {\n  border-top: 5px solid transparent;\n  border-bottom: 5px solid transparent;\n  right: -6px;\n  top: 50%;\n  margin-top: -4px;\n}\n.__react_component_tooltip.place-right {\n  margin-left: 10px;\n}\n.__react_component_tooltip.place-right:before {\n  border-top: 6px solid transparent;\n  border-bottom: 6px solid transparent;\n  left: -8px;\n  top: 50%;\n  margin-top: -5px;\n}\n.__react_component_tooltip.place-right:after {\n  border-top: 5px solid transparent;\n  border-bottom: 5px solid transparent;\n  left: -6px;\n  top: 50%;\n  margin-top: -4px;\n}\n.__react_component_tooltip .multi-line {\n  display: block;\n  padding: 2px 0px;\n  text-align: center;\n}");
 
 var _class, _class2, _temp;
 
-/* Decorators */
-
-
-/* Utils */
-
-
-/* CSS */
-
-
-
-
-var _react2 = _interopRequireDefault(React__default);
-
-
-
-var _propTypes2 = _interopRequireDefault(PropTypes);
-
-
-
-var _classnames2 = _interopRequireDefault(classnames);
-
-
-
-var _staticMethods2 = _interopRequireDefault(staticMethods);
-
-
-
-var _windowListener2 = _interopRequireDefault(windowListener);
-
-
-
-var _customEvent2 = _interopRequireDefault(customEvent);
-
-
-
-var _isCapture2 = _interopRequireDefault(isCapture);
-
-
-
-var _getEffect2 = _interopRequireDefault(getEffect);
-
-
-
-var _trackRemoval2 = _interopRequireDefault(trackRemoval);
-
-
-
-var _getPosition2 = _interopRequireDefault(getPosition);
-
-
-
-var _getTipContent2 = _interopRequireDefault(getTipContent);
-
-
-
-
-
-var _nodeListToArray2 = _interopRequireDefault(nodeListToArray);
-
-
-
-var _style2 = _interopRequireDefault(style);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var ReactTooltip = (0, _staticMethods2.default)(_class = (0, _windowListener2.default)(_class = (0, _customEvent2.default)(_class = (0, _isCapture2.default)(_class = (0, _getEffect2.default)(_class = (0, _trackRemoval2.default)(_class = (_temp = _class2 = function (_React$Component) {
-  _inherits(ReactTooltip, _React$Component);
+var ReactTooltip = staticMethods(_class = windowListener(_class = customEvent(_class = isCapture(_class = getEffect(_class = bodyMode(_class = trackRemoval(_class = (_temp = _class2 =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits$4(ReactTooltip, _React$Component);
 
   function ReactTooltip(props) {
-    _classCallCheck(this, ReactTooltip);
+    var _this;
 
-    var _this = _possibleConstructorReturn(this, (ReactTooltip.__proto__ || Object.getPrototypeOf(ReactTooltip)).call(this, props));
+    _classCallCheck$4(this, ReactTooltip);
 
+    _this = _possibleConstructorReturn$4(this, _getPrototypeOf$2(ReactTooltip).call(this, props));
     _this.state = {
-      place: props.place || 'top', // Direction of tooltip
-      desiredPlace: props.place || 'top',
-      type: 'dark', // Color theme of tooltip
-      effect: 'float', // float or fixed
+      place: props.place || "top",
+      // Direction of tooltip
+      desiredPlace: props.place || "top",
+      type: "dark",
+      // Color theme of tooltip
+      effect: "float",
+      // float or fixed
       show: false,
       border: false,
       offset: {},
-      extraClass: '',
+      extraClass: "",
       html: false,
       delayHide: 0,
       delayShow: 0,
       event: props.event || null,
       eventOff: props.eventOff || null,
-      currentEvent: null, // Current mouse event
-      currentTarget: null, // Current target of mouse event
-      ariaProps: (0, aria.parseAria)(props), // aria- and role attributes
+      currentEvent: null,
+      // Current mouse event
+      currentTarget: null,
+      // Current target of mouse event
+      ariaProps: parseAria(props),
+      // aria- and role attributes
       isEmptyTip: false,
       disable: false,
+      possibleCustomEvents: props.possibleCustomEvents || "",
+      possibleCustomEventsOff: props.possibleCustomEventsOff || "",
       originTooltip: null,
       isMultiline: false
     };
 
-    _this.bind(['showTooltip', 'updateTooltip', 'hideTooltip', 'hideTooltipOnScroll', 'getTooltipContent', 'globalRebuild', 'globalShow', 'globalHide', 'onWindowResize', 'mouseOnToolTip']);
+    _this.bind(["showTooltip", "updateTooltip", "hideTooltip", "hideTooltipOnScroll", "getTooltipContent", "globalRebuild", "globalShow", "globalHide", "onWindowResize", "mouseOnToolTip"]);
 
     _this.mount = true;
     _this.delayShowLoop = null;
@@ -39188,14 +39915,13 @@ var ReactTooltip = (0, _staticMethods2.default)(_class = (0, _windowListener2.de
     _this.intervalUpdateContent = null;
     return _this;
   }
-
   /**
    * For unify the bind and unbind listener
    */
 
 
-  _createClass(ReactTooltip, [{
-    key: 'bind',
+  _createClass$4(ReactTooltip, [{
+    key: "bind",
     value: function bind(methodArray) {
       var _this2 = this;
 
@@ -39204,40 +39930,34 @@ var ReactTooltip = (0, _staticMethods2.default)(_class = (0, _windowListener2.de
       });
     }
   }, {
-    key: 'componentDidMount',
+    key: "componentDidMount",
     value: function componentDidMount() {
-      var _props = this.props,
-          insecure = _props.insecure,
-          resizeHide = _props.resizeHide;
+      var _this$props = this.props,
+          insecure = _this$props.insecure,
+          resizeHide = _this$props.resizeHide;
 
-      if (insecure) {
-        this.setStyleHeader(); // Set the style to the <link>
-      }
       this.bindListener(); // Bind listener for tooltip
+
       this.bindWindowEvents(resizeHide); // Bind global event for static method
     }
   }, {
-    key: 'componentWillUnmount',
+    key: "componentWillUnmount",
     value: function componentWillUnmount() {
       this.mount = false;
-
       this.clearTimer();
-
       this.unbindListener();
       this.removeScrollListener();
       this.unbindWindowEvents();
     }
-
     /**
      * Return if the mouse is on the tooltip.
      * @returns {boolean} true - mouse is on the tooltip
      */
 
   }, {
-    key: 'mouseOnToolTip',
+    key: "mouseOnToolTip",
     value: function mouseOnToolTip() {
       var show = this.state.show;
-
 
       if (show && this.tooltipRef) {
         /* old IE or Firefox work around */
@@ -39250,8 +39970,10 @@ var ReactTooltip = (0, _staticMethods2.default)(_class = (0, _windowListener2.de
             this.tooltipRef.matches = this.tooltipRef.mozMatchesSelector;
           }
         }
-        return this.tooltipRef.matches(':hover');
+
+        return this.tooltipRef.matches(":hover");
       }
+
       return false;
     }
     /**
@@ -39259,89 +39981,107 @@ var ReactTooltip = (0, _staticMethods2.default)(_class = (0, _windowListener2.de
      */
 
   }, {
-    key: 'getTargetArray',
+    key: "getTargetArray",
     value: function getTargetArray(id) {
-      var targetArray = void 0;
-      if (!id) {
-        targetArray = document.querySelectorAll('[data-tip]:not([data-for])');
-      } else {
-        var escaped = id.replace(/\\/g, '\\\\').replace(/"/g, '\\"');
-        targetArray = document.querySelectorAll('[data-tip][data-for="' + escaped + '"]');
-      }
-      // targetArray is a NodeList, convert it to a real array
-      return (0, _nodeListToArray2.default)(targetArray);
-    }
+      var targetArray;
 
+      if (!id) {
+        targetArray = document.querySelectorAll("[data-tip]:not([data-for])");
+      } else {
+        var escaped = id.replace(/\\/g, "\\\\").replace(/"/g, '\\"');
+        targetArray = document.querySelectorAll("[data-tip][data-for=\"".concat(escaped, "\"]"));
+      } // targetArray is a NodeList, convert it to a real array
+
+
+      return nodeListToArray(targetArray);
+    }
     /**
      * Bind listener to the target elements
      * These listeners used to trigger showing or hiding the tooltip
      */
 
   }, {
-    key: 'bindListener',
+    key: "bindListener",
     value: function bindListener() {
       var _this3 = this;
 
-      var _props2 = this.props,
-          id = _props2.id,
-          globalEventOff = _props2.globalEventOff,
-          isCapture = _props2.isCapture;
-
+      var _this$props2 = this.props,
+          id = _this$props2.id,
+          globalEventOff = _this$props2.globalEventOff,
+          isCapture = _this$props2.isCapture;
       var targetArray = this.getTargetArray(id);
-
       targetArray.forEach(function (target) {
-        var isCaptureMode = _this3.isCapture(target);
-        var effect = _this3.getEffect(target);
-        if (target.getAttribute('currentItem') === null) {
-          target.setAttribute('currentItem', 'false');
+        if (target.getAttribute("currentItem") === null) {
+          target.setAttribute("currentItem", "false");
         }
+
         _this3.unbindBasicListener(target);
 
         if (_this3.isCustomEvent(target)) {
-          _this3.customBindListener(target);
-          return;
+          _this3.customUnbindListener(target);
         }
-
-        target.addEventListener('mouseenter', _this3.showTooltip, isCaptureMode);
-        if (effect === 'float') {
-          target.addEventListener('mousemove', _this3.updateTooltip, isCaptureMode);
-        }
-        target.addEventListener('mouseleave', _this3.hideTooltip, isCaptureMode);
       });
 
-      // Global event to hide tooltip
+      if (this.isBodyMode()) {
+        this.bindBodyListener(targetArray);
+      } else {
+        targetArray.forEach(function (target) {
+          var isCaptureMode = _this3.isCapture(target);
+
+          var effect = _this3.getEffect(target);
+
+          if (_this3.isCustomEvent(target)) {
+            _this3.customBindListener(target);
+
+            return;
+          }
+
+          target.addEventListener("mouseenter", _this3.showTooltip, isCaptureMode);
+
+          if (effect === "float") {
+            target.addEventListener("mousemove", _this3.updateTooltip, isCaptureMode);
+          }
+
+          target.addEventListener("mouseleave", _this3.hideTooltip, isCaptureMode);
+        });
+      } // Global event to hide tooltip
+
+
       if (globalEventOff) {
         window.removeEventListener(globalEventOff, this.hideTooltip);
         window.addEventListener(globalEventOff, this.hideTooltip, isCapture);
-      }
+      } // Track removal of targetArray elements from DOM
 
-      // Track removal of targetArray elements from DOM
+
       this.bindRemovalTracker();
     }
-
     /**
      * Unbind listeners on target elements
      */
 
   }, {
-    key: 'unbindListener',
+    key: "unbindListener",
     value: function unbindListener() {
       var _this4 = this;
 
-      var _props3 = this.props,
-          id = _props3.id,
-          globalEventOff = _props3.globalEventOff;
+      var _this$props3 = this.props,
+          id = _this$props3.id,
+          globalEventOff = _this$props3.globalEventOff;
 
-      var targetArray = this.getTargetArray(id);
-      targetArray.forEach(function (target) {
-        _this4.unbindBasicListener(target);
-        if (_this4.isCustomEvent(target)) _this4.customUnbindListener(target);
-      });
+      if (this.isBodyMode()) {
+        this.unbindBodyListener();
+      } else {
+        var targetArray = this.getTargetArray(id);
+        targetArray.forEach(function (target) {
+          _this4.unbindBasicListener(target);
+
+          if (_this4.isCustomEvent(target)) _this4.customUnbindListener(target);
+        });
+      }
 
       if (globalEventOff) window.removeEventListener(globalEventOff, this.hideTooltip);
       this.unbindRemovalTracker();
     }
-
     /**
      * Invoke this before bind listener and unmount the component
      * it is necessary to invoke this even when binding custom event
@@ -39349,23 +40089,22 @@ var ReactTooltip = (0, _staticMethods2.default)(_class = (0, _windowListener2.de
      */
 
   }, {
-    key: 'unbindBasicListener',
+    key: "unbindBasicListener",
     value: function unbindBasicListener(target) {
       var isCaptureMode = this.isCapture(target);
-      target.removeEventListener('mouseenter', this.showTooltip, isCaptureMode);
-      target.removeEventListener('mousemove', this.updateTooltip, isCaptureMode);
-      target.removeEventListener('mouseleave', this.hideTooltip, isCaptureMode);
+      target.removeEventListener("mouseenter", this.showTooltip, isCaptureMode);
+      target.removeEventListener("mousemove", this.updateTooltip, isCaptureMode);
+      target.removeEventListener("mouseleave", this.hideTooltip, isCaptureMode);
     }
   }, {
-    key: 'getTooltipContent',
+    key: "getTooltipContent",
     value: function getTooltipContent() {
-      var _props4 = this.props,
-          getContent = _props4.getContent,
-          children = _props4.children;
+      var _this$props4 = this.props,
+          getContent = _this$props4.getContent,
+          children = _this$props4.children; // Generate tooltip content
 
-      // Generate tooltip content
+      var content;
 
-      var content = void 0;
       if (getContent) {
         if (Array.isArray(getContent)) {
           content = getContent[0] && getContent[0](this.state.originTooltip);
@@ -39374,20 +40113,19 @@ var ReactTooltip = (0, _staticMethods2.default)(_class = (0, _windowListener2.de
         }
       }
 
-      return (0, _getTipContent2.default)(this.state.originTooltip, children, content, this.state.isMultiline);
+      return getTipContent(this.state.originTooltip, children, content, this.state.isMultiline);
     }
   }, {
-    key: 'isEmptyTip',
+    key: "isEmptyTip",
     value: function isEmptyTip(placeholder) {
-      return typeof placeholder === 'string' && placeholder === '' || placeholder === null;
+      return typeof placeholder === "string" && placeholder === "" || placeholder === null;
     }
-
     /**
      * When mouse enter, show the tooltip
      */
 
   }, {
-    key: 'showTooltip',
+    key: "showTooltip",
     value: function showTooltip(e, isGlobalCall) {
       if (isGlobalCall) {
         // Don't trigger other elements belongs to other ReactTooltip
@@ -39396,45 +40134,41 @@ var ReactTooltip = (0, _staticMethods2.default)(_class = (0, _windowListener2.de
           return ele === e.currentTarget;
         });
         if (!isMyElement) return;
-      }
-      // Get the tooltip content
+      } // Get the tooltip content
       // calculate in this phrase so that tip width height can be detected
-      var _props5 = this.props,
-          multiline = _props5.multiline,
-          getContent = _props5.getContent;
 
-      var originTooltip = e.currentTarget.getAttribute('data-tip');
-      var isMultiline = e.currentTarget.getAttribute('data-multiline') || multiline || false;
 
-      // If it is focus event or called by ReactTooltip.show, switch to `solid` effect
-      var switchToSolid = e instanceof window.FocusEvent || isGlobalCall;
+      var _this$props5 = this.props,
+          multiline = _this$props5.multiline,
+          getContent = _this$props5.getContent;
+      var originTooltip = e.currentTarget.getAttribute("data-tip");
+      var isMultiline = e.currentTarget.getAttribute("data-multiline") || multiline || false; // If it is focus event or called by ReactTooltip.show, switch to `solid` effect
 
-      // if it needs to skip adding hide listener to scroll
+      var switchToSolid = e instanceof window.FocusEvent || isGlobalCall; // if it needs to skip adding hide listener to scroll
+
       var scrollHide = true;
-      if (e.currentTarget.getAttribute('data-scroll-hide')) {
-        scrollHide = e.currentTarget.getAttribute('data-scroll-hide') === 'true';
+
+      if (e.currentTarget.getAttribute("data-scroll-hide")) {
+        scrollHide = e.currentTarget.getAttribute("data-scroll-hide") === "true";
       } else if (this.props.scrollHide != null) {
         scrollHide = this.props.scrollHide;
-      }
+      } // Make sure the correct place is set
 
-      // Make sure the correct place is set
-      var desiredPlace = e.currentTarget.getAttribute('data-place') || this.props.place || 'top';
-      var effect = switchToSolid && 'solid' || this.getEffect(e.currentTarget);
-      var offset = e.currentTarget.getAttribute('data-offset') || this.props.offset || {};
-      var result = (0, _getPosition2.default)(e, e.currentTarget, this.tooltipRef, desiredPlace, desiredPlace, effect, offset);
+
+      var desiredPlace = e.currentTarget.getAttribute("data-place") || this.props.place || "top";
+      var effect = switchToSolid && "solid" || this.getEffect(e.currentTarget);
+      var offset = e.currentTarget.getAttribute("data-offset") || this.props.offset || {};
+      var result = getPosition(e, e.currentTarget, this.tooltipRef, desiredPlace, desiredPlace, effect, offset);
+
       if (result.position && this.props.overridePosition) {
         result.position = this.props.overridePosition(result.position, e.currentTarget, this.tooltipRef, desiredPlace, desiredPlace, effect, offset);
       }
 
-      var place = result.isNewState ? result.newState.place : desiredPlace;
+      var place = result.isNewState ? result.newState.place : desiredPlace; // To prevent previously created timers from triggering
 
-      // To prevent previously created timers from triggering
       this.clearTimer();
-
       var target = e.currentTarget;
-
-      var reshowDelay = this.state.show ? target.getAttribute('data-delay-update') || this.props.delayUpdate : 0;
-
+      var reshowDelay = this.state.show ? target.getAttribute("data-delay-update") || this.props.delayUpdate : 0;
       var self = this;
 
       var updateState = function updateState() {
@@ -39443,16 +40177,16 @@ var ReactTooltip = (0, _staticMethods2.default)(_class = (0, _windowListener2.de
           isMultiline: isMultiline,
           desiredPlace: desiredPlace,
           place: place,
-          type: target.getAttribute('data-type') || self.props.type || 'dark',
+          type: target.getAttribute("data-type") || self.props.type || "dark",
           effect: effect,
           offset: offset,
-          html: target.getAttribute('data-html') ? target.getAttribute('data-html') === 'true' : self.props.html || false,
-          delayShow: target.getAttribute('data-delay-show') || self.props.delayShow || 0,
-          delayHide: target.getAttribute('data-delay-hide') || self.props.delayHide || 0,
-          delayUpdate: target.getAttribute('data-delay-update') || self.props.delayUpdate || 0,
-          border: target.getAttribute('data-border') ? target.getAttribute('data-border') === 'true' : self.props.border || false,
-          extraClass: target.getAttribute('data-class') || self.props.class || self.props.className || '',
-          disable: target.getAttribute('data-tip-disable') ? target.getAttribute('data-tip-disable') === 'true' : self.props.disable || false,
+          html: target.getAttribute("data-html") ? target.getAttribute("data-html") === "true" : self.props.html || false,
+          delayShow: target.getAttribute("data-delay-show") || self.props.delayShow || 0,
+          delayHide: target.getAttribute("data-delay-hide") || self.props.delayHide || 0,
+          delayUpdate: target.getAttribute("data-delay-update") || self.props.delayUpdate || 0,
+          border: target.getAttribute("data-border") ? target.getAttribute("data-border") === "true" : self.props.border || false,
+          extraClass: target.getAttribute("data-class") || self.props["class"] || self.props.className || "",
+          disable: target.getAttribute("data-tip-disable") ? target.getAttribute("data-tip-disable") === "true" : self.props.disable || false,
           currentTarget: target
         }, function () {
           if (scrollHide) self.addScrollListener(self.state.currentTarget);
@@ -39462,8 +40196,7 @@ var ReactTooltip = (0, _staticMethods2.default)(_class = (0, _windowListener2.de
             self.intervalUpdateContent = setInterval(function () {
               if (self.mount) {
                 var _getContent = self.props.getContent;
-
-                var placeholder = (0, _getTipContent2.default)(originTooltip, '', _getContent[0](), isMultiline);
+                var placeholder = getTipContent(originTooltip, "", _getContent[0](), isMultiline);
                 var isEmptyTip = self.isEmptyTip(placeholder);
                 self.setState({
                   isEmptyTip: isEmptyTip
@@ -39473,106 +40206,104 @@ var ReactTooltip = (0, _staticMethods2.default)(_class = (0, _windowListener2.de
             }, getContent[1]);
           }
         });
-      };
+      }; // If there is no delay call immediately, don't allow events to get in first.
 
-      // If there is no delay call immediately, don't allow events to get in first.
+
       if (reshowDelay) {
         this.delayReshow = setTimeout(updateState, reshowDelay);
       } else {
         updateState();
       }
     }
-
     /**
      * When mouse hover, update tool tip
      */
 
   }, {
-    key: 'updateTooltip',
+    key: "updateTooltip",
     value: function updateTooltip(e) {
       var _this5 = this;
 
-      var _state = this.state,
-          delayShow = _state.delayShow,
-          disable = _state.disable;
+      var _this$state = this.state,
+          delayShow = _this$state.delayShow,
+          disable = _this$state.disable;
       var afterShow = this.props.afterShow;
-
       var placeholder = this.getTooltipContent();
       var delayTime = parseInt(delayShow, 10);
-      var eventTarget = e.currentTarget || e.target;
+      var eventTarget = e.currentTarget || e.target; // Check if the mouse is actually over the tooltip, if so don't hide the tooltip
 
-      // Check if the mouse is actually over the tooltip, if so don't hide the tooltip
       if (this.mouseOnToolTip()) {
         return;
       }
 
       if (this.isEmptyTip(placeholder) || disable) return; // if the tooltip is empty, disable the tooltip
+
       var updateState = function updateState() {
         if (Array.isArray(placeholder) && placeholder.length > 0 || placeholder) {
           var isInvisible = !_this5.state.show;
+
           _this5.setState({
             currentEvent: e,
             currentTarget: eventTarget,
             show: true
           }, function () {
             _this5.updatePosition();
+
             if (isInvisible && afterShow) afterShow(e);
           });
         }
       };
 
       clearTimeout(this.delayShowLoop);
+
       if (delayShow) {
         this.delayShowLoop = setTimeout(updateState, delayTime);
       } else {
         updateState();
       }
     }
-
     /*
-    * If we're mousing over the tooltip remove it when we leave.
+     * If we're mousing over the tooltip remove it when we leave.
      */
 
   }, {
-    key: 'listenForTooltipExit',
+    key: "listenForTooltipExit",
     value: function listenForTooltipExit() {
       var show = this.state.show;
 
-
       if (show && this.tooltipRef) {
-        this.tooltipRef.addEventListener('mouseleave', this.hideTooltip);
+        this.tooltipRef.addEventListener("mouseleave", this.hideTooltip);
       }
     }
   }, {
-    key: 'removeListenerForTooltipExit',
+    key: "removeListenerForTooltipExit",
     value: function removeListenerForTooltipExit() {
       var show = this.state.show;
 
-
       if (show && this.tooltipRef) {
-        this.tooltipRef.removeEventListener('mouseleave', this.hideTooltip);
+        this.tooltipRef.removeEventListener("mouseleave", this.hideTooltip);
       }
     }
-
     /**
      * When mouse leave, hide tooltip
      */
 
   }, {
-    key: 'hideTooltip',
+    key: "hideTooltip",
     value: function hideTooltip(e, hasTarget) {
       var _this6 = this;
 
-      var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : { isScroll: false };
+      var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {
+        isScroll: false
+      };
       var disable = this.state.disable;
       var isScroll = options.isScroll;
-
       var delayHide = isScroll ? 0 : this.state.delayHide;
       var afterHide = this.props.afterHide;
-
       var placeholder = this.getTooltipContent();
       if (!this.mount) return;
       if (this.isEmptyTip(placeholder) || disable) return; // if the tooltip is empty, disable the tooltip
+
       if (hasTarget) {
         // Don't trigger other elements belongs to other ReactTooltip
         var targetArray = this.getTargetArray(this.props.id);
@@ -39583,74 +40314,76 @@ var ReactTooltip = (0, _staticMethods2.default)(_class = (0, _windowListener2.de
       }
 
       var resetState = function resetState() {
-        var isVisible = _this6.state.show;
-        // Check if the mouse is actually over the tooltip, if so don't hide the tooltip
+        var isVisible = _this6.state.show; // Check if the mouse is actually over the tooltip, if so don't hide the tooltip
+
         if (_this6.mouseOnToolTip()) {
           _this6.listenForTooltipExit();
+
           return;
         }
+
         _this6.removeListenerForTooltipExit();
 
         _this6.setState({
           show: false
         }, function () {
           _this6.removeScrollListener();
+
           if (isVisible && afterHide) afterHide(e);
         });
       };
 
       this.clearTimer();
+
       if (delayHide) {
         this.delayHideLoop = setTimeout(resetState, parseInt(delayHide, 10));
       } else {
         resetState();
       }
     }
-
     /**
      * When scroll, hide tooltip
      */
 
   }, {
-    key: 'hideTooltipOnScroll',
+    key: "hideTooltipOnScroll",
     value: function hideTooltipOnScroll(event, hasTarget) {
-      this.hideTooltip(event, hasTarget, { isScroll: true });
+      this.hideTooltip(event, hasTarget, {
+        isScroll: true
+      });
     }
-
     /**
      * Add scroll event listener when tooltip show
      * automatically hide the tooltip when scrolling
      */
 
   }, {
-    key: 'addScrollListener',
+    key: "addScrollListener",
     value: function addScrollListener(currentTarget) {
       var isCaptureMode = this.isCapture(currentTarget);
-      window.addEventListener('scroll', this.hideTooltipOnScroll, isCaptureMode);
+      window.addEventListener("scroll", this.hideTooltipOnScroll, isCaptureMode);
     }
   }, {
-    key: 'removeScrollListener',
+    key: "removeScrollListener",
     value: function removeScrollListener() {
-      window.removeEventListener('scroll', this.hideTooltipOnScroll);
-    }
-
-    // Calculation the position
+      window.removeEventListener("scroll", this.hideTooltipOnScroll);
+    } // Calculation the position
 
   }, {
-    key: 'updatePosition',
+    key: "updatePosition",
     value: function updatePosition() {
       var _this7 = this;
 
-      var _state2 = this.state,
-          currentEvent = _state2.currentEvent,
-          currentTarget = _state2.currentTarget,
-          place = _state2.place,
-          desiredPlace = _state2.desiredPlace,
-          effect = _state2.effect,
-          offset = _state2.offset;
-
+      var _this$state2 = this.state,
+          currentEvent = _this$state2.currentEvent,
+          currentTarget = _this$state2.currentTarget,
+          place = _this$state2.place,
+          desiredPlace = _this$state2.desiredPlace,
+          effect = _this$state2.effect,
+          offset = _this$state2.offset;
       var node = this.tooltipRef;
-      var result = (0, _getPosition2.default)(currentEvent, currentTarget, node, place, desiredPlace, effect, offset);
+      var result = getPosition(currentEvent, currentTarget, node, place, desiredPlace, effect, offset);
+
       if (result.position && this.props.overridePosition) {
         result.position = this.props.overridePosition(result.position, currentEvent, currentTarget, node, place, desiredPlace, effect, offset);
       }
@@ -39660,40 +40393,42 @@ var ReactTooltip = (0, _staticMethods2.default)(_class = (0, _windowListener2.de
         return this.setState(result.newState, function () {
           _this7.updatePosition();
         });
-      }
-      // Set tooltip position
-      node.style.left = result.position.left + 'px';
-      node.style.top = result.position.top + 'px';
-    }
+      } // Set tooltip position
 
+
+      node.style.left = result.position.left + "px";
+      node.style.top = result.position.top + "px";
+    }
     /**
      * Set style tag in header
      * in this way we can insert default css
      */
 
-  }, {
-    key: 'setStyleHeader',
-    value: function setStyleHeader() {
-      var head = document.getElementsByTagName('head')[0];
+    /* setStyleHeader() {
+      const head = document.getElementsByTagName("head")[0];
       if (!head.querySelector('style[id="react-tooltip"]')) {
-        var tag = document.createElement('style');
-        tag.id = 'react-tooltip';
-        tag.innerHTML = _style2.default;
-        /* eslint-disable */
-        if (typeof __webpack_nonce__ !== 'undefined' && __webpack_nonce__) {
-          tag.setAttribute('nonce', __webpack_nonce__);
-        }
-        /* eslint-enable */
-        head.insertBefore(tag, head.firstChild);
+        const tag = document.createElement("style");
+        tag.id = "react-tooltip";
+        tag.innerHTML = cssStyle; */
+
+    /* eslint-disable */
+
+    /*      if (typeof __webpack_nonce__ !== 'undefined' && __webpack_nonce__) {
+            tag.setAttribute('nonce', __webpack_nonce__)
+          }*/
+
+    /* eslint-enable */
+
+    /*    head.insertBefore(tag, head.firstChild);
       }
-    }
+    } */
 
     /**
      * CLear all kinds of timeout of interval
      */
 
   }, {
-    key: 'clearTimer',
+    key: "clearTimer",
     value: function clearTimer() {
       clearTimeout(this.delayShowLoop);
       clearTimeout(this.delayHideLoop);
@@ -39701,111 +40436,112 @@ var ReactTooltip = (0, _staticMethods2.default)(_class = (0, _windowListener2.de
       clearInterval(this.intervalUpdateContent);
     }
   }, {
-    key: 'render',
+    key: "render",
     value: function render() {
       var _this8 = this;
 
-      var _state3 = this.state,
-          extraClass = _state3.extraClass,
-          html = _state3.html,
-          ariaProps = _state3.ariaProps,
-          disable = _state3.disable;
-
+      var _this$state3 = this.state,
+          extraClass = _this$state3.extraClass,
+          html = _this$state3.html,
+          ariaProps = _this$state3.ariaProps,
+          disable = _this$state3.disable;
       var placeholder = this.getTooltipContent();
       var isEmptyTip = this.isEmptyTip(placeholder);
-      var tooltipClass = (0, _classnames2.default)('__react_component_tooltip', { 'show': this.state.show && !disable && !isEmptyTip }, { 'border': this.state.border }, { 'place-top': this.state.place === 'top' }, { 'place-bottom': this.state.place === 'bottom' }, { 'place-left': this.state.place === 'left' }, { 'place-right': this.state.place === 'right' }, { 'type-dark': this.state.type === 'dark' }, { 'type-success': this.state.type === 'success' }, { 'type-warning': this.state.type === 'warning' }, { 'type-error': this.state.type === 'error' }, { 'type-info': this.state.type === 'info' }, { 'type-light': this.state.type === 'light' }, { 'allow_hover': this.props.delayUpdate }, { 'allow_click': this.props.clickable });
-
+      var tooltipClass = "__react_component_tooltip" + (this.state.show && !disable && !isEmptyTip ? " show" : "") + (this.state.border ? " border" : "") + " place-".concat(this.state.place) + // top, bottom, left, right
+      " type-".concat(this.state.type) + ( // dark, success, warning, error, info, light
+      this.props.delayUpdate ? " allow_hover" : "") + (this.props.clickable ? " allow_click" : "");
       var Wrapper = this.props.wrapper;
+
       if (ReactTooltip.supportedWrappers.indexOf(Wrapper) < 0) {
         Wrapper = ReactTooltip.defaultProps.wrapper;
       }
 
+      var wrapperClassName = [tooltipClass, extraClass].filter(Boolean).join(" ");
+
       if (html) {
-        return _react2.default.createElement(Wrapper, _extends({ className: tooltipClass + ' ' + extraClass,
+        return React__default.createElement(Wrapper, _extends$f({
+          className: wrapperClassName,
           id: this.props.id,
           ref: function ref(_ref) {
             return _this8.tooltipRef = _ref;
           }
         }, ariaProps, {
-          'data-id': 'tooltip',
-          dangerouslySetInnerHTML: { __html: placeholder } }));
+          "data-id": "tooltip",
+          dangerouslySetInnerHTML: {
+            __html: placeholder
+          }
+        }));
       } else {
-        return _react2.default.createElement(
-          Wrapper,
-          _extends({ className: tooltipClass + ' ' + extraClass,
-            id: this.props.id
-          }, ariaProps, {
-            ref: function ref(_ref2) {
-              return _this8.tooltipRef = _ref2;
-            },
-            'data-id': 'tooltip' }),
-          placeholder
-        );
+        return React__default.createElement(Wrapper, _extends$f({
+          className: wrapperClassName,
+          id: this.props.id
+        }, ariaProps, {
+          ref: function ref(_ref2) {
+            return _this8.tooltipRef = _ref2;
+          },
+          "data-id": "tooltip"
+        }), placeholder);
       }
     }
   }], [{
-    key: 'getDerivedStateFromProps',
+    key: "getDerivedStateFromProps",
     value: function getDerivedStateFromProps(nextProps, prevState) {
       var ariaProps = prevState.ariaProps;
-
-      var newAriaProps = (0, aria.parseAria)(nextProps);
+      var newAriaProps = parseAria(nextProps);
       var isChanged = Object.keys(newAriaProps).some(function (props) {
         return newAriaProps[props] !== ariaProps[props];
       });
+
       if (!isChanged) {
         return null;
       }
-      return _extends({}, prevState, {
+
+      return _objectSpread2$1({}, prevState, {
         ariaProps: newAriaProps
       });
     }
   }]);
 
   return ReactTooltip;
-}(_react2.default.Component), _class2.propTypes = {
-  children: _propTypes2.default.any,
-  place: _propTypes2.default.string,
-  type: _propTypes2.default.string,
-  effect: _propTypes2.default.string,
-  offset: _propTypes2.default.object,
-  multiline: _propTypes2.default.bool,
-  border: _propTypes2.default.bool,
-  insecure: _propTypes2.default.bool,
-  class: _propTypes2.default.string,
-  className: _propTypes2.default.string,
-  id: _propTypes2.default.string,
-  html: _propTypes2.default.bool,
-  delayHide: _propTypes2.default.number,
-  delayUpdate: _propTypes2.default.number,
-  delayShow: _propTypes2.default.number,
-  event: _propTypes2.default.string,
-  eventOff: _propTypes2.default.string,
-  watchWindow: _propTypes2.default.bool,
-  isCapture: _propTypes2.default.bool,
-  globalEventOff: _propTypes2.default.string,
-  getContent: _propTypes2.default.any,
-  afterShow: _propTypes2.default.func,
-  afterHide: _propTypes2.default.func,
-  overridePosition: _propTypes2.default.func,
-  disable: _propTypes2.default.bool,
-  scrollHide: _propTypes2.default.bool,
-  resizeHide: _propTypes2.default.bool,
-  wrapper: _propTypes2.default.string,
-  clickable: _propTypes2.default.bool
-}, _class2.defaultProps = {
+}(React__default.Component), _defineProperty$3(_class2, "propTypes", {
+  children: propTypes.any,
+  place: propTypes.string,
+  type: propTypes.string,
+  effect: propTypes.string,
+  offset: propTypes.object,
+  multiline: propTypes.bool,
+  border: propTypes.bool,
+  insecure: propTypes.bool,
+  "class": propTypes.string,
+  className: propTypes.string,
+  id: propTypes.string,
+  html: propTypes.bool,
+  delayHide: propTypes.number,
+  delayUpdate: propTypes.number,
+  delayShow: propTypes.number,
+  event: propTypes.string,
+  eventOff: propTypes.string,
+  watchWindow: propTypes.bool,
+  isCapture: propTypes.bool,
+  globalEventOff: propTypes.string,
+  getContent: propTypes.any,
+  afterShow: propTypes.func,
+  afterHide: propTypes.func,
+  overridePosition: propTypes.func,
+  disable: propTypes.bool,
+  scrollHide: propTypes.bool,
+  resizeHide: propTypes.bool,
+  wrapper: propTypes.string,
+  bodyMode: propTypes.bool,
+  possibleCustomEvents: propTypes.string,
+  possibleCustomEventsOff: propTypes.string,
+  clickable: propTypes.bool
+}), _defineProperty$3(_class2, "defaultProps", {
   insecure: true,
   resizeHide: true,
-  wrapper: 'div',
+  wrapper: "div",
   clickable: false
-}, _class2.supportedWrappers = ['div', 'span'], _class2.displayName = 'ReactTooltip', _temp)) || _class) || _class) || _class) || _class) || _class) || _class;
-
-/* export default not fit for standalone, it will exports {default:...} */
-
-
-module.exports = ReactTooltip;
-});
-
-var ReactTooltip = unwrapExports(dist);
+}), _defineProperty$3(_class2, "supportedWrappers", ["div", "span"]), _defineProperty$3(_class2, "displayName", "ReactTooltip"), _temp)) || _class) || _class) || _class) || _class) || _class) || _class) || _class;
 
 var Tooltip$1 = ReactTooltip;
 
