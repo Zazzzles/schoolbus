@@ -40,7 +40,7 @@ storiesOf('Popup', module)
   ))
   .add('Arrow', () => (
     <Popup arrow position="bottomCenter">
-      Arrow
+      ArrowArrowArrowArrowArrowArrowArrow
     </Popup>
   ))
   .add('Custom Trigger', () => (

@@ -106,8 +106,7 @@ class Popup extends PureComponent {
             style={contentStyle}
             position={position}
             arrow={arrow}
-          >
-            
+          >  
             {typeof children === 'function' ? children(this.closePopup) : childrenWithProps}
           </ContentWrapper>
         </Trigger>

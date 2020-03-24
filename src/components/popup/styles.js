@@ -10,10 +10,11 @@ function getVerticalOffset(props) {
 
 function getHorizontalOffset(props) {
   const { renderToLeft, xOffset, position } = props 
+
   const isCentered = ['bottomCenter', 'topCenter'].includes(position)
   const offset = `calc(${isCentered ? '50%' : '100%'} + ${ isCentered ? '0px' : xOffset })`
 
-  return `${renderToLeft ? 'right:' : 'left:'} ${offset}`
+  return `${renderToLeft && !isCentered ? 'right:' : 'left:'} ${offset}`
 }
 
 function getTransform(props) {
