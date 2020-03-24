@@ -20900,7 +20900,7 @@ function getHorizontalOffset(props) {
       position = props.position;
   var isCentered = ['bottomCenter', 'topCenter'].includes(position);
   var offset = "calc(".concat(isCentered ? '50%' : '100%', " + ").concat(isCentered ? '0px' : xOffset, ")");
-  return "".concat(renderToLeft ? 'right:' : 'left:', " ").concat(offset);
+  return "".concat(renderToLeft && !isCentered ? 'right:' : 'left:', " ").concat(offset);
 }
 
 function getTransform(props) {
@@ -28328,8 +28328,18 @@ defineProperty(TranslationInput, "defaultProps", {
 
 var index$9 = formik.connect(TranslationInput);
 
-function _templateObject9() {
+function _templateObject10() {
   var data = taggedTemplateLiteral(["\n  position: absolute;\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  background: linear-gradient(white 0%, transparent 1.5em, transparent calc(100% - 1em), white 100% );\n  pointer-events: none;\n"]);
+
+  _templateObject10 = function _templateObject10() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject9() {
+  var data = taggedTemplateLiteral(["\n  display: flex;\n  justify-content: flex-end;\n  padding: 0 0 2em;\n"]);
 
   _templateObject9 = function _templateObject9() {
     return data;
@@ -28339,7 +28349,7 @@ function _templateObject9() {
 }
 
 function _templateObject8$1() {
-  var data = taggedTemplateLiteral(["\n  display: flex;\n  justify-content: flex-end;\n  padding: 0 0 2em;\n"]);
+  var data = taggedTemplateLiteral(["\n  padding: 1em;\n  margin: ", ";\n  overflow: auto;\n"]);
 
   _templateObject8$1 = function _templateObject8() {
     return data;
@@ -28349,7 +28359,7 @@ function _templateObject8$1() {
 }
 
 function _templateObject7$1() {
-  var data = taggedTemplateLiteral(["\n  padding: 1em;\n  margin: ", ";\n  overflow: auto;\n"]);
+  var data = taggedTemplateLiteral(["\n  position: relative;\n  max-width: 1100px;\n  margin: 1em 0;\n"]);
 
   _templateObject7$1 = function _templateObject7() {
     return data;
@@ -28359,7 +28369,7 @@ function _templateObject7$1() {
 }
 
 function _templateObject6$1() {
-  var data = taggedTemplateLiteral(["\n  position: relative;\n  max-width: 1100px;\n  margin: 1em 0;\n"]);
+  var data = taggedTemplateLiteral(["\n  padding-top: 2em;\n"]);
 
   _templateObject6$1 = function _templateObject6() {
     return data;
@@ -28369,7 +28379,7 @@ function _templateObject6$1() {
 }
 
 function _templateObject5$3() {
-  var data = taggedTemplateLiteral(["\n  padding-top: 2em;\n"]);
+  var data = taggedTemplateLiteral(["\n  width: 100%;\n  font-size: ", ";\n  font-weight: ", ";\n  color: ", ";\n  padding-top: 1.5em;\n  text-align: ", ";\n"]);
 
   _templateObject5$3 = function _templateObject5() {
     return data;
@@ -28379,7 +28389,7 @@ function _templateObject5$3() {
 }
 
 function _templateObject4$3() {
-  var data = taggedTemplateLiteral(["\n  font-size: ", ";\n  font-weight: ", ";\n  color: ", ";\n  padding-top: 1.5em;\n"]);
+  var data = taggedTemplateLiteral(["\n  font-size: ", ";\n  font-weight: ", ";\n  color: ", ";\n  padding-top: 2.5em;\n"]);
 
   _templateObject4$3 = function _templateObject4() {
     return data;
@@ -28389,7 +28399,7 @@ function _templateObject4$3() {
 }
 
 function _templateObject3$7() {
-  var data = taggedTemplateLiteral(["\n  font-size: ", ";\n  font-weight: ", ";\n  color: ", ";\n  padding-top: 2.5em;\n"]);
+  var data = taggedTemplateLiteral(["\n  font-weight: ", ";\n"]);
 
   _templateObject3$7 = function _templateObject3() {
     return data;
@@ -28428,34 +28438,41 @@ var Title = styled__default.h1(_templateObject2$b(), function (_ref) {
   var theme = _ref3.theme;
   return theme.colors.gray.xxdark;
 });
-var Subtitle = styled__default.h2(_templateObject3$7(), function (_ref4) {
+var ProximusTitle = styled__default(Title)(_templateObject3$7(), function (_ref4) {
   var theme = _ref4.theme;
-  return theme.fontSizes.small;
-}, function (_ref5) {
+  return theme.fontWeights.medium;
+});
+var Subtitle = styled__default.h2(_templateObject4$3(), function (_ref5) {
   var theme = _ref5.theme;
-  return theme.fontWeights.semi;
+  return theme.fontSizes.small;
 }, function (_ref6) {
   var theme = _ref6.theme;
+  return theme.fontWeights.semi;
+}, function (_ref7) {
+  var theme = _ref7.theme;
   return theme.colors.gray.xxdark;
 });
-var Description = styled__default.p(_templateObject4$3(), function (_ref7) {
-  var theme = _ref7.theme;
-  return theme.fontSizes.small;
-}, function (_ref8) {
+var Description = styled__default.p(_templateObject5$3(), function (_ref8) {
   var theme = _ref8.theme;
-  return theme.fontWeights.normal;
+  return theme.fontSizes.small;
 }, function (_ref9) {
   var theme = _ref9.theme;
+  return theme.fontWeights.normal;
+}, function (_ref10) {
+  var theme = _ref10.theme;
   return theme.colors.gray.dark;
+}, function (_ref11) {
+  var centerText = _ref11.centerText;
+  return centerText ? 'center' : 'left';
 });
-var Actions$1 = styled__default.div(_templateObject5$3());
-var ContentWrapper$1 = styled__default.div(_templateObject6$1());
-var InnerContent = styled__default.div(_templateObject7$1(), function (_ref10) {
-  var hasHeader = _ref10.hasHeader;
+var Actions$1 = styled__default.div(_templateObject6$1());
+var ContentWrapper$1 = styled__default.div(_templateObject7$1());
+var InnerContent = styled__default.div(_templateObject8$1(), function (_ref12) {
+  var hasHeader = _ref12.hasHeader;
   return hasHeader ? '0 -1em' : '-2em -1em 0';
 });
-var Footer = styled__default.div(_templateObject8$1());
-var FadeOverlay = styled__default.div(_templateObject9());
+var Footer = styled__default.div(_templateObject9());
+var FadeOverlay = styled__default.div(_templateObject10());
 
 function ownKeys$c(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
@@ -28506,18 +28523,21 @@ function (_Component) {
 
       var _this$props = this.props,
           onClose = _this$props.onClose,
+          onBack = _this$props.onBack,
           style = _this$props.style,
           contentStyle = _this$props.contentStyle,
           children = _this$props.children,
           width = _this$props.width,
           height = _this$props.height,
           title = _this$props.title,
+          proximusTitle = _this$props.proximusTitle,
+          centerTitle = _this$props.centerTitle,
           subtitle = _this$props.subtitle,
           description = _this$props.description,
           actions = _this$props.actions,
           footer = _this$props.footer,
           scrollable = _this$props.scrollable,
-          otherProps = objectWithoutProperties(_this$props, ["onClose", "style", "contentStyle", "children", "width", "height", "title", "subtitle", "description", "actions", "footer", "scrollable"]);
+          otherProps = objectWithoutProperties(_this$props, ["onClose", "onBack", "style", "contentStyle", "children", "width", "height", "title", "proximusTitle", "centerTitle", "subtitle", "description", "actions", "footer", "scrollable"]);
 
       var hasHeader = !!title || !!description || !!subtitle || !!actions;
       var styleOverrides = {
@@ -28531,6 +28551,15 @@ function (_Component) {
           maxHeight: scrollable ? "calc(95vh - 5em - ".concat(contentSpacing, "px)") : 'none',
           maxWidth: 1100,
           overflow: scrollable ? 'auto' : 'visible'
+        },
+        centerText: {
+          textAlign: 'center'
+        },
+        backBtn: {
+          position: "absolute",
+          top: 25,
+          left: 20,
+          zIndex: 1
         }
       };
       var modalStyles = {
@@ -28566,15 +28595,31 @@ function (_Component) {
         });
       };
 
+      var renderBackButton = function renderBackButton() {
+        return React__default.createElement(IconButton, {
+          onClick: onBack,
+          color: "transparent",
+          icon: "back",
+          style: styleOverrides.backBtn,
+          noShadow: true
+        });
+      };
+
       return React__default.createElement(ReactModal, _extends_1({
         onRequestClose: onClose,
         onAfterOpen: this.afterOpenModal,
         style: modalStyles
-      }, otherProps), React__default.createElement(React__default.Fragment, null, onClose && renderCloseIcon(), React__default.createElement(Header, {
+      }, otherProps), React__default.createElement(React__default.Fragment, null, onClose && renderCloseIcon(), onBack && renderBackButton(), React__default.createElement(Header, {
         ref: function ref(node) {
           return _this2.headerRef = node;
         }
-      }, title && React__default.createElement(Title, null, title), subtitle && React__default.createElement(Subtitle, null, subtitle), description && React__default.createElement(Description, null, description), actions && React__default.createElement(Actions$1, null, actions)), React__default.createElement(ContentWrapper$1, null, React__default.createElement(FadeOverlay, null), React__default.createElement(InnerContent, {
+      }, title && React__default.createElement(Flex, {
+        width: "100%",
+        justifyContent: centerTitle ? 'center' : 'flex-start',
+        ml: onBack && !centerTitle ? '2.5em' : 0
+      }, React__default.createElement(Title, null, title), proximusTitle && React__default.createElement(ProximusTitle, null, "\xA0| ".concat(proximusTitle))), subtitle && React__default.createElement(Subtitle, null, subtitle), description && React__default.createElement(Description, {
+        centerText: centerTitle
+      }, description), actions && React__default.createElement(Actions$1, null, actions)), React__default.createElement(ContentWrapper$1, null, React__default.createElement(FadeOverlay, null), React__default.createElement(InnerContent, {
         hasHeader: hasHeader,
         style: _objectSpread$d({}, contentStyle, {}, styleOverrides.content)
       }, children)), footer && React__default.createElement(Footer, {
@@ -28596,7 +28641,8 @@ defineProperty(ModalWrapper$1, "defaultProps", {
   contentStyle: {},
   width: 'fit-content',
   height: 'fit-content',
-  scrollable: true
+  scrollable: true,
+  centerTitle: false
 });
 
 var _global = createCommonjsModule(function (module) {
