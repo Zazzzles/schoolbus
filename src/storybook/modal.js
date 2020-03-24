@@ -23,6 +23,28 @@ storiesOf('Modal', module)
         Content goes here.
       </Modal>
   ))
+  .add('Proximus Title', () => (
+    <Modal
+      isOpen
+      title="Regular title"
+      proximusTitle="Proximus title"
+      description="Duis lectus erat, condimentum eget luctus a, pretium at mauris. Etiam a metus urna."
+    >
+      Content goes here.
+    </Modal>
+  ))
+  .add('Center title', () => (
+    <Modal
+      isOpen
+      centerTitle
+      title="Lorem Ipsum"
+      description="Duis lectus erat, condimentum eget luctus a, pretium at mauris. Etiam a metus urna."
+      width={400}
+      onBack={() => {}}
+    >
+      Content goes here.
+    </Modal>
+  ))
   .add('Subtitle', () => (
     <Modal
       isOpen
@@ -49,6 +71,17 @@ storiesOf('Modal', module)
       onClose={() => { }}
       title="Lorem Ipsum"
       description="Add `onClose` prop for onClose button to display."
+    >
+      Content goes here.
+    </Modal>
+  ))
+  .add('onBack', () => (
+    <Modal
+      isOpen
+      onClose={() => { }}
+      onBack={() => {}}
+      title="Lorem Ipsum"
+      description="Add `onBack` prop for back button to display."
     >
       Content goes here.
     </Modal>

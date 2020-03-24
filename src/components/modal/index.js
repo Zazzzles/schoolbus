@@ -2,10 +2,12 @@ import React, { Component } from 'react'
 import ReactModal from 'react-modal'
 
 import IconButton from '../icon-button'
+import Flex from '../flex'
 
 import { 
   Header, 
   Title, 
+  ProximusTitle,
   Subtitle,
   Description, 
   InnerContent, 
@@ -27,7 +29,8 @@ class ModalWrapper extends Component {
     contentStyle: {},
     width: 'fit-content',
     height: 'fit-content',
-    scrollable: true
+    scrollable: true,
+    centerTitle: false
   }
 
   state = {
@@ -47,12 +50,15 @@ class ModalWrapper extends Component {
 
     const {
       onClose,
+      onBack,
       style,
       contentStyle,
       children,
       width,
       height,
       title,
+      proximusTitle,
+      centerTitle,
       subtitle,
       description,
       actions,
@@ -74,6 +80,15 @@ class ModalWrapper extends Component {
         maxHeight: scrollable ? `calc(95vh - 5em - ${contentSpacing}px)` : 'none',
         maxWidth: 1100,
         overflow: scrollable ? 'auto' : 'visible'
+      },
+      centerText: {
+        textAlign: 'center'
+      },
+      backBtn: {
+        position: "absolute",
+        top: 25,
+        left: 20,
+        zIndex: 1
       }
     }
 
@@ -111,6 +126,16 @@ class ModalWrapper extends Component {
       />
     )
 
+    const renderBackButton = () => (
+      <IconButton
+        onClick={onBack}
+        color="transparent"
+        icon="back"
+        style={styleOverrides.backBtn}
+        noShadow
+      />
+    )
+
     return (
       <ReactModal
         onRequestClose={onClose}
@@ -120,14 +145,24 @@ class ModalWrapper extends Component {
       >
         <>
           {onClose && renderCloseIcon()}
+          {onBack && renderBackButton()}
 
-    
           <Header ref={node => this.headerRef = node}>
-              {title && <Title>{title}</Title>}
-              {subtitle && <Subtitle>{subtitle}</Subtitle>}
-              {description && <Description>{description}</Description>}
-              {actions && <Actions>{actions}</Actions>}
-            </Header>
+            {title && (
+              <Flex 
+                width="100%" 
+                justifyContent={centerTitle ? 'center' : 'flex-start'}
+                ml={onBack && !centerTitle ? '2.5em' : 0}
+              >
+                <Title>{title}</Title>
+                {proximusTitle && <ProximusTitle>{`\xa0| ${proximusTitle}`}</ProximusTitle>}
+              </Flex>
+            )}
+            
+            {subtitle && <Subtitle>{subtitle}</Subtitle>}
+            {description && <Description centerText={centerTitle}>{description}</Description>}
+            {actions && <Actions>{actions}</Actions>}
+          </Header>
       
 
           <ContentWrapper>

@@ -9,6 +9,10 @@ export const Title = styled.h1`
   color: ${({ theme }) => theme.colors.gray.xxdark};
 `
 
+export const ProximusTitle = styled(Title)`
+  font-weight: ${({ theme }) => theme.fontWeights.medium};
+`
+
 export const Subtitle = styled.h2`
   font-size: ${({ theme }) => theme.fontSizes.small};
   font-weight: ${({ theme }) => theme.fontWeights.semi};
@@ -17,10 +21,12 @@ export const Subtitle = styled.h2`
 `
 
 export const Description = styled.p`
+  width: 100%;
   font-size: ${({ theme }) => theme.fontSizes.small};
   font-weight: ${({ theme }) => theme.fontWeights.normal};
   color: ${({ theme }) => theme.colors.gray.dark};
   padding-top: 1.5em;
+  text-align: ${({ centerText }) => centerText ? 'center' : 'left'};
 `
 
 export const Actions = styled.div`
