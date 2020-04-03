@@ -550,7 +550,7 @@ function _templateObject2() {
 }
 
 function _templateObject$5() {
-  var data = taggedTemplateLiteral(["\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  position: relative;\n  border-radius: ", ";\n  border: none;\n  background-color: ", ";\n  pointer-events: ", ";\n  ", "  \n  width: ", ";\n  min-width: ", ";\n  height: ", ";\n  margin: ", ";\n  margin-top: ", ";\n  margin-right: ", ";\n  margin-bottom: ", ";\n  margin-left: ", ";\n  cursor: pointer;\n  \n"]);
+  var data = taggedTemplateLiteral(["\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  position: relative;\n  border-radius: ", ";\n  border: none;\n  background-color: ", ";\n  pointer-events: ", ";\n  box-shadow: ", ";\n  width: ", ";\n  min-width: ", ";\n  height: ", ";\n  margin: ", ";\n  margin-top: ", ";\n  margin-right: ", ";\n  margin-bottom: ", ";\n  margin-left: ", ";\n  &:hover {\n    cursor: ", ";\n    opacity: .9;\n  }\n  &:active {\n    transform: scale(0.98);\n  }\n"]);
 
   _templateObject$5 = function _templateObject() {
     return data;
@@ -596,8 +596,9 @@ var Button$1 = styled__default.button.attrs({
   var disabled = _ref3.disabled;
   return disabled ? 'none' : 'inherit';
 }, function (_ref4) {
-  var noShadow = _ref4.noShadow;
-  return noShadow ? null : 'box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.12), 0 2px 15px 0 rgba(0, 0, 0, 0.08);';
+  var noShadow = _ref4.noShadow,
+      theme = _ref4.theme;
+  return noShadow ? 'unset' : theme.shadows[1];
 }, function (_ref5) {
   var size = _ref5.size;
   return buttonSizes[size];
@@ -622,15 +623,18 @@ var Button$1 = styled__default.button.attrs({
 }, function (_ref12) {
   var ml = _ref12.ml;
   return ml || '0';
+}, function (_ref13) {
+  var disabled = _ref13.disabled;
+  return disabled ? 'default' : 'pointer';
 });
-var Badge = styled__default.span(_templateObject2(), function (_ref13) {
-  var theme = _ref13.theme;
-  return theme.fontWeights.bold;
-}, function (_ref14) {
+var Badge = styled__default.span(_templateObject2(), function (_ref14) {
   var theme = _ref14.theme;
-  return theme.colors.primary;
+  return theme.fontWeights.bold;
 }, function (_ref15) {
   var theme = _ref15.theme;
+  return theme.colors.primary;
+}, function (_ref16) {
+  var theme = _ref16.theme;
   return theme.colors.white;
 });
 
@@ -1508,6 +1512,7 @@ function (_PureComponent) {
           otherProps = objectWithoutProperties(_this$props3, ["badge", "children"]);
 
       return React__default.createElement(Button$1, _extends_1({
+        theme: theme,
         badge: badge
       }, otherProps), badge > 0 && React__default.createElement(Badge, null, badge), children || this.renderIcon());
     }
@@ -1776,7 +1781,7 @@ function _templateObject2$2() {
 }
 
 function _templateObject$8() {
-  var data = taggedTemplateLiteral(["\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  background-color: ", ";\n  color: ", ";\n  height: 2.5em;\n  min-width: 80px;\n  border-radius: ", ";\n  box-shadow: ", ";\n  border: ", ";\n  font-size: ", ";\n  font-weight: ", ";\n  font-family: ", ";\n  ", "\n  ", "\n"]);
+  var data = taggedTemplateLiteral(["\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  background-color: ", ";\n  color: ", ";\n  height: 2.5em;\n  min-width: 80px;\n  border-radius: ", ";\n  box-shadow: ", ";\n  border: ", ";\n  font-size: ", ";\n  font-weight: ", ";\n  font-family: ", ";\n  cursor: ", ";\n  ", "\n  ", "\n  &:hover {\n    border: ", ";\n  }\n  transition: border 200ms ease-out;\n"]);
 
   _templateObject$8 = function _templateObject() {
     return data;
@@ -1815,14 +1820,24 @@ var Container = styled__default.button.attrs({
 }, function (_ref8) {
   var theme = _ref8.theme;
   return theme.fonts.Montserrat;
-}, styledSystem.space, styledSystem.layout);
+}, function (_ref9) {
+  var onClick = _ref9.onClick,
+      disabled = _ref9.disabled;
+  return onClick && !disabled ? 'pointer' : 'default';
+}, styledSystem.space, styledSystem.layout, function (_ref10) {
+  var onClick = _ref10.onClick,
+      disabled = _ref10.disabled,
+      active = _ref10.active,
+      theme = _ref10.theme;
+  return onClick && !disabled && !active ? "1px solid ".concat(theme.colors.gray.default) : 'default';
+});
 var Text$1 = styled__default.span(_templateObject2$2());
-var Count = styled__default.span(_templateObject3$1(), function (_ref9) {
-  var theme = _ref9.theme;
+var Count = styled__default.span(_templateObject3$1(), function (_ref11) {
+  var theme = _ref11.theme;
   return theme.radii.full;
-}, function (_ref10) {
-  var theme = _ref10.theme,
-      active = _ref10.active;
+}, function (_ref12) {
+  var theme = _ref12.theme,
+      active = _ref12.active;
   return active ? theme.colors.orange[0] : theme.colors.gray.light;
 });
 
@@ -20876,7 +20891,7 @@ function _templateObject2$6() {
 }
 
 function _templateObject$g() {
-  var data = taggedTemplateLiteral(["\n  position: relative;\n  width: fit-content;\n  background-color: ", ";\n  margin: 0;\n"]);
+  var data = taggedTemplateLiteral(["\n  position: relative;\n  width: fit-content;\n  background-color: ", ";\n  margin: 0;\n  font-size: unset;\n  &:hover {\n    cursor: pointer;\n  }\n"]);
 
   _templateObject$g = function _templateObject() {
     return data;
@@ -26174,7 +26189,7 @@ var TypeInput = function TypeInput(_ref) {
 var index$7 = formik.connect(TypeInput);
 
 function _templateObject$j() {
-  var data = taggedTemplateLiteral(["\n  padding: 0;\n  margin-top: .7em;\n  font-family: ", ";\n  font-weight: ", ";\n  font-size: ", ";\n  color: ", ";\n  background-color: ", ";\n  cursor: pointer;\n"]);
+  var data = taggedTemplateLiteral(["\n  padding: .5em 2em .5em 1em;\n  width: 100%;\n  text-align: left;\n  font-family: ", ";\n  font-weight: ", ";\n  font-size: ", ";\n  color: ", ";\n  background-color: ", ";\n  cursor: pointer;\n  &:hover {\n    background-color: ", ";\n  }\n  &:active {\n    background-color: ", ";\n  }\n"]);
 
   _templateObject$j = function _templateObject() {
     return data;
@@ -26197,6 +26212,12 @@ var Button$2 = styled__default.button(_templateObject$j(), function (_ref) {
 }, function (_ref5) {
   var theme = _ref5.theme;
   return theme.colors.transparent;
+}, function (_ref6) {
+  var theme = _ref6.theme;
+  return theme.colors.gray.xlight;
+}, function (_ref7) {
+  var theme = _ref7.theme;
+  return theme.colors.gray.light;
 });
 
 var Link = function Link(_ref) {
@@ -26220,7 +26241,7 @@ var OverflowMenu = function OverflowMenu(_ref2) {
     closeOnSelect: true,
     position: position,
     contentStyle: {
-      padding: '.2em 2em .7em 1em'
+      padding: '.5em 0'
     },
     xOffset: "-20px",
     yOffset: "-30px"
