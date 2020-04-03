@@ -106,6 +106,7 @@ class IconButton extends PureComponent {
 
     return (
       <Button
+        theme={theme}
         badge={badge}
         {...otherProps}
       >

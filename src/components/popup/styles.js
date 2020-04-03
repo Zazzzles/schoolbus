@@ -61,6 +61,10 @@ export const Trigger = styled.div`
   width: fit-content;
   background-color: ${({ theme }) => theme.colors.transparent};
   margin: 0;
+  font-size: unset;
+  &:hover {
+    cursor: pointer;
+  }
 `
 
 export const ContentWrapper = styled.div`

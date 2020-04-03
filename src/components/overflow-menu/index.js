@@ -15,7 +15,7 @@ const OverflowMenu = ({ position, options, NextLink, ...otherProps }) => {
     <Popup
       closeOnSelect
       position={position}
-      contentStyle={{ padding: '.2em 2em .7em 1em' }}
+      contentStyle={{ padding: '.5em 0' }}
       xOffset="-20px"
       yOffset="-30px"
       {...otherProps}

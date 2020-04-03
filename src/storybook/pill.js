@@ -1,8 +1,8 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { text } from '@storybook/addon-knobs'
 
 import { Pill } from '../'
+import { Flex } from '../'
 
 import mdx from '../docs/pill.mdx'
 
@@ -11,8 +11,16 @@ storiesOf('Pill', module)
     component: Pill,
     docs: mdx,
   })
-  .add('Active', () => <Pill active>Active</Pill>)
-  .add('Inactive (default)', () => <Pill>Inactive</Pill>)
-  .add('Count, Active', () => <Pill count={5} active>Active</Pill>)
-  .add('Count, Inactive', () => <Pill count={100} variant={text('Variant', 'inactive')}>Inactive</Pill>)
-  .add('Bordered', () => <Pill bordered>Bordered</Pill>)
+  .add('Active', () => (
+    <Flex>
+      <Pill onClick={() => { }} active>Active</Pill>
+      <Pill ml="1em" onClick={() => { }} count={5} active>Count</Pill>   
+    </Flex>
+  ))
+  .add('Inactive', () => (
+    <Flex>
+      <Pill onClick={() => { }}>Inactive (default)</Pill>
+      <Pill ml="1em" onClick={() => { }} count={100}>Count</Pill>
+      <Pill ml="1em" onClick={() => { }} bordered>Bordered</Pill>
+    </Flex>
+  ))

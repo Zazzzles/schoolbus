@@ -21,8 +21,15 @@ export const Container = styled.button.attrs({
   font-size: ${({ theme }) => theme.fontSizes.small};
   font-weight: ${({ theme }) => theme.fontWeights.bold};
   font-family: ${({ theme }) => theme.fonts.Montserrat};
+  cursor: ${({ onClick, disabled }) => onClick && !disabled ? 'pointer' : 'default'};
   ${space}
   ${layout}
+  &:hover {
+    border: ${({ onClick, disabled, active, theme }) => onClick && !disabled && !active
+      ? `1px solid ${theme.colors.gray.default}` : 'default'
+    };
+  }
+  transition: border 200ms ease-out;
 `
 
 export const Text = styled.span`

@@ -33,9 +33,7 @@ export const Button = styled.button.attrs({
   border: none;
   background-color: ${props => getButtonColor(props)};
   pointer-events: ${({ disabled }) => disabled ? 'none' : 'inherit'};
-  ${({ noShadow }) => noShadow ? null : (
-    'box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.12), 0 2px 15px 0 rgba(0, 0, 0, 0.08);'
-  )}  
+  box-shadow: ${({ noShadow, theme }) => noShadow ? 'unset' : theme.shadows[1]};
   width: ${({ size }) => buttonSizes[size]};
   min-width: ${({ size }) => buttonSizes[size]};
   height: ${({ size }) => buttonSizes[size]};
@@ -44,8 +42,13 @@ export const Button = styled.button.attrs({
   margin-right: ${({ mr }) => mr || '0'};
   margin-bottom: ${({ mb }) => mb || '0'};
   margin-left: ${({ ml }) => ml || '0'};
-  cursor: pointer;
-  
+  &:hover {
+    cursor: ${({ disabled }) => disabled ? 'default' : 'pointer'};
+    opacity: .9;
+  }
+  &:active {
+    transform: scale(0.98);
+  }
 `
 
 export const Badge = styled.span`
