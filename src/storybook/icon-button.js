@@ -71,5 +71,10 @@ storiesOf('Input | Icon Button', module)
       <Flex m=".5em 0 2em">
         <IconButton noShadow />
       </Flex>
+
+      <Text>disabled <em>(boolean | default = false)</em></Text>
+      <Flex m=".5em 0 2em">
+        <IconButton disabled />
+      </Flex>
     </>
   ))
