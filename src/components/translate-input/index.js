@@ -123,7 +123,7 @@ class TranslationInput extends Component {
             {...inputProps}
           />
           <TranslateIconContainer onClick={this.toggleModal}>
-            <Translate size={fontSizes.normal} color={colors.gray.dark} />
+            <Translate size={fontSizes.normal} color={colors.gray.default} />
           </TranslateIconContainer>
           <ModalWrapper isOpen={showModal} onRequestClose={this.toggleModal}>
             <TranslateModal

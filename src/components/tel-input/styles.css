@@ -1,13 +1,15 @@
 .react-tel-input > input.form-control {
-  background-color: #f4f3f4 !important;
+  background-color: #f1f1f1 !important;
   border: none !important;
   height: 38px !important;
   width: 100% !important;
+  color: #47494b;
 }
 
 .react-tel-input > input.form-control:disabled {
   background-color: #fff !important;
-  border: 1px solid #d0d0d0 !important;
+  border: 1px solid #dadada !important;
+  color: #47494b;
 }
 
 .react-tel-input .flag-dropdown.open-dropdown .selected-flag,

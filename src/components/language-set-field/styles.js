@@ -7,14 +7,14 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   border-radius: ${({ theme }) => theme.radii.small};
-  background-color: ${({theme}) => theme.colors.gray.xlight};
+  background-color: ${({theme}) => theme.colors.gray.xxlight};
   margin-bottom: 1em;
 `
 
 export const Inner = styled.div`
   width: 14em;
-  border: solid 1px ${({theme}) => theme.colors.gray.light};
-  border-radius: 0.5em;
+  border: solid 1px ${({theme}) => theme.colors.gray.xlight};
+  border-radius: ${({ theme }) => theme.radii.small};
   background-color: ${({theme}) => theme.colors.white};
   height: 100%;
   display: flex;
@@ -29,12 +29,13 @@ export const Input = styled(StyledInput)`
 
 export const LanguageText = styled.div`
   font-size: ${({ theme }) => theme.fontSizes.small};
-  font-weight: ${({ theme }) => theme.fontWeights.semi};
-  color: ${({ theme }) => theme.colors.gray.xxdark};
+  font-weight: ${({ theme }) => theme.fontWeights.bold};
+  color: ${({ theme }) => theme.colors.black};
 `
 
 export const DefaultText = styled.div`
   padding-left: 0.5em;
+  font-weight: ${({ theme }) => theme.fontWeights.medium};
   font-size: ${({ theme }) => theme.fontSizes.small};
-  color: ${({ theme }) => theme.colors.gray.xxdark};
+  color: ${({ theme }) => theme.colors.gray.black};
 `

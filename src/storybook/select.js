@@ -8,11 +8,11 @@ const options = [{ label: 'option 1', value: '1' }, { label: 'option 2', value: 
 storiesOf('Input | Select', module)
   .addParameters({ component: Select })
   .add('Empty', () => <Select name="1" placeholder="Empty" />)
-  .add('With options', () => <Select options={options} label="Label" name="2" />)
+  .add('With options', () => <Select value={options[0]} options={options} label="Label" name="2" />)
   .add('Light', () => <Select variant="light" options={options} />)
   .add('Borderless', () => <Select variant="borderless" options={options} />)
   .add('Light + Rounded', () => (
-    <Select shape="rounded" disabled variant="light" hasShadow options={options} />
+    <Select value={options[0]} shape="rounded" variant="light" hasShadow options={options} />
   ))
   .add('Disabled', () => <Select disabled options={options} />)
   .add('Value', () => (

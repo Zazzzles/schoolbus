@@ -4,7 +4,7 @@ import { typography, space, color } from 'styled-system'
 import theme from '../../config/theme'
 
 const Text = styled.p`
-  color: ${({theme}) => theme.colors.gray.xxdark};
+  color: ${({theme}) => theme.colors.gray.xdark};
   ${typography}
   ${space}
   ${color}

@@ -61,7 +61,7 @@ const DateInput = ({
         autoComplete='off'
         {...inputProps}
       />
-      <CalendarToday style={iconStyles} color={colors.gray.dark} />
+      <CalendarToday style={iconStyles} color={colors.gray.default} />
     </InputWrapper>
   )
 }

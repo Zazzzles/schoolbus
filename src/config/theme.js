@@ -37,11 +37,11 @@ addAliases(fontSizes, fontSizeAliases)
 
 export const colors = {
   white: '#fff',
-  gray: ['#f4f3f4', '#dfdfdf', '#d0d0d0', '#777879', '#808080', '#47494B'],
+  gray: ['#f1f1f1', '#dadada', '#a8a8a8', '#7f7f7f', '#5f6163', '#47494b', '#2e2e2e'],
   black: '#212325',
   transparent: 'transparent',
   blue: ['#80dcff', '#4dceff', '#00abeb', '#0082b3', '#005d80'],
-  green: '#37b049',
+  green: ['#85E2A2', '#37b049'],
   red: ['#f6bdbb', '#ed7470', '#e53933', '#9f1814', '#71110e'],
   yellow: '#f8b31c',
   orange: ['#fff8eb', '#ffa400']
@@ -51,7 +51,7 @@ colors.primary = colors.orange[1]
 const orangeColorAliases = ['primaryLight', 'primary']
 addAliases(colors.orange, orangeColorAliases)
 
-const grayColorAliases = ['xlight', 'light', 'default', 'dark', 'xdark', 'xxdark']
+const grayColorAliases = ['xxlight', 'xlight', 'light', 'default', 'dark', 'xdark', 'xxdark']
 addAliases(colors.gray, grayColorAliases)
 
 const fallbackFontStack = `-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif`
@@ -104,7 +104,7 @@ const buttons = {
     fontWeight: fontWeights[5],
   },
   tertiary: {
-    color: colors.gray[5],
+    color: colors.gray[3],
     backgroundColor: colors.white,
     boxShadow: shadows[2],
     fontWeight: fontWeights[5],

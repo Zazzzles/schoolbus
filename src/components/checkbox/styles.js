@@ -11,7 +11,7 @@ export const StyledInput = styled.input.attrs({
   top: -8px;
   display: block;
   margin: 0;
-  border-radius: ${props => props.theme.radii.full};
+  border-radius: ${({theme}) => theme.radii.full};
   width: 40px;
   height: 40px;
   background-color: rgba(0, 0, 0, 0.6);
@@ -24,7 +24,7 @@ export const StyledInput = styled.input.attrs({
 
   &:checked,
   &:indeterminate {
-    background-color: ${props => props.theme.colors.gray};
+    background-color: ${({theme}) => theme.colors.gray};
   }
 
   &:active {
@@ -34,7 +34,7 @@ export const StyledInput = styled.input.attrs({
   }
 
   &:active + span::before {
-    border-color: ${props => props.theme.colors.gray};
+    border-color: ${({theme}) => theme.colors.gray};
   }
 
   &:checked:active + span::before {
@@ -60,10 +60,11 @@ export const StyledLabel = styled.label`
   z-index: 0;
   position: relative;
   display: inline-block;
-  color: rgba(0, 0, 0, 0.87);
-  font-family: ${props => props.theme.fonts.Montserrat};
-  font-size: ${props => props.theme.fontSizes.medium};
-  line-height: ${props => props.theme.lineHeights.normal};
+  color: ${({ theme }) => theme.colors.gray.dark};
+  font-family: ${({theme}) => theme.fonts.Montserrat};
+  font-size: ${({theme}) => theme.fontSizes.small};
+  line-height: ${({theme}) => theme.lineHeights.relaxed};
+  font-weight: ${({ theme }) => theme.fontWeights.semi};
 
   &:hover > ${/* sc-selector */ StyledInput} {
     opacity: 0.04;
@@ -81,7 +82,7 @@ export const StyledSpan = styled.span`
   display: inline-block;
   width: 100%;
 
-  ${({ labelled }) => `
+  ${({ labelled, theme }) => `
     &::before {
       content: '';
       display: inline-block;
@@ -89,7 +90,7 @@ export const StyledSpan = styled.span`
       margin: ${labelled ? '3px 11px 3px 1px' : '3px 1px'};
       border: solid 2px; /* Safari */
       border-color: rgba(0, 0, 0, 0.6);
-      border-radius: ${props => props.theme.radii.xsmall};
+      border-radius: ${theme.radii.xsmall};
       width: 18px;
       height: 18px;
       vertical-align: top;

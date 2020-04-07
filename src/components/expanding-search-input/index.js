@@ -20,17 +20,15 @@ class ExpandingSearchInput extends Component {
   }
 
   toggleExpanded = () => {
-    const { expanded, value } = this.state
-
-    this.setState({
+    this.setState(({expanded, value}) => ({
       expanded: !expanded,
-      value: expanded ? value : '',
-    }, () => this.input.current.focus())
+      value: expanded ? value : ''
+    }), () => this.input.current.focus())
   }
 
   render() {
     const { expanded } = this.state
-    const { onChange, ...otherProps } = this.props
+    const { onChange } = this.props
 
     return (
       <ContainerAlt>
@@ -50,7 +48,7 @@ class ExpandingSearchInput extends Component {
           }}
           bg='white'
           size={fontSizes.large}
-          color={colors.gray.dark}
+          color={colors.gray.default}
         />
       </ContainerAlt>
     )

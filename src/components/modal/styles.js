@@ -6,7 +6,7 @@ export const Header = styled.div`
 export const Title = styled.h1`
   font-size: ${({ theme }) => theme.fontSizes.large};
   font-weight: ${({ theme }) => theme.fontWeights.bold};
-  color: ${({ theme }) => theme.colors.gray.xxdark};
+  color: ${({ theme }) => theme.colors.gray.xdark};
 `
 
 export const ProximusTitle = styled(Title)`
@@ -15,8 +15,8 @@ export const ProximusTitle = styled(Title)`
 
 export const Subtitle = styled.h2`
   font-size: ${({ theme }) => theme.fontSizes.small};
-  font-weight: ${({ theme }) => theme.fontWeights.semi};
-  color: ${({ theme }) => theme.colors.gray.xxdark};
+  font-weight: ${({ theme }) => theme.fontWeights.default};
+  color: ${({ theme }) => theme.colors.gray.xdark};
   padding-top: 2.5em;
 `
 

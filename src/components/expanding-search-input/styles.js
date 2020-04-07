@@ -3,7 +3,7 @@ import { radii, fontSizes } from '../../config/theme'
 
 export const ContainerAlt = styled.div`
   position: relative;
-  height: 40px;
+  height: 38px;
   display: flex;
   align-items: center;
   width: auto;
@@ -26,8 +26,8 @@ export const Input = styled.input`
 
 export const InputAlt = styled.input`
   border: none;
-  background: ${({ theme }) => theme.colors.gray.xlight};
-  color: ${({ theme }) => theme.colors.gray.dark};
+  background: ${({ theme }) => theme.colors.gray.xxlight};
+  color: ${({ theme }) => theme.colors.gray.xdark};
   border-radius: ${({ theme }) => theme.radii.xlarge};
   padding: 0.6em 1em;
   margin-right: 1em;
@@ -39,6 +39,9 @@ export const InputAlt = styled.input`
   font-size: ${({theme}) => theme.fontSizes.small};
   font-family: ${({ theme }) => theme.fonts.Montserrat};
   height: 100%;
+  &::placeholder {
+    ${({ theme }) => theme.colors.gray.light};
+  }
 `
 
 export const iconAltStyling = {
