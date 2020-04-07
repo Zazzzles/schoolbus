@@ -20,7 +20,7 @@ export const StyledCardHeader = styled.header`
 export const StyledCardDivider = styled.div`
   width: 100%;
   margin-top: 1.5em;
-  border-bottom: ${({ theme }) => `2px solid ${theme.colors.gray.xlight}`};
+  border-bottom: ${({ theme }) => `2px solid ${theme.colors.gray.xxlight}`};
 `
 
 export const StyledCardTitle = styled.h2`
@@ -31,12 +31,12 @@ export const StyledCardTitle = styled.h2`
   padding: 0 0.5em;
   text-transform: uppercase;
   letter-spacing: ${({theme}) => theme.letterSpacings.tight};
-  color: ${({theme}) => theme.colors.gray[4]};
+  color: ${({theme}) => theme.colors.gray.default};
 `
 
 export const StyledCardDescription = styled.p`
-  color: ${({theme}) => theme.colors.gray[3]};
-  font-weight: ${({theme}) => theme.fontWeights.thin};
+  color: ${({theme}) => theme.colors.gray.default};
+  font-weight: ${({theme}) => theme.fontWeights.normal};
   font-size: ${({theme}) => theme.fontSizes.small};
   padding-right: 5em;
   margin-top: 1.5em;

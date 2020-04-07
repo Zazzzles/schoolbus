@@ -45,13 +45,20 @@ export const StyledButton = styled.button.attrs({
   cursor: pointer;
   transition: transform 0.1s;
   min-height: 2.9em;
+  &:hover {
+    opacity: .9;
+  }
   &:active {
-    transform: ${({ shape }) => (shape === SHAPES.block ? 'scale(0.99)' : 'scale(0.95)')};
+    transform: ${({ shape }) => (shape === SHAPES.block ? 'scale(1)' : 'scale(0.99)')};
+    opacity: 1;
+  }
+  &:disabled {
+    opacity: 1;
+    cursor: default;
   }
   > div {
     margin: auto;
   }
-
   ${buttonStyle}
   ${radius}
   ${size}

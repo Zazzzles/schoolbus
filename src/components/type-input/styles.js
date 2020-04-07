@@ -16,11 +16,11 @@ export const Value = styled.button`
   cursor: pointer;
 
   ${({ selected, theme }) => selected ? `
-    color: ${theme.colors.gray.xxdark};
+    color: ${theme.colors.gray.xdark};
     background-color: ${theme.colors.white};
-    box-shadow: 0 0 1em 0 ${theme.colors.gray.default};
+    box-shadow: ${theme.shadows[1]}
   ` : `
     color: ${theme.colors.gray.dark};
-    background-color: ${theme.colors.gray.xlight};
+    background-color: ${theme.colors.gray.xxlight};
   `}
 `

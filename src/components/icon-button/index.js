@@ -38,7 +38,8 @@ class IconButton extends PureComponent {
     size: 'medium',
     color: 'primary',
     noShadow: false,
-    onClick: () => {}
+    onClick: () => {},
+    iconStyle: {}
   }
 
   iconTypes = {
@@ -75,12 +76,12 @@ class IconButton extends PureComponent {
     if (iconColor) {
       if (Object.keys(colors).includes(iconColor)) {
         const selectedColor = colors[iconColor]
-        return Array.isArray(selectedColor) ? selectedColor[2] : selectedColor
+        return Array.isArray(selectedColor) ? selectedColor[1] : selectedColor
       }
       return iconColor
     }
 
-    return color === 'primary' ? colors.white : colors.gray.xdark
+    return color === 'primary' ? colors.white : colors.gray.default
   }
 
   renderIcon = () => {

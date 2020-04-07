@@ -9,7 +9,7 @@ const getButtonColor = ({ theme, color, disabled, icon, badge }) => {
 
   if (Object.keys(themeColors).includes(color)) {
     const selectedColor = themeColors[color]
-    return Array.isArray(selectedColor) ? selectedColor[2] : selectedColor
+    return Array.isArray(selectedColor) ? selectedColor[1] : selectedColor
   }
   return color
 }

@@ -9,24 +9,27 @@ import createDefaultInputProps from '../../utils/create-input-defaults'
 import { styleOverride } from './styles' 
 
 
-const Select = ({
-  shape,
-  variant,
-  hasShadow,
-  disabled,
-  disableEmpty,
-  options,
-  formik,
-  value,
-  onBlur,
-  onChange,
-  placeholder,
-  fontSize,
-  multiple,
-  alertText: alertTextOverride,
-  name,
-  ...otherProps
-}) => {
+const Select = props => {
+
+  const {
+    shape,
+    variant,
+    hasShadow,
+    disabled,
+    disableEmpty,
+    options,
+    formik,
+    value,
+    onBlur,
+    onChange,
+    placeholder,
+    fontSize,
+    multiple,
+    alertText: alertTextOverride,
+    name,
+    ...otherProps
+  } = props
+
   const { alertText, hasFormik, ...inputDefaults } = createDefaultInputProps({
     alertText: alertTextOverride,
     value,
@@ -47,7 +50,7 @@ const Select = ({
         onChange={onChange || defaultOnChange}
         value={value || defaultValue}
         placeholder={placeholder}
-        styles={styleOverride({ shape, variant, fontSize, hasShadow })}
+        styles={styleOverride(props)}
         name={name}
         options={options}
         isDisabled={disableEmpty ? disabled || options.length === 0 : disabled}

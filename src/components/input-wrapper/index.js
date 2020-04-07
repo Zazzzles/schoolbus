@@ -5,7 +5,7 @@ import { layout, space } from 'styled-system'
 const StyledLabel = styled.label`
   display: block;
   font-family: inherit;
-  color: ${({theme}) => theme.colors.gray.xxdark};
+  color: ${({theme}) => theme.colors.gray.dark};
   font-weight: ${({theme}) => theme.fontWeights.bold};
   font-size: ${({theme}) => theme.fontSizes.xsmall};
   margin-bottom: 0.4em;

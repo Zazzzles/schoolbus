@@ -1,4 +1,4 @@
-import { colors, radii, fontSizes, fonts } from '../../config/theme'
+import { colors, radii, fontSizes, fonts, fontWeights } from '../../config/theme'
 
 function getBackgroundColor(variant) {
   switch (variant) {
@@ -7,22 +7,23 @@ function getBackgroundColor(variant) {
     case 'light':
       return colors.white
     default:
-      return colors.gray.xlight
+      return colors.gray.xxlight
   }
 }
 
-export const styleOverride = ({ fontSize, shape, variant, hasShadow }) => ({
+export const styleOverride = ({ fontSize, shape, variant, hasShadow, disabled }) => ({
   indicatorSeparator: () => ({
     display: 'none',
   }),
   control: (provided, state) => {
     return {
       ...provided,
-      backgroundColor: getBackgroundColor(variant),
+      color: colors.gray.xdark,
+      backgroundColor: disabled ? colors.white : getBackgroundColor(variant),
       border: state.isDisabled && !hasShadow && variant !== 'borderless'
-        ? `border: 1px solid ${colors.gray.default}`
+        ? `border: 1px solid ${colors.gray.xlight}`
         : 'none',
-      borderColor: state.isDisabled ? colors.gray.default : null,
+      borderColor: state.isDisabled ? colors.gray.xlight : null,
       fontFamily: fonts.Montserrat,
       fontSize: fontSize ? fontSizes[fontSize] : fontSizes.small,
       borderRadius: shape === 'rounded' ? radii.full : radii.small,
@@ -31,16 +32,17 @@ export const styleOverride = ({ fontSize, shape, variant, hasShadow }) => ({
       overflow: 'hidden',
       width: '100%',
       ...(variant === 'light' && {
-        border: `solid 1px ${colors.gray.default}`,
+        border: `solid 1px ${colors.gray.xlight}`,
       }),
+      fontWeight: fontWeights[shape === 'rounded' ? 'semi' : 'normal']
     }
   },
 
   placeholder: () => ({
-    color: colors.gray.default,
+    color: colors.gray.light,
   }),
   singleValue: () => ({
-    color: colors.gray.xxdark,
+    color: colors.gray.xdark,
   }),
   indicatorsContainer: (provided, state) => ({
     display: state.isDisabled ? 'none' : 'flex',
@@ -51,13 +53,13 @@ export const styleOverride = ({ fontSize, shape, variant, hasShadow }) => ({
       color = colors.xlight
     }
     if (isSelected) {
-      color = colors.gray.light
+      color = colors.gray.xxlight
     }
 
     return {
       ...defaultStyles,
       fontSize: fontSizes.small,
-      color: colors.black,
+      color: colors.gray.xdark,
       backgroundColor: color,
       ':active': {
         ...defaultStyles[':active'],

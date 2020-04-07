@@ -12,8 +12,10 @@ const StyledLabel = styled.label`
   align-items: center;
   cursor: pointer;
   font-family: ${({theme}) => theme.fonts.Montserrat};
-  font-size: ${({theme}) => theme.fontSizes.medium};
+  font-size: ${({theme}) => theme.fontSizes.small};
+  font-weight: ${({ theme }) => theme.fontWeights.semi};
   line-height: ${({theme}) => theme.lineHeights.normal};
+  color: ${({ theme }) => theme.colors.gray.dark};
 `
 
 const StyledSpan = styled.span`

@@ -8,14 +8,14 @@ export const Container = styled.button.attrs({
   align-items: center;
   justify-content: center;
   background-color: ${({ theme }) => theme.colors.transparent};
-  color: ${({ active, theme }) => active ? theme.colors.primary : theme.colors.gray.xdark};
+  color: ${({ active, theme }) => active ? theme.colors.primary : theme.colors.gray.default};
   height: 2.5em;
   min-width: 80px;
   border-radius: ${({ theme }) => theme.radii.full};
   box-shadow: ${({ active, theme }) => active ? theme.shadows[1] : 'none'};
   border: ${({ active, theme, count, bordered }) => (
     `1px solid ${(count >= 0 && !active) || (bordered && !active) 
-      ? theme.colors.gray.light 
+      ? theme.colors.gray.xlight 
       : theme.colors.transparent}`
   )};
   font-size: ${({ theme }) => theme.fontSizes.small};
@@ -26,7 +26,7 @@ export const Container = styled.button.attrs({
   ${layout}
   &:hover {
     border: ${({ onClick, disabled, active, theme }) => onClick && !disabled && !active
-      ? `1px solid ${theme.colors.gray.default}` : 'default'
+      ? `1px solid ${theme.colors.gray.light}` : 'default'
     };
   }
   transition: border 200ms ease-out;
@@ -47,6 +47,6 @@ export const Count = styled.span`
   margin-right: .3em;
   border-radius: ${({ theme }) => theme.radii.full};
   background-color: ${({ theme, active }) => (
-    active ? theme.colors.orange[0] : theme.colors.gray.light
+    active ? theme.colors.orange[0] : theme.colors.gray.xxlight
   )};
 `

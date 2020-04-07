@@ -19,7 +19,7 @@ export const ToggleLabel = styled.label`
   cursor: pointer;
   position: relative;
   height: 40px;
-  background-color: ${({ theme }) => theme.colors.gray.xdark};
+  background-color: ${({ theme }) => theme.colors.gray.dark};
 
   ::before {
     background: ${({ theme }) => theme.colors.gray.default};
@@ -34,8 +34,8 @@ export const ToggleLabel = styled.label`
   }
 
   ::after {
-    background: ${({ theme }) => theme.colors.gray.xdark};
-    border-radius: 16px;
+    background: ${({ theme }) => theme.colors.gray.light};
+    border-radius: ${({ theme }) => theme.radii.full};
     box-shadow: ${({ theme }) => theme.shadows[0]};
     content: '';
     height: 24px;
@@ -49,7 +49,7 @@ export const ToggleLabel = styled.label`
 
   /* stylelint-disable-next-line selector-type-no-unknown */
   ${ToggleInput}:checked + &::before {
-    background: ${({ theme }) => theme.colors.gray.default};
+    background: ${({ theme }) => theme.colors.gray.light};
     opacity: 0.5;
   }
 
