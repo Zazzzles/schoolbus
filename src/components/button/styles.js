@@ -55,6 +55,7 @@ export const StyledButton = styled.button.attrs({
   &:disabled {
     opacity: 1;
     cursor: default;
+    background-color: ${({ theme }) => theme.colors.gray.xlight};
   }
   > div {
     margin: auto;
