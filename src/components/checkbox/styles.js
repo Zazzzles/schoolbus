@@ -64,7 +64,8 @@ export const StyledLabel = styled.label`
   font-family: ${({theme}) => theme.fonts.Montserrat};
   font-size: ${({theme}) => theme.fontSizes.small};
   line-height: ${({theme}) => theme.lineHeights.relaxed};
-  font-weight: ${({ theme }) => theme.fontWeights.semi};
+  font-weight: ${({ theme }) => theme.fontWeights.default};
+
 
   &:hover > ${/* sc-selector */ StyledInput} {
     opacity: 0.04;
@@ -87,7 +88,7 @@ export const StyledSpan = styled.span`
       content: '';
       display: inline-block;
       box-sizing: border-box;
-      margin: ${labelled ? '3px 11px 3px 1px' : '3px 1px'};
+      margin: ${labelled ? '2px 11px 3px 1px' : '3px 1px'};
       border: solid 2px; /* Safari */
       border-color: rgba(0, 0, 0, 0.6);
       border-radius: ${theme.radii.xsmall};

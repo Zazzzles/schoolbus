@@ -32,6 +32,9 @@ storiesOf('Input | Button', module)
       <Button variant="primary" isLoading m={2}>
         Submit
       </Button>
+      <Button variant="primary" disabled m={2}>
+        disabled
+      </Button>
     </div>
   ))
   .add('Sizes', () => (

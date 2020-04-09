@@ -21,6 +21,7 @@ export const StyledCardDivider = styled.div`
   width: 100%;
   margin-top: 1.5em;
   border-bottom: ${({ theme }) => `2px solid ${theme.colors.gray.xxlight}`};
+  opacity: 0.7;
 `
 
 export const StyledCardTitle = styled.h2`

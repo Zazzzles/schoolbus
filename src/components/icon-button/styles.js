@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 const getButtonColor = ({ theme, color, disabled, icon, badge }) => {
   const isGray = disabled || (badge && color === 'white')
-  if (isGray) return theme.colors.gray.xlight
+  if (isGray) return theme.colors.gray.xxlight
 
   const { colors: themeColors } = theme
   if (icon === 'delete') return themeColors.red[1]

@@ -77,6 +77,7 @@ export const shadows = [
   `${baseShadow}0 4px 8px 0 ${shadowColor}`,
   `${baseShadow}0 12px 12px 0 ${shadowColor}`,
   `${baseShadow}0 24px 24px 0 ${shadowColor}`,
+  `${baseShadow}0 0 20px 0 ${shadowColor}`
 ]
 
 export const radii = [0, '2px', '5px', '10px', '15px', '20px', '30px', '9999px']
@@ -99,7 +100,7 @@ const buttons = {
   },
   secondary: {
     color: colors.white,
-    backgroundColor: colors.gray[2],
+    backgroundColor: colors.gray[1],
     boxShadow: shadows[2],
     fontWeight: fontWeights[5],
   },

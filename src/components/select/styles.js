@@ -32,7 +32,7 @@ export const styleOverride = ({ fontSize, shape, variant, hasShadow, disabled })
       overflow: 'hidden',
       width: '100%',
       ...(variant === 'light' && {
-        border: `solid 1px ${colors.gray.xlight}`,
+        border: `solid 1px ${colors.gray.xxlight}`,
       }),
       fontWeight: fontWeights[shape === 'rounded' ? 'semi' : 'normal']
     }
@@ -50,7 +50,7 @@ export const styleOverride = ({ fontSize, shape, variant, hasShadow, disabled })
   option: (defaultStyles, { isSelected, isFocused }) => {
     let color = colors.white
     if (isFocused) {
-      color = colors.xlight
+      color = colors.gray.xxlight
     }
     if (isSelected) {
       color = colors.gray.xxlight

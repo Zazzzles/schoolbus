@@ -15,8 +15,8 @@ export const ProximusTitle = styled(Title)`
 
 export const Subtitle = styled.h2`
   font-size: ${({ theme }) => theme.fontSizes.small};
-  font-weight: ${({ theme }) => theme.fontWeights.default};
-  color: ${({ theme }) => theme.colors.gray.xdark};
+  font-weight: ${({ theme }) => theme.fontWeights.semi};
+  color: ${({ theme }) => theme.colors.gray.dark};
   padding-top: 2.5em;
 `
 
@@ -24,7 +24,7 @@ export const Description = styled.p`
   width: 100%;
   font-size: ${({ theme }) => theme.fontSizes.small};
   font-weight: ${({ theme }) => theme.fontWeights.normal};
-  color: ${({ theme }) => theme.colors.gray.dark};
+  color: ${({ theme }) => theme.colors.gray.default};
   padding-top: 1.5em;
   text-align: ${({ centerText }) => centerText ? 'center' : 'left'};
 `
