@@ -63,7 +63,7 @@ var letterSpacingsAliases = ['tighter', 'tight', 'normal', 'wide', 'wider', 'wid
 addAliases(letterSpacings, letterSpacingsAliases);
 var shadowColor = 'rgba(0, 0, 0, 0.12)';
 var baseShadow = '0 0 2px 0 rgba(0,0,0,.0625),';
-var shadows = ["".concat(baseShadow, "0 2px 4px 0 ").concat(shadowColor), "".concat(baseShadow, "0 4px 8px 0 ").concat(shadowColor), "".concat(baseShadow, "0 12px 12px 0 ").concat(shadowColor), "".concat(baseShadow, "0 24px 24px 0 ").concat(shadowColor)];
+var shadows = ["".concat(baseShadow, "0 2px 4px 0 ").concat(shadowColor), "".concat(baseShadow, "0 4px 8px 0 ").concat(shadowColor), "".concat(baseShadow, "0 12px 12px 0 ").concat(shadowColor), "".concat(baseShadow, "0 24px 24px 0 ").concat(shadowColor), "".concat(baseShadow, "0 0 20px 0 ").concat(shadowColor)];
 var radii = [0, '2px', '5px', '10px', '15px', '20px', '30px', '9999px'];
 var radiiAliases = ['none', 'xsmall', 'small', 'medium', 'large', 'xlarge', 'xxlarge', 'full'];
 addAliases(radii, radiiAliases);
@@ -83,7 +83,7 @@ var buttons = {
   },
   secondary: {
     color: colors.white,
-    backgroundColor: colors.gray[2],
+    backgroundColor: colors.gray[1],
     boxShadow: shadows[2],
     fontWeight: fontWeights[5]
   },
@@ -386,7 +386,7 @@ var Spinner = styled__default.div(_templateObject$3(), function (props) {
 });
 
 function _templateObject$4() {
-  var data = taggedTemplateLiteral(["\n  font-weight: ", ";\n  font-family: ", ";\n  min-width: 120px;\n  width: ", ";\n  border: none;\n  cursor: pointer;\n  transition: transform 0.1s;\n  min-height: 2.9em;\n  &:hover {\n    opacity: .9;\n  }\n  &:active {\n    transform: ", ";\n    opacity: 1;\n  }\n  &:disabled {\n    opacity: 1;\n    cursor: default;\n  }\n  > div {\n    margin: auto;\n  }\n  ", "\n  ", "\n  ", "\n  ", "\n  ", "\n  ", "\n"]);
+  var data = taggedTemplateLiteral(["\n  font-weight: ", ";\n  font-family: ", ";\n  min-width: 120px;\n  width: ", ";\n  border: none;\n  cursor: pointer;\n  transition: transform 0.1s;\n  min-height: 2.9em;\n  &:hover {\n    opacity: .9;\n  }\n  &:active {\n    transform: ", ";\n    opacity: 1;\n  }\n  &:disabled {\n    opacity: 1;\n    cursor: default;\n    background-color: ", ";\n  }\n  > div {\n    margin: auto;\n  }\n  ", "\n  ", "\n  ", "\n  ", "\n  ", "\n  ", "\n"]);
 
   _templateObject$4 = function _templateObject() {
     return data;
@@ -444,6 +444,9 @@ var StyledButton = styled__default.button.attrs({
 }, function (_ref6) {
   var shape = _ref6.shape;
   return shape === SHAPES.block ? 'scale(1)' : 'scale(0.99)';
+}, function (_ref7) {
+  var theme = _ref7.theme;
+  return theme.colors.gray.xlight;
 }, styledSystem.buttonStyle, radius, size, styledSystem.space, styledSystem.layout, styledSystem.typography);
 
 function ownKeys$1(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
@@ -566,7 +569,7 @@ var getButtonColor = function getButtonColor(_ref) {
       icon = _ref.icon,
       badge = _ref.badge;
   var isGray = disabled || badge && color === 'white';
-  if (isGray) return theme.colors.gray.xlight;
+  if (isGray) return theme.colors.gray.xxlight;
   var themeColors = theme.colors;
   if (icon === 'delete') return themeColors.red[1];
 
@@ -1592,7 +1595,7 @@ function _templateObject4() {
 }
 
 function _templateObject3() {
-  var data = taggedTemplateLiteral(["\n  width: 100%;\n  margin-top: 1.5em;\n  border-bottom: ", ";\n"]);
+  var data = taggedTemplateLiteral(["\n  width: 100%;\n  margin-top: 1.5em;\n  border-bottom: ", ";\n  opacity: 0.7;\n"]);
 
   _templateObject3 = function _templateObject3() {
     return data;
@@ -2392,7 +2395,7 @@ function _templateObject3$2() {
 }
 
 function _templateObject2$3() {
-  var data = taggedTemplateLiteral(["\n  z-index: 0;\n  position: relative;\n  display: inline-block;\n  color: ", ";\n  font-family: ", ";\n  font-size: ", ";\n  line-height: ", ";\n  font-weight: ", ";\n\n  &:hover > ", " {\n    opacity: 0.04;\n  }\n\n  &:hover > ", ":focus {\n    opacity: 0.16;\n  }\n\n  ", "\n  ", "\n"]);
+  var data = taggedTemplateLiteral(["\n  z-index: 0;\n  position: relative;\n  display: inline-block;\n  color: ", ";\n  font-family: ", ";\n  font-size: ", ";\n  line-height: ", ";\n  font-weight: ", ";\n\n\n  &:hover > ", " {\n    opacity: 0.04;\n  }\n\n  &:hover > ", ":focus {\n    opacity: 0.16;\n  }\n\n  ", "\n  ", "\n"]);
 
   _templateObject2$3 = function _templateObject2() {
     return data;
@@ -2436,7 +2439,7 @@ var StyledLabel = styled__default.label(_templateObject2$3(), function (_ref4) {
   return theme.lineHeights.relaxed;
 }, function (_ref8) {
   var theme = _ref8.theme;
-  return theme.fontWeights.semi;
+  return theme.fontWeights.default;
 },
 /* sc-selector */
 StyledInput,
@@ -2445,7 +2448,7 @@ StyledInput, styledSystem.space, styledSystem.layout);
 var StyledSpan = styled__default.span(_templateObject3$2(), function (_ref9) {
   var labelled = _ref9.labelled,
       theme = _ref9.theme;
-  return "\n    &::before {\n      content: '';\n      display: inline-block;\n      box-sizing: border-box;\n      margin: ".concat(labelled ? '3px 11px 3px 1px' : '3px 1px', ";\n      border: solid 2px; /* Safari */\n      border-color: rgba(0, 0, 0, 0.6);\n      border-radius: ").concat(theme.radii.xsmall, ";\n      width: 18px;\n      height: 18px;\n      vertical-align: top;\n      transition: border-color 0.2s, background-color 0.2s;\n    }\n  ");
+  return "\n    &::before {\n      content: '';\n      display: inline-block;\n      box-sizing: border-box;\n      margin: ".concat(labelled ? '2px 11px 3px 1px' : '3px 1px', ";\n      border: solid 2px; /* Safari */\n      border-color: rgba(0, 0, 0, 0.6);\n      border-radius: ").concat(theme.radii.xsmall, ";\n      width: 18px;\n      height: 18px;\n      vertical-align: top;\n      transition: border-color 0.2s, background-color 0.2s;\n    }\n  ");
 },
 /* sc-selector */
 StyledInput,
@@ -2792,7 +2795,7 @@ var InputWrapper = function InputWrapper(_ref10) {
   return React__default.createElement(StyledInputContainer, _extends_1({
     empty: !label,
     style: containerStyle
-  }, otherProps), React__default.createElement(StyledLabel$2, {
+  }, otherProps), label && React__default.createElement(StyledLabel$2, {
     htmlFor: id,
     required: required,
     style: labelStyle
@@ -13988,7 +13991,7 @@ var StyledDatePicker = styled__default(St)(_templateObject$f(), function (_ref) 
 }, function (_ref2) {
   var disabled = _ref2.disabled,
       theme = _ref2.theme;
-  return disabled ? theme.colors.gray.light : theme.colors.gray.xxlight;
+  return theme.colors.gray[disabled ? 'xlight' : 'xxlight'];
 }, function (_ref3) {
   var theme = _ref3.theme;
   return theme.fontSizes.small;
@@ -26025,7 +26028,7 @@ var styleOverride = function styleOverride(_ref) {
         overflow: 'hidden',
         width: '100%'
       }, variant === 'light' && {
-        border: "solid 1px ".concat(colors.gray.xlight)
+        border: "solid 1px ".concat(colors.gray.xxlight)
       }, {
         fontWeight: fontWeights[shape === 'rounded' ? 'semi' : 'normal']
       });
@@ -26051,7 +26054,7 @@ var styleOverride = function styleOverride(_ref) {
       var color = colors.white;
 
       if (isFocused) {
-        color = colors.xlight;
+        color = colors.gray.xxlight;
       }
 
       if (isSelected) {
@@ -28495,10 +28498,10 @@ var Subtitle = styled__default.h2(_templateObject4$3(), function (_ref5) {
   return theme.fontSizes.small;
 }, function (_ref6) {
   var theme = _ref6.theme;
-  return theme.fontWeights.default;
+  return theme.fontWeights.semi;
 }, function (_ref7) {
   var theme = _ref7.theme;
-  return theme.colors.gray.xdark;
+  return theme.colors.gray.dark;
 });
 var Description = styled__default.p(_templateObject5$3(), function (_ref8) {
   var theme = _ref8.theme;
@@ -28508,7 +28511,7 @@ var Description = styled__default.p(_templateObject5$3(), function (_ref8) {
   return theme.fontWeights.normal;
 }, function (_ref10) {
   var theme = _ref10.theme;
-  return theme.colors.gray.dark;
+  return theme.colors.gray.default;
 }, function (_ref11) {
   var centerText = _ref11.centerText;
   return centerText ? 'center' : 'left';
@@ -40654,7 +40657,7 @@ var CopyrightText = styled__default.p.attrs({
   role: 'contentinfo'
 })(_templateObject$s(), function (_ref) {
   var theme = _ref.theme;
-  return theme.colors.gray.xxlight;
+  return theme.colors.gray.light;
 }, function (_ref2) {
   var theme = _ref2.theme;
   return theme.fontSizes.xsmall;
