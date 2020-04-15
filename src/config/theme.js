@@ -100,12 +100,12 @@ const buttons = {
   },
   secondary: {
     color: colors.white,
-    backgroundColor: colors.gray[1],
+    backgroundColor: colors.gray[2],
     boxShadow: shadows[2],
     fontWeight: fontWeights[5],
   },
   tertiary: {
-    color: colors.gray[3],
+    color: colors.gray[4],
     backgroundColor: colors.white,
     boxShadow: shadows[2],
     fontWeight: fontWeights[5],

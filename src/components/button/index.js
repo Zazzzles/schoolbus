@@ -24,11 +24,12 @@ class Button extends React.PureComponent {
     onClick: () => {},
     shape: this.SHAPES.square,
     size: this.SIZES.default,
+    isLoading: false,
     theme,
   }
 
   render() {
-    const { isLoading = false, disabled, spinnerProps, variant } = this.props
+    const { isLoading, disabled, spinnerProps, variant } = this.props
 
     return (
       <StyledButton
