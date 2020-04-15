@@ -83,12 +83,12 @@ var buttons = {
   },
   secondary: {
     color: colors.white,
-    backgroundColor: colors.gray[1],
+    backgroundColor: colors.gray[2],
     boxShadow: shadows[2],
     fontWeight: fontWeights[5]
   },
   tertiary: {
-    color: colors.gray[3],
+    color: colors.gray[4],
     backgroundColor: colors.white,
     boxShadow: shadows[2],
     fontWeight: fontWeights[5]
@@ -100,7 +100,7 @@ var buttons = {
   },
   danger: {
     color: colors.white,
-    backgroundColor: colors.red[1],
+    backgroundColor: colors.red[2],
     boxShadow: shadows[2],
     fontWeight: fontWeights[5]
   }
@@ -468,8 +468,7 @@ function (_React$PureComponent) {
     key: "render",
     value: function render() {
       var _this$props = this.props,
-          _this$props$isLoading = _this$props.isLoading,
-          isLoading = _this$props$isLoading === void 0 ? false : _this$props$isLoading,
+          isLoading = _this$props.isLoading,
           disabled = _this$props.disabled,
           spinnerProps = _this$props.spinnerProps,
           variant = _this$props.variant;
@@ -501,6 +500,7 @@ defineProperty(Button, "defaultProps", {
   onClick: function onClick() {},
   shape: Button.SHAPES.square,
   size: Button.SIZES.default,
+  isLoading: false,
   theme: theme
 });
 
