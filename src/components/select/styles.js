@@ -1,4 +1,4 @@
-import { colors, radii, fontSizes, fonts, fontWeights } from '../../config/theme'
+import { shadows, colors, radii, fontSizes, fonts, fontWeights } from '../../config/theme'
 
 function getBackgroundColor(variant) {
   switch (variant) {
@@ -11,6 +11,10 @@ function getBackgroundColor(variant) {
   }
 }
 
+function getDisabledColor(variant) {
+  return variant === 'borderless' ? colors.transparent : colors.white
+}
+
 export const styleOverride = ({ fontSize, shape, variant, hasShadow, disabled }) => ({
   indicatorSeparator: () => ({
     display: 'none',
@@ -19,7 +23,7 @@ export const styleOverride = ({ fontSize, shape, variant, hasShadow, disabled })
     return {
       ...provided,
       color: colors.gray.xdark,
-      backgroundColor: disabled ? colors.white : getBackgroundColor(variant),
+      backgroundColor: disabled ? getDisabledColor(variant) : getBackgroundColor(variant),
       border: state.isDisabled && !hasShadow && variant !== 'borderless'
         ? `border: 1px solid ${colors.gray.xlight}`
         : 'none',
@@ -27,7 +31,7 @@ export const styleOverride = ({ fontSize, shape, variant, hasShadow, disabled })
       fontFamily: fonts.Montserrat,
       fontSize: fontSize ? fontSizes[fontSize] : fontSizes.small,
       borderRadius: shape === 'rounded' ? radii.full : radii.small,
-      boxShadow: hasShadow ? 'rgba(0, 0, 0, 0.15) 0px 0px 1em 1px' : 'none',
+      boxShadow: hasShadow ? shadows[4] : 'none',
       padding: '0 0.8em',
       overflow: 'hidden',
       width: '100%',

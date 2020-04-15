@@ -5,11 +5,11 @@ const getButtonColor = ({ theme, color, disabled, icon, badge }) => {
   if (isGray) return theme.colors.gray.xxlight
 
   const { colors: themeColors } = theme
-  if (icon === 'delete') return themeColors.red[1]
+  if (icon === 'delete') return themeColors.red[2]
 
   if (Object.keys(themeColors).includes(color)) {
     const selectedColor = themeColors[color]
-    return Array.isArray(selectedColor) ? selectedColor[1] : selectedColor
+    return Array.isArray(selectedColor) ? selectedColor[2] : selectedColor
   }
   return color
 }
