@@ -117,7 +117,7 @@ const buttons = {
   },
   danger: {
     color: colors.white,
-    backgroundColor: colors.red[1],
+    backgroundColor: colors.red[2],
     boxShadow: shadows[2],
     fontWeight: fontWeights[5],
   },
