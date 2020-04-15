@@ -571,11 +571,11 @@ var getButtonColor = function getButtonColor(_ref) {
   var isGray = disabled || badge && color === 'white';
   if (isGray) return theme.colors.gray.xxlight;
   var themeColors = theme.colors;
-  if (icon === 'delete') return themeColors.red[1];
+  if (icon === 'delete') return themeColors.red[2];
 
   if (Object.keys(themeColors).includes(color)) {
     var selectedColor = themeColors[color];
-    return Array.isArray(selectedColor) ? selectedColor[1] : selectedColor;
+    return Array.isArray(selectedColor) ? selectedColor[2] : selectedColor;
   }
 
   return color;
@@ -2774,7 +2774,7 @@ var StyledAlertText = styled__default.span.attrs({
   return theme.fontSizes.xsmall;
 }, function (_ref8) {
   var theme = _ref8.theme;
-  return theme.colors.red[1];
+  return theme.colors.red[2];
 }, function (_ref9) {
   var theme = _ref9.theme;
   return theme.fontWeights.bold;
@@ -26002,6 +26002,10 @@ function getBackgroundColor(variant) {
   }
 }
 
+function getDisabledColor(variant) {
+  return variant === 'borderless' ? colors.transparent : colors.white;
+}
+
 var styleOverride = function styleOverride(_ref) {
   var fontSize = _ref.fontSize,
       shape = _ref.shape,
@@ -26017,13 +26021,13 @@ var styleOverride = function styleOverride(_ref) {
     control: function control(provided, state) {
       return _objectSpread$a({}, provided, {
         color: colors.gray.xdark,
-        backgroundColor: disabled ? colors.white : getBackgroundColor(variant),
+        backgroundColor: disabled ? getDisabledColor(variant) : getBackgroundColor(variant),
         border: state.isDisabled && !hasShadow && variant !== 'borderless' ? "border: 1px solid ".concat(colors.gray.xlight) : 'none',
         borderColor: state.isDisabled ? colors.gray.xlight : null,
         fontFamily: fonts.Montserrat,
         fontSize: fontSize ? fontSizes[fontSize] : fontSizes.small,
         borderRadius: shape === 'rounded' ? radii.full : radii.small,
-        boxShadow: hasShadow ? 'rgba(0, 0, 0, 0.15) 0px 0px 1em 1px' : 'none',
+        boxShadow: hasShadow ? shadows[4] : 'none',
         padding: '0 0.8em',
         overflow: 'hidden',
         width: '100%'
