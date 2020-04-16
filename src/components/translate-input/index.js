@@ -5,7 +5,7 @@ import Translate from '@lessondesk/material-icons/dist/Translate'
 
 import InputWrapper from '../input-wrapper'
 import TranslateModal from '../translate-modal'
-import ModalWrapper from '../modal/modal-wrapper'
+import Modal from '../modal'
 
 import createDefaultInputProps from '../../utils/create-input-defaults'
 import { fontSizes, colors } from '../../config/theme.js'
@@ -125,7 +125,7 @@ class TranslationInput extends Component {
           <TranslateIconContainer onClick={this.toggleModal}>
             <Translate size={fontSizes.normal} color={colors.gray.default} />
           </TranslateIconContainer>
-          <ModalWrapper isOpen={showModal} onRequestClose={this.toggleModal}>
+          <Modal isOpen={showModal} onClose={this.toggleModal} hideCloseButton>
             <TranslateModal
               values={formik.values[name]}
               placeholder={placeholder || label}
@@ -136,7 +136,7 @@ class TranslationInput extends Component {
               disabled={disabled}
               languages={languages}
             />
-          </ModalWrapper>
+          </Modal>
         </Container>
       </InputWrapper>
     )
