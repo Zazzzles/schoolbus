@@ -27,10 +27,12 @@ class ModalWrapper extends Component {
     closeTimeoutMS: 300,
     style: {},
     contentStyle: {},
+    wrapperStyle: {},
     width: 'fit-content',
     height: 'fit-content',
     scrollable: true,
-    centerTitle: false
+    centerTitle: false,
+    hideCloseButton: false
   }
 
   state = {
@@ -53,6 +55,7 @@ class ModalWrapper extends Component {
       onBack,
       style,
       contentStyle,
+      wrapperStyle,
       children,
       width,
       height,
@@ -64,6 +67,7 @@ class ModalWrapper extends Component {
       actions,
       footer,
       scrollable,
+      hideCloseButton,
       ...otherProps
     } = this.props
 
@@ -74,7 +78,7 @@ class ModalWrapper extends Component {
         position: "absolute",
         top: 25,
         right: 25,
-        zIndex: 1
+        zIndex: 9999
       },
       content: {
         maxHeight: scrollable ? `calc(95vh - 5em - ${contentSpacing}px)` : 'none',
@@ -144,7 +148,7 @@ class ModalWrapper extends Component {
         {...otherProps}
       >
         <>
-          {onClose && renderCloseIcon()}
+          {onClose && !hideCloseButton && renderCloseIcon()}
           {onBack && renderBackButton()}
 
           <Header ref={node => this.headerRef = node}>
@@ -152,7 +156,7 @@ class ModalWrapper extends Component {
               <Flex 
                 width="100%" 
                 justifyContent={centerTitle ? 'center' : 'flex-start'}
-                ml={onBack && !centerTitle ? '2.5em' : 0}
+                pl={onBack && !centerTitle ? '2.5em' : 0}
               >
                 <Title>{title}</Title>
                 {proximusTitle && <ProximusTitle>{`\xa0| ${proximusTitle}`}</ProximusTitle>}
@@ -165,12 +169,12 @@ class ModalWrapper extends Component {
           </Header>
       
 
-          <ContentWrapper>
-            <FadeOverlay />
+          <ContentWrapper style={wrapperStyle}>
+            {scrollable && <FadeOverlay />}
 
             <InnerContent
               hasHeader={hasHeader}
-              style={{ ...contentStyle, ...styleOverrides.content }}
+              style={{ ...styleOverrides.content, ...contentStyle }}
             >
               {children}
             </InnerContent>
