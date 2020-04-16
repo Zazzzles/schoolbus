@@ -28136,54 +28136,78 @@ module.exports = exports["default"];
 
 var ReactModal = unwrapExports(lib$3);
 
-function ownKeys$b(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+function _templateObject10() {
+  var data = taggedTemplateLiteral(["\n  position: absolute;\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  background: linear-gradient(white 0%, transparent 1.5em, transparent calc(100% - 1em), white 100% );\n  pointer-events: none;\n"]);
 
-function _objectSpread$c(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$b(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$b(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-var ModalWrapper = function ModalWrapper(_ref) {
-  var isOpen = _ref.isOpen,
-      contentLabel = _ref.contentLabel,
-      onRequestClose = _ref.onRequestClose,
-      closeTimeoutMS = _ref.closeTimeoutMS,
-      style = _ref.style,
-      children = _ref.children;
-  var modalStyleOverride = {
-    overlay: {
-      backgroundColor: 'rgba(0, 0, 0, .3)',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center'
-    },
-    content: _objectSpread$c({
-      top: 'unset',
-      left: 'unset',
-      right: 'unset',
-      bottom: 'unset',
-      borderRadius: '1em',
-      padding: '2em',
-      overflow: 'visible'
-    }, style)
+  _templateObject10 = function _templateObject10() {
+    return data;
   };
-  return React__default.createElement(ReactModal, {
-    isOpen: isOpen,
-    contentLabel: contentLabel,
-    onRequestClose: onRequestClose,
-    closeTimeoutMS: closeTimeoutMS,
-    style: modalStyleOverride
-  }, children);
-};
 
-ModalWrapper.defaultProps = {
-  isOpen: false,
-  contentLabel: '',
-  onRequestClose: function onRequestClose() {},
-  closeTimeoutMS: 300,
-  style: {}
-};
-ReactModal.setAppElement('body');
+  return data;
+}
+
+function _templateObject9() {
+  var data = taggedTemplateLiteral(["\n  display: flex;\n  justify-content: flex-end;\n  padding: 0 0 2em;\n"]);
+
+  _templateObject9 = function _templateObject9() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject8$1() {
+  var data = taggedTemplateLiteral(["\n  padding: 1em;\n  margin: ", ";\n  overflow: auto;\n"]);
+
+  _templateObject8$1 = function _templateObject8() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject7$1() {
+  var data = taggedTemplateLiteral(["\n  position: relative;\n  max-width: 1100px;\n  margin: 1em 0;\n"]);
+
+  _templateObject7$1 = function _templateObject7() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject6$1() {
+  var data = taggedTemplateLiteral(["\n  padding-top: 2em;\n"]);
+
+  _templateObject6$1 = function _templateObject6() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject5$3() {
+  var data = taggedTemplateLiteral(["\n  width: 100%;\n  font-size: ", ";\n  font-weight: ", ";\n  color: ", ";\n  padding-top: 1.5em;\n  text-align: ", ";\n"]);
+
+  _templateObject5$3 = function _templateObject5() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject4$3() {
+  var data = taggedTemplateLiteral(["\n  font-size: ", ";\n  font-weight: ", ";\n  color: ", ";\n  padding-top: 2.5em;\n"]);
+
+  _templateObject4$3 = function _templateObject4() {
+    return data;
+  };
+
+  return data;
+}
 
 function _templateObject3$6() {
-  var data = taggedTemplateLiteral(["\n  padding-right: 3em;\n"]);
+  var data = taggedTemplateLiteral(["\n  font-weight: ", ";\n"]);
 
   _templateObject3$6 = function _templateObject3() {
     return data;
@@ -28193,7 +28217,7 @@ function _templateObject3$6() {
 }
 
 function _templateObject2$a() {
-  var data = taggedTemplateLiteral(["\n  position: absolute;\n  right: 0.8em;\n  cursor: pointer;\n  line-height: 0;\n"]);
+  var data = taggedTemplateLiteral(["\n  font-size: ", ";\n  font-weight: ", ";\n  color: ", ";\n"]);
 
   _templateObject2$a = function _templateObject2() {
     return data;
@@ -28203,7 +28227,7 @@ function _templateObject2$a() {
 }
 
 function _templateObject$m() {
-  var data = taggedTemplateLiteral(["\n  position: relative;\n  display: flex;\n  align-items: center;\n"]);
+  var data = taggedTemplateLiteral(["\n  max-width: 1100px;\n"]);
 
   _templateObject$m = function _templateObject() {
     return data;
@@ -28211,9 +28235,262 @@ function _templateObject$m() {
 
   return data;
 }
-var Container$4 = styled__default.div(_templateObject$m());
-var TranslateIconContainer = styled__default.div(_templateObject2$a());
-var TranslateInputContainer = styled__default(StyledInput$1)(_templateObject3$6());
+var Header = styled__default.div(_templateObject$m());
+var Title = styled__default.h1(_templateObject2$a(), function (_ref) {
+  var theme = _ref.theme;
+  return theme.fontSizes.large;
+}, function (_ref2) {
+  var theme = _ref2.theme;
+  return theme.fontWeights.bold;
+}, function (_ref3) {
+  var theme = _ref3.theme;
+  return theme.colors.gray.xdark;
+});
+var ProximusTitle = styled__default(Title)(_templateObject3$6(), function (_ref4) {
+  var theme = _ref4.theme;
+  return theme.fontWeights.medium;
+});
+var Subtitle = styled__default.h2(_templateObject4$3(), function (_ref5) {
+  var theme = _ref5.theme;
+  return theme.fontSizes.small;
+}, function (_ref6) {
+  var theme = _ref6.theme;
+  return theme.fontWeights.semi;
+}, function (_ref7) {
+  var theme = _ref7.theme;
+  return theme.colors.gray.dark;
+});
+var Description = styled__default.p(_templateObject5$3(), function (_ref8) {
+  var theme = _ref8.theme;
+  return theme.fontSizes.small;
+}, function (_ref9) {
+  var theme = _ref9.theme;
+  return theme.fontWeights.normal;
+}, function (_ref10) {
+  var theme = _ref10.theme;
+  return theme.colors.gray.default;
+}, function (_ref11) {
+  var centerText = _ref11.centerText;
+  return centerText ? 'center' : 'left';
+});
+var Actions$1 = styled__default.div(_templateObject6$1());
+var ContentWrapper$1 = styled__default.div(_templateObject7$1());
+var InnerContent = styled__default.div(_templateObject8$1(), function (_ref12) {
+  var hasHeader = _ref12.hasHeader;
+  return hasHeader ? '0 -1em' : '-2em -1em 0';
+});
+var Footer = styled__default.div(_templateObject9());
+var FadeOverlay = styled__default.div(_templateObject10());
+
+function ownKeys$b(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread$c(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$b(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$b(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+ReactModal.setAppElement('body');
+
+var ModalWrapper =
+/*#__PURE__*/
+function (_Component) {
+  inherits(ModalWrapper, _Component);
+
+  function ModalWrapper() {
+    var _getPrototypeOf2;
+
+    var _this;
+
+    classCallCheck(this, ModalWrapper);
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(ModalWrapper)).call.apply(_getPrototypeOf2, [this].concat(args)));
+
+    defineProperty(assertThisInitialized(_this), "state", {
+      contentSpacing: 0
+    });
+
+    defineProperty(assertThisInitialized(_this), "afterOpenModal", function () {
+      var headerHeight = _this.headerRef ? _this.headerRef.clientHeight : 0;
+      var footerHeight = _this.footerRef ? _this.footerRef.clientHeight : 0;
+      var contentSpacing = headerHeight + footerHeight;
+
+      _this.setState({
+        contentSpacing: contentSpacing
+      });
+    });
+
+    return _this;
+  }
+
+  createClass(ModalWrapper, [{
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      var contentSpacing = this.state.contentSpacing;
+
+      var _this$props = this.props,
+          onClose = _this$props.onClose,
+          onBack = _this$props.onBack,
+          style = _this$props.style,
+          contentStyle = _this$props.contentStyle,
+          wrapperStyle = _this$props.wrapperStyle,
+          children = _this$props.children,
+          width = _this$props.width,
+          height = _this$props.height,
+          title = _this$props.title,
+          proximusTitle = _this$props.proximusTitle,
+          centerTitle = _this$props.centerTitle,
+          subtitle = _this$props.subtitle,
+          description = _this$props.description,
+          actions = _this$props.actions,
+          footer = _this$props.footer,
+          scrollable = _this$props.scrollable,
+          hideCloseButton = _this$props.hideCloseButton,
+          otherProps = objectWithoutProperties(_this$props, ["onClose", "onBack", "style", "contentStyle", "wrapperStyle", "children", "width", "height", "title", "proximusTitle", "centerTitle", "subtitle", "description", "actions", "footer", "scrollable", "hideCloseButton"]);
+
+      var hasHeader = !!title || !!description || !!subtitle || !!actions;
+      var styleOverrides = {
+        closeBtn: {
+          position: "absolute",
+          top: 25,
+          right: 25,
+          zIndex: 9999
+        },
+        content: {
+          maxHeight: scrollable ? "calc(95vh - 5em - ".concat(contentSpacing, "px)") : 'none',
+          maxWidth: 1100,
+          overflow: scrollable ? 'auto' : 'visible'
+        },
+        centerText: {
+          textAlign: 'center'
+        },
+        backBtn: {
+          position: "absolute",
+          top: 25,
+          left: 20,
+          zIndex: 1
+        }
+      };
+      var modalStyles = {
+        overlay: {
+          backgroundColor: 'rgba(0, 0, 0, .3)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center'
+        },
+        content: _objectSpread$c({
+          position: 'relative',
+          top: 'unset',
+          left: 'unset',
+          right: 'unset',
+          bottom: 'unset',
+          borderRadius: '1em',
+          padding: '2em 2em 0',
+          overflow: scrollable ? 'auto' : 'visible',
+          maxWidth: '95vw',
+          maxHeight: '95vh',
+          width: width,
+          height: height
+        }, style)
+      };
+
+      var renderCloseIcon = function renderCloseIcon() {
+        return React__default.createElement(IconButton, {
+          icon: "close",
+          noShadow: true,
+          color: "transparent",
+          style: styleOverrides.closeBtn,
+          onClick: onClose
+        });
+      };
+
+      var renderBackButton = function renderBackButton() {
+        return React__default.createElement(IconButton, {
+          onClick: onBack,
+          color: "transparent",
+          icon: "back",
+          style: styleOverrides.backBtn,
+          noShadow: true
+        });
+      };
+
+      return React__default.createElement(ReactModal, _extends_1({
+        onRequestClose: onClose,
+        onAfterOpen: this.afterOpenModal,
+        style: modalStyles
+      }, otherProps), React__default.createElement(React__default.Fragment, null, onClose && !hideCloseButton && renderCloseIcon(), onBack && renderBackButton(), React__default.createElement(Header, {
+        ref: function ref(node) {
+          return _this2.headerRef = node;
+        }
+      }, title && React__default.createElement(Flex, {
+        width: "100%",
+        justifyContent: centerTitle ? 'center' : 'flex-start',
+        pl: onBack && !centerTitle ? '2.5em' : 0
+      }, React__default.createElement(Title, null, title), proximusTitle && React__default.createElement(ProximusTitle, null, "\xA0| ".concat(proximusTitle))), subtitle && React__default.createElement(Subtitle, null, subtitle), description && React__default.createElement(Description, {
+        centerText: centerTitle
+      }, description), actions && React__default.createElement(Actions$1, null, actions)), React__default.createElement(ContentWrapper$1, {
+        style: wrapperStyle
+      }, scrollable && React__default.createElement(FadeOverlay, null), React__default.createElement(InnerContent, {
+        hasHeader: hasHeader,
+        style: _objectSpread$c({}, styleOverrides.content, {}, contentStyle)
+      }, children)), footer && React__default.createElement(Footer, {
+        ref: function ref(node) {
+          return _this2.footerRef = node;
+        }
+      }, footer)));
+    }
+  }]);
+
+  return ModalWrapper;
+}(React.Component);
+
+defineProperty(ModalWrapper, "defaultProps", {
+  isOpen: false,
+  contentLabel: '',
+  closeTimeoutMS: 300,
+  style: {},
+  contentStyle: {},
+  wrapperStyle: {},
+  width: 'fit-content',
+  height: 'fit-content',
+  scrollable: true,
+  centerTitle: false,
+  hideCloseButton: false
+});
+
+function _templateObject3$7() {
+  var data = taggedTemplateLiteral(["\n  padding-right: 3em;\n"]);
+
+  _templateObject3$7 = function _templateObject3() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject2$b() {
+  var data = taggedTemplateLiteral(["\n  position: absolute;\n  right: 0.8em;\n  cursor: pointer;\n  line-height: 0;\n"]);
+
+  _templateObject2$b = function _templateObject2() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject$n() {
+  var data = taggedTemplateLiteral(["\n  position: relative;\n  display: flex;\n  align-items: center;\n"]);
+
+  _templateObject$n = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+var Container$4 = styled__default.div(_templateObject$n());
+var TranslateIconContainer = styled__default.div(_templateObject2$b());
+var TranslateInputContainer = styled__default(StyledInput$1)(_templateObject3$7());
 
 var TranslationInput =
 /*#__PURE__*/
@@ -28358,7 +28635,8 @@ function (_Component) {
         color: colors.gray.default
       })), React__default.createElement(ModalWrapper, {
         isOpen: showModal,
-        onRequestClose: this.toggleModal
+        onClose: this.toggleModal,
+        hideCloseButton: true
       }, React__default.createElement(TranslateModal, {
         values: formik.values[name],
         placeholder: placeholder || label,
@@ -28382,323 +28660,6 @@ defineProperty(TranslationInput, "defaultProps", {
 });
 
 var index$9 = formik.connect(TranslationInput);
-
-function _templateObject10() {
-  var data = taggedTemplateLiteral(["\n  position: absolute;\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  background: linear-gradient(white 0%, transparent 1.5em, transparent calc(100% - 1em), white 100% );\n  pointer-events: none;\n"]);
-
-  _templateObject10 = function _templateObject10() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject9() {
-  var data = taggedTemplateLiteral(["\n  display: flex;\n  justify-content: flex-end;\n  padding: 0 0 2em;\n"]);
-
-  _templateObject9 = function _templateObject9() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject8$1() {
-  var data = taggedTemplateLiteral(["\n  padding: 1em;\n  margin: ", ";\n  overflow: auto;\n"]);
-
-  _templateObject8$1 = function _templateObject8() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject7$1() {
-  var data = taggedTemplateLiteral(["\n  position: relative;\n  max-width: 1100px;\n  margin: 1em 0;\n"]);
-
-  _templateObject7$1 = function _templateObject7() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject6$1() {
-  var data = taggedTemplateLiteral(["\n  padding-top: 2em;\n"]);
-
-  _templateObject6$1 = function _templateObject6() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject5$3() {
-  var data = taggedTemplateLiteral(["\n  width: 100%;\n  font-size: ", ";\n  font-weight: ", ";\n  color: ", ";\n  padding-top: 1.5em;\n  text-align: ", ";\n"]);
-
-  _templateObject5$3 = function _templateObject5() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject4$3() {
-  var data = taggedTemplateLiteral(["\n  font-size: ", ";\n  font-weight: ", ";\n  color: ", ";\n  padding-top: 2.5em;\n"]);
-
-  _templateObject4$3 = function _templateObject4() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject3$7() {
-  var data = taggedTemplateLiteral(["\n  font-weight: ", ";\n"]);
-
-  _templateObject3$7 = function _templateObject3() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject2$b() {
-  var data = taggedTemplateLiteral(["\n  font-size: ", ";\n  font-weight: ", ";\n  color: ", ";\n"]);
-
-  _templateObject2$b = function _templateObject2() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject$n() {
-  var data = taggedTemplateLiteral(["\n  max-width: 1100px;\n"]);
-
-  _templateObject$n = function _templateObject() {
-    return data;
-  };
-
-  return data;
-}
-var Header = styled__default.div(_templateObject$n());
-var Title = styled__default.h1(_templateObject2$b(), function (_ref) {
-  var theme = _ref.theme;
-  return theme.fontSizes.large;
-}, function (_ref2) {
-  var theme = _ref2.theme;
-  return theme.fontWeights.bold;
-}, function (_ref3) {
-  var theme = _ref3.theme;
-  return theme.colors.gray.xdark;
-});
-var ProximusTitle = styled__default(Title)(_templateObject3$7(), function (_ref4) {
-  var theme = _ref4.theme;
-  return theme.fontWeights.medium;
-});
-var Subtitle = styled__default.h2(_templateObject4$3(), function (_ref5) {
-  var theme = _ref5.theme;
-  return theme.fontSizes.small;
-}, function (_ref6) {
-  var theme = _ref6.theme;
-  return theme.fontWeights.semi;
-}, function (_ref7) {
-  var theme = _ref7.theme;
-  return theme.colors.gray.dark;
-});
-var Description = styled__default.p(_templateObject5$3(), function (_ref8) {
-  var theme = _ref8.theme;
-  return theme.fontSizes.small;
-}, function (_ref9) {
-  var theme = _ref9.theme;
-  return theme.fontWeights.normal;
-}, function (_ref10) {
-  var theme = _ref10.theme;
-  return theme.colors.gray.default;
-}, function (_ref11) {
-  var centerText = _ref11.centerText;
-  return centerText ? 'center' : 'left';
-});
-var Actions$1 = styled__default.div(_templateObject6$1());
-var ContentWrapper$1 = styled__default.div(_templateObject7$1());
-var InnerContent = styled__default.div(_templateObject8$1(), function (_ref12) {
-  var hasHeader = _ref12.hasHeader;
-  return hasHeader ? '0 -1em' : '-2em -1em 0';
-});
-var Footer = styled__default.div(_templateObject9());
-var FadeOverlay = styled__default.div(_templateObject10());
-
-function ownKeys$c(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread$d(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$c(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$c(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-ReactModal.setAppElement('body');
-
-var ModalWrapper$1 =
-/*#__PURE__*/
-function (_Component) {
-  inherits(ModalWrapper, _Component);
-
-  function ModalWrapper() {
-    var _getPrototypeOf2;
-
-    var _this;
-
-    classCallCheck(this, ModalWrapper);
-
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(ModalWrapper)).call.apply(_getPrototypeOf2, [this].concat(args)));
-
-    defineProperty(assertThisInitialized(_this), "state", {
-      contentSpacing: 0
-    });
-
-    defineProperty(assertThisInitialized(_this), "afterOpenModal", function () {
-      var headerHeight = _this.headerRef ? _this.headerRef.clientHeight : 0;
-      var footerHeight = _this.footerRef ? _this.footerRef.clientHeight : 0;
-      var contentSpacing = headerHeight + footerHeight;
-
-      _this.setState({
-        contentSpacing: contentSpacing
-      });
-    });
-
-    return _this;
-  }
-
-  createClass(ModalWrapper, [{
-    key: "render",
-    value: function render() {
-      var _this2 = this;
-
-      var contentSpacing = this.state.contentSpacing;
-
-      var _this$props = this.props,
-          onClose = _this$props.onClose,
-          onBack = _this$props.onBack,
-          style = _this$props.style,
-          contentStyle = _this$props.contentStyle,
-          children = _this$props.children,
-          width = _this$props.width,
-          height = _this$props.height,
-          title = _this$props.title,
-          proximusTitle = _this$props.proximusTitle,
-          centerTitle = _this$props.centerTitle,
-          subtitle = _this$props.subtitle,
-          description = _this$props.description,
-          actions = _this$props.actions,
-          footer = _this$props.footer,
-          scrollable = _this$props.scrollable,
-          otherProps = objectWithoutProperties(_this$props, ["onClose", "onBack", "style", "contentStyle", "children", "width", "height", "title", "proximusTitle", "centerTitle", "subtitle", "description", "actions", "footer", "scrollable"]);
-
-      var hasHeader = !!title || !!description || !!subtitle || !!actions;
-      var styleOverrides = {
-        closeBtn: {
-          position: "absolute",
-          top: 25,
-          right: 25,
-          zIndex: 1
-        },
-        content: {
-          maxHeight: scrollable ? "calc(95vh - 5em - ".concat(contentSpacing, "px)") : 'none',
-          maxWidth: 1100,
-          overflow: scrollable ? 'auto' : 'visible'
-        },
-        centerText: {
-          textAlign: 'center'
-        },
-        backBtn: {
-          position: "absolute",
-          top: 25,
-          left: 20,
-          zIndex: 1
-        }
-      };
-      var modalStyles = {
-        overlay: {
-          backgroundColor: 'rgba(0, 0, 0, .3)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center'
-        },
-        content: _objectSpread$d({
-          position: 'relative',
-          top: 'unset',
-          left: 'unset',
-          right: 'unset',
-          bottom: 'unset',
-          borderRadius: '1em',
-          padding: '2em 2em 0',
-          overflow: scrollable ? 'auto' : 'visible',
-          maxWidth: '95vw',
-          maxHeight: '95vh',
-          width: width,
-          height: height
-        }, style)
-      };
-
-      var renderCloseIcon = function renderCloseIcon() {
-        return React__default.createElement(IconButton, {
-          icon: "close",
-          noShadow: true,
-          color: "transparent",
-          style: styleOverrides.closeBtn,
-          onClick: onClose
-        });
-      };
-
-      var renderBackButton = function renderBackButton() {
-        return React__default.createElement(IconButton, {
-          onClick: onBack,
-          color: "transparent",
-          icon: "back",
-          style: styleOverrides.backBtn,
-          noShadow: true
-        });
-      };
-
-      return React__default.createElement(ReactModal, _extends_1({
-        onRequestClose: onClose,
-        onAfterOpen: this.afterOpenModal,
-        style: modalStyles
-      }, otherProps), React__default.createElement(React__default.Fragment, null, onClose && renderCloseIcon(), onBack && renderBackButton(), React__default.createElement(Header, {
-        ref: function ref(node) {
-          return _this2.headerRef = node;
-        }
-      }, title && React__default.createElement(Flex, {
-        width: "100%",
-        justifyContent: centerTitle ? 'center' : 'flex-start',
-        ml: onBack && !centerTitle ? '2.5em' : 0
-      }, React__default.createElement(Title, null, title), proximusTitle && React__default.createElement(ProximusTitle, null, "\xA0| ".concat(proximusTitle))), subtitle && React__default.createElement(Subtitle, null, subtitle), description && React__default.createElement(Description, {
-        centerText: centerTitle
-      }, description), actions && React__default.createElement(Actions$1, null, actions)), React__default.createElement(ContentWrapper$1, null, React__default.createElement(FadeOverlay, null), React__default.createElement(InnerContent, {
-        hasHeader: hasHeader,
-        style: _objectSpread$d({}, contentStyle, {}, styleOverrides.content)
-      }, children)), footer && React__default.createElement(Footer, {
-        ref: function ref(node) {
-          return _this2.footerRef = node;
-        }
-      }, footer)));
-    }
-  }]);
-
-  return ModalWrapper;
-}(React.Component);
-
-defineProperty(ModalWrapper$1, "defaultProps", {
-  isOpen: false,
-  contentLabel: '',
-  closeTimeoutMS: 300,
-  style: {},
-  contentStyle: {},
-  width: 'fit-content',
-  height: 'fit-content',
-  scrollable: true,
-  centerTitle: false
-});
 
 var _global = createCommonjsModule(function (module) {
 // https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
@@ -33239,7 +33200,7 @@ function _defineProperty$2(obj, key, value) {
   return obj;
 }
 
-function ownKeys$d(object, enumerableOnly) {
+function ownKeys$c(object, enumerableOnly) {
   var keys = Object.keys(object);
 
   if (Object.getOwnPropertySymbols) {
@@ -33258,13 +33219,13 @@ function _objectSpread2(target) {
     var source = arguments[i] != null ? arguments[i] : {};
 
     if (i % 2) {
-      ownKeys$d(source, true).forEach(function (key) {
+      ownKeys$c(source, true).forEach(function (key) {
         _defineProperty$2(target, key, source[key]);
       });
     } else if (Object.getOwnPropertyDescriptors) {
       Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
     } else {
-      ownKeys$d(source).forEach(function (key) {
+      ownKeys$c(source).forEach(function (key) {
         Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
       });
     }
@@ -37939,9 +37900,9 @@ var expandedIconStyles = {
   boxShadow: '0px 0px 16px 0px rgba(0, 0, 0, 0.09)'
 };
 
-function ownKeys$e(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+function ownKeys$d(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread$e(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$e(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$e(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread$d(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$d(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$d(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 var ExpandingSearchInput =
 /*#__PURE__*/
@@ -37993,7 +37954,7 @@ function (_Component) {
         }, 500)
       }, this.props)), React__default.createElement(Magnify$1, {
         onClick: this.toggleExpanded,
-        style: _objectSpread$e({}, iconAltStyling, {}, expanded && expandedIconStyles),
+        style: _objectSpread$d({}, iconAltStyling, {}, expanded && expandedIconStyles),
         bg: "white",
         size: fontSizes.large,
         color: colors.gray.default
@@ -38061,9 +38022,9 @@ var ToggleLabel = styled__default.label(_templateObject3$9(), function (_ref) {
   return theme.colors.primary;
 });
 
-function ownKeys$f(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+function ownKeys$e(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread$f(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$f(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$f(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread$e(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$e(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$e(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 var Toggle =
 /*#__PURE__*/
@@ -38109,13 +38070,13 @@ defineProperty(Toggle, "defaultProps", {
   inputStyle: {}
 });
 
-defineProperty(Toggle, "propTypes", _objectSpread$f({
+defineProperty(Toggle, "propTypes", _objectSpread$e({
   checked: PropTypes.bool
 }, styledSystem.layout.propTypes, {}, styledSystem.space.propTypes));
 
-function ownKeys$g(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+function ownKeys$f(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread$g(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$g(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$g(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread$f(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$f(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$f(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _templateObject$r() {
   var data = taggedTemplateLiteral(["\n  background-position: center;\n  background-size: cover;\n  background-repeat: no-repeat;\n  background-image: ", ";\n  ", "\n  ", "\n  ", "\n  ", "\n"]);
@@ -38136,7 +38097,7 @@ var BackgroundImage = styled__default.div(_templateObject$r(), image, styledSyst
 BackgroundImage.defaultProps = {
   theme: theme
 };
-BackgroundImage.propTypes = _objectSpread$g({
+BackgroundImage.propTypes = _objectSpread$f({
   source: PropTypes.string.isRequired
 }, styledSystem.space.propTypes, {}, styledSystem.background.propTypes, {}, styledSystem.layout.propTypes, {}, styledSystem.flexbox.propTypes);
 BackgroundImage.displayName = 'BackgroundImage';
@@ -38212,7 +38173,7 @@ function _extends$f() {
   return _extends$f.apply(this, arguments);
 }
 
-function ownKeys$h(object, enumerableOnly) {
+function ownKeys$g(object, enumerableOnly) {
   var keys = Object.keys(object);
 
   if (Object.getOwnPropertySymbols) {
@@ -38231,13 +38192,13 @@ function _objectSpread2$1(target) {
     var source = arguments[i] != null ? arguments[i] : {};
 
     if (i % 2) {
-      ownKeys$h(Object(source), true).forEach(function (key) {
+      ownKeys$g(Object(source), true).forEach(function (key) {
         _defineProperty$3(target, key, source[key]);
       });
     } else if (Object.getOwnPropertyDescriptors) {
       Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
     } else {
-      ownKeys$h(Object(source)).forEach(function (key) {
+      ownKeys$g(Object(source)).forEach(function (key) {
         Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
       });
     }
@@ -40700,7 +40661,7 @@ exports.IconButton = IconButton;
 exports.Image = Image;
 exports.Input = index$1;
 exports.LanguageSetField = LanguageSetField$1;
-exports.Modal = ModalWrapper$1;
+exports.Modal = ModalWrapper;
 exports.Normalize = Normalize;
 exports.OverflowMenu = index$8;
 exports.Pill = Pill;
