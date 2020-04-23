@@ -63,7 +63,7 @@ var letterSpacingsAliases = ['tighter', 'tight', 'normal', 'wide', 'wider', 'wid
 addAliases(letterSpacings, letterSpacingsAliases);
 var shadowColor = 'rgba(0, 0, 0, 0.12)';
 var baseShadow = '0 0 2px 0 rgba(0,0,0,.0625),';
-var shadows = ["".concat(baseShadow, "0 2px 4px 0 ").concat(shadowColor), "".concat(baseShadow, "0 4px 8px 0 ").concat(shadowColor), "".concat(baseShadow, "0 12px 12px 0 ").concat(shadowColor), "".concat(baseShadow, "0 24px 24px 0 ").concat(shadowColor), "".concat(baseShadow, "0 0 20px 0 ").concat(shadowColor)];
+var shadows = ["".concat(baseShadow, "0 2px 4px 0 ").concat(shadowColor), "".concat(baseShadow, "0 4px 8px 0 ").concat(shadowColor), "".concat(baseShadow, "0 12px 12px 0 ").concat(shadowColor), "".concat(baseShadow, "0 24px 24px 0 ").concat(shadowColor), "".concat(baseShadow, "0 0 20px 0 rgba(0,0,0,.05)")];
 var radii = [0, '2px', '5px', '10px', '15px', '20px', '30px', '9999px'];
 var radiiAliases = ['none', 'xsmall', 'small', 'medium', 'large', 'xlarge', 'xxlarge', 'full'];
 addAliases(radii, radiiAliases);
@@ -26011,7 +26011,8 @@ var styleOverride = function styleOverride(_ref) {
       shape = _ref.shape,
       variant = _ref.variant,
       hasShadow = _ref.hasShadow,
-      disabled = _ref.disabled;
+      disabled = _ref.disabled,
+      align = _ref.align;
   return {
     indicatorSeparator: function indicatorSeparator() {
       return {
@@ -26035,6 +26036,12 @@ var styleOverride = function styleOverride(_ref) {
         border: "solid 1px ".concat(colors.gray.xxlight)
       }, {
         fontWeight: fontWeights[shape === 'rounded' ? 'semi' : 'normal']
+      });
+    },
+    menuList: function menuList(provided) {
+      return _objectSpread$a({}, provided, {
+        backgroundColor: colors.white,
+        borderRadius: 4
       });
     },
     placeholder: function placeholder() {
@@ -26071,7 +26078,9 @@ var styleOverride = function styleOverride(_ref) {
         backgroundColor: color,
         ':active': _objectSpread$a({}, defaultStyles[':active'], {
           backgroundColor: colors.gray.xlight
-        })
+        }),
+        cursor: 'pointer',
+        textAlign: align
       });
     }
   };
@@ -26127,7 +26136,8 @@ var Select$1 = function Select(props) {
 };
 
 Select$1.defaultProps = {
-  containerStyle: {}
+  containerStyle: {},
+  align: 'left'
 };
 var index$6 = formik.connect(Select$1);
 
