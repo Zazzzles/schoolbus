@@ -77,7 +77,7 @@ export const shadows = [
   `${baseShadow}0 4px 8px 0 ${shadowColor}`,
   `${baseShadow}0 12px 12px 0 ${shadowColor}`,
   `${baseShadow}0 24px 24px 0 ${shadowColor}`,
-  `${baseShadow}0 0 20px 0 ${shadowColor}`
+  `${baseShadow}0 0 20px 0 rgba(0,0,0,.05)`
 ]
 
 export const radii = [0, '2px', '5px', '10px', '15px', '20px', '30px', '9999px']

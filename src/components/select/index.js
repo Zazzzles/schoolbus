@@ -62,6 +62,7 @@ const Select = props => {
 
 Select.defaultProps = {
   containerStyle: {},
+  align: 'left'
 }
 
 export default connect(Select)
