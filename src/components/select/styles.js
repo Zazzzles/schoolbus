@@ -15,12 +15,11 @@ function getDisabledColor(variant) {
   return variant === 'borderless' ? colors.transparent : colors.white
 }
 
-export const styleOverride = ({ fontSize, shape, variant, hasShadow, disabled }) => ({
+export const styleOverride = ({ fontSize, shape, variant, hasShadow, disabled, align }) => ({
   indicatorSeparator: () => ({
     display: 'none',
   }),
-  control: (provided, state) => {
-    return {
+  control: (provided, state) => ({
       ...provided,
       color: colors.gray.xdark,
       backgroundColor: disabled ? getDisabledColor(variant) : getBackgroundColor(variant),
@@ -39,9 +38,12 @@ export const styleOverride = ({ fontSize, shape, variant, hasShadow, disabled })
         border: `solid 1px ${colors.gray.xxlight}`,
       }),
       fontWeight: fontWeights[shape === 'rounded' ? 'semi' : 'normal']
-    }
-  },
-
+  }),
+  menuList: (provided) => ({
+    ...provided,
+    backgroundColor: colors.white,
+    borderRadius: 4,
+  }),
   placeholder: () => ({
     color: colors.gray.light,
   }),
@@ -69,6 +71,8 @@ export const styleOverride = ({ fontSize, shape, variant, hasShadow, disabled })
         ...defaultStyles[':active'],
         backgroundColor: colors.gray.xlight,
       },
+      cursor: 'pointer',
+      textAlign: align
     }
   },
 })
