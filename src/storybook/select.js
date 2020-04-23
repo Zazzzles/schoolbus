@@ -15,6 +15,7 @@ storiesOf('Input | Select', module)
     <Select value={options[0]} shape="rounded" variant="light" hasShadow options={options} />
   ))
   .add('Disabled', () => <Select disabled options={options} />)
+  .add('Align right', () => <Select value={options[0]} align="right" options={options} />)
   .add('Value', () => (
     <Formik
       initialValues={{

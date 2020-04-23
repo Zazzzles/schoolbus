@@ -39,7 +39,11 @@ export const styleOverride = ({ fontSize, shape, variant, hasShadow, disabled, a
       }),
       fontWeight: fontWeights[shape === 'rounded' ? 'semi' : 'normal']
   }),
-  menuList: (provided) => ({
+  valueContainer: provided => ({
+    ...provided,
+    justifyContent: `flex-${align === 'left' ? 'start' : 'end'}`
+  }),
+  menuList: provided => ({
     ...provided,
     backgroundColor: colors.white,
     borderRadius: 4,
