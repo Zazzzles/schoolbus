@@ -26038,6 +26038,11 @@ var styleOverride = function styleOverride(_ref) {
         fontWeight: fontWeights[shape === 'rounded' ? 'semi' : 'normal']
       });
     },
+    valueContainer: function valueContainer(provided) {
+      return _objectSpread$a({}, provided, {
+        justifyContent: "flex-".concat(align === 'left' ? 'start' : 'end')
+      });
+    },
     menuList: function menuList(provided) {
       return _objectSpread$a({}, provided, {
         backgroundColor: colors.white,
