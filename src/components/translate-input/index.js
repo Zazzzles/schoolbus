@@ -50,9 +50,8 @@ class TranslationInput extends Component {
       toast('Oops! Please add all required translations.')
       return
     }
-
+    
     formik.setFieldValue(name, languageSets)
-
     this.toggleModal()
   }
 
@@ -60,10 +59,12 @@ class TranslationInput extends Component {
     const { value } = target
     const { formik, name } = this.props
     const { values, setFieldValue } = formik
-    const currentValue = values[name]
 
-    currentValue[0].value = value
-    return setFieldValue(name, currentValue)
+    const prevValues = values[name]
+    const [defaultValue, ...rest] = prevValues
+    const updatedDefault = {...defaultValue, value}
+
+    return setFieldValue(name, [updatedDefault, ...rest])
   }
 
   getAlertMessage = (message = '') => {
@@ -122,9 +123,11 @@ class TranslationInput extends Component {
             disabled={disabled}
             {...inputProps}
           />
+
           <TranslateIconContainer onClick={this.toggleModal}>
             <Translate size={fontSizes.normal} color={colors.gray.default} />
           </TranslateIconContainer>
+
           <Modal isOpen={showModal} onClose={this.toggleModal} hideCloseButton>
             <TranslateModal
               values={formik.values[name]}
