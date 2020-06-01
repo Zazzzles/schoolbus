@@ -123,7 +123,7 @@ var theme = {
 
 var ThemeProvider = function ThemeProvider(_ref) {
   var children = _ref.children;
-  return React.createElement(styled.ThemeProvider, {
+  return /*#__PURE__*/React.createElement(styled.ThemeProvider, {
     theme: theme
   }, children);
 };
@@ -273,8 +273,40 @@ function _createClass(Constructor, protoProps, staticProps) {
 
 var createClass = _createClass;
 
+var setPrototypeOf = createCommonjsModule(function (module) {
+function _setPrototypeOf(o, p) {
+  module.exports = _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
+    o.__proto__ = p;
+    return o;
+  };
+
+  return _setPrototypeOf(o, p);
+}
+
+module.exports = _setPrototypeOf;
+});
+
+function _inherits(subClass, superClass) {
+  if (typeof superClass !== "function" && superClass !== null) {
+    throw new TypeError("Super expression must either be null or a function");
+  }
+
+  subClass.prototype = Object.create(superClass && superClass.prototype, {
+    constructor: {
+      value: subClass,
+      writable: true,
+      configurable: true
+    }
+  });
+  if (superClass) setPrototypeOf(subClass, superClass);
+}
+
+var inherits = _inherits;
+
 var _typeof_1 = createCommonjsModule(function (module) {
 function _typeof(obj) {
+  "@babel/helpers - typeof";
+
   if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
     module.exports = _typeof = function _typeof(obj) {
       return typeof obj;
@@ -321,36 +353,6 @@ function _getPrototypeOf(o) {
 
 module.exports = _getPrototypeOf;
 });
-
-var setPrototypeOf = createCommonjsModule(function (module) {
-function _setPrototypeOf(o, p) {
-  module.exports = _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
-    o.__proto__ = p;
-    return o;
-  };
-
-  return _setPrototypeOf(o, p);
-}
-
-module.exports = _setPrototypeOf;
-});
-
-function _inherits(subClass, superClass) {
-  if (typeof superClass !== "function" && superClass !== null) {
-    throw new TypeError("Super expression must either be null or a function");
-  }
-
-  subClass.prototype = Object.create(superClass && superClass.prototype, {
-    constructor: {
-      value: subClass,
-      writable: true,
-      configurable: true
-    }
-  });
-  if (superClass) setPrototypeOf(subClass, superClass);
-}
-
-var inherits = _inherits;
 
 function _templateObject$3() {
   var data = taggedTemplateLiteral(["\n  display: ", ";\n  border-radius: 50%;\n  width: ", ";\n  height: ", ";\n  color: ", ";\n  border: ", " solid ", ";\n  box-sizing: border-box;\n  animation: sweep 1s linear alternate infinite, rota 0.8s linear infinite;\n  margin: ", ";\n\n  @keyframes rota {\n    from {\n      transform: rotate(0deg);\n    }\n    to {\n      transform: rotate(360deg);\n    }\n  }\n  @keyframes sweep {\n    0% {\n      clip-path: polygon(0% 0%, 0% 0%, 0% 0%, 50% 50%, 0% 0%, 0% 0%, 0% 0%);\n    }\n    50% {\n      clip-path: polygon(\n        0% 0%,\n        0% 100%,\n        0% 100%,\n        50% 50%,\n        100% 0%,\n        100% 0%,\n        0% 0%\n      );\n    }\n    100% {\n      clip-path: polygon(\n        0% 0%,\n        0% 100%,\n        100% 100%,\n        50% 50%,\n        100% 100%,\n        100% 0%,\n        0% 0%\n      );\n    }\n  }\n"]);
@@ -453,15 +455,19 @@ function ownKeys$1(object, enumerableOnly) { var keys = Object.keys(object); if 
 
 function _objectSpread$1(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$1(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$1(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
-var Button =
-/*#__PURE__*/
-function (_React$PureComponent) {
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+var Button = /*#__PURE__*/function (_React$PureComponent) {
   inherits(Button, _React$PureComponent);
+
+  var _super = _createSuper(Button);
 
   function Button() {
     classCallCheck(this, Button);
 
-    return possibleConstructorReturn(this, getPrototypeOf(Button).apply(this, arguments));
+    return _super.apply(this, arguments);
   }
 
   createClass(Button, [{
@@ -472,10 +478,10 @@ function (_React$PureComponent) {
           disabled = _this$props.disabled,
           spinnerProps = _this$props.spinnerProps,
           variant = _this$props.variant;
-      return React.createElement(StyledButton, _extends_1({}, this.props, {
+      return /*#__PURE__*/React.createElement(StyledButton, _extends_1({}, this.props, {
         variant: isLoading ? 'secondary' : variant,
         disabled: disabled || isLoading
-      }), isLoading ? React.createElement(Spinner, _extends_1({
+      }), isLoading ? /*#__PURE__*/React.createElement(Spinner, _extends_1({
         color: "white",
         size: "20px",
         width: "3px"
@@ -1425,14 +1431,65 @@ exports["default"] = _default;
 
 var EyeClosed = unwrapExports(EyeOff);
 
-var IconButton =
-/*#__PURE__*/
-function (_PureComponent) {
+var Link = createCommonjsModule(function (module, exports) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+
+var _react = _interopRequireDefault(React__default);
+
+var _styledComponents = _interopRequireDefault(styled__default);
+
+
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+
+var Svg = (0, _styledComponents["default"])('svg')({
+  flex: 'none'
+}, styledSystem__default.space, styledSystem__default.color);
+
+var LinkIcon = function LinkIcon(_ref) {
+  var size = _ref.size,
+      props = _objectWithoutProperties(_ref, ["size"]);
+
+  return _react["default"].createElement(Svg, _extends({}, props, {
+    viewBox: "0 0 24 24",
+    width: size,
+    height: size,
+    fill: "currentcolor"
+  }), _react["default"].createElement("path", {
+    d: "M3.9,12C3.9,10.29 5.29,8.9 7,8.9H11V7H7C4.24,7 2,9.24 2,12C2,14.76 4.24,17 7,17H11V15.1H7C5.29,15.1 3.9,13.71 3.9,12M8,13H16V11H8V13M17,7H13V8.9H17C18.71,8.9 20.1,10.29 20.1,12C20.1,13.71 18.71,15.1 17,15.1H13V17H17C19.76,17 22,14.76 22,12C22,9.24 19.76,7 17,7Z"
+  }));
+};
+
+LinkIcon.displayName = 'LinkIcon';
+LinkIcon.defaultProps = {
+  size: 24
+};
+var _default = LinkIcon;
+exports["default"] = _default;
+});
+
+var Link$1 = unwrapExports(Link);
+
+function _createSuper$1(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$1(); return function _createSuperInternal() { var Super = getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$1() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+var IconButton = /*#__PURE__*/function (_PureComponent) {
   inherits(IconButton, _PureComponent);
 
-  function IconButton() {
-    var _getPrototypeOf2;
+  var _super = _createSuper$1(IconButton);
 
+  function IconButton() {
     var _this;
 
     classCallCheck(this, IconButton);
@@ -1441,7 +1498,7 @@ function (_PureComponent) {
       args[_key] = arguments[_key];
     }
 
-    _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(IconButton)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = _super.call.apply(_super, [this].concat(args));
 
     defineProperty(assertThisInitialized(_this), "iconTypes", {
       add: Plus$1,
@@ -1459,7 +1516,8 @@ function (_PureComponent) {
       email: Email$1,
       close: Close$1,
       eye: Eye$1,
-      eyeClosed: EyeClosed
+      eyeClosed: EyeClosed,
+      link: Link$1
     });
 
     defineProperty(assertThisInitialized(_this), "iconSizes", {
@@ -1498,7 +1556,7 @@ function (_PureComponent) {
         color: _this.getIconColor(),
         size: _this.iconSizes[size]
       };
-      return IconComponent ? React__default.createElement(IconComponent, _extends_1({}, iconProps, {
+      return IconComponent ? /*#__PURE__*/React__default.createElement(IconComponent, _extends_1({}, iconProps, {
         style: iconStyle
       })) : null;
     });
@@ -1514,10 +1572,10 @@ function (_PureComponent) {
           children = _this$props3.children,
           otherProps = objectWithoutProperties(_this$props3, ["badge", "children"]);
 
-      return React__default.createElement(Button$1, _extends_1({
+      return /*#__PURE__*/React__default.createElement(Button$1, _extends_1({
         theme: theme,
         badge: badge
-      }, otherProps), badge > 0 && React__default.createElement(Badge, null, badge), children || this.renderIcon());
+      }, otherProps), badge > 0 && /*#__PURE__*/React__default.createElement(Badge, null, badge), children || this.renderIcon());
     }
   }]);
 
@@ -1678,15 +1736,19 @@ function ownKeys$2(object, enumerableOnly) { var keys = Object.keys(object); if 
 
 function _objectSpread$2(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$2(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$2(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
-var Card =
-/*#__PURE__*/
-function (_React$PureComponent) {
+function _createSuper$2(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$2(); return function _createSuperInternal() { var Super = getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$2() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+var Card = /*#__PURE__*/function (_React$PureComponent) {
   inherits(Card, _React$PureComponent);
+
+  var _super = _createSuper$2(Card);
 
   function Card() {
     classCallCheck(this, Card);
 
-    return possibleConstructorReturn(this, getPrototypeOf(Card).apply(this, arguments));
+    return _super.apply(this, arguments);
   }
 
   createClass(Card, [{
@@ -1704,12 +1766,12 @@ function (_React$PureComponent) {
           otherProps = objectWithoutProperties(_this$props, ["title", "description", "onAdd", "actions", "viewState", "renderHeader", "children", "hideDivider"]);
 
       var showDivider = !hideDivider && title && (!viewState || !!children);
-      return React.createElement(StyledCard, otherProps, typeof renderHeader === 'function' ? renderHeader({
+      return /*#__PURE__*/React.createElement(StyledCard, otherProps, typeof renderHeader === 'function' ? renderHeader({
         title: title,
         description: description
-      }) : React.createElement(Card.Header, null, React.createElement(TitleContainer, null, React.createElement(Card.Title, null, title), React.createElement(ActionsContainer, null, actions, onAdd && !viewState && React.createElement(IconButton, {
+      }) : /*#__PURE__*/React.createElement(Card.Header, null, /*#__PURE__*/React.createElement(TitleContainer, null, /*#__PURE__*/React.createElement(Card.Title, null, title), /*#__PURE__*/React.createElement(ActionsContainer, null, actions, onAdd && !viewState && /*#__PURE__*/React.createElement(IconButton, {
         onClick: onAdd
-      }))), description.length > 0 && !viewState && React.createElement(Card.Description, null, description), showDivider && React.createElement(Card.Divider, null)), React.createElement(Card.Content, {
+      }))), description.length > 0 && !viewState && /*#__PURE__*/React.createElement(Card.Description, null, description), showDivider && /*#__PURE__*/React.createElement(Card.Divider, null)), /*#__PURE__*/React.createElement(Card.Content, {
         showDivider: showDivider
       }, children));
     }
@@ -1846,17 +1908,21 @@ var Count = styled__default.span(_templateObject3$1(), function (_ref11) {
 function ownKeys$4(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread$4(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$4(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$4(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _createSuper$3(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$3(); return function _createSuperInternal() { var Super = getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$3() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 Container.displayName = 'Pill';
 
-var Pill =
-/*#__PURE__*/
-function (_React$PureComponent) {
+var Pill = /*#__PURE__*/function (_React$PureComponent) {
   inherits(Pill, _React$PureComponent);
+
+  var _super = _createSuper$3(Pill);
 
   function Pill() {
     classCallCheck(this, Pill);
 
-    return possibleConstructorReturn(this, getPrototypeOf(Pill).apply(this, arguments));
+    return _super.apply(this, arguments);
   }
 
   createClass(Pill, [{
@@ -1868,12 +1934,12 @@ function (_React$PureComponent) {
           count = _this$props.count,
           otherProps = objectWithoutProperties(_this$props, ["children", "active", "count"]);
 
-      return React.createElement(Container, _extends_1({}, otherProps, {
+      return /*#__PURE__*/React.createElement(Container, _extends_1({}, otherProps, {
         active: active,
         count: count
-      }), React.createElement(Text$1, {
+      }), /*#__PURE__*/React.createElement(Text$1, {
         active: active
-      }, children), count >= 0 && React.createElement(Count, {
+      }, children), count >= 0 && /*#__PURE__*/React.createElement(Count, {
         active: active
       }, count));
     }
@@ -1939,44 +2005,51 @@ Image.defaultProps = {
   shape: SHAPES$1.square
 };
 
-var reactIs_production_min = createCommonjsModule(function (module, exports) {
-Object.defineProperty(exports,"__esModule",{value:!0});
-var b="function"===typeof Symbol&&Symbol.for,c=b?Symbol.for("react.element"):60103,d=b?Symbol.for("react.portal"):60106,e=b?Symbol.for("react.fragment"):60107,f=b?Symbol.for("react.strict_mode"):60108,g=b?Symbol.for("react.profiler"):60114,h=b?Symbol.for("react.provider"):60109,k=b?Symbol.for("react.context"):60110,l=b?Symbol.for("react.async_mode"):60111,m=b?Symbol.for("react.concurrent_mode"):60111,n=b?Symbol.for("react.forward_ref"):60112,p=b?Symbol.for("react.suspense"):60113,q=b?Symbol.for("react.suspense_list"):
-60120,r=b?Symbol.for("react.memo"):60115,t=b?Symbol.for("react.lazy"):60116,v=b?Symbol.for("react.fundamental"):60117,w=b?Symbol.for("react.responder"):60118,x=b?Symbol.for("react.scope"):60119;function y(a){if("object"===typeof a&&null!==a){var u=a.$$typeof;switch(u){case c:switch(a=a.type,a){case l:case m:case e:case g:case f:case p:return a;default:switch(a=a&&a.$$typeof,a){case k:case n:case t:case r:case h:return a;default:return u}}case d:return u}}}function z(a){return y(a)===m}
-exports.typeOf=y;exports.AsyncMode=l;exports.ConcurrentMode=m;exports.ContextConsumer=k;exports.ContextProvider=h;exports.Element=c;exports.ForwardRef=n;exports.Fragment=e;exports.Lazy=t;exports.Memo=r;exports.Portal=d;exports.Profiler=g;exports.StrictMode=f;exports.Suspense=p;
-exports.isValidElementType=function(a){return "string"===typeof a||"function"===typeof a||a===e||a===m||a===g||a===f||a===p||a===q||"object"===typeof a&&null!==a&&(a.$$typeof===t||a.$$typeof===r||a.$$typeof===h||a.$$typeof===k||a.$$typeof===n||a.$$typeof===v||a.$$typeof===w||a.$$typeof===x)};exports.isAsyncMode=function(a){return z(a)||y(a)===l};exports.isConcurrentMode=z;exports.isContextConsumer=function(a){return y(a)===k};exports.isContextProvider=function(a){return y(a)===h};
-exports.isElement=function(a){return "object"===typeof a&&null!==a&&a.$$typeof===c};exports.isForwardRef=function(a){return y(a)===n};exports.isFragment=function(a){return y(a)===e};exports.isLazy=function(a){return y(a)===t};exports.isMemo=function(a){return y(a)===r};exports.isPortal=function(a){return y(a)===d};exports.isProfiler=function(a){return y(a)===g};exports.isStrictMode=function(a){return y(a)===f};exports.isSuspense=function(a){return y(a)===p};
-});
+/** @license React v16.13.1
+ * react-is.production.min.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+var b="function"===typeof Symbol&&Symbol.for,c=b?Symbol.for("react.element"):60103,d=b?Symbol.for("react.portal"):60106,e=b?Symbol.for("react.fragment"):60107,f=b?Symbol.for("react.strict_mode"):60108,g=b?Symbol.for("react.profiler"):60114,h=b?Symbol.for("react.provider"):60109,k=b?Symbol.for("react.context"):60110,l=b?Symbol.for("react.async_mode"):60111,m=b?Symbol.for("react.concurrent_mode"):60111,n=b?Symbol.for("react.forward_ref"):60112,p=b?Symbol.for("react.suspense"):60113,q=b?
+Symbol.for("react.suspense_list"):60120,r=b?Symbol.for("react.memo"):60115,t=b?Symbol.for("react.lazy"):60116,v=b?Symbol.for("react.block"):60121,w=b?Symbol.for("react.fundamental"):60117,x=b?Symbol.for("react.responder"):60118,y=b?Symbol.for("react.scope"):60119;
+function z(a){if("object"===typeof a&&null!==a){var u=a.$$typeof;switch(u){case c:switch(a=a.type,a){case l:case m:case e:case g:case f:case p:return a;default:switch(a=a&&a.$$typeof,a){case k:case n:case t:case r:case h:return a;default:return u}}case d:return u}}}function A(a){return z(a)===m}var AsyncMode=l;var ConcurrentMode=m;var ContextConsumer=k;var ContextProvider=h;var Element=c;var ForwardRef=n;var Fragment=e;var Lazy=t;var Memo=r;var Portal=d;
+var Profiler=g;var StrictMode=f;var Suspense=p;var isAsyncMode=function(a){return A(a)||z(a)===l};var isConcurrentMode=A;var isContextConsumer=function(a){return z(a)===k};var isContextProvider=function(a){return z(a)===h};var isElement=function(a){return "object"===typeof a&&null!==a&&a.$$typeof===c};var isForwardRef=function(a){return z(a)===n};var isFragment=function(a){return z(a)===e};var isLazy=function(a){return z(a)===t};
+var isMemo=function(a){return z(a)===r};var isPortal=function(a){return z(a)===d};var isProfiler=function(a){return z(a)===g};var isStrictMode=function(a){return z(a)===f};var isSuspense=function(a){return z(a)===p};
+var isValidElementType=function(a){return "string"===typeof a||"function"===typeof a||a===e||a===m||a===g||a===f||a===p||a===q||"object"===typeof a&&null!==a&&(a.$$typeof===t||a.$$typeof===r||a.$$typeof===h||a.$$typeof===k||a.$$typeof===n||a.$$typeof===w||a.$$typeof===x||a.$$typeof===y||a.$$typeof===v)};var typeOf=z;
 
-unwrapExports(reactIs_production_min);
-var reactIs_production_min_1 = reactIs_production_min.typeOf;
-var reactIs_production_min_2 = reactIs_production_min.AsyncMode;
-var reactIs_production_min_3 = reactIs_production_min.ConcurrentMode;
-var reactIs_production_min_4 = reactIs_production_min.ContextConsumer;
-var reactIs_production_min_5 = reactIs_production_min.ContextProvider;
-var reactIs_production_min_6 = reactIs_production_min.Element;
-var reactIs_production_min_7 = reactIs_production_min.ForwardRef;
-var reactIs_production_min_8 = reactIs_production_min.Fragment;
-var reactIs_production_min_9 = reactIs_production_min.Lazy;
-var reactIs_production_min_10 = reactIs_production_min.Memo;
-var reactIs_production_min_11 = reactIs_production_min.Portal;
-var reactIs_production_min_12 = reactIs_production_min.Profiler;
-var reactIs_production_min_13 = reactIs_production_min.StrictMode;
-var reactIs_production_min_14 = reactIs_production_min.Suspense;
-var reactIs_production_min_15 = reactIs_production_min.isValidElementType;
-var reactIs_production_min_16 = reactIs_production_min.isAsyncMode;
-var reactIs_production_min_17 = reactIs_production_min.isConcurrentMode;
-var reactIs_production_min_18 = reactIs_production_min.isContextConsumer;
-var reactIs_production_min_19 = reactIs_production_min.isContextProvider;
-var reactIs_production_min_20 = reactIs_production_min.isElement;
-var reactIs_production_min_21 = reactIs_production_min.isForwardRef;
-var reactIs_production_min_22 = reactIs_production_min.isFragment;
-var reactIs_production_min_23 = reactIs_production_min.isLazy;
-var reactIs_production_min_24 = reactIs_production_min.isMemo;
-var reactIs_production_min_25 = reactIs_production_min.isPortal;
-var reactIs_production_min_26 = reactIs_production_min.isProfiler;
-var reactIs_production_min_27 = reactIs_production_min.isStrictMode;
-var reactIs_production_min_28 = reactIs_production_min.isSuspense;
+var reactIs_production_min = {
+	AsyncMode: AsyncMode,
+	ConcurrentMode: ConcurrentMode,
+	ContextConsumer: ContextConsumer,
+	ContextProvider: ContextProvider,
+	Element: Element,
+	ForwardRef: ForwardRef,
+	Fragment: Fragment,
+	Lazy: Lazy,
+	Memo: Memo,
+	Portal: Portal,
+	Profiler: Profiler,
+	StrictMode: StrictMode,
+	Suspense: Suspense,
+	isAsyncMode: isAsyncMode,
+	isConcurrentMode: isConcurrentMode,
+	isContextConsumer: isContextConsumer,
+	isContextProvider: isContextProvider,
+	isElement: isElement,
+	isForwardRef: isForwardRef,
+	isFragment: isFragment,
+	isLazy: isLazy,
+	isMemo: isMemo,
+	isPortal: isPortal,
+	isProfiler: isProfiler,
+	isStrictMode: isStrictMode,
+	isSuspense: isSuspense,
+	isValidElementType: isValidElementType,
+	typeOf: typeOf
+};
 
 var reactIs_development = createCommonjsModule(function (module, exports) {
 
@@ -1984,8 +2057,6 @@ var reactIs_development = createCommonjsModule(function (module, exports) {
 
 if (process.env.NODE_ENV !== "production") {
   (function() {
-
-Object.defineProperty(exports, '__esModule', { value: true });
 
 // The Symbol used to tag the ReactElement-like types. If there is no native Symbol
 // nor polyfill, then a plain number is used for performance.
@@ -2006,69 +2077,15 @@ var REACT_SUSPENSE_TYPE = hasSymbol ? Symbol.for('react.suspense') : 0xead1;
 var REACT_SUSPENSE_LIST_TYPE = hasSymbol ? Symbol.for('react.suspense_list') : 0xead8;
 var REACT_MEMO_TYPE = hasSymbol ? Symbol.for('react.memo') : 0xead3;
 var REACT_LAZY_TYPE = hasSymbol ? Symbol.for('react.lazy') : 0xead4;
+var REACT_BLOCK_TYPE = hasSymbol ? Symbol.for('react.block') : 0xead9;
 var REACT_FUNDAMENTAL_TYPE = hasSymbol ? Symbol.for('react.fundamental') : 0xead5;
 var REACT_RESPONDER_TYPE = hasSymbol ? Symbol.for('react.responder') : 0xead6;
 var REACT_SCOPE_TYPE = hasSymbol ? Symbol.for('react.scope') : 0xead7;
 
 function isValidElementType(type) {
   return typeof type === 'string' || typeof type === 'function' || // Note: its typeof might be other than 'symbol' or 'number' if it's a polyfill.
-  type === REACT_FRAGMENT_TYPE || type === REACT_CONCURRENT_MODE_TYPE || type === REACT_PROFILER_TYPE || type === REACT_STRICT_MODE_TYPE || type === REACT_SUSPENSE_TYPE || type === REACT_SUSPENSE_LIST_TYPE || typeof type === 'object' && type !== null && (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_PROVIDER_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || type.$$typeof === REACT_FUNDAMENTAL_TYPE || type.$$typeof === REACT_RESPONDER_TYPE || type.$$typeof === REACT_SCOPE_TYPE);
+  type === REACT_FRAGMENT_TYPE || type === REACT_CONCURRENT_MODE_TYPE || type === REACT_PROFILER_TYPE || type === REACT_STRICT_MODE_TYPE || type === REACT_SUSPENSE_TYPE || type === REACT_SUSPENSE_LIST_TYPE || typeof type === 'object' && type !== null && (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_PROVIDER_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || type.$$typeof === REACT_FUNDAMENTAL_TYPE || type.$$typeof === REACT_RESPONDER_TYPE || type.$$typeof === REACT_SCOPE_TYPE || type.$$typeof === REACT_BLOCK_TYPE);
 }
-
-/**
- * Forked from fbjs/warning:
- * https://github.com/facebook/fbjs/blob/e66ba20ad5be433eb54423f2b097d829324d9de6/packages/fbjs/src/__forks__/warning.js
- *
- * Only change is we use console.warn instead of console.error,
- * and do nothing when 'console' is not supported.
- * This really simplifies the code.
- * ---
- * Similar to invariant but only logs a warning if the condition is not met.
- * This can be used to log issues in development environments in critical
- * paths. Removing the logging code for production environments will keep the
- * same logic and follow the same code paths.
- */
-var lowPriorityWarningWithoutStack = function () {};
-
-{
-  var printWarning = function (format) {
-    for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-      args[_key - 1] = arguments[_key];
-    }
-
-    var argIndex = 0;
-    var message = 'Warning: ' + format.replace(/%s/g, function () {
-      return args[argIndex++];
-    });
-
-    if (typeof console !== 'undefined') {
-      console.warn(message);
-    }
-
-    try {
-      // --- Welcome to debugging React ---
-      // This error was thrown as a convenience so that you can use this stack
-      // to find the callsite that caused this warning to fire.
-      throw new Error(message);
-    } catch (x) {}
-  };
-
-  lowPriorityWarningWithoutStack = function (condition, format) {
-    if (format === undefined) {
-      throw new Error('`lowPriorityWarningWithoutStack(condition, format, ...args)` requires a warning ' + 'message argument');
-    }
-
-    if (!condition) {
-      for (var _len2 = arguments.length, args = new Array(_len2 > 2 ? _len2 - 2 : 0), _key2 = 2; _key2 < _len2; _key2++) {
-        args[_key2 - 2] = arguments[_key2];
-      }
-
-      printWarning.apply(void 0, [format].concat(args));
-    }
-  };
-}
-
-var lowPriorityWarningWithoutStack$1 = lowPriorityWarningWithoutStack;
 
 function typeOf(object) {
   if (typeof object === 'object' && object !== null) {
@@ -2130,8 +2147,9 @@ var hasWarnedAboutDeprecatedIsAsyncMode = false; // AsyncMode should be deprecat
 function isAsyncMode(object) {
   {
     if (!hasWarnedAboutDeprecatedIsAsyncMode) {
-      hasWarnedAboutDeprecatedIsAsyncMode = true;
-      lowPriorityWarningWithoutStack$1(false, 'The ReactIs.isAsyncMode() alias has been deprecated, ' + 'and will be removed in React 17+. Update your code to use ' + 'ReactIs.isConcurrentMode() instead. It has the exact same API.');
+      hasWarnedAboutDeprecatedIsAsyncMode = true; // Using console['warn'] to evade Babel and ESLint
+
+      console['warn']('The ReactIs.isAsyncMode() alias has been deprecated, ' + 'and will be removed in React 17+. Update your code to use ' + 'ReactIs.isConcurrentMode() instead. It has the exact same API.');
     }
   }
 
@@ -2174,7 +2192,6 @@ function isSuspense(object) {
   return typeOf(object) === REACT_SUSPENSE_TYPE;
 }
 
-exports.typeOf = typeOf;
 exports.AsyncMode = AsyncMode;
 exports.ConcurrentMode = ConcurrentMode;
 exports.ContextConsumer = ContextConsumer;
@@ -2188,7 +2205,6 @@ exports.Portal = Portal;
 exports.Profiler = Profiler;
 exports.StrictMode = StrictMode;
 exports.Suspense = Suspense;
-exports.isValidElementType = isValidElementType;
 exports.isAsyncMode = isAsyncMode;
 exports.isConcurrentMode = isConcurrentMode;
 exports.isContextConsumer = isContextConsumer;
@@ -2202,39 +2218,39 @@ exports.isPortal = isPortal;
 exports.isProfiler = isProfiler;
 exports.isStrictMode = isStrictMode;
 exports.isSuspense = isSuspense;
+exports.isValidElementType = isValidElementType;
+exports.typeOf = typeOf;
   })();
 }
 });
-
-unwrapExports(reactIs_development);
-var reactIs_development_1 = reactIs_development.typeOf;
-var reactIs_development_2 = reactIs_development.AsyncMode;
-var reactIs_development_3 = reactIs_development.ConcurrentMode;
-var reactIs_development_4 = reactIs_development.ContextConsumer;
-var reactIs_development_5 = reactIs_development.ContextProvider;
-var reactIs_development_6 = reactIs_development.Element;
-var reactIs_development_7 = reactIs_development.ForwardRef;
-var reactIs_development_8 = reactIs_development.Fragment;
-var reactIs_development_9 = reactIs_development.Lazy;
-var reactIs_development_10 = reactIs_development.Memo;
-var reactIs_development_11 = reactIs_development.Portal;
-var reactIs_development_12 = reactIs_development.Profiler;
-var reactIs_development_13 = reactIs_development.StrictMode;
-var reactIs_development_14 = reactIs_development.Suspense;
-var reactIs_development_15 = reactIs_development.isValidElementType;
-var reactIs_development_16 = reactIs_development.isAsyncMode;
-var reactIs_development_17 = reactIs_development.isConcurrentMode;
-var reactIs_development_18 = reactIs_development.isContextConsumer;
-var reactIs_development_19 = reactIs_development.isContextProvider;
-var reactIs_development_20 = reactIs_development.isElement;
-var reactIs_development_21 = reactIs_development.isForwardRef;
-var reactIs_development_22 = reactIs_development.isFragment;
-var reactIs_development_23 = reactIs_development.isLazy;
-var reactIs_development_24 = reactIs_development.isMemo;
-var reactIs_development_25 = reactIs_development.isPortal;
-var reactIs_development_26 = reactIs_development.isProfiler;
-var reactIs_development_27 = reactIs_development.isStrictMode;
-var reactIs_development_28 = reactIs_development.isSuspense;
+var reactIs_development_1 = reactIs_development.AsyncMode;
+var reactIs_development_2 = reactIs_development.ConcurrentMode;
+var reactIs_development_3 = reactIs_development.ContextConsumer;
+var reactIs_development_4 = reactIs_development.ContextProvider;
+var reactIs_development_5 = reactIs_development.Element;
+var reactIs_development_6 = reactIs_development.ForwardRef;
+var reactIs_development_7 = reactIs_development.Fragment;
+var reactIs_development_8 = reactIs_development.Lazy;
+var reactIs_development_9 = reactIs_development.Memo;
+var reactIs_development_10 = reactIs_development.Portal;
+var reactIs_development_11 = reactIs_development.Profiler;
+var reactIs_development_12 = reactIs_development.StrictMode;
+var reactIs_development_13 = reactIs_development.Suspense;
+var reactIs_development_14 = reactIs_development.isAsyncMode;
+var reactIs_development_15 = reactIs_development.isConcurrentMode;
+var reactIs_development_16 = reactIs_development.isContextConsumer;
+var reactIs_development_17 = reactIs_development.isContextProvider;
+var reactIs_development_18 = reactIs_development.isElement;
+var reactIs_development_19 = reactIs_development.isForwardRef;
+var reactIs_development_20 = reactIs_development.isFragment;
+var reactIs_development_21 = reactIs_development.isLazy;
+var reactIs_development_22 = reactIs_development.isMemo;
+var reactIs_development_23 = reactIs_development.isPortal;
+var reactIs_development_24 = reactIs_development.isProfiler;
+var reactIs_development_25 = reactIs_development.isStrictMode;
+var reactIs_development_26 = reactIs_development.isSuspense;
+var reactIs_development_27 = reactIs_development.isValidElementType;
+var reactIs_development_28 = reactIs_development.typeOf;
 
 var reactIs = createCommonjsModule(function (module) {
 
@@ -2348,7 +2364,7 @@ var hoistNonReactStatics_cjs = hoistNonReactStatics;
 var mapProps = function mapProps(map) {
   return function (Component) {
     return hoistNonReactStatics_cjs(function (props) {
-      return React.createElement(Component, map(props));
+      return /*#__PURE__*/React.createElement(Component, map(props));
     }, Component);
   };
 };
@@ -2469,15 +2485,19 @@ StyledInput,
 /* sc-selector */
 StyledInput);
 
-var Checkbox =
-/*#__PURE__*/
-function (_React$PureComponent) {
+function _createSuper$4(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$4(); return function _createSuperInternal() { var Super = getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$4() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+var Checkbox = /*#__PURE__*/function (_React$PureComponent) {
   inherits(Checkbox, _React$PureComponent);
+
+  var _super = _createSuper$4(Checkbox);
 
   function Checkbox() {
     classCallCheck(this, Checkbox);
 
-    return possibleConstructorReturn(this, getPrototypeOf(Checkbox).apply(this, arguments));
+    return _super.apply(this, arguments);
   }
 
   createClass(Checkbox, [{
@@ -2491,13 +2511,13 @@ function (_React$PureComponent) {
           disabled = _this$props.disabled,
           otherProps = objectWithoutProperties(_this$props, ["children", "onChange", "checked", "onBlur", "disabled"]);
 
-      return React.createElement(StyledLabel, otherProps, React.createElement(StyledInput, {
+      return /*#__PURE__*/React.createElement(StyledLabel, otherProps, /*#__PURE__*/React.createElement(StyledInput, {
         onChange: onChange,
         onBlur: onBlur,
         checked: checked,
         disabled: disabled,
         readOnly: true
-      }), React.createElement(StyledSpan, {
+      }), /*#__PURE__*/React.createElement(StyledSpan, {
         disabled: disabled,
         labelled: children
       }, children));
@@ -2605,6 +2625,10 @@ exports["default"] = _default;
 
 var RadioboxMarked$1 = unwrapExports(RadioboxMarked);
 
+function _createSuper$5(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$5(); return function _createSuperInternal() { var Super = getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$5() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
 function _templateObject2$4() {
   var data = taggedTemplateLiteral(["\n  margin-left: 0.5em;\n"]);
 
@@ -2642,15 +2666,15 @@ var StyledLabel$1 = styled__default.label(_templateObject$c(), function (_ref) {
 });
 var StyledSpan$1 = styled__default.span(_templateObject2$4());
 
-var RadioButton =
-/*#__PURE__*/
-function (_React$PureComponent) {
+var RadioButton = /*#__PURE__*/function (_React$PureComponent) {
   inherits(RadioButton, _React$PureComponent);
+
+  var _super = _createSuper$5(RadioButton);
 
   function RadioButton() {
     classCallCheck(this, RadioButton);
 
-    return possibleConstructorReturn(this, getPrototypeOf(RadioButton).apply(this, arguments));
+    return _super.apply(this, arguments);
   }
 
   createClass(RadioButton, [{
@@ -2667,13 +2691,13 @@ function (_React$PureComponent) {
           otherProps = objectWithoutProperties(_this$props, ["children", "theme", "onChange", "checked", "inputProps", "labelProps", "disabled"]);
 
       var Icon = checked ? RadioboxMarked$1 : RadioboxBlank$1;
-      return React.createElement(StyledLabel$1, _extends_1({
+      return /*#__PURE__*/React.createElement(StyledLabel$1, _extends_1({
         disabled: disabled
-      }, otherProps), React.createElement(Icon, _extends_1({
+      }, otherProps), /*#__PURE__*/React.createElement(Icon, _extends_1({
         onClick: onChange,
         checked: checked,
         color: checked ? theme.colors.primary : theme.colors.gray.dark
-      }, inputProps)), children && React.createElement(StyledSpan$1, labelProps, children));
+      }, inputProps)), children && /*#__PURE__*/React.createElement(StyledSpan$1, labelProps, children));
     }
   }]);
 
@@ -2792,14 +2816,14 @@ var InputWrapper = function InputWrapper(_ref10) {
       required = _ref10.required,
       otherProps = objectWithoutProperties(_ref10, ["id", "label", "children", "alertText", "alertStyle", "containerStyle", "labelStyle", "required"]);
 
-  return React__default.createElement(StyledInputContainer, _extends_1({
+  return /*#__PURE__*/React__default.createElement(StyledInputContainer, _extends_1({
     empty: !label,
     style: containerStyle
-  }, otherProps), label && React__default.createElement(StyledLabel$2, {
+  }, otherProps), label && /*#__PURE__*/React__default.createElement(StyledLabel$2, {
     htmlFor: id,
     required: required,
     style: labelStyle
-  }, label), children, alertText && React__default.createElement(StyledAlertText, {
+  }, label), children, alertText && /*#__PURE__*/React__default.createElement(StyledAlertText, {
     style: alertStyle
   }, alertText));
 };
@@ -2844,15 +2868,19 @@ function createDefaultInputProps(_ref) {
   };
 }
 
-var Input =
-/*#__PURE__*/
-function (_React$PureComponent) {
+function _createSuper$6(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$6(); return function _createSuperInternal() { var Super = getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$6() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+var Input = /*#__PURE__*/function (_React$PureComponent) {
   inherits(Input, _React$PureComponent);
+
+  var _super = _createSuper$6(Input);
 
   function Input() {
     classCallCheck(this, Input);
 
-    return possibleConstructorReturn(this, getPrototypeOf(Input).apply(this, arguments));
+    return _super.apply(this, arguments);
   }
 
   createClass(Input, [{
@@ -2885,9 +2913,9 @@ function (_React$PureComponent) {
           alertText = _createDefaultInputPr.alertText,
           inputDefaults = objectWithoutProperties(_createDefaultInputPr, ["alertText"]);
 
-      return React.createElement(InputWrapper, _extends_1({
+      return /*#__PURE__*/React.createElement(InputWrapper, _extends_1({
         alertText: alertTextOverride || alertText
-      }, otherProps), React.createElement(StyledInput$1, _extends_1({
+      }, otherProps), /*#__PURE__*/React.createElement(StyledInput$1, _extends_1({
         id: id
       }, inputDefaults, {
         style: inputStyle,
@@ -3013,7 +3041,7 @@ var classnames = createCommonjsModule(function (module) {
 
 function requiredArgs(required, args) {
   if (args.length < required) {
-    throw new TypeError(required + ' argument' + required > 1 ? 's' : '' + ' required, but only ' + args.length + ' present');
+    throw new TypeError(required + ' argument' + (required > 1 ? 's' : '') + ' required, but only ' + args.length + ' present');
   }
 }
 
@@ -3204,6 +3232,14 @@ var formatDistanceLocale = {
   xDays: {
     one: '1 day',
     other: '{{count}} days'
+  },
+  aboutXWeeks: {
+    one: 'about 1 week',
+    other: 'about {{count}} weeks'
+  },
+  xWeeks: {
+    one: '1 week',
+    other: '{{count}} weeks'
   },
   aboutXMonths: {
     one: 'about 1 month',
@@ -3522,11 +3558,11 @@ function buildMatchFn(args) {
 
     if (Object.prototype.toString.call(parsePatterns) === '[object Array]') {
       value = findIndex(parsePatterns, function (pattern) {
-        return pattern.test(string);
+        return pattern.test(matchedString);
       });
     } else {
       value = findKey(parsePatterns, function (pattern) {
-        return pattern.test(string);
+        return pattern.test(matchedString);
       });
     }
 
@@ -4948,6 +4984,10 @@ var longFormatters = {
 };
 
 var MILLISECONDS_IN_MINUTE = 60000;
+
+function getDateMillisecondsPart(date) {
+  return date.getTime() % MILLISECONDS_IN_MINUTE;
+}
 /**
  * Google Chrome as of 67.0.3396.87 introduced timezones with offset that includes seconds.
  * They usually appear for dates that denote time before the timezones were introduced
@@ -4960,11 +5000,13 @@ var MILLISECONDS_IN_MINUTE = 60000;
  * This function returns the timezone offset in milliseconds that takes seconds in account.
  */
 
+
 function getTimezoneOffsetInMilliseconds(dirtyDate) {
   var date = new Date(dirtyDate.getTime());
   var baseTimezoneOffset = Math.ceil(date.getTimezoneOffset());
   date.setSeconds(0, 0);
-  var millisecondsPartOfTimezoneOffset = date.getTime() % MILLISECONDS_IN_MINUTE;
+  var hasNegativeUTCOffset = baseTimezoneOffset > 0;
+  var millisecondsPartOfTimezoneOffset = hasNegativeUTCOffset ? (MILLISECONDS_IN_MINUTE + getDateMillisecondsPart(date)) % MILLISECONDS_IN_MINUTE : getDateMillisecondsPart(date);
   return baseTimezoneOffset * MILLISECONDS_IN_MINUTE + millisecondsPartOfTimezoneOffset;
 }
 
@@ -5133,7 +5175,7 @@ var unescapedLatinCharacterRegExp = /[a-zA-Z]/;
  * |                                 | HH      | 00, 01, 02, ..., 23               |       |
  * | Hour [0-11]                     | K       | 1, 2, ..., 11, 0                  |       |
  * |                                 | Ko      | 1st, 2nd, ..., 11th, 0th          | 7     |
- * |                                 | KK      | 1, 2, ..., 11, 0                  |       |
+ * |                                 | KK      | 01, 02, ..., 11, 00               |       |
  * | Hour [1-24]                     | k       | 24, 1, 2, ..., 23                 |       |
  * |                                 | ko      | 24th, 1st, 2nd, ..., 23rd         | 7     |
  * |                                 | kk      | 24, 01, 02, ..., 23               |       |
@@ -5497,6 +5539,16 @@ function addDays(dirtyDate, dirtyAmount) {
   requiredArgs(2, arguments);
   var date = toDate(dirtyDate);
   var amount = toInteger(dirtyAmount);
+
+  if (isNaN(amount)) {
+    return new Date(NaN);
+  }
+
+  if (!amount) {
+    // If 0 days, no-op to avoid changing times in the hour before end of DST
+    return date;
+  }
+
   date.setDate(date.getDate() + amount);
   return date;
 }
@@ -5532,39 +5584,6 @@ function addWeeks(dirtyDate, dirtyAmount) {
 }
 
 /**
- * @name getDaysInMonth
- * @category Month Helpers
- * @summary Get the number of days in a month of the given date.
- *
- * @description
- * Get the number of days in a month of the given date.
- *
- * ### v2.0.0 breaking changes:
- *
- * - [Changes that are common for the whole library](https://github.com/date-fns/date-fns/blob/master/docs/upgradeGuide.md#Common-Changes).
- *
- * @param {Date|Number} date - the given date
- * @returns {Number} the number of days in a month
- * @throws {TypeError} 1 argument required
- *
- * @example
- * // How many days are in February 2000?
- * var result = getDaysInMonth(new Date(2000, 1))
- * //=> 29
- */
-
-function getDaysInMonth(dirtyDate) {
-  requiredArgs(1, arguments);
-  var date = toDate(dirtyDate);
-  var year = date.getFullYear();
-  var monthIndex = date.getMonth();
-  var lastDayOfMonth = new Date(0);
-  lastDayOfMonth.setFullYear(year, monthIndex + 1, 0);
-  lastDayOfMonth.setHours(0, 0, 0, 0);
-  return lastDayOfMonth.getDate();
-}
-
-/**
  * @name addMonths
  * @category Month Helpers
  * @summary Add the specified number of months to the given date.
@@ -5591,15 +5610,44 @@ function addMonths(dirtyDate, dirtyAmount) {
   requiredArgs(2, arguments);
   var date = toDate(dirtyDate);
   var amount = toInteger(dirtyAmount);
-  var desiredMonth = date.getMonth() + amount;
-  var dateWithDesiredMonth = new Date(0);
-  dateWithDesiredMonth.setFullYear(date.getFullYear(), desiredMonth, 1);
-  dateWithDesiredMonth.setHours(0, 0, 0, 0);
-  var daysInMonth = getDaysInMonth(dateWithDesiredMonth); // Set the last day of the new month
-  // if the original date was the last day of the longer month
 
-  date.setMonth(desiredMonth, Math.min(daysInMonth, date.getDate()));
-  return date;
+  if (isNaN(amount)) {
+    return new Date(NaN);
+  }
+
+  if (!amount) {
+    // If 0 months, no-op to avoid changing times in the hour before end of DST
+    return date;
+  }
+
+  var dayOfMonth = date.getDate(); // The JS Date object supports date math by accepting out-of-bounds values for
+  // month, day, etc. For example, new Date(2020, 1, 0) returns 31 Dec 2019 and
+  // new Date(2020, 13, 1) returns 1 Feb 2021.  This is *almost* the behavior we
+  // want except that dates will wrap around the end of a month, meaning that
+  // new Date(2020, 13, 31) will return 3 Mar 2021 not 28 Feb 2021 as desired. So
+  // we'll default to the end of the desired month by adding 1 to the desired
+  // month and using a date of 0 to back up one day to the end of the desired
+  // month.
+
+  var endOfDesiredMonth = new Date(date.getTime());
+  endOfDesiredMonth.setMonth(date.getMonth() + amount + 1, 0);
+  var daysInMonth = endOfDesiredMonth.getDate();
+
+  if (dayOfMonth >= daysInMonth) {
+    // If we're already at the end of the month, then this is the correct date
+    // and we're done.
+    return endOfDesiredMonth;
+  } else {
+    // Otherwise, we now know that setting the original day-of-month value won't
+    // cause an overflow, so set the desired day-of-month. Note that we can't
+    // just set the date of `endOfDesiredMonth` because that object may have had
+    // its time changed in the unusual case where where a DST transition was on
+    // the last day of the month and its local time was in the hour skipped or
+    // repeated next to a DST transition.  So we use `date` instead which is
+    // guaranteed to still have the original time.
+    date.setFullYear(endOfDesiredMonth.getFullYear(), endOfDesiredMonth.getMonth(), dayOfMonth);
+    return date;
+  }
 }
 
 /**
@@ -5847,7 +5895,7 @@ function getHours(dirtyDate) {
  * - [Changes that are common for the whole library](https://github.com/date-fns/date-fns/blob/master/docs/upgradeGuide.md#Common-Changes).
  *
  * @param {Date|Number} date - the given date
- * @returns {Number} the day of week
+ * @returns {0|1|2|3|4|5|6} the day of week
  * @throws {TypeError} 1 argument required
  *
  * @example
@@ -6343,6 +6391,39 @@ function setHours(dirtyDate, dirtyHours) {
 }
 
 /**
+ * @name getDaysInMonth
+ * @category Month Helpers
+ * @summary Get the number of days in a month of the given date.
+ *
+ * @description
+ * Get the number of days in a month of the given date.
+ *
+ * ### v2.0.0 breaking changes:
+ *
+ * - [Changes that are common for the whole library](https://github.com/date-fns/date-fns/blob/master/docs/upgradeGuide.md#Common-Changes).
+ *
+ * @param {Date|Number} date - the given date
+ * @returns {Number} the number of days in a month
+ * @throws {TypeError} 1 argument required
+ *
+ * @example
+ * // How many days are in February 2000?
+ * var result = getDaysInMonth(new Date(2000, 1))
+ * //=> 29
+ */
+
+function getDaysInMonth(dirtyDate) {
+  requiredArgs(1, arguments);
+  var date = toDate(dirtyDate);
+  var year = date.getFullYear();
+  var monthIndex = date.getMonth();
+  var lastDayOfMonth = new Date(0);
+  lastDayOfMonth.setFullYear(year, monthIndex + 1, 0);
+  lastDayOfMonth.setHours(0, 0, 0, 0);
+  return lastDayOfMonth.getDate();
+}
+
+/**
  * @name setMonth
  * @category Month Helpers
  * @summary Set the month to the given date.
@@ -6783,6 +6864,38 @@ function startOfQuarter(dirtyDate) {
   var currentMonth = date.getMonth();
   var month = currentMonth - currentMonth % 3;
   date.setMonth(month, 1);
+  date.setHours(0, 0, 0, 0);
+  return date;
+}
+
+/**
+ * @name startOfYear
+ * @category Year Helpers
+ * @summary Return the start of a year for the given date.
+ *
+ * @description
+ * Return the start of a year for the given date.
+ * The result will be in the local timezone.
+ *
+ * ### v2.0.0 breaking changes:
+ *
+ * - [Changes that are common for the whole library](https://github.com/date-fns/date-fns/blob/master/docs/upgradeGuide.md#Common-Changes).
+ *
+ * @param {Date|Number} date - the original date
+ * @returns {Date} the start of a year
+ * @throws {TypeError} 1 argument required
+ *
+ * @example
+ * // The start of a year for 2 September 2014 11:55:00:
+ * var result = startOfYear(new Date(2014, 8, 2, 11, 55, 00))
+ * //=> Wed Jan 01 2014 00:00:00
+ */
+
+function startOfYear(dirtyDate) {
+  requiredArgs(1, arguments);
+  var cleanDate = toDate(dirtyDate);
+  var date = new Date(0);
+  date.setFullYear(cleanDate.getFullYear(), 0, 1);
   date.setHours(0, 0, 0, 0);
   return date;
 }
@@ -8850,7 +8963,7 @@ var unescapedLatinCharacterRegExp$1 = /[a-zA-Z]/;
  * |                                 |     | HH      | 00, 01, 02, ..., 23               |       |
  * | Hour [0-11]                     |  70 | K       | 1, 2, ..., 11, 0                  |       |
  * |                                 |     | Ko      | 1st, 2nd, ..., 11th, 0th          | 5     |
- * |                                 |     | KK      | 1, 2, ..., 11, 0                  |       |
+ * |                                 |     | KK      | 01, 02, ..., 11, 00               |       |
  * | Hour [1-24]                     |  70 | k       | 24, 1, 2, ..., 23                 |       |
  * |                                 |     | ko      | 24th, 1st, 2nd, ..., 23rd         | 5     |
  * |                                 |     | kk      | 24, 01, 02, ..., 23               |       |
@@ -9344,23 +9457,15 @@ function parseISO(argument, dirtyOptions) {
       return new Date(NaN);
     }
   } else {
-    var fullTime = timestamp + time;
-    var fullTimeDate = new Date(fullTime);
-    offset = getTimezoneOffsetInMilliseconds(fullTimeDate); // Adjust time when it's coming from DST
+    var dirtyDate = new Date(timestamp + time); // js parsed string assuming it's in UTC timezone
+    // but we need it to be parsed in our timezone
+    // so we use utc values to build date in our timezone.
+    // Year values from 0 to 99 map to the years 1900 to 1999
+    // so set year explicitly with setFullYear.
 
-    var fullTimeDateDiffDay = new Date(fullTime);
-
-    if (offset > 0) {
-      fullTimeDateDiffDay.setDate(fullTimeDate.getDate() + 1);
-    } else {
-      fullTimeDateDiffDay.setDate(fullTimeDate.getDate() - 1);
-    }
-
-    var offsetDiff = getTimezoneOffsetInMilliseconds(fullTimeDateDiffDay) - offset;
-
-    if (offsetDiff > 0) {
-      offset += offsetDiff;
-    }
+    var result = new Date(dirtyDate.getUTCFullYear(), dirtyDate.getUTCMonth(), dirtyDate.getUTCDate(), dirtyDate.getUTCHours(), dirtyDate.getUTCMinutes(), dirtyDate.getUTCSeconds(), dirtyDate.getUTCMilliseconds());
+    result.setFullYear(dirtyDate.getUTCFullYear());
+    return result;
   }
 
   return new Date(timestamp + time + offset);
@@ -10087,125 +10192,14 @@ isStandardArguments.isLegacyArguments = isLegacyArguments; // for tests
 
 var isArguments$1 = supportsStandardArguments ? isStandardArguments : isLegacyArguments;
 
-// http://www.ecma-international.org/ecma-262/6.0/#sec-object.is
-
-var numberIsNaN = function (value) {
-	return value !== value;
-};
-
-var objectIs = function is(a, b) {
-	if (a === 0 && b === 0) {
-		return 1 / a === 1 / b;
-	}
-	if (a === b) {
-		return true;
-	}
-	if (numberIsNaN(a) && numberIsNaN(b)) {
-		return true;
-	}
-	return false;
-};
-
-/* eslint no-invalid-this: 1 */
-
-var ERROR_MESSAGE = 'Function.prototype.bind called on incompatible ';
-var slice$1 = Array.prototype.slice;
-var toStr$3 = Object.prototype.toString;
-var funcType = '[object Function]';
-
-var implementation$1 = function bind(that) {
-    var target = this;
-    if (typeof target !== 'function' || toStr$3.call(target) !== funcType) {
-        throw new TypeError(ERROR_MESSAGE + target);
-    }
-    var args = slice$1.call(arguments, 1);
-
-    var bound;
-    var binder = function () {
-        if (this instanceof bound) {
-            var result = target.apply(
-                this,
-                args.concat(slice$1.call(arguments))
-            );
-            if (Object(result) === result) {
-                return result;
-            }
-            return this;
-        } else {
-            return target.apply(
-                that,
-                args.concat(slice$1.call(arguments))
-            );
-        }
-    };
-
-    var boundLength = Math.max(0, target.length - args.length);
-    var boundArgs = [];
-    for (var i = 0; i < boundLength; i++) {
-        boundArgs.push('$' + i);
-    }
-
-    bound = Function('binder', 'return function (' + boundArgs.join(',') + '){ return binder.apply(this,arguments); }')(binder);
-
-    if (target.prototype) {
-        var Empty = function Empty() {};
-        Empty.prototype = target.prototype;
-        bound.prototype = new Empty();
-        Empty.prototype = null;
-    }
-
-    return bound;
-};
-
-var functionBind = Function.prototype.bind || implementation$1;
-
-var src = functionBind.call(Function.call, Object.prototype.hasOwnProperty);
-
-var regexExec = RegExp.prototype.exec;
-var gOPD = Object.getOwnPropertyDescriptor;
-
-var tryRegexExecCall = function tryRegexExec(value) {
-	try {
-		var lastIndex = value.lastIndex;
-		value.lastIndex = 0; // eslint-disable-line no-param-reassign
-
-		regexExec.call(value);
-		return true;
-	} catch (e) {
-		return false;
-	} finally {
-		value.lastIndex = lastIndex; // eslint-disable-line no-param-reassign
-	}
-};
-var toStr$4 = Object.prototype.toString;
-var regexClass = '[object RegExp]';
-var hasToStringTag$1 = typeof Symbol === 'function' && typeof Symbol.toStringTag === 'symbol';
-
-var isRegex = function isRegex(value) {
-	if (!value || typeof value !== 'object') {
-		return false;
-	}
-	if (!hasToStringTag$1) {
-		return toStr$4.call(value) === regexClass;
-	}
-
-	var descriptor = gOPD(value, 'lastIndex');
-	var hasLastIndexDataProperty = descriptor && src(descriptor, 'value');
-	if (!hasLastIndexDataProperty) {
-		return false;
-	}
-
-	return tryRegexExecCall(value);
-};
-
 var hasSymbols = typeof Symbol === 'function' && typeof Symbol('foo') === 'symbol';
 
-var toStr$5 = Object.prototype.toString;
+var toStr$3 = Object.prototype.toString;
 var concat = Array.prototype.concat;
 var origDefineProperty = Object.defineProperty;
 
 var isFunction = function (fn) {
-	return typeof fn === 'function' && toStr$5.call(fn) === '[object Function]';
+	return typeof fn === 'function' && toStr$3.call(fn) === '[object Function]';
 };
 
 var arePropertyDescriptorsSupported = function () {
@@ -10253,6 +10247,59 @@ var defineProperties = function (object, map) {
 defineProperties.supportsDescriptors = !!supportsDescriptors;
 
 var defineProperties_1 = defineProperties;
+
+/* eslint no-invalid-this: 1 */
+
+var ERROR_MESSAGE = 'Function.prototype.bind called on incompatible ';
+var slice$1 = Array.prototype.slice;
+var toStr$4 = Object.prototype.toString;
+var funcType = '[object Function]';
+
+var implementation$1 = function bind(that) {
+    var target = this;
+    if (typeof target !== 'function' || toStr$4.call(target) !== funcType) {
+        throw new TypeError(ERROR_MESSAGE + target);
+    }
+    var args = slice$1.call(arguments, 1);
+
+    var bound;
+    var binder = function () {
+        if (this instanceof bound) {
+            var result = target.apply(
+                this,
+                args.concat(slice$1.call(arguments))
+            );
+            if (Object(result) === result) {
+                return result;
+            }
+            return this;
+        } else {
+            return target.apply(
+                that,
+                args.concat(slice$1.call(arguments))
+            );
+        }
+    };
+
+    var boundLength = Math.max(0, target.length - args.length);
+    var boundArgs = [];
+    for (var i = 0; i < boundLength; i++) {
+        boundArgs.push('$' + i);
+    }
+
+    bound = Function('binder', 'return function (' + boundArgs.join(',') + '){ return binder.apply(this,arguments); }')(binder);
+
+    if (target.prototype) {
+        var Empty = function Empty() {};
+        Empty.prototype = target.prototype;
+        bound.prototype = new Empty();
+        Empty.prototype = null;
+    }
+
+    return bound;
+};
+
+var functionBind = Function.prototype.bind || implementation$1;
 
 /* eslint complexity: [2, 18], max-statements: [2, 33] */
 var shams = function hasSymbols() {
@@ -10317,6 +10364,13 @@ var undefined$1;
 var $TypeError = TypeError;
 
 var $gOPD = Object.getOwnPropertyDescriptor;
+if ($gOPD) {
+	try {
+		$gOPD({}, '');
+	} catch (e) {
+		$gOPD = null; // this is IE 8, which has a broken gOPD
+	}
+}
 
 var throwTypeError = function () { throw new $TypeError(); };
 var ThrowTypeError = $gOPD
@@ -10346,115 +10400,115 @@ var asyncGenFunction =  undefined$1;
 var TypedArray = typeof Uint8Array === 'undefined' ? undefined$1 : getProto(Uint8Array);
 
 var INTRINSICS = {
-	'$ %Array%': Array,
-	'$ %ArrayBuffer%': typeof ArrayBuffer === 'undefined' ? undefined$1 : ArrayBuffer,
-	'$ %ArrayBufferPrototype%': typeof ArrayBuffer === 'undefined' ? undefined$1 : ArrayBuffer.prototype,
-	'$ %ArrayIteratorPrototype%': hasSymbols$2 ? getProto([][Symbol.iterator]()) : undefined$1,
-	'$ %ArrayPrototype%': Array.prototype,
-	'$ %ArrayProto_entries%': Array.prototype.entries,
-	'$ %ArrayProto_forEach%': Array.prototype.forEach,
-	'$ %ArrayProto_keys%': Array.prototype.keys,
-	'$ %ArrayProto_values%': Array.prototype.values,
-	'$ %AsyncFromSyncIteratorPrototype%': undefined$1,
-	'$ %AsyncFunction%': asyncFunction,
-	'$ %AsyncFunctionPrototype%':  undefined$1,
-	'$ %AsyncGenerator%':  undefined$1,
-	'$ %AsyncGeneratorFunction%': asyncGenFunction,
-	'$ %AsyncGeneratorPrototype%':  undefined$1,
-	'$ %AsyncIteratorPrototype%':  undefined$1,
-	'$ %Atomics%': typeof Atomics === 'undefined' ? undefined$1 : Atomics,
-	'$ %Boolean%': Boolean,
-	'$ %BooleanPrototype%': Boolean.prototype,
-	'$ %DataView%': typeof DataView === 'undefined' ? undefined$1 : DataView,
-	'$ %DataViewPrototype%': typeof DataView === 'undefined' ? undefined$1 : DataView.prototype,
-	'$ %Date%': Date,
-	'$ %DatePrototype%': Date.prototype,
-	'$ %decodeURI%': decodeURI,
-	'$ %decodeURIComponent%': decodeURIComponent,
-	'$ %encodeURI%': encodeURI,
-	'$ %encodeURIComponent%': encodeURIComponent,
-	'$ %Error%': Error,
-	'$ %ErrorPrototype%': Error.prototype,
-	'$ %eval%': eval, // eslint-disable-line no-eval
-	'$ %EvalError%': EvalError,
-	'$ %EvalErrorPrototype%': EvalError.prototype,
-	'$ %Float32Array%': typeof Float32Array === 'undefined' ? undefined$1 : Float32Array,
-	'$ %Float32ArrayPrototype%': typeof Float32Array === 'undefined' ? undefined$1 : Float32Array.prototype,
-	'$ %Float64Array%': typeof Float64Array === 'undefined' ? undefined$1 : Float64Array,
-	'$ %Float64ArrayPrototype%': typeof Float64Array === 'undefined' ? undefined$1 : Float64Array.prototype,
-	'$ %Function%': Function,
-	'$ %FunctionPrototype%': Function.prototype,
-	'$ %Generator%':  undefined$1,
-	'$ %GeneratorFunction%': generatorFunction,
-	'$ %GeneratorPrototype%':  undefined$1,
-	'$ %Int8Array%': typeof Int8Array === 'undefined' ? undefined$1 : Int8Array,
-	'$ %Int8ArrayPrototype%': typeof Int8Array === 'undefined' ? undefined$1 : Int8Array.prototype,
-	'$ %Int16Array%': typeof Int16Array === 'undefined' ? undefined$1 : Int16Array,
-	'$ %Int16ArrayPrototype%': typeof Int16Array === 'undefined' ? undefined$1 : Int8Array.prototype,
-	'$ %Int32Array%': typeof Int32Array === 'undefined' ? undefined$1 : Int32Array,
-	'$ %Int32ArrayPrototype%': typeof Int32Array === 'undefined' ? undefined$1 : Int32Array.prototype,
-	'$ %isFinite%': isFinite,
-	'$ %isNaN%': isNaN,
-	'$ %IteratorPrototype%': hasSymbols$2 ? getProto(getProto([][Symbol.iterator]())) : undefined$1,
-	'$ %JSON%': typeof JSON === 'object' ? JSON : undefined$1,
-	'$ %JSONParse%': typeof JSON === 'object' ? JSON.parse : undefined$1,
-	'$ %Map%': typeof Map === 'undefined' ? undefined$1 : Map,
-	'$ %MapIteratorPrototype%': typeof Map === 'undefined' || !hasSymbols$2 ? undefined$1 : getProto(new Map()[Symbol.iterator]()),
-	'$ %MapPrototype%': typeof Map === 'undefined' ? undefined$1 : Map.prototype,
-	'$ %Math%': Math,
-	'$ %Number%': Number,
-	'$ %NumberPrototype%': Number.prototype,
-	'$ %Object%': Object,
-	'$ %ObjectPrototype%': Object.prototype,
-	'$ %ObjProto_toString%': Object.prototype.toString,
-	'$ %ObjProto_valueOf%': Object.prototype.valueOf,
-	'$ %parseFloat%': parseFloat,
-	'$ %parseInt%': parseInt,
-	'$ %Promise%': typeof Promise === 'undefined' ? undefined$1 : Promise,
-	'$ %PromisePrototype%': typeof Promise === 'undefined' ? undefined$1 : Promise.prototype,
-	'$ %PromiseProto_then%': typeof Promise === 'undefined' ? undefined$1 : Promise.prototype.then,
-	'$ %Promise_all%': typeof Promise === 'undefined' ? undefined$1 : Promise.all,
-	'$ %Promise_reject%': typeof Promise === 'undefined' ? undefined$1 : Promise.reject,
-	'$ %Promise_resolve%': typeof Promise === 'undefined' ? undefined$1 : Promise.resolve,
-	'$ %Proxy%': typeof Proxy === 'undefined' ? undefined$1 : Proxy,
-	'$ %RangeError%': RangeError,
-	'$ %RangeErrorPrototype%': RangeError.prototype,
-	'$ %ReferenceError%': ReferenceError,
-	'$ %ReferenceErrorPrototype%': ReferenceError.prototype,
-	'$ %Reflect%': typeof Reflect === 'undefined' ? undefined$1 : Reflect,
-	'$ %RegExp%': RegExp,
-	'$ %RegExpPrototype%': RegExp.prototype,
-	'$ %Set%': typeof Set === 'undefined' ? undefined$1 : Set,
-	'$ %SetIteratorPrototype%': typeof Set === 'undefined' || !hasSymbols$2 ? undefined$1 : getProto(new Set()[Symbol.iterator]()),
-	'$ %SetPrototype%': typeof Set === 'undefined' ? undefined$1 : Set.prototype,
-	'$ %SharedArrayBuffer%': typeof SharedArrayBuffer === 'undefined' ? undefined$1 : SharedArrayBuffer,
-	'$ %SharedArrayBufferPrototype%': typeof SharedArrayBuffer === 'undefined' ? undefined$1 : SharedArrayBuffer.prototype,
-	'$ %String%': String,
-	'$ %StringIteratorPrototype%': hasSymbols$2 ? getProto(''[Symbol.iterator]()) : undefined$1,
-	'$ %StringPrototype%': String.prototype,
-	'$ %Symbol%': hasSymbols$2 ? Symbol : undefined$1,
-	'$ %SymbolPrototype%': hasSymbols$2 ? Symbol.prototype : undefined$1,
-	'$ %SyntaxError%': SyntaxError,
-	'$ %SyntaxErrorPrototype%': SyntaxError.prototype,
-	'$ %ThrowTypeError%': ThrowTypeError,
-	'$ %TypedArray%': TypedArray,
-	'$ %TypedArrayPrototype%': TypedArray ? TypedArray.prototype : undefined$1,
-	'$ %TypeError%': $TypeError,
-	'$ %TypeErrorPrototype%': $TypeError.prototype,
-	'$ %Uint8Array%': typeof Uint8Array === 'undefined' ? undefined$1 : Uint8Array,
-	'$ %Uint8ArrayPrototype%': typeof Uint8Array === 'undefined' ? undefined$1 : Uint8Array.prototype,
-	'$ %Uint8ClampedArray%': typeof Uint8ClampedArray === 'undefined' ? undefined$1 : Uint8ClampedArray,
-	'$ %Uint8ClampedArrayPrototype%': typeof Uint8ClampedArray === 'undefined' ? undefined$1 : Uint8ClampedArray.prototype,
-	'$ %Uint16Array%': typeof Uint16Array === 'undefined' ? undefined$1 : Uint16Array,
-	'$ %Uint16ArrayPrototype%': typeof Uint16Array === 'undefined' ? undefined$1 : Uint16Array.prototype,
-	'$ %Uint32Array%': typeof Uint32Array === 'undefined' ? undefined$1 : Uint32Array,
-	'$ %Uint32ArrayPrototype%': typeof Uint32Array === 'undefined' ? undefined$1 : Uint32Array.prototype,
-	'$ %URIError%': URIError,
-	'$ %URIErrorPrototype%': URIError.prototype,
-	'$ %WeakMap%': typeof WeakMap === 'undefined' ? undefined$1 : WeakMap,
-	'$ %WeakMapPrototype%': typeof WeakMap === 'undefined' ? undefined$1 : WeakMap.prototype,
-	'$ %WeakSet%': typeof WeakSet === 'undefined' ? undefined$1 : WeakSet,
-	'$ %WeakSetPrototype%': typeof WeakSet === 'undefined' ? undefined$1 : WeakSet.prototype
+	'%Array%': Array,
+	'%ArrayBuffer%': typeof ArrayBuffer === 'undefined' ? undefined$1 : ArrayBuffer,
+	'%ArrayBufferPrototype%': typeof ArrayBuffer === 'undefined' ? undefined$1 : ArrayBuffer.prototype,
+	'%ArrayIteratorPrototype%': hasSymbols$2 ? getProto([][Symbol.iterator]()) : undefined$1,
+	'%ArrayPrototype%': Array.prototype,
+	'%ArrayProto_entries%': Array.prototype.entries,
+	'%ArrayProto_forEach%': Array.prototype.forEach,
+	'%ArrayProto_keys%': Array.prototype.keys,
+	'%ArrayProto_values%': Array.prototype.values,
+	'%AsyncFromSyncIteratorPrototype%': undefined$1,
+	'%AsyncFunction%': asyncFunction,
+	'%AsyncFunctionPrototype%':  undefined$1,
+	'%AsyncGenerator%':  undefined$1,
+	'%AsyncGeneratorFunction%': asyncGenFunction,
+	'%AsyncGeneratorPrototype%':  undefined$1,
+	'%AsyncIteratorPrototype%':  undefined$1,
+	'%Atomics%': typeof Atomics === 'undefined' ? undefined$1 : Atomics,
+	'%Boolean%': Boolean,
+	'%BooleanPrototype%': Boolean.prototype,
+	'%DataView%': typeof DataView === 'undefined' ? undefined$1 : DataView,
+	'%DataViewPrototype%': typeof DataView === 'undefined' ? undefined$1 : DataView.prototype,
+	'%Date%': Date,
+	'%DatePrototype%': Date.prototype,
+	'%decodeURI%': decodeURI,
+	'%decodeURIComponent%': decodeURIComponent,
+	'%encodeURI%': encodeURI,
+	'%encodeURIComponent%': encodeURIComponent,
+	'%Error%': Error,
+	'%ErrorPrototype%': Error.prototype,
+	'%eval%': eval, // eslint-disable-line no-eval
+	'%EvalError%': EvalError,
+	'%EvalErrorPrototype%': EvalError.prototype,
+	'%Float32Array%': typeof Float32Array === 'undefined' ? undefined$1 : Float32Array,
+	'%Float32ArrayPrototype%': typeof Float32Array === 'undefined' ? undefined$1 : Float32Array.prototype,
+	'%Float64Array%': typeof Float64Array === 'undefined' ? undefined$1 : Float64Array,
+	'%Float64ArrayPrototype%': typeof Float64Array === 'undefined' ? undefined$1 : Float64Array.prototype,
+	'%Function%': Function,
+	'%FunctionPrototype%': Function.prototype,
+	'%Generator%':  undefined$1,
+	'%GeneratorFunction%': generatorFunction,
+	'%GeneratorPrototype%':  undefined$1,
+	'%Int8Array%': typeof Int8Array === 'undefined' ? undefined$1 : Int8Array,
+	'%Int8ArrayPrototype%': typeof Int8Array === 'undefined' ? undefined$1 : Int8Array.prototype,
+	'%Int16Array%': typeof Int16Array === 'undefined' ? undefined$1 : Int16Array,
+	'%Int16ArrayPrototype%': typeof Int16Array === 'undefined' ? undefined$1 : Int8Array.prototype,
+	'%Int32Array%': typeof Int32Array === 'undefined' ? undefined$1 : Int32Array,
+	'%Int32ArrayPrototype%': typeof Int32Array === 'undefined' ? undefined$1 : Int32Array.prototype,
+	'%isFinite%': isFinite,
+	'%isNaN%': isNaN,
+	'%IteratorPrototype%': hasSymbols$2 ? getProto(getProto([][Symbol.iterator]())) : undefined$1,
+	'%JSON%': typeof JSON === 'object' ? JSON : undefined$1,
+	'%JSONParse%': typeof JSON === 'object' ? JSON.parse : undefined$1,
+	'%Map%': typeof Map === 'undefined' ? undefined$1 : Map,
+	'%MapIteratorPrototype%': typeof Map === 'undefined' || !hasSymbols$2 ? undefined$1 : getProto(new Map()[Symbol.iterator]()),
+	'%MapPrototype%': typeof Map === 'undefined' ? undefined$1 : Map.prototype,
+	'%Math%': Math,
+	'%Number%': Number,
+	'%NumberPrototype%': Number.prototype,
+	'%Object%': Object,
+	'%ObjectPrototype%': Object.prototype,
+	'%ObjProto_toString%': Object.prototype.toString,
+	'%ObjProto_valueOf%': Object.prototype.valueOf,
+	'%parseFloat%': parseFloat,
+	'%parseInt%': parseInt,
+	'%Promise%': typeof Promise === 'undefined' ? undefined$1 : Promise,
+	'%PromisePrototype%': typeof Promise === 'undefined' ? undefined$1 : Promise.prototype,
+	'%PromiseProto_then%': typeof Promise === 'undefined' ? undefined$1 : Promise.prototype.then,
+	'%Promise_all%': typeof Promise === 'undefined' ? undefined$1 : Promise.all,
+	'%Promise_reject%': typeof Promise === 'undefined' ? undefined$1 : Promise.reject,
+	'%Promise_resolve%': typeof Promise === 'undefined' ? undefined$1 : Promise.resolve,
+	'%Proxy%': typeof Proxy === 'undefined' ? undefined$1 : Proxy,
+	'%RangeError%': RangeError,
+	'%RangeErrorPrototype%': RangeError.prototype,
+	'%ReferenceError%': ReferenceError,
+	'%ReferenceErrorPrototype%': ReferenceError.prototype,
+	'%Reflect%': typeof Reflect === 'undefined' ? undefined$1 : Reflect,
+	'%RegExp%': RegExp,
+	'%RegExpPrototype%': RegExp.prototype,
+	'%Set%': typeof Set === 'undefined' ? undefined$1 : Set,
+	'%SetIteratorPrototype%': typeof Set === 'undefined' || !hasSymbols$2 ? undefined$1 : getProto(new Set()[Symbol.iterator]()),
+	'%SetPrototype%': typeof Set === 'undefined' ? undefined$1 : Set.prototype,
+	'%SharedArrayBuffer%': typeof SharedArrayBuffer === 'undefined' ? undefined$1 : SharedArrayBuffer,
+	'%SharedArrayBufferPrototype%': typeof SharedArrayBuffer === 'undefined' ? undefined$1 : SharedArrayBuffer.prototype,
+	'%String%': String,
+	'%StringIteratorPrototype%': hasSymbols$2 ? getProto(''[Symbol.iterator]()) : undefined$1,
+	'%StringPrototype%': String.prototype,
+	'%Symbol%': hasSymbols$2 ? Symbol : undefined$1,
+	'%SymbolPrototype%': hasSymbols$2 ? Symbol.prototype : undefined$1,
+	'%SyntaxError%': SyntaxError,
+	'%SyntaxErrorPrototype%': SyntaxError.prototype,
+	'%ThrowTypeError%': ThrowTypeError,
+	'%TypedArray%': TypedArray,
+	'%TypedArrayPrototype%': TypedArray ? TypedArray.prototype : undefined$1,
+	'%TypeError%': $TypeError,
+	'%TypeErrorPrototype%': $TypeError.prototype,
+	'%Uint8Array%': typeof Uint8Array === 'undefined' ? undefined$1 : Uint8Array,
+	'%Uint8ArrayPrototype%': typeof Uint8Array === 'undefined' ? undefined$1 : Uint8Array.prototype,
+	'%Uint8ClampedArray%': typeof Uint8ClampedArray === 'undefined' ? undefined$1 : Uint8ClampedArray,
+	'%Uint8ClampedArrayPrototype%': typeof Uint8ClampedArray === 'undefined' ? undefined$1 : Uint8ClampedArray.prototype,
+	'%Uint16Array%': typeof Uint16Array === 'undefined' ? undefined$1 : Uint16Array,
+	'%Uint16ArrayPrototype%': typeof Uint16Array === 'undefined' ? undefined$1 : Uint16Array.prototype,
+	'%Uint32Array%': typeof Uint32Array === 'undefined' ? undefined$1 : Uint32Array,
+	'%Uint32ArrayPrototype%': typeof Uint32Array === 'undefined' ? undefined$1 : Uint32Array.prototype,
+	'%URIError%': URIError,
+	'%URIErrorPrototype%': URIError.prototype,
+	'%WeakMap%': typeof WeakMap === 'undefined' ? undefined$1 : WeakMap,
+	'%WeakMapPrototype%': typeof WeakMap === 'undefined' ? undefined$1 : WeakMap.prototype,
+	'%WeakSet%': typeof WeakSet === 'undefined' ? undefined$1 : WeakSet,
+	'%WeakSetPrototype%': typeof WeakSet === 'undefined' ? undefined$1 : WeakSet.prototype
 };
 
 
@@ -10473,35 +10527,36 @@ var stringToPath = function stringToPath(string) {
 /* end adaptation */
 
 var getBaseIntrinsic = function getBaseIntrinsic(name, allowMissing) {
-	var key = '$ ' + name;
-	if (!(key in INTRINSICS)) {
+	if (!(name in INTRINSICS)) {
 		throw new SyntaxError('intrinsic ' + name + ' does not exist!');
 	}
 
 	// istanbul ignore if // hopefully this is impossible to test :-)
-	if (typeof INTRINSICS[key] === 'undefined' && !allowMissing) {
+	if (typeof INTRINSICS[name] === 'undefined' && !allowMissing) {
 		throw new $TypeError('intrinsic ' + name + ' exists, but is not available. Please file an issue!');
 	}
 
-	return INTRINSICS[key];
+	return INTRINSICS[name];
 };
 
 var GetIntrinsic = function GetIntrinsic(name, allowMissing) {
+	if (typeof name !== 'string' || name.length === 0) {
+		throw new TypeError('intrinsic name must be a non-empty string');
+	}
 	if (arguments.length > 1 && typeof allowMissing !== 'boolean') {
 		throw new TypeError('"allowMissing" argument must be a boolean');
 	}
 
 	var parts = stringToPath(name);
 
-	if (parts.length === 0) {
-		return getBaseIntrinsic(name, allowMissing);
-	}
-
-	var value = getBaseIntrinsic('%' + parts[0] + '%', allowMissing);
+	var value = getBaseIntrinsic('%' + (parts.length > 0 ? parts[0] : '') + '%', allowMissing);
 	for (var i = 1; i < parts.length; i += 1) {
 		if (value != null) {
 			if ($gOPD && (i + 1) >= parts.length) {
 				var desc = $gOPD(value, parts[i]);
+				if (!allowMissing && !(parts[i] in value)) {
+					throw new $TypeError('base intrinsic for ' + name + ' exists, but the property is not available.');
+				}
 				value = desc ? (desc.get || desc.value) : value[parts[i]];
 			} else {
 				value = value[parts[i]];
@@ -10524,10 +10579,90 @@ var apply = function applyBind() {
 };
 callBind.apply = apply;
 
+var numberIsNaN = function (value) {
+	return value !== value;
+};
+
+var implementation$2 = function is(a, b) {
+	if (a === 0 && b === 0) {
+		return 1 / a === 1 / b;
+	}
+	if (a === b) {
+		return true;
+	}
+	if (numberIsNaN(a) && numberIsNaN(b)) {
+		return true;
+	}
+	return false;
+};
+
+var polyfill = function getPolyfill() {
+	return typeof Object.is === 'function' ? Object.is : implementation$2;
+};
+
+var shim = function shimObjectIs() {
+	var polyfill$1 = polyfill();
+	defineProperties_1(Object, { is: polyfill$1 }, {
+		is: function testObjectIs() {
+			return Object.is !== polyfill$1;
+		}
+	});
+	return polyfill$1;
+};
+
+var polyfill$1 = callBind(polyfill(), Object);
+
+defineProperties_1(polyfill$1, {
+	getPolyfill: polyfill,
+	implementation: implementation$2,
+	shim: shim
+});
+
+var objectIs = polyfill$1;
+
+var src = functionBind.call(Function.call, Object.prototype.hasOwnProperty);
+
+var regexExec = RegExp.prototype.exec;
+var gOPD = Object.getOwnPropertyDescriptor;
+
+var tryRegexExecCall = function tryRegexExec(value) {
+	try {
+		var lastIndex = value.lastIndex;
+		value.lastIndex = 0; // eslint-disable-line no-param-reassign
+
+		regexExec.call(value);
+		return true;
+	} catch (e) {
+		return false;
+	} finally {
+		value.lastIndex = lastIndex; // eslint-disable-line no-param-reassign
+	}
+};
+var toStr$5 = Object.prototype.toString;
+var regexClass = '[object RegExp]';
+var hasToStringTag$1 = typeof Symbol === 'function' && typeof Symbol.toStringTag === 'symbol';
+
+var isRegex = function isRegex(value) {
+	if (!value || typeof value !== 'object') {
+		return false;
+	}
+	if (!hasToStringTag$1) {
+		return toStr$5.call(value) === regexClass;
+	}
+
+	var descriptor = gOPD(value, 'lastIndex');
+	var hasLastIndexDataProperty = descriptor && src(descriptor, 'value');
+	if (!hasLastIndexDataProperty) {
+		return false;
+	}
+
+	return tryRegexExecCall(value);
+};
+
 var $Object = Object;
 var $TypeError$1 = TypeError;
 
-var implementation$2 = function flags() {
+var implementation$3 = function flags() {
 	if (this != null && this !== $Object(this)) {
 		throw new $TypeError$1('RegExp.prototype.flags getter called on non-object');
 	}
@@ -10557,7 +10692,7 @@ var supportsDescriptors$1 = defineProperties_1.supportsDescriptors;
 var $gOPD$1 = Object.getOwnPropertyDescriptor;
 var $TypeError$2 = TypeError;
 
-var polyfill = function getPolyfill() {
+var polyfill$2 = function getPolyfill() {
 	if (!supportsDescriptors$1) {
 		throw new $TypeError$2('RegExp.prototype.flags requires a true ES5 environment that supports property descriptors');
 	}
@@ -10567,7 +10702,7 @@ var polyfill = function getPolyfill() {
 			return descriptor.get;
 		}
 	}
-	return implementation$2;
+	return implementation$3;
 };
 
 var supportsDescriptors$2 = defineProperties_1.supportsDescriptors;
@@ -10578,35 +10713,35 @@ var TypeErr = TypeError;
 var getProto$1 = Object.getPrototypeOf;
 var regex = /a/;
 
-var shim = function shimFlags() {
+var shim$1 = function shimFlags() {
 	if (!supportsDescriptors$2 || !getProto$1) {
 		throw new TypeErr('RegExp.prototype.flags requires a true ES5 environment that supports property descriptors');
 	}
-	var polyfill$1 = polyfill();
+	var polyfill = polyfill$2();
 	var proto = getProto$1(regex);
 	var descriptor = gOPD$1(proto, 'flags');
-	if (!descriptor || descriptor.get !== polyfill$1) {
+	if (!descriptor || descriptor.get !== polyfill) {
 		defineProperty$3(proto, 'flags', {
 			configurable: true,
 			enumerable: false,
-			get: polyfill$1
+			get: polyfill
 		});
 	}
-	return polyfill$1;
+	return polyfill;
 };
 
-var flagsBound = callBind(implementation$2);
+var flagsBound = callBind(implementation$3);
 
 defineProperties_1(flagsBound, {
-	getPolyfill: polyfill,
-	implementation: implementation$2,
-	shim: shim
+	getPolyfill: polyfill$2,
+	implementation: implementation$3,
+	shim: shim$1
 });
 
 var regexp_prototype_flags = flagsBound;
 
 var getDay$1 = Date.prototype.getDay;
-var tryDateObject = function tryDateObject(value) {
+var tryDateObject = function tryDateGetDayCall(value) {
 	try {
 		getDay$1.call(value);
 		return true;
@@ -10620,7 +10755,9 @@ var dateClass = '[object Date]';
 var hasToStringTag$2 = typeof Symbol === 'function' && typeof Symbol.toStringTag === 'symbol';
 
 var isDateObject = function isDateObject(value) {
-	if (typeof value !== 'object' || value === null) { return false; }
+	if (typeof value !== 'object' || value === null) {
+		return false;
+	}
 	return hasToStringTag$2 ? tryDateObject(value) : toStr$6.call(value) === dateClass;
 };
 
@@ -10732,7 +10869,7 @@ var deepEqual_1 = deepEqual;
 
 /**!
  * @fileOverview Kickass library to create and place poppers near their reference elements.
- * @version 1.16.0
+ * @version 1.16.1
  * @license
  * Copyright (c) 2016 Federico Zivolo and contributors
  *
@@ -11078,7 +11215,7 @@ function getBordersSize(styles, axis) {
   var sideA = axis === 'x' ? 'Left' : 'Top';
   var sideB = sideA === 'Left' ? 'Right' : 'Bottom';
 
-  return parseFloat(styles['border' + sideA + 'Width'], 10) + parseFloat(styles['border' + sideB + 'Width'], 10);
+  return parseFloat(styles['border' + sideA + 'Width']) + parseFloat(styles['border' + sideB + 'Width']);
 }
 
 function getSize(axis, body, html, computedStyle) {
@@ -11233,8 +11370,8 @@ function getOffsetRectRelativeToArbitraryNode(children, parent) {
   var scrollParent = getScrollParent(children);
 
   var styles = getStyleComputedProperty(parent);
-  var borderTopWidth = parseFloat(styles.borderTopWidth, 10);
-  var borderLeftWidth = parseFloat(styles.borderLeftWidth, 10);
+  var borderTopWidth = parseFloat(styles.borderTopWidth);
+  var borderLeftWidth = parseFloat(styles.borderLeftWidth);
 
   // In cases where the parent is fixed, we must ignore negative scroll in offset calc
   if (fixedPosition && isHTML) {
@@ -11255,8 +11392,8 @@ function getOffsetRectRelativeToArbitraryNode(children, parent) {
   // differently when margins are applied to it. The margins are included in
   // the box of the documentElement, in the other cases not.
   if (!isIE10 && isHTML) {
-    var marginTop = parseFloat(styles.marginTop, 10);
-    var marginLeft = parseFloat(styles.marginLeft, 10);
+    var marginTop = parseFloat(styles.marginTop);
+    var marginLeft = parseFloat(styles.marginLeft);
 
     offsets.top -= borderTopWidth - marginTop;
     offsets.bottom -= borderTopWidth - marginTop;
@@ -12195,8 +12332,8 @@ function arrow(data, options) {
   // Compute the sideValue using the updated popper offsets
   // take popper margin in account because we don't have this info available
   var css = getStyleComputedProperty(data.instance.popper);
-  var popperMarginSide = parseFloat(css['margin' + sideCapitalized], 10);
-  var popperBorderSide = parseFloat(css['border' + sideCapitalized + 'Width'], 10);
+  var popperMarginSide = parseFloat(css['margin' + sideCapitalized]);
+  var popperBorderSide = parseFloat(css['border' + sideCapitalized + 'Width']);
   var sideValue = center - data.offsets.popper[side] - popperMarginSide - popperBorderSide;
 
   // prevent arrowElement from being placed not contiguously to its popper
@@ -13411,7 +13548,7 @@ if (__DEV__) {
 
 var warning_1 = warning;
 
-var implementation$3 = createCommonjsModule(function (module, exports) {
+var implementation$4 = createCommonjsModule(function (module, exports) {
 
 exports.__esModule = true;
 
@@ -13609,7 +13746,7 @@ exports.default = createReactContext;
 module.exports = exports['default'];
 });
 
-unwrapExports(implementation$3);
+unwrapExports(implementation$4);
 
 var lib = createCommonjsModule(function (module, exports) {
 
@@ -13621,7 +13758,7 @@ var _react2 = _interopRequireDefault(React__default);
 
 
 
-var _implementation2 = _interopRequireDefault(implementation$3);
+var _implementation2 = _interopRequireDefault(implementation$4);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -13973,7 +14110,7 @@ function Reference(props) {
   });
 }
 
-function re(e){return (re="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e})(e)}function ne(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function oe(e,t){for(var r=0;r<t.length;r++){var n=t[r];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n);}}function ae(e,t,r){return t&&oe(e.prototype,t),r&&oe(e,r),e}function se(e,t,r){return t in e?Object.defineProperty(e,t,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[t]=r,e}function pe(){return (pe=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var r=arguments[t];for(var n in r)Object.prototype.hasOwnProperty.call(r,n)&&(e[n]=r[n]);}return e}).apply(this,arguments)}function ie(e,t){var r=Object.keys(e);if(Object.getOwnPropertySymbols){var n=Object.getOwnPropertySymbols(e);t&&(n=n.filter((function(t){return Object.getOwnPropertyDescriptor(e,t).enumerable}))),r.push.apply(r,n);}return r}function ce(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function");e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,writable:!0,configurable:!0}}),t&&de(e,t);}function le(e){return (le=Object.setPrototypeOf?Object.getPrototypeOf:function(e){return e.__proto__||Object.getPrototypeOf(e)})(e)}function de(e,t){return (de=Object.setPrototypeOf||function(e,t){return e.__proto__=t,e})(e,t)}function ue(e){if(void 0===e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return e}function he(e,t){return !t||"object"!=typeof t&&"function"!=typeof t?ue(e):t}function me(e,t){switch(e){case"P":return t.date({width:"short"});case"PP":return t.date({width:"medium"});case"PPP":return t.date({width:"long"});case"PPPP":default:return t.date({width:"full"})}}function fe(e,t){switch(e){case"p":return t.time({width:"short"});case"pp":return t.time({width:"medium"});case"ppp":return t.time({width:"long"});case"pppp":default:return t.time({width:"full"})}}var ve={p:fe,P:function(e,t){var r,n=e.match(/(P+)(p+)?/),o=n[1],a=n[2];if(!a)return me(e,t);switch(o){case"P":r=t.dateTime({width:"short"});break;case"PP":r=t.dateTime({width:"medium"});break;case"PPP":r=t.dateTime({width:"long"});break;case"PPPP":default:r=t.dateTime({width:"full"});}return r.replace("{{date}}",me(o,t)).replace("{{time}}",fe(a,t))}},ye=/P+p+|P+|p+|''|'(''|[^'])+('|$)|./g;function De(e){var t=e?"string"==typeof e||e instanceof String?parseISO(e):toDate(e):new Date;return we(t)?t:null}function ge(e,t,r,n){var a=null,s=Ie(r)||Ye(),p=!0;return Array.isArray(t)?(t.forEach((function(t){var r=parse(e,t,new Date,{locale:s});n&&(p=we(r)&&e===format(r,t,{awareOfUnicodeTokens:!0})),we(r)&&p&&(a=r);})),a):(a=parse(e,t,new Date,{locale:s}),n?p=we(a)&&e===format(a,t,{awareOfUnicodeTokens:!0}):we(a)||(t=t.match(ye).map((function(e){var t=e[0];if("p"===t||"P"===t){var r=ve[t];return s?r(e,s.formatLong):t}return e})).join(""),e.length>0&&(a=parse(e,t.slice(0,e.length),new Date)),we(a)||(a=new Date(e))),we(a)&&p?a:null)}function we(e){return isValid(e)&&isAfter(e,new Date("1/1/1000"))}function ke(e,t,r){if("en"===r)return format(e,t,{awareOfUnicodeTokens:!0});var n=Ie(r);return r&&!n&&console.warn('A locale object was not found for the provided string ["'.concat(r,'"].')),!n&&Ye()&&Ie(Ye())&&(n=Ie(Ye())),format(e,t,{locale:n||null,awareOfUnicodeTokens:!0})}function be(e,t){var r=t.hour,n=void 0===r?0:r,o=t.minute,a=void 0===o?0:o,s=t.second;return setHours(setMinutes(setSeconds(e,void 0===s?0:s),a),n)}function Ce(e,t){var r=Ie(t||Ye());return startOfWeek(e,{locale:r})}function _e(e){return startOfMonth(e)}function Se(e,t){return e&&t?isSameYear(e,t):!e&&!t}function Me(e,t){return e&&t?isSameMonth(e,t):!e&&!t}function Ee(e,t){return e&&t?isSameQuarter(e,t):!e&&!t}function Ne(e,t){return e&&t?isSameDay(e,t):!e&&!t}function Pe(e,t){return e&&t?isEqual(e,t):!e&&!t}function xe(e,t,r){var n,o=startOfDay(t),a=endOfDay(r);try{n=isWithinInterval(e,{start:o,end:a});}catch(e){n=!1;}return n}function Ye(){return ("undefined"!=typeof window?window:global).__localeId__}function Ie(e){if("string"==typeof e){var t="undefined"!=typeof window?window:global;return t.__localeData__?t.__localeData__[e]:null}return e}function Le(e,t){return ke(setMonth(De(),e),"LLL",t)}function Fe(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},r=t.minDate,n=t.maxDate,o=t.excludeDates,a=t.includeDates,s=t.filterDate;return je(e,{minDate:r,maxDate:n})||o&&o.some((function(t){return Ne(e,t)}))||a&&!a.some((function(t){return Ne(e,t)}))||s&&!s(De(e))||!1}function We(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},r=t.minDate,n=t.maxDate,o=t.excludeDates,a=t.includeDates,s=t.filterDate;return je(e,{minDate:r,maxDate:n})||o&&o.some((function(t){return Me(e,t)}))||a&&!a.some((function(t){return Me(e,t)}))||s&&!s(De(e))||!1}function Ae(e,t,r,n){var o=getYear(e),a=getMonth(e),s=getYear(t),p=getMonth(t),i=getYear(n);return o===s&&o===i?a<=r&&r<=p:o<s?i===o&&a<=r||i===s&&p>=r||i<s&&i>o:void 0}function Be(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},r=t.minDate,n=t.maxDate,o=t.excludeDates,a=t.includeDates,s=t.filterDate;return je(e,{minDate:r,maxDate:n})||o&&o.some((function(t){return Ee(e,t)}))||a&&!a.some((function(t){return Ee(e,t)}))||s&&!s(De(e))||!1}function Re(e,t,r,n){var o=getYear(e),a=getQuarter(e),s=getYear(t),p=getQuarter(t),i=getYear(n);return o===s&&o===i?a<=r&&r<=p:o<s?i===o&&a<=r||i===s&&p>=r||i<s&&i>o:void 0}function je(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},r=t.minDate,n=t.maxDate;return r&&differenceInCalendarDays(e,r)<0||n&&differenceInCalendarDays(e,n)>0}function Ke(e,t){for(var r=t.length,n=0;n<r;n++)if(getHours(t[n])===getHours(e)&&getMinutes(t[n])===getMinutes(e))return !0;return !1}function He(e,t){var r=t.minTime,n=t.maxTime;if(!r||!n)throw new Error("Both minTime and maxTime props required");var o,a=De(),s=setHours(setMinutes(a,getMinutes(e)),getHours(e)),p=setHours(setMinutes(a,getMinutes(r)),getHours(r)),i=setHours(setMinutes(a,getMinutes(n)),getHours(n));try{o=!isWithinInterval(s,{start:p,end:i});}catch(e){o=!1;}return o}function Qe(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},r=t.minDate,n=t.includeDates,o=subMonths(e,1);return r&&differenceInCalendarMonths(r,o)>0||n&&n.every((function(e){return differenceInCalendarMonths(e,o)>0}))||!1}function Ve(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},r=t.maxDate,n=t.includeDates,o=addMonths(e,1);return r&&differenceInCalendarMonths(o,r)>0||n&&n.every((function(e){return differenceInCalendarMonths(o,e)>0}))||!1}function qe(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},r=t.minDate,n=t.includeDates,o=subYears(e,1);return r&&differenceInCalendarYears(r,o)>0||n&&n.every((function(e){return differenceInCalendarYears(e,o)>0}))||!1}function Ue(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},r=t.maxDate,n=t.includeDates,o=addYears(e,1);return r&&differenceInCalendarYears(o,r)>0||n&&n.every((function(e){return differenceInCalendarYears(o,e)>0}))||!1}function $e(e){var t=e.minDate,r=e.includeDates;if(r&&t){var n=r.filter((function(e){return differenceInCalendarDays(e,t)>=0}));return min(n)}return r?min(r):t}function ze(e){var t=e.maxDate,r=e.includeDates;if(r&&t){var n=r.filter((function(e){return differenceInCalendarDays(e,t)<=0}));return max(n)}return r?max(r):t}function Ge(){for(var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:[],t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:"react-datepicker__day--highlighted",n=new Map,o=0,a=e.length;o<a;o++){var s=e[o];if(isDate(s)){var p=ke(s,"MM.dd.yyyy"),i=n.get(p)||[];i.includes(t)||(i.push(t),n.set(p,i));}else if("object"===re(s)){var c=Object.keys(s),l=c[0],d=s[c[0]];if("string"==typeof l&&d.constructor===Array)for(var u=0,h=d.length;u<h;u++){var m=ke(d[u],"MM.dd.yyyy"),f=n.get(m)||[];f.includes(l)||(f.push(l),n.set(m,f));}}}return n}function Je(e,t,r,n,o){for(var p=o.length,i=[],c=0;c<p;c++){var l=addMinutes(addHours(e,getHours(o[c])),getMinutes(o[c])),d=addMinutes(e,(r+1)*n);isAfter(l,t)&&isBefore(l,d)&&i.push(o[c]);}return i}function Xe(e){return e<10?"0".concat(e):"".concat(e)}function Ze(e,t,r,n){for(var o=[],a=0;a<2*t+1;a++){var s=e+t-a,p=!0;r&&(p=getYear(r)<=s),n&&p&&(p=getYear(n)>=s),p&&o.push(s);}return o}var et=onClickOutsideHOC(function(r){function n(t){var r;ne(this,n),se(ue(r=he(this,le(n).call(this,t))),"renderOptions",(function(){var t=r.props.year,n=r.state.yearsList.map((function(n){return React__default.createElement("div",{className:t===n?"react-datepicker__year-option react-datepicker__year-option--selected_year":"react-datepicker__year-option",key:n,ref:n,onClick:r.onChange.bind(ue(r),n)},t===n?React__default.createElement("span",{className:"react-datepicker__year-option--selected"},"✓"):"",n)})),o=r.props.minDate?getYear(r.props.minDate):null,a=r.props.maxDate?getYear(r.props.maxDate):null;return a&&r.state.yearsList.find((function(e){return e===a}))||n.unshift(React__default.createElement("div",{className:"react-datepicker__year-option",ref:"upcoming",key:"upcoming",onClick:r.incrementYears},React__default.createElement("a",{className:"react-datepicker__navigation react-datepicker__navigation--years react-datepicker__navigation--years-upcoming"}))),o&&r.state.yearsList.find((function(e){return e===o}))||n.push(React__default.createElement("div",{className:"react-datepicker__year-option",ref:"previous",key:"previous",onClick:r.decrementYears},React__default.createElement("a",{className:"react-datepicker__navigation react-datepicker__navigation--years react-datepicker__navigation--years-previous"}))),n})),se(ue(r),"onChange",(function(e){r.props.onChange(e);})),se(ue(r),"handleClickOutside",(function(){r.props.onCancel();})),se(ue(r),"shiftYears",(function(e){var t=r.state.yearsList.map((function(t){return t+e}));r.setState({yearsList:t});})),se(ue(r),"incrementYears",(function(){return r.shiftYears(1)})),se(ue(r),"decrementYears",(function(){return r.shiftYears(-1)}));var o=t.yearDropdownItemNumber,a=t.scrollableYearDropdown,s=o||(a?10:5);return r.state={yearsList:Ze(r.props.year,s,r.props.minDate,r.props.maxDate)},r}return ce(n,React__default.Component),ae(n,[{key:"render",value:function(){var r=classnames({"react-datepicker__year-dropdown":!0,"react-datepicker__year-dropdown--scrollable":this.props.scrollableYearDropdown});return React__default.createElement("div",{className:r},this.renderOptions())}}]),n}()),tt=function(t){function r(){var t,n;ne(this,r);for(var o=arguments.length,a=new Array(o),s=0;s<o;s++)a[s]=arguments[s];return se(ue(n=he(this,(t=le(r)).call.apply(t,[this].concat(a)))),"state",{dropdownVisible:!1}),se(ue(n),"renderSelectOptions",(function(){for(var t=n.props.minDate?getYear(n.props.minDate):1900,r=n.props.maxDate?getYear(n.props.maxDate):2100,o=[],a=t;a<=r;a++)o.push(React__default.createElement("option",{key:a,value:a},a));return o})),se(ue(n),"onSelectChange",(function(e){n.onChange(e.target.value);})),se(ue(n),"renderSelectMode",(function(){return React__default.createElement("select",{value:n.props.year,className:"react-datepicker__year-select",onChange:n.onSelectChange},n.renderSelectOptions())})),se(ue(n),"renderReadView",(function(t){return React__default.createElement("div",{key:"read",style:{visibility:t?"visible":"hidden"},className:"react-datepicker__year-read-view",onClick:function(e){return n.toggleDropdown(e)}},React__default.createElement("span",{className:"react-datepicker__year-read-view--down-arrow"}),React__default.createElement("span",{className:"react-datepicker__year-read-view--selected-year"},n.props.year))})),se(ue(n),"renderDropdown",(function(){return React__default.createElement(et,{key:"dropdown",ref:"options",year:n.props.year,onChange:n.onChange,onCancel:n.toggleDropdown,minDate:n.props.minDate,maxDate:n.props.maxDate,scrollableYearDropdown:n.props.scrollableYearDropdown,yearDropdownItemNumber:n.props.yearDropdownItemNumber})})),se(ue(n),"renderScrollMode",(function(){var e=n.state.dropdownVisible,t=[n.renderReadView(!e)];return e&&t.unshift(n.renderDropdown()),t})),se(ue(n),"onChange",(function(e){n.toggleDropdown(),e!==n.props.year&&n.props.onChange(e);})),se(ue(n),"toggleDropdown",(function(e){n.setState({dropdownVisible:!n.state.dropdownVisible},(function(){n.props.adjustDateOnChange&&n.handleYearChange(n.props.date,e);}));})),se(ue(n),"handleYearChange",(function(e,t){n.onSelect(e,t),n.setOpen();})),se(ue(n),"onSelect",(function(e,t){n.props.onSelect&&n.props.onSelect(e,t);})),se(ue(n),"setOpen",(function(){n.props.setOpen&&n.props.setOpen(!0);})),n}return ce(r,React__default.Component),ae(r,[{key:"render",value:function(){var t;switch(this.props.dropdownMode){case"scroll":t=this.renderScrollMode();break;case"select":t=this.renderSelectMode();}return React__default.createElement("div",{className:"react-datepicker__year-dropdown-container react-datepicker__year-dropdown-container--".concat(this.props.dropdownMode)},t)}}]),r}(),rt=onClickOutsideHOC(function(t){function r(){var t,n;ne(this,r);for(var o=arguments.length,a=new Array(o),s=0;s<o;s++)a[s]=arguments[s];return se(ue(n=he(this,(t=le(r)).call.apply(t,[this].concat(a)))),"renderOptions",(function(){return n.props.monthNames.map((function(t,r){return React__default.createElement("div",{className:n.props.month===r?"react-datepicker__month-option react-datepicker__month-option--selected_month":"react-datepicker__month-option",key:t,ref:t,onClick:n.onChange.bind(ue(n),r)},n.props.month===r?React__default.createElement("span",{className:"react-datepicker__month-option--selected"},"✓"):"",t)}))})),se(ue(n),"onChange",(function(e){return n.props.onChange(e)})),se(ue(n),"handleClickOutside",(function(){return n.props.onCancel()})),n}return ce(r,React__default.Component),ae(r,[{key:"render",value:function(){return React__default.createElement("div",{className:"react-datepicker__month-dropdown"},this.renderOptions())}}]),r}()),nt=function(t){function r(){var t,n;ne(this,r);for(var o=arguments.length,a=new Array(o),s=0;s<o;s++)a[s]=arguments[s];return se(ue(n=he(this,(t=le(r)).call.apply(t,[this].concat(a)))),"state",{dropdownVisible:!1}),se(ue(n),"renderSelectOptions",(function(t){return t.map((function(t,r){return React__default.createElement("option",{key:r,value:r},t)}))})),se(ue(n),"renderSelectMode",(function(t){return React__default.createElement("select",{value:n.props.month,className:"react-datepicker__month-select",onChange:function(e){return n.onChange(e.target.value)}},n.renderSelectOptions(t))})),se(ue(n),"renderReadView",(function(t,r){return React__default.createElement("div",{key:"read",style:{visibility:t?"visible":"hidden"},className:"react-datepicker__month-read-view",onClick:n.toggleDropdown},React__default.createElement("span",{className:"react-datepicker__month-read-view--down-arrow"}),React__default.createElement("span",{className:"react-datepicker__month-read-view--selected-month"},r[n.props.month]))})),se(ue(n),"renderDropdown",(function(t){return React__default.createElement(rt,{key:"dropdown",ref:"options",month:n.props.month,monthNames:t,onChange:n.onChange,onCancel:n.toggleDropdown})})),se(ue(n),"renderScrollMode",(function(e){var t=n.state.dropdownVisible,r=[n.renderReadView(!t,e)];return t&&r.unshift(n.renderDropdown(e)),r})),se(ue(n),"onChange",(function(e){n.toggleDropdown(),e!==n.props.month&&n.props.onChange(e);})),se(ue(n),"toggleDropdown",(function(){return n.setState({dropdownVisible:!n.state.dropdownVisible})})),n}return ce(r,React__default.Component),ae(r,[{key:"render",value:function(){var t,r=this,n=[0,1,2,3,4,5,6,7,8,9,10,11].map(this.props.useShortMonthInDropdown?function(e){return Le(e,r.props.locale)}:function(e){return t=e,n=r.props.locale,ke(setMonth(De(),t),"LLLL",n);var t,n;});switch(this.props.dropdownMode){case"scroll":t=this.renderScrollMode(n);break;case"select":t=this.renderSelectMode(n);}return React__default.createElement("div",{className:"react-datepicker__month-dropdown-container react-datepicker__month-dropdown-container--".concat(this.props.dropdownMode)},t)}}]),r}();function ot(e,t){for(var r=[],n=_e(e),o=_e(t);!isAfter(n,o);)r.push(De(n)),n=addMonths(n,1);return r}var at=onClickOutsideHOC(function(r){function n(t){var r;return ne(this,n),se(ue(r=he(this,le(n).call(this,t))),"renderOptions",(function(){return r.state.monthYearsList.map((function(t){var n=getTime(t),o=Se(r.props.date,t)&&Me(r.props.date,t);return React__default.createElement("div",{className:o?"react-datepicker__month-year-option --selected_month-year":"react-datepicker__month-year-option",key:n,ref:n,onClick:r.onChange.bind(ue(r),n)},o?React__default.createElement("span",{className:"react-datepicker__month-year-option--selected"},"✓"):"",ke(t,r.props.dateFormat))}))})),se(ue(r),"onChange",(function(e){return r.props.onChange(e)})),se(ue(r),"handleClickOutside",(function(){r.props.onCancel();})),r.state={monthYearsList:ot(r.props.minDate,r.props.maxDate)},r}return ce(n,React__default.Component),ae(n,[{key:"render",value:function(){var r=classnames({"react-datepicker__month-year-dropdown":!0,"react-datepicker__month-year-dropdown--scrollable":this.props.scrollableMonthYearDropdown});return React__default.createElement("div",{className:r},this.renderOptions())}}]),n}()),st=function(t){function r(){var t,n;ne(this,r);for(var o=arguments.length,a=new Array(o),s=0;s<o;s++)a[s]=arguments[s];return se(ue(n=he(this,(t=le(r)).call.apply(t,[this].concat(a)))),"state",{dropdownVisible:!1}),se(ue(n),"renderSelectOptions",(function(){for(var t=_e(n.props.minDate),r=_e(n.props.maxDate),o=[];!isAfter(t,r);){var a=getTime(t);o.push(React__default.createElement("option",{key:a,value:a},ke(t,n.props.dateFormat,n.props.locale))),t=addMonths(t,1);}return o})),se(ue(n),"onSelectChange",(function(e){n.onChange(e.target.value);})),se(ue(n),"renderSelectMode",(function(){return React__default.createElement("select",{value:getTime(_e(n.props.date)),className:"react-datepicker__month-year-select",onChange:n.onSelectChange},n.renderSelectOptions())})),se(ue(n),"renderReadView",(function(t){var r=ke(n.props.date,n.props.dateFormat,n.props.locale);return React__default.createElement("div",{key:"read",style:{visibility:t?"visible":"hidden"},className:"react-datepicker__month-year-read-view",onClick:function(e){return n.toggleDropdown(e)}},React__default.createElement("span",{className:"react-datepicker__month-year-read-view--down-arrow"}),React__default.createElement("span",{className:"react-datepicker__month-year-read-view--selected-month-year"},r))})),se(ue(n),"renderDropdown",(function(){return React__default.createElement(at,{key:"dropdown",ref:"options",date:n.props.date,dateFormat:n.props.dateFormat,onChange:n.onChange,onCancel:n.toggleDropdown,minDate:n.props.minDate,maxDate:n.props.maxDate,scrollableMonthYearDropdown:n.props.scrollableMonthYearDropdown})})),se(ue(n),"renderScrollMode",(function(){var e=n.state.dropdownVisible,t=[n.renderReadView(!e)];return e&&t.unshift(n.renderDropdown()),t})),se(ue(n),"onChange",(function(e){n.toggleDropdown();var t=De(parseInt(e));Se(n.props.date,t)&&Me(n.props.date,t)||n.props.onChange(t);})),se(ue(n),"toggleDropdown",(function(){return n.setState({dropdownVisible:!n.state.dropdownVisible})})),n}return ce(r,React__default.Component),ae(r,[{key:"render",value:function(){var t;switch(this.props.dropdownMode){case"scroll":t=this.renderScrollMode();break;case"select":t=this.renderSelectMode();}return React__default.createElement("div",{className:"react-datepicker__month-year-dropdown-container react-datepicker__month-year-dropdown-container--".concat(this.props.dropdownMode)},t)}}]),r}(),pt=function(r){function n(){var r,o;ne(this,n);for(var a=arguments.length,s=new Array(a),p=0;p<a;p++)s[p]=arguments[p];return se(ue(o=he(this,(r=le(n)).call.apply(r,[this].concat(s)))),"dayEl",React__default.createRef()),se(ue(o),"handleClick",(function(e){!o.isDisabled()&&o.props.onClick&&o.props.onClick(e);})),se(ue(o),"handleMouseEnter",(function(e){!o.isDisabled()&&o.props.onMouseEnter&&o.props.onMouseEnter(e);})),se(ue(o),"handleOnKeyDown",(function(e){" "===e.key&&(e.preventDefault(),e.key="Enter"),o.props.handleOnKeyDown(e);})),se(ue(o),"isSameDay",(function(e){return Ne(o.props.day,e)})),se(ue(o),"isKeyboardSelected",(function(){return !o.props.disabledKeyboardNavigation&&!o.props.inline&&!o.isSameDay(o.props.selected)&&o.isSameDay(o.props.preSelection)})),se(ue(o),"isDisabled",(function(){return Fe(o.props.day,o.props)})),se(ue(o),"isExcluded",(function(){return function(e){var t=(arguments.length>1&&void 0!==arguments[1]?arguments[1]:{}).excludeDates;return t&&t.some((function(t){return Ne(e,t)}))||!1}(o.props.day,o.props)})),se(ue(o),"getHighLightedClass",(function(e){var t=o.props,r=t.day,n=t.highlightDates;if(!n)return !1;var a=ke(r,"MM.dd.yyyy");return n.get(a)})),se(ue(o),"isInRange",(function(){var e=o.props,t=e.day,r=e.startDate,n=e.endDate;return !(!r||!n)&&xe(t,r,n)})),se(ue(o),"isInSelectingRange",(function(){var e=o.props,t=e.day,r=e.selectsStart,n=e.selectsEnd,a=e.selectingDate,s=e.startDate,p=e.endDate;return !(!r&&!n||!a||o.isDisabled())&&(r&&p&&(isBefore(a,p)||Pe(a,p))?xe(t,a,p):!(!n||!s||!isAfter(a,s)&&!Pe(a,s))&&xe(t,s,a))})),se(ue(o),"isSelectingRangeStart",(function(){if(!o.isInSelectingRange())return !1;var e=o.props,t=e.day,r=e.selectingDate,n=e.startDate;return Ne(t,e.selectsStart?r:n)})),se(ue(o),"isSelectingRangeEnd",(function(){if(!o.isInSelectingRange())return !1;var e=o.props,t=e.day,r=e.selectingDate,n=e.endDate;return Ne(t,e.selectsEnd?r:n)})),se(ue(o),"isRangeStart",(function(){var e=o.props,t=e.day,r=e.startDate,n=e.endDate;return !(!r||!n)&&Ne(r,t)})),se(ue(o),"isRangeEnd",(function(){var e=o.props,t=e.day,r=e.startDate,n=e.endDate;return !(!r||!n)&&Ne(n,t)})),se(ue(o),"isWeekend",(function(){var e=getDay(o.props.day);return 0===e||6===e})),se(ue(o),"isOutsideMonth",(function(){return void 0!==o.props.month&&o.props.month!==getMonth(o.props.day)})),se(ue(o),"getClassNames",(function(e){var r,n=o.props.dayClassName?o.props.dayClassName(e):void 0;return classnames("react-datepicker__day",n,"react-datepicker__day--"+ke(o.props.day,"ddd",r),{"react-datepicker__day--disabled":o.isDisabled(),"react-datepicker__day--excluded":o.isExcluded(),"react-datepicker__day--selected":o.isSameDay(o.props.selected),"react-datepicker__day--keyboard-selected":o.isKeyboardSelected(),"react-datepicker__day--range-start":o.isRangeStart(),"react-datepicker__day--range-end":o.isRangeEnd(),"react-datepicker__day--in-range":o.isInRange(),"react-datepicker__day--in-selecting-range":o.isInSelectingRange(),"react-datepicker__day--selecting-range-start":o.isSelectingRangeStart(),"react-datepicker__day--selecting-range-end":o.isSelectingRangeEnd(),"react-datepicker__day--today":o.isSameDay(De()),"react-datepicker__day--weekend":o.isWeekend(),"react-datepicker__day--outside-month":o.isOutsideMonth()},o.getHighLightedClass("react-datepicker__day--highlighted"))})),se(ue(o),"getAriaLabel",(function(){var e=o.props,t=e.day,r=e.ariaLabelPrefixWhenEnabled,n=void 0===r?"Choose":r,a=e.ariaLabelPrefixWhenDisabled,s=void 0===a?"Not available":a,p=o.isDisabled()||o.isExcluded()?s:n;return "".concat(p," ").concat(ke(t,"PPPP"))})),se(ue(o),"getTabIndex",(function(e,t){var r=e||o.props.selected,n=t||o.props.preSelection;return o.isKeyboardSelected()||o.isSameDay(r)&&Ne(n,r)?0:-1})),se(ue(o),"render",(function(){return React__default.createElement("div",{ref:o.dayEl,className:o.getClassNames(o.props.day),onKeyDown:o.handleOnKeyDown,onClick:o.handleClick,onMouseEnter:o.handleMouseEnter,tabIndex:o.getTabIndex(),"aria-label":o.getAriaLabel(),role:"option","aria-disabled":o.isDisabled()},o.props.renderDayContents?o.props.renderDayContents(getDate(o.props.day),o.props.day):getDate(o.props.day))})),o}return ce(n,React__default.Component),ae(n,[{key:"componentDidMount",value:function(){0===this.getTabIndex()&&this.isSameDay(this.props.preSelection)&&(!document.activeElement||document.activeElement===document.body)&&this.dayEl.current.focus();}},{key:"componentDidUpdate",value:function(e){0===this.getTabIndex()&&this.isSameDay(this.props.preSelection)!==this.isSameDay(e.preSelection)&&!e.isInputFocused&&this.dayEl.current.focus();}}]),n}(),it=function(r){function n(){var e,t;ne(this,n);for(var r=arguments.length,o=new Array(r),a=0;a<r;a++)o[a]=arguments[a];return se(ue(t=he(this,(e=le(n)).call.apply(e,[this].concat(o)))),"handleClick",(function(e){t.props.onClick&&t.props.onClick(e);})),t}return ce(n,React__default.Component),ae(n,[{key:"render",value:function(){var r=this.props,n=r.weekNumber,o=r.ariaLabelPrefix,a=void 0===o?"week ":o,s={"react-datepicker__week-number":!0,"react-datepicker__week-number--clickable":!!r.onClick};return React__default.createElement("div",{className:classnames(s),"aria-label":"".concat(a," ").concat(this.props.weekNumber),onClick:this.handleClick},n)}}]),n}(),ct=function(t){function r(){var t,n;ne(this,r);for(var o=arguments.length,a=new Array(o),s=0;s<o;s++)a[s]=arguments[s];return se(ue(n=he(this,(t=le(r)).call.apply(t,[this].concat(a)))),"handleDayClick",(function(e,t){n.props.onDayClick&&n.props.onDayClick(e,t);})),se(ue(n),"handleDayMouseEnter",(function(e){n.props.onDayMouseEnter&&n.props.onDayMouseEnter(e);})),se(ue(n),"handleWeekClick",(function(e,t,r){"function"==typeof n.props.onWeekSelect&&n.props.onWeekSelect(e,t,r),n.props.shouldCloseOnSelect&&n.props.setOpen(!1);})),se(ue(n),"formatWeekNumber",(function(e){return n.props.formatWeekNumber?n.props.formatWeekNumber(e):function(e,t){var r=t&&Ie(t)||Ye()&&Ie(Ye());return getWeek(e,r?{locale:r}:null)}(e,n.props.locale)})),se(ue(n),"renderDays",(function(){var t=Ce(n.props.day,n.props.locale),r=[],o=n.formatWeekNumber(t);if(n.props.showWeekNumber){var a=n.props.onWeekSelect?n.handleWeekClick.bind(ue(n),t,o):void 0;r.push(React__default.createElement(it,{key:"W",weekNumber:o,onClick:a,ariaLabelPrefix:n.props.ariaLabelPrefix}));}return r.concat([0,1,2,3,4,5,6].map((function(r){var o=addDays(t,r);return React__default.createElement(pt,{ariaLabelPrefixWhenEnabled:n.props.chooseDayAriaLabelPrefix,ariaLabelPrefixWhenDisabled:n.props.disabledDayAriaLabelPrefix,key:o.valueOf(),day:o,month:n.props.month,onClick:n.handleDayClick.bind(ue(n),o),onMouseEnter:n.handleDayMouseEnter.bind(ue(n),o),minDate:n.props.minDate,maxDate:n.props.maxDate,excludeDates:n.props.excludeDates,includeDates:n.props.includeDates,inline:n.props.inline,highlightDates:n.props.highlightDates,selectingDate:n.props.selectingDate,filterDate:n.props.filterDate,preSelection:n.props.preSelection,selected:n.props.selected,selectsStart:n.props.selectsStart,selectsEnd:n.props.selectsEnd,startDate:n.props.startDate,endDate:n.props.endDate,dayClassName:n.props.dayClassName,renderDayContents:n.props.renderDayContents,disabledKeyboardNavigation:n.props.disabledKeyboardNavigation,handleOnKeyDown:n.props.handleOnKeyDown,isInputFocused:n.props.isInputFocused})})))})),n}return ce(r,React__default.Component),ae(r,[{key:"render",value:function(){return React__default.createElement("div",{className:"react-datepicker__week"},this.renderDays())}}],[{key:"defaultProps",get:function(){return {shouldCloseOnSelect:!0}}}]),r}(),lt=6,dt=function(r){function n(){var r,o;ne(this,n);for(var a=arguments.length,s=new Array(a),c=0;c<a;c++)s[c]=arguments[c];return se(ue(o=he(this,(r=le(n)).call.apply(r,[this].concat(s)))),"handleDayClick",(function(e,t){o.props.onDayClick&&o.props.onDayClick(e,t,o.props.orderInDisplay);})),se(ue(o),"handleDayMouseEnter",(function(e){o.props.onDayMouseEnter&&o.props.onDayMouseEnter(e);})),se(ue(o),"handleMouseLeave",(function(){o.props.onMouseLeave&&o.props.onMouseLeave();})),se(ue(o),"isRangeStartMonth",(function(e){var t=o.props,r=t.day,n=t.startDate,a=t.endDate;return !(!n||!a)&&Me(setMonth(r,e),n)})),se(ue(o),"isRangeStartQuarter",(function(e){var t=o.props,r=t.day,n=t.startDate,a=t.endDate;return !(!n||!a)&&Ee(setQuarter(r,e),n)})),se(ue(o),"isRangeEndMonth",(function(e){var t=o.props,r=t.day,n=t.startDate,a=t.endDate;return !(!n||!a)&&Me(setMonth(r,e),a)})),se(ue(o),"isRangeEndQuarter",(function(e){var t=o.props,r=t.day,n=t.startDate,a=t.endDate;return !(!n||!a)&&Ee(setQuarter(r,e),a)})),se(ue(o),"isWeekInMonth",(function(e){var t=o.props.day,r=addDays(e,6);return Me(e,t)||Me(r,t)})),se(ue(o),"renderWeeks",(function(){for(var t=[],r=o.props.fixedHeight,n=Ce(_e(o.props.day),o.props.locale),a=0,s=!1;t.push(React__default.createElement(ct,{ariaLabelPrefix:o.props.weekAriaLabelPrefix,chooseDayAriaLabelPrefix:o.props.chooseDayAriaLabelPrefix,disabledDayAriaLabelPrefix:o.props.disabledDayAriaLabelPrefix,key:a,day:n,month:getMonth(o.props.day),onDayClick:o.handleDayClick,onDayMouseEnter:o.handleDayMouseEnter,onWeekSelect:o.props.onWeekSelect,formatWeekNumber:o.props.formatWeekNumber,locale:o.props.locale,minDate:o.props.minDate,maxDate:o.props.maxDate,excludeDates:o.props.excludeDates,includeDates:o.props.includeDates,inline:o.props.inline,highlightDates:o.props.highlightDates,selectingDate:o.props.selectingDate,filterDate:o.props.filterDate,preSelection:o.props.preSelection,selected:o.props.selected,selectsStart:o.props.selectsStart,selectsEnd:o.props.selectsEnd,showWeekNumber:o.props.showWeekNumbers,startDate:o.props.startDate,endDate:o.props.endDate,dayClassName:o.props.dayClassName,setOpen:o.props.setOpen,shouldCloseOnSelect:o.props.shouldCloseOnSelect,disabledKeyboardNavigation:o.props.disabledKeyboardNavigation,renderDayContents:o.props.renderDayContents,handleOnKeyDown:o.props.handleOnKeyDown,isInputFocused:o.props.isInputFocused})),!s;){a++,n=addWeeks(n,1);var p=r&&a>=lt,c=!r&&!o.isWeekInMonth(n);if(p||c){if(!o.props.peekNextMonth)break;s=!0;}}return t})),se(ue(o),"onMonthClick",(function(e,t){o.handleDayClick(_e(setMonth(o.props.day,t)),e);})),se(ue(o),"onQuarterClick",(function(e,t){var r;o.handleDayClick((r=setQuarter(o.props.day,t),startOfQuarter(r)),e);})),se(ue(o),"getMonthClassNames",(function(e){var r=o.props,n=r.day,a=r.startDate,s=r.endDate,p=r.selected,i=r.minDate,c=r.maxDate;return classnames("react-datepicker__month-text","react-datepicker__month-".concat(e),{"react-datepicker__month--disabled":(i||c)&&We(setMonth(n,e),o.props),"react-datepicker__month--selected":getMonth(n)===e&&getYear(n)===getYear(p),"react-datepicker__month--in-range":Ae(a,s,e,n),"react-datepicker__month--range-start":o.isRangeStartMonth(e),"react-datepicker__month--range-end":o.isRangeEndMonth(e)})})),se(ue(o),"getQuarterClassNames",(function(e){var r=o.props,n=r.day,a=r.startDate,s=r.endDate,p=r.selected,i=r.minDate,c=r.maxDate;return classnames("react-datepicker__quarter-text","react-datepicker__quarter-".concat(e),{"react-datepicker__quarter--disabled":(i||c)&&Be(setQuarter(n,e),o.props),"react-datepicker__quarter--selected":getQuarter(n)===e&&getYear(n)===getYear(p),"react-datepicker__quarter--in-range":Re(a,s,e,n),"react-datepicker__quarter--range-start":o.isRangeStartQuarter(e),"react-datepicker__quarter--range-end":o.isRangeEndQuarter(e)})})),se(ue(o),"renderMonths",(function(){return [[0,1,2],[3,4,5],[6,7,8],[9,10,11]].map((function(t,r){return React__default.createElement("div",{className:"react-datepicker__month-wrapper",key:r},t.map((function(t,r){return React__default.createElement("div",{key:r,onClick:function(e){o.onMonthClick(e,t);},className:o.getMonthClassNames(t)},Le(t,o.props.locale))})))}))})),se(ue(o),"renderQuarters",(function(){return React__default.createElement("div",{className:"react-datepicker__quarter-wrapper"},[1,2,3,4].map((function(t,r){return React__default.createElement("div",{key:r,onClick:function(e){o.onQuarterClick(e,t);},className:o.getQuarterClassNames(t)},(n=t,a=o.props.locale,ke(setQuarter(De(),n),"QQQ",a)));var n,a;})))})),se(ue(o),"getClassNames",(function(){var e=o.props,r=e.selectingDate,n=e.selectsStart,a=e.selectsEnd,s=e.showMonthYearPicker,p=e.showQuarterYearPicker;return classnames("react-datepicker__month",{"react-datepicker__month--selecting-range":r&&(n||a)},{"react-datepicker__monthPicker":s},{"react-datepicker__quarterPicker":p})})),o}return ce(n,React__default.Component),ae(n,[{key:"render",value:function(){var t=this.props,r=t.showMonthYearPicker,n=t.showQuarterYearPicker,o=t.day,a=t.ariaLabelPrefix,s=void 0===a?"month ":a;return React__default.createElement("div",{className:this.getClassNames(),onMouseLeave:this.handleMouseLeave,role:"listbox","aria-label":"".concat(s," ").concat(ke(o,"yyyy-MM"))},r?this.renderMonths():n?this.renderQuarters():this.renderWeeks())}}]),n}(),ut=function(t){function r(){var t,n;ne(this,r);for(var o=arguments.length,s=new Array(o),p=0;p<o;p++)s[p]=arguments[p];return se(ue(n=he(this,(t=le(r)).call.apply(t,[this].concat(s)))),"state",{height:null}),se(ue(n),"handleClick",(function(e){(n.props.minTime||n.props.maxTime)&&He(e,n.props)||n.props.excludeTimes&&Ke(e,n.props.excludeTimes)||n.props.includeTimes&&!Ke(e,n.props.includeTimes)||n.props.onChange(e);})),se(ue(n),"liClasses",(function(e,t,r){var o=["react-datepicker__time-list-item",n.props.timeClassName?n.props.timeClassName(e,t,r):void 0];return n.props.selected&&t===getHours(e)&&r===getMinutes(e)&&o.push("react-datepicker__time-list-item--selected"),((n.props.minTime||n.props.maxTime)&&He(e,n.props)||n.props.excludeTimes&&Ke(e,n.props.excludeTimes)||n.props.includeTimes&&!Ke(e,n.props.includeTimes))&&o.push("react-datepicker__time-list-item--disabled"),n.props.injectTimes&&(60*getHours(e)+getMinutes(e))%n.props.intervals!=0&&o.push("react-datepicker__time-list-item--injected"),o.join(" ")})),se(ue(n),"renderTimes",(function(){for(var t,r=[],o=n.props.format?n.props.format:"p",s=n.props.intervals,p=n.props.selected||n.props.openToDate||De(),i=getHours(p),c=getMinutes(p),l=(t=De(),startOfDay(t)),d=1440/s,u=n.props.injectTimes&&n.props.injectTimes.sort((function(e,t){return e-t})),h=0;h<d;h++){var m=addMinutes(l,h*s);if(r.push(m),u){var f=Je(l,m,h,s,u);r=r.concat(f);}}return r.map((function(t,r){return React__default.createElement("li",{key:r,onClick:n.handleClick.bind(ue(n),t),className:n.liClasses(t,i,c),ref:function(e){i===getHours(t)&&c>=getMinutes(t)&&(n.centerLi=e);}},ke(t,o,n.props.locale))}))})),n}return ce(r,React__default.Component),ae(r,[{key:"componentDidMount",value:function(){this.list.scrollTop=r.calcCenterPosition(this.props.monthRef?this.props.monthRef.clientHeight-this.header.clientHeight:this.list.clientHeight,this.centerLi),this.props.monthRef&&this.header&&this.setState({height:this.props.monthRef.clientHeight-this.header.clientHeight});}},{key:"render",value:function(){var t=this,r=this.state.height;return React__default.createElement("div",{className:"react-datepicker__time-container ".concat(this.props.todayButton?"react-datepicker__time-container--with-today-button":"")},React__default.createElement("div",{className:"react-datepicker__header react-datepicker__header--time",ref:function(e){t.header=e;}},React__default.createElement("div",{className:"react-datepicker-time__header"},this.props.timeCaption)),React__default.createElement("div",{className:"react-datepicker__time"},React__default.createElement("div",{className:"react-datepicker__time-box"},React__default.createElement("ul",{className:"react-datepicker__time-list",ref:function(e){t.list=e;},style:r?{height:r}:{}},this.renderTimes()))))}}],[{key:"defaultProps",get:function(){return {intervals:30,onTimeChange:function(){},todayButton:null,timeCaption:"Time"}}}]),r}();se(ut,"calcCenterPosition",(function(e,t){return t.offsetTop-(e/2-t.clientHeight/2)}));var ht=function(t){function r(t){var n;return ne(this,r),se(ue(n=he(this,le(r).call(this,t))),"onTimeChange",(function(e){n.setState({time:e});var t=new Date;t.setHours(e.split(":")[0]),t.setMinutes(e.split(":")[1]),n.props.onChange(t);})),se(ue(n),"renderTimeInput",(function(){var t=n.state.time,r=n.props,o=r.timeString,a=r.customTimeInput;return a?React__default.cloneElement(a,{value:t,onChange:n.onTimeChange}):React__default.createElement("input",{type:"time",className:"react-datepicker-time__input",placeholder:"Time",name:"time-input",required:!0,value:t,onChange:function(e){n.onTimeChange(e.target.value||o);}})})),n.state={time:n.props.timeString},n}return ce(r,React__default.Component),ae(r,[{key:"render",value:function(){return React__default.createElement("div",{className:"react-datepicker__input-time-container"},React__default.createElement("div",{className:"react-datepicker-time__caption"},this.props.timeInputLabel),React__default.createElement("div",{className:"react-datepicker-time__input-container"},React__default.createElement("div",{className:"react-datepicker-time__input"},this.renderTimeInput())))}}]),r}();function mt(t){var r=t.className,n=t.children,o=t.showPopperArrow,a=t.arrowProps,s=void 0===a?{}:a;return React__default.createElement("div",{className:r},o&&React__default.createElement("div",pe({className:"react-datepicker__triangle"},s)),n)}var ft=["react-datepicker__year-select","react-datepicker__month-select","react-datepicker__month-year-select"],vt=function(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},t=(e.className||"").split(/\s+/);return ft.some((function(e){return t.indexOf(e)>=0}))},yt=function(r){function n(t){var r;return ne(this,n),se(ue(r=he(this,le(n).call(this,t))),"handleClickOutside",(function(e){r.props.onClickOutside(e);})),se(ue(r),"setClickOutsideRef",(function(){return r.containerRef.current})),se(ue(r),"handleDropdownFocus",(function(e){vt(e.target)&&r.props.onDropdownFocus();})),se(ue(r),"getDateInView",(function(){var e=r.props,t=e.preSelection,n=e.selected,o=e.openToDate,a=$e(r.props),s=ze(r.props),p=De(),i=o||n||t;return i||(a&&isBefore(p,a)?a:s&&isAfter(p,s)?s:p)})),se(ue(r),"increaseMonth",(function(){r.setState((function(e){var t=e.date;return {date:addMonths(t,1)}}),(function(){return r.handleMonthChange(r.state.date)}));})),se(ue(r),"decreaseMonth",(function(){r.setState((function(e){var t=e.date;return {date:subMonths(t,1)}}),(function(){return r.handleMonthChange(r.state.date)}));})),se(ue(r),"handleDayClick",(function(e,t,n){return r.props.onSelect(e,t,n)})),se(ue(r),"handleDayMouseEnter",(function(e){r.setState({selectingDate:e}),r.props.onDayMouseEnter&&r.props.onDayMouseEnter(e);})),se(ue(r),"handleMonthMouseLeave",(function(){r.setState({selectingDate:null}),r.props.onMonthMouseLeave&&r.props.onMonthMouseLeave();})),se(ue(r),"handleYearChange",(function(e){r.props.onYearChange&&r.props.onYearChange(e);})),se(ue(r),"handleMonthChange",(function(e){r.props.onMonthChange&&r.props.onMonthChange(e),r.props.adjustDateOnChange&&(r.props.onSelect&&r.props.onSelect(e),r.props.setOpen&&r.props.setOpen(!0));})),se(ue(r),"handleMonthYearChange",(function(e){r.handleYearChange(e),r.handleMonthChange(e);})),se(ue(r),"changeYear",(function(e){r.setState((function(t){var r=t.date;return {date:setYear(r,e)}}),(function(){return r.handleYearChange(r.state.date)}));})),se(ue(r),"changeMonth",(function(e){r.setState((function(t){var r=t.date;return {date:setMonth(r,e)}}),(function(){return r.handleMonthChange(r.state.date)}));})),se(ue(r),"changeMonthYear",(function(e){r.setState((function(t){var r=t.date;return {date:setYear(setMonth(r,getMonth(e)),getYear(e))}}),(function(){return r.handleMonthYearChange(r.state.date)}));})),se(ue(r),"header",(function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:r.state.date,n=Ce(t,r.props.locale),o=[];return r.props.showWeekNumbers&&o.push(React__default.createElement("div",{key:"W",className:"react-datepicker__day-name"},r.props.weekLabel||"#")),o.concat([0,1,2,3,4,5,6].map((function(t){var o=addDays(n,t),a=r.formatWeekday(o,r.props.locale);return React__default.createElement("div",{key:t,className:"react-datepicker__day-name"},a)})))})),se(ue(r),"formatWeekday",(function(e,t){return r.props.formatWeekDay?function(e,t,r){return t(ke(e,"EEEE",r))}(e,r.props.formatWeekDay,t):r.props.useWeekdaysShort?function(e,t){return ke(e,"EEE",t)}(e,t):function(e,t){return ke(e,"EEEEEE",t)}(e,t)})),se(ue(r),"decreaseYear",(function(){r.setState((function(e){var t=e.date;return {date:subYears(t,1)}}),(function(){return r.handleYearChange(r.state.date)}));})),se(ue(r),"renderPreviousButton",(function(){if(!r.props.renderCustomHeader){var t=r.props.showMonthYearPicker?qe(r.state.date,r.props):Qe(r.state.date,r.props);if((r.props.forceShowMonthNavigation||r.props.showDisabledMonthNavigation||!t)&&!r.props.showTimeSelectOnly){var n=["react-datepicker__navigation","react-datepicker__navigation--previous"],o=r.decreaseMonth;(r.props.showMonthYearPicker||r.props.showQuarterYearPicker)&&(o=r.decreaseYear),t&&r.props.showDisabledMonthNavigation&&(n.push("react-datepicker__navigation--previous--disabled"),o=null);var a=r.props.showMonthYearPicker||r.props.showQuarterYearPicker,s=r.props,p=s.previousMonthAriaLabel,i=void 0===p?"Previous Month":p,c=s.previousYearAriaLabel,l=void 0===c?"Previous Year":c;return React__default.createElement("button",{type:"button",className:n.join(" "),onClick:o,"aria-label":a?l:i},a?r.props.previousYearButtonLabel:r.props.previousMonthButtonLabel)}}})),se(ue(r),"increaseYear",(function(){r.setState((function(e){var t=e.date;return {date:addYears(t,1)}}),(function(){return r.handleYearChange(r.state.date)}));})),se(ue(r),"renderNextButton",(function(){if(!r.props.renderCustomHeader){var t=r.props.showMonthYearPicker?Ue(r.state.date,r.props):Ve(r.state.date,r.props);if((r.props.forceShowMonthNavigation||r.props.showDisabledMonthNavigation||!t)&&!r.props.showTimeSelectOnly){var n=["react-datepicker__navigation","react-datepicker__navigation--next"];r.props.showTimeSelect&&n.push("react-datepicker__navigation--next--with-time"),r.props.todayButton&&n.push("react-datepicker__navigation--next--with-today-button");var o=r.increaseMonth;(r.props.showMonthYearPicker||r.props.showQuarterYearPicker)&&(o=r.increaseYear),t&&r.props.showDisabledMonthNavigation&&(n.push("react-datepicker__navigation--next--disabled"),o=null);var a=r.props.showMonthYearPicker||r.props.showQuarterYearPicker,s=r.props,p=s.nextMonthAriaLabel,i=void 0===p?"Next Month":p,c=s.nextYearAriaLabel,l=void 0===c?"Next Year":c;return React__default.createElement("button",{type:"button",className:n.join(" "),onClick:o,"aria-label":a?l:i},a?r.props.nextYearButtonLabel:r.props.nextMonthButtonLabel)}}})),se(ue(r),"renderCurrentMonth",(function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:r.state.date,n=["react-datepicker__current-month"];return r.props.showYearDropdown&&n.push("react-datepicker__current-month--hasYearDropdown"),r.props.showMonthDropdown&&n.push("react-datepicker__current-month--hasMonthDropdown"),r.props.showMonthYearDropdown&&n.push("react-datepicker__current-month--hasMonthYearDropdown"),React__default.createElement("div",{className:n.join(" ")},ke(t,r.props.dateFormat,r.props.locale))})),se(ue(r),"renderYearDropdown",(function(){var t=arguments.length>0&&void 0!==arguments[0]&&arguments[0];if(r.props.showYearDropdown&&!t)return React__default.createElement(tt,{adjustDateOnChange:r.props.adjustDateOnChange,date:r.state.date,onSelect:r.props.onSelect,setOpen:r.props.setOpen,dropdownMode:r.props.dropdownMode,onChange:r.changeYear,minDate:r.props.minDate,maxDate:r.props.maxDate,year:getYear(r.state.date),scrollableYearDropdown:r.props.scrollableYearDropdown,yearDropdownItemNumber:r.props.yearDropdownItemNumber})})),se(ue(r),"renderMonthDropdown",(function(){var t=arguments.length>0&&void 0!==arguments[0]&&arguments[0];if(r.props.showMonthDropdown&&!t)return React__default.createElement(nt,{dropdownMode:r.props.dropdownMode,locale:r.props.locale,onChange:r.changeMonth,month:getMonth(r.state.date),useShortMonthInDropdown:r.props.useShortMonthInDropdown})})),se(ue(r),"renderMonthYearDropdown",(function(){var t=arguments.length>0&&void 0!==arguments[0]&&arguments[0];if(r.props.showMonthYearDropdown&&!t)return React__default.createElement(st,{dropdownMode:r.props.dropdownMode,locale:r.props.locale,dateFormat:r.props.dateFormat,onChange:r.changeMonthYear,minDate:r.props.minDate,maxDate:r.props.maxDate,date:r.state.date,scrollableMonthYearDropdown:r.props.scrollableMonthYearDropdown})})),se(ue(r),"renderTodayButton",(function(){if(r.props.todayButton&&!r.props.showTimeSelectOnly)return React__default.createElement("div",{className:"react-datepicker__today-button",onClick:function(e){return r.props.onSelect(startOfDay(De()),e)}},r.props.todayButton)})),se(ue(r),"renderDefaultHeader",(function(t){var n=t.monthDate,o=t.i;return React__default.createElement("div",{className:"react-datepicker__header"},r.renderCurrentMonth(n),React__default.createElement("div",{className:"react-datepicker__header__dropdown react-datepicker__header__dropdown--".concat(r.props.dropdownMode),onFocus:r.handleDropdownFocus},r.renderMonthDropdown(0!==o),r.renderMonthYearDropdown(0!==o),r.renderYearDropdown(0!==o)),React__default.createElement("div",{className:"react-datepicker__day-names"},r.header(n)))})),se(ue(r),"renderCustomHeader",(function(t){var n=t.monthDate;if(0!==t.i)return null;var o=Qe(r.state.date,r.props),a=Ve(r.state.date,r.props),s=qe(r.state.date,r.props),p=Ue(r.state.date,r.props);return React__default.createElement("div",{className:"react-datepicker__header react-datepicker__header--custom",onFocus:r.props.onDropdownFocus},r.props.renderCustomHeader(function(e){for(var t=1;t<arguments.length;t++){var r=null!=arguments[t]?arguments[t]:{};t%2?ie(Object(r),!0).forEach((function(t){se(e,t,r[t]);})):Object.getOwnPropertyDescriptors?Object.defineProperties(e,Object.getOwnPropertyDescriptors(r)):ie(Object(r)).forEach((function(t){Object.defineProperty(e,t,Object.getOwnPropertyDescriptor(r,t));}));}return e}({},r.state,{changeMonth:r.changeMonth,changeYear:r.changeYear,decreaseMonth:r.decreaseMonth,increaseMonth:r.increaseMonth,decreaseYear:r.decreaseYear,increaseYear:r.increaseYear,prevMonthButtonDisabled:o,nextMonthButtonDisabled:a,prevYearButtonDisabled:s,nextYearButtonDisabled:p})),React__default.createElement("div",{className:"react-datepicker__day-names"},r.header(n)))})),se(ue(r),"renderYearHeader",(function(){return React__default.createElement("div",{className:"react-datepicker__header react-datepicker-year-header"},getYear(r.state.date))})),se(ue(r),"renderHeader",(function(e){switch(!0){case void 0!==r.props.renderCustomHeader:return r.renderCustomHeader(e);case r.props.showMonthYearPicker||r.props.showQuarterYearPicker:return r.renderYearHeader(e);default:return r.renderDefaultHeader(e)}})),se(ue(r),"renderMonths",(function(){if(!r.props.showTimeSelectOnly){for(var t=[],n=r.props.showPreviousMonths?r.props.monthsShown-1:0,o=subMonths(r.state.date,n),a=0;a<r.props.monthsShown;++a){var s=a-r.props.monthSelectedIn,p=addMonths(o,s),i="month-".concat(a);t.push(React__default.createElement("div",{key:i,ref:function(e){r.monthContainer=e;},className:"react-datepicker__month-container"},r.renderHeader({monthDate:p,i:a}),React__default.createElement(dt,{chooseDayAriaLabelPrefix:r.props.chooseDayAriaLabelPrefix,disabledDayAriaLabelPrefix:r.props.disabledDayAriaLabelPrefix,weekAriaLabelPrefix:r.props.weekAriaLabelPrefix,onChange:r.changeMonthYear,day:p,dayClassName:r.props.dayClassName,monthClassName:r.props.monthClassName,onDayClick:r.handleDayClick,handleOnKeyDown:r.props.handleOnKeyDown,onDayMouseEnter:r.handleDayMouseEnter,onMouseLeave:r.handleMonthMouseLeave,onWeekSelect:r.props.onWeekSelect,orderInDisplay:a,formatWeekNumber:r.props.formatWeekNumber,locale:r.props.locale,minDate:r.props.minDate,maxDate:r.props.maxDate,excludeDates:r.props.excludeDates,highlightDates:r.props.highlightDates,selectingDate:r.state.selectingDate,includeDates:r.props.includeDates,inline:r.props.inline,fixedHeight:r.props.fixedHeight,filterDate:r.props.filterDate,preSelection:r.props.preSelection,selected:r.props.selected,selectsStart:r.props.selectsStart,selectsEnd:r.props.selectsEnd,showWeekNumbers:r.props.showWeekNumbers,startDate:r.props.startDate,endDate:r.props.endDate,peekNextMonth:r.props.peekNextMonth,setOpen:r.props.setOpen,shouldCloseOnSelect:r.props.shouldCloseOnSelect,renderDayContents:r.props.renderDayContents,disabledKeyboardNavigation:r.props.disabledKeyboardNavigation,showMonthYearPicker:r.props.showMonthYearPicker,showQuarterYearPicker:r.props.showQuarterYearPicker,isInputFocused:r.props.isInputFocused})));}return t}})),se(ue(r),"renderTimeSection",(function(){if(r.props.showTimeSelect&&(r.state.monthContainer||r.props.showTimeSelectOnly))return React__default.createElement(ut,{selected:r.props.selected,openToDate:r.props.openToDate,onChange:r.props.onTimeChange,timeClassName:r.props.timeClassName,format:r.props.timeFormat,includeTimes:r.props.includeTimes,intervals:r.props.timeIntervals,minTime:r.props.minTime,maxTime:r.props.maxTime,excludeTimes:r.props.excludeTimes,timeCaption:r.props.timeCaption,todayButton:r.props.todayButton,showMonthDropdown:r.props.showMonthDropdown,showMonthYearDropdown:r.props.showMonthYearDropdown,showYearDropdown:r.props.showYearDropdown,withPortal:r.props.withPortal,monthRef:r.state.monthContainer,injectTimes:r.props.injectTimes,locale:r.props.locale})})),se(ue(r),"renderInputTimeSection",(function(){var t=new Date(r.props.selected),n="".concat(Xe(t.getHours()),":").concat(Xe(t.getMinutes()));if(r.props.showTimeInput)return React__default.createElement(ht,{timeString:n,timeInputLabel:r.props.timeInputLabel,onChange:r.props.onTimeChange,customTimeInput:r.props.customTimeInput})})),r.containerRef=React__default.createRef(),r.state={date:r.getDateInView(),selectingDate:null,monthContainer:null},r}return ce(n,React__default.Component),ae(n,null,[{key:"defaultProps",get:function(){return {onDropdownFocus:function(){},monthsShown:1,monthSelectedIn:0,forceShowMonthNavigation:!1,timeCaption:"Time",previousYearButtonLabel:"Previous Year",nextYearButtonLabel:"Next Year",previousMonthButtonLabel:"Previous Month",nextMonthButtonLabel:"Next Month",customTimeInput:null}}}]),ae(n,[{key:"componentDidMount",value:function(){var e=this;this.props.showTimeSelect&&(this.assignMonthContainer=void e.setState({monthContainer:e.monthContainer}));}},{key:"componentDidUpdate",value:function(e){this.props.preSelection&&!Ne(this.props.preSelection,e.preSelection)?this.setState({date:this.props.preSelection}):this.props.openToDate&&!Ne(this.props.openToDate,e.openToDate)&&this.setState({date:this.props.openToDate});}},{key:"render",value:function(){var r=this.props.container||mt;return React__default.createElement("div",{ref:this.containerRef},React__default.createElement(r,{className:classnames("react-datepicker",this.props.className,{"react-datepicker--time-only":this.props.showTimeSelectOnly}),showPopperArrow:this.props.showPopperArrow},this.renderPreviousButton(),this.renderNextButton(),this.renderMonths(),this.renderTodayButton(),this.renderTimeSection(),this.renderInputTimeSection(),this.props.children))}}]),n}(),Dt="[tabindex], a, button, input, select, textarea",gt=function(e){return !e.disabled&&-1!==e.tabIndex},wt=function(t){function r(t){var n;return ne(this,r),se(ue(n=he(this,le(r).call(this,t))),"getTabChildren",(function(){return Array.prototype.slice.call(n.tabLoopRef.current.querySelectorAll(Dt),1,-1).filter(gt)})),se(ue(n),"handleFocusStart",(function(e){var t=n.getTabChildren();t&&t.length>1&&t[t.length-1].focus();})),se(ue(n),"handleFocusEnd",(function(e){var t=n.getTabChildren();t&&t.length>1&&t[0].focus();})),n.tabLoopRef=React__default.createRef(),n}return ce(r,React__default.Component),ae(r,null,[{key:"defaultProps",get:function(){return {enableTabLoop:!0}}}]),ae(r,[{key:"render",value:function(){return this.props.enableTabLoop?React__default.createElement("div",{className:"react-datepicker__tab-loop",ref:this.tabLoopRef},React__default.createElement("div",{className:"react-datepicker__tab-loop__start",tabIndex:"0",onFocus:this.handleFocusStart}),this.props.children,React__default.createElement("div",{className:"react-datepicker__tab-loop__end",tabIndex:"0",onFocus:this.handleFocusEnd})):this.props.children}}]),r}(),kt=function(r){function n(){return ne(this,n),he(this,le(n).apply(this,arguments))}return ce(n,React__default.Component),ae(n,[{key:"render",value:function(){var r,n=this.props,o=n.className,a=n.wrapperClassName,s=n.hidePopper,p=n.popperComponent,i=n.popperModifiers,c=n.popperPlacement,l=n.popperProps,d=n.targetComponent,u=n.enableTabLoop,h=n.popperOnKeyDown;if(!s){var m=classnames("react-datepicker-popper",o);r=React__default.createElement(Popper$1,pe({modifiers:i,placement:c},l),(function(t){var r=t.ref,n=t.style,o=t.placement,a=t.arrowProps;return React__default.createElement(wt,{enableTabLoop:u},React__default.createElement("div",pe({ref:r,style:n},{className:m,"data-placement":o,onKeyDown:h}),React__default.cloneElement(p,{arrowProps:a})))}));}this.props.popperContainer&&(r=React__default.createElement(this.props.popperContainer,{},r));var f=classnames("react-datepicker-wrapper",a);return React__default.createElement(Manager,{className:"react-datepicker-manager"},React__default.createElement(Reference,null,(function(t){var r=t.ref;return React__default.createElement("div",{ref:r,className:f},d)})),r)}}],[{key:"defaultProps",get:function(){return {hidePopper:!0,popperModifiers:{preventOverflow:{enabled:!0,escapeWithReference:!0,boundariesElement:"viewport"}},popperProps:{},popperPlacement:"bottom-start"}}}]),n}(),bt="react-datepicker-ignore-onclickoutside",Ct=onClickOutsideHOC(yt);var _t="Date input not valid.",St=function(n){function o(n){var a;return ne(this,o),se(ue(a=he(this,le(o).call(this,n))),"getPreSelection",(function(){return a.props.openToDate?a.props.openToDate:a.props.selectsEnd&&a.props.startDate?a.props.startDate:a.props.selectsStart&&a.props.endDate?a.props.endDate:De()})),se(ue(a),"calcInitialState",(function(){var e=a.getPreSelection(),t=$e(a.props),r=ze(a.props),n=t&&isBefore(e,t)?t:r&&isAfter(e,r)?r:e;return {open:a.props.startOpen||!1,preventFocus:!1,preSelection:a.props.selected?a.props.selected:n,highlightDates:Ge(a.props.highlightDates),focused:!1}})),se(ue(a),"clearPreventFocusTimeout",(function(){a.preventFocusTimeout&&clearTimeout(a.preventFocusTimeout);})),se(ue(a),"setFocus",(function(){a.input&&a.input.focus&&a.input.focus();})),se(ue(a),"setBlur",(function(){a.input&&a.input.blur&&a.input.blur(),a.cancelFocusInput();})),se(ue(a),"setOpen",(function(e){var t=arguments.length>1&&void 0!==arguments[1]&&arguments[1];a.setState({open:e,preSelection:e&&a.state.open?a.state.preSelection:a.calcInitialState().preSelection,lastPreSelectChange:Et},(function(){e||a.setState((function(e){return {focused:!!t&&e.focused}}),(function(){!t&&a.setBlur(),a.setState({inputValue:null});}));}));})),se(ue(a),"inputOk",(function(){return isDate(a.state.preSelection)})),se(ue(a),"isCalendarOpen",(function(){return void 0===a.props.open?a.state.open&&!a.props.disabled&&!a.props.readOnly:a.props.open})),se(ue(a),"handleFocus",(function(e){a.state.preventFocus||(a.props.onFocus(e),a.props.preventOpenOnFocus||a.props.readOnly||a.setOpen(!0)),a.setState({focused:!0});})),se(ue(a),"cancelFocusInput",(function(){clearTimeout(a.inputFocusTimeout),a.inputFocusTimeout=null;})),se(ue(a),"deferFocusInput",(function(){a.cancelFocusInput(),a.inputFocusTimeout=setTimeout((function(){return a.setFocus()}),1);})),se(ue(a),"handleDropdownFocus",(function(){a.cancelFocusInput();})),se(ue(a),"handleBlur",(function(e){(!a.state.open||a.props.withPortal||a.props.showTimeInput)&&a.props.onBlur(e),a.setState({focused:!1});})),se(ue(a),"handleCalendarClickOutside",(function(e){a.props.inline||a.setOpen(!1),a.props.onClickOutside(e),a.props.withPortal&&e.preventDefault();})),se(ue(a),"handleChange",(function(){for(var e=arguments.length,t=new Array(e),r=0;r<e;r++)t[r]=arguments[r];var n=t[0];if(!a.props.onChangeRaw||(a.props.onChangeRaw.apply(ue(a),t),"function"==typeof n.isDefaultPrevented&&!n.isDefaultPrevented())){a.setState({inputValue:n.target.value,lastPreSelectChange:Mt});var o=ge(n.target.value,a.props.dateFormat,a.props.locale,a.props.strictParsing);!o&&n.target.value||a.setSelected(o,n,!0);}})),se(ue(a),"handleSelect",(function(e,t,r){a.setState({preventFocus:!0},(function(){return a.preventFocusTimeout=setTimeout((function(){return a.setState({preventFocus:!1})}),50),a.preventFocusTimeout})),a.setSelected(e,t,void 0,r),!a.props.shouldCloseOnSelect||a.props.showTimeSelect?a.setPreSelection(e):a.props.inline||a.setOpen(!1);})),se(ue(a),"setSelected",(function(e,t,r,n){var o=e;if(null===o||!Fe(o,a.props)){if(!Pe(a.props.selected,o)||a.props.allowSameDay){if(null!==o){if(a.props.selected){var s=a.props.selected;r&&(s=De(o)),o=be(o,{hour:getHours(s),minute:getMinutes(s),second:getSeconds(s)});}a.props.inline||a.setState({preSelection:o}),a.props.inline&&a.props.monthsShown>1&&!a.props.inlineFocusSelectedMonth&&a.setState({monthSelectedIn:n});}a.props.onChange(o,t);}a.props.onSelect(o,t),r||a.setState({inputValue:null});}})),se(ue(a),"setPreSelection",(function(e){var t=void 0!==a.props.minDate,r=void 0!==a.props.maxDate,n=!0;e&&(t&&r?n=xe(e,a.props.minDate,a.props.maxDate):t?n=isAfter(e,a.props.minDate):r&&(n=isBefore(e,a.props.maxDate))),n&&a.setState({preSelection:e});})),se(ue(a),"handleTimeChange",(function(e){var t=be(a.props.selected?a.props.selected:a.getPreSelection(),{hour:getHours(e),minute:getMinutes(e)});a.setState({preSelection:t}),a.props.onChange(t),a.props.shouldCloseOnSelect&&a.setOpen(!1),a.props.showTimeInput&&a.setOpen(!0),a.setState({inputValue:null});})),se(ue(a),"onInputClick",(function(){a.props.disabled||a.props.readOnly||a.setOpen(!0),a.props.onInputClick();})),se(ue(a),"onInputKeyDown",(function(e){a.props.onKeyDown(e);var t=e.key;if(a.state.open||a.props.inline||a.props.preventOpenOnFocus){if(a.state.open){if("ArrowDown"===t||"ArrowUp"===t){e.preventDefault();var r=a.calendar.componentNode&&a.calendar.componentNode.querySelector('.react-datepicker__day[tabindex="0"]');return void(r&&r.focus())}var n=De(a.state.preSelection);"Enter"===t?(e.preventDefault(),a.inputOk()&&a.state.lastPreSelectChange===Et?(a.handleSelect(n,e),!a.props.shouldCloseOnSelect&&a.setPreSelection(n)):a.setOpen(!1)):"Escape"===t&&(e.preventDefault(),a.setOpen(!1)),a.inputOk()||a.props.onInputError({code:1,msg:_t});}}else"ArrowDown"!==t&&"ArrowUp"!==t&&"Enter"!==t||a.onInputClick();})),se(ue(a),"onDayKeyDown",(function(e){a.props.onKeyDown(e);var t=e.key,r=De(a.state.preSelection);if("Enter"===t)e.preventDefault(),a.handleSelect(r,e),!a.props.shouldCloseOnSelect&&a.setPreSelection(r);else if("Escape"===t)e.preventDefault(),a.setOpen(!1),a.inputOk()||a.props.onInputError({code:1,msg:_t});else if(!a.props.disabledKeyboardNavigation){var n;switch(t){case"ArrowLeft":n=subDays(r,1);break;case"ArrowRight":n=addDays(r,1);break;case"ArrowUp":n=subWeeks(r,1);break;case"ArrowDown":n=addWeeks(r,1);break;case"PageUp":n=subMonths(r,1);break;case"PageDown":n=addMonths(r,1);break;case"Home":n=subYears(r,1);break;case"End":n=addYears(r,1);}if(!n)return void(a.props.onInputError&&a.props.onInputError({code:1,msg:_t}));e.preventDefault(),a.setState({lastPreSelectChange:Et}),a.props.adjustDateOnChange&&a.setSelected(n),a.setPreSelection(n);}})),se(ue(a),"onPopperKeyDown",(function(e){"Escape"===e.key&&(e.preventDefault(),a.setState({preventFocus:!0},(function(){a.setOpen(!1),setTimeout(a.setFocus);})));})),se(ue(a),"onClearClick",(function(e){e&&e.preventDefault&&e.preventDefault(),a.props.onChange(null,e),a.setState({inputValue:null});})),se(ue(a),"clear",(function(){a.onClearClick();})),se(ue(a),"renderCalendar",(function(){return a.props.inline||a.isCalendarOpen()?React__default.createElement(Ct,{ref:function(e){a.calendar=e;},locale:a.props.locale,chooseDayAriaLabelPrefix:a.props.chooseDayAriaLabelPrefix,disabledDayAriaLabelPrefix:a.props.disabledDayAriaLabelPrefix,weekAriaLabelPrefix:a.props.weekAriaLabelPrefix,adjustDateOnChange:a.props.adjustDateOnChange,setOpen:a.setOpen,shouldCloseOnSelect:a.props.shouldCloseOnSelect,dateFormat:a.props.dateFormatCalendar,useWeekdaysShort:a.props.useWeekdaysShort,formatWeekDay:a.props.formatWeekDay,dropdownMode:a.props.dropdownMode,selected:a.props.selected,preSelection:a.state.preSelection,onSelect:a.handleSelect,onWeekSelect:a.props.onWeekSelect,openToDate:a.props.openToDate,minDate:a.props.minDate,maxDate:a.props.maxDate,selectsStart:a.props.selectsStart,selectsEnd:a.props.selectsEnd,startDate:a.props.startDate,endDate:a.props.endDate,excludeDates:a.props.excludeDates,filterDate:a.props.filterDate,onClickOutside:a.handleCalendarClickOutside,formatWeekNumber:a.props.formatWeekNumber,highlightDates:a.state.highlightDates,includeDates:a.props.includeDates,includeTimes:a.props.includeTimes,injectTimes:a.props.injectTimes,inline:a.props.inline,peekNextMonth:a.props.peekNextMonth,showMonthDropdown:a.props.showMonthDropdown,showPreviousMonths:a.props.showPreviousMonths,useShortMonthInDropdown:a.props.useShortMonthInDropdown,showMonthYearDropdown:a.props.showMonthYearDropdown,showWeekNumbers:a.props.showWeekNumbers,showYearDropdown:a.props.showYearDropdown,withPortal:a.props.withPortal,forceShowMonthNavigation:a.props.forceShowMonthNavigation,showDisabledMonthNavigation:a.props.showDisabledMonthNavigation,scrollableYearDropdown:a.props.scrollableYearDropdown,scrollableMonthYearDropdown:a.props.scrollableMonthYearDropdown,todayButton:a.props.todayButton,weekLabel:a.props.weekLabel,outsideClickIgnoreClass:bt,fixedHeight:a.props.fixedHeight,monthsShown:a.props.monthsShown,monthSelectedIn:a.state.monthSelectedIn,onDropdownFocus:a.handleDropdownFocus,onMonthChange:a.props.onMonthChange,onYearChange:a.props.onYearChange,dayClassName:a.props.dayClassName,monthClassName:a.props.monthClassName,timeClassName:a.props.timeClassName,showTimeSelect:a.props.showTimeSelect,showTimeSelectOnly:a.props.showTimeSelectOnly,onTimeChange:a.handleTimeChange,timeFormat:a.props.timeFormat,timeIntervals:a.props.timeIntervals,minTime:a.props.minTime,maxTime:a.props.maxTime,excludeTimes:a.props.excludeTimes,timeCaption:a.props.timeCaption,className:a.props.calendarClassName,container:a.props.calendarContainer,yearDropdownItemNumber:a.props.yearDropdownItemNumber,previousMonthButtonLabel:a.props.previousMonthButtonLabel,nextMonthButtonLabel:a.props.nextMonthButtonLabel,previousYearButtonLabel:a.props.previousYearButtonLabel,nextYearButtonLabel:a.props.nextYearButtonLabel,timeInputLabel:a.props.timeInputLabel,disabledKeyboardNavigation:a.props.disabledKeyboardNavigation,renderCustomHeader:a.props.renderCustomHeader,popperProps:a.props.popperProps,renderDayContents:a.props.renderDayContents,onDayMouseEnter:a.props.onDayMouseEnter,onMonthMouseLeave:a.props.onMonthMouseLeave,showTimeInput:a.props.showTimeInput,showMonthYearPicker:a.props.showMonthYearPicker,showQuarterYearPicker:a.props.showQuarterYearPicker,showPopperArrow:a.props.showPopperArrow,excludeScrollbar:a.props.excludeScrollbar,handleOnKeyDown:a.onDayKeyDown,isInputFocused:a.state.focused,customTimeInput:a.props.customTimeInput},a.props.children):null})),se(ue(a),"renderDateInput",(function(){var r,n,o,s,p,i=classnames(a.props.className,se({},bt,a.state.open)),c=a.props.customInput||React__default.createElement("input",{type:"text"}),l=a.props.customInputRef||"ref",d="string"==typeof a.props.value?a.props.value:"string"==typeof a.state.inputValue?a.state.inputValue:(n=a.props.selected,o=a.props,s=o.dateFormat,p=o.locale,n&&ke(n,Array.isArray(s)?s[0]:s,p)||"");return React__default.cloneElement(c,(se(r={},l,(function(e){a.input=e;})),se(r,"value",d),se(r,"onBlur",a.handleBlur),se(r,"onChange",a.handleChange),se(r,"onClick",a.onInputClick),se(r,"onFocus",a.handleFocus),se(r,"onKeyDown",a.onInputKeyDown),se(r,"id",a.props.id),se(r,"name",a.props.name),se(r,"autoFocus",a.props.autoFocus),se(r,"placeholder",a.props.placeholderText),se(r,"disabled",a.props.disabled),se(r,"autoComplete",a.props.autoComplete),se(r,"className",classnames(c.props.className,i)),se(r,"title",a.props.title),se(r,"readOnly",a.props.readOnly),se(r,"required",a.props.required),se(r,"tabIndex",a.props.tabIndex),se(r,"aria-labelledby",a.props.ariaLabelledBy),r))})),se(ue(a),"renderClearButton",(function(){var t=a.props,r=t.isClearable,n=t.selected,o=t.clearButtonTitle,s=t.ariaLabelClose,p=void 0===s?"Close":s;return r&&null!=n?React__default.createElement("button",{type:"button",className:"react-datepicker__close-icon","aria-label":p,onClick:a.onClearClick,title:o,tabIndex:-1}):null})),a.state=a.calcInitialState(),a}return ce(o,React__default.Component),ae(o,null,[{key:"defaultProps",get:function(){return {allowSameDay:!1,dateFormat:"MM/dd/yyyy",dateFormatCalendar:"LLLL yyyy",onChange:function(){},disabled:!1,disabledKeyboardNavigation:!1,dropdownMode:"scroll",onFocus:function(){},onBlur:function(){},onKeyDown:function(){},onInputClick:function(){},onSelect:function(){},onClickOutside:function(){},onMonthChange:function(){},onCalendarOpen:function(){},onCalendarClose:function(){},preventOpenOnFocus:!1,onYearChange:function(){},onInputError:function(){},monthsShown:1,readOnly:!1,withPortal:!1,shouldCloseOnSelect:!0,showTimeSelect:!1,showTimeInput:!1,showPreviousMonths:!1,showMonthYearPicker:!1,showQuarterYearPicker:!1,strictParsing:!1,timeIntervals:30,timeCaption:"Time",previousMonthButtonLabel:"Previous Month",nextMonthButtonLabel:"Next Month",previousYearButtonLabel:"Previous Year",nextYearButtonLabel:"Next Year",timeInputLabel:"Time",enableTabLoop:!0,renderDayContents:function(e){return e},inlineFocusSelectedMonth:!1,showPopperArrow:!0,excludeScrollbar:!0,customTimeInput:null}}}]),ae(o,[{key:"componentDidUpdate",value:function(e,t){var r,n;e.inline&&(r=e.selected,n=this.props.selected,r&&n?getMonth(r)!==getMonth(n)||getYear(r)!==getYear(n):r!==n)&&this.setPreSelection(this.props.selected),void 0!==this.state.monthSelectedIn&&e.monthsShown!==this.props.monthsShown&&this.setState({monthSelectedIn:0}),e.highlightDates!==this.props.highlightDates&&this.setState({highlightDates:Ge(this.props.highlightDates)}),t.focused||Pe(e.selected,this.props.selected)||this.setState({inputValue:null}),t.open!==this.state.open&&(!1===t.open&&!0===this.state.open&&this.props.onCalendarOpen(),!0===t.open&&!1===this.state.open&&this.props.onCalendarClose());}},{key:"componentWillUnmount",value:function(){this.clearPreventFocusTimeout();}},{key:"render",value:function(){var t=this.renderCalendar();return this.props.inline&&!this.props.withPortal?t:this.props.withPortal?React__default.createElement("div",null,this.props.inline?null:React__default.createElement("div",{className:"react-datepicker__input-container"},this.renderDateInput(),this.renderClearButton()),this.state.open||this.props.inline?React__default.createElement("div",{className:"react-datepicker__portal"},t):null):React__default.createElement(kt,{className:this.props.popperClassName,wrapperClassName:this.props.wrapperClassName,hidePopper:!this.isCalendarOpen(),popperModifiers:this.props.popperModifiers,targetComponent:React__default.createElement("div",{className:"react-datepicker__input-container"},this.renderDateInput(),this.renderClearButton()),popperContainer:this.props.popperContainer,popperComponent:t,popperPlacement:this.props.popperPlacement,popperProps:this.props.popperProps,popperOnKeyDown:this.onPopperKeyDown,enableTabLoop:this.props.enableTabLoop})}}]),o}(),Mt="input",Et="navigate";
+function ne(e){return (ne="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e})(e)}function oe(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function ae(e,t){for(var r=0;r<t.length;r++){var n=t[r];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n);}}function se(e,t,r){return t&&ae(e.prototype,t),r&&ae(e,r),e}function pe(e,t,r){return t in e?Object.defineProperty(e,t,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[t]=r,e}function ie(){return (ie=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var r=arguments[t];for(var n in r)Object.prototype.hasOwnProperty.call(r,n)&&(e[n]=r[n]);}return e}).apply(this,arguments)}function ce(e,t){var r=Object.keys(e);if(Object.getOwnPropertySymbols){var n=Object.getOwnPropertySymbols(e);t&&(n=n.filter((function(t){return Object.getOwnPropertyDescriptor(e,t).enumerable}))),r.push.apply(r,n);}return r}function le(e){for(var t=1;t<arguments.length;t++){var r=null!=arguments[t]?arguments[t]:{};t%2?ce(Object(r),!0).forEach((function(t){pe(e,t,r[t]);})):Object.getOwnPropertyDescriptors?Object.defineProperties(e,Object.getOwnPropertyDescriptors(r)):ce(Object(r)).forEach((function(t){Object.defineProperty(e,t,Object.getOwnPropertyDescriptor(r,t));}));}return e}function de(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function");e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,writable:!0,configurable:!0}}),t&&he(e,t);}function ue(e){return (ue=Object.setPrototypeOf?Object.getPrototypeOf:function(e){return e.__proto__||Object.getPrototypeOf(e)})(e)}function he(e,t){return (he=Object.setPrototypeOf||function(e,t){return e.__proto__=t,e})(e,t)}function me(e){if(void 0===e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return e}function fe(e,t){return !t||"object"!=typeof t&&"function"!=typeof t?me(e):t}function ve(e){var t=function(){if("undefined"==typeof Reflect||!Reflect.construct)return !1;if(Reflect.construct.sham)return !1;if("function"==typeof Proxy)return !0;try{return Date.prototype.toString.call(Reflect.construct(Date,[],(function(){}))),!0}catch(e){return !1}}();return function(){var r,n=ue(e);if(t){var o=ue(this).constructor;r=Reflect.construct(n,arguments,o);}else r=n.apply(this,arguments);return fe(this,r)}}function ye(e,t){switch(e){case"P":return t.date({width:"short"});case"PP":return t.date({width:"medium"});case"PPP":return t.date({width:"long"});case"PPPP":default:return t.date({width:"full"})}}function De(e,t){switch(e){case"p":return t.time({width:"short"});case"pp":return t.time({width:"medium"});case"ppp":return t.time({width:"long"});case"pppp":default:return t.time({width:"full"})}}var we={p:De,P:function(e,t){var r,n=e.match(/(P+)(p+)?/),o=n[1],a=n[2];if(!a)return ye(e,t);switch(o){case"P":r=t.dateTime({width:"short"});break;case"PP":r=t.dateTime({width:"medium"});break;case"PPP":r=t.dateTime({width:"long"});break;case"PPPP":default:r=t.dateTime({width:"full"});}return r.replace("{{date}}",ye(o,t)).replace("{{time}}",De(a,t))}},ke=/P+p+|P+|p+|''|'(''|[^'])+('|$)|./g;function ge(e){var t=e?"string"==typeof e||e instanceof String?parseISO(e):toDate(e):new Date;return Ce(t)?t:null}function be(e,t,r,n){var a=null,s=je(r)||Be(),p=!0;return Array.isArray(t)?(t.forEach((function(t){var r=parse(e,t,new Date,{locale:s});n&&(p=Ce(r)&&e===format(r,t,{awareOfUnicodeTokens:!0})),Ce(r)&&p&&(a=r);})),a):(a=parse(e,t,new Date,{locale:s}),n?p=Ce(a)&&e===format(a,t,{awareOfUnicodeTokens:!0}):Ce(a)||(t=t.match(ke).map((function(e){var t=e[0];return "p"===t||"P"===t?s?(0, we[t])(e,s.formatLong):t:e})).join(""),e.length>0&&(a=parse(e,t.slice(0,e.length),new Date)),Ce(a)||(a=new Date(e))),Ce(a)&&p?a:null)}function Ce(e){return isValid(e)&&isAfter(e,new Date("1/1/1000"))}function _e(e,t,r){if("en"===r)return format(e,t,{awareOfUnicodeTokens:!0});var n=je(r);return r&&!n&&console.warn('A locale object was not found for the provided string ["'.concat(r,'"].')),!n&&Be()&&je(Be())&&(n=je(Be())),format(e,t,{locale:n||null,awareOfUnicodeTokens:!0})}function Se(e,t){var r=t.hour,n=void 0===r?0:r,o=t.minute,a=void 0===o?0:o,s=t.second;return setHours(setMinutes(setSeconds(e,void 0===s?0:s),a),n)}function Me(e,t){var r=t&&je(t)||Be()&&je(Be());return getWeek(e,r?{locale:r}:null)}function Pe(e,t){return _e(e,"ddd",t)}function Ee(e){return startOfDay(e)}function Ne(e,t){var r=je(t||Be());return startOfWeek(e,{locale:r})}function Oe(e){return startOfMonth(e)}function xe(e){return startOfQuarter(e)}function Ye(e,t){return e&&t?isSameYear(e,t):!e&&!t}function Te(e,t){return e&&t?isSameMonth(e,t):!e&&!t}function Le(e,t){return e&&t?isSameQuarter(e,t):!e&&!t}function Ie(e,t){return e&&t?isSameDay(e,t):!e&&!t}function Fe(e,t){return e&&t?isEqual(e,t):!e&&!t}function Re(e,t,r){var n,o=startOfDay(t),a=endOfDay(r);try{n=isWithinInterval(e,{start:o,end:a});}catch(e){n=!1;}return n}function Be(){return ("undefined"!=typeof window?window:global).__localeId__}function je(e){if("string"==typeof e){var t="undefined"!=typeof window?window:global;return t.__localeData__?t.__localeData__[e]:null}return e}function Ke(e,t){return _e(setMonth(ge(),e),"LLLL",t)}function He(e,t){return _e(setMonth(ge(),e),"LLL",t)}function Qe(e,t){return _e(setQuarter(ge(),e),"QQQ",t)}function Ve(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},r=t.minDate,n=t.maxDate,o=t.excludeDates,a=t.includeDates,s=t.filterDate;return Je(e,{minDate:r,maxDate:n})||o&&o.some((function(t){return Ie(e,t)}))||a&&!a.some((function(t){return Ie(e,t)}))||s&&!s(ge(e))||!1}function qe(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},r=t.excludeDates;return r&&r.some((function(t){return Ie(e,t)}))||!1}function Ue(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},r=t.minDate,n=t.maxDate,o=t.excludeDates,a=t.includeDates,s=t.filterDate;return Je(e,{minDate:r,maxDate:n})||o&&o.some((function(t){return Te(e,t)}))||a&&!a.some((function(t){return Te(e,t)}))||s&&!s(ge(e))||!1}function $e(e,t,r,n){var o=getYear(e),a=getMonth(e),s=getYear(t),p=getMonth(t),i=getYear(n);return o===s&&o===i?a<=r&&r<=p:o<s?i===o&&a<=r||i===s&&p>=r||i<s&&i>o:void 0}function ze(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},r=t.minDate,n=t.maxDate,o=t.excludeDates,a=t.includeDates,s=t.filterDate;return Je(e,{minDate:r,maxDate:n})||o&&o.some((function(t){return Le(e,t)}))||a&&!a.some((function(t){return Le(e,t)}))||s&&!s(ge(e))||!1}function Ge(e,t,r,n){var o=getYear(e),a=getQuarter(e),s=getYear(t),p=getQuarter(t),i=getYear(n);return o===s&&o===i?a<=r&&r<=p:o<s?i===o&&a<=r||i===s&&p>=r||i<s&&i>o:void 0}function Je(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},r=t.minDate,n=t.maxDate;return r&&differenceInCalendarDays(e,r)<0||n&&differenceInCalendarDays(e,n)>0}function Xe(e,t){for(var r=t.length,n=0;n<r;n++)if(getHours(t[n])===getHours(e)&&getMinutes(t[n])===getMinutes(e))return !0;return !1}function Ze(e,t){var r=t.minTime,n=t.maxTime;if(!r||!n)throw new Error("Both minTime and maxTime props required");var o,a=ge(),s=setHours(setMinutes(a,getMinutes(e)),getHours(e)),p=setHours(setMinutes(a,getMinutes(r)),getHours(r)),i=setHours(setMinutes(a,getMinutes(n)),getHours(n));try{o=!isWithinInterval(s,{start:p,end:i});}catch(e){o=!1;}return o}function et(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},r=t.minDate,n=t.includeDates,o=subMonths(e,1);return r&&differenceInCalendarMonths(r,o)>0||n&&n.every((function(e){return differenceInCalendarMonths(e,o)>0}))||!1}function tt(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},r=t.maxDate,n=t.includeDates,o=addMonths(e,1);return r&&differenceInCalendarMonths(o,r)>0||n&&n.every((function(e){return differenceInCalendarMonths(o,e)>0}))||!1}function rt(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},r=t.minDate,n=t.includeDates,o=subYears(e,1);return r&&differenceInCalendarYears(r,o)>0||n&&n.every((function(e){return differenceInCalendarYears(e,o)>0}))||!1}function nt(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},r=t.maxDate,n=t.includeDates,o=addYears(e,1);return r&&differenceInCalendarYears(o,r)>0||n&&n.every((function(e){return differenceInCalendarYears(o,e)>0}))||!1}function ot(e){var t=e.minDate,r=e.includeDates;if(r&&t){var n=r.filter((function(e){return differenceInCalendarDays(e,t)>=0}));return min(n)}return r?min(r):t}function at(e){var t=e.maxDate,r=e.includeDates;if(r&&t){var n=r.filter((function(e){return differenceInCalendarDays(e,t)<=0}));return max(n)}return r?max(r):t}function st(){for(var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:[],t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:"react-datepicker__day--highlighted",n=new Map,o=0,a=e.length;o<a;o++){var s=e[o];if(isDate(s)){var p=_e(s,"MM.dd.yyyy"),i=n.get(p)||[];i.includes(t)||(i.push(t),n.set(p,i));}else if("object"===ne(s)){var c=Object.keys(s),l=c[0],d=s[c[0]];if("string"==typeof l&&d.constructor===Array)for(var u=0,h=d.length;u<h;u++){var m=_e(d[u],"MM.dd.yyyy"),f=n.get(m)||[];f.includes(l)||(f.push(l),n.set(m,f));}}}return n}function pt(e,t,r,n,o){for(var p=o.length,i=[],c=0;c<p;c++){var l=addMinutes(addHours(e,getHours(o[c])),getMinutes(o[c])),d=addMinutes(e,(r+1)*n);isAfter(l,t)&&isBefore(l,d)&&i.push(o[c]);}return i}function it(e){return e<10?"0".concat(e):"".concat(e)}function ct(e,t,r,n){for(var o=[],a=0;a<2*t+1;a++){var s=e+t-a,p=!0;r&&(p=getYear(r)<=s),n&&p&&(p=getYear(n)>=s),p&&o.push(s);}return o}var lt=onClickOutsideHOC(function(r){de(o,React__default.Component);var n=ve(o);function o(t){var r;oe(this,o),pe(me(r=n.call(this,t)),"renderOptions",(function(){var t=r.props.year,n=r.state.yearsList.map((function(n){return React__default.createElement("div",{className:t===n?"react-datepicker__year-option react-datepicker__year-option--selected_year":"react-datepicker__year-option",key:n,onClick:r.onChange.bind(me(r),n)},t===n?React__default.createElement("span",{className:"react-datepicker__year-option--selected"},"✓"):"",n)})),o=r.props.minDate?getYear(r.props.minDate):null,a=r.props.maxDate?getYear(r.props.maxDate):null;return a&&r.state.yearsList.find((function(e){return e===a}))||n.unshift(React__default.createElement("div",{className:"react-datepicker__year-option",key:"upcoming",onClick:r.incrementYears},React__default.createElement("a",{className:"react-datepicker__navigation react-datepicker__navigation--years react-datepicker__navigation--years-upcoming"}))),o&&r.state.yearsList.find((function(e){return e===o}))||n.push(React__default.createElement("div",{className:"react-datepicker__year-option",key:"previous",onClick:r.decrementYears},React__default.createElement("a",{className:"react-datepicker__navigation react-datepicker__navigation--years react-datepicker__navigation--years-previous"}))),n})),pe(me(r),"onChange",(function(e){r.props.onChange(e);})),pe(me(r),"handleClickOutside",(function(){r.props.onCancel();})),pe(me(r),"shiftYears",(function(e){var t=r.state.yearsList.map((function(t){return t+e}));r.setState({yearsList:t});})),pe(me(r),"incrementYears",(function(){return r.shiftYears(1)})),pe(me(r),"decrementYears",(function(){return r.shiftYears(-1)}));var a=t.yearDropdownItemNumber,s=t.scrollableYearDropdown,p=a||(s?10:5);return r.state={yearsList:ct(r.props.year,p,r.props.minDate,r.props.maxDate)},r}return se(o,[{key:"render",value:function(){var r=classnames({"react-datepicker__year-dropdown":!0,"react-datepicker__year-dropdown--scrollable":this.props.scrollableYearDropdown});return React__default.createElement("div",{className:r},this.renderOptions())}}]),o}()),dt=function(t){de(n,React__default.Component);var r=ve(n);function n(){var t;oe(this,n);for(var o=arguments.length,a=new Array(o),s=0;s<o;s++)a[s]=arguments[s];return pe(me(t=r.call.apply(r,[this].concat(a))),"state",{dropdownVisible:!1}),pe(me(t),"renderSelectOptions",(function(){for(var r=t.props.minDate?getYear(t.props.minDate):1900,n=t.props.maxDate?getYear(t.props.maxDate):2100,o=[],a=r;a<=n;a++)o.push(React__default.createElement("option",{key:a,value:a},a));return o})),pe(me(t),"onSelectChange",(function(e){t.onChange(e.target.value);})),pe(me(t),"renderSelectMode",(function(){return React__default.createElement("select",{value:t.props.year,className:"react-datepicker__year-select",onChange:t.onSelectChange},t.renderSelectOptions())})),pe(me(t),"renderReadView",(function(r){return React__default.createElement("div",{key:"read",style:{visibility:r?"visible":"hidden"},className:"react-datepicker__year-read-view",onClick:function(e){return t.toggleDropdown(e)}},React__default.createElement("span",{className:"react-datepicker__year-read-view--down-arrow"}),React__default.createElement("span",{className:"react-datepicker__year-read-view--selected-year"},t.props.year))})),pe(me(t),"renderDropdown",(function(){return React__default.createElement(lt,{key:"dropdown",year:t.props.year,onChange:t.onChange,onCancel:t.toggleDropdown,minDate:t.props.minDate,maxDate:t.props.maxDate,scrollableYearDropdown:t.props.scrollableYearDropdown,yearDropdownItemNumber:t.props.yearDropdownItemNumber})})),pe(me(t),"renderScrollMode",(function(){var e=t.state.dropdownVisible,r=[t.renderReadView(!e)];return e&&r.unshift(t.renderDropdown()),r})),pe(me(t),"onChange",(function(e){t.toggleDropdown(),e!==t.props.year&&t.props.onChange(e);})),pe(me(t),"toggleDropdown",(function(e){t.setState({dropdownVisible:!t.state.dropdownVisible},(function(){t.props.adjustDateOnChange&&t.handleYearChange(t.props.date,e);}));})),pe(me(t),"handleYearChange",(function(e,r){t.onSelect(e,r),t.setOpen();})),pe(me(t),"onSelect",(function(e,r){t.props.onSelect&&t.props.onSelect(e,r);})),pe(me(t),"setOpen",(function(){t.props.setOpen&&t.props.setOpen(!0);})),t}return se(n,[{key:"render",value:function(){var t;switch(this.props.dropdownMode){case"scroll":t=this.renderScrollMode();break;case"select":t=this.renderSelectMode();}return React__default.createElement("div",{className:"react-datepicker__year-dropdown-container react-datepicker__year-dropdown-container--".concat(this.props.dropdownMode)},t)}}]),n}(),ut=onClickOutsideHOC(function(t){de(n,React__default.Component);var r=ve(n);function n(){var t;oe(this,n);for(var o=arguments.length,a=new Array(o),s=0;s<o;s++)a[s]=arguments[s];return pe(me(t=r.call.apply(r,[this].concat(a))),"renderOptions",(function(){return t.props.monthNames.map((function(r,n){return React__default.createElement("div",{className:t.props.month===n?"react-datepicker__month-option react-datepicker__month-option--selected_month":"react-datepicker__month-option",key:r,onClick:t.onChange.bind(me(t),n)},t.props.month===n?React__default.createElement("span",{className:"react-datepicker__month-option--selected"},"✓"):"",r)}))})),pe(me(t),"onChange",(function(e){return t.props.onChange(e)})),pe(me(t),"handleClickOutside",(function(){return t.props.onCancel()})),t}return se(n,[{key:"render",value:function(){return React__default.createElement("div",{className:"react-datepicker__month-dropdown"},this.renderOptions())}}]),n}()),ht=function(t){de(n,React__default.Component);var r=ve(n);function n(){var t;oe(this,n);for(var o=arguments.length,a=new Array(o),s=0;s<o;s++)a[s]=arguments[s];return pe(me(t=r.call.apply(r,[this].concat(a))),"state",{dropdownVisible:!1}),pe(me(t),"renderSelectOptions",(function(t){return t.map((function(t,r){return React__default.createElement("option",{key:r,value:r},t)}))})),pe(me(t),"renderSelectMode",(function(r){return React__default.createElement("select",{value:t.props.month,className:"react-datepicker__month-select",onChange:function(e){return t.onChange(e.target.value)}},t.renderSelectOptions(r))})),pe(me(t),"renderReadView",(function(r,n){return React__default.createElement("div",{key:"read",style:{visibility:r?"visible":"hidden"},className:"react-datepicker__month-read-view",onClick:t.toggleDropdown},React__default.createElement("span",{className:"react-datepicker__month-read-view--down-arrow"}),React__default.createElement("span",{className:"react-datepicker__month-read-view--selected-month"},n[t.props.month]))})),pe(me(t),"renderDropdown",(function(r){return React__default.createElement(ut,{key:"dropdown",month:t.props.month,monthNames:r,onChange:t.onChange,onCancel:t.toggleDropdown})})),pe(me(t),"renderScrollMode",(function(e){var r=t.state.dropdownVisible,n=[t.renderReadView(!r,e)];return r&&n.unshift(t.renderDropdown(e)),n})),pe(me(t),"onChange",(function(e){t.toggleDropdown(),e!==t.props.month&&t.props.onChange(e);})),pe(me(t),"toggleDropdown",(function(){return t.setState({dropdownVisible:!t.state.dropdownVisible})})),t}return se(n,[{key:"render",value:function(){var t,r=this,n=[0,1,2,3,4,5,6,7,8,9,10,11].map(this.props.useShortMonthInDropdown?function(e){return He(e,r.props.locale)}:function(e){return Ke(e,r.props.locale)});switch(this.props.dropdownMode){case"scroll":t=this.renderScrollMode(n);break;case"select":t=this.renderSelectMode(n);}return React__default.createElement("div",{className:"react-datepicker__month-dropdown-container react-datepicker__month-dropdown-container--".concat(this.props.dropdownMode)},t)}}]),n}();function mt(e,t){for(var r=[],n=Oe(e),o=Oe(t);!isAfter(n,o);)r.push(ge(n)),n=addMonths(n,1);return r}var ft=onClickOutsideHOC(function(r){de(o,React__default.Component);var n=ve(o);function o(t){var r;return oe(this,o),pe(me(r=n.call(this,t)),"renderOptions",(function(){return r.state.monthYearsList.map((function(t){var n=getTime(t),o=Ye(r.props.date,t)&&Te(r.props.date,t);return React__default.createElement("div",{className:o?"react-datepicker__month-year-option --selected_month-year":"react-datepicker__month-year-option",key:n,onClick:r.onChange.bind(me(r),n)},o?React__default.createElement("span",{className:"react-datepicker__month-year-option--selected"},"✓"):"",_e(t,r.props.dateFormat))}))})),pe(me(r),"onChange",(function(e){return r.props.onChange(e)})),pe(me(r),"handleClickOutside",(function(){r.props.onCancel();})),r.state={monthYearsList:mt(r.props.minDate,r.props.maxDate)},r}return se(o,[{key:"render",value:function(){var r=classnames({"react-datepicker__month-year-dropdown":!0,"react-datepicker__month-year-dropdown--scrollable":this.props.scrollableMonthYearDropdown});return React__default.createElement("div",{className:r},this.renderOptions())}}]),o}()),vt=function(t){de(n,React__default.Component);var r=ve(n);function n(){var t;oe(this,n);for(var o=arguments.length,a=new Array(o),s=0;s<o;s++)a[s]=arguments[s];return pe(me(t=r.call.apply(r,[this].concat(a))),"state",{dropdownVisible:!1}),pe(me(t),"renderSelectOptions",(function(){for(var r=Oe(t.props.minDate),n=Oe(t.props.maxDate),o=[];!isAfter(r,n);){var a=getTime(r);o.push(React__default.createElement("option",{key:a,value:a},_e(r,t.props.dateFormat,t.props.locale))),r=addMonths(r,1);}return o})),pe(me(t),"onSelectChange",(function(e){t.onChange(e.target.value);})),pe(me(t),"renderSelectMode",(function(){return React__default.createElement("select",{value:getTime(Oe(t.props.date)),className:"react-datepicker__month-year-select",onChange:t.onSelectChange},t.renderSelectOptions())})),pe(me(t),"renderReadView",(function(r){var n=_e(t.props.date,t.props.dateFormat,t.props.locale);return React__default.createElement("div",{key:"read",style:{visibility:r?"visible":"hidden"},className:"react-datepicker__month-year-read-view",onClick:function(e){return t.toggleDropdown(e)}},React__default.createElement("span",{className:"react-datepicker__month-year-read-view--down-arrow"}),React__default.createElement("span",{className:"react-datepicker__month-year-read-view--selected-month-year"},n))})),pe(me(t),"renderDropdown",(function(){return React__default.createElement(ft,{key:"dropdown",date:t.props.date,dateFormat:t.props.dateFormat,onChange:t.onChange,onCancel:t.toggleDropdown,minDate:t.props.minDate,maxDate:t.props.maxDate,scrollableMonthYearDropdown:t.props.scrollableMonthYearDropdown})})),pe(me(t),"renderScrollMode",(function(){var e=t.state.dropdownVisible,r=[t.renderReadView(!e)];return e&&r.unshift(t.renderDropdown()),r})),pe(me(t),"onChange",(function(e){t.toggleDropdown();var r=ge(parseInt(e));Ye(t.props.date,r)&&Te(t.props.date,r)||t.props.onChange(r);})),pe(me(t),"toggleDropdown",(function(){return t.setState({dropdownVisible:!t.state.dropdownVisible})})),t}return se(n,[{key:"render",value:function(){var t;switch(this.props.dropdownMode){case"scroll":t=this.renderScrollMode();break;case"select":t=this.renderSelectMode();}return React__default.createElement("div",{className:"react-datepicker__month-year-dropdown-container react-datepicker__month-year-dropdown-container--".concat(this.props.dropdownMode)},t)}}]),n}(),yt=function(r){de(o,React__default.Component);var n=ve(o);function o(){var r;oe(this,o);for(var a=arguments.length,s=new Array(a),p=0;p<a;p++)s[p]=arguments[p];return pe(me(r=n.call.apply(n,[this].concat(s))),"dayEl",React__default.createRef()),pe(me(r),"handleClick",(function(e){!r.isDisabled()&&r.props.onClick&&r.props.onClick(e);})),pe(me(r),"handleMouseEnter",(function(e){!r.isDisabled()&&r.props.onMouseEnter&&r.props.onMouseEnter(e);})),pe(me(r),"handleOnKeyDown",(function(e){" "===e.key&&(e.preventDefault(),e.key="Enter"),r.props.handleOnKeyDown(e);})),pe(me(r),"isSameDay",(function(e){return Ie(r.props.day,e)})),pe(me(r),"isKeyboardSelected",(function(){return !r.props.disabledKeyboardNavigation&&!r.props.inline&&!r.isSameDay(r.props.selected)&&r.isSameDay(r.props.preSelection)})),pe(me(r),"isDisabled",(function(){return Ve(r.props.day,r.props)})),pe(me(r),"isExcluded",(function(){return qe(r.props.day,r.props)})),pe(me(r),"getHighLightedClass",(function(e){var t=r.props,n=t.day,o=t.highlightDates;if(!o)return !1;var a=_e(n,"MM.dd.yyyy");return o.get(a)})),pe(me(r),"isInRange",(function(){var e=r.props,t=e.day,n=e.startDate,o=e.endDate;return !(!n||!o)&&Re(t,n,o)})),pe(me(r),"isInSelectingRange",(function(){var e=r.props,t=e.day,n=e.selectsStart,o=e.selectsEnd,a=e.selectingDate,s=e.startDate,p=e.endDate;return !(!n&&!o||!a||r.isDisabled())&&(n&&p&&(isBefore(a,p)||Fe(a,p))?Re(t,a,p):!(!o||!s||!isAfter(a,s)&&!Fe(a,s))&&Re(t,s,a))})),pe(me(r),"isSelectingRangeStart",(function(){if(!r.isInSelectingRange())return !1;var e=r.props,t=e.day,n=e.selectingDate,o=e.startDate;return Ie(t,e.selectsStart?n:o)})),pe(me(r),"isSelectingRangeEnd",(function(){if(!r.isInSelectingRange())return !1;var e=r.props,t=e.day,n=e.selectingDate,o=e.endDate;return Ie(t,e.selectsEnd?n:o)})),pe(me(r),"isRangeStart",(function(){var e=r.props,t=e.day,n=e.startDate,o=e.endDate;return !(!n||!o)&&Ie(n,t)})),pe(me(r),"isRangeEnd",(function(){var e=r.props,t=e.day,n=e.startDate,o=e.endDate;return !(!n||!o)&&Ie(o,t)})),pe(me(r),"isWeekend",(function(){var e=getDay(r.props.day);return 0===e||6===e})),pe(me(r),"isOutsideMonth",(function(){return void 0!==r.props.month&&r.props.month!==getMonth(r.props.day)})),pe(me(r),"getClassNames",(function(e){var n=r.props.dayClassName?r.props.dayClassName(e):void 0;return classnames("react-datepicker__day",n,"react-datepicker__day--"+Pe(r.props.day),{"react-datepicker__day--disabled":r.isDisabled(),"react-datepicker__day--excluded":r.isExcluded(),"react-datepicker__day--selected":r.isSameDay(r.props.selected),"react-datepicker__day--keyboard-selected":r.isKeyboardSelected(),"react-datepicker__day--range-start":r.isRangeStart(),"react-datepicker__day--range-end":r.isRangeEnd(),"react-datepicker__day--in-range":r.isInRange(),"react-datepicker__day--in-selecting-range":r.isInSelectingRange(),"react-datepicker__day--selecting-range-start":r.isSelectingRangeStart(),"react-datepicker__day--selecting-range-end":r.isSelectingRangeEnd(),"react-datepicker__day--today":r.isSameDay(ge()),"react-datepicker__day--weekend":r.isWeekend(),"react-datepicker__day--outside-month":r.isOutsideMonth()},r.getHighLightedClass("react-datepicker__day--highlighted"))})),pe(me(r),"getAriaLabel",(function(){var e=r.props,t=e.day,n=e.ariaLabelPrefixWhenEnabled,o=void 0===n?"Choose":n,a=e.ariaLabelPrefixWhenDisabled,s=void 0===a?"Not available":a,p=r.isDisabled()||r.isExcluded()?s:o;return "".concat(p," ").concat(_e(t,"PPPP"))})),pe(me(r),"getTabIndex",(function(e,t){var n=e||r.props.selected,o=t||r.props.preSelection;return r.isKeyboardSelected()||r.isSameDay(n)&&Ie(o,n)?0:-1})),pe(me(r),"handleFocusDay",(function(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},t=!1;0===r.getTabIndex()&&!e.isInputFocused&&r.isSameDay(r.props.preSelection)&&(document.activeElement&&document.activeElement!==document.body||(t=!0),r.props.containerRef&&r.props.containerRef.current&&r.props.containerRef.current.contains(document.activeElement)&&document.activeElement.classList.contains("react-datepicker__day")&&(t=!0)),t&&r.dayEl.current.focus();})),pe(me(r),"render",(function(){return React__default.createElement("div",{ref:r.dayEl,className:r.getClassNames(r.props.day),onKeyDown:r.handleOnKeyDown,onClick:r.handleClick,onMouseEnter:r.handleMouseEnter,tabIndex:r.getTabIndex(),"aria-label":r.getAriaLabel(),role:"button","aria-disabled":r.isDisabled()},r.props.renderDayContents?r.props.renderDayContents(getDate(r.props.day),r.props.day):getDate(r.props.day))})),r}return se(o,[{key:"componentDidMount",value:function(){this.handleFocusDay();}},{key:"componentDidUpdate",value:function(e){this.handleFocusDay(e);}}]),o}(),Dt=function(r){de(o,React__default.Component);var n=ve(o);function o(){var e;oe(this,o);for(var t=arguments.length,r=new Array(t),a=0;a<t;a++)r[a]=arguments[a];return pe(me(e=n.call.apply(n,[this].concat(r))),"handleClick",(function(t){e.props.onClick&&e.props.onClick(t);})),e}return se(o,[{key:"render",value:function(){var r=this.props,n=r.weekNumber,o=r.ariaLabelPrefix,a=void 0===o?"week ":o,s={"react-datepicker__week-number":!0,"react-datepicker__week-number--clickable":!!r.onClick};return React__default.createElement("div",{className:classnames(s),"aria-label":"".concat(a," ").concat(this.props.weekNumber),onClick:this.handleClick},n)}}]),o}(),wt=function(t){de(n,React__default.Component);var r=ve(n);function n(){var t;oe(this,n);for(var o=arguments.length,a=new Array(o),s=0;s<o;s++)a[s]=arguments[s];return pe(me(t=r.call.apply(r,[this].concat(a))),"handleDayClick",(function(e,r){t.props.onDayClick&&t.props.onDayClick(e,r);})),pe(me(t),"handleDayMouseEnter",(function(e){t.props.onDayMouseEnter&&t.props.onDayMouseEnter(e);})),pe(me(t),"handleWeekClick",(function(e,r,n){"function"==typeof t.props.onWeekSelect&&t.props.onWeekSelect(e,r,n),t.props.shouldCloseOnSelect&&t.props.setOpen(!1);})),pe(me(t),"formatWeekNumber",(function(e){return t.props.formatWeekNumber?t.props.formatWeekNumber(e):Me(e,t.props.locale)})),pe(me(t),"renderDays",(function(){var r=Ne(t.props.day,t.props.locale),n=[],o=t.formatWeekNumber(r);if(t.props.showWeekNumber){var a=t.props.onWeekSelect?t.handleWeekClick.bind(me(t),r,o):void 0;n.push(React__default.createElement(Dt,{key:"W",weekNumber:o,onClick:a,ariaLabelPrefix:t.props.ariaLabelPrefix}));}return n.concat([0,1,2,3,4,5,6].map((function(n){var o=addDays(r,n);return React__default.createElement(yt,{ariaLabelPrefixWhenEnabled:t.props.chooseDayAriaLabelPrefix,ariaLabelPrefixWhenDisabled:t.props.disabledDayAriaLabelPrefix,key:o.valueOf(),day:o,month:t.props.month,onClick:t.handleDayClick.bind(me(t),o),onMouseEnter:t.handleDayMouseEnter.bind(me(t),o),minDate:t.props.minDate,maxDate:t.props.maxDate,excludeDates:t.props.excludeDates,includeDates:t.props.includeDates,inline:t.props.inline,highlightDates:t.props.highlightDates,selectingDate:t.props.selectingDate,filterDate:t.props.filterDate,preSelection:t.props.preSelection,selected:t.props.selected,selectsStart:t.props.selectsStart,selectsEnd:t.props.selectsEnd,startDate:t.props.startDate,endDate:t.props.endDate,dayClassName:t.props.dayClassName,renderDayContents:t.props.renderDayContents,disabledKeyboardNavigation:t.props.disabledKeyboardNavigation,handleOnKeyDown:t.props.handleOnKeyDown,isInputFocused:t.props.isInputFocused,containerRef:t.props.containerRef})})))})),t}return se(n,[{key:"render",value:function(){return React__default.createElement("div",{className:"react-datepicker__week"},this.renderDays())}}],[{key:"defaultProps",get:function(){return {shouldCloseOnSelect:!0}}}]),n}(),kt=function(r){de(o,React__default.Component);var n=ve(o);function o(){var r;oe(this,o);for(var a=arguments.length,s=new Array(a),c=0;c<a;c++)s[c]=arguments[c];return pe(me(r=n.call.apply(n,[this].concat(s))),"handleDayClick",(function(e,t){r.props.onDayClick&&r.props.onDayClick(e,t,r.props.orderInDisplay);})),pe(me(r),"handleDayMouseEnter",(function(e){r.props.onDayMouseEnter&&r.props.onDayMouseEnter(e);})),pe(me(r),"handleMouseLeave",(function(){r.props.onMouseLeave&&r.props.onMouseLeave();})),pe(me(r),"isRangeStartMonth",(function(e){var t=r.props,n=t.day,o=t.startDate,a=t.endDate;return !(!o||!a)&&Te(setMonth(n,e),o)})),pe(me(r),"isRangeStartQuarter",(function(e){var t=r.props,n=t.day,o=t.startDate,a=t.endDate;return !(!o||!a)&&Le(setQuarter(n,e),o)})),pe(me(r),"isRangeEndMonth",(function(e){var t=r.props,n=t.day,o=t.startDate,a=t.endDate;return !(!o||!a)&&Te(setMonth(n,e),a)})),pe(me(r),"isRangeEndQuarter",(function(e){var t=r.props,n=t.day,o=t.startDate,a=t.endDate;return !(!o||!a)&&Le(setQuarter(n,e),a)})),pe(me(r),"isWeekInMonth",(function(e){var t=r.props.day,n=addDays(e,6);return Te(e,t)||Te(n,t)})),pe(me(r),"renderWeeks",(function(){for(var t=[],n=r.props.fixedHeight,o=Ne(Oe(r.props.day),r.props.locale),a=0,s=!1;t.push(React__default.createElement(wt,{ariaLabelPrefix:r.props.weekAriaLabelPrefix,chooseDayAriaLabelPrefix:r.props.chooseDayAriaLabelPrefix,disabledDayAriaLabelPrefix:r.props.disabledDayAriaLabelPrefix,key:a,day:o,month:getMonth(r.props.day),onDayClick:r.handleDayClick,onDayMouseEnter:r.handleDayMouseEnter,onWeekSelect:r.props.onWeekSelect,formatWeekNumber:r.props.formatWeekNumber,locale:r.props.locale,minDate:r.props.minDate,maxDate:r.props.maxDate,excludeDates:r.props.excludeDates,includeDates:r.props.includeDates,inline:r.props.inline,highlightDates:r.props.highlightDates,selectingDate:r.props.selectingDate,filterDate:r.props.filterDate,preSelection:r.props.preSelection,selected:r.props.selected,selectsStart:r.props.selectsStart,selectsEnd:r.props.selectsEnd,showWeekNumber:r.props.showWeekNumbers,startDate:r.props.startDate,endDate:r.props.endDate,dayClassName:r.props.dayClassName,setOpen:r.props.setOpen,shouldCloseOnSelect:r.props.shouldCloseOnSelect,disabledKeyboardNavigation:r.props.disabledKeyboardNavigation,renderDayContents:r.props.renderDayContents,handleOnKeyDown:r.props.handleOnKeyDown,isInputFocused:r.props.isInputFocused,containerRef:r.props.containerRef})),!s;){a++,o=addWeeks(o,1);var p=n&&a>=6,c=!n&&!r.isWeekInMonth(o);if(p||c){if(!r.props.peekNextMonth)break;s=!0;}}return t})),pe(me(r),"onMonthClick",(function(e,t){r.handleDayClick(Oe(setMonth(r.props.day,t)),e);})),pe(me(r),"onQuarterClick",(function(e,t){r.handleDayClick(xe(setQuarter(r.props.day,t)),e);})),pe(me(r),"getMonthClassNames",(function(e){var n=r.props,o=n.day,a=n.startDate,s=n.endDate,p=n.selected,i=n.minDate,c=n.maxDate;return classnames("react-datepicker__month-text","react-datepicker__month-".concat(e),{"react-datepicker__month--disabled":(i||c)&&Ue(setMonth(o,e),r.props),"react-datepicker__month--selected":getMonth(o)===e&&getYear(o)===getYear(p),"react-datepicker__month--in-range":$e(a,s,e,o),"react-datepicker__month--range-start":r.isRangeStartMonth(e),"react-datepicker__month--range-end":r.isRangeEndMonth(e)})})),pe(me(r),"getQuarterClassNames",(function(e){var n=r.props,o=n.day,a=n.startDate,s=n.endDate,p=n.selected,i=n.minDate,c=n.maxDate;return classnames("react-datepicker__quarter-text","react-datepicker__quarter-".concat(e),{"react-datepicker__quarter--disabled":(i||c)&&ze(setQuarter(o,e),r.props),"react-datepicker__quarter--selected":getQuarter(o)===e&&getYear(o)===getYear(p),"react-datepicker__quarter--in-range":Ge(a,s,e,o),"react-datepicker__quarter--range-start":r.isRangeStartQuarter(e),"react-datepicker__quarter--range-end":r.isRangeEndQuarter(e)})})),pe(me(r),"renderMonths",(function(){var t=r.props,n=t.showFullMonthYearPicker,o=t.locale;return [[0,1,2],[3,4,5],[6,7,8],[9,10,11]].map((function(t,a){return React__default.createElement("div",{className:"react-datepicker__month-wrapper",key:a},t.map((function(t,a){return React__default.createElement("div",{key:a,onClick:function(e){r.onMonthClick(e,t);},className:r.getMonthClassNames(t)},n?Ke(t,o):He(t,o))})))}))})),pe(me(r),"renderQuarters",(function(){return React__default.createElement("div",{className:"react-datepicker__quarter-wrapper"},[1,2,3,4].map((function(t,n){return React__default.createElement("div",{key:n,onClick:function(e){r.onQuarterClick(e,t);},className:r.getQuarterClassNames(t)},Qe(t,r.props.locale))})))})),pe(me(r),"getClassNames",(function(){var e=r.props,n=e.selectingDate,o=e.selectsStart,a=e.selectsEnd,s=e.showMonthYearPicker,p=e.showQuarterYearPicker;return classnames("react-datepicker__month",{"react-datepicker__month--selecting-range":n&&(o||a)},{"react-datepicker__monthPicker":s},{"react-datepicker__quarterPicker":p})})),r}return se(o,[{key:"render",value:function(){var t=this.props,r=t.showMonthYearPicker,n=t.showQuarterYearPicker,o=t.day,a=t.ariaLabelPrefix,s=void 0===a?"month ":a;return React__default.createElement("div",{className:this.getClassNames(),onMouseLeave:this.handleMouseLeave,"aria-label":"".concat(s," ").concat(_e(o,"yyyy-MM"))},r?this.renderMonths():n?this.renderQuarters():this.renderWeeks())}}]),o}(),gt=function(t){de(n,React__default.Component);var r=ve(n);function n(){var t;oe(this,n);for(var o=arguments.length,s=new Array(o),p=0;p<o;p++)s[p]=arguments[p];return pe(me(t=r.call.apply(r,[this].concat(s))),"state",{height:null}),pe(me(t),"handleClick",(function(e){(t.props.minTime||t.props.maxTime)&&Ze(e,t.props)||t.props.excludeTimes&&Xe(e,t.props.excludeTimes)||t.props.includeTimes&&!Xe(e,t.props.includeTimes)||t.props.onChange(e);})),pe(me(t),"liClasses",(function(e,r,n){var o=["react-datepicker__time-list-item",t.props.timeClassName?t.props.timeClassName(e,r,n):void 0];return t.props.selected&&r===getHours(e)&&n===getMinutes(e)&&o.push("react-datepicker__time-list-item--selected"),((t.props.minTime||t.props.maxTime)&&Ze(e,t.props)||t.props.excludeTimes&&Xe(e,t.props.excludeTimes)||t.props.includeTimes&&!Xe(e,t.props.includeTimes))&&o.push("react-datepicker__time-list-item--disabled"),t.props.injectTimes&&(60*getHours(e)+getMinutes(e))%t.props.intervals!=0&&o.push("react-datepicker__time-list-item--injected"),o.join(" ")})),pe(me(t),"renderTimes",(function(){for(var r=[],n=t.props.format?t.props.format:"p",o=t.props.intervals,s=t.props.selected||t.props.openToDate||ge(),p=getHours(s),i=getMinutes(s),c=Ee(ge()),l=1440/o,d=t.props.injectTimes&&t.props.injectTimes.sort((function(e,t){return e-t})),u=0;u<l;u++){var h=addMinutes(c,u*o);if(r.push(h),d){var m=pt(c,h,u,o,d);r=r.concat(m);}}return r.map((function(r,o){return React__default.createElement("li",{key:o,onClick:t.handleClick.bind(me(t),r),className:t.liClasses(r,p,i),ref:function(e){p===getHours(r)&&i>=getMinutes(r)&&(t.centerLi=e);}},_e(r,n,t.props.locale))}))})),t}return se(n,[{key:"componentDidMount",value:function(){this.list.scrollTop=n.calcCenterPosition(this.props.monthRef?this.props.monthRef.clientHeight-this.header.clientHeight:this.list.clientHeight,this.centerLi),this.props.monthRef&&this.header&&this.setState({height:this.props.monthRef.clientHeight-this.header.clientHeight});}},{key:"render",value:function(){var t=this,r=this.state.height;return React__default.createElement("div",{className:"react-datepicker__time-container ".concat(this.props.todayButton?"react-datepicker__time-container--with-today-button":"")},React__default.createElement("div",{className:"react-datepicker__header react-datepicker__header--time",ref:function(e){t.header=e;}},React__default.createElement("div",{className:"react-datepicker-time__header"},this.props.timeCaption)),React__default.createElement("div",{className:"react-datepicker__time"},React__default.createElement("div",{className:"react-datepicker__time-box"},React__default.createElement("ul",{className:"react-datepicker__time-list",ref:function(e){t.list=e;},style:r?{height:r}:{}},this.renderTimes()))))}}],[{key:"defaultProps",get:function(){return {intervals:30,onTimeChange:function(){},todayButton:null,timeCaption:"Time"}}}]),n}();pe(gt,"calcCenterPosition",(function(e,t){return t.offsetTop-(e/2-t.clientHeight/2)}));var bt=function(t){de(n,React__default.Component);var r=ve(n);function n(e){var t;return oe(this,n),pe(me(t=r.call(this,e)),"handleYearClick",(function(e,r){t.props.onDayClick&&t.props.onDayClick(e,r);})),pe(me(t),"onYearClick",(function(e,r){var n;t.handleYearClick((n=setYear(t.props.date,r),startOfYear(n)),e);})),t}return se(n,[{key:"render",value:function(){for(var t=this,r=[],n=this.props.date,o=function(n,o){r.push(React__default.createElement("div",{onClick:function(e){t.onYearClick(e,n);},className:"react-datepicker__year-container-text",key:n},n));},a=getYear(n)-11,s=0;a<=getYear(n);a++,s++)o(a);return React__default.createElement("div",{className:"react-datepicker__year-container"},r)}}]),n}(),Ct=function(t){de(n,React__default.Component);var r=ve(n);function n(t){var o;return oe(this,n),pe(me(o=r.call(this,t)),"onTimeChange",(function(e){o.setState({time:e});var t=new Date;t.setHours(e.split(":")[0]),t.setMinutes(e.split(":")[1]),o.props.onChange(t);})),pe(me(o),"renderTimeInput",(function(){var t=o.state.time,r=o.props,n=r.timeString,a=r.customTimeInput;return a?React__default.cloneElement(a,{value:t,onChange:o.onTimeChange}):React__default.createElement("input",{type:"time",className:"react-datepicker-time__input",placeholder:"Time",name:"time-input",required:!0,value:t,onChange:function(e){o.onTimeChange(e.target.value||n);}})})),o.state={time:o.props.timeString},o}return se(n,[{key:"render",value:function(){return React__default.createElement("div",{className:"react-datepicker__input-time-container"},React__default.createElement("div",{className:"react-datepicker-time__caption"},this.props.timeInputLabel),React__default.createElement("div",{className:"react-datepicker-time__input-container"},React__default.createElement("div",{className:"react-datepicker-time__input"},this.renderTimeInput())))}}]),n}();function _t(t){var r=t.className,n=t.children,o=t.showPopperArrow,a=t.arrowProps,s=void 0===a?{}:a;return React__default.createElement("div",{className:r},o&&React__default.createElement("div",ie({className:"react-datepicker__triangle"},s)),n)}var St=["react-datepicker__year-select","react-datepicker__month-select","react-datepicker__month-year-select"],Mt=function(r){de(o,React__default.Component);var n=ve(o);function o(r){var a;return oe(this,o),pe(me(a=n.call(this,r)),"handleClickOutside",(function(e){a.props.onClickOutside(e);})),pe(me(a),"setClickOutsideRef",(function(){return a.containerRef.current})),pe(me(a),"handleDropdownFocus",(function(e){(function(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},t=(e.className||"").split(/\s+/);return St.some((function(e){return t.indexOf(e)>=0}))})(e.target)&&a.props.onDropdownFocus();})),pe(me(a),"getDateInView",(function(){var e=a.props,t=e.preSelection,r=e.selected,n=e.openToDate,o=ot(a.props),s=at(a.props),p=ge(),i=n||r||t;return i||(o&&isBefore(p,o)?o:s&&isAfter(p,s)?s:p)})),pe(me(a),"increaseMonth",(function(){a.setState((function(e){var t=e.date;return {date:addMonths(t,1)}}),(function(){return a.handleMonthChange(a.state.date)}));})),pe(me(a),"decreaseMonth",(function(){a.setState((function(e){var t=e.date;return {date:subMonths(t,1)}}),(function(){return a.handleMonthChange(a.state.date)}));})),pe(me(a),"handleDayClick",(function(e,t,r){return a.props.onSelect(e,t,r)})),pe(me(a),"handleDayMouseEnter",(function(e){a.setState({selectingDate:e}),a.props.onDayMouseEnter&&a.props.onDayMouseEnter(e);})),pe(me(a),"handleMonthMouseLeave",(function(){a.setState({selectingDate:null}),a.props.onMonthMouseLeave&&a.props.onMonthMouseLeave();})),pe(me(a),"handleYearChange",(function(e){a.props.onYearChange&&a.props.onYearChange(e);})),pe(me(a),"handleMonthChange",(function(e){a.props.onMonthChange&&a.props.onMonthChange(e),a.props.adjustDateOnChange&&(a.props.onSelect&&a.props.onSelect(e),a.props.setOpen&&a.props.setOpen(!0)),a.props.setPreSelection&&a.props.setPreSelection(e);})),pe(me(a),"handleMonthYearChange",(function(e){a.handleYearChange(e),a.handleMonthChange(e);})),pe(me(a),"changeYear",(function(e){a.setState((function(t){var r=t.date;return {date:setYear(r,e)}}),(function(){return a.handleYearChange(a.state.date)}));})),pe(me(a),"changeMonth",(function(e){a.setState((function(t){var r=t.date;return {date:setMonth(r,e)}}),(function(){return a.handleMonthChange(a.state.date)}));})),pe(me(a),"changeMonthYear",(function(e){a.setState((function(t){var r=t.date;return {date:setYear(setMonth(r,getMonth(e)),getYear(e))}}),(function(){return a.handleMonthYearChange(a.state.date)}));})),pe(me(a),"header",(function(){var r=arguments.length>0&&void 0!==arguments[0]?arguments[0]:a.state.date,n=Ne(r,a.props.locale),o=[];return a.props.showWeekNumbers&&o.push(React__default.createElement("div",{key:"W",className:"react-datepicker__day-name"},a.props.weekLabel||"#")),o.concat([0,1,2,3,4,5,6].map((function(r){var o=addDays(n,r),s=a.formatWeekday(o,a.props.locale),i=a.props.weekDayClassName?a.props.weekDayClassName(o):void 0;return React__default.createElement("div",{key:r,className:classnames("react-datepicker__day-name",i)},s)})))})),pe(me(a),"formatWeekday",(function(e,t){return a.props.formatWeekDay?function(e,t,r){return t(_e(e,"EEEE",r))}(e,a.props.formatWeekDay,t):a.props.useWeekdaysShort?function(e,t){return _e(e,"EEE",t)}(e,t):function(e,t){return _e(e,"EEEEEE",t)}(e,t)})),pe(me(a),"decreaseYear",(function(){a.setState((function(e){var t=e.date;return {date:subYears(t,a.props.showYearPicker?11:1)}}),(function(){return a.handleYearChange(a.state.date)}));})),pe(me(a),"renderPreviousButton",(function(){if(!a.props.renderCustomHeader){var t=a.props.showMonthYearPicker?rt(a.state.date,a.props):et(a.state.date,a.props);if((a.props.forceShowMonthNavigation||a.props.showDisabledMonthNavigation||!t)&&!a.props.showTimeSelectOnly){var r=["react-datepicker__navigation","react-datepicker__navigation--previous"],n=a.decreaseMonth;(a.props.showMonthYearPicker||a.props.showQuarterYearPicker||a.props.showYearPicker)&&(n=a.decreaseYear),t&&a.props.showDisabledMonthNavigation&&(r.push("react-datepicker__navigation--previous--disabled"),n=null);var o=a.props.showMonthYearPicker||a.props.showQuarterYearPicker,s=a.props,p=s.previousMonthAriaLabel,i=void 0===p?"Previous Month":p,c=s.previousYearAriaLabel,l=void 0===c?"Previous Year":c;return React__default.createElement("button",{type:"button",className:r.join(" "),onClick:n,"aria-label":o?l:i},o?a.props.previousYearButtonLabel:a.props.previousMonthButtonLabel)}}})),pe(me(a),"increaseYear",(function(){a.setState((function(e){var t=e.date;return {date:addYears(t,a.props.showYearPicker?11:1)}}),(function(){return a.handleYearChange(a.state.date)}));})),pe(me(a),"renderNextButton",(function(){if(!a.props.renderCustomHeader){var t=a.props.showMonthYearPicker?nt(a.state.date,a.props):tt(a.state.date,a.props);if((a.props.forceShowMonthNavigation||a.props.showDisabledMonthNavigation||!t)&&!a.props.showTimeSelectOnly){var r=["react-datepicker__navigation","react-datepicker__navigation--next"];a.props.showTimeSelect&&r.push("react-datepicker__navigation--next--with-time"),a.props.todayButton&&r.push("react-datepicker__navigation--next--with-today-button");var n=a.increaseMonth;(a.props.showMonthYearPicker||a.props.showQuarterYearPicker||a.props.showYearPicker)&&(n=a.increaseYear),t&&a.props.showDisabledMonthNavigation&&(r.push("react-datepicker__navigation--next--disabled"),n=null);var o=a.props.showMonthYearPicker||a.props.showQuarterYearPicker,s=a.props,p=s.nextMonthAriaLabel,i=void 0===p?"Next Month":p,c=s.nextYearAriaLabel,l=void 0===c?"Next Year":c;return React__default.createElement("button",{type:"button",className:r.join(" "),onClick:n,"aria-label":o?l:i},o?a.props.nextYearButtonLabel:a.props.nextMonthButtonLabel)}}})),pe(me(a),"renderCurrentMonth",(function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:a.state.date,r=["react-datepicker__current-month"];return a.props.showYearDropdown&&r.push("react-datepicker__current-month--hasYearDropdown"),a.props.showMonthDropdown&&r.push("react-datepicker__current-month--hasMonthDropdown"),a.props.showMonthYearDropdown&&r.push("react-datepicker__current-month--hasMonthYearDropdown"),React__default.createElement("div",{className:r.join(" ")},_e(t,a.props.dateFormat,a.props.locale))})),pe(me(a),"renderYearDropdown",(function(){var t=arguments.length>0&&void 0!==arguments[0]&&arguments[0];if(a.props.showYearDropdown&&!t)return React__default.createElement(dt,{adjustDateOnChange:a.props.adjustDateOnChange,date:a.state.date,onSelect:a.props.onSelect,setOpen:a.props.setOpen,dropdownMode:a.props.dropdownMode,onChange:a.changeYear,minDate:a.props.minDate,maxDate:a.props.maxDate,year:getYear(a.state.date),scrollableYearDropdown:a.props.scrollableYearDropdown,yearDropdownItemNumber:a.props.yearDropdownItemNumber})})),pe(me(a),"renderMonthDropdown",(function(){var t=arguments.length>0&&void 0!==arguments[0]&&arguments[0];if(a.props.showMonthDropdown&&!t)return React__default.createElement(ht,{dropdownMode:a.props.dropdownMode,locale:a.props.locale,onChange:a.changeMonth,month:getMonth(a.state.date),useShortMonthInDropdown:a.props.useShortMonthInDropdown})})),pe(me(a),"renderMonthYearDropdown",(function(){var t=arguments.length>0&&void 0!==arguments[0]&&arguments[0];if(a.props.showMonthYearDropdown&&!t)return React__default.createElement(vt,{dropdownMode:a.props.dropdownMode,locale:a.props.locale,dateFormat:a.props.dateFormat,onChange:a.changeMonthYear,minDate:a.props.minDate,maxDate:a.props.maxDate,date:a.state.date,scrollableMonthYearDropdown:a.props.scrollableMonthYearDropdown})})),pe(me(a),"renderTodayButton",(function(){if(a.props.todayButton&&!a.props.showTimeSelectOnly)return React__default.createElement("div",{className:"react-datepicker__today-button",onClick:function(e){return a.props.onSelect(startOfDay(ge()),e)}},a.props.todayButton)})),pe(me(a),"renderDefaultHeader",(function(t){var r=t.monthDate,n=t.i;return React__default.createElement("div",{className:"react-datepicker__header"},a.renderCurrentMonth(r),React__default.createElement("div",{className:"react-datepicker__header__dropdown react-datepicker__header__dropdown--".concat(a.props.dropdownMode),onFocus:a.handleDropdownFocus},a.renderMonthDropdown(0!==n),a.renderMonthYearDropdown(0!==n),a.renderYearDropdown(0!==n)),React__default.createElement("div",{className:"react-datepicker__day-names"},a.header(r)))})),pe(me(a),"renderCustomHeader",(function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},r=t.monthDate,n=t.i;if(0!==n&&void 0!==n)return null;var o=et(a.state.date,a.props),s=tt(a.state.date,a.props),p=rt(a.state.date,a.props),i=nt(a.state.date,a.props),c=!a.props.showMonthYearPicker&&!a.props.showQuarterYearPicker&&!a.props.showYearPicker;return React__default.createElement("div",{className:"react-datepicker__header react-datepicker__header--custom",onFocus:a.props.onDropdownFocus},a.props.renderCustomHeader(le(le({},a.state),{},{changeMonth:a.changeMonth,changeYear:a.changeYear,decreaseMonth:a.decreaseMonth,increaseMonth:a.increaseMonth,decreaseYear:a.decreaseYear,increaseYear:a.increaseYear,prevMonthButtonDisabled:o,nextMonthButtonDisabled:s,prevYearButtonDisabled:p,nextYearButtonDisabled:i})),c&&React__default.createElement("div",{className:"react-datepicker__day-names"},a.header(r)))})),pe(me(a),"renderYearHeader",(function(){return React__default.createElement("div",{className:"react-datepicker__header react-datepicker-year-header"},a.props.showYearPicker?"".concat(getYear(a.state.date)-11," - ").concat(getYear(a.state.date)):getYear(a.state.date))})),pe(me(a),"renderHeader",(function(e){switch(!0){case void 0!==a.props.renderCustomHeader:return a.renderCustomHeader(e);case a.props.showMonthYearPicker||a.props.showQuarterYearPicker||a.props.showYearPicker:return a.renderYearHeader(e);default:return a.renderDefaultHeader(e)}})),pe(me(a),"renderMonths",(function(){if(!a.props.showTimeSelectOnly&&!a.props.showYearPicker){for(var t=[],r=a.props.showPreviousMonths?a.props.monthsShown-1:0,n=subMonths(a.state.date,r),o=0;o<a.props.monthsShown;++o){var s=o-a.props.monthSelectedIn,p=addMonths(n,s),i="month-".concat(o);t.push(React__default.createElement("div",{key:i,ref:function(e){a.monthContainer=e;},className:"react-datepicker__month-container"},a.renderHeader({monthDate:p,i:o}),React__default.createElement(kt,{chooseDayAriaLabelPrefix:a.props.chooseDayAriaLabelPrefix,disabledDayAriaLabelPrefix:a.props.disabledDayAriaLabelPrefix,weekAriaLabelPrefix:a.props.weekAriaLabelPrefix,onChange:a.changeMonthYear,day:p,dayClassName:a.props.dayClassName,monthClassName:a.props.monthClassName,onDayClick:a.handleDayClick,handleOnKeyDown:a.props.handleOnKeyDown,onDayMouseEnter:a.handleDayMouseEnter,onMouseLeave:a.handleMonthMouseLeave,onWeekSelect:a.props.onWeekSelect,orderInDisplay:o,formatWeekNumber:a.props.formatWeekNumber,locale:a.props.locale,minDate:a.props.minDate,maxDate:a.props.maxDate,excludeDates:a.props.excludeDates,highlightDates:a.props.highlightDates,selectingDate:a.state.selectingDate,includeDates:a.props.includeDates,inline:a.props.inline,fixedHeight:a.props.fixedHeight,filterDate:a.props.filterDate,preSelection:a.props.preSelection,selected:a.props.selected,selectsStart:a.props.selectsStart,selectsEnd:a.props.selectsEnd,showWeekNumbers:a.props.showWeekNumbers,startDate:a.props.startDate,endDate:a.props.endDate,peekNextMonth:a.props.peekNextMonth,setOpen:a.props.setOpen,shouldCloseOnSelect:a.props.shouldCloseOnSelect,renderDayContents:a.props.renderDayContents,disabledKeyboardNavigation:a.props.disabledKeyboardNavigation,showMonthYearPicker:a.props.showMonthYearPicker,showFullMonthYearPicker:a.props.showFullMonthYearPicker,showYearPicker:a.props.showYearPicker,showQuarterYearPicker:a.props.showQuarterYearPicker,isInputFocused:a.props.isInputFocused,containerRef:a.containerRef})));}return t}})),pe(me(a),"renderYears",(function(){if(!a.props.showTimeSelectOnly)return a.props.showYearPicker?React__default.createElement("div",{className:"react-datepicker__year"},a.renderHeader(),React__default.createElement(bt,{onDayClick:a.handleDayClick,date:a.state.date})):void 0})),pe(me(a),"renderTimeSection",(function(){if(a.props.showTimeSelect&&(a.state.monthContainer||a.props.showTimeSelectOnly))return React__default.createElement(gt,{selected:a.props.selected,openToDate:a.props.openToDate,onChange:a.props.onTimeChange,timeClassName:a.props.timeClassName,format:a.props.timeFormat,includeTimes:a.props.includeTimes,intervals:a.props.timeIntervals,minTime:a.props.minTime,maxTime:a.props.maxTime,excludeTimes:a.props.excludeTimes,timeCaption:a.props.timeCaption,todayButton:a.props.todayButton,showMonthDropdown:a.props.showMonthDropdown,showMonthYearDropdown:a.props.showMonthYearDropdown,showYearDropdown:a.props.showYearDropdown,withPortal:a.props.withPortal,monthRef:a.state.monthContainer,injectTimes:a.props.injectTimes,locale:a.props.locale})})),pe(me(a),"renderInputTimeSection",(function(){var t=new Date(a.props.selected),r="".concat(it(t.getHours()),":").concat(it(t.getMinutes()));if(a.props.showTimeInput)return React__default.createElement(Ct,{timeString:r,timeInputLabel:a.props.timeInputLabel,onChange:a.props.onTimeChange,customTimeInput:a.props.customTimeInput})})),a.containerRef=React__default.createRef(),a.state={date:a.getDateInView(),selectingDate:null,monthContainer:null},a}return se(o,null,[{key:"defaultProps",get:function(){return {onDropdownFocus:function(){},monthsShown:1,monthSelectedIn:0,forceShowMonthNavigation:!1,timeCaption:"Time",previousYearButtonLabel:"Previous Year",nextYearButtonLabel:"Next Year",previousMonthButtonLabel:"Previous Month",nextMonthButtonLabel:"Next Month",customTimeInput:null}}}]),se(o,[{key:"componentDidMount",value:function(){var e=this;this.props.showTimeSelect&&(this.assignMonthContainer=void e.setState({monthContainer:e.monthContainer}));}},{key:"componentDidUpdate",value:function(e){this.props.preSelection&&!Ie(this.props.preSelection,e.preSelection)?this.setState({date:this.props.preSelection}):this.props.openToDate&&!Ie(this.props.openToDate,e.openToDate)&&this.setState({date:this.props.openToDate});}},{key:"render",value:function(){var r=this.props.container||_t;return React__default.createElement("div",{ref:this.containerRef},React__default.createElement(r,{className:classnames("react-datepicker",this.props.className,{"react-datepicker--time-only":this.props.showTimeSelectOnly}),showPopperArrow:this.props.showPopperArrow},this.renderPreviousButton(),this.renderNextButton(),this.renderMonths(),this.renderYears(),this.renderTodayButton(),this.renderTimeSection(),this.renderInputTimeSection(),this.props.children))}}]),o}(),Pt=function(e){return !e.disabled&&-1!==e.tabIndex},Et=function(t){de(n,React__default.Component);var r=ve(n);function n(t){var o;return oe(this,n),pe(me(o=r.call(this,t)),"getTabChildren",(function(){return Array.prototype.slice.call(o.tabLoopRef.current.querySelectorAll("[tabindex], a, button, input, select, textarea"),1,-1).filter(Pt)})),pe(me(o),"handleFocusStart",(function(e){var t=o.getTabChildren();t&&t.length>1&&t[t.length-1].focus();})),pe(me(o),"handleFocusEnd",(function(e){var t=o.getTabChildren();t&&t.length>1&&t[0].focus();})),o.tabLoopRef=React__default.createRef(),o}return se(n,null,[{key:"defaultProps",get:function(){return {enableTabLoop:!0}}}]),se(n,[{key:"render",value:function(){return this.props.enableTabLoop?React__default.createElement("div",{className:"react-datepicker__tab-loop",ref:this.tabLoopRef},React__default.createElement("div",{className:"react-datepicker__tab-loop__start",tabIndex:"0",onFocus:this.handleFocusStart}),this.props.children,React__default.createElement("div",{className:"react-datepicker__tab-loop__end",tabIndex:"0",onFocus:this.handleFocusEnd})):this.props.children}}]),n}(),Nt=function(r){de(o,React__default.Component);var n=ve(o);function o(){return oe(this,o),n.apply(this,arguments)}return se(o,[{key:"render",value:function(){var r,n=this.props,o=n.className,a=n.wrapperClassName,s=n.hidePopper,p=n.popperComponent,i=n.popperModifiers,c=n.popperPlacement,l=n.popperProps,d=n.targetComponent,u=n.enableTabLoop,h=n.popperOnKeyDown;if(!s){var m=classnames("react-datepicker-popper",o);r=React__default.createElement(Popper$1,ie({modifiers:i,placement:c},l),(function(t){var r=t.ref,n=t.style,o=t.placement,a=t.arrowProps;return React__default.createElement(Et,{enableTabLoop:u},React__default.createElement("div",ie({ref:r,style:n},{className:m,"data-placement":o,onKeyDown:h}),React__default.cloneElement(p,{arrowProps:a})))}));}this.props.popperContainer&&(r=React__default.createElement(this.props.popperContainer,{},r));var f=classnames("react-datepicker-wrapper",a);return React__default.createElement(Manager,{className:"react-datepicker-manager"},React__default.createElement(Reference,null,(function(t){var r=t.ref;return React__default.createElement("div",{ref:r,className:f},d)})),r)}}],[{key:"defaultProps",get:function(){return {hidePopper:!0,popperModifiers:{preventOverflow:{enabled:!0,escapeWithReference:!0,boundariesElement:"viewport"}},popperProps:{},popperPlacement:"bottom-start"}}}]),o}(),Ot=onClickOutsideHOC(Mt);var xt=function(n){de(a,React__default.Component);var o=ve(a);function a(n){var s;return oe(this,a),pe(me(s=o.call(this,n)),"getPreSelection",(function(){return s.props.openToDate?s.props.openToDate:s.props.selectsEnd&&s.props.startDate?s.props.startDate:s.props.selectsStart&&s.props.endDate?s.props.endDate:ge()})),pe(me(s),"calcInitialState",(function(){var e=s.getPreSelection(),t=ot(s.props),r=at(s.props),n=t&&isBefore(e,t)?t:r&&isAfter(e,r)?r:e;return {open:s.props.startOpen||!1,preventFocus:!1,preSelection:s.props.selected?s.props.selected:n,highlightDates:st(s.props.highlightDates),focused:!1}})),pe(me(s),"clearPreventFocusTimeout",(function(){s.preventFocusTimeout&&clearTimeout(s.preventFocusTimeout);})),pe(me(s),"setFocus",(function(){s.input&&s.input.focus&&s.input.focus();})),pe(me(s),"setBlur",(function(){s.input&&s.input.blur&&s.input.blur(),s.cancelFocusInput();})),pe(me(s),"setOpen",(function(e){var t=arguments.length>1&&void 0!==arguments[1]&&arguments[1];s.setState({open:e,preSelection:e&&s.state.open?s.state.preSelection:s.calcInitialState().preSelection,lastPreSelectChange:Tt},(function(){e||s.setState((function(e){return {focused:!!t&&e.focused}}),(function(){!t&&s.setBlur(),s.setState({inputValue:null});}));}));})),pe(me(s),"inputOk",(function(){return isDate(s.state.preSelection)})),pe(me(s),"isCalendarOpen",(function(){return void 0===s.props.open?s.state.open&&!s.props.disabled&&!s.props.readOnly:s.props.open})),pe(me(s),"handleFocus",(function(e){s.state.preventFocus||(s.props.onFocus(e),s.props.preventOpenOnFocus||s.props.readOnly||s.setOpen(!0)),s.setState({focused:!0});})),pe(me(s),"cancelFocusInput",(function(){clearTimeout(s.inputFocusTimeout),s.inputFocusTimeout=null;})),pe(me(s),"deferFocusInput",(function(){s.cancelFocusInput(),s.inputFocusTimeout=setTimeout((function(){return s.setFocus()}),1);})),pe(me(s),"handleDropdownFocus",(function(){s.cancelFocusInput();})),pe(me(s),"handleBlur",(function(e){(!s.state.open||s.props.withPortal||s.props.showTimeInput)&&s.props.onBlur(e),s.setState({focused:!1});})),pe(me(s),"handleCalendarClickOutside",(function(e){s.props.inline||s.setOpen(!1),s.props.onClickOutside(e),s.props.withPortal&&e.preventDefault();})),pe(me(s),"handleChange",(function(){for(var e=arguments.length,t=new Array(e),r=0;r<e;r++)t[r]=arguments[r];var n=t[0];if(!s.props.onChangeRaw||(s.props.onChangeRaw.apply(me(s),t),"function"==typeof n.isDefaultPrevented&&!n.isDefaultPrevented())){s.setState({inputValue:n.target.value,lastPreSelectChange:Yt});var o=be(n.target.value,s.props.dateFormat,s.props.locale,s.props.strictParsing);!o&&n.target.value||s.setSelected(o,n,!0);}})),pe(me(s),"handleSelect",(function(e,t,r){s.setState({preventFocus:!0},(function(){return s.preventFocusTimeout=setTimeout((function(){return s.setState({preventFocus:!1})}),50),s.preventFocusTimeout})),s.setSelected(e,t,!1,r),!s.props.shouldCloseOnSelect||s.props.showTimeSelect?s.setPreSelection(e):s.props.inline||s.setOpen(!1);})),pe(me(s),"setSelected",(function(e,t,r,n){var o=e;null!==o&&Ve(o,s.props)||(Fe(s.props.selected,o)&&!s.props.allowSameDay||(null!==o&&(!s.props.selected||r&&(s.props.showTimeSelect||s.props.showTimeSelectOnly||s.props.showTimeInput)||(o=Se(o,{hour:getHours(s.props.selected),minute:getMinutes(s.props.selected),second:getSeconds(s.props.selected)})),s.props.inline||s.setState({preSelection:o}),s.props.inline&&s.props.monthsShown>1&&!s.props.inlineFocusSelectedMonth&&s.setState({monthSelectedIn:n})),s.props.onChange(o,t)),s.props.onSelect(o,t),r||s.setState({inputValue:null}));})),pe(me(s),"setPreSelection",(function(e){var t=void 0!==s.props.minDate,r=void 0!==s.props.maxDate,n=!0;e&&(t&&r?n=Re(e,s.props.minDate,s.props.maxDate):t?n=isAfter(e,s.props.minDate):r&&(n=isBefore(e,s.props.maxDate))),n&&s.setState({preSelection:e});})),pe(me(s),"handleTimeChange",(function(e){var t=Se(s.props.selected?s.props.selected:s.getPreSelection(),{hour:getHours(e),minute:getMinutes(e)});s.setState({preSelection:t}),s.props.onChange(t),s.props.shouldCloseOnSelect&&s.setOpen(!1),s.props.showTimeInput&&s.setOpen(!0),s.setState({inputValue:null});})),pe(me(s),"onInputClick",(function(){s.props.disabled||s.props.readOnly||s.setOpen(!0),s.props.onInputClick();})),pe(me(s),"onInputKeyDown",(function(e){s.props.onKeyDown(e);var t=e.key;if(s.state.open||s.props.inline||s.props.preventOpenOnFocus){if(s.state.open){if("ArrowDown"===t||"ArrowUp"===t){e.preventDefault();var r=s.calendar.componentNode&&s.calendar.componentNode.querySelector('.react-datepicker__day[tabindex="0"]');return void(r&&r.focus())}var n=ge(s.state.preSelection);"Enter"===t?(e.preventDefault(),s.inputOk()&&s.state.lastPreSelectChange===Tt?(s.handleSelect(n,e),!s.props.shouldCloseOnSelect&&s.setPreSelection(n)):s.setOpen(!1)):"Escape"===t&&(e.preventDefault(),s.setOpen(!1)),s.inputOk()||s.props.onInputError({code:1,msg:"Date input not valid."});}}else"ArrowDown"!==t&&"ArrowUp"!==t&&"Enter"!==t||s.onInputClick();})),pe(me(s),"onDayKeyDown",(function(e){s.props.onKeyDown(e);var t=e.key,r=ge(s.state.preSelection);if("Enter"===t)e.preventDefault(),s.handleSelect(r,e),!s.props.shouldCloseOnSelect&&s.setPreSelection(r);else if("Escape"===t)e.preventDefault(),s.setOpen(!1),s.inputOk()||s.props.onInputError({code:1,msg:"Date input not valid."});else if(!s.props.disabledKeyboardNavigation){var n;switch(t){case"ArrowLeft":n=subDays(r,1);break;case"ArrowRight":n=addDays(r,1);break;case"ArrowUp":n=subWeeks(r,1);break;case"ArrowDown":n=addWeeks(r,1);break;case"PageUp":n=subMonths(r,1);break;case"PageDown":n=addMonths(r,1);break;case"Home":n=subYears(r,1);break;case"End":n=addYears(r,1);}if(!n)return void(s.props.onInputError&&s.props.onInputError({code:1,msg:"Date input not valid."}));e.preventDefault(),s.setState({lastPreSelectChange:Tt}),s.props.adjustDateOnChange&&s.setSelected(n),s.setPreSelection(n);}})),pe(me(s),"onPopperKeyDown",(function(e){"Escape"===e.key&&(e.preventDefault(),s.setState({preventFocus:!0},(function(){s.setOpen(!1),setTimeout((function(){s.setFocus(),s.setState({preventFocus:!1});}));})));})),pe(me(s),"onClearClick",(function(e){e&&e.preventDefault&&e.preventDefault(),s.props.onChange(null,e),s.setState({inputValue:null});})),pe(me(s),"clear",(function(){s.onClearClick();})),pe(me(s),"renderCalendar",(function(){return s.props.inline||s.isCalendarOpen()?React__default.createElement(Ot,{ref:function(e){s.calendar=e;},locale:s.props.locale,chooseDayAriaLabelPrefix:s.props.chooseDayAriaLabelPrefix,disabledDayAriaLabelPrefix:s.props.disabledDayAriaLabelPrefix,weekAriaLabelPrefix:s.props.weekAriaLabelPrefix,adjustDateOnChange:s.props.adjustDateOnChange,setOpen:s.setOpen,shouldCloseOnSelect:s.props.shouldCloseOnSelect,dateFormat:s.props.dateFormatCalendar,useWeekdaysShort:s.props.useWeekdaysShort,formatWeekDay:s.props.formatWeekDay,dropdownMode:s.props.dropdownMode,selected:s.props.selected,preSelection:s.state.preSelection,onSelect:s.handleSelect,onWeekSelect:s.props.onWeekSelect,openToDate:s.props.openToDate,minDate:s.props.minDate,maxDate:s.props.maxDate,selectsStart:s.props.selectsStart,selectsEnd:s.props.selectsEnd,startDate:s.props.startDate,endDate:s.props.endDate,excludeDates:s.props.excludeDates,filterDate:s.props.filterDate,onClickOutside:s.handleCalendarClickOutside,formatWeekNumber:s.props.formatWeekNumber,highlightDates:s.state.highlightDates,includeDates:s.props.includeDates,includeTimes:s.props.includeTimes,injectTimes:s.props.injectTimes,inline:s.props.inline,peekNextMonth:s.props.peekNextMonth,showMonthDropdown:s.props.showMonthDropdown,showPreviousMonths:s.props.showPreviousMonths,useShortMonthInDropdown:s.props.useShortMonthInDropdown,showMonthYearDropdown:s.props.showMonthYearDropdown,showWeekNumbers:s.props.showWeekNumbers,showYearDropdown:s.props.showYearDropdown,withPortal:s.props.withPortal,forceShowMonthNavigation:s.props.forceShowMonthNavigation,showDisabledMonthNavigation:s.props.showDisabledMonthNavigation,scrollableYearDropdown:s.props.scrollableYearDropdown,scrollableMonthYearDropdown:s.props.scrollableMonthYearDropdown,todayButton:s.props.todayButton,weekLabel:s.props.weekLabel,outsideClickIgnoreClass:"react-datepicker-ignore-onclickoutside",fixedHeight:s.props.fixedHeight,monthsShown:s.props.monthsShown,monthSelectedIn:s.state.monthSelectedIn,onDropdownFocus:s.handleDropdownFocus,onMonthChange:s.props.onMonthChange,onYearChange:s.props.onYearChange,dayClassName:s.props.dayClassName,weekDayClassName:s.props.weekDayClassName,monthClassName:s.props.monthClassName,timeClassName:s.props.timeClassName,showTimeSelect:s.props.showTimeSelect,showTimeSelectOnly:s.props.showTimeSelectOnly,onTimeChange:s.handleTimeChange,timeFormat:s.props.timeFormat,timeIntervals:s.props.timeIntervals,minTime:s.props.minTime,maxTime:s.props.maxTime,excludeTimes:s.props.excludeTimes,timeCaption:s.props.timeCaption,className:s.props.calendarClassName,container:s.props.calendarContainer,yearDropdownItemNumber:s.props.yearDropdownItemNumber,previousMonthButtonLabel:s.props.previousMonthButtonLabel,nextMonthButtonLabel:s.props.nextMonthButtonLabel,previousYearButtonLabel:s.props.previousYearButtonLabel,nextYearButtonLabel:s.props.nextYearButtonLabel,timeInputLabel:s.props.timeInputLabel,disabledKeyboardNavigation:s.props.disabledKeyboardNavigation,renderCustomHeader:s.props.renderCustomHeader,popperProps:s.props.popperProps,renderDayContents:s.props.renderDayContents,onDayMouseEnter:s.props.onDayMouseEnter,onMonthMouseLeave:s.props.onMonthMouseLeave,showTimeInput:s.props.showTimeInput,showMonthYearPicker:s.props.showMonthYearPicker,showFullMonthYearPicker:s.props.showFullMonthYearPicker,showYearPicker:s.props.showYearPicker,showQuarterYearPicker:s.props.showQuarterYearPicker,showPopperArrow:s.props.showPopperArrow,excludeScrollbar:s.props.excludeScrollbar,handleOnKeyDown:s.onDayKeyDown,isInputFocused:s.state.focused,customTimeInput:s.props.customTimeInput,setPreSelection:s.setPreSelection},s.props.children):null})),pe(me(s),"renderDateInput",(function(){var r,n,o,a,p,i=classnames(s.props.className,pe({},"react-datepicker-ignore-onclickoutside",s.state.open)),c=s.props.customInput||React__default.createElement("input",{type:"text"}),l=s.props.customInputRef||"ref",d="string"==typeof s.props.value?s.props.value:"string"==typeof s.state.inputValue?s.state.inputValue:(n=s.props.selected,o=s.props,a=o.dateFormat,p=o.locale,n&&_e(n,Array.isArray(a)?a[0]:a,p)||"");return React__default.cloneElement(c,(pe(r={},l,(function(e){s.input=e;})),pe(r,"value",d),pe(r,"onBlur",s.handleBlur),pe(r,"onChange",s.handleChange),pe(r,"onClick",s.onInputClick),pe(r,"onFocus",s.handleFocus),pe(r,"onKeyDown",s.onInputKeyDown),pe(r,"id",s.props.id),pe(r,"name",s.props.name),pe(r,"autoFocus",s.props.autoFocus),pe(r,"placeholder",s.props.placeholderText),pe(r,"disabled",s.props.disabled),pe(r,"autoComplete",s.props.autoComplete),pe(r,"className",classnames(c.props.className,i)),pe(r,"title",s.props.title),pe(r,"readOnly",s.props.readOnly),pe(r,"required",s.props.required),pe(r,"tabIndex",s.props.tabIndex),pe(r,"aria-labelledby",s.props.ariaLabelledBy),r))})),pe(me(s),"renderClearButton",(function(){var t=s.props,r=t.isClearable,n=t.selected,o=t.clearButtonTitle,a=t.ariaLabelClose,p=void 0===a?"Close":a;return r&&null!=n?React__default.createElement("button",{type:"button",className:"react-datepicker__close-icon","aria-label":p,onClick:s.onClearClick,title:o,tabIndex:-1}):null})),s.state=s.calcInitialState(),s}return se(a,null,[{key:"defaultProps",get:function(){return {allowSameDay:!1,dateFormat:"MM/dd/yyyy",dateFormatCalendar:"LLLL yyyy",onChange:function(){},disabled:!1,disabledKeyboardNavigation:!1,dropdownMode:"scroll",onFocus:function(){},onBlur:function(){},onKeyDown:function(){},onInputClick:function(){},onSelect:function(){},onClickOutside:function(){},onMonthChange:function(){},onCalendarOpen:function(){},onCalendarClose:function(){},preventOpenOnFocus:!1,onYearChange:function(){},onInputError:function(){},monthsShown:1,readOnly:!1,withPortal:!1,shouldCloseOnSelect:!0,showTimeSelect:!1,showTimeInput:!1,showPreviousMonths:!1,showMonthYearPicker:!1,showFullMonthYearPicker:!1,showYearPicker:!1,showQuarterYearPicker:!1,strictParsing:!1,timeIntervals:30,timeCaption:"Time",previousMonthButtonLabel:"Previous Month",nextMonthButtonLabel:"Next Month",previousYearButtonLabel:"Previous Year",nextYearButtonLabel:"Next Year",timeInputLabel:"Time",enableTabLoop:!0,renderDayContents:function(e){return e},inlineFocusSelectedMonth:!1,showPopperArrow:!0,excludeScrollbar:!0,customTimeInput:null}}}]),se(a,[{key:"componentDidUpdate",value:function(e,t){var r,n;e.inline&&(r=e.selected,n=this.props.selected,r&&n?getMonth(r)!==getMonth(n)||getYear(r)!==getYear(n):r!==n)&&this.setPreSelection(this.props.selected),void 0!==this.state.monthSelectedIn&&e.monthsShown!==this.props.monthsShown&&this.setState({monthSelectedIn:0}),e.highlightDates!==this.props.highlightDates&&this.setState({highlightDates:st(this.props.highlightDates)}),t.focused||Fe(e.selected,this.props.selected)||this.setState({inputValue:null}),t.open!==this.state.open&&(!1===t.open&&!0===this.state.open&&this.props.onCalendarOpen(),!0===t.open&&!1===this.state.open&&this.props.onCalendarClose());}},{key:"componentWillUnmount",value:function(){this.clearPreventFocusTimeout();}},{key:"render",value:function(){var t=this.renderCalendar();return this.props.inline&&!this.props.withPortal?t:this.props.withPortal?React__default.createElement("div",null,this.props.inline?null:React__default.createElement("div",{className:"react-datepicker__input-container"},this.renderDateInput(),this.renderClearButton()),this.state.open||this.props.inline?React__default.createElement("div",{className:"react-datepicker__portal"},t):null):React__default.createElement(Nt,{className:this.props.popperClassName,wrapperClassName:this.props.wrapperClassName,hidePopper:!this.isCalendarOpen(),popperModifiers:this.props.popperModifiers,targetComponent:React__default.createElement("div",{className:"react-datepicker__input-container"},this.renderDateInput(),this.renderClearButton()),popperContainer:this.props.popperContainer,popperComponent:t,popperPlacement:this.props.popperPlacement,popperProps:this.props.popperProps,popperOnKeyDown:this.onPopperKeyDown,enableTabLoop:this.props.enableTabLoop})}}]),a}(),Yt="input",Tt="navigate";
 
 function _templateObject$f() {
   var data = taggedTemplateLiteral(["\n  background-color: ", ";\n  border: 1px solid\n    ", ";\n  font-family: inherit;\n  font-size: ", ";\n  padding: 0.6em 1em;\n  height: 38px;\n  border-radius: ", ";\n  width: 100%;\n  color: ", ";\n\n  ::placeholder {\n    color: ", ";\n  }\n"]);
@@ -13984,7 +14121,7 @@ function _templateObject$f() {
 
   return data;
 }
-var StyledDatePicker = styled__default(St)(_templateObject$f(), function (_ref) {
+var StyledDatePicker = styled__default(xt)(_templateObject$f(), function (_ref) {
   var disabled = _ref.disabled,
       theme = _ref.theme;
   return disabled ? theme.colors.transparent : theme.colors.gray.xxlight;
@@ -14050,9 +14187,9 @@ var DateInput = function DateInput(_ref) {
   var defaultChangeHandler = hasFormik ? function (value) {
     return formik.setFieldValue(name, value);
   } : onChange;
-  return React__default.createElement(InputWrapper, _extends_1({
+  return /*#__PURE__*/React__default.createElement(InputWrapper, _extends_1({
     alertText: alertTextOverride || alertText
-  }, otherProps), React__default.createElement(StyledDatePicker, _extends_1({}, inputDefaults, {
+  }, otherProps), /*#__PURE__*/React__default.createElement(StyledDatePicker, _extends_1({}, inputDefaults, {
     id: id,
     onChange: defaultChangeHandler,
     value: dateFormatter(value || inputDefaults.value),
@@ -14063,7 +14200,7 @@ var DateInput = function DateInput(_ref) {
     disabled: disabled,
     name: name,
     autoComplete: "off"
-  }, inputProps)), React__default.createElement(CalendarToday$1, {
+  }, inputProps)), /*#__PURE__*/React__default.createElement(CalendarToday$1, {
     style: iconStyles,
     color: colors.gray.default
   }));
@@ -15189,24 +15326,37 @@ var insertStyles = function insertStyles(cache, serialized, isStringTag) {
 };
 
 /* eslint-disable */
-// murmurhash2 via https://github.com/garycourt/murmurhash-js/blob/master/murmurhash2_gc.js
-function murmurhash2_32_gc(str) {
-  var l = str.length,
-      h = l ^ l,
+// Inspired by https://github.com/garycourt/murmurhash-js
+// Ported from https://github.com/aappleby/smhasher/blob/61a0530f28277f2e850bfc39600ce61d02b518de/src/MurmurHash2.cpp#L37-L86
+function murmur2(str) {
+  // 'm' and 'r' are mixing constants generated offline.
+  // They're not really 'magic', they just happen to work well.
+  // const m = 0x5bd1e995;
+  // const r = 24;
+  // Initialize the hash
+  var h = 0; // Mix 4 bytes at a time into the hash
+
+  var k,
       i = 0,
-      k;
+      len = str.length;
 
-  while (l >= 4) {
+  for (; len >= 4; ++i, len -= 4) {
     k = str.charCodeAt(i) & 0xff | (str.charCodeAt(++i) & 0xff) << 8 | (str.charCodeAt(++i) & 0xff) << 16 | (str.charCodeAt(++i) & 0xff) << 24;
-    k = (k & 0xffff) * 0x5bd1e995 + (((k >>> 16) * 0x5bd1e995 & 0xffff) << 16);
-    k ^= k >>> 24;
-    k = (k & 0xffff) * 0x5bd1e995 + (((k >>> 16) * 0x5bd1e995 & 0xffff) << 16);
-    h = (h & 0xffff) * 0x5bd1e995 + (((h >>> 16) * 0x5bd1e995 & 0xffff) << 16) ^ k;
-    l -= 4;
-    ++i;
-  }
+    k =
+    /* Math.imul(k, m): */
+    (k & 0xffff) * 0x5bd1e995 + ((k >>> 16) * 0xe995 << 16);
+    k ^=
+    /* k >>> r: */
+    k >>> 24;
+    h =
+    /* Math.imul(k, m): */
+    (k & 0xffff) * 0x5bd1e995 + ((k >>> 16) * 0xe995 << 16) ^
+    /* Math.imul(h, m): */
+    (h & 0xffff) * 0x5bd1e995 + ((h >>> 16) * 0xe995 << 16);
+  } // Handle the last few bytes of the input array
 
-  switch (l) {
+
+  switch (len) {
     case 3:
       h ^= (str.charCodeAt(i + 2) & 0xff) << 16;
 
@@ -15215,13 +15365,18 @@ function murmurhash2_32_gc(str) {
 
     case 1:
       h ^= str.charCodeAt(i) & 0xff;
-      h = (h & 0xffff) * 0x5bd1e995 + (((h >>> 16) * 0x5bd1e995 & 0xffff) << 16);
-  }
+      h =
+      /* Math.imul(h, m): */
+      (h & 0xffff) * 0x5bd1e995 + ((h >>> 16) * 0xe995 << 16);
+  } // Do a few final mixes of the hash to ensure the last few
+  // bytes are well-incorporated.
+
 
   h ^= h >>> 13;
-  h = (h & 0xffff) * 0x5bd1e995 + (((h >>> 16) * 0x5bd1e995 & 0xffff) << 16);
-  h ^= h >>> 15;
-  return (h >>> 0).toString(36);
+  h =
+  /* Math.imul(h, m): */
+  (h & 0xffff) * 0x5bd1e995 + ((h >>> 16) * 0xe995 << 16);
+  return ((h ^ h >>> 15) >>> 0).toString(36);
 }
 
 var unitlessKeys = {
@@ -15576,7 +15731,7 @@ var serializeStyles = function serializeStyles(args, registered, mergedProps) {
     match[1];
   }
 
-  var name = murmurhash2_32_gc(styles) + identifierName;
+  var name = murmur2(styles) + identifierName;
 
   if (process.env.NODE_ENV !== 'production') {
     // $FlowFixMe SerializedStyles type doesn't have toString property (and we don't want to add it)
@@ -15794,7 +15949,7 @@ var jsx = function jsx(type, props) {
 
       if (!match) {
         // safari and firefox
-        match = error.stack.match(/^.*\n([A-Z][A-Za-z$]+)@/);
+        match = error.stack.match(/.*\n([A-Z][A-Za-z$]+)@/);
       }
 
       if (match) {
@@ -16095,7 +16250,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 // TODO - see what's actually used
-var style = "\n\t.react-timekeeper-button-reset {\n\t\tbackground: 0;\n\t\tborder: 0;\n\t\tbox-shadow: none;\n\t\ttext-shadow: none;\n\t\t-webkit-appearance: none;\n\t\t-moz-appearance: none;\n\t\tcursor: pointer;\n\t}\n\t.react-timekeeper-button-reset:hover, .react-timekeeper-button-reset:focus, .react-timekeeper-button-reset:active {\n\t\toutline: none;\n\t}\n\t.react-timekeeper-button-reset::-moz-focus-inner {\n\t\tborder: 0;\n\t\tpadding: 0;\n\t}\n\t.react-timekeeper-noscroll {\n\t\toverflow: hidden;\n\t}\n\t.react-timekeeper-scrollbar-measure {\n\t\twidth: 100px;\n\t\theight: 100px;\n\t\toverflow: scroll;\n\t\tposition: absolute;\n\t\ttop: -9999px;\n\t}\n";
+const style = "\n\t.react-timekeeper-button-reset {\n\t\tbackground: 0;\n\t\tborder: 0;\n\t\tbox-shadow: none;\n\t\ttext-shadow: none;\n\t\t-webkit-appearance: none;\n\t\t-moz-appearance: none;\n\t\tcursor: pointer;\n\t}\n\t.react-timekeeper-button-reset:hover, .react-timekeeper-button-reset:focus, .react-timekeeper-button-reset:active {\n\t\toutline: none;\n\t}\n\t.react-timekeeper-button-reset::-moz-focus-inner {\n\t\tborder: 0;\n\t\tpadding: 0;\n\t}\n\t.react-timekeeper-noscroll {\n\t\toverflow: hidden;\n\t}\n\t.react-timekeeper-scrollbar-measure {\n\t\twidth: 100px;\n\t\theight: 100px;\n\t\toverflow: scroll;\n\t\tposition: absolute;\n\t\ttop: -9999px;\n\t}\n";
 var _default = style;
 exports.default = _default;
 });
@@ -16111,13 +16266,13 @@ exports.default = void 0;
 
 
 
-var timepicker = process.env.NODE_ENV === "production" ? {
-  name: "1ah46xy",
-  styles: "-webkit-tap-highlight-color:transparent;-webkit-font-smoothing:antialiased;font-smoothing:antialiased;font-family:'Roboto',sans-serif;background:white;border-radius:3px;display:inline-block;box-shadow:0 3px 11px rgba(0,0,0,0.1),0 3px 6px rgba(0,0,0,0.15);width:260px;position:relative;user-select:none;"
+const timepicker = process.env.NODE_ENV === "production" ? {
+  name: "1nrlsdz",
+  styles: "-webkit-tap-highlight-color:transparent;-webkit-font-smoothing:antialiased;font-smoothing:antialiased;font-family:var(--main-font-family,'Roboto',sans-serif);background:var(--main-bg,white);box-shadow:var( --main-box-shadow,0 3px 11px rgba(0,0,0,0.1),0 3px 6px rgba(0,0,0,0.15) );border-radius:3px;display:inline-block;width:260px;position:relative;user-select:none;"
 } : {
-  name: "1ah46xy",
-  styles: "-webkit-tap-highlight-color:transparent;-webkit-font-smoothing:antialiased;font-smoothing:antialiased;font-family:'Roboto',sans-serif;background:white;border-radius:3px;display:inline-block;box-shadow:0 3px 11px rgba(0,0,0,0.1),0 3px 6px rgba(0,0,0,0.15);width:260px;position:relative;user-select:none;",
-  map: "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy9jb21wb25lbnRzL3N0eWxlcy9tYWluLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUVzQiIsImZpbGUiOiIuLi8uLi8uLi9zcmMvY29tcG9uZW50cy9zdHlsZXMvbWFpbi50cyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IGNzcywganN4IH0gZnJvbSAnQGVtb3Rpb24vY29yZSdcblxuY29uc3QgdGltZXBpY2tlciA9IGNzc2Bcblx0LXdlYmtpdC10YXAtaGlnaGxpZ2h0LWNvbG9yOiB0cmFuc3BhcmVudDtcblx0LXdlYmtpdC1mb250LXNtb290aGluZzogYW50aWFsaWFzZWQ7XG5cdGZvbnQtc21vb3RoaW5nOiBhbnRpYWxpYXNlZDtcblxuXHRmb250LWZhbWlseTogJ1JvYm90bycsIHNhbnMtc2VyaWY7XG5cdGJhY2tncm91bmQ6IHdoaXRlO1xuXHRib3JkZXItcmFkaXVzOiAzcHg7XG5cdGRpc3BsYXk6IGlubGluZS1ibG9jaztcblx0Ym94LXNoYWRvdzogMCAzcHggMTFweCByZ2JhKDAsIDAsIDAsIDAuMSksIDAgM3B4IDZweCByZ2JhKDAsIDAsIDAsIDAuMTUpO1xuXHR3aWR0aDogMjYwcHg7XG5cdHBvc2l0aW9uOiByZWxhdGl2ZTtcblx0dXNlci1zZWxlY3Q6IG5vbmU7XG5gXG5cbmV4cG9ydCBkZWZhdWx0IHRpbWVwaWNrZXJcbiJdfQ== */"
+  name: "1nrlsdz",
+  styles: "-webkit-tap-highlight-color:transparent;-webkit-font-smoothing:antialiased;font-smoothing:antialiased;font-family:var(--main-font-family,'Roboto',sans-serif);background:var(--main-bg,white);box-shadow:var( --main-box-shadow,0 3px 11px rgba(0,0,0,0.1),0 3px 6px rgba(0,0,0,0.15) );border-radius:3px;display:inline-block;width:260px;position:relative;user-select:none;",
+  map: "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy9jb21wb25lbnRzL3N0eWxlcy9tYWluLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUVzQiIsImZpbGUiOiIuLi8uLi8uLi9zcmMvY29tcG9uZW50cy9zdHlsZXMvbWFpbi50cyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IGNzcywganN4IH0gZnJvbSAnQGVtb3Rpb24vY29yZSdcblxuY29uc3QgdGltZXBpY2tlciA9IGNzc2Bcblx0LXdlYmtpdC10YXAtaGlnaGxpZ2h0LWNvbG9yOiB0cmFuc3BhcmVudDtcblx0LXdlYmtpdC1mb250LXNtb290aGluZzogYW50aWFsaWFzZWQ7XG5cdGZvbnQtc21vb3RoaW5nOiBhbnRpYWxpYXNlZDtcblxuXHRmb250LWZhbWlseTogdmFyKC0tbWFpbi1mb250LWZhbWlseSwgJ1JvYm90bycsIHNhbnMtc2VyaWYpO1xuXHRiYWNrZ3JvdW5kOiB2YXIoLS1tYWluLWJnLCB3aGl0ZSk7XG5cdGJveC1zaGFkb3c6IHZhcihcblx0XHQtLW1haW4tYm94LXNoYWRvdyxcblx0XHQwIDNweCAxMXB4IHJnYmEoMCwgMCwgMCwgMC4xKSxcblx0XHQwIDNweCA2cHggcmdiYSgwLCAwLCAwLCAwLjE1KVxuXHQpO1xuXHRib3JkZXItcmFkaXVzOiAzcHg7XG5cdGRpc3BsYXk6IGlubGluZS1ibG9jaztcblx0d2lkdGg6IDI2MHB4O1xuXHRwb3NpdGlvbjogcmVsYXRpdmU7XG5cdHVzZXItc2VsZWN0OiBub25lO1xuYFxuXG5leHBvcnQgZGVmYXVsdCB0aW1lcGlja2VyXG4iXX0= */"
 };
 var _default = timepicker;
 exports.default = _default;
@@ -16190,10 +16345,7 @@ function _arrayWithHoles(arr) {
 var arrayWithHoles = _arrayWithHoles;
 
 function _iterableToArrayLimit(arr, i) {
-  if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) {
-    return;
-  }
-
+  if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return;
   var _arr = [];
   var _n = true;
   var _d = false;
@@ -16221,50 +16373,57 @@ function _iterableToArrayLimit(arr, i) {
 
 var iterableToArrayLimit = _iterableToArrayLimit;
 
+function _arrayLikeToArray(arr, len) {
+  if (len == null || len > arr.length) len = arr.length;
+
+  for (var i = 0, arr2 = new Array(len); i < len; i++) {
+    arr2[i] = arr[i];
+  }
+
+  return arr2;
+}
+
+var arrayLikeToArray = _arrayLikeToArray;
+
+function _unsupportedIterableToArray(o, minLen) {
+  if (!o) return;
+  if (typeof o === "string") return arrayLikeToArray(o, minLen);
+  var n = Object.prototype.toString.call(o).slice(8, -1);
+  if (n === "Object" && o.constructor) n = o.constructor.name;
+  if (n === "Map" || n === "Set") return Array.from(o);
+  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return arrayLikeToArray(o, minLen);
+}
+
+var unsupportedIterableToArray = _unsupportedIterableToArray;
+
 function _nonIterableRest() {
-  throw new TypeError("Invalid attempt to destructure non-iterable instance");
+  throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
 }
 
 var nonIterableRest = _nonIterableRest;
 
 function _slicedToArray(arr, i) {
-  return arrayWithHoles(arr) || iterableToArrayLimit(arr, i) || nonIterableRest();
+  return arrayWithHoles(arr) || iterableToArrayLimit(arr, i) || unsupportedIterableToArray(arr, i) || nonIterableRest();
 }
 
 var slicedToArray = _slicedToArray;
 
 var constants = createCommonjsModule(function (module, exports) {
 
-
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.getFontSize = getFontSize;
 exports.getOuterNumberPosition = getOuterNumberPosition;
 exports.getClockHandLength = getClockHandLength;
 exports.getClockHandCirclePosition = getClockHandCirclePosition;
 exports.getClockHandCircleRadius = getClockHandCircleRadius;
-exports.INNER_NUMBER_POSITIONING = exports.INITIAL_MINUTE_TRANSFORM = exports.INITIAL_HOUR_TRANSFORM = exports.NUMBER_OUTER_POSITION = exports.NUMBER_RADIUS_REGULAR = exports.INNER_NUMBER_RADIUS = exports.CLOCK_SIZE = exports.CLOCK_RADIUS = exports.VISIBLE_NUMBERS_PER_CIRCLE = exports.CLOCK_VALUES = exports.MERIDIEM = exports.MODE = exports.MINUTES = void 0;
-
-var _defineProperty2 = interopRequireDefault(defineProperty);
-
-var _CLOCK_VALUES;
-
-var MINUTES = ['05', 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, '00'].map(function (a) {
-  return a.toString();
-});
+exports.INNER_NUMBER_POSITIONING = exports.INITIAL_MINUTE_TRANSFORM = exports.INITIAL_HOUR_TRANSFORM = exports.NUMBER_OUTER_POSITION = exports.NUMBER_RADIUS_REGULAR = exports.HOUR_24_OUTER_FONT_SIZE = exports.HOUR_24_INNER_FONT_SIZE = exports.NUMBER_REGULAR_FONT_SIZE = exports.INNER_NUMBER_RADIUS = exports.CLOCK_SIZE = exports.CLOCK_RADIUS = exports.VISIBLE_NUMBERS_PER_CIRCLE = exports.CLOCK_VALUES = exports.MERIDIEM = exports.MODE = exports.MINUTES = void 0;
+const MINUTES = ['05', 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, '00'].map(a => a.toString());
 exports.MINUTES = MINUTES;
-var MINUTES_60 = Array.from(Array(60), function (_, i) {
-  return i.toString();
-});
-var HOURS_12 = Array.from(Array(12), function (_, i) {
-  return (i + 1).toString();
-});
-var HOURS_24 = Array.from(Array(23), function (_, i) {
-  return (i + 1).toString();
-}).concat('00');
-var MODE;
+const MINUTES_60 = Array.from(Array(60), (_, i) => i.toString());
+const HOURS_12 = Array.from(Array(12), (_, i) => (i + 1).toString());
+const HOURS_24 = Array.from(Array(23), (_, i) => (i + 1).toString()).concat('00');
+let MODE;
 exports.MODE = MODE;
 
 (function (MODE) {
@@ -16273,7 +16432,7 @@ exports.MODE = MODE;
   MODE["HOURS_24"] = "HOURS_24";
 })(MODE || (exports.MODE = MODE = {}));
 
-var MERIDIEM;
+let MERIDIEM;
 /*
 	- increments is how many splits on clock, visible or invisible
 */
@@ -16285,28 +16444,32 @@ exports.MERIDIEM = MERIDIEM;
   MERIDIEM["pm"] = "pm";
 })(MERIDIEM || (exports.MERIDIEM = MERIDIEM = {}));
 
-var CLOCK_VALUES = (_CLOCK_VALUES = {}, (0, _defineProperty2.default)(_CLOCK_VALUES, MODE.MINUTES, {
-  increments: 60,
-  numbers: MINUTES,
-  dropdown: MINUTES_60
-}), (0, _defineProperty2.default)(_CLOCK_VALUES, MODE.HOURS_12, {
-  increments: 12,
-  numbers: HOURS_12,
-  dropdown: HOURS_12
-}), (0, _defineProperty2.default)(_CLOCK_VALUES, MODE.HOURS_24, {
-  increments: 12,
-  numbers: HOURS_24.slice(12),
-  numbersInner: HOURS_24.slice(0, 12),
-  dropdown: HOURS_24
-}), _CLOCK_VALUES); // number of actual numbers to display
+const CLOCK_VALUES = {
+  [MODE.MINUTES]: {
+    increments: 60,
+    numbers: MINUTES,
+    dropdown: MINUTES_60
+  },
+  [MODE.HOURS_12]: {
+    increments: 12,
+    numbers: HOURS_12,
+    dropdown: HOURS_12
+  },
+  [MODE.HOURS_24]: {
+    increments: 12,
+    numbers: HOURS_24.slice(12),
+    numbersInner: HOURS_24.slice(0, 12),
+    dropdown: HOURS_24
+  } // number of actual numbers to display
 
+};
 exports.CLOCK_VALUES = CLOCK_VALUES;
-var VISIBLE_NUMBERS_PER_CIRCLE = 12; // radius of clock, in px
+const VISIBLE_NUMBERS_PER_CIRCLE = 12; // radius of clock, in px
 
 exports.VISIBLE_NUMBERS_PER_CIRCLE = VISIBLE_NUMBERS_PER_CIRCLE;
-var CLOCK_RADIUS = 110;
+const CLOCK_RADIUS = 110;
 exports.CLOCK_RADIUS = CLOCK_RADIUS;
-var CLOCK_SIZE = CLOCK_RADIUS * 2;
+const CLOCK_SIZE = CLOCK_RADIUS * 2;
 /*
 	radius of invisible inner circle for 24 hour numbers
 	- controls how far out the inner circle comes and
@@ -16314,42 +16477,36 @@ var CLOCK_SIZE = CLOCK_RADIUS * 2;
  */
 
 exports.CLOCK_SIZE = CLOCK_SIZE;
-var INNER_NUMBER_RADIUS = 77; // font sizes
+const INNER_NUMBER_RADIUS = 77; // font sizes
 
 exports.INNER_NUMBER_RADIUS = INNER_NUMBER_RADIUS;
-var NUMBER_REGULAR_FONT_SIZE = 16;
-var HOUR_24_INNER_FONT_SIZE = 15;
-var HOUR_24_OUTER_FONT_SIZE = 13;
-
-function getFontSize(hour24Mode, inner) {
-  if (!hour24Mode) {
-    return NUMBER_REGULAR_FONT_SIZE;
-  }
-
-  return inner ? HOUR_24_INNER_FONT_SIZE : HOUR_24_OUTER_FONT_SIZE;
-} // size of circle surrounding individual numbers
+const NUMBER_REGULAR_FONT_SIZE = 16;
+exports.NUMBER_REGULAR_FONT_SIZE = NUMBER_REGULAR_FONT_SIZE;
+const HOUR_24_INNER_FONT_SIZE = 15;
+exports.HOUR_24_INNER_FONT_SIZE = HOUR_24_INNER_FONT_SIZE;
+const HOUR_24_OUTER_FONT_SIZE = 13; // size of circle surrounding individual numbers
 // loosely based on font sizes above
 
-
-var NUMBER_RADIUS_REGULAR = 34;
+exports.HOUR_24_OUTER_FONT_SIZE = HOUR_24_OUTER_FONT_SIZE;
+const NUMBER_RADIUS_REGULAR = 34;
 exports.NUMBER_RADIUS_REGULAR = NUMBER_RADIUS_REGULAR;
-var NUMBER_RADIUS_HOUR_24_OUTER = 32;
-var NUMBER_RADIUS_HOUR_24_INNER = 28; // positioning of numbers
+const NUMBER_RADIUS_HOUR_24_OUTER = 32;
+const NUMBER_RADIUS_HOUR_24_INNER = 28; // positioning of numbers
 
-var NUMBER_OUTER_POSITION = 22;
+const NUMBER_OUTER_POSITION = 22;
 exports.NUMBER_OUTER_POSITION = NUMBER_OUTER_POSITION;
-var NUMBER_OUTER_POSITION_24_HOUR = 18; // controls how far out to move numbers during 24h mode
+const NUMBER_OUTER_POSITION_24_HOUR = 18; // controls how far out to move numbers during 24h mode
 
-var NUMBER_INNER_POSITION_24_HOUR = CLOCK_RADIUS - INNER_NUMBER_RADIUS + NUMBER_RADIUS_HOUR_24_INNER / 2;
+const NUMBER_INNER_POSITION_24_HOUR = CLOCK_RADIUS - INNER_NUMBER_RADIUS + NUMBER_RADIUS_HOUR_24_INNER / 2;
 
 function getOuterNumberPosition(mode) {
   return mode === MODE.HOURS_24 ? NUMBER_OUTER_POSITION_24_HOUR : NUMBER_OUTER_POSITION;
 } // initial position of hours/minutes before animating to final position
 
 
-var INITIAL_HOUR_TRANSFORM = NUMBER_OUTER_POSITION - 32;
+const INITIAL_HOUR_TRANSFORM = NUMBER_OUTER_POSITION - 32;
 exports.INITIAL_HOUR_TRANSFORM = INITIAL_HOUR_TRANSFORM;
-var INITIAL_MINUTE_TRANSFORM = NUMBER_OUTER_POSITION + 28; // clock hand stuff
+const INITIAL_MINUTE_TRANSFORM = NUMBER_OUTER_POSITION + 28; // clock hand stuff
 
 exports.INITIAL_MINUTE_TRANSFORM = INITIAL_MINUTE_TRANSFORM;
 
@@ -16377,8 +16534,8 @@ function getClockHandCircleRadius(mode, inner) {
   return inner ? NUMBER_RADIUS_HOUR_24_INNER / 2 : NUMBER_RADIUS_HOUR_24_OUTER / 2;
 }
 
-var animationChange = 22;
-var INNER_NUMBER_POSITIONING = {
+const animationChange = 22;
+const INNER_NUMBER_POSITIONING = {
   exit: NUMBER_INNER_POSITION_24_HOUR + animationChange,
   enter: NUMBER_INNER_POSITION_24_HOUR
 };
@@ -16386,24 +16543,26 @@ exports.INNER_NUMBER_POSITIONING = INNER_NUMBER_POSITIONING;
 });
 
 unwrapExports(constants);
-var constants_1 = constants.getFontSize;
-var constants_2 = constants.getOuterNumberPosition;
-var constants_3 = constants.getClockHandLength;
-var constants_4 = constants.getClockHandCirclePosition;
-var constants_5 = constants.getClockHandCircleRadius;
-var constants_6 = constants.INNER_NUMBER_POSITIONING;
-var constants_7 = constants.INITIAL_MINUTE_TRANSFORM;
-var constants_8 = constants.INITIAL_HOUR_TRANSFORM;
-var constants_9 = constants.NUMBER_OUTER_POSITION;
-var constants_10 = constants.NUMBER_RADIUS_REGULAR;
-var constants_11 = constants.INNER_NUMBER_RADIUS;
-var constants_12 = constants.CLOCK_SIZE;
-var constants_13 = constants.CLOCK_RADIUS;
-var constants_14 = constants.VISIBLE_NUMBERS_PER_CIRCLE;
-var constants_15 = constants.CLOCK_VALUES;
-var constants_16 = constants.MERIDIEM;
-var constants_17 = constants.MODE;
-var constants_18 = constants.MINUTES;
+var constants_1 = constants.getOuterNumberPosition;
+var constants_2 = constants.getClockHandLength;
+var constants_3 = constants.getClockHandCirclePosition;
+var constants_4 = constants.getClockHandCircleRadius;
+var constants_5 = constants.INNER_NUMBER_POSITIONING;
+var constants_6 = constants.INITIAL_MINUTE_TRANSFORM;
+var constants_7 = constants.INITIAL_HOUR_TRANSFORM;
+var constants_8 = constants.NUMBER_OUTER_POSITION;
+var constants_9 = constants.NUMBER_RADIUS_REGULAR;
+var constants_10 = constants.HOUR_24_OUTER_FONT_SIZE;
+var constants_11 = constants.HOUR_24_INNER_FONT_SIZE;
+var constants_12 = constants.NUMBER_REGULAR_FONT_SIZE;
+var constants_13 = constants.INNER_NUMBER_RADIUS;
+var constants_14 = constants.CLOCK_SIZE;
+var constants_15 = constants.CLOCK_RADIUS;
+var constants_16 = constants.VISIBLE_NUMBERS_PER_CIRCLE;
+var constants_17 = constants.CLOCK_VALUES;
+var constants_18 = constants.MERIDIEM;
+var constants_19 = constants.MODE;
+var constants_20 = constants.MINUTES;
 
 var utils = createCommonjsModule(function (module, exports) {
 
@@ -16411,6 +16570,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.getTimeValue = getTimeValue;
+exports.getNormalizedTimeValue = getNormalizedTimeValue;
 exports.isHourMode = isHourMode;
 exports.isMinuteMode = isMinuteMode;
 exports.isSameTime = isSameTime;
@@ -16422,8 +16582,13 @@ function modeToUnit(mode) {
 }
 
 function getTimeValue(mode, time) {
-  var unit = modeToUnit(mode);
+  const unit = modeToUnit(mode);
   return time[unit];
+}
+
+function getNormalizedTimeValue(mode, time) {
+  const val = getTimeValue(mode, time);
+  return mode === constants.MODE.HOURS_12 ? val % 12 : val;
 }
 
 function isHourMode(mode) {
@@ -16441,9 +16606,10 @@ function isSameTime(prev, next) {
 
 unwrapExports(utils);
 var utils_1 = utils.getTimeValue;
-var utils_2 = utils.isHourMode;
-var utils_3 = utils.isMinuteMode;
-var utils_4 = utils.isSameTime;
+var utils_2 = utils.getNormalizedTimeValue;
+var utils_3 = utils.isHourMode;
+var utils_4 = utils.isMinuteMode;
+var utils_5 = utils.isSameTime;
 
 var timeDropdown = createCommonjsModule(function (module, exports) {
 
@@ -16461,7 +16627,7 @@ var _taggedTemplateLiteral2 = interopRequireDefault(taggedTemplateLiteral);
 
 
 function _templateObject() {
-  var data = (0, _taggedTemplateLiteral2.default)(["\n\t0% { opacity: 0; }\n\t100% { opacity: 1; }\n"]);
+  const data = (0, _taggedTemplateLiteral2.default)(["\n\t0% { opacity: 0; }\n\t100% { opacity: 1; }\n"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -16470,39 +16636,33 @@ function _templateObject() {
   return data;
 }
 
-var DROPDOWN_BORDER = '#f4f4f4';
-var DROPDOWN_COLOR = '#8c8c8c';
-var DROPDOWN_SELECTED_COLOR = '#EAF8FF';
-var hour = "right: -22px;";
-var minute = "right: -10px;";
-var hour24 = "\n\tleft: 50%;\n\ttransform: translateX(-50%);\n";
-var fadeIn = (0, core_esm.keyframes)(_templateObject());
+const DROPDOWN_BORDER = '#f4f4f4';
+const DROPDOWN_COLOR = '#8c8c8c';
+const DROPDOWN_SELECTED_COLOR = '#EAF8FF';
+const hour = "right: -22px;";
+const minute = "right: -10px;";
+const hour24 = "\n\tleft: 50%;\n\ttransform: translateX(-50%);\n";
+const fadeIn = (0, core_esm.keyframes)(_templateObject());
 
-var wrapper = function wrapper(hour24Mode, mode) {
-  return (
-    /*#__PURE__*/
-    (0, core_esm.css)("position:absolute;display:inline-block;background:white;border:1px solid ", DROPDOWN_BORDER, ";border-radius:2px;padding:6px 0;z-index:20;top:62px;height:250px;overflow-y:auto;box-shadow:0 1px 3px rgba(0,0,0,0.12),0 1px 2px rgba(0,0,0,0.24);opacity:0;animation:", fadeIn, " 0.2s ease-out both;", hour24Mode ? hour24 : (0, utils.isMinuteMode)(mode) ? minute : hour, process.env.NODE_ENV === "production" ? "" : "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy9jb21wb25lbnRzL3N0eWxlcy90aW1lLWRyb3Bkb3duLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQW9CK0QiLCJmaWxlIjoiLi4vLi4vLi4vc3JjL2NvbXBvbmVudHMvc3R5bGVzL3RpbWUtZHJvcGRvd24udHMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBjc3MsIGpzeCwga2V5ZnJhbWVzIH0gZnJvbSAnQGVtb3Rpb24vY29yZSdcbmltcG9ydCB7IGlzTWludXRlTW9kZSB9IGZyb20gJy4uLy4uL2hlbHBlcnMvdXRpbHMnXG5pbXBvcnQgeyBNT0RFIH0gZnJvbSAnLi4vLi4vaGVscGVycy9jb25zdGFudHMnXG5cbmNvbnN0IERST1BET1dOX0JPUkRFUiA9ICcjZjRmNGY0J1xuY29uc3QgRFJPUERPV05fQ09MT1IgPSAnIzhjOGM4YydcbmNvbnN0IERST1BET1dOX1NFTEVDVEVEX0NPTE9SID0gJyNFQUY4RkYnXG5cbmNvbnN0IGhvdXIgPSBgcmlnaHQ6IC0yMnB4O2BcbmNvbnN0IG1pbnV0ZSA9IGByaWdodDogLTEwcHg7YFxuY29uc3QgaG91cjI0ID0gYFxuXHRsZWZ0OiA1MCU7XG5cdHRyYW5zZm9ybTogdHJhbnNsYXRlWCgtNTAlKTtcbmBcblxuY29uc3QgZmFkZUluID0ga2V5ZnJhbWVzYFxuXHQwJSB7IG9wYWNpdHk6IDA7IH1cblx0MTAwJSB7IG9wYWNpdHk6IDE7IH1cbmBcblxuZXhwb3J0IGNvbnN0IHdyYXBwZXIgPSAoaG91cjI0TW9kZTogYm9vbGVhbiwgbW9kZTogTU9ERSkgPT4gY3NzYFxuXHRwb3NpdGlvbjogYWJzb2x1dGU7XG5cdGRpc3BsYXk6IGlubGluZS1ibG9jaztcblx0YmFja2dyb3VuZDogd2hpdGU7XG5cdGJvcmRlcjogMXB4IHNvbGlkICR7RFJPUERPV05fQk9SREVSfTtcblx0Ym9yZGVyLXJhZGl1czogMnB4O1xuXHRwYWRkaW5nOiA2cHggMDtcblx0ei1pbmRleDogMjA7XG5cdHRvcDogNjJweDtcblx0aGVpZ2h0OiAyNTBweDtcblx0b3ZlcmZsb3cteTogYXV0bztcblx0Ym94LXNoYWRvdzogMCAxcHggM3B4IHJnYmEoMCwgMCwgMCwgMC4xMiksIDAgMXB4IDJweCByZ2JhKDAsIDAsIDAsIDAuMjQpO1xuXHRvcGFjaXR5OiAwO1xuXHRhbmltYXRpb246ICR7ZmFkZUlufSAwLjJzIGVhc2Utb3V0IGJvdGg7XG5cblx0JHtob3VyMjRNb2RlID8gaG91cjI0IDogaXNNaW51dGVNb2RlKG1vZGUpID8gbWludXRlIDogaG91cn1cbmBcblxuZXhwb3J0IGNvbnN0IG9wdGlvbnMgPSBjc3NgXG5cdHBvc2l0aW9uOiByZWxhdGl2ZTtcblx0bGlzdC1zdHlsZTogbm9uZTtcblx0cGFkZGluZzogMDtcblx0bWFyZ2luOiAwO1xuYFxuXG5jb25zdCBzZWxlY3RlZCA9IGBiYWNrZ3JvdW5kOiAke0RST1BET1dOX1NFTEVDVEVEX0NPTE9SfTtgXG5leHBvcnQgY29uc3Qgb3B0aW9uID0gKGFjdGl2ZTogYm9vbGVhbikgPT4gY3NzYFxuXHRiYWNrZ3JvdW5kOiB0cmFuc3BhcmVudDtcblx0cGFkZGluZzogN3B4IDMwcHg7XG5cdGZvbnQtc2l6ZTogMTZweDtcblx0Y29sb3I6ICR7RFJPUERPV05fQ09MT1J9O1xuXHRjdXJzb3I6IHBvaW50ZXI7XG5cdCY6aG92ZXIge1xuXHRcdGJhY2tncm91bmQ6ICR7RFJPUERPV05fU0VMRUNURURfQ09MT1J9O1xuXHR9XG5cdCR7YWN0aXZlICYmIHNlbGVjdGVkfVxuYFxuIl19 */")
-  );
-};
+const wrapper = (hour24Mode, mode) =>
+/*#__PURE__*/
+(0, core_esm.css)("position:absolute;display:inline-block;background:white;border:var(--dropdown-border,1px solid ", DROPDOWN_BORDER, ");border-radius:2px;padding:6px 0;z-index:20;top:62px;height:250px;overflow-y:auto;box-shadow:var( --dropdown-shadow,0 1px 3px rgba(0,0,0,0.12),0 1px 2px rgba(0,0,0,0.24) );opacity:0;animation:", fadeIn, " 0.2s ease-out both;", hour24Mode ? hour24 : (0, utils.isMinuteMode)(mode) ? minute : hour, process.env.NODE_ENV === "production" ? "" : "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy9jb21wb25lbnRzL3N0eWxlcy90aW1lLWRyb3Bkb3duLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQW9CK0QiLCJmaWxlIjoiLi4vLi4vLi4vc3JjL2NvbXBvbmVudHMvc3R5bGVzL3RpbWUtZHJvcGRvd24udHMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBjc3MsIGpzeCwga2V5ZnJhbWVzIH0gZnJvbSAnQGVtb3Rpb24vY29yZSdcbmltcG9ydCB7IGlzTWludXRlTW9kZSB9IGZyb20gJy4uLy4uL2hlbHBlcnMvdXRpbHMnXG5pbXBvcnQgeyBNT0RFIH0gZnJvbSAnLi4vLi4vaGVscGVycy9jb25zdGFudHMnXG5cbmNvbnN0IERST1BET1dOX0JPUkRFUiA9ICcjZjRmNGY0J1xuY29uc3QgRFJPUERPV05fQ09MT1IgPSAnIzhjOGM4YydcbmNvbnN0IERST1BET1dOX1NFTEVDVEVEX0NPTE9SID0gJyNFQUY4RkYnXG5cbmNvbnN0IGhvdXIgPSBgcmlnaHQ6IC0yMnB4O2BcbmNvbnN0IG1pbnV0ZSA9IGByaWdodDogLTEwcHg7YFxuY29uc3QgaG91cjI0ID0gYFxuXHRsZWZ0OiA1MCU7XG5cdHRyYW5zZm9ybTogdHJhbnNsYXRlWCgtNTAlKTtcbmBcblxuY29uc3QgZmFkZUluID0ga2V5ZnJhbWVzYFxuXHQwJSB7IG9wYWNpdHk6IDA7IH1cblx0MTAwJSB7IG9wYWNpdHk6IDE7IH1cbmBcblxuZXhwb3J0IGNvbnN0IHdyYXBwZXIgPSAoaG91cjI0TW9kZTogYm9vbGVhbiwgbW9kZTogTU9ERSkgPT4gY3NzYFxuXHRwb3NpdGlvbjogYWJzb2x1dGU7XG5cdGRpc3BsYXk6IGlubGluZS1ibG9jaztcblx0YmFja2dyb3VuZDogd2hpdGU7XG5cdGJvcmRlcjogdmFyKC0tZHJvcGRvd24tYm9yZGVyLCAxcHggc29saWQgJHtEUk9QRE9XTl9CT1JERVJ9KTtcblx0Ym9yZGVyLXJhZGl1czogMnB4O1xuXHRwYWRkaW5nOiA2cHggMDtcblx0ei1pbmRleDogMjA7XG5cdHRvcDogNjJweDtcblx0aGVpZ2h0OiAyNTBweDtcblx0b3ZlcmZsb3cteTogYXV0bztcblx0Ym94LXNoYWRvdzogdmFyKFxuXHRcdC0tZHJvcGRvd24tc2hhZG93LFxuXHRcdDAgMXB4IDNweCByZ2JhKDAsIDAsIDAsIDAuMTIpLFxuXHRcdDAgMXB4IDJweCByZ2JhKDAsIDAsIDAsIDAuMjQpXG5cdCk7XG5cdG9wYWNpdHk6IDA7XG5cdGFuaW1hdGlvbjogJHtmYWRlSW59IDAuMnMgZWFzZS1vdXQgYm90aDtcblxuXHQke2hvdXIyNE1vZGUgPyBob3VyMjQgOiBpc01pbnV0ZU1vZGUobW9kZSkgPyBtaW51dGUgOiBob3VyfVxuYFxuXG5leHBvcnQgY29uc3Qgb3B0aW9ucyA9IGNzc2Bcblx0cG9zaXRpb246IHJlbGF0aXZlO1xuXHRsaXN0LXN0eWxlOiBub25lO1xuXHRwYWRkaW5nOiAwO1xuXHRtYXJnaW46IDA7XG5gXG5cbmNvbnN0IHNlbGVjdGVkID0gYGJhY2tncm91bmQ6ICR7RFJPUERPV05fU0VMRUNURURfQ09MT1J9O2BcbmV4cG9ydCBjb25zdCBvcHRpb24gPSAoYWN0aXZlOiBib29sZWFuKSA9PiBjc3NgXG5cdGJhY2tncm91bmQ6IHRyYW5zcGFyZW50O1xuXHRwYWRkaW5nOiA3cHggMzBweDtcblx0Zm9udC1zaXplOiAxNnB4O1xuXHRjb2xvcjogdmFyKC0tZHJvcGRvd24tdGV4dC1jb2xvciwgJHtEUk9QRE9XTl9DT0xPUn0pO1xuXHRjdXJzb3I6IHBvaW50ZXI7XG5cdCY6aG92ZXIge1xuXHRcdGJhY2tncm91bmQ6IHZhcigtLWRyb3Bkb3duLWhvdmVyLWJnLCAke0RST1BET1dOX1NFTEVDVEVEX0NPTE9SfSk7XG5cdH1cblx0JHthY3RpdmUgJiYgc2VsZWN0ZWR9XG5gXG4iXX0= */");
 
 exports.wrapper = wrapper;
-var options = process.env.NODE_ENV === "production" ? {
+const options = process.env.NODE_ENV === "production" ? {
   name: "12v02gb",
   styles: "position:relative;list-style:none;padding:0;margin:0;"
 } : {
   name: "12v02gb",
   styles: "position:relative;list-style:none;padding:0;margin:0;",
-  map: "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy9jb21wb25lbnRzL3N0eWxlcy90aW1lLWRyb3Bkb3duLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQXNDMEIiLCJmaWxlIjoiLi4vLi4vLi4vc3JjL2NvbXBvbmVudHMvc3R5bGVzL3RpbWUtZHJvcGRvd24udHMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBjc3MsIGpzeCwga2V5ZnJhbWVzIH0gZnJvbSAnQGVtb3Rpb24vY29yZSdcbmltcG9ydCB7IGlzTWludXRlTW9kZSB9IGZyb20gJy4uLy4uL2hlbHBlcnMvdXRpbHMnXG5pbXBvcnQgeyBNT0RFIH0gZnJvbSAnLi4vLi4vaGVscGVycy9jb25zdGFudHMnXG5cbmNvbnN0IERST1BET1dOX0JPUkRFUiA9ICcjZjRmNGY0J1xuY29uc3QgRFJPUERPV05fQ09MT1IgPSAnIzhjOGM4YydcbmNvbnN0IERST1BET1dOX1NFTEVDVEVEX0NPTE9SID0gJyNFQUY4RkYnXG5cbmNvbnN0IGhvdXIgPSBgcmlnaHQ6IC0yMnB4O2BcbmNvbnN0IG1pbnV0ZSA9IGByaWdodDogLTEwcHg7YFxuY29uc3QgaG91cjI0ID0gYFxuXHRsZWZ0OiA1MCU7XG5cdHRyYW5zZm9ybTogdHJhbnNsYXRlWCgtNTAlKTtcbmBcblxuY29uc3QgZmFkZUluID0ga2V5ZnJhbWVzYFxuXHQwJSB7IG9wYWNpdHk6IDA7IH1cblx0MTAwJSB7IG9wYWNpdHk6IDE7IH1cbmBcblxuZXhwb3J0IGNvbnN0IHdyYXBwZXIgPSAoaG91cjI0TW9kZTogYm9vbGVhbiwgbW9kZTogTU9ERSkgPT4gY3NzYFxuXHRwb3NpdGlvbjogYWJzb2x1dGU7XG5cdGRpc3BsYXk6IGlubGluZS1ibG9jaztcblx0YmFja2dyb3VuZDogd2hpdGU7XG5cdGJvcmRlcjogMXB4IHNvbGlkICR7RFJPUERPV05fQk9SREVSfTtcblx0Ym9yZGVyLXJhZGl1czogMnB4O1xuXHRwYWRkaW5nOiA2cHggMDtcblx0ei1pbmRleDogMjA7XG5cdHRvcDogNjJweDtcblx0aGVpZ2h0OiAyNTBweDtcblx0b3ZlcmZsb3cteTogYXV0bztcblx0Ym94LXNoYWRvdzogMCAxcHggM3B4IHJnYmEoMCwgMCwgMCwgMC4xMiksIDAgMXB4IDJweCByZ2JhKDAsIDAsIDAsIDAuMjQpO1xuXHRvcGFjaXR5OiAwO1xuXHRhbmltYXRpb246ICR7ZmFkZUlufSAwLjJzIGVhc2Utb3V0IGJvdGg7XG5cblx0JHtob3VyMjRNb2RlID8gaG91cjI0IDogaXNNaW51dGVNb2RlKG1vZGUpID8gbWludXRlIDogaG91cn1cbmBcblxuZXhwb3J0IGNvbnN0IG9wdGlvbnMgPSBjc3NgXG5cdHBvc2l0aW9uOiByZWxhdGl2ZTtcblx0bGlzdC1zdHlsZTogbm9uZTtcblx0cGFkZGluZzogMDtcblx0bWFyZ2luOiAwO1xuYFxuXG5jb25zdCBzZWxlY3RlZCA9IGBiYWNrZ3JvdW5kOiAke0RST1BET1dOX1NFTEVDVEVEX0NPTE9SfTtgXG5leHBvcnQgY29uc3Qgb3B0aW9uID0gKGFjdGl2ZTogYm9vbGVhbikgPT4gY3NzYFxuXHRiYWNrZ3JvdW5kOiB0cmFuc3BhcmVudDtcblx0cGFkZGluZzogN3B4IDMwcHg7XG5cdGZvbnQtc2l6ZTogMTZweDtcblx0Y29sb3I6ICR7RFJPUERPV05fQ09MT1J9O1xuXHRjdXJzb3I6IHBvaW50ZXI7XG5cdCY6aG92ZXIge1xuXHRcdGJhY2tncm91bmQ6ICR7RFJPUERPV05fU0VMRUNURURfQ09MT1J9O1xuXHR9XG5cdCR7YWN0aXZlICYmIHNlbGVjdGVkfVxuYFxuIl19 */"
+  map: "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy9jb21wb25lbnRzL3N0eWxlcy90aW1lLWRyb3Bkb3duLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQTBDMEIiLCJmaWxlIjoiLi4vLi4vLi4vc3JjL2NvbXBvbmVudHMvc3R5bGVzL3RpbWUtZHJvcGRvd24udHMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBjc3MsIGpzeCwga2V5ZnJhbWVzIH0gZnJvbSAnQGVtb3Rpb24vY29yZSdcbmltcG9ydCB7IGlzTWludXRlTW9kZSB9IGZyb20gJy4uLy4uL2hlbHBlcnMvdXRpbHMnXG5pbXBvcnQgeyBNT0RFIH0gZnJvbSAnLi4vLi4vaGVscGVycy9jb25zdGFudHMnXG5cbmNvbnN0IERST1BET1dOX0JPUkRFUiA9ICcjZjRmNGY0J1xuY29uc3QgRFJPUERPV05fQ09MT1IgPSAnIzhjOGM4YydcbmNvbnN0IERST1BET1dOX1NFTEVDVEVEX0NPTE9SID0gJyNFQUY4RkYnXG5cbmNvbnN0IGhvdXIgPSBgcmlnaHQ6IC0yMnB4O2BcbmNvbnN0IG1pbnV0ZSA9IGByaWdodDogLTEwcHg7YFxuY29uc3QgaG91cjI0ID0gYFxuXHRsZWZ0OiA1MCU7XG5cdHRyYW5zZm9ybTogdHJhbnNsYXRlWCgtNTAlKTtcbmBcblxuY29uc3QgZmFkZUluID0ga2V5ZnJhbWVzYFxuXHQwJSB7IG9wYWNpdHk6IDA7IH1cblx0MTAwJSB7IG9wYWNpdHk6IDE7IH1cbmBcblxuZXhwb3J0IGNvbnN0IHdyYXBwZXIgPSAoaG91cjI0TW9kZTogYm9vbGVhbiwgbW9kZTogTU9ERSkgPT4gY3NzYFxuXHRwb3NpdGlvbjogYWJzb2x1dGU7XG5cdGRpc3BsYXk6IGlubGluZS1ibG9jaztcblx0YmFja2dyb3VuZDogd2hpdGU7XG5cdGJvcmRlcjogdmFyKC0tZHJvcGRvd24tYm9yZGVyLCAxcHggc29saWQgJHtEUk9QRE9XTl9CT1JERVJ9KTtcblx0Ym9yZGVyLXJhZGl1czogMnB4O1xuXHRwYWRkaW5nOiA2cHggMDtcblx0ei1pbmRleDogMjA7XG5cdHRvcDogNjJweDtcblx0aGVpZ2h0OiAyNTBweDtcblx0b3ZlcmZsb3cteTogYXV0bztcblx0Ym94LXNoYWRvdzogdmFyKFxuXHRcdC0tZHJvcGRvd24tc2hhZG93LFxuXHRcdDAgMXB4IDNweCByZ2JhKDAsIDAsIDAsIDAuMTIpLFxuXHRcdDAgMXB4IDJweCByZ2JhKDAsIDAsIDAsIDAuMjQpXG5cdCk7XG5cdG9wYWNpdHk6IDA7XG5cdGFuaW1hdGlvbjogJHtmYWRlSW59IDAuMnMgZWFzZS1vdXQgYm90aDtcblxuXHQke2hvdXIyNE1vZGUgPyBob3VyMjQgOiBpc01pbnV0ZU1vZGUobW9kZSkgPyBtaW51dGUgOiBob3VyfVxuYFxuXG5leHBvcnQgY29uc3Qgb3B0aW9ucyA9IGNzc2Bcblx0cG9zaXRpb246IHJlbGF0aXZlO1xuXHRsaXN0LXN0eWxlOiBub25lO1xuXHRwYWRkaW5nOiAwO1xuXHRtYXJnaW46IDA7XG5gXG5cbmNvbnN0IHNlbGVjdGVkID0gYGJhY2tncm91bmQ6ICR7RFJPUERPV05fU0VMRUNURURfQ09MT1J9O2BcbmV4cG9ydCBjb25zdCBvcHRpb24gPSAoYWN0aXZlOiBib29sZWFuKSA9PiBjc3NgXG5cdGJhY2tncm91bmQ6IHRyYW5zcGFyZW50O1xuXHRwYWRkaW5nOiA3cHggMzBweDtcblx0Zm9udC1zaXplOiAxNnB4O1xuXHRjb2xvcjogdmFyKC0tZHJvcGRvd24tdGV4dC1jb2xvciwgJHtEUk9QRE9XTl9DT0xPUn0pO1xuXHRjdXJzb3I6IHBvaW50ZXI7XG5cdCY6aG92ZXIge1xuXHRcdGJhY2tncm91bmQ6IHZhcigtLWRyb3Bkb3duLWhvdmVyLWJnLCAke0RST1BET1dOX1NFTEVDVEVEX0NPTE9SfSk7XG5cdH1cblx0JHthY3RpdmUgJiYgc2VsZWN0ZWR9XG5gXG4iXX0= */"
 };
 exports.options = options;
-var selected = "background: ".concat(DROPDOWN_SELECTED_COLOR, ";");
+const selected = "background: ".concat(DROPDOWN_SELECTED_COLOR, ";");
 
-var option = function option(active) {
-  return (
-    /*#__PURE__*/
-    (0, core_esm.css)("background:transparent;padding:7px 30px;font-size:16px;color:", DROPDOWN_COLOR, ";cursor:pointer;&:hover{background:", DROPDOWN_SELECTED_COLOR, ";}", active && selected, process.env.NODE_ENV === "production" ? "" : "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy9jb21wb25lbnRzL3N0eWxlcy90aW1lLWRyb3Bkb3duLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQThDOEMiLCJmaWxlIjoiLi4vLi4vLi4vc3JjL2NvbXBvbmVudHMvc3R5bGVzL3RpbWUtZHJvcGRvd24udHMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBjc3MsIGpzeCwga2V5ZnJhbWVzIH0gZnJvbSAnQGVtb3Rpb24vY29yZSdcbmltcG9ydCB7IGlzTWludXRlTW9kZSB9IGZyb20gJy4uLy4uL2hlbHBlcnMvdXRpbHMnXG5pbXBvcnQgeyBNT0RFIH0gZnJvbSAnLi4vLi4vaGVscGVycy9jb25zdGFudHMnXG5cbmNvbnN0IERST1BET1dOX0JPUkRFUiA9ICcjZjRmNGY0J1xuY29uc3QgRFJPUERPV05fQ09MT1IgPSAnIzhjOGM4YydcbmNvbnN0IERST1BET1dOX1NFTEVDVEVEX0NPTE9SID0gJyNFQUY4RkYnXG5cbmNvbnN0IGhvdXIgPSBgcmlnaHQ6IC0yMnB4O2BcbmNvbnN0IG1pbnV0ZSA9IGByaWdodDogLTEwcHg7YFxuY29uc3QgaG91cjI0ID0gYFxuXHRsZWZ0OiA1MCU7XG5cdHRyYW5zZm9ybTogdHJhbnNsYXRlWCgtNTAlKTtcbmBcblxuY29uc3QgZmFkZUluID0ga2V5ZnJhbWVzYFxuXHQwJSB7IG9wYWNpdHk6IDA7IH1cblx0MTAwJSB7IG9wYWNpdHk6IDE7IH1cbmBcblxuZXhwb3J0IGNvbnN0IHdyYXBwZXIgPSAoaG91cjI0TW9kZTogYm9vbGVhbiwgbW9kZTogTU9ERSkgPT4gY3NzYFxuXHRwb3NpdGlvbjogYWJzb2x1dGU7XG5cdGRpc3BsYXk6IGlubGluZS1ibG9jaztcblx0YmFja2dyb3VuZDogd2hpdGU7XG5cdGJvcmRlcjogMXB4IHNvbGlkICR7RFJPUERPV05fQk9SREVSfTtcblx0Ym9yZGVyLXJhZGl1czogMnB4O1xuXHRwYWRkaW5nOiA2cHggMDtcblx0ei1pbmRleDogMjA7XG5cdHRvcDogNjJweDtcblx0aGVpZ2h0OiAyNTBweDtcblx0b3ZlcmZsb3cteTogYXV0bztcblx0Ym94LXNoYWRvdzogMCAxcHggM3B4IHJnYmEoMCwgMCwgMCwgMC4xMiksIDAgMXB4IDJweCByZ2JhKDAsIDAsIDAsIDAuMjQpO1xuXHRvcGFjaXR5OiAwO1xuXHRhbmltYXRpb246ICR7ZmFkZUlufSAwLjJzIGVhc2Utb3V0IGJvdGg7XG5cblx0JHtob3VyMjRNb2RlID8gaG91cjI0IDogaXNNaW51dGVNb2RlKG1vZGUpID8gbWludXRlIDogaG91cn1cbmBcblxuZXhwb3J0IGNvbnN0IG9wdGlvbnMgPSBjc3NgXG5cdHBvc2l0aW9uOiByZWxhdGl2ZTtcblx0bGlzdC1zdHlsZTogbm9uZTtcblx0cGFkZGluZzogMDtcblx0bWFyZ2luOiAwO1xuYFxuXG5jb25zdCBzZWxlY3RlZCA9IGBiYWNrZ3JvdW5kOiAke0RST1BET1dOX1NFTEVDVEVEX0NPTE9SfTtgXG5leHBvcnQgY29uc3Qgb3B0aW9uID0gKGFjdGl2ZTogYm9vbGVhbikgPT4gY3NzYFxuXHRiYWNrZ3JvdW5kOiB0cmFuc3BhcmVudDtcblx0cGFkZGluZzogN3B4IDMwcHg7XG5cdGZvbnQtc2l6ZTogMTZweDtcblx0Y29sb3I6ICR7RFJPUERPV05fQ09MT1J9O1xuXHRjdXJzb3I6IHBvaW50ZXI7XG5cdCY6aG92ZXIge1xuXHRcdGJhY2tncm91bmQ6ICR7RFJPUERPV05fU0VMRUNURURfQ09MT1J9O1xuXHR9XG5cdCR7YWN0aXZlICYmIHNlbGVjdGVkfVxuYFxuIl19 */")
-  );
-};
+const option = active =>
+/*#__PURE__*/
+(0, core_esm.css)("background:transparent;padding:7px 30px;font-size:16px;color:var(--dropdown-text-color,", DROPDOWN_COLOR, ");cursor:pointer;&:hover{background:var(--dropdown-hover-bg,", DROPDOWN_SELECTED_COLOR, ");}", active && selected, process.env.NODE_ENV === "production" ? "" : "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy9jb21wb25lbnRzL3N0eWxlcy90aW1lLWRyb3Bkb3duLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQWtEOEMiLCJmaWxlIjoiLi4vLi4vLi4vc3JjL2NvbXBvbmVudHMvc3R5bGVzL3RpbWUtZHJvcGRvd24udHMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBjc3MsIGpzeCwga2V5ZnJhbWVzIH0gZnJvbSAnQGVtb3Rpb24vY29yZSdcbmltcG9ydCB7IGlzTWludXRlTW9kZSB9IGZyb20gJy4uLy4uL2hlbHBlcnMvdXRpbHMnXG5pbXBvcnQgeyBNT0RFIH0gZnJvbSAnLi4vLi4vaGVscGVycy9jb25zdGFudHMnXG5cbmNvbnN0IERST1BET1dOX0JPUkRFUiA9ICcjZjRmNGY0J1xuY29uc3QgRFJPUERPV05fQ09MT1IgPSAnIzhjOGM4YydcbmNvbnN0IERST1BET1dOX1NFTEVDVEVEX0NPTE9SID0gJyNFQUY4RkYnXG5cbmNvbnN0IGhvdXIgPSBgcmlnaHQ6IC0yMnB4O2BcbmNvbnN0IG1pbnV0ZSA9IGByaWdodDogLTEwcHg7YFxuY29uc3QgaG91cjI0ID0gYFxuXHRsZWZ0OiA1MCU7XG5cdHRyYW5zZm9ybTogdHJhbnNsYXRlWCgtNTAlKTtcbmBcblxuY29uc3QgZmFkZUluID0ga2V5ZnJhbWVzYFxuXHQwJSB7IG9wYWNpdHk6IDA7IH1cblx0MTAwJSB7IG9wYWNpdHk6IDE7IH1cbmBcblxuZXhwb3J0IGNvbnN0IHdyYXBwZXIgPSAoaG91cjI0TW9kZTogYm9vbGVhbiwgbW9kZTogTU9ERSkgPT4gY3NzYFxuXHRwb3NpdGlvbjogYWJzb2x1dGU7XG5cdGRpc3BsYXk6IGlubGluZS1ibG9jaztcblx0YmFja2dyb3VuZDogd2hpdGU7XG5cdGJvcmRlcjogdmFyKC0tZHJvcGRvd24tYm9yZGVyLCAxcHggc29saWQgJHtEUk9QRE9XTl9CT1JERVJ9KTtcblx0Ym9yZGVyLXJhZGl1czogMnB4O1xuXHRwYWRkaW5nOiA2cHggMDtcblx0ei1pbmRleDogMjA7XG5cdHRvcDogNjJweDtcblx0aGVpZ2h0OiAyNTBweDtcblx0b3ZlcmZsb3cteTogYXV0bztcblx0Ym94LXNoYWRvdzogdmFyKFxuXHRcdC0tZHJvcGRvd24tc2hhZG93LFxuXHRcdDAgMXB4IDNweCByZ2JhKDAsIDAsIDAsIDAuMTIpLFxuXHRcdDAgMXB4IDJweCByZ2JhKDAsIDAsIDAsIDAuMjQpXG5cdCk7XG5cdG9wYWNpdHk6IDA7XG5cdGFuaW1hdGlvbjogJHtmYWRlSW59IDAuMnMgZWFzZS1vdXQgYm90aDtcblxuXHQke2hvdXIyNE1vZGUgPyBob3VyMjQgOiBpc01pbnV0ZU1vZGUobW9kZSkgPyBtaW51dGUgOiBob3VyfVxuYFxuXG5leHBvcnQgY29uc3Qgb3B0aW9ucyA9IGNzc2Bcblx0cG9zaXRpb246IHJlbGF0aXZlO1xuXHRsaXN0LXN0eWxlOiBub25lO1xuXHRwYWRkaW5nOiAwO1xuXHRtYXJnaW46IDA7XG5gXG5cbmNvbnN0IHNlbGVjdGVkID0gYGJhY2tncm91bmQ6ICR7RFJPUERPV05fU0VMRUNURURfQ09MT1J9O2BcbmV4cG9ydCBjb25zdCBvcHRpb24gPSAoYWN0aXZlOiBib29sZWFuKSA9PiBjc3NgXG5cdGJhY2tncm91bmQ6IHRyYW5zcGFyZW50O1xuXHRwYWRkaW5nOiA3cHggMzBweDtcblx0Zm9udC1zaXplOiAxNnB4O1xuXHRjb2xvcjogdmFyKC0tZHJvcGRvd24tdGV4dC1jb2xvciwgJHtEUk9QRE9XTl9DT0xPUn0pO1xuXHRjdXJzb3I6IHBvaW50ZXI7XG5cdCY6aG92ZXIge1xuXHRcdGJhY2tncm91bmQ6IHZhcigtLWRyb3Bkb3duLWhvdmVyLWJnLCAke0RST1BET1dOX1NFTEVDVEVEX0NPTE9SfSk7XG5cdH1cblx0JHthY3RpdmUgJiYgc2VsZWN0ZWR9XG5gXG4iXX0= */");
 
 exports.option = option;
 });
@@ -16526,37 +16686,31 @@ exports.default = useConfig;
 
 var _react = interopRequireWildcard(React__default);
 
-var configContext = (0, _react.createContext)({});
+const configContext = (0, _react.createContext)({});
 
-function ConfigProvider(_ref) {
-  var children = _ref.children,
-      _ref$coarseMinutes = _ref.coarseMinutes,
-      coarseMinutes = _ref$coarseMinutes === void 0 ? 5 : _ref$coarseMinutes,
-      _ref$forceCoarseMinut = _ref.forceCoarseMinutes,
-      forceCoarseMinutes = _ref$forceCoarseMinut === void 0 ? false : _ref$forceCoarseMinut,
-      _ref$switchToMinuteOn = _ref.switchToMinuteOnHourSelect,
-      switchToMinuteOnHourSelect = _ref$switchToMinuteOn === void 0 ? false : _ref$switchToMinuteOn,
-      _ref$closeOnMinuteSel = _ref.closeOnMinuteSelect,
-      closeOnMinuteSelect = _ref$closeOnMinuteSel === void 0 ? false : _ref$closeOnMinuteSel,
-      _ref$hour24Mode = _ref.hour24Mode,
-      hour24Mode = _ref$hour24Mode === void 0 ? false : _ref$hour24Mode,
-      _ref$onDoneClick = _ref.onDoneClick,
-      onDoneClick = _ref$onDoneClick === void 0 ? null : _ref$onDoneClick,
-      _ref$doneButton = _ref.doneButton,
-      doneButton = _ref$doneButton === void 0 ? null : _ref$doneButton;
-  var config = (0, _react.useMemo)(function () {
+function ConfigProvider({
+  children,
+  coarseMinutes = 5,
+  forceCoarseMinutes = false,
+  switchToMinuteOnHourSelect = false,
+  closeOnMinuteSelect = false,
+  hour24Mode = false,
+  onDoneClick = null,
+  doneButton = null
+}) {
+  const config = (0, _react.useMemo)(() => {
     if (coarseMinutes < 1) {
       throw new Error('coarseMinutes must be at least 1');
     }
 
     return {
-      coarseMinutes: coarseMinutes,
-      forceCoarseMinutes: forceCoarseMinutes,
-      switchToMinuteOnHourSelect: switchToMinuteOnHourSelect,
-      closeOnMinuteSelect: closeOnMinuteSelect,
-      hour24Mode: hour24Mode,
-      onDoneClick: onDoneClick,
-      doneButton: doneButton
+      coarseMinutes,
+      forceCoarseMinutes,
+      switchToMinuteOnHourSelect,
+      closeOnMinuteSelect,
+      hour24Mode,
+      onDoneClick,
+      doneButton
     };
   }, [coarseMinutes, forceCoarseMinutes, switchToMinuteOnHourSelect, closeOnMinuteSelect, onDoneClick, hour24Mode, doneButton]);
   return (0, core_esm.jsx)(configContext.Provider, {
@@ -16581,20 +16735,20 @@ exports.getScrollBarWidth = getScrollBarWidth;
 exports.calcOffset = calcOffset;
 
 function getScrollBarWidth() {
-  var scrollDiv = document.createElement('div');
+  const scrollDiv = document.createElement('div');
   scrollDiv.className = 'react-timekeeper-scrollbar-measure';
   document.body.appendChild(scrollDiv);
-  var width = scrollDiv.offsetWidth - scrollDiv.clientWidth;
+  const width = scrollDiv.offsetWidth - scrollDiv.clientWidth;
   document.body.removeChild(scrollDiv);
   return width;
 }
 
 function calcOffset(el) {
-  var style = window.getComputedStyle(el, null);
+  const style = window.getComputedStyle(el, null);
   return function (clientX, clientY) {
-    var borderLeftWidth = parseInt(style.borderLeftWidth, 10) || 0;
-    var borderTopWidth = parseInt(style.borderTopWidth, 10) || 0;
-    var rect = el.getBoundingClientRect();
+    const borderLeftWidth = parseInt(style.borderLeftWidth, 10) || 0;
+    const borderTopWidth = parseInt(style.borderTopWidth, 10) || 0;
+    const rect = el.getBoundingClientRect();
     return {
       offsetX: clientX - borderLeftWidth - rect.left,
       offsetY: clientY - borderTopWidth - rect.top
@@ -16609,8 +16763,8 @@ var dom_2 = dom.calcOffset;
 
 function _objectSpread$8(target) {
   for (var i = 1; i < arguments.length; i++) {
-    var source = arguments[i] != null ? arguments[i] : {};
-    var ownKeys = Object.keys(Object(source));
+    var source = arguments[i] != null ? Object(arguments[i]) : {};
+    var ownKeys = Object.keys(source);
 
     if (typeof Object.getOwnPropertySymbols === 'function') {
       ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {
@@ -17008,20 +17162,15 @@ var lodash_debounce = debounce$1;
 
 var time = createCommonjsModule(function (module, exports) {
 
-
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.parseTime = parseTime;
 exports.parseMeridiem = parseMeridiem;
 exports.composeTime = composeTime;
-
-var _typeof2 = interopRequireDefault(_typeof_1);
-
-var TIME_PARSE_MERIDIEM = new RegExp(/^(\d{1,2}?):(\d{2}?)\s?(am|pm)$/i);
-var TIME_PARSE_24 = new RegExp(/^(\d{1,2}?):(\d{2}?)$/);
-var defaultTime = {
+const TIME_PARSE_MERIDIEM = new RegExp(/^(\d{1,2}?):(\d{2}?)\s?(am|pm)$/i);
+const TIME_PARSE_24 = new RegExp(/^(\d{1,2}?):(\d{2}?)$/);
+const defaultTime = {
   hour: 12,
   minute: 30 // parse and normalize time to 24h
 
@@ -17032,13 +17181,13 @@ function parseTime(time) {
     return defaultTime;
   }
 
-  var hour = 0;
-  var minute = 0;
-  var meridiem = null; // parse basic numbers from string or object
+  let hour = 0;
+  let minute = 0;
+  let meridiem = null; // parse basic numbers from string or object
 
   if (typeof time === 'string') {
     // if is string
-    var match = time.match(TIME_PARSE_MERIDIEM);
+    let match = time.match(TIME_PARSE_MERIDIEM);
 
     if (match) {
       // 12 hr string
@@ -17056,7 +17205,7 @@ function parseTime(time) {
       hour = parseInt(match[1], 10);
       minute = parseInt(match[2], 10);
     }
-  } else if ((0, _typeof2.default)(time) === 'object') {
+  } else if (typeof time === 'object') {
     // if is object
     if (!Number.isInteger(time.hour) || !Number.isInteger(time.minute)) {
       throw new Error('Time and minute must both be valid integers');
@@ -17065,7 +17214,7 @@ function parseTime(time) {
     hour = time.hour;
     minute = time.minute;
 
-    if (time.meridiem) {
+    if ('meridiem' in time) {
       meridiem = time.meridiem.toLowerCase();
     }
   }
@@ -17098,23 +17247,23 @@ function parseTime(time) {
   }
 
   return {
-    hour: hour,
-    minute: minute
+    hour,
+    minute
   };
 }
 
 function parseMeridiem(time) {
-  var parsed = parseTime(time); // assumes time is 0 -> 23, where 0 is midnight
+  const parsed = parseTime(time); // assumes time is 0 -> 23, where 0 is midnight
 
   return parsed.hour >= 12 ? 'pm' : 'am';
 } // formats time output to poss to parent
 
 
 function composeTime(hour, minute) {
-  var paddedMinute = ('0' + minute).slice(-2);
-  var hour24 = hour === 24 ? 0 : hour;
-  var meridiem = hour >= 12 ? 'pm' : 'am';
-  var hour12 = hour;
+  const paddedMinute = ('0' + minute).slice(-2);
+  const hour24 = hour === 24 ? 0 : hour;
+  const meridiem = hour >= 12 ? 'pm' : 'am';
+  let hour12 = hour;
 
   if (hour > 12) {
     hour12 = hour - 12;
@@ -17153,11 +17302,9 @@ exports.default = useTimekeeperState;
 
 
 
-var _defineProperty2 = interopRequireDefault(defineProperty);
-
 var _slicedToArray2 = interopRequireDefault(slicedToArray);
 
-var _objectSpread3 = interopRequireDefault(objectSpread);
+var _objectSpread6 = interopRequireDefault(objectSpread);
 
 var _react = interopRequireWildcard(React__default);
 
@@ -17171,23 +17318,23 @@ var _configContext = interopRequireDefault(configContext_1);
 
 
 
-var stateContext = (0, _react.createContext)({});
+const stateContext = (0, _react.createContext)({});
 
 function reducer(state, action) {
   switch (action.type) {
     case 'SET_TIME':
-      return (0, _objectSpread3.default)({}, state, {
+      return (0, _objectSpread6.default)({}, state, {
         time: action.time,
         meridiem: action.meridiem || state.meridiem
       });
 
     case 'SET_MODE':
-      return (0, _objectSpread3.default)({}, state, {
+      return (0, _objectSpread6.default)({}, state, {
         mode: action.mode
       });
 
     case 'SET_MERIDIEM':
-      return (0, _objectSpread3.default)({}, state, {
+      return (0, _objectSpread6.default)({}, state, {
         meridiem: action.meridiem
       });
   }
@@ -17195,13 +17342,14 @@ function reducer(state, action) {
   return state;
 }
 
-function StateProvider(_ref) {
-  var onChange = _ref.onChange,
-      parentTime = _ref.time,
-      children = _ref.children;
-  var config = (0, _configContext.default)();
+function StateProvider({
+  onChange,
+  time: parentTime,
+  children
+}) {
+  const config = (0, _configContext.default)();
 
-  var _useReducer = (0, _react.useReducer)(reducer, null, function () {
+  const _useReducer = (0, _react.useReducer)(reducer, null, () => {
     return {
       time: (0, time.parseTime)(parentTime),
       mode: config.hour24Mode ? constants.MODE.HOURS_24 : constants.MODE.HOURS_12,
@@ -17210,27 +17358,27 @@ function StateProvider(_ref) {
       meridiem: (0, time.parseMeridiem)(parentTime)
     };
   }),
-      _useReducer2 = (0, _slicedToArray2.default)(_useReducer, 2),
-      state = _useReducer2[0],
-      dispatch = _useReducer2[1];
+        _useReducer2 = (0, _slicedToArray2.default)(_useReducer, 2),
+        state = _useReducer2[0],
+        dispatch = _useReducer2[1];
 
-  var mode = state.mode,
-      time$1 = state.time,
-      meridiem = state.meridiem;
-  var refTime = (0, _react.useRef)(time$1); // handle time update if parent changes
+  const mode = state.mode,
+        time$1 = state.time,
+        meridiem = state.meridiem;
+  const refTime = (0, _react.useRef)(time$1); // handle time update if parent changes
 
-  (0, _react.useEffect)(function () {
+  (0, _react.useEffect)(() => {
     if (parentTime == null) {
       return;
     }
 
-    var newTime = (0, time.parseTime)(parentTime);
+    const newTime = (0, time.parseTime)(parentTime);
 
     if ((0, utils.isSameTime)(newTime, refTime.current)) {
       return;
     }
 
-    var action = {
+    const action = {
       type: 'SET_TIME',
       time: (0, time.parseTime)(parentTime)
     };
@@ -17241,19 +17389,19 @@ function StateProvider(_ref) {
 
     dispatch(action);
   }, [config.hour24Mode, parentTime]);
-  var getComposedTime = (0, _react.useCallback)(function () {
-    var time$1 = refTime.current;
+  const getComposedTime = (0, _react.useCallback)(() => {
+    const time$1 = refTime.current;
     return (0, time.composeTime)(time$1.hour, time$1.minute);
   }, []); // debounced onChange function from parent
 
-  var debounceUpdateParent = (0, _react.useMemo)(function () {
+  const debounceUpdateParent = (0, _react.useMemo)(() => {
     if (typeof onChange === 'function') {
-      return (0, _lodash.default)(function () {
+      return (0, _lodash.default)(() => {
         onChange(getComposedTime());
       }, 80);
     }
 
-    return function () {};
+    return () => {};
   }, [getComposedTime, onChange]); // update 24 hour time on meridiem change
 
   function updateMeridiem(newMeridiem) {
@@ -17261,7 +17409,7 @@ function StateProvider(_ref) {
       return;
     }
 
-    var newTime = {
+    const newTime = {
       minute: time$1.minute,
       hour: 0
     };
@@ -17298,19 +17446,21 @@ function StateProvider(_ref) {
     } // generate new time and update timekeeper state
 
 
-    var unit = (0, utils.isHourMode)(mode) ? 'hour' : 'minute'; // useful for same value when dragging between degrees in hours
+    const unit = (0, utils.isHourMode)(mode) ? 'hour' : 'minute'; // useful for same value when dragging between degrees in hours
 
     if (refTime.current[unit] === val) {
       return;
     }
 
-    var newTime = (0, _objectSpread3.default)({}, time$1, (0, _defineProperty2.default)({}, unit, val));
+    const newTime = (0, _objectSpread6.default)({}, time$1, {
+      [unit]: val
+    });
 
     _actuallySetTime(newTime);
   }
 
-  var setMode = (0, _react.useCallback)(function (mode) {
-    var m = mode;
+  const setMode = (0, _react.useCallback)(mode => {
+    let m = mode;
 
     if ((0, utils.isHourMode)(mode)) {
       m = config.hour24Mode ? constants.MODE.HOURS_24 : constants.MODE.HOURS_12;
@@ -17321,13 +17471,13 @@ function StateProvider(_ref) {
       mode: m
     });
   }, [config.hour24Mode]);
-  var value = {
+  const value = {
     time: time$1,
-    mode: mode,
-    updateTime: updateTime,
-    updateMeridiem: updateMeridiem,
-    setMode: setMode,
-    getComposedTime: getComposedTime
+    mode,
+    updateTime,
+    updateMeridiem,
+    setMode,
+    getComposedTime
   };
   return (0, core_esm.jsx)(stateContext.Provider, {
     value: value
@@ -17369,23 +17519,23 @@ var _configContext = interopRequireDefault(configContext_1);
 
 var _stateContext = interopRequireDefault(stateContext_1);
 
-var scrollbarWidth = null;
+let scrollbarWidth = null;
 
-function TimeDropdown(_ref) {
-  var close = _ref.close;
+function TimeDropdown({
+  close
+}) {
+  const _useConfig = (0, _configContext.default)(),
+        hour24Mode = _useConfig.hour24Mode;
 
-  var _useConfig = (0, _configContext.default)(),
-      hour24Mode = _useConfig.hour24Mode;
+  const _useTimekeeperState = (0, _stateContext.default)(),
+        updateTime = _useTimekeeperState.updateTime,
+        mode = _useTimekeeperState.mode,
+        time = _useTimekeeperState.time;
 
-  var _useTimekeeperState = (0, _stateContext.default)(),
-      updateTime = _useTimekeeperState.updateTime,
-      mode = _useTimekeeperState.mode,
-      time = _useTimekeeperState.time;
-
-  var container = (0, _react.useRef)(null);
-  var selectedOption = (0, _react.useRef)(null);
-  var options = constants.CLOCK_VALUES[mode].dropdown;
-  var selected = (0, utils.getTimeValue)(mode, time).toString();
+  const container = (0, _react.useRef)(null);
+  const selectedOption = (0, _react.useRef)(null);
+  const options = constants.CLOCK_VALUES[mode].dropdown;
+  const selected = (0, utils.getNormalizedTimeValue)(mode, time).toString();
 
   function disableBodyScroll() {
     document.documentElement.style.paddingRight = scrollbarWidth + 'px';
@@ -17393,11 +17543,11 @@ function TimeDropdown(_ref) {
   }
 
   function enableBodyScroll() {
-    document.documentElement.style.paddingRight = 0;
+    document.documentElement.style.paddingRight = '0';
     document.documentElement.classList.remove('react-timekeeper-noscroll');
   }
 
-  var elsewhereClick = (0, _react.useCallback)(function (e) {
+  const elsewhereClick = (0, _react.useCallback)(e => {
     if (!container.current || !e.target) {
       return;
     }
@@ -17406,7 +17556,7 @@ function TimeDropdown(_ref) {
       close();
     }
   }, [close]);
-  (0, _react.useEffect)(function () {
+  (0, _react.useEffect)(() => {
     // measure scroll bar width for first time
     if (scrollbarWidth == null) {
       scrollbarWidth = (0, dom.getScrollBarWidth)();
@@ -17419,14 +17569,14 @@ function TimeDropdown(_ref) {
 
 
     document.addEventListener('click', elsewhereClick, false);
-    return function () {
+    return () => {
       document.removeEventListener('click', elsewhereClick, false);
       enableBodyScroll();
     };
   }, [elsewhereClick]); // select a value
 
   function select(val) {
-    var parsed = parseInt(val, 10);
+    let parsed = parseInt(val, 10);
 
     if (mode === constants.MODE.HOURS_12 && parsed === 12) {
       parsed = 0;
@@ -17445,16 +17595,14 @@ function TimeDropdown(_ref) {
   }, (0, core_esm.jsx)("ul", {
     css: styles.options,
     className: "react-timekeeper__dropdown-numbers"
-  }, options.map(function (o) {
+  }, options.map(o => {
+    const isSelected = selected === o;
     return (0, core_esm.jsx)("li", {
-      ref: function ref(el) {
-        return selected === o ? selectedOption.current = el : '';
-      },
-      css: styles.option(selected === o),
+      ref: el => isSelected ? selectedOption.current = el : '',
+      className: "react-timekeeper__dropdown-number ".concat(isSelected ? 'react-timekeeper__dropdown-number--active' : ''),
+      css: styles.option(isSelected),
       key: o,
-      onClick: function onClick() {
-        return select(o);
-      }
+      onClick: () => select(o)
     }, o);
   })));
 }
@@ -17476,7 +17624,7 @@ var _taggedTemplateLiteral2 = interopRequireDefault(taggedTemplateLiteral);
 
 
 function _templateObject() {
-  var data = (0, _taggedTemplateLiteral2.default)(["\n\tfrom { transform: scale(1); }\n\t30% { transform: scale(0.88); }\n\t60% { transform: scale(1.05); }\n\tto { transform: scale(1); }\n"]);
+  const data = (0, _taggedTemplateLiteral2.default)(["\n\tfrom { transform: scale(1); }\n\t30% { transform: scale(0.88); }\n\t60% { transform: scale(1.05); }\n\tto { transform: scale(1); }\n"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -17485,55 +17633,43 @@ function _templateObject() {
   return data;
 }
 
-var TIME_DEFAULT_COLOR = '#8C8C8C';
-var TIME_SELECTED_COLOR = '#8EDDFD';
+const TIME_DEFAULT_COLOR = '#8C8C8C';
+const TIME_SELECTED_COLOR = '#8EDDFD';
 
-var wrapper = function wrapper(is24hr) {
-  return (
-    /*#__PURE__*/
-    (0, core_esm.css)("background:white;padding:14px 16px;border-radius:3px 3px 0 0;position:relative;", is24hr && "\n\t\tdisplay: flex;\n\t\tjustify-content: center;\n\t", process.env.NODE_ENV === "production" ? "" : "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy9jb21wb25lbnRzL3N0eWxlcy90b3AtYmFyLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUsrQyIsImZpbGUiOiIuLi8uLi8uLi9zcmMvY29tcG9uZW50cy9zdHlsZXMvdG9wLWJhci50cyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IGNzcywganN4LCBrZXlmcmFtZXMgfSBmcm9tICdAZW1vdGlvbi9jb3JlJ1xuXG5jb25zdCBUSU1FX0RFRkFVTFRfQ09MT1IgPSAnIzhDOEM4QydcbmNvbnN0IFRJTUVfU0VMRUNURURfQ09MT1IgPSAnIzhFRERGRCdcblxuZXhwb3J0IGNvbnN0IHdyYXBwZXIgPSAoaXMyNGhyOiBib29sZWFuKSA9PiBjc3NgXG5cdGJhY2tncm91bmQ6IHdoaXRlO1xuXHRwYWRkaW5nOiAxNHB4IDE2cHg7XG5cdGJvcmRlci1yYWRpdXM6IDNweCAzcHggMCAwO1xuXHRwb3NpdGlvbjogcmVsYXRpdmU7XG5cblx0JHtpczI0aHIgJiZcblx0XHRgXG5cdFx0ZGlzcGxheTogZmxleDtcblx0XHRqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcblx0YH1cbmBcblxuZXhwb3J0IGNvbnN0IGhvdXJXcmFwcGVyID0gKGlzMjRocjogYm9vbGVhbikgPT4gY3NzYFxuXHR3aWR0aDogNzJweDtcblx0dGV4dC1hbGlnbjogcmlnaHQ7XG5cdHBvc2l0aW9uOiByZWxhdGl2ZTtcblx0ZGlzcGxheTogaW5saW5lLWJsb2NrO1xuXHQkeyFpczI0aHIgJiYgJ21hcmdpbi1sZWZ0OiAyMHB4Oyd9XG5gXG5cbmV4cG9ydCBjb25zdCBtaW51dGVXcmFwcGVyID0gKGlzMjRocjogYm9vbGVhbikgPT4gY3NzYFxuXHRwb3NpdGlvbjogcmVsYXRpdmU7XG5cdGRpc3BsYXk6IGlubGluZS1ibG9jaztcblx0JHtpczI0aHIgJiYgJ3dpZHRoOiA3MnB4Oyd9XG5gXG5cbmV4cG9ydCBjb25zdCBjb2xvbiA9IGNzc2Bcblx0Y29sb3I6ICR7VElNRV9ERUZBVUxUX0NPTE9SfTtcblx0Zm9udC13ZWlnaHQ6IDUwMDtcblx0ZGlzcGxheTogaW5saW5lLWJsb2NrO1xuXHRmb250LXNpemU6IDQ2cHg7XG5cdHZlcnRpY2FsLWFsaWduOiAycHg7XG5cdG1hcmdpbjogMCA1cHg7XG5cdGxpbmUtaGVpZ2h0OiBub3JtYWw7XG5gXG5cbmNvbnN0IHBvcEluT3V0ID0ga2V5ZnJhbWVzYFxuXHRmcm9tIHsgdHJhbnNmb3JtOiBzY2FsZSgxKTsgfVxuXHQzMCUgeyB0cmFuc2Zvcm06IHNjYWxlKDAuODgpOyB9XG5cdDYwJSB7IHRyYW5zZm9ybTogc2NhbGUoMS4wNSk7IH1cblx0dG8geyB0cmFuc2Zvcm06IHNjYWxlKDEpOyB9XG5gXG5cbmNvbnN0IHRpbWVTZWxlY3RlZCA9IGNzc2Bcblx0Y29sb3I6ICR7VElNRV9TRUxFQ1RFRF9DT0xPUn07XG5cdGFuaW1hdGlvbjogJHtwb3BJbk91dH0gMC42cyBlYXNlLW91dDtcbmBcblxuZXhwb3J0IGNvbnN0IHRpbWUgPSAoaXNBY3RpdmU6IGJvb2xlYW4pID0+IGNzc2Bcblx0Y29sb3I6ICR7VElNRV9ERUZBVUxUX0NPTE9SfTtcblx0ZGlzcGxheTogaW5saW5lLWJsb2NrO1xuXHRmb250LXNpemU6IDQ4cHg7XG5cdGN1cnNvcjogcG9pbnRlcjtcblx0dXNlci1zZWxlY3Q6IG5vbmU7XG5cdGxpbmUtaGVpZ2h0OiBub3JtYWw7XG5cdCR7aXNBY3RpdmUgJiYgdGltZVNlbGVjdGVkfVxuYFxuXG5leHBvcnQgY29uc3QgbWVyaWRpZW0gPSBjc3NgXG5cdGNvbG9yOiAke1RJTUVfREVGQVVMVF9DT0xPUn07XG5cdGRpc3BsYXk6IGlubGluZS1ibG9jaztcblx0Zm9udC1zaXplOiAxM3B4O1xuXHR0ZXh0LXRyYW5zZm9ybTogdXBwZXJjYXNlO1xuXHRtYXJnaW4tbGVmdDogMnB4O1xuXHRwYWRkaW5nOiAxMHB4IDhweDtcblx0dmVydGljYWwtYWxpZ246IDFweDtcbmBcbiJdfQ== */")
-  );
-};
+const wrapper = is24hr =>
+/*#__PURE__*/
+(0, core_esm.css)("background:var(--top-bg,white);padding:14px 16px;border-radius:3px 3px 0 0;position:relative;", is24hr && "\n\t\tdisplay: flex;\n\t\tjustify-content: center;\n\t", process.env.NODE_ENV === "production" ? "" : "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy9jb21wb25lbnRzL3N0eWxlcy90b3AtYmFyLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUsrQyIsImZpbGUiOiIuLi8uLi8uLi9zcmMvY29tcG9uZW50cy9zdHlsZXMvdG9wLWJhci50cyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IGNzcywganN4LCBrZXlmcmFtZXMgfSBmcm9tICdAZW1vdGlvbi9jb3JlJ1xuXG5jb25zdCBUSU1FX0RFRkFVTFRfQ09MT1IgPSAnIzhDOEM4QydcbmNvbnN0IFRJTUVfU0VMRUNURURfQ09MT1IgPSAnIzhFRERGRCdcblxuZXhwb3J0IGNvbnN0IHdyYXBwZXIgPSAoaXMyNGhyOiBib29sZWFuKSA9PiBjc3NgXG5cdGJhY2tncm91bmQ6IHZhcigtLXRvcC1iZywgd2hpdGUpO1xuXHRwYWRkaW5nOiAxNHB4IDE2cHg7XG5cdGJvcmRlci1yYWRpdXM6IDNweCAzcHggMCAwO1xuXHRwb3NpdGlvbjogcmVsYXRpdmU7XG5cblx0JHtpczI0aHIgJiZcblx0XHRgXG5cdFx0ZGlzcGxheTogZmxleDtcblx0XHRqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcblx0YH1cbmBcblxuZXhwb3J0IGNvbnN0IGhvdXJXcmFwcGVyID0gKGlzMjRocjogYm9vbGVhbikgPT4gY3NzYFxuXHR3aWR0aDogNzJweDtcblx0dGV4dC1hbGlnbjogcmlnaHQ7XG5cdHBvc2l0aW9uOiByZWxhdGl2ZTtcblx0ZGlzcGxheTogaW5saW5lLWJsb2NrO1xuXHQkeyFpczI0aHIgJiYgJ21hcmdpbi1sZWZ0OiAyMHB4Oyd9XG5gXG5cbmV4cG9ydCBjb25zdCBtaW51dGVXcmFwcGVyID0gKGlzMjRocjogYm9vbGVhbikgPT4gY3NzYFxuXHRwb3NpdGlvbjogcmVsYXRpdmU7XG5cdGRpc3BsYXk6IGlubGluZS1ibG9jaztcblx0JHtpczI0aHIgJiYgJ3dpZHRoOiA3MnB4Oyd9XG5gXG5cbmV4cG9ydCBjb25zdCBjb2xvbiA9IGNzc2Bcblx0Y29sb3I6IHZhcigtLXRvcC1jb2xvbi1jb2xvciwgJHtUSU1FX0RFRkFVTFRfQ09MT1J9KTtcblx0Zm9udC13ZWlnaHQ6IDUwMDtcblx0ZGlzcGxheTogaW5saW5lLWJsb2NrO1xuXHRmb250LXNpemU6IDQ2cHg7XG5cdHZlcnRpY2FsLWFsaWduOiAycHg7XG5cdG1hcmdpbjogMCA1cHg7XG5cdGxpbmUtaGVpZ2h0OiBub3JtYWw7XG5gXG5cbmNvbnN0IHBvcEluT3V0ID0ga2V5ZnJhbWVzYFxuXHRmcm9tIHsgdHJhbnNmb3JtOiBzY2FsZSgxKTsgfVxuXHQzMCUgeyB0cmFuc2Zvcm06IHNjYWxlKDAuODgpOyB9XG5cdDYwJSB7IHRyYW5zZm9ybTogc2NhbGUoMS4wNSk7IH1cblx0dG8geyB0cmFuc2Zvcm06IHNjYWxlKDEpOyB9XG5gXG5cbmNvbnN0IHRpbWVTZWxlY3RlZCA9IGNzc2Bcblx0Y29sb3I6IHZhcigtLXRvcC1zZWxlY3RlZC1jb2xvciwgJHtUSU1FX1NFTEVDVEVEX0NPTE9SfSk7XG5cdGFuaW1hdGlvbjogJHtwb3BJbk91dH0gMC42cyBlYXNlLW91dDtcbmBcblxuZXhwb3J0IGNvbnN0IHRpbWUgPSAoaXNBY3RpdmU6IGJvb2xlYW4pID0+IGNzc2Bcblx0Y29sb3I6IHZhcigtLXRvcC10ZXh0LWNvbG9yLCAke1RJTUVfREVGQVVMVF9DT0xPUn0pO1xuXHRkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG5cdGZvbnQtc2l6ZTogNDhweDtcblx0Y3Vyc29yOiBwb2ludGVyO1xuXHR1c2VyLXNlbGVjdDogbm9uZTtcblx0bGluZS1oZWlnaHQ6IG5vcm1hbDtcblx0JHtpc0FjdGl2ZSAmJiB0aW1lU2VsZWN0ZWR9XG5gXG5cbmV4cG9ydCBjb25zdCBtZXJpZGllbSA9IGNzc2Bcblx0Y29sb3I6IHZhcigtLXRvcC1tZXJpZGllbS1jb2xvciwgJHtUSU1FX0RFRkFVTFRfQ09MT1J9KTtcblx0ZGlzcGxheTogaW5saW5lLWJsb2NrO1xuXHRmb250LXNpemU6IDEzcHg7XG5cdHRleHQtdHJhbnNmb3JtOiB1cHBlcmNhc2U7XG5cdG1hcmdpbi1sZWZ0OiAycHg7XG5cdHBhZGRpbmc6IDEwcHggOHB4O1xuXHR2ZXJ0aWNhbC1hbGlnbjogMXB4O1xuYFxuIl19 */");
 
 exports.wrapper = wrapper;
 
-var hourWrapper = function hourWrapper(is24hr) {
-  return (
-    /*#__PURE__*/
-    (0, core_esm.css)("width:72px;text-align:right;position:relative;display:inline-block;", !is24hr && 'margin-left: 20px;', process.env.NODE_ENV === "production" ? "" : "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy9jb21wb25lbnRzL3N0eWxlcy90b3AtYmFyLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQWtCbUQiLCJmaWxlIjoiLi4vLi4vLi4vc3JjL2NvbXBvbmVudHMvc3R5bGVzL3RvcC1iYXIudHMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBjc3MsIGpzeCwga2V5ZnJhbWVzIH0gZnJvbSAnQGVtb3Rpb24vY29yZSdcblxuY29uc3QgVElNRV9ERUZBVUxUX0NPTE9SID0gJyM4QzhDOEMnXG5jb25zdCBUSU1FX1NFTEVDVEVEX0NPTE9SID0gJyM4RURERkQnXG5cbmV4cG9ydCBjb25zdCB3cmFwcGVyID0gKGlzMjRocjogYm9vbGVhbikgPT4gY3NzYFxuXHRiYWNrZ3JvdW5kOiB3aGl0ZTtcblx0cGFkZGluZzogMTRweCAxNnB4O1xuXHRib3JkZXItcmFkaXVzOiAzcHggM3B4IDAgMDtcblx0cG9zaXRpb246IHJlbGF0aXZlO1xuXG5cdCR7aXMyNGhyICYmXG5cdFx0YFxuXHRcdGRpc3BsYXk6IGZsZXg7XG5cdFx0anVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG5cdGB9XG5gXG5cbmV4cG9ydCBjb25zdCBob3VyV3JhcHBlciA9IChpczI0aHI6IGJvb2xlYW4pID0+IGNzc2Bcblx0d2lkdGg6IDcycHg7XG5cdHRleHQtYWxpZ246IHJpZ2h0O1xuXHRwb3NpdGlvbjogcmVsYXRpdmU7XG5cdGRpc3BsYXk6IGlubGluZS1ibG9jaztcblx0JHshaXMyNGhyICYmICdtYXJnaW4tbGVmdDogMjBweDsnfVxuYFxuXG5leHBvcnQgY29uc3QgbWludXRlV3JhcHBlciA9IChpczI0aHI6IGJvb2xlYW4pID0+IGNzc2Bcblx0cG9zaXRpb246IHJlbGF0aXZlO1xuXHRkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG5cdCR7aXMyNGhyICYmICd3aWR0aDogNzJweDsnfVxuYFxuXG5leHBvcnQgY29uc3QgY29sb24gPSBjc3NgXG5cdGNvbG9yOiAke1RJTUVfREVGQVVMVF9DT0xPUn07XG5cdGZvbnQtd2VpZ2h0OiA1MDA7XG5cdGRpc3BsYXk6IGlubGluZS1ibG9jaztcblx0Zm9udC1zaXplOiA0NnB4O1xuXHR2ZXJ0aWNhbC1hbGlnbjogMnB4O1xuXHRtYXJnaW46IDAgNXB4O1xuXHRsaW5lLWhlaWdodDogbm9ybWFsO1xuYFxuXG5jb25zdCBwb3BJbk91dCA9IGtleWZyYW1lc2Bcblx0ZnJvbSB7IHRyYW5zZm9ybTogc2NhbGUoMSk7IH1cblx0MzAlIHsgdHJhbnNmb3JtOiBzY2FsZSgwLjg4KTsgfVxuXHQ2MCUgeyB0cmFuc2Zvcm06IHNjYWxlKDEuMDUpOyB9XG5cdHRvIHsgdHJhbnNmb3JtOiBzY2FsZSgxKTsgfVxuYFxuXG5jb25zdCB0aW1lU2VsZWN0ZWQgPSBjc3NgXG5cdGNvbG9yOiAke1RJTUVfU0VMRUNURURfQ09MT1J9O1xuXHRhbmltYXRpb246ICR7cG9wSW5PdXR9IDAuNnMgZWFzZS1vdXQ7XG5gXG5cbmV4cG9ydCBjb25zdCB0aW1lID0gKGlzQWN0aXZlOiBib29sZWFuKSA9PiBjc3NgXG5cdGNvbG9yOiAke1RJTUVfREVGQVVMVF9DT0xPUn07XG5cdGRpc3BsYXk6IGlubGluZS1ibG9jaztcblx0Zm9udC1zaXplOiA0OHB4O1xuXHRjdXJzb3I6IHBvaW50ZXI7XG5cdHVzZXItc2VsZWN0OiBub25lO1xuXHRsaW5lLWhlaWdodDogbm9ybWFsO1xuXHQke2lzQWN0aXZlICYmIHRpbWVTZWxlY3RlZH1cbmBcblxuZXhwb3J0IGNvbnN0IG1lcmlkaWVtID0gY3NzYFxuXHRjb2xvcjogJHtUSU1FX0RFRkFVTFRfQ09MT1J9O1xuXHRkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG5cdGZvbnQtc2l6ZTogMTNweDtcblx0dGV4dC10cmFuc2Zvcm06IHVwcGVyY2FzZTtcblx0bWFyZ2luLWxlZnQ6IDJweDtcblx0cGFkZGluZzogMTBweCA4cHg7XG5cdHZlcnRpY2FsLWFsaWduOiAxcHg7XG5gXG4iXX0= */")
-  );
-};
+const hourWrapper = is24hr =>
+/*#__PURE__*/
+(0, core_esm.css)("width:72px;text-align:right;position:relative;display:inline-block;", !is24hr && 'margin-left: 20px;', process.env.NODE_ENV === "production" ? "" : "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy9jb21wb25lbnRzL3N0eWxlcy90b3AtYmFyLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQWtCbUQiLCJmaWxlIjoiLi4vLi4vLi4vc3JjL2NvbXBvbmVudHMvc3R5bGVzL3RvcC1iYXIudHMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBjc3MsIGpzeCwga2V5ZnJhbWVzIH0gZnJvbSAnQGVtb3Rpb24vY29yZSdcblxuY29uc3QgVElNRV9ERUZBVUxUX0NPTE9SID0gJyM4QzhDOEMnXG5jb25zdCBUSU1FX1NFTEVDVEVEX0NPTE9SID0gJyM4RURERkQnXG5cbmV4cG9ydCBjb25zdCB3cmFwcGVyID0gKGlzMjRocjogYm9vbGVhbikgPT4gY3NzYFxuXHRiYWNrZ3JvdW5kOiB2YXIoLS10b3AtYmcsIHdoaXRlKTtcblx0cGFkZGluZzogMTRweCAxNnB4O1xuXHRib3JkZXItcmFkaXVzOiAzcHggM3B4IDAgMDtcblx0cG9zaXRpb246IHJlbGF0aXZlO1xuXG5cdCR7aXMyNGhyICYmXG5cdFx0YFxuXHRcdGRpc3BsYXk6IGZsZXg7XG5cdFx0anVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG5cdGB9XG5gXG5cbmV4cG9ydCBjb25zdCBob3VyV3JhcHBlciA9IChpczI0aHI6IGJvb2xlYW4pID0+IGNzc2Bcblx0d2lkdGg6IDcycHg7XG5cdHRleHQtYWxpZ246IHJpZ2h0O1xuXHRwb3NpdGlvbjogcmVsYXRpdmU7XG5cdGRpc3BsYXk6IGlubGluZS1ibG9jaztcblx0JHshaXMyNGhyICYmICdtYXJnaW4tbGVmdDogMjBweDsnfVxuYFxuXG5leHBvcnQgY29uc3QgbWludXRlV3JhcHBlciA9IChpczI0aHI6IGJvb2xlYW4pID0+IGNzc2Bcblx0cG9zaXRpb246IHJlbGF0aXZlO1xuXHRkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG5cdCR7aXMyNGhyICYmICd3aWR0aDogNzJweDsnfVxuYFxuXG5leHBvcnQgY29uc3QgY29sb24gPSBjc3NgXG5cdGNvbG9yOiB2YXIoLS10b3AtY29sb24tY29sb3IsICR7VElNRV9ERUZBVUxUX0NPTE9SfSk7XG5cdGZvbnQtd2VpZ2h0OiA1MDA7XG5cdGRpc3BsYXk6IGlubGluZS1ibG9jaztcblx0Zm9udC1zaXplOiA0NnB4O1xuXHR2ZXJ0aWNhbC1hbGlnbjogMnB4O1xuXHRtYXJnaW46IDAgNXB4O1xuXHRsaW5lLWhlaWdodDogbm9ybWFsO1xuYFxuXG5jb25zdCBwb3BJbk91dCA9IGtleWZyYW1lc2Bcblx0ZnJvbSB7IHRyYW5zZm9ybTogc2NhbGUoMSk7IH1cblx0MzAlIHsgdHJhbnNmb3JtOiBzY2FsZSgwLjg4KTsgfVxuXHQ2MCUgeyB0cmFuc2Zvcm06IHNjYWxlKDEuMDUpOyB9XG5cdHRvIHsgdHJhbnNmb3JtOiBzY2FsZSgxKTsgfVxuYFxuXG5jb25zdCB0aW1lU2VsZWN0ZWQgPSBjc3NgXG5cdGNvbG9yOiB2YXIoLS10b3Atc2VsZWN0ZWQtY29sb3IsICR7VElNRV9TRUxFQ1RFRF9DT0xPUn0pO1xuXHRhbmltYXRpb246ICR7cG9wSW5PdXR9IDAuNnMgZWFzZS1vdXQ7XG5gXG5cbmV4cG9ydCBjb25zdCB0aW1lID0gKGlzQWN0aXZlOiBib29sZWFuKSA9PiBjc3NgXG5cdGNvbG9yOiB2YXIoLS10b3AtdGV4dC1jb2xvciwgJHtUSU1FX0RFRkFVTFRfQ09MT1J9KTtcblx0ZGlzcGxheTogaW5saW5lLWJsb2NrO1xuXHRmb250LXNpemU6IDQ4cHg7XG5cdGN1cnNvcjogcG9pbnRlcjtcblx0dXNlci1zZWxlY3Q6IG5vbmU7XG5cdGxpbmUtaGVpZ2h0OiBub3JtYWw7XG5cdCR7aXNBY3RpdmUgJiYgdGltZVNlbGVjdGVkfVxuYFxuXG5leHBvcnQgY29uc3QgbWVyaWRpZW0gPSBjc3NgXG5cdGNvbG9yOiB2YXIoLS10b3AtbWVyaWRpZW0tY29sb3IsICR7VElNRV9ERUZBVUxUX0NPTE9SfSk7XG5cdGRpc3BsYXk6IGlubGluZS1ibG9jaztcblx0Zm9udC1zaXplOiAxM3B4O1xuXHR0ZXh0LXRyYW5zZm9ybTogdXBwZXJjYXNlO1xuXHRtYXJnaW4tbGVmdDogMnB4O1xuXHRwYWRkaW5nOiAxMHB4IDhweDtcblx0dmVydGljYWwtYWxpZ246IDFweDtcbmBcbiJdfQ== */");
 
 exports.hourWrapper = hourWrapper;
 
-var minuteWrapper = function minuteWrapper(is24hr) {
-  return (
-    /*#__PURE__*/
-    (0, core_esm.css)("position:relative;display:inline-block;", is24hr && 'width: 72px;', process.env.NODE_ENV === "production" ? "" : "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy9jb21wb25lbnRzL3N0eWxlcy90b3AtYmFyLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQTBCcUQiLCJmaWxlIjoiLi4vLi4vLi4vc3JjL2NvbXBvbmVudHMvc3R5bGVzL3RvcC1iYXIudHMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBjc3MsIGpzeCwga2V5ZnJhbWVzIH0gZnJvbSAnQGVtb3Rpb24vY29yZSdcblxuY29uc3QgVElNRV9ERUZBVUxUX0NPTE9SID0gJyM4QzhDOEMnXG5jb25zdCBUSU1FX1NFTEVDVEVEX0NPTE9SID0gJyM4RURERkQnXG5cbmV4cG9ydCBjb25zdCB3cmFwcGVyID0gKGlzMjRocjogYm9vbGVhbikgPT4gY3NzYFxuXHRiYWNrZ3JvdW5kOiB3aGl0ZTtcblx0cGFkZGluZzogMTRweCAxNnB4O1xuXHRib3JkZXItcmFkaXVzOiAzcHggM3B4IDAgMDtcblx0cG9zaXRpb246IHJlbGF0aXZlO1xuXG5cdCR7aXMyNGhyICYmXG5cdFx0YFxuXHRcdGRpc3BsYXk6IGZsZXg7XG5cdFx0anVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG5cdGB9XG5gXG5cbmV4cG9ydCBjb25zdCBob3VyV3JhcHBlciA9IChpczI0aHI6IGJvb2xlYW4pID0+IGNzc2Bcblx0d2lkdGg6IDcycHg7XG5cdHRleHQtYWxpZ246IHJpZ2h0O1xuXHRwb3NpdGlvbjogcmVsYXRpdmU7XG5cdGRpc3BsYXk6IGlubGluZS1ibG9jaztcblx0JHshaXMyNGhyICYmICdtYXJnaW4tbGVmdDogMjBweDsnfVxuYFxuXG5leHBvcnQgY29uc3QgbWludXRlV3JhcHBlciA9IChpczI0aHI6IGJvb2xlYW4pID0+IGNzc2Bcblx0cG9zaXRpb246IHJlbGF0aXZlO1xuXHRkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG5cdCR7aXMyNGhyICYmICd3aWR0aDogNzJweDsnfVxuYFxuXG5leHBvcnQgY29uc3QgY29sb24gPSBjc3NgXG5cdGNvbG9yOiAke1RJTUVfREVGQVVMVF9DT0xPUn07XG5cdGZvbnQtd2VpZ2h0OiA1MDA7XG5cdGRpc3BsYXk6IGlubGluZS1ibG9jaztcblx0Zm9udC1zaXplOiA0NnB4O1xuXHR2ZXJ0aWNhbC1hbGlnbjogMnB4O1xuXHRtYXJnaW46IDAgNXB4O1xuXHRsaW5lLWhlaWdodDogbm9ybWFsO1xuYFxuXG5jb25zdCBwb3BJbk91dCA9IGtleWZyYW1lc2Bcblx0ZnJvbSB7IHRyYW5zZm9ybTogc2NhbGUoMSk7IH1cblx0MzAlIHsgdHJhbnNmb3JtOiBzY2FsZSgwLjg4KTsgfVxuXHQ2MCUgeyB0cmFuc2Zvcm06IHNjYWxlKDEuMDUpOyB9XG5cdHRvIHsgdHJhbnNmb3JtOiBzY2FsZSgxKTsgfVxuYFxuXG5jb25zdCB0aW1lU2VsZWN0ZWQgPSBjc3NgXG5cdGNvbG9yOiAke1RJTUVfU0VMRUNURURfQ09MT1J9O1xuXHRhbmltYXRpb246ICR7cG9wSW5PdXR9IDAuNnMgZWFzZS1vdXQ7XG5gXG5cbmV4cG9ydCBjb25zdCB0aW1lID0gKGlzQWN0aXZlOiBib29sZWFuKSA9PiBjc3NgXG5cdGNvbG9yOiAke1RJTUVfREVGQVVMVF9DT0xPUn07XG5cdGRpc3BsYXk6IGlubGluZS1ibG9jaztcblx0Zm9udC1zaXplOiA0OHB4O1xuXHRjdXJzb3I6IHBvaW50ZXI7XG5cdHVzZXItc2VsZWN0OiBub25lO1xuXHRsaW5lLWhlaWdodDogbm9ybWFsO1xuXHQke2lzQWN0aXZlICYmIHRpbWVTZWxlY3RlZH1cbmBcblxuZXhwb3J0IGNvbnN0IG1lcmlkaWVtID0gY3NzYFxuXHRjb2xvcjogJHtUSU1FX0RFRkFVTFRfQ09MT1J9O1xuXHRkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG5cdGZvbnQtc2l6ZTogMTNweDtcblx0dGV4dC10cmFuc2Zvcm06IHVwcGVyY2FzZTtcblx0bWFyZ2luLWxlZnQ6IDJweDtcblx0cGFkZGluZzogMTBweCA4cHg7XG5cdHZlcnRpY2FsLWFsaWduOiAxcHg7XG5gXG4iXX0= */")
-  );
-};
+const minuteWrapper = is24hr =>
+/*#__PURE__*/
+(0, core_esm.css)("position:relative;display:inline-block;", is24hr && 'width: 72px;', process.env.NODE_ENV === "production" ? "" : "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy9jb21wb25lbnRzL3N0eWxlcy90b3AtYmFyLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQTBCcUQiLCJmaWxlIjoiLi4vLi4vLi4vc3JjL2NvbXBvbmVudHMvc3R5bGVzL3RvcC1iYXIudHMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBjc3MsIGpzeCwga2V5ZnJhbWVzIH0gZnJvbSAnQGVtb3Rpb24vY29yZSdcblxuY29uc3QgVElNRV9ERUZBVUxUX0NPTE9SID0gJyM4QzhDOEMnXG5jb25zdCBUSU1FX1NFTEVDVEVEX0NPTE9SID0gJyM4RURERkQnXG5cbmV4cG9ydCBjb25zdCB3cmFwcGVyID0gKGlzMjRocjogYm9vbGVhbikgPT4gY3NzYFxuXHRiYWNrZ3JvdW5kOiB2YXIoLS10b3AtYmcsIHdoaXRlKTtcblx0cGFkZGluZzogMTRweCAxNnB4O1xuXHRib3JkZXItcmFkaXVzOiAzcHggM3B4IDAgMDtcblx0cG9zaXRpb246IHJlbGF0aXZlO1xuXG5cdCR7aXMyNGhyICYmXG5cdFx0YFxuXHRcdGRpc3BsYXk6IGZsZXg7XG5cdFx0anVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG5cdGB9XG5gXG5cbmV4cG9ydCBjb25zdCBob3VyV3JhcHBlciA9IChpczI0aHI6IGJvb2xlYW4pID0+IGNzc2Bcblx0d2lkdGg6IDcycHg7XG5cdHRleHQtYWxpZ246IHJpZ2h0O1xuXHRwb3NpdGlvbjogcmVsYXRpdmU7XG5cdGRpc3BsYXk6IGlubGluZS1ibG9jaztcblx0JHshaXMyNGhyICYmICdtYXJnaW4tbGVmdDogMjBweDsnfVxuYFxuXG5leHBvcnQgY29uc3QgbWludXRlV3JhcHBlciA9IChpczI0aHI6IGJvb2xlYW4pID0+IGNzc2Bcblx0cG9zaXRpb246IHJlbGF0aXZlO1xuXHRkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG5cdCR7aXMyNGhyICYmICd3aWR0aDogNzJweDsnfVxuYFxuXG5leHBvcnQgY29uc3QgY29sb24gPSBjc3NgXG5cdGNvbG9yOiB2YXIoLS10b3AtY29sb24tY29sb3IsICR7VElNRV9ERUZBVUxUX0NPTE9SfSk7XG5cdGZvbnQtd2VpZ2h0OiA1MDA7XG5cdGRpc3BsYXk6IGlubGluZS1ibG9jaztcblx0Zm9udC1zaXplOiA0NnB4O1xuXHR2ZXJ0aWNhbC1hbGlnbjogMnB4O1xuXHRtYXJnaW46IDAgNXB4O1xuXHRsaW5lLWhlaWdodDogbm9ybWFsO1xuYFxuXG5jb25zdCBwb3BJbk91dCA9IGtleWZyYW1lc2Bcblx0ZnJvbSB7IHRyYW5zZm9ybTogc2NhbGUoMSk7IH1cblx0MzAlIHsgdHJhbnNmb3JtOiBzY2FsZSgwLjg4KTsgfVxuXHQ2MCUgeyB0cmFuc2Zvcm06IHNjYWxlKDEuMDUpOyB9XG5cdHRvIHsgdHJhbnNmb3JtOiBzY2FsZSgxKTsgfVxuYFxuXG5jb25zdCB0aW1lU2VsZWN0ZWQgPSBjc3NgXG5cdGNvbG9yOiB2YXIoLS10b3Atc2VsZWN0ZWQtY29sb3IsICR7VElNRV9TRUxFQ1RFRF9DT0xPUn0pO1xuXHRhbmltYXRpb246ICR7cG9wSW5PdXR9IDAuNnMgZWFzZS1vdXQ7XG5gXG5cbmV4cG9ydCBjb25zdCB0aW1lID0gKGlzQWN0aXZlOiBib29sZWFuKSA9PiBjc3NgXG5cdGNvbG9yOiB2YXIoLS10b3AtdGV4dC1jb2xvciwgJHtUSU1FX0RFRkFVTFRfQ09MT1J9KTtcblx0ZGlzcGxheTogaW5saW5lLWJsb2NrO1xuXHRmb250LXNpemU6IDQ4cHg7XG5cdGN1cnNvcjogcG9pbnRlcjtcblx0dXNlci1zZWxlY3Q6IG5vbmU7XG5cdGxpbmUtaGVpZ2h0OiBub3JtYWw7XG5cdCR7aXNBY3RpdmUgJiYgdGltZVNlbGVjdGVkfVxuYFxuXG5leHBvcnQgY29uc3QgbWVyaWRpZW0gPSBjc3NgXG5cdGNvbG9yOiB2YXIoLS10b3AtbWVyaWRpZW0tY29sb3IsICR7VElNRV9ERUZBVUxUX0NPTE9SfSk7XG5cdGRpc3BsYXk6IGlubGluZS1ibG9jaztcblx0Zm9udC1zaXplOiAxM3B4O1xuXHR0ZXh0LXRyYW5zZm9ybTogdXBwZXJjYXNlO1xuXHRtYXJnaW4tbGVmdDogMnB4O1xuXHRwYWRkaW5nOiAxMHB4IDhweDtcblx0dmVydGljYWwtYWxpZ246IDFweDtcbmBcbiJdfQ== */");
 
 exports.minuteWrapper = minuteWrapper;
-var colon =
+const colon =
 /*#__PURE__*/
-(0, core_esm.css)("color:", TIME_DEFAULT_COLOR, ";font-weight:500;display:inline-block;font-size:46px;vertical-align:2px;margin:0 5px;line-height:normal;" + (process.env.NODE_ENV === "production" ? "" : "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy9jb21wb25lbnRzL3N0eWxlcy90b3AtYmFyLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQWdDd0IiLCJmaWxlIjoiLi4vLi4vLi4vc3JjL2NvbXBvbmVudHMvc3R5bGVzL3RvcC1iYXIudHMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBjc3MsIGpzeCwga2V5ZnJhbWVzIH0gZnJvbSAnQGVtb3Rpb24vY29yZSdcblxuY29uc3QgVElNRV9ERUZBVUxUX0NPTE9SID0gJyM4QzhDOEMnXG5jb25zdCBUSU1FX1NFTEVDVEVEX0NPTE9SID0gJyM4RURERkQnXG5cbmV4cG9ydCBjb25zdCB3cmFwcGVyID0gKGlzMjRocjogYm9vbGVhbikgPT4gY3NzYFxuXHRiYWNrZ3JvdW5kOiB3aGl0ZTtcblx0cGFkZGluZzogMTRweCAxNnB4O1xuXHRib3JkZXItcmFkaXVzOiAzcHggM3B4IDAgMDtcblx0cG9zaXRpb246IHJlbGF0aXZlO1xuXG5cdCR7aXMyNGhyICYmXG5cdFx0YFxuXHRcdGRpc3BsYXk6IGZsZXg7XG5cdFx0anVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG5cdGB9XG5gXG5cbmV4cG9ydCBjb25zdCBob3VyV3JhcHBlciA9IChpczI0aHI6IGJvb2xlYW4pID0+IGNzc2Bcblx0d2lkdGg6IDcycHg7XG5cdHRleHQtYWxpZ246IHJpZ2h0O1xuXHRwb3NpdGlvbjogcmVsYXRpdmU7XG5cdGRpc3BsYXk6IGlubGluZS1ibG9jaztcblx0JHshaXMyNGhyICYmICdtYXJnaW4tbGVmdDogMjBweDsnfVxuYFxuXG5leHBvcnQgY29uc3QgbWludXRlV3JhcHBlciA9IChpczI0aHI6IGJvb2xlYW4pID0+IGNzc2Bcblx0cG9zaXRpb246IHJlbGF0aXZlO1xuXHRkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG5cdCR7aXMyNGhyICYmICd3aWR0aDogNzJweDsnfVxuYFxuXG5leHBvcnQgY29uc3QgY29sb24gPSBjc3NgXG5cdGNvbG9yOiAke1RJTUVfREVGQVVMVF9DT0xPUn07XG5cdGZvbnQtd2VpZ2h0OiA1MDA7XG5cdGRpc3BsYXk6IGlubGluZS1ibG9jaztcblx0Zm9udC1zaXplOiA0NnB4O1xuXHR2ZXJ0aWNhbC1hbGlnbjogMnB4O1xuXHRtYXJnaW46IDAgNXB4O1xuXHRsaW5lLWhlaWdodDogbm9ybWFsO1xuYFxuXG5jb25zdCBwb3BJbk91dCA9IGtleWZyYW1lc2Bcblx0ZnJvbSB7IHRyYW5zZm9ybTogc2NhbGUoMSk7IH1cblx0MzAlIHsgdHJhbnNmb3JtOiBzY2FsZSgwLjg4KTsgfVxuXHQ2MCUgeyB0cmFuc2Zvcm06IHNjYWxlKDEuMDUpOyB9XG5cdHRvIHsgdHJhbnNmb3JtOiBzY2FsZSgxKTsgfVxuYFxuXG5jb25zdCB0aW1lU2VsZWN0ZWQgPSBjc3NgXG5cdGNvbG9yOiAke1RJTUVfU0VMRUNURURfQ09MT1J9O1xuXHRhbmltYXRpb246ICR7cG9wSW5PdXR9IDAuNnMgZWFzZS1vdXQ7XG5gXG5cbmV4cG9ydCBjb25zdCB0aW1lID0gKGlzQWN0aXZlOiBib29sZWFuKSA9PiBjc3NgXG5cdGNvbG9yOiAke1RJTUVfREVGQVVMVF9DT0xPUn07XG5cdGRpc3BsYXk6IGlubGluZS1ibG9jaztcblx0Zm9udC1zaXplOiA0OHB4O1xuXHRjdXJzb3I6IHBvaW50ZXI7XG5cdHVzZXItc2VsZWN0OiBub25lO1xuXHRsaW5lLWhlaWdodDogbm9ybWFsO1xuXHQke2lzQWN0aXZlICYmIHRpbWVTZWxlY3RlZH1cbmBcblxuZXhwb3J0IGNvbnN0IG1lcmlkaWVtID0gY3NzYFxuXHRjb2xvcjogJHtUSU1FX0RFRkFVTFRfQ09MT1J9O1xuXHRkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG5cdGZvbnQtc2l6ZTogMTNweDtcblx0dGV4dC10cmFuc2Zvcm06IHVwcGVyY2FzZTtcblx0bWFyZ2luLWxlZnQ6IDJweDtcblx0cGFkZGluZzogMTBweCA4cHg7XG5cdHZlcnRpY2FsLWFsaWduOiAxcHg7XG5gXG4iXX0= */"));
+(0, core_esm.css)("color:var(--top-colon-color,", TIME_DEFAULT_COLOR, ");font-weight:500;display:inline-block;font-size:46px;vertical-align:2px;margin:0 5px;line-height:normal;" + (process.env.NODE_ENV === "production" ? "" : "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy9jb21wb25lbnRzL3N0eWxlcy90b3AtYmFyLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQWdDd0IiLCJmaWxlIjoiLi4vLi4vLi4vc3JjL2NvbXBvbmVudHMvc3R5bGVzL3RvcC1iYXIudHMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBjc3MsIGpzeCwga2V5ZnJhbWVzIH0gZnJvbSAnQGVtb3Rpb24vY29yZSdcblxuY29uc3QgVElNRV9ERUZBVUxUX0NPTE9SID0gJyM4QzhDOEMnXG5jb25zdCBUSU1FX1NFTEVDVEVEX0NPTE9SID0gJyM4RURERkQnXG5cbmV4cG9ydCBjb25zdCB3cmFwcGVyID0gKGlzMjRocjogYm9vbGVhbikgPT4gY3NzYFxuXHRiYWNrZ3JvdW5kOiB2YXIoLS10b3AtYmcsIHdoaXRlKTtcblx0cGFkZGluZzogMTRweCAxNnB4O1xuXHRib3JkZXItcmFkaXVzOiAzcHggM3B4IDAgMDtcblx0cG9zaXRpb246IHJlbGF0aXZlO1xuXG5cdCR7aXMyNGhyICYmXG5cdFx0YFxuXHRcdGRpc3BsYXk6IGZsZXg7XG5cdFx0anVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG5cdGB9XG5gXG5cbmV4cG9ydCBjb25zdCBob3VyV3JhcHBlciA9IChpczI0aHI6IGJvb2xlYW4pID0+IGNzc2Bcblx0d2lkdGg6IDcycHg7XG5cdHRleHQtYWxpZ246IHJpZ2h0O1xuXHRwb3NpdGlvbjogcmVsYXRpdmU7XG5cdGRpc3BsYXk6IGlubGluZS1ibG9jaztcblx0JHshaXMyNGhyICYmICdtYXJnaW4tbGVmdDogMjBweDsnfVxuYFxuXG5leHBvcnQgY29uc3QgbWludXRlV3JhcHBlciA9IChpczI0aHI6IGJvb2xlYW4pID0+IGNzc2Bcblx0cG9zaXRpb246IHJlbGF0aXZlO1xuXHRkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG5cdCR7aXMyNGhyICYmICd3aWR0aDogNzJweDsnfVxuYFxuXG5leHBvcnQgY29uc3QgY29sb24gPSBjc3NgXG5cdGNvbG9yOiB2YXIoLS10b3AtY29sb24tY29sb3IsICR7VElNRV9ERUZBVUxUX0NPTE9SfSk7XG5cdGZvbnQtd2VpZ2h0OiA1MDA7XG5cdGRpc3BsYXk6IGlubGluZS1ibG9jaztcblx0Zm9udC1zaXplOiA0NnB4O1xuXHR2ZXJ0aWNhbC1hbGlnbjogMnB4O1xuXHRtYXJnaW46IDAgNXB4O1xuXHRsaW5lLWhlaWdodDogbm9ybWFsO1xuYFxuXG5jb25zdCBwb3BJbk91dCA9IGtleWZyYW1lc2Bcblx0ZnJvbSB7IHRyYW5zZm9ybTogc2NhbGUoMSk7IH1cblx0MzAlIHsgdHJhbnNmb3JtOiBzY2FsZSgwLjg4KTsgfVxuXHQ2MCUgeyB0cmFuc2Zvcm06IHNjYWxlKDEuMDUpOyB9XG5cdHRvIHsgdHJhbnNmb3JtOiBzY2FsZSgxKTsgfVxuYFxuXG5jb25zdCB0aW1lU2VsZWN0ZWQgPSBjc3NgXG5cdGNvbG9yOiB2YXIoLS10b3Atc2VsZWN0ZWQtY29sb3IsICR7VElNRV9TRUxFQ1RFRF9DT0xPUn0pO1xuXHRhbmltYXRpb246ICR7cG9wSW5PdXR9IDAuNnMgZWFzZS1vdXQ7XG5gXG5cbmV4cG9ydCBjb25zdCB0aW1lID0gKGlzQWN0aXZlOiBib29sZWFuKSA9PiBjc3NgXG5cdGNvbG9yOiB2YXIoLS10b3AtdGV4dC1jb2xvciwgJHtUSU1FX0RFRkFVTFRfQ09MT1J9KTtcblx0ZGlzcGxheTogaW5saW5lLWJsb2NrO1xuXHRmb250LXNpemU6IDQ4cHg7XG5cdGN1cnNvcjogcG9pbnRlcjtcblx0dXNlci1zZWxlY3Q6IG5vbmU7XG5cdGxpbmUtaGVpZ2h0OiBub3JtYWw7XG5cdCR7aXNBY3RpdmUgJiYgdGltZVNlbGVjdGVkfVxuYFxuXG5leHBvcnQgY29uc3QgbWVyaWRpZW0gPSBjc3NgXG5cdGNvbG9yOiB2YXIoLS10b3AtbWVyaWRpZW0tY29sb3IsICR7VElNRV9ERUZBVUxUX0NPTE9SfSk7XG5cdGRpc3BsYXk6IGlubGluZS1ibG9jaztcblx0Zm9udC1zaXplOiAxM3B4O1xuXHR0ZXh0LXRyYW5zZm9ybTogdXBwZXJjYXNlO1xuXHRtYXJnaW4tbGVmdDogMnB4O1xuXHRwYWRkaW5nOiAxMHB4IDhweDtcblx0dmVydGljYWwtYWxpZ246IDFweDtcbmBcbiJdfQ== */"));
 exports.colon = colon;
-var popInOut = (0, core_esm.keyframes)(_templateObject());
-var timeSelected =
+const popInOut = (0, core_esm.keyframes)(_templateObject());
+const timeSelected =
 /*#__PURE__*/
-(0, core_esm.css)("color:", TIME_SELECTED_COLOR, ";animation:", popInOut, " 0.6s ease-out;" + (process.env.NODE_ENV === "production" ? "" : "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy9jb21wb25lbnRzL3N0eWxlcy90b3AtYmFyLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQWlEd0IiLCJmaWxlIjoiLi4vLi4vLi4vc3JjL2NvbXBvbmVudHMvc3R5bGVzL3RvcC1iYXIudHMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBjc3MsIGpzeCwga2V5ZnJhbWVzIH0gZnJvbSAnQGVtb3Rpb24vY29yZSdcblxuY29uc3QgVElNRV9ERUZBVUxUX0NPTE9SID0gJyM4QzhDOEMnXG5jb25zdCBUSU1FX1NFTEVDVEVEX0NPTE9SID0gJyM4RURERkQnXG5cbmV4cG9ydCBjb25zdCB3cmFwcGVyID0gKGlzMjRocjogYm9vbGVhbikgPT4gY3NzYFxuXHRiYWNrZ3JvdW5kOiB3aGl0ZTtcblx0cGFkZGluZzogMTRweCAxNnB4O1xuXHRib3JkZXItcmFkaXVzOiAzcHggM3B4IDAgMDtcblx0cG9zaXRpb246IHJlbGF0aXZlO1xuXG5cdCR7aXMyNGhyICYmXG5cdFx0YFxuXHRcdGRpc3BsYXk6IGZsZXg7XG5cdFx0anVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG5cdGB9XG5gXG5cbmV4cG9ydCBjb25zdCBob3VyV3JhcHBlciA9IChpczI0aHI6IGJvb2xlYW4pID0+IGNzc2Bcblx0d2lkdGg6IDcycHg7XG5cdHRleHQtYWxpZ246IHJpZ2h0O1xuXHRwb3NpdGlvbjogcmVsYXRpdmU7XG5cdGRpc3BsYXk6IGlubGluZS1ibG9jaztcblx0JHshaXMyNGhyICYmICdtYXJnaW4tbGVmdDogMjBweDsnfVxuYFxuXG5leHBvcnQgY29uc3QgbWludXRlV3JhcHBlciA9IChpczI0aHI6IGJvb2xlYW4pID0+IGNzc2Bcblx0cG9zaXRpb246IHJlbGF0aXZlO1xuXHRkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG5cdCR7aXMyNGhyICYmICd3aWR0aDogNzJweDsnfVxuYFxuXG5leHBvcnQgY29uc3QgY29sb24gPSBjc3NgXG5cdGNvbG9yOiAke1RJTUVfREVGQVVMVF9DT0xPUn07XG5cdGZvbnQtd2VpZ2h0OiA1MDA7XG5cdGRpc3BsYXk6IGlubGluZS1ibG9jaztcblx0Zm9udC1zaXplOiA0NnB4O1xuXHR2ZXJ0aWNhbC1hbGlnbjogMnB4O1xuXHRtYXJnaW46IDAgNXB4O1xuXHRsaW5lLWhlaWdodDogbm9ybWFsO1xuYFxuXG5jb25zdCBwb3BJbk91dCA9IGtleWZyYW1lc2Bcblx0ZnJvbSB7IHRyYW5zZm9ybTogc2NhbGUoMSk7IH1cblx0MzAlIHsgdHJhbnNmb3JtOiBzY2FsZSgwLjg4KTsgfVxuXHQ2MCUgeyB0cmFuc2Zvcm06IHNjYWxlKDEuMDUpOyB9XG5cdHRvIHsgdHJhbnNmb3JtOiBzY2FsZSgxKTsgfVxuYFxuXG5jb25zdCB0aW1lU2VsZWN0ZWQgPSBjc3NgXG5cdGNvbG9yOiAke1RJTUVfU0VMRUNURURfQ09MT1J9O1xuXHRhbmltYXRpb246ICR7cG9wSW5PdXR9IDAuNnMgZWFzZS1vdXQ7XG5gXG5cbmV4cG9ydCBjb25zdCB0aW1lID0gKGlzQWN0aXZlOiBib29sZWFuKSA9PiBjc3NgXG5cdGNvbG9yOiAke1RJTUVfREVGQVVMVF9DT0xPUn07XG5cdGRpc3BsYXk6IGlubGluZS1ibG9jaztcblx0Zm9udC1zaXplOiA0OHB4O1xuXHRjdXJzb3I6IHBvaW50ZXI7XG5cdHVzZXItc2VsZWN0OiBub25lO1xuXHRsaW5lLWhlaWdodDogbm9ybWFsO1xuXHQke2lzQWN0aXZlICYmIHRpbWVTZWxlY3RlZH1cbmBcblxuZXhwb3J0IGNvbnN0IG1lcmlkaWVtID0gY3NzYFxuXHRjb2xvcjogJHtUSU1FX0RFRkFVTFRfQ09MT1J9O1xuXHRkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG5cdGZvbnQtc2l6ZTogMTNweDtcblx0dGV4dC10cmFuc2Zvcm06IHVwcGVyY2FzZTtcblx0bWFyZ2luLWxlZnQ6IDJweDtcblx0cGFkZGluZzogMTBweCA4cHg7XG5cdHZlcnRpY2FsLWFsaWduOiAxcHg7XG5gXG4iXX0= */"));
+(0, core_esm.css)("color:var(--top-selected-color,", TIME_SELECTED_COLOR, ");animation:", popInOut, " 0.6s ease-out;" + (process.env.NODE_ENV === "production" ? "" : "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy9jb21wb25lbnRzL3N0eWxlcy90b3AtYmFyLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQWlEd0IiLCJmaWxlIjoiLi4vLi4vLi4vc3JjL2NvbXBvbmVudHMvc3R5bGVzL3RvcC1iYXIudHMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBjc3MsIGpzeCwga2V5ZnJhbWVzIH0gZnJvbSAnQGVtb3Rpb24vY29yZSdcblxuY29uc3QgVElNRV9ERUZBVUxUX0NPTE9SID0gJyM4QzhDOEMnXG5jb25zdCBUSU1FX1NFTEVDVEVEX0NPTE9SID0gJyM4RURERkQnXG5cbmV4cG9ydCBjb25zdCB3cmFwcGVyID0gKGlzMjRocjogYm9vbGVhbikgPT4gY3NzYFxuXHRiYWNrZ3JvdW5kOiB2YXIoLS10b3AtYmcsIHdoaXRlKTtcblx0cGFkZGluZzogMTRweCAxNnB4O1xuXHRib3JkZXItcmFkaXVzOiAzcHggM3B4IDAgMDtcblx0cG9zaXRpb246IHJlbGF0aXZlO1xuXG5cdCR7aXMyNGhyICYmXG5cdFx0YFxuXHRcdGRpc3BsYXk6IGZsZXg7XG5cdFx0anVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG5cdGB9XG5gXG5cbmV4cG9ydCBjb25zdCBob3VyV3JhcHBlciA9IChpczI0aHI6IGJvb2xlYW4pID0+IGNzc2Bcblx0d2lkdGg6IDcycHg7XG5cdHRleHQtYWxpZ246IHJpZ2h0O1xuXHRwb3NpdGlvbjogcmVsYXRpdmU7XG5cdGRpc3BsYXk6IGlubGluZS1ibG9jaztcblx0JHshaXMyNGhyICYmICdtYXJnaW4tbGVmdDogMjBweDsnfVxuYFxuXG5leHBvcnQgY29uc3QgbWludXRlV3JhcHBlciA9IChpczI0aHI6IGJvb2xlYW4pID0+IGNzc2Bcblx0cG9zaXRpb246IHJlbGF0aXZlO1xuXHRkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG5cdCR7aXMyNGhyICYmICd3aWR0aDogNzJweDsnfVxuYFxuXG5leHBvcnQgY29uc3QgY29sb24gPSBjc3NgXG5cdGNvbG9yOiB2YXIoLS10b3AtY29sb24tY29sb3IsICR7VElNRV9ERUZBVUxUX0NPTE9SfSk7XG5cdGZvbnQtd2VpZ2h0OiA1MDA7XG5cdGRpc3BsYXk6IGlubGluZS1ibG9jaztcblx0Zm9udC1zaXplOiA0NnB4O1xuXHR2ZXJ0aWNhbC1hbGlnbjogMnB4O1xuXHRtYXJnaW46IDAgNXB4O1xuXHRsaW5lLWhlaWdodDogbm9ybWFsO1xuYFxuXG5jb25zdCBwb3BJbk91dCA9IGtleWZyYW1lc2Bcblx0ZnJvbSB7IHRyYW5zZm9ybTogc2NhbGUoMSk7IH1cblx0MzAlIHsgdHJhbnNmb3JtOiBzY2FsZSgwLjg4KTsgfVxuXHQ2MCUgeyB0cmFuc2Zvcm06IHNjYWxlKDEuMDUpOyB9XG5cdHRvIHsgdHJhbnNmb3JtOiBzY2FsZSgxKTsgfVxuYFxuXG5jb25zdCB0aW1lU2VsZWN0ZWQgPSBjc3NgXG5cdGNvbG9yOiB2YXIoLS10b3Atc2VsZWN0ZWQtY29sb3IsICR7VElNRV9TRUxFQ1RFRF9DT0xPUn0pO1xuXHRhbmltYXRpb246ICR7cG9wSW5PdXR9IDAuNnMgZWFzZS1vdXQ7XG5gXG5cbmV4cG9ydCBjb25zdCB0aW1lID0gKGlzQWN0aXZlOiBib29sZWFuKSA9PiBjc3NgXG5cdGNvbG9yOiB2YXIoLS10b3AtdGV4dC1jb2xvciwgJHtUSU1FX0RFRkFVTFRfQ09MT1J9KTtcblx0ZGlzcGxheTogaW5saW5lLWJsb2NrO1xuXHRmb250LXNpemU6IDQ4cHg7XG5cdGN1cnNvcjogcG9pbnRlcjtcblx0dXNlci1zZWxlY3Q6IG5vbmU7XG5cdGxpbmUtaGVpZ2h0OiBub3JtYWw7XG5cdCR7aXNBY3RpdmUgJiYgdGltZVNlbGVjdGVkfVxuYFxuXG5leHBvcnQgY29uc3QgbWVyaWRpZW0gPSBjc3NgXG5cdGNvbG9yOiB2YXIoLS10b3AtbWVyaWRpZW0tY29sb3IsICR7VElNRV9ERUZBVUxUX0NPTE9SfSk7XG5cdGRpc3BsYXk6IGlubGluZS1ibG9jaztcblx0Zm9udC1zaXplOiAxM3B4O1xuXHR0ZXh0LXRyYW5zZm9ybTogdXBwZXJjYXNlO1xuXHRtYXJnaW4tbGVmdDogMnB4O1xuXHRwYWRkaW5nOiAxMHB4IDhweDtcblx0dmVydGljYWwtYWxpZ246IDFweDtcbmBcbiJdfQ== */"));
 
-var time = function time(isActive) {
-  return (
-    /*#__PURE__*/
-    (0, core_esm.css)("color:", TIME_DEFAULT_COLOR, ";display:inline-block;font-size:48px;cursor:pointer;user-select:none;line-height:normal;", isActive && timeSelected, process.env.NODE_ENV === "production" ? "" : "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy9jb21wb25lbnRzL3N0eWxlcy90b3AtYmFyLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQXNEOEMiLCJmaWxlIjoiLi4vLi4vLi4vc3JjL2NvbXBvbmVudHMvc3R5bGVzL3RvcC1iYXIudHMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBjc3MsIGpzeCwga2V5ZnJhbWVzIH0gZnJvbSAnQGVtb3Rpb24vY29yZSdcblxuY29uc3QgVElNRV9ERUZBVUxUX0NPTE9SID0gJyM4QzhDOEMnXG5jb25zdCBUSU1FX1NFTEVDVEVEX0NPTE9SID0gJyM4RURERkQnXG5cbmV4cG9ydCBjb25zdCB3cmFwcGVyID0gKGlzMjRocjogYm9vbGVhbikgPT4gY3NzYFxuXHRiYWNrZ3JvdW5kOiB3aGl0ZTtcblx0cGFkZGluZzogMTRweCAxNnB4O1xuXHRib3JkZXItcmFkaXVzOiAzcHggM3B4IDAgMDtcblx0cG9zaXRpb246IHJlbGF0aXZlO1xuXG5cdCR7aXMyNGhyICYmXG5cdFx0YFxuXHRcdGRpc3BsYXk6IGZsZXg7XG5cdFx0anVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG5cdGB9XG5gXG5cbmV4cG9ydCBjb25zdCBob3VyV3JhcHBlciA9IChpczI0aHI6IGJvb2xlYW4pID0+IGNzc2Bcblx0d2lkdGg6IDcycHg7XG5cdHRleHQtYWxpZ246IHJpZ2h0O1xuXHRwb3NpdGlvbjogcmVsYXRpdmU7XG5cdGRpc3BsYXk6IGlubGluZS1ibG9jaztcblx0JHshaXMyNGhyICYmICdtYXJnaW4tbGVmdDogMjBweDsnfVxuYFxuXG5leHBvcnQgY29uc3QgbWludXRlV3JhcHBlciA9IChpczI0aHI6IGJvb2xlYW4pID0+IGNzc2Bcblx0cG9zaXRpb246IHJlbGF0aXZlO1xuXHRkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG5cdCR7aXMyNGhyICYmICd3aWR0aDogNzJweDsnfVxuYFxuXG5leHBvcnQgY29uc3QgY29sb24gPSBjc3NgXG5cdGNvbG9yOiAke1RJTUVfREVGQVVMVF9DT0xPUn07XG5cdGZvbnQtd2VpZ2h0OiA1MDA7XG5cdGRpc3BsYXk6IGlubGluZS1ibG9jaztcblx0Zm9udC1zaXplOiA0NnB4O1xuXHR2ZXJ0aWNhbC1hbGlnbjogMnB4O1xuXHRtYXJnaW46IDAgNXB4O1xuXHRsaW5lLWhlaWdodDogbm9ybWFsO1xuYFxuXG5jb25zdCBwb3BJbk91dCA9IGtleWZyYW1lc2Bcblx0ZnJvbSB7IHRyYW5zZm9ybTogc2NhbGUoMSk7IH1cblx0MzAlIHsgdHJhbnNmb3JtOiBzY2FsZSgwLjg4KTsgfVxuXHQ2MCUgeyB0cmFuc2Zvcm06IHNjYWxlKDEuMDUpOyB9XG5cdHRvIHsgdHJhbnNmb3JtOiBzY2FsZSgxKTsgfVxuYFxuXG5jb25zdCB0aW1lU2VsZWN0ZWQgPSBjc3NgXG5cdGNvbG9yOiAke1RJTUVfU0VMRUNURURfQ09MT1J9O1xuXHRhbmltYXRpb246ICR7cG9wSW5PdXR9IDAuNnMgZWFzZS1vdXQ7XG5gXG5cbmV4cG9ydCBjb25zdCB0aW1lID0gKGlzQWN0aXZlOiBib29sZWFuKSA9PiBjc3NgXG5cdGNvbG9yOiAke1RJTUVfREVGQVVMVF9DT0xPUn07XG5cdGRpc3BsYXk6IGlubGluZS1ibG9jaztcblx0Zm9udC1zaXplOiA0OHB4O1xuXHRjdXJzb3I6IHBvaW50ZXI7XG5cdHVzZXItc2VsZWN0OiBub25lO1xuXHRsaW5lLWhlaWdodDogbm9ybWFsO1xuXHQke2lzQWN0aXZlICYmIHRpbWVTZWxlY3RlZH1cbmBcblxuZXhwb3J0IGNvbnN0IG1lcmlkaWVtID0gY3NzYFxuXHRjb2xvcjogJHtUSU1FX0RFRkFVTFRfQ09MT1J9O1xuXHRkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG5cdGZvbnQtc2l6ZTogMTNweDtcblx0dGV4dC10cmFuc2Zvcm06IHVwcGVyY2FzZTtcblx0bWFyZ2luLWxlZnQ6IDJweDtcblx0cGFkZGluZzogMTBweCA4cHg7XG5cdHZlcnRpY2FsLWFsaWduOiAxcHg7XG5gXG4iXX0= */")
-  );
-};
+const time = isActive =>
+/*#__PURE__*/
+(0, core_esm.css)("color:var(--top-text-color,", TIME_DEFAULT_COLOR, ");display:inline-block;font-size:48px;cursor:pointer;user-select:none;line-height:normal;", isActive && timeSelected, process.env.NODE_ENV === "production" ? "" : "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy9jb21wb25lbnRzL3N0eWxlcy90b3AtYmFyLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQXNEOEMiLCJmaWxlIjoiLi4vLi4vLi4vc3JjL2NvbXBvbmVudHMvc3R5bGVzL3RvcC1iYXIudHMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBjc3MsIGpzeCwga2V5ZnJhbWVzIH0gZnJvbSAnQGVtb3Rpb24vY29yZSdcblxuY29uc3QgVElNRV9ERUZBVUxUX0NPTE9SID0gJyM4QzhDOEMnXG5jb25zdCBUSU1FX1NFTEVDVEVEX0NPTE9SID0gJyM4RURERkQnXG5cbmV4cG9ydCBjb25zdCB3cmFwcGVyID0gKGlzMjRocjogYm9vbGVhbikgPT4gY3NzYFxuXHRiYWNrZ3JvdW5kOiB2YXIoLS10b3AtYmcsIHdoaXRlKTtcblx0cGFkZGluZzogMTRweCAxNnB4O1xuXHRib3JkZXItcmFkaXVzOiAzcHggM3B4IDAgMDtcblx0cG9zaXRpb246IHJlbGF0aXZlO1xuXG5cdCR7aXMyNGhyICYmXG5cdFx0YFxuXHRcdGRpc3BsYXk6IGZsZXg7XG5cdFx0anVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG5cdGB9XG5gXG5cbmV4cG9ydCBjb25zdCBob3VyV3JhcHBlciA9IChpczI0aHI6IGJvb2xlYW4pID0+IGNzc2Bcblx0d2lkdGg6IDcycHg7XG5cdHRleHQtYWxpZ246IHJpZ2h0O1xuXHRwb3NpdGlvbjogcmVsYXRpdmU7XG5cdGRpc3BsYXk6IGlubGluZS1ibG9jaztcblx0JHshaXMyNGhyICYmICdtYXJnaW4tbGVmdDogMjBweDsnfVxuYFxuXG5leHBvcnQgY29uc3QgbWludXRlV3JhcHBlciA9IChpczI0aHI6IGJvb2xlYW4pID0+IGNzc2Bcblx0cG9zaXRpb246IHJlbGF0aXZlO1xuXHRkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG5cdCR7aXMyNGhyICYmICd3aWR0aDogNzJweDsnfVxuYFxuXG5leHBvcnQgY29uc3QgY29sb24gPSBjc3NgXG5cdGNvbG9yOiB2YXIoLS10b3AtY29sb24tY29sb3IsICR7VElNRV9ERUZBVUxUX0NPTE9SfSk7XG5cdGZvbnQtd2VpZ2h0OiA1MDA7XG5cdGRpc3BsYXk6IGlubGluZS1ibG9jaztcblx0Zm9udC1zaXplOiA0NnB4O1xuXHR2ZXJ0aWNhbC1hbGlnbjogMnB4O1xuXHRtYXJnaW46IDAgNXB4O1xuXHRsaW5lLWhlaWdodDogbm9ybWFsO1xuYFxuXG5jb25zdCBwb3BJbk91dCA9IGtleWZyYW1lc2Bcblx0ZnJvbSB7IHRyYW5zZm9ybTogc2NhbGUoMSk7IH1cblx0MzAlIHsgdHJhbnNmb3JtOiBzY2FsZSgwLjg4KTsgfVxuXHQ2MCUgeyB0cmFuc2Zvcm06IHNjYWxlKDEuMDUpOyB9XG5cdHRvIHsgdHJhbnNmb3JtOiBzY2FsZSgxKTsgfVxuYFxuXG5jb25zdCB0aW1lU2VsZWN0ZWQgPSBjc3NgXG5cdGNvbG9yOiB2YXIoLS10b3Atc2VsZWN0ZWQtY29sb3IsICR7VElNRV9TRUxFQ1RFRF9DT0xPUn0pO1xuXHRhbmltYXRpb246ICR7cG9wSW5PdXR9IDAuNnMgZWFzZS1vdXQ7XG5gXG5cbmV4cG9ydCBjb25zdCB0aW1lID0gKGlzQWN0aXZlOiBib29sZWFuKSA9PiBjc3NgXG5cdGNvbG9yOiB2YXIoLS10b3AtdGV4dC1jb2xvciwgJHtUSU1FX0RFRkFVTFRfQ09MT1J9KTtcblx0ZGlzcGxheTogaW5saW5lLWJsb2NrO1xuXHRmb250LXNpemU6IDQ4cHg7XG5cdGN1cnNvcjogcG9pbnRlcjtcblx0dXNlci1zZWxlY3Q6IG5vbmU7XG5cdGxpbmUtaGVpZ2h0OiBub3JtYWw7XG5cdCR7aXNBY3RpdmUgJiYgdGltZVNlbGVjdGVkfVxuYFxuXG5leHBvcnQgY29uc3QgbWVyaWRpZW0gPSBjc3NgXG5cdGNvbG9yOiB2YXIoLS10b3AtbWVyaWRpZW0tY29sb3IsICR7VElNRV9ERUZBVUxUX0NPTE9SfSk7XG5cdGRpc3BsYXk6IGlubGluZS1ibG9jaztcblx0Zm9udC1zaXplOiAxM3B4O1xuXHR0ZXh0LXRyYW5zZm9ybTogdXBwZXJjYXNlO1xuXHRtYXJnaW4tbGVmdDogMnB4O1xuXHRwYWRkaW5nOiAxMHB4IDhweDtcblx0dmVydGljYWwtYWxpZ246IDFweDtcbmBcbiJdfQ== */");
 
 exports.time = time;
-var meridiem =
+const meridiem =
 /*#__PURE__*/
-(0, core_esm.css)("color:", TIME_DEFAULT_COLOR, ";display:inline-block;font-size:13px;text-transform:uppercase;margin-left:2px;padding:10px 8px;vertical-align:1px;" + (process.env.NODE_ENV === "production" ? "" : "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy9jb21wb25lbnRzL3N0eWxlcy90b3AtYmFyLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQWdFMkIiLCJmaWxlIjoiLi4vLi4vLi4vc3JjL2NvbXBvbmVudHMvc3R5bGVzL3RvcC1iYXIudHMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBjc3MsIGpzeCwga2V5ZnJhbWVzIH0gZnJvbSAnQGVtb3Rpb24vY29yZSdcblxuY29uc3QgVElNRV9ERUZBVUxUX0NPTE9SID0gJyM4QzhDOEMnXG5jb25zdCBUSU1FX1NFTEVDVEVEX0NPTE9SID0gJyM4RURERkQnXG5cbmV4cG9ydCBjb25zdCB3cmFwcGVyID0gKGlzMjRocjogYm9vbGVhbikgPT4gY3NzYFxuXHRiYWNrZ3JvdW5kOiB3aGl0ZTtcblx0cGFkZGluZzogMTRweCAxNnB4O1xuXHRib3JkZXItcmFkaXVzOiAzcHggM3B4IDAgMDtcblx0cG9zaXRpb246IHJlbGF0aXZlO1xuXG5cdCR7aXMyNGhyICYmXG5cdFx0YFxuXHRcdGRpc3BsYXk6IGZsZXg7XG5cdFx0anVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG5cdGB9XG5gXG5cbmV4cG9ydCBjb25zdCBob3VyV3JhcHBlciA9IChpczI0aHI6IGJvb2xlYW4pID0+IGNzc2Bcblx0d2lkdGg6IDcycHg7XG5cdHRleHQtYWxpZ246IHJpZ2h0O1xuXHRwb3NpdGlvbjogcmVsYXRpdmU7XG5cdGRpc3BsYXk6IGlubGluZS1ibG9jaztcblx0JHshaXMyNGhyICYmICdtYXJnaW4tbGVmdDogMjBweDsnfVxuYFxuXG5leHBvcnQgY29uc3QgbWludXRlV3JhcHBlciA9IChpczI0aHI6IGJvb2xlYW4pID0+IGNzc2Bcblx0cG9zaXRpb246IHJlbGF0aXZlO1xuXHRkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG5cdCR7aXMyNGhyICYmICd3aWR0aDogNzJweDsnfVxuYFxuXG5leHBvcnQgY29uc3QgY29sb24gPSBjc3NgXG5cdGNvbG9yOiAke1RJTUVfREVGQVVMVF9DT0xPUn07XG5cdGZvbnQtd2VpZ2h0OiA1MDA7XG5cdGRpc3BsYXk6IGlubGluZS1ibG9jaztcblx0Zm9udC1zaXplOiA0NnB4O1xuXHR2ZXJ0aWNhbC1hbGlnbjogMnB4O1xuXHRtYXJnaW46IDAgNXB4O1xuXHRsaW5lLWhlaWdodDogbm9ybWFsO1xuYFxuXG5jb25zdCBwb3BJbk91dCA9IGtleWZyYW1lc2Bcblx0ZnJvbSB7IHRyYW5zZm9ybTogc2NhbGUoMSk7IH1cblx0MzAlIHsgdHJhbnNmb3JtOiBzY2FsZSgwLjg4KTsgfVxuXHQ2MCUgeyB0cmFuc2Zvcm06IHNjYWxlKDEuMDUpOyB9XG5cdHRvIHsgdHJhbnNmb3JtOiBzY2FsZSgxKTsgfVxuYFxuXG5jb25zdCB0aW1lU2VsZWN0ZWQgPSBjc3NgXG5cdGNvbG9yOiAke1RJTUVfU0VMRUNURURfQ09MT1J9O1xuXHRhbmltYXRpb246ICR7cG9wSW5PdXR9IDAuNnMgZWFzZS1vdXQ7XG5gXG5cbmV4cG9ydCBjb25zdCB0aW1lID0gKGlzQWN0aXZlOiBib29sZWFuKSA9PiBjc3NgXG5cdGNvbG9yOiAke1RJTUVfREVGQVVMVF9DT0xPUn07XG5cdGRpc3BsYXk6IGlubGluZS1ibG9jaztcblx0Zm9udC1zaXplOiA0OHB4O1xuXHRjdXJzb3I6IHBvaW50ZXI7XG5cdHVzZXItc2VsZWN0OiBub25lO1xuXHRsaW5lLWhlaWdodDogbm9ybWFsO1xuXHQke2lzQWN0aXZlICYmIHRpbWVTZWxlY3RlZH1cbmBcblxuZXhwb3J0IGNvbnN0IG1lcmlkaWVtID0gY3NzYFxuXHRjb2xvcjogJHtUSU1FX0RFRkFVTFRfQ09MT1J9O1xuXHRkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG5cdGZvbnQtc2l6ZTogMTNweDtcblx0dGV4dC10cmFuc2Zvcm06IHVwcGVyY2FzZTtcblx0bWFyZ2luLWxlZnQ6IDJweDtcblx0cGFkZGluZzogMTBweCA4cHg7XG5cdHZlcnRpY2FsLWFsaWduOiAxcHg7XG5gXG4iXX0= */"));
+(0, core_esm.css)("color:var(--top-meridiem-color,", TIME_DEFAULT_COLOR, ");display:inline-block;font-size:13px;text-transform:uppercase;margin-left:2px;padding:10px 8px;vertical-align:1px;" + (process.env.NODE_ENV === "production" ? "" : "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy9jb21wb25lbnRzL3N0eWxlcy90b3AtYmFyLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQWdFMkIiLCJmaWxlIjoiLi4vLi4vLi4vc3JjL2NvbXBvbmVudHMvc3R5bGVzL3RvcC1iYXIudHMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBjc3MsIGpzeCwga2V5ZnJhbWVzIH0gZnJvbSAnQGVtb3Rpb24vY29yZSdcblxuY29uc3QgVElNRV9ERUZBVUxUX0NPTE9SID0gJyM4QzhDOEMnXG5jb25zdCBUSU1FX1NFTEVDVEVEX0NPTE9SID0gJyM4RURERkQnXG5cbmV4cG9ydCBjb25zdCB3cmFwcGVyID0gKGlzMjRocjogYm9vbGVhbikgPT4gY3NzYFxuXHRiYWNrZ3JvdW5kOiB2YXIoLS10b3AtYmcsIHdoaXRlKTtcblx0cGFkZGluZzogMTRweCAxNnB4O1xuXHRib3JkZXItcmFkaXVzOiAzcHggM3B4IDAgMDtcblx0cG9zaXRpb246IHJlbGF0aXZlO1xuXG5cdCR7aXMyNGhyICYmXG5cdFx0YFxuXHRcdGRpc3BsYXk6IGZsZXg7XG5cdFx0anVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG5cdGB9XG5gXG5cbmV4cG9ydCBjb25zdCBob3VyV3JhcHBlciA9IChpczI0aHI6IGJvb2xlYW4pID0+IGNzc2Bcblx0d2lkdGg6IDcycHg7XG5cdHRleHQtYWxpZ246IHJpZ2h0O1xuXHRwb3NpdGlvbjogcmVsYXRpdmU7XG5cdGRpc3BsYXk6IGlubGluZS1ibG9jaztcblx0JHshaXMyNGhyICYmICdtYXJnaW4tbGVmdDogMjBweDsnfVxuYFxuXG5leHBvcnQgY29uc3QgbWludXRlV3JhcHBlciA9IChpczI0aHI6IGJvb2xlYW4pID0+IGNzc2Bcblx0cG9zaXRpb246IHJlbGF0aXZlO1xuXHRkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG5cdCR7aXMyNGhyICYmICd3aWR0aDogNzJweDsnfVxuYFxuXG5leHBvcnQgY29uc3QgY29sb24gPSBjc3NgXG5cdGNvbG9yOiB2YXIoLS10b3AtY29sb24tY29sb3IsICR7VElNRV9ERUZBVUxUX0NPTE9SfSk7XG5cdGZvbnQtd2VpZ2h0OiA1MDA7XG5cdGRpc3BsYXk6IGlubGluZS1ibG9jaztcblx0Zm9udC1zaXplOiA0NnB4O1xuXHR2ZXJ0aWNhbC1hbGlnbjogMnB4O1xuXHRtYXJnaW46IDAgNXB4O1xuXHRsaW5lLWhlaWdodDogbm9ybWFsO1xuYFxuXG5jb25zdCBwb3BJbk91dCA9IGtleWZyYW1lc2Bcblx0ZnJvbSB7IHRyYW5zZm9ybTogc2NhbGUoMSk7IH1cblx0MzAlIHsgdHJhbnNmb3JtOiBzY2FsZSgwLjg4KTsgfVxuXHQ2MCUgeyB0cmFuc2Zvcm06IHNjYWxlKDEuMDUpOyB9XG5cdHRvIHsgdHJhbnNmb3JtOiBzY2FsZSgxKTsgfVxuYFxuXG5jb25zdCB0aW1lU2VsZWN0ZWQgPSBjc3NgXG5cdGNvbG9yOiB2YXIoLS10b3Atc2VsZWN0ZWQtY29sb3IsICR7VElNRV9TRUxFQ1RFRF9DT0xPUn0pO1xuXHRhbmltYXRpb246ICR7cG9wSW5PdXR9IDAuNnMgZWFzZS1vdXQ7XG5gXG5cbmV4cG9ydCBjb25zdCB0aW1lID0gKGlzQWN0aXZlOiBib29sZWFuKSA9PiBjc3NgXG5cdGNvbG9yOiB2YXIoLS10b3AtdGV4dC1jb2xvciwgJHtUSU1FX0RFRkFVTFRfQ09MT1J9KTtcblx0ZGlzcGxheTogaW5saW5lLWJsb2NrO1xuXHRmb250LXNpemU6IDQ4cHg7XG5cdGN1cnNvcjogcG9pbnRlcjtcblx0dXNlci1zZWxlY3Q6IG5vbmU7XG5cdGxpbmUtaGVpZ2h0OiBub3JtYWw7XG5cdCR7aXNBY3RpdmUgJiYgdGltZVNlbGVjdGVkfVxuYFxuXG5leHBvcnQgY29uc3QgbWVyaWRpZW0gPSBjc3NgXG5cdGNvbG9yOiB2YXIoLS10b3AtbWVyaWRpZW0tY29sb3IsICR7VElNRV9ERUZBVUxUX0NPTE9SfSk7XG5cdGRpc3BsYXk6IGlubGluZS1ibG9jaztcblx0Zm9udC1zaXplOiAxM3B4O1xuXHR0ZXh0LXRyYW5zZm9ybTogdXBwZXJjYXNlO1xuXHRtYXJnaW4tbGVmdDogMnB4O1xuXHRwYWRkaW5nOiAxMHB4IDhweDtcblx0dmVydGljYWwtYWxpZ246IDFweDtcbmBcbiJdfQ== */"));
 exports.meridiem = meridiem;
 });
 
@@ -17577,48 +17713,46 @@ var styles = interopRequireWildcard(topBar);
 
 
 function TopBar() {
-  var _useConfig = (0, _configContext.default)(),
-      hour24Mode = _useConfig.hour24Mode;
+  const _useConfig = (0, _configContext.default)(),
+        hour24Mode = _useConfig.hour24Mode;
 
-  var _useTimekeeperState = (0, _stateContext.default)(),
-      mode = _useTimekeeperState.mode,
-      time = _useTimekeeperState.time,
-      updateMeridiem = _useTimekeeperState.updateMeridiem,
-      setMode = _useTimekeeperState.setMode;
+  const _useTimekeeperState = (0, _stateContext.default)(),
+        mode = _useTimekeeperState.mode,
+        time = _useTimekeeperState.time,
+        updateMeridiem = _useTimekeeperState.updateMeridiem,
+        setMode = _useTimekeeperState.setMode;
 
-  var _useState = (0, _react.useState)(null),
-      _useState2 = (0, _slicedToArray2.default)(_useState, 2),
-      open = _useState2[0],
-      setOpen = _useState2[1]; // time clicks
+  const _useState = (0, _react.useState)(null),
+        _useState2 = (0, _slicedToArray2.default)(_useState, 2),
+        open = _useState2[0],
+        setOpen = _useState2[1]; // time clicks
 
 
   function timeClick(type) {
-    var current = mode === constants.MODE.MINUTES ? 'minute' : 'hour';
+    const current = mode === constants.MODE.MINUTES ? 'minute' : 'hour';
 
     if (type === current) {
       setOpen(current);
     } else {
-      var m = mode === constants.MODE.MINUTES ? constants.MODE.HOURS_24 : constants.MODE.MINUTES;
+      const m = mode === constants.MODE.MINUTES ? constants.MODE.HOURS_24 : constants.MODE.MINUTES;
       setMode(m);
     }
   } // double ternary nastiness
 
 
-  var hour = hour24Mode ? time.hour : time.hour % 12 === 0 ? 12 : time.hour % 12; // meridiem
+  const hour = hour24Mode ? time.hour : time.hour % 12 === 0 ? 12 : time.hour % 12; // meridiem
 
-  var meridiem = time.hour >= 12 ? constants.MERIDIEM.pm : constants.MERIDIEM.am;
+  const meridiem = time.hour >= 12 ? constants.MERIDIEM.pm : constants.MERIDIEM.am;
 
   function toggleMeridiem() {
-    var m = meridiem === constants.MERIDIEM.am ? constants.MERIDIEM.pm : constants.MERIDIEM.am;
+    const m = meridiem === constants.MERIDIEM.am ? constants.MERIDIEM.pm : constants.MERIDIEM.am;
     updateMeridiem(m);
   }
 
-  var isHour = (0, utils.isHourMode)(mode);
-  var formattedMinute = ('0' + time.minute).slice(-2);
+  const isHour = (0, utils.isHourMode)(mode);
+  const formattedMinute = ('0' + time.minute).slice(-2);
 
-  var closeDropdown = function closeDropdown() {
-    return setOpen(null);
-  };
+  const closeDropdown = () => setOpen(null);
 
   return (0, core_esm.jsx)("div", {
     css: styles.wrapper(hour24Mode),
@@ -17629,12 +17763,10 @@ function TopBar() {
   }, (0, core_esm.jsx)("span", {
     css:
     /*#__PURE__*/
-    (0, _css2.default)([styles.time(isHour)], process.env.NODE_ENV === "production" ? "" : "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uL3NyYy9jb21wb25lbnRzL1RvcEJhci50c3giXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBaURLIiwiZmlsZSI6Ii4uLy4uL3NyYy9jb21wb25lbnRzL1RvcEJhci50c3giLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgUmVhY3QsIHsgdXNlU3RhdGUgfSBmcm9tICdyZWFjdCdcbmltcG9ydCB7IGpzeCB9IGZyb20gJ0BlbW90aW9uL2NvcmUnXG5cbmltcG9ydCBUaW1lRHJvcGRvd24gZnJvbSAnLi9UaW1lRHJvcGRvd24nXG5pbXBvcnQgdXNlVGltZWtlZXBlclN0YXRlIGZyb20gJy4uL2hvb2tzL3N0YXRlLWNvbnRleHQnXG5pbXBvcnQgdXNlQ29uZmlnIGZyb20gJy4uL2hvb2tzL2NvbmZpZy1jb250ZXh0J1xuaW1wb3J0ICogYXMgc3R5bGVzIGZyb20gJy4vc3R5bGVzL3RvcC1iYXInXG5pbXBvcnQgeyBNT0RFLCBNRVJJRElFTSB9IGZyb20gJy4uL2hlbHBlcnMvY29uc3RhbnRzJ1xuaW1wb3J0IHsgaXNIb3VyTW9kZSB9IGZyb20gJy4uL2hlbHBlcnMvdXRpbHMnXG5cbmV4cG9ydCBkZWZhdWx0IGZ1bmN0aW9uIFRvcEJhcigpIHtcblx0Y29uc3QgeyBob3VyMjRNb2RlIH0gPSB1c2VDb25maWcoKVxuXHRjb25zdCB7IG1vZGUsIHRpbWUsIHVwZGF0ZU1lcmlkaWVtLCBzZXRNb2RlIH0gPSB1c2VUaW1la2VlcGVyU3RhdGUoKVxuXHRjb25zdCBbb3Blbiwgc2V0T3Blbl0gPSB1c2VTdGF0ZTxudWxsIHwgJ2hvdXInIHwgJ21pbnV0ZSc+KG51bGwpXG5cblx0Ly8gdGltZSBjbGlja3Ncblx0ZnVuY3Rpb24gdGltZUNsaWNrKHR5cGU6ICdtaW51dGUnIHwgJ2hvdXInKSB7XG5cdFx0Y29uc3QgY3VycmVudCA9IG1vZGUgPT09IE1PREUuTUlOVVRFUyA/ICdtaW51dGUnIDogJ2hvdXInXG5cdFx0aWYgKHR5cGUgPT09IGN1cnJlbnQpIHtcblx0XHRcdHNldE9wZW4oY3VycmVudClcblx0XHR9IGVsc2Uge1xuXHRcdFx0Y29uc3QgbSA9IG1vZGUgPT09IE1PREUuTUlOVVRFUyA/IE1PREUuSE9VUlNfMjQgOiBNT0RFLk1JTlVURVNcblx0XHRcdHNldE1vZGUobSlcblx0XHR9XG5cdH1cblxuXHQvLyBkb3VibGUgdGVybmFyeSBuYXN0aW5lc3Ncblx0Y29uc3QgaG91ciA9IGhvdXIyNE1vZGUgPyB0aW1lLmhvdXIgOiB0aW1lLmhvdXIgJSAxMiA9PT0gMCA/IDEyIDogdGltZS5ob3VyICUgMTJcblxuXHQvLyBtZXJpZGllbVxuXHRjb25zdCBtZXJpZGllbSA9IHRpbWUuaG91ciA+PSAxMiA/IE1FUklESUVNLnBtIDogTUVSSURJRU0uYW1cblx0ZnVuY3Rpb24gdG9nZ2xlTWVyaWRpZW0oKSB7XG5cdFx0Y29uc3QgbSA9IG1lcmlkaWVtID09PSBNRVJJRElFTS5hbSA/IE1FUklESUVNLnBtIDogTUVSSURJRU0uYW1cblx0XHR1cGRhdGVNZXJpZGllbShtKVxuXHR9XG5cblx0Y29uc3QgaXNIb3VyID0gaXNIb3VyTW9kZShtb2RlKVxuXHRjb25zdCBmb3JtYXR0ZWRNaW51dGUgPSAoJzAnICsgdGltZS5taW51dGUpLnNsaWNlKC0yKVxuXG5cdGNvbnN0IGNsb3NlRHJvcGRvd24gPSAoKSA9PiBzZXRPcGVuKG51bGwpXG5cblx0cmV0dXJuIChcblx0XHQ8ZGl2IGNzcz17c3R5bGVzLndyYXBwZXIoaG91cjI0TW9kZSl9IGNsYXNzTmFtZT1cInJlYWN0LXRpbWVrZWVwZXJfX3RvcC1iYXJcIj5cblx0XHRcdHsvKiBob3VyICovfVxuXHRcdFx0PGRpdlxuXHRcdFx0XHRjc3M9e3N0eWxlcy5ob3VyV3JhcHBlcihob3VyMjRNb2RlKX1cblx0XHRcdFx0Y2xhc3NOYW1lPVwicmVhY3QtdGltZWtlZXBlcl9fdGItbWludXRlLXdyYXBwZXJcIlxuXHRcdFx0PlxuXHRcdFx0XHQ8c3BhblxuXHRcdFx0XHRcdGNzcz17W3N0eWxlcy50aW1lKGlzSG91cildfVxuXHRcdFx0XHRcdG9uQ2xpY2s9eygpID0+IHRpbWVDbGljaygnaG91cicpfVxuXHRcdFx0XHRcdGRhdGEtdHlwZT1cImhvdXJcIlxuXHRcdFx0XHRcdGNsYXNzTmFtZT1cInJlYWN0LXRpbWVrZWVwZXJfX3RiLWhvdXJcIlxuXHRcdFx0XHQ+XG5cdFx0XHRcdFx0e2hvdXJ9XG5cdFx0XHRcdDwvc3Bhbj5cblx0XHRcdFx0e29wZW4gPT09ICdob3VyJyAmJiA8VGltZURyb3Bkb3duIGNsb3NlPXtjbG9zZURyb3Bkb3dufSAvPn1cblx0XHRcdDwvZGl2PlxuXG5cdFx0XHQ8c3BhbiBjc3M9e3N0eWxlcy5jb2xvbn0gY2xhc3NOYW1lPVwicmVhY3QtdGltZWtlZXBlcl9fdGItY29sb25cIj5cblx0XHRcdFx0OlxuXHRcdFx0PC9zcGFuPlxuXG5cdFx0XHR7LyogbWludXRlICovfVxuXHRcdFx0PGRpdlxuXHRcdFx0XHRjc3M9e3N0eWxlcy5taW51dGVXcmFwcGVyKGhvdXIyNE1vZGUpfVxuXHRcdFx0XHRjbGFzc05hbWU9XCJyZWFjdC10aW1la2VlcGVyX190Yi1ob3VyLXdyYXBwZXJcIlxuXHRcdFx0PlxuXHRcdFx0XHQ8c3BhblxuXHRcdFx0XHRcdGNzcz17c3R5bGVzLnRpbWUoIWlzSG91cil9XG5cdFx0XHRcdFx0b25DbGljaz17KCkgPT4gdGltZUNsaWNrKCdtaW51dGUnKX1cblx0XHRcdFx0XHRkYXRhLXR5cGU9XCJtaW51dGVcIlxuXHRcdFx0XHRcdGNsYXNzTmFtZT1cInJlYWN0LXRpbWVrZWVwZXJfX3RiLW1pbnV0ZVwiXG5cdFx0XHRcdD5cblx0XHRcdFx0XHR7Zm9ybWF0dGVkTWludXRlfVxuXHRcdFx0XHQ8L3NwYW4+XG5cdFx0XHRcdHtvcGVuID09PSAnbWludXRlJyAmJiA8VGltZURyb3Bkb3duIGNsb3NlPXtjbG9zZURyb3Bkb3dufSAvPn1cblx0XHRcdDwvZGl2PlxuXG5cdFx0XHR7LyogbWVyaWRpZW0gKi99XG5cdFx0XHR7IWhvdXIyNE1vZGUgJiYgKFxuXHRcdFx0XHQ8YnV0dG9uXG5cdFx0XHRcdFx0bmFtZT1cIm1lcmlkaWVtXCJcblx0XHRcdFx0XHR0eXBlPVwiYnV0dG9uXCJcblx0XHRcdFx0XHRvbkNsaWNrPXt0b2dnbGVNZXJpZGllbX1cblx0XHRcdFx0XHRjc3M9e3N0eWxlcy5tZXJpZGllbX1cblx0XHRcdFx0XHRjbGFzc05hbWU9XCJyZWFjdC10aW1la2VlcGVyLWJ1dHRvbi1yZXNldCByZWFjdC10aW1la2VlcGVyX190Yi1tZXJpZGllbVwiXG5cdFx0XHRcdD5cblx0XHRcdFx0XHR7bWVyaWRpZW19XG5cdFx0XHRcdDwvYnV0dG9uPlxuXHRcdFx0KX1cblx0XHQ8L2Rpdj5cblx0KVxufVxuIl19 */"),
-    onClick: function onClick() {
-      return timeClick('hour');
-    },
+    (0, _css2.default)([styles.time(isHour)], process.env.NODE_ENV === "production" ? "" : "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uL3NyYy9jb21wb25lbnRzL1RvcEJhci50c3giXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBaURLIiwiZmlsZSI6Ii4uLy4uL3NyYy9jb21wb25lbnRzL1RvcEJhci50c3giLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgUmVhY3QsIHsgdXNlU3RhdGUgfSBmcm9tICdyZWFjdCdcbmltcG9ydCB7IGpzeCB9IGZyb20gJ0BlbW90aW9uL2NvcmUnXG5cbmltcG9ydCBUaW1lRHJvcGRvd24gZnJvbSAnLi9UaW1lRHJvcGRvd24nXG5pbXBvcnQgdXNlVGltZWtlZXBlclN0YXRlIGZyb20gJy4uL2hvb2tzL3N0YXRlLWNvbnRleHQnXG5pbXBvcnQgdXNlQ29uZmlnIGZyb20gJy4uL2hvb2tzL2NvbmZpZy1jb250ZXh0J1xuaW1wb3J0ICogYXMgc3R5bGVzIGZyb20gJy4vc3R5bGVzL3RvcC1iYXInXG5pbXBvcnQgeyBNT0RFLCBNRVJJRElFTSB9IGZyb20gJy4uL2hlbHBlcnMvY29uc3RhbnRzJ1xuaW1wb3J0IHsgaXNIb3VyTW9kZSB9IGZyb20gJy4uL2hlbHBlcnMvdXRpbHMnXG5cbmV4cG9ydCBkZWZhdWx0IGZ1bmN0aW9uIFRvcEJhcigpIHtcblx0Y29uc3QgeyBob3VyMjRNb2RlIH0gPSB1c2VDb25maWcoKVxuXHRjb25zdCB7IG1vZGUsIHRpbWUsIHVwZGF0ZU1lcmlkaWVtLCBzZXRNb2RlIH0gPSB1c2VUaW1la2VlcGVyU3RhdGUoKVxuXHRjb25zdCBbb3Blbiwgc2V0T3Blbl0gPSB1c2VTdGF0ZTxudWxsIHwgJ2hvdXInIHwgJ21pbnV0ZSc+KG51bGwpXG5cblx0Ly8gdGltZSBjbGlja3Ncblx0ZnVuY3Rpb24gdGltZUNsaWNrKHR5cGU6ICdtaW51dGUnIHwgJ2hvdXInKSB7XG5cdFx0Y29uc3QgY3VycmVudCA9IG1vZGUgPT09IE1PREUuTUlOVVRFUyA/ICdtaW51dGUnIDogJ2hvdXInXG5cdFx0aWYgKHR5cGUgPT09IGN1cnJlbnQpIHtcblx0XHRcdHNldE9wZW4oY3VycmVudClcblx0XHR9IGVsc2Uge1xuXHRcdFx0Y29uc3QgbSA9IG1vZGUgPT09IE1PREUuTUlOVVRFUyA/IE1PREUuSE9VUlNfMjQgOiBNT0RFLk1JTlVURVNcblx0XHRcdHNldE1vZGUobSlcblx0XHR9XG5cdH1cblxuXHQvLyBkb3VibGUgdGVybmFyeSBuYXN0aW5lc3Ncblx0Y29uc3QgaG91ciA9IGhvdXIyNE1vZGUgPyB0aW1lLmhvdXIgOiB0aW1lLmhvdXIgJSAxMiA9PT0gMCA/IDEyIDogdGltZS5ob3VyICUgMTJcblxuXHQvLyBtZXJpZGllbVxuXHRjb25zdCBtZXJpZGllbSA9IHRpbWUuaG91ciA+PSAxMiA/IE1FUklESUVNLnBtIDogTUVSSURJRU0uYW1cblx0ZnVuY3Rpb24gdG9nZ2xlTWVyaWRpZW0oKSB7XG5cdFx0Y29uc3QgbSA9IG1lcmlkaWVtID09PSBNRVJJRElFTS5hbSA/IE1FUklESUVNLnBtIDogTUVSSURJRU0uYW1cblx0XHR1cGRhdGVNZXJpZGllbShtKVxuXHR9XG5cblx0Y29uc3QgaXNIb3VyID0gaXNIb3VyTW9kZShtb2RlKVxuXHRjb25zdCBmb3JtYXR0ZWRNaW51dGUgPSAoJzAnICsgdGltZS5taW51dGUpLnNsaWNlKC0yKVxuXG5cdGNvbnN0IGNsb3NlRHJvcGRvd24gPSAoKSA9PiBzZXRPcGVuKG51bGwpXG5cblx0cmV0dXJuIChcblx0XHQ8ZGl2IGNzcz17c3R5bGVzLndyYXBwZXIoaG91cjI0TW9kZSl9IGNsYXNzTmFtZT1cInJlYWN0LXRpbWVrZWVwZXJfX3RvcC1iYXJcIj5cblx0XHRcdHsvKiBob3VyICovfVxuXHRcdFx0PGRpdlxuXHRcdFx0XHRjc3M9e3N0eWxlcy5ob3VyV3JhcHBlcihob3VyMjRNb2RlKX1cblx0XHRcdFx0Y2xhc3NOYW1lPVwicmVhY3QtdGltZWtlZXBlcl9fdGItbWludXRlLXdyYXBwZXJcIlxuXHRcdFx0PlxuXHRcdFx0XHQ8c3BhblxuXHRcdFx0XHRcdGNzcz17W3N0eWxlcy50aW1lKGlzSG91cildfVxuXHRcdFx0XHRcdG9uQ2xpY2s9eygpID0+IHRpbWVDbGljaygnaG91cicpfVxuXHRcdFx0XHRcdGRhdGEtdHlwZT1cImhvdXJcIlxuXHRcdFx0XHRcdGNsYXNzTmFtZT17YHJlYWN0LXRpbWVrZWVwZXJfX3RiLWhvdXIgJHtpc0hvdXIgPyAncmVhY3QtdGltZWtlZXBlcl9fdGItaG91ci0tYWN0aXZlJyA6ICcnfWB9XG5cdFx0XHRcdD5cblx0XHRcdFx0XHR7aG91cn1cblx0XHRcdFx0PC9zcGFuPlxuXHRcdFx0XHR7b3BlbiA9PT0gJ2hvdXInICYmIDxUaW1lRHJvcGRvd24gY2xvc2U9e2Nsb3NlRHJvcGRvd259IC8+fVxuXHRcdFx0PC9kaXY+XG5cblx0XHRcdDxzcGFuIGNzcz17c3R5bGVzLmNvbG9ufSBjbGFzc05hbWU9XCJyZWFjdC10aW1la2VlcGVyX190Yi1jb2xvblwiPlxuXHRcdFx0XHQ6XG5cdFx0XHQ8L3NwYW4+XG5cblx0XHRcdHsvKiBtaW51dGUgKi99XG5cdFx0XHQ8ZGl2XG5cdFx0XHRcdGNzcz17c3R5bGVzLm1pbnV0ZVdyYXBwZXIoaG91cjI0TW9kZSl9XG5cdFx0XHRcdGNsYXNzTmFtZT1cInJlYWN0LXRpbWVrZWVwZXJfX3RiLWhvdXItd3JhcHBlclwiXG5cdFx0XHQ+XG5cdFx0XHRcdDxzcGFuXG5cdFx0XHRcdFx0Y3NzPXtzdHlsZXMudGltZSghaXNIb3VyKX1cblx0XHRcdFx0XHRvbkNsaWNrPXsoKSA9PiB0aW1lQ2xpY2soJ21pbnV0ZScpfVxuXHRcdFx0XHRcdGRhdGEtdHlwZT1cIm1pbnV0ZVwiXG5cdFx0XHRcdFx0Y2xhc3NOYW1lPXtgcmVhY3QtdGltZWtlZXBlcl9fdGItbWludXRlICR7aXNIb3VyID8gJycgOiAncmVhY3QtdGltZWtlZXBlcl9fdGItbWludXRlLS1hY3RpdmUnfWB9XG5cdFx0XHRcdD5cblx0XHRcdFx0XHR7Zm9ybWF0dGVkTWludXRlfVxuXHRcdFx0XHQ8L3NwYW4+XG5cdFx0XHRcdHtvcGVuID09PSAnbWludXRlJyAmJiA8VGltZURyb3Bkb3duIGNsb3NlPXtjbG9zZURyb3Bkb3dufSAvPn1cblx0XHRcdDwvZGl2PlxuXG5cdFx0XHR7LyogbWVyaWRpZW0gKi99XG5cdFx0XHR7IWhvdXIyNE1vZGUgJiYgKFxuXHRcdFx0XHQ8YnV0dG9uXG5cdFx0XHRcdFx0bmFtZT1cIm1lcmlkaWVtXCJcblx0XHRcdFx0XHR0eXBlPVwiYnV0dG9uXCJcblx0XHRcdFx0XHRvbkNsaWNrPXt0b2dnbGVNZXJpZGllbX1cblx0XHRcdFx0XHRjc3M9e3N0eWxlcy5tZXJpZGllbX1cblx0XHRcdFx0XHRjbGFzc05hbWU9XCJyZWFjdC10aW1la2VlcGVyLWJ1dHRvbi1yZXNldCByZWFjdC10aW1la2VlcGVyX190Yi1tZXJpZGllbVwiXG5cdFx0XHRcdD5cblx0XHRcdFx0XHR7bWVyaWRpZW19XG5cdFx0XHRcdDwvYnV0dG9uPlxuXHRcdFx0KX1cblx0XHQ8L2Rpdj5cblx0KVxufVxuIl19 */"),
+    onClick: () => timeClick('hour'),
     "data-type": "hour",
-    className: "react-timekeeper__tb-hour"
+    className: "react-timekeeper__tb-hour ".concat(isHour ? 'react-timekeeper__tb-hour--active' : '')
   }, hour), open === 'hour' && (0, core_esm.jsx)(_TimeDropdown.default, {
     close: closeDropdown
   })), (0, core_esm.jsx)("span", {
@@ -17645,11 +17777,9 @@ function TopBar() {
     className: "react-timekeeper__tb-hour-wrapper"
   }, (0, core_esm.jsx)("span", {
     css: styles.time(!isHour),
-    onClick: function onClick() {
-      return timeClick('minute');
-    },
+    onClick: () => timeClick('minute'),
     "data-type": "minute",
-    className: "react-timekeeper__tb-minute"
+    className: "react-timekeeper__tb-minute ".concat(isHour ? '' : 'react-timekeeper__tb-minute--active')
   }, formattedMinute), open === 'minute' && (0, core_esm.jsx)(_TimeDropdown.default, {
     close: closeDropdown
   })), !hour24Mode && (0, core_esm.jsx)("button", {
@@ -19681,29 +19811,41 @@ var web = /*#__PURE__*/Object.freeze({
   useSprings: useSprings
 });
 
-var constants$1 = createCommonjsModule(function (module, exports) {
+var clockHand = createCommonjsModule(function (module, exports) {
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.CLOCK_HAND_INTERMEDIATE_CIRCLE_BACKGROUND = exports.CLOCK_HAND_CIRCLE_BACKGROUND = exports.CLOCK_HAND_ARM = exports.CLOCK_WRAPPER_BACKGROUND = void 0;
-// clock wrapper
-var CLOCK_WRAPPER_BACKGROUND = '#f4f4f4'; // clock
+exports.intermediateMinuteCircle = exports.outerCircle = exports.centerCircle = exports.line = void 0;
 
-exports.CLOCK_WRAPPER_BACKGROUND = CLOCK_WRAPPER_BACKGROUND;
-var CLOCK_HAND_ARM = '#bceaff';
-exports.CLOCK_HAND_ARM = CLOCK_HAND_ARM;
-var CLOCK_HAND_CIRCLE_BACKGROUND = '#e6f7ff';
-exports.CLOCK_HAND_CIRCLE_BACKGROUND = CLOCK_HAND_CIRCLE_BACKGROUND;
-var CLOCK_HAND_INTERMEDIATE_CIRCLE_BACKGROUND = '#ade2fb';
-exports.CLOCK_HAND_INTERMEDIATE_CIRCLE_BACKGROUND = CLOCK_HAND_INTERMEDIATE_CIRCLE_BACKGROUND;
+
+
+const CLOCK_HAND_ARM = '#bceaff';
+const CLOCK_HAND_CIRCLE_BACKGROUND = '#e6f7ff';
+const CLOCK_HAND_INTERMEDIATE_CIRCLE_BACKGROUND = '#ade2fb';
+const line =
+/*#__PURE__*/
+(0, core_esm.css)("stroke:var(--hand-line-color,", CLOCK_HAND_ARM, ");" + (process.env.NODE_ENV === "production" ? "" : "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy9jb21wb25lbnRzL3N0eWxlcy9jbG9jay1oYW5kLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQU11QiIsImZpbGUiOiIuLi8uLi8uLi9zcmMvY29tcG9uZW50cy9zdHlsZXMvY2xvY2staGFuZC50cyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IGNzcywganN4IH0gZnJvbSAnQGVtb3Rpb24vY29yZSdcblxuY29uc3QgQ0xPQ0tfSEFORF9BUk0gPSAnI2JjZWFmZidcbmNvbnN0IENMT0NLX0hBTkRfQ0lSQ0xFX0JBQ0tHUk9VTkQgPSAnI2U2ZjdmZidcbmNvbnN0IENMT0NLX0hBTkRfSU5URVJNRURJQVRFX0NJUkNMRV9CQUNLR1JPVU5EID0gJyNhZGUyZmInXG5cbmV4cG9ydCBjb25zdCBsaW5lID0gY3NzYFxuXHRzdHJva2U6IHZhcigtLWhhbmQtbGluZS1jb2xvciwgJHtDTE9DS19IQU5EX0FSTX0pO1xuYFxuXG5leHBvcnQgY29uc3QgY2VudGVyQ2lyY2xlID0gY3NzYFxuXHRmaWxsOiB2YXIoLS1oYW5kLWNpcmNsZS1jZW50ZXIsICR7Q0xPQ0tfSEFORF9BUk19KTtcbmBcblxuZXhwb3J0IGNvbnN0IG91dGVyQ2lyY2xlID0gY3NzYFxuXHRmaWxsOiB2YXIoLS1oYW5kLWNpcmNsZS1vdXRlciwgJHtDTE9DS19IQU5EX0NJUkNMRV9CQUNLR1JPVU5EfSk7XG5gXG5cbmV4cG9ydCBjb25zdCBpbnRlcm1lZGlhdGVNaW51dGVDaXJjbGUgPSBjc3NgXG5cdGZpbGw6IHZhcigtLWhhbmQtbWludXRlLWNpcmNsZSwgJHtDTE9DS19IQU5EX0lOVEVSTUVESUFURV9DSVJDTEVfQkFDS0dST1VORH0pO1xuYFxuIl19 */"));
+exports.line = line;
+const centerCircle =
+/*#__PURE__*/
+(0, core_esm.css)("fill:var(--hand-circle-center,", CLOCK_HAND_ARM, ");" + (process.env.NODE_ENV === "production" ? "" : "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy9jb21wb25lbnRzL3N0eWxlcy9jbG9jay1oYW5kLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQVUrQiIsImZpbGUiOiIuLi8uLi8uLi9zcmMvY29tcG9uZW50cy9zdHlsZXMvY2xvY2staGFuZC50cyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IGNzcywganN4IH0gZnJvbSAnQGVtb3Rpb24vY29yZSdcblxuY29uc3QgQ0xPQ0tfSEFORF9BUk0gPSAnI2JjZWFmZidcbmNvbnN0IENMT0NLX0hBTkRfQ0lSQ0xFX0JBQ0tHUk9VTkQgPSAnI2U2ZjdmZidcbmNvbnN0IENMT0NLX0hBTkRfSU5URVJNRURJQVRFX0NJUkNMRV9CQUNLR1JPVU5EID0gJyNhZGUyZmInXG5cbmV4cG9ydCBjb25zdCBsaW5lID0gY3NzYFxuXHRzdHJva2U6IHZhcigtLWhhbmQtbGluZS1jb2xvciwgJHtDTE9DS19IQU5EX0FSTX0pO1xuYFxuXG5leHBvcnQgY29uc3QgY2VudGVyQ2lyY2xlID0gY3NzYFxuXHRmaWxsOiB2YXIoLS1oYW5kLWNpcmNsZS1jZW50ZXIsICR7Q0xPQ0tfSEFORF9BUk19KTtcbmBcblxuZXhwb3J0IGNvbnN0IG91dGVyQ2lyY2xlID0gY3NzYFxuXHRmaWxsOiB2YXIoLS1oYW5kLWNpcmNsZS1vdXRlciwgJHtDTE9DS19IQU5EX0NJUkNMRV9CQUNLR1JPVU5EfSk7XG5gXG5cbmV4cG9ydCBjb25zdCBpbnRlcm1lZGlhdGVNaW51dGVDaXJjbGUgPSBjc3NgXG5cdGZpbGw6IHZhcigtLWhhbmQtbWludXRlLWNpcmNsZSwgJHtDTE9DS19IQU5EX0lOVEVSTUVESUFURV9DSVJDTEVfQkFDS0dST1VORH0pO1xuYFxuIl19 */"));
+exports.centerCircle = centerCircle;
+const outerCircle =
+/*#__PURE__*/
+(0, core_esm.css)("fill:var(--hand-circle-outer,", CLOCK_HAND_CIRCLE_BACKGROUND, ");" + (process.env.NODE_ENV === "production" ? "" : "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy9jb21wb25lbnRzL3N0eWxlcy9jbG9jay1oYW5kLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQWM4QiIsImZpbGUiOiIuLi8uLi8uLi9zcmMvY29tcG9uZW50cy9zdHlsZXMvY2xvY2staGFuZC50cyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IGNzcywganN4IH0gZnJvbSAnQGVtb3Rpb24vY29yZSdcblxuY29uc3QgQ0xPQ0tfSEFORF9BUk0gPSAnI2JjZWFmZidcbmNvbnN0IENMT0NLX0hBTkRfQ0lSQ0xFX0JBQ0tHUk9VTkQgPSAnI2U2ZjdmZidcbmNvbnN0IENMT0NLX0hBTkRfSU5URVJNRURJQVRFX0NJUkNMRV9CQUNLR1JPVU5EID0gJyNhZGUyZmInXG5cbmV4cG9ydCBjb25zdCBsaW5lID0gY3NzYFxuXHRzdHJva2U6IHZhcigtLWhhbmQtbGluZS1jb2xvciwgJHtDTE9DS19IQU5EX0FSTX0pO1xuYFxuXG5leHBvcnQgY29uc3QgY2VudGVyQ2lyY2xlID0gY3NzYFxuXHRmaWxsOiB2YXIoLS1oYW5kLWNpcmNsZS1jZW50ZXIsICR7Q0xPQ0tfSEFORF9BUk19KTtcbmBcblxuZXhwb3J0IGNvbnN0IG91dGVyQ2lyY2xlID0gY3NzYFxuXHRmaWxsOiB2YXIoLS1oYW5kLWNpcmNsZS1vdXRlciwgJHtDTE9DS19IQU5EX0NJUkNMRV9CQUNLR1JPVU5EfSk7XG5gXG5cbmV4cG9ydCBjb25zdCBpbnRlcm1lZGlhdGVNaW51dGVDaXJjbGUgPSBjc3NgXG5cdGZpbGw6IHZhcigtLWhhbmQtbWludXRlLWNpcmNsZSwgJHtDTE9DS19IQU5EX0lOVEVSTUVESUFURV9DSVJDTEVfQkFDS0dST1VORH0pO1xuYFxuIl19 */"));
+exports.outerCircle = outerCircle;
+const intermediateMinuteCircle =
+/*#__PURE__*/
+(0, core_esm.css)("fill:var(--hand-minute-circle,", CLOCK_HAND_INTERMEDIATE_CIRCLE_BACKGROUND, ");" + (process.env.NODE_ENV === "production" ? "" : "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy9jb21wb25lbnRzL3N0eWxlcy9jbG9jay1oYW5kLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQWtCMkMiLCJmaWxlIjoiLi4vLi4vLi4vc3JjL2NvbXBvbmVudHMvc3R5bGVzL2Nsb2NrLWhhbmQudHMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBjc3MsIGpzeCB9IGZyb20gJ0BlbW90aW9uL2NvcmUnXG5cbmNvbnN0IENMT0NLX0hBTkRfQVJNID0gJyNiY2VhZmYnXG5jb25zdCBDTE9DS19IQU5EX0NJUkNMRV9CQUNLR1JPVU5EID0gJyNlNmY3ZmYnXG5jb25zdCBDTE9DS19IQU5EX0lOVEVSTUVESUFURV9DSVJDTEVfQkFDS0dST1VORCA9ICcjYWRlMmZiJ1xuXG5leHBvcnQgY29uc3QgbGluZSA9IGNzc2Bcblx0c3Ryb2tlOiB2YXIoLS1oYW5kLWxpbmUtY29sb3IsICR7Q0xPQ0tfSEFORF9BUk19KTtcbmBcblxuZXhwb3J0IGNvbnN0IGNlbnRlckNpcmNsZSA9IGNzc2Bcblx0ZmlsbDogdmFyKC0taGFuZC1jaXJjbGUtY2VudGVyLCAke0NMT0NLX0hBTkRfQVJNfSk7XG5gXG5cbmV4cG9ydCBjb25zdCBvdXRlckNpcmNsZSA9IGNzc2Bcblx0ZmlsbDogdmFyKC0taGFuZC1jaXJjbGUtb3V0ZXIsICR7Q0xPQ0tfSEFORF9DSVJDTEVfQkFDS0dST1VORH0pO1xuYFxuXG5leHBvcnQgY29uc3QgaW50ZXJtZWRpYXRlTWludXRlQ2lyY2xlID0gY3NzYFxuXHRmaWxsOiB2YXIoLS1oYW5kLW1pbnV0ZS1jaXJjbGUsICR7Q0xPQ0tfSEFORF9JTlRFUk1FRElBVEVfQ0lSQ0xFX0JBQ0tHUk9VTkR9KTtcbmBcbiJdfQ== */"));
+exports.intermediateMinuteCircle = intermediateMinuteCircle;
 });
 
-unwrapExports(constants$1);
-var constants_1$1 = constants$1.CLOCK_HAND_INTERMEDIATE_CIRCLE_BACKGROUND;
-var constants_2$1 = constants$1.CLOCK_HAND_CIRCLE_BACKGROUND;
-var constants_3$1 = constants$1.CLOCK_HAND_ARM;
-var constants_4$1 = constants$1.CLOCK_WRAPPER_BACKGROUND;
+unwrapExports(clockHand);
+var clockHand_1 = clockHand.intermediateMinuteCircle;
+var clockHand_2 = clockHand.outerCircle;
+var clockHand_3 = clockHand.centerCircle;
+var clockHand_4 = clockHand.line;
 
 var math = createCommonjsModule(function (module, exports) {
 
@@ -19717,10 +19859,10 @@ exports.calcAnimationAngle = calcAnimationAngle;
 
 
 
-var cos = Math.cos,
-    sin = Math.sin;
-var pi = Math.PI;
-var ANGLE_PER_INCREMENT = 360 / constants.VISIBLE_NUMBERS_PER_CIRCLE;
+const cos = Math.cos,
+      sin = Math.sin;
+const pi = Math.PI;
+const ANGLE_PER_INCREMENT = 360 / constants.VISIBLE_NUMBERS_PER_CIRCLE;
 
 function rad(deg) {
   return deg / (180 / pi);
@@ -19741,8 +19883,8 @@ function translateY(index, transform) {
 
 
 function transform(index, t) {
-  var x = translateX(index, t);
-  var y = translateY(index, t);
+  const x = translateX(index, t);
+  const y = translateY(index, t);
   return "translate(".concat(x, "px, ").concat(y, "px)");
 }
 
@@ -19771,10 +19913,10 @@ function normalize(angle) {
 
 
 function calcAnimationAngle(prev, next) {
-  var p = normalize(prev);
-  var n = normalize(next);
-  var lower = p;
-  var upper = p; // TODO - implement without while loops
+  const p = normalize(prev);
+  const n = normalize(next);
+  let lower = p;
+  let upper = p; // TODO - implement without while loops
 
   while (n < lower) {
     lower -= 360;
@@ -19830,26 +19972,27 @@ function rotate(r) {
 }
 
 function getAngle(mode, time) {
-  var increments = constants.CLOCK_VALUES[mode].increments;
-  var value = (0, utils.getTimeValue)(mode, time);
+  const increments = constants.CLOCK_VALUES[mode].increments;
+  const value = (0, utils.getTimeValue)(mode, time);
   return value * (360 / increments);
 }
 
-function ClockHand(_ref) {
-  var mode = _ref.mode,
-      time = _ref.time;
-  var prevState = (0, _react.useRef)({
-    time: time,
-    mode: mode
+function ClockHand({
+  mode,
+  time
+}) {
+  const prevState = (0, _react.useRef)({
+    time,
+    mode
   });
-  var dragCount = (0, _react.useRef)(0); // clockhand positioning
+  const dragCount = (0, _react.useRef)(0); // clockhand positioning
 
-  var inner = time.hour > 0 && time.hour <= 12;
-  var handLength = (0, constants.getClockHandLength)(mode, inner);
-  var circlePosition = (0, constants.getClockHandCirclePosition)(mode, inner);
-  var circleRadius = (0, constants.getClockHandCircleRadius)(mode, inner);
+  const inner = time.hour > 0 && time.hour <= 12;
+  const handLength = (0, constants.getClockHandLength)(mode, inner);
+  const circlePosition = (0, constants.getClockHandCirclePosition)(mode, inner);
+  const circleRadius = (0, constants.getClockHandCircleRadius)(mode, inner); // @ts-ignore
 
-  var _useSpring = (0, web.useSpring)(function () {
+  const _useSpring = (0, web.useSpring)(() => {
     return {
       immediate: true,
       rotation: getAngle(mode, time),
@@ -19857,22 +20000,22 @@ function ClockHand(_ref) {
       position: circlePosition
     };
   }),
-      _useSpring2 = (0, _slicedToArray2.default)(_useSpring, 2),
-      anim = _useSpring2[0],
-      setAnim = _useSpring2[1];
+        _useSpring2 = (0, _slicedToArray2.default)(_useSpring, 2),
+        anim = _useSpring2[0],
+        setAnim = _useSpring2[1];
 
-  var rotation = anim.rotation,
-      length = anim.length,
-      position = anim.position;
-  (0, _react.useEffect)(function () {
-    var current = rotation.value;
-    var next = getAngle(mode, time);
+  const rotation = anim.rotation,
+        length = anim.length,
+        position = anim.position;
+  (0, _react.useEffect)(() => {
+    const current = rotation.value;
+    const next = getAngle(mode, time);
 
     if (prevState.current.mode !== mode) {
       dragCount.current = 0;
       prevState.current.mode = mode; // mode changed, animate clockhand to next mode angle
 
-      var finalAngle = (0, math.calcAnimationAngle)(current, next);
+      const finalAngle = (0, math.calcAnimationAngle)(current, next);
       setAnim({
         immediate: false,
         rotation: finalAngle,
@@ -19901,16 +20044,16 @@ function ClockHand(_ref) {
     }
   }, [circlePosition, handLength, mode, rotation, setAnim, time]); // mini circle on clockhand between increments on minutes
 
-  var value = (0, utils.getTimeValue)(mode, time);
-  var showIntermediateValueDisplay;
+  const value = (0, utils.getTimeValue)(mode, time);
+  let showIntermediateValueDisplay;
 
   if (mode === constants.MODE.MINUTES && value % 5) {
     showIntermediateValueDisplay = (0, core_esm.jsx)("circle", {
+      className: "react-timekeeper__hand-intermediate-circle",
+      css: clockHand.intermediateMinuteCircle,
       cx: constants.CLOCK_RADIUS,
       cy: constants.NUMBER_OUTER_POSITION,
-      r: 4,
-      fill: constants$1.CLOCK_HAND_INTERMEDIATE_CIRCLE_BACKGROUND,
-      className: "react-timekeeper__hand-intermediate-circle"
+      r: 4
     });
   }
 
@@ -19921,29 +20064,27 @@ function ClockHand(_ref) {
     xmlns: "http://www.w3.org/2000/svg",
     className: "react-timekeeper__clock-hand"
   }, (0, core_esm.jsx)(web.animated.g, {
-    transform: rotation.interpolate(function (a) {
-      return rotate(a);
-    })
+    transform: rotation.interpolate(a => rotate(a))
   }, (0, core_esm.jsx)(web.animated.line, {
-    stroke: constants$1.CLOCK_HAND_ARM,
+    className: "react-timekeeper__clock-hand",
+    css: clockHand.line,
     x1: constants.CLOCK_RADIUS,
     y1: constants.CLOCK_RADIUS,
     x2: constants.CLOCK_RADIUS,
     y2: length,
-    strokeWidth: "1",
-    className: "react-timekeeper__clock-hand"
+    strokeWidth: "1"
   }), (0, core_esm.jsx)("circle", {
+    className: "react-timekeeper__hand-circle-center",
+    css: clockHand.centerCircle,
     cx: constants.CLOCK_RADIUS,
     cy: constants.CLOCK_RADIUS,
-    r: 1.5,
-    fill: constants$1.CLOCK_HAND_ARM,
-    className: "react-timekeeper__hand-circle-center"
+    r: 1.5
   }), (0, core_esm.jsx)(web.animated.circle, {
-    fill: constants$1.CLOCK_HAND_CIRCLE_BACKGROUND,
+    className: "react-timekeeper__hand-circle-outer",
+    css: clockHand.outerCircle,
     cx: constants.CLOCK_RADIUS,
     cy: position,
-    r: circleRadius,
-    className: "react-timekeeper__hand-circle-outer"
+    r: circleRadius
   }), showIntermediateValueDisplay));
 }
 });
@@ -19961,28 +20102,32 @@ exports.numbersWrapperStyle = exports.numbersStyle = void 0;
 
 
 
-var CLOCK_NUMBER_COLOR = '#999999';
+const CLOCK_NUMBER_COLOR = '#999999';
 
-var numbersStyle = function numbersStyle(_ref) {
-  var _ref$hour24Mode = _ref.hour24Mode,
-      hour24Mode = _ref$hour24Mode === void 0 ? false : _ref$hour24Mode,
-      _ref$inner = _ref.inner,
-      inner = _ref$inner === void 0 ? false : _ref$inner;
-  return (
-    /*#__PURE__*/
-    (0, core_esm.css)("display:inline-block;position:absolute;color:", CLOCK_NUMBER_COLOR, ";pointer-events:none;border-radius:99px;width:", constants.NUMBER_RADIUS_REGULAR, "px;height:", constants.NUMBER_RADIUS_REGULAR, "px;text-align:center;line-height:", constants.NUMBER_RADIUS_REGULAR, "px;z-index:5;font-size:", (0, constants.getFontSize)(hour24Mode, inner), "px;" + (process.env.NODE_ENV === "production" ? "" : "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy9jb21wb25lbnRzL3N0eWxlcy9udW1iZXJzLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQVVpRiIsImZpbGUiOiIuLi8uLi8uLi9zcmMvY29tcG9uZW50cy9zdHlsZXMvbnVtYmVycy50cyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IGNzcywganN4IH0gZnJvbSAnQGVtb3Rpb24vY29yZSdcbmltcG9ydCB7IE5VTUJFUl9SQURJVVNfUkVHVUxBUiwgZ2V0Rm9udFNpemUgfSBmcm9tICcuLi8uLi9oZWxwZXJzL2NvbnN0YW50cydcblxuY29uc3QgQ0xPQ0tfTlVNQkVSX0NPTE9SID0gJyM5OTk5OTknXG5cbmludGVyZmFjZSBQcm9wcyB7XG5cdGhvdXIyNE1vZGU/OiBib29sZWFuXG5cdGlubmVyPzogYm9vbGVhblxufVxuXG5leHBvcnQgY29uc3QgbnVtYmVyc1N0eWxlID0gKHsgaG91cjI0TW9kZSA9IGZhbHNlLCBpbm5lciA9IGZhbHNlIH06IFByb3BzKSA9PiBjc3NgXG5cdGRpc3BsYXk6IGlubGluZS1ibG9jaztcblx0cG9zaXRpb246IGFic29sdXRlO1xuXHRjb2xvcjogJHtDTE9DS19OVU1CRVJfQ09MT1J9O1xuXHRwb2ludGVyLWV2ZW50czogbm9uZTtcblx0Ym9yZGVyLXJhZGl1czogOTlweDtcblx0d2lkdGg6ICR7TlVNQkVSX1JBRElVU19SRUdVTEFSfXB4O1xuXHRoZWlnaHQ6ICR7TlVNQkVSX1JBRElVU19SRUdVTEFSfXB4O1xuXHR0ZXh0LWFsaWduOiBjZW50ZXI7XG5cdGxpbmUtaGVpZ2h0OiAke05VTUJFUl9SQURJVVNfUkVHVUxBUn1weDtcblx0ei1pbmRleDogNTtcblx0Zm9udC1zaXplOiAke2dldEZvbnRTaXplKGhvdXIyNE1vZGUsIGlubmVyKX1weDtcbmBcblxuLy8gei1pbmRleCByZXF1aXJlZCB0byBiZSBvbiB0b3Agb2YgY2xvY2toYW5kXG5leHBvcnQgY29uc3QgbnVtYmVyc1dyYXBwZXJTdHlsZSA9IGNzc2Bcblx0cG9zaXRpb246IGFic29sdXRlO1xuXHRsZWZ0OiAwO1xuXHR0b3A6IDA7XG5cdHotaW5kZXg6IDI7XG5gXG4iXX0= */"))
-  );
-}; // z-index required to be on top of clockhand
+function getFontSize(hour24Mode, inner) {
+  if (!hour24Mode) {
+    return "var(--numbers-font-size-reg, ".concat(constants.NUMBER_REGULAR_FONT_SIZE, "px)");
+  }
+
+  return inner ? "var(--numbers-font-size-inner, ".concat(constants.HOUR_24_INNER_FONT_SIZE, "px)") : "var(--numbers-font-size-outer, ".concat(constants.HOUR_24_OUTER_FONT_SIZE, "px)");
+}
+
+const numbersStyle = ({
+  hour24Mode = false,
+  inner = false
+}) =>
+/*#__PURE__*/
+(0, core_esm.css)("display:inline-block;position:absolute;color:var(--numbers-text-color,", CLOCK_NUMBER_COLOR, ");pointer-events:none;border-radius:99px;width:", constants.NUMBER_RADIUS_REGULAR, "px;height:", constants.NUMBER_RADIUS_REGULAR, "px;text-align:center;line-height:", constants.NUMBER_RADIUS_REGULAR, "px;z-index:5;font-size:", getFontSize(hour24Mode, inner), ";" + (process.env.NODE_ENV === "production" ? "" : "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy9jb21wb25lbnRzL3N0eWxlcy9udW1iZXJzLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQXdCaUYiLCJmaWxlIjoiLi4vLi4vLi4vc3JjL2NvbXBvbmVudHMvc3R5bGVzL251bWJlcnMudHMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBjc3MsIGpzeCB9IGZyb20gJ0BlbW90aW9uL2NvcmUnXG5pbXBvcnQge1xuXHROVU1CRVJfUkFESVVTX1JFR1VMQVIsXG5cdE5VTUJFUl9SRUdVTEFSX0ZPTlRfU0laRSxcblx0SE9VUl8yNF9JTk5FUl9GT05UX1NJWkUsXG5cdEhPVVJfMjRfT1VURVJfRk9OVF9TSVpFLFxufSBmcm9tICcuLi8uLi9oZWxwZXJzL2NvbnN0YW50cydcblxuY29uc3QgQ0xPQ0tfTlVNQkVSX0NPTE9SID0gJyM5OTk5OTknXG5cbmZ1bmN0aW9uIGdldEZvbnRTaXplKGhvdXIyNE1vZGU6IGJvb2xlYW4sIGlubmVyOiBib29sZWFuKTogc3RyaW5nIHtcblx0aWYgKCFob3VyMjRNb2RlKSB7XG5cdFx0cmV0dXJuIGB2YXIoLS1udW1iZXJzLWZvbnQtc2l6ZS1yZWcsICR7TlVNQkVSX1JFR1VMQVJfRk9OVF9TSVpFfXB4KWBcblx0fVxuXHRyZXR1cm4gaW5uZXJcblx0XHQ/IGB2YXIoLS1udW1iZXJzLWZvbnQtc2l6ZS1pbm5lciwgJHtIT1VSXzI0X0lOTkVSX0ZPTlRfU0laRX1weClgXG5cdFx0OiBgdmFyKC0tbnVtYmVycy1mb250LXNpemUtb3V0ZXIsICR7SE9VUl8yNF9PVVRFUl9GT05UX1NJWkV9cHgpYFxufVxuXG5pbnRlcmZhY2UgUHJvcHMge1xuXHRob3VyMjRNb2RlPzogYm9vbGVhblxuXHRpbm5lcj86IGJvb2xlYW5cbn1cblxuZXhwb3J0IGNvbnN0IG51bWJlcnNTdHlsZSA9ICh7IGhvdXIyNE1vZGUgPSBmYWxzZSwgaW5uZXIgPSBmYWxzZSB9OiBQcm9wcykgPT4gY3NzYFxuXHRkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG5cdHBvc2l0aW9uOiBhYnNvbHV0ZTtcblx0Y29sb3I6IHZhcigtLW51bWJlcnMtdGV4dC1jb2xvciwgJHtDTE9DS19OVU1CRVJfQ09MT1J9KTtcblx0cG9pbnRlci1ldmVudHM6IG5vbmU7XG5cdGJvcmRlci1yYWRpdXM6IDk5cHg7XG5cdHdpZHRoOiAke05VTUJFUl9SQURJVVNfUkVHVUxBUn1weDtcblx0aGVpZ2h0OiAke05VTUJFUl9SQURJVVNfUkVHVUxBUn1weDtcblx0dGV4dC1hbGlnbjogY2VudGVyO1xuXHRsaW5lLWhlaWdodDogJHtOVU1CRVJfUkFESVVTX1JFR1VMQVJ9cHg7XG5cdHotaW5kZXg6IDU7XG5cdGZvbnQtc2l6ZTogJHtnZXRGb250U2l6ZShob3VyMjRNb2RlLCBpbm5lcil9O1xuYFxuXG4vLyB6LWluZGV4IHJlcXVpcmVkIHRvIGJlIG9uIHRvcCBvZiBjbG9ja2hhbmRcbmV4cG9ydCBjb25zdCBudW1iZXJzV3JhcHBlclN0eWxlID0gY3NzYFxuXHRwb3NpdGlvbjogYWJzb2x1dGU7XG5cdGxlZnQ6IDA7XG5cdHRvcDogMDtcblx0ei1pbmRleDogMjtcbmBcbiJdfQ== */")); // z-index required to be on top of clockhand
 
 
 exports.numbersStyle = numbersStyle;
-var numbersWrapperStyle = process.env.NODE_ENV === "production" ? {
+const numbersWrapperStyle = process.env.NODE_ENV === "production" ? {
   name: "av1tj5",
   styles: "position:absolute;left:0;top:0;z-index:2;"
 } : {
   name: "av1tj5",
   styles: "position:absolute;left:0;top:0;z-index:2;",
-  map: "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy9jb21wb25lbnRzL3N0eWxlcy9udW1iZXJzLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQXlCc0MiLCJmaWxlIjoiLi4vLi4vLi4vc3JjL2NvbXBvbmVudHMvc3R5bGVzL251bWJlcnMudHMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBjc3MsIGpzeCB9IGZyb20gJ0BlbW90aW9uL2NvcmUnXG5pbXBvcnQgeyBOVU1CRVJfUkFESVVTX1JFR1VMQVIsIGdldEZvbnRTaXplIH0gZnJvbSAnLi4vLi4vaGVscGVycy9jb25zdGFudHMnXG5cbmNvbnN0IENMT0NLX05VTUJFUl9DT0xPUiA9ICcjOTk5OTk5J1xuXG5pbnRlcmZhY2UgUHJvcHMge1xuXHRob3VyMjRNb2RlPzogYm9vbGVhblxuXHRpbm5lcj86IGJvb2xlYW5cbn1cblxuZXhwb3J0IGNvbnN0IG51bWJlcnNTdHlsZSA9ICh7IGhvdXIyNE1vZGUgPSBmYWxzZSwgaW5uZXIgPSBmYWxzZSB9OiBQcm9wcykgPT4gY3NzYFxuXHRkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG5cdHBvc2l0aW9uOiBhYnNvbHV0ZTtcblx0Y29sb3I6ICR7Q0xPQ0tfTlVNQkVSX0NPTE9SfTtcblx0cG9pbnRlci1ldmVudHM6IG5vbmU7XG5cdGJvcmRlci1yYWRpdXM6IDk5cHg7XG5cdHdpZHRoOiAke05VTUJFUl9SQURJVVNfUkVHVUxBUn1weDtcblx0aGVpZ2h0OiAke05VTUJFUl9SQURJVVNfUkVHVUxBUn1weDtcblx0dGV4dC1hbGlnbjogY2VudGVyO1xuXHRsaW5lLWhlaWdodDogJHtOVU1CRVJfUkFESVVTX1JFR1VMQVJ9cHg7XG5cdHotaW5kZXg6IDU7XG5cdGZvbnQtc2l6ZTogJHtnZXRGb250U2l6ZShob3VyMjRNb2RlLCBpbm5lcil9cHg7XG5gXG5cbi8vIHotaW5kZXggcmVxdWlyZWQgdG8gYmUgb24gdG9wIG9mIGNsb2NraGFuZFxuZXhwb3J0IGNvbnN0IG51bWJlcnNXcmFwcGVyU3R5bGUgPSBjc3NgXG5cdHBvc2l0aW9uOiBhYnNvbHV0ZTtcblx0bGVmdDogMDtcblx0dG9wOiAwO1xuXHR6LWluZGV4OiAyO1xuYFxuIl19 */"
+  map: "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy9jb21wb25lbnRzL3N0eWxlcy9udW1iZXJzLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQXVDc0MiLCJmaWxlIjoiLi4vLi4vLi4vc3JjL2NvbXBvbmVudHMvc3R5bGVzL251bWJlcnMudHMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBjc3MsIGpzeCB9IGZyb20gJ0BlbW90aW9uL2NvcmUnXG5pbXBvcnQge1xuXHROVU1CRVJfUkFESVVTX1JFR1VMQVIsXG5cdE5VTUJFUl9SRUdVTEFSX0ZPTlRfU0laRSxcblx0SE9VUl8yNF9JTk5FUl9GT05UX1NJWkUsXG5cdEhPVVJfMjRfT1VURVJfRk9OVF9TSVpFLFxufSBmcm9tICcuLi8uLi9oZWxwZXJzL2NvbnN0YW50cydcblxuY29uc3QgQ0xPQ0tfTlVNQkVSX0NPTE9SID0gJyM5OTk5OTknXG5cbmZ1bmN0aW9uIGdldEZvbnRTaXplKGhvdXIyNE1vZGU6IGJvb2xlYW4sIGlubmVyOiBib29sZWFuKTogc3RyaW5nIHtcblx0aWYgKCFob3VyMjRNb2RlKSB7XG5cdFx0cmV0dXJuIGB2YXIoLS1udW1iZXJzLWZvbnQtc2l6ZS1yZWcsICR7TlVNQkVSX1JFR1VMQVJfRk9OVF9TSVpFfXB4KWBcblx0fVxuXHRyZXR1cm4gaW5uZXJcblx0XHQ/IGB2YXIoLS1udW1iZXJzLWZvbnQtc2l6ZS1pbm5lciwgJHtIT1VSXzI0X0lOTkVSX0ZPTlRfU0laRX1weClgXG5cdFx0OiBgdmFyKC0tbnVtYmVycy1mb250LXNpemUtb3V0ZXIsICR7SE9VUl8yNF9PVVRFUl9GT05UX1NJWkV9cHgpYFxufVxuXG5pbnRlcmZhY2UgUHJvcHMge1xuXHRob3VyMjRNb2RlPzogYm9vbGVhblxuXHRpbm5lcj86IGJvb2xlYW5cbn1cblxuZXhwb3J0IGNvbnN0IG51bWJlcnNTdHlsZSA9ICh7IGhvdXIyNE1vZGUgPSBmYWxzZSwgaW5uZXIgPSBmYWxzZSB9OiBQcm9wcykgPT4gY3NzYFxuXHRkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG5cdHBvc2l0aW9uOiBhYnNvbHV0ZTtcblx0Y29sb3I6IHZhcigtLW51bWJlcnMtdGV4dC1jb2xvciwgJHtDTE9DS19OVU1CRVJfQ09MT1J9KTtcblx0cG9pbnRlci1ldmVudHM6IG5vbmU7XG5cdGJvcmRlci1yYWRpdXM6IDk5cHg7XG5cdHdpZHRoOiAke05VTUJFUl9SQURJVVNfUkVHVUxBUn1weDtcblx0aGVpZ2h0OiAke05VTUJFUl9SQURJVVNfUkVHVUxBUn1weDtcblx0dGV4dC1hbGlnbjogY2VudGVyO1xuXHRsaW5lLWhlaWdodDogJHtOVU1CRVJfUkFESVVTX1JFR1VMQVJ9cHg7XG5cdHotaW5kZXg6IDU7XG5cdGZvbnQtc2l6ZTogJHtnZXRGb250U2l6ZShob3VyMjRNb2RlLCBpbm5lcil9O1xuYFxuXG4vLyB6LWluZGV4IHJlcXVpcmVkIHRvIGJlIG9uIHRvcCBvZiBjbG9ja2hhbmRcbmV4cG9ydCBjb25zdCBudW1iZXJzV3JhcHBlclN0eWxlID0gY3NzYFxuXHRwb3NpdGlvbjogYWJzb2x1dGU7XG5cdGxlZnQ6IDA7XG5cdHRvcDogMDtcblx0ei1pbmRleDogMjtcbmBcbiJdfQ== */"
 };
 exports.numbersWrapperStyle = numbersWrapperStyle;
 });
@@ -20015,79 +20160,75 @@ var _react = interopRequireWildcard(React__default);
 /*
 	can memoize components since `anim` object doesn't actually change
 */
-function hours(_ref) {
-  var anim = _ref.anim,
-      mode = _ref.mode,
-      hour24Mode = _ref.hour24Mode;
-  var opacity = anim.opacity,
-      translate = anim.translate,
-      translateInner = anim.translateInner;
-  var _CLOCK_VALUES$mode = constants.CLOCK_VALUES[mode],
-      numbersOuter = _CLOCK_VALUES$mode.numbers,
-      numbersInner = _CLOCK_VALUES$mode.numbersInner;
+function hours({
+  anim,
+  mode,
+  hour24Mode
+}) {
+  const opacity = anim.opacity,
+        translateOuter = anim.translate,
+        translateInner = anim.translateInner;
+  const _CLOCK_VALUES$mode = constants.CLOCK_VALUES[mode],
+        numbersOuter = _CLOCK_VALUES$mode.numbers,
+        numbersInner = _CLOCK_VALUES$mode.numbersInner;
   return (0, core_esm.jsx)(web.animated.div, {
     style: {
       opacity: opacity
     },
     css: numbers.numbersWrapperStyle,
     className: "react-timekeeper__clock-hours"
-  }, numbersOuter.map(function (val, i) {
+  }, numbersOuter.map((val, i) => {
     return (0, core_esm.jsx)(web.animated.span, {
       css: (0, numbers.numbersStyle)({
-        hour24Mode: hour24Mode
+        hour24Mode
       }),
       key: val,
       style: {
-        transform: translate.interpolate(function (v) {
-          return (0, math.transform)(i + 1, v);
-        })
+        transform: translateOuter.interpolate(v => (0, math.transform)(i + 1, v))
       }
     }, val);
-  }), hour24Mode && numbersInner.map(function (val, i) {
+  }), hour24Mode && numbersInner.map((val, i) => {
     return (0, core_esm.jsx)(web.animated.span, {
       css: (0, numbers.numbersStyle)({
-        hour24Mode: hour24Mode,
+        hour24Mode,
         inner: true
       }),
       key: val,
       style: {
-        transform: translateInner.interpolate(function (v) {
-          return (0, math.transform)(i + 1, v);
-        })
+        transform: translateInner.interpolate(v => (0, math.transform)(i + 1, v))
       }
     }, val);
   }));
 }
 
-var HourNumbers = (0, _react.memo)(hours, function (prev, next) {
+const HourNumbers = (0, _react.memo)(hours, (prev, next) => {
   return prev.mode === next.mode && prev.hour24Mode === next.hour24Mode;
 });
 exports.HourNumbers = HourNumbers;
 
-function minutes(_ref2) {
-  var anim = _ref2.anim;
-  var opacity = anim.opacity,
-      translate = anim.translate;
+function minutes({
+  anim
+}) {
+  const opacity = anim.opacity,
+        translate = anim.translate;
   return (0, core_esm.jsx)(web.animated.div, {
     style: {
       opacity: opacity
     },
     css: numbers.numbersWrapperStyle,
     className: "react-timekeeper__clock-minutes"
-  }, constants.MINUTES.map(function (val, i) {
+  }, constants.MINUTES.map((val, i) => {
     return (0, core_esm.jsx)(web.animated.span, {
       css: (0, numbers.numbersStyle)({}),
       key: val,
       style: {
-        transform: translate.interpolate(function (v) {
-          return (0, math.transform)(i + 1, v);
-        })
+        transform: translate.interpolate(v => (0, math.transform)(i + 1, v))
       }
     }, val);
   }));
 }
 
-var MinuteNumbers = (0, _react.memo)(minutes, function () {
+const MinuteNumbers = (0, _react.memo)(minutes, () => {
   return true;
 });
 exports.MinuteNumbers = MinuteNumbers;
@@ -20108,9 +20249,9 @@ exports.default = void 0;
 
 
 
-var styles =
+const styles =
 /*#__PURE__*/
-(0, core_esm.css)("display:inline-block;border-radius:200px;background:white;width:", constants.CLOCK_SIZE, "px;height:", constants.CLOCK_SIZE, "px;position:relative;cursor:pointer;touch-action:none;" + (process.env.NODE_ENV === "production" ? "" : "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy9jb21wb25lbnRzL3N0eWxlcy9jbG9jay50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFHa0IiLCJmaWxlIjoiLi4vLi4vLi4vc3JjL2NvbXBvbmVudHMvc3R5bGVzL2Nsb2NrLnRzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgY3NzLCBqc3ggfSBmcm9tICdAZW1vdGlvbi9jb3JlJ1xuaW1wb3J0IHsgQ0xPQ0tfU0laRSB9IGZyb20gJy4uLy4uL2hlbHBlcnMvY29uc3RhbnRzJ1xuXG5jb25zdCBzdHlsZXMgPSBjc3NgXG5cdGRpc3BsYXk6IGlubGluZS1ibG9jaztcblx0Ym9yZGVyLXJhZGl1czogMjAwcHg7XG5cdGJhY2tncm91bmQ6IHdoaXRlO1xuXHR3aWR0aDogJHtDTE9DS19TSVpFfXB4O1xuXHRoZWlnaHQ6ICR7Q0xPQ0tfU0laRX1weDtcblx0cG9zaXRpb246IHJlbGF0aXZlO1xuXHRjdXJzb3I6IHBvaW50ZXI7XG5cdHRvdWNoLWFjdGlvbjogbm9uZTtcbmBcblxuZXhwb3J0IGRlZmF1bHQgc3R5bGVzXG4iXX0= */"));
+(0, core_esm.css)("display:inline-block;border-radius:200px;background:var(--clock-bg,white);width:", constants.CLOCK_SIZE, "px;height:", constants.CLOCK_SIZE, "px;position:relative;cursor:pointer;touch-action:none;" + (process.env.NODE_ENV === "production" ? "" : "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy9jb21wb25lbnRzL3N0eWxlcy9jbG9jay50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFHa0IiLCJmaWxlIjoiLi4vLi4vLi4vc3JjL2NvbXBvbmVudHMvc3R5bGVzL2Nsb2NrLnRzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgY3NzLCBqc3ggfSBmcm9tICdAZW1vdGlvbi9jb3JlJ1xuaW1wb3J0IHsgQ0xPQ0tfU0laRSB9IGZyb20gJy4uLy4uL2hlbHBlcnMvY29uc3RhbnRzJ1xuXG5jb25zdCBzdHlsZXMgPSBjc3NgXG5cdGRpc3BsYXk6IGlubGluZS1ibG9jaztcblx0Ym9yZGVyLXJhZGl1czogMjAwcHg7XG5cdGJhY2tncm91bmQ6IHZhcigtLWNsb2NrLWJnLCB3aGl0ZSk7XG5cdHdpZHRoOiAke0NMT0NLX1NJWkV9cHg7XG5cdGhlaWdodDogJHtDTE9DS19TSVpFfXB4O1xuXHRwb3NpdGlvbjogcmVsYXRpdmU7XG5cdGN1cnNvcjogcG9pbnRlcjtcblx0dG91Y2gtYWN0aW9uOiBub25lO1xuYFxuXG5leHBvcnQgZGVmYXVsdCBzdHlsZXNcbiJdfQ== */"));
 var _default = styles;
 exports.default = _default;
 });
@@ -20156,18 +20297,19 @@ function initialPosition(mode) {
   return (0, utils.isMinuteMode)(mode) ? constants.INITIAL_HOUR_TRANSFORM : constants.INITIAL_MINUTE_TRANSFORM;
 }
 
-function ClockWrapper(_ref) {
-  var clockEl = _ref.clockEl;
-  var firstTime = (0, _react.useRef)(true);
+function ClockWrapper({
+  clockEl
+}) {
+  const firstTime = (0, _react.useRef)(true);
 
-  var _useConfig = (0, _configContext.default)(),
-      hour24Mode = _useConfig.hour24Mode;
+  const _useConfig = (0, _configContext.default)(),
+        hour24Mode = _useConfig.hour24Mode;
 
-  var _useTimekeeperState = (0, _stateContext.default)(),
-      mode = _useTimekeeperState.mode,
-      time = _useTimekeeperState.time;
+  const _useTimekeeperState = (0, _stateContext.default)(),
+        mode = _useTimekeeperState.mode,
+        time = _useTimekeeperState.time;
 
-  var transitions = (0, web.useTransition)(mode, null, {
+  const transitions = (0, web.useTransition)(mode, null, {
     unique: true,
     from: !firstTime.current && {
       opacity: 0,
@@ -20185,7 +20327,7 @@ function ClockWrapper(_ref) {
       translateInner: constants.INNER_NUMBER_POSITIONING.exit
     }
   });
-  (0, _react.useEffect)(function () {
+  (0, _react.useEffect)(() => {
     // don't show intial animation on first render - ie: {from : ...}
     firstTime.current = false;
   }, []);
@@ -20193,21 +20335,21 @@ function ClockWrapper(_ref) {
     className: "react-timekeeper__clock",
     css: _clock.default,
     ref: clockEl
-  }, transitions.map(function (_ref2) {
-    var currentMode = _ref2.item,
-        key = _ref2.key,
-        props = _ref2.props;
-
+  }, transitions.map(({
+    item: currentMode,
+    key,
+    props: anim
+  }) => {
     // TODO - weird hot reloading issue, remove during compilation
     if (!currentMode) {
       return null;
     }
 
     return (0, utils.isMinuteMode)(currentMode) ? (0, core_esm.jsx)(Numbers.MinuteNumbers, {
-      anim: props,
+      anim: anim,
       key: key
     }) : (0, core_esm.jsx)(Numbers.HourNumbers, {
-      anim: props,
+      anim: anim,
       key: key,
       mode: currentMode,
       hour24Mode: hour24Mode
@@ -20230,30 +20372,28 @@ exports.meridiem = exports.meridiemWrapper = void 0;
 
 
 
-var CLOCK_WRAPPER_MERIDIEM_COLOR = '#898989';
-var CLOCK_WRAPPER_MERIDIEM_BACKGROUND_COLOR_SELECTED = '#E1EFF6';
-var CLOCK_WRAPPER_MERIDIEM_TEXT_COLOR_SELECTED = '#898989';
-var MERIDIEM_SELECT_SIZE = 38;
-var meridiemWrapper = process.env.NODE_ENV === "production" ? {
+const CLOCK_WRAPPER_MERIDIEM_COLOR = '#898989';
+const CLOCK_WRAPPER_MERIDIEM_BACKGROUND_COLOR_SELECTED = '#E1EFF6';
+const CLOCK_WRAPPER_MERIDIEM_TEXT_COLOR_SELECTED = '#898989';
+const MERIDIEM_SELECT_SIZE = 38;
+const meridiemWrapper = process.env.NODE_ENV === "production" ? {
   name: "5kupwr",
   styles: "text-align:left;padding:0 30px;margin-top:-16px;position:relative;z-index:10;"
 } : {
   name: "5kupwr",
   styles: "text-align:left;padding:0 30px;margin-top:-16px;position:relative;z-index:10;",
-  map: "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy9jb21wb25lbnRzL3N0eWxlcy9tZXJpZGllbXMudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBUWtDIiwiZmlsZSI6Ii4uLy4uLy4uL3NyYy9jb21wb25lbnRzL3N0eWxlcy9tZXJpZGllbXMudHMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBjc3MsIGpzeCB9IGZyb20gJ0BlbW90aW9uL2NvcmUnXG5cbmNvbnN0IENMT0NLX1dSQVBQRVJfTUVSSURJRU1fQ09MT1IgPSAnIzg5ODk4OSdcbmNvbnN0IENMT0NLX1dSQVBQRVJfTUVSSURJRU1fQkFDS0dST1VORF9DT0xPUl9TRUxFQ1RFRCA9ICcjRTFFRkY2J1xuY29uc3QgQ0xPQ0tfV1JBUFBFUl9NRVJJRElFTV9URVhUX0NPTE9SX1NFTEVDVEVEID0gJyM4OTg5ODknXG5cbmNvbnN0IE1FUklESUVNX1NFTEVDVF9TSVpFID0gMzhcblxuZXhwb3J0IGNvbnN0IG1lcmlkaWVtV3JhcHBlciA9IGNzc2Bcblx0dGV4dC1hbGlnbjogbGVmdDtcblx0cGFkZGluZzogMCAzMHB4O1xuXHRtYXJnaW4tdG9wOiAtMTZweDtcblx0cG9zaXRpb246IHJlbGF0aXZlO1xuXHR6LWluZGV4OiAxMDtcbmBcblxuaW50ZXJmYWNlIFByb3BzIHtcblx0aXNSaWdodD86IGJvb2xlYW5cblx0aXNTZWxlY3RlZDogYm9vbGVhblxufVxuXG5jb25zdCByaWdodCA9IGBcblx0ZmxvYXQ6IHJpZ2h0O1xuYFxuXG5jb25zdCBzZWxlY3RlZCA9IGBcblx0YmFja2dyb3VuZDogJHtDTE9DS19XUkFQUEVSX01FUklESUVNX0JBQ0tHUk9VTkRfQ09MT1JfU0VMRUNURUR9O1xuXHRjb2xvcjogJHtDTE9DS19XUkFQUEVSX01FUklESUVNX1RFWFRfQ09MT1JfU0VMRUNURUR9O1xuYFxuXG5leHBvcnQgY29uc3QgbWVyaWRpZW0gPSAoeyBpc1JpZ2h0LCBpc1NlbGVjdGVkIH06IFByb3BzKSA9PiBjc3NgXG5cdGJhY2tncm91bmQ6IHdoaXRlO1xuXHRmb250LXNpemU6IDE0cHg7XG5cdGNvbG9yOiAke0NMT0NLX1dSQVBQRVJfTUVSSURJRU1fQ09MT1J9O1xuXHRkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG5cdHBhZGRpbmc6IDA7XG5cdGN1cnNvcjogcG9pbnRlcjtcblx0Ym9yZGVyLXJhZGl1czogOTlweDtcblx0d2lkdGg6ICR7TUVSSURJRU1fU0VMRUNUX1NJWkV9cHg7XG5cdGhlaWdodDogJHtNRVJJRElFTV9TRUxFQ1RfU0laRX1weDtcblx0dGV4dC1hbGlnbjogY2VudGVyO1xuXHRsaW5lLWhlaWdodDogJHtNRVJJRElFTV9TRUxFQ1RfU0laRX1weDtcblx0dHJhbnNpdGlvbjogMC4xNXMgZWFzZS1vdXQ7XG5cblx0Ly8gY29uZGl0aW9uYWxzXG5cdCR7aXNSaWdodCAmJiByaWdodH1cblx0JHtpc1NlbGVjdGVkICYmIHNlbGVjdGVkfVxuYFxuIl19 */"
+  map: "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy9jb21wb25lbnRzL3N0eWxlcy9tZXJpZGllbXMudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBUWtDIiwiZmlsZSI6Ii4uLy4uLy4uL3NyYy9jb21wb25lbnRzL3N0eWxlcy9tZXJpZGllbXMudHMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBjc3MsIGpzeCB9IGZyb20gJ0BlbW90aW9uL2NvcmUnXG5cbmNvbnN0IENMT0NLX1dSQVBQRVJfTUVSSURJRU1fQ09MT1IgPSAnIzg5ODk4OSdcbmNvbnN0IENMT0NLX1dSQVBQRVJfTUVSSURJRU1fQkFDS0dST1VORF9DT0xPUl9TRUxFQ1RFRCA9ICcjRTFFRkY2J1xuY29uc3QgQ0xPQ0tfV1JBUFBFUl9NRVJJRElFTV9URVhUX0NPTE9SX1NFTEVDVEVEID0gJyM4OTg5ODknXG5cbmNvbnN0IE1FUklESUVNX1NFTEVDVF9TSVpFID0gMzhcblxuZXhwb3J0IGNvbnN0IG1lcmlkaWVtV3JhcHBlciA9IGNzc2Bcblx0dGV4dC1hbGlnbjogbGVmdDtcblx0cGFkZGluZzogMCAzMHB4O1xuXHRtYXJnaW4tdG9wOiAtMTZweDtcblx0cG9zaXRpb246IHJlbGF0aXZlO1xuXHR6LWluZGV4OiAxMDtcbmBcblxuaW50ZXJmYWNlIFByb3BzIHtcblx0aXNSaWdodD86IGJvb2xlYW5cblx0aXNTZWxlY3RlZDogYm9vbGVhblxufVxuXG5jb25zdCByaWdodCA9IGBcblx0ZmxvYXQ6IHJpZ2h0O1xuYFxuXG5jb25zdCBzZWxlY3RlZCA9IGBcblx0YmFja2dyb3VuZDogdmFyKC0tbWVyaWRpZW0tc2VsZWN0ZWQtYmctY29sb3IsICR7Q0xPQ0tfV1JBUFBFUl9NRVJJRElFTV9CQUNLR1JPVU5EX0NPTE9SX1NFTEVDVEVEfSk7XG5cdGNvbG9yOiB2YXIoLS1tZXJpZGllbS1zZWxlY3RlZC10ZXh0LWNvbG9yLCAke0NMT0NLX1dSQVBQRVJfTUVSSURJRU1fVEVYVF9DT0xPUl9TRUxFQ1RFRH0pO1xuYFxuXG5leHBvcnQgY29uc3QgbWVyaWRpZW0gPSAoeyBpc1JpZ2h0LCBpc1NlbGVjdGVkIH06IFByb3BzKSA9PiBjc3NgXG5cdGJhY2tncm91bmQ6IHZhcigtLW1lcmlkaWVtLWJnLWNvbG9yLCB3aGl0ZSk7XG5cdGZvbnQtc2l6ZTogMTRweDtcblx0Y29sb3I6IHZhcigtLW1lcmlkaWVtLXRleHQtY29sb3IsICR7Q0xPQ0tfV1JBUFBFUl9NRVJJRElFTV9DT0xPUn0pO1xuXHRkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG5cdHBhZGRpbmc6IDA7XG5cdGN1cnNvcjogcG9pbnRlcjtcblx0Ym9yZGVyLXJhZGl1czogOTlweDtcblx0d2lkdGg6ICR7TUVSSURJRU1fU0VMRUNUX1NJWkV9cHg7XG5cdGhlaWdodDogJHtNRVJJRElFTV9TRUxFQ1RfU0laRX1weDtcblx0dGV4dC1hbGlnbjogY2VudGVyO1xuXHRsaW5lLWhlaWdodDogJHtNRVJJRElFTV9TRUxFQ1RfU0laRX1weDtcblx0dHJhbnNpdGlvbjogMC4xNXMgZWFzZS1vdXQ7XG5cblx0Ly8gY29uZGl0aW9uYWxzXG5cdCR7aXNSaWdodCAmJiByaWdodH1cblx0JHtpc1NlbGVjdGVkICYmIHNlbGVjdGVkfVxuYFxuIl19 */"
 };
 exports.meridiemWrapper = meridiemWrapper;
-var right = "\n\tfloat: right;\n";
-var selected = "\n\tbackground: ".concat(CLOCK_WRAPPER_MERIDIEM_BACKGROUND_COLOR_SELECTED, ";\n\tcolor: ").concat(CLOCK_WRAPPER_MERIDIEM_TEXT_COLOR_SELECTED, ";\n");
+const right = "\n\tfloat: right;\n";
+const selected = "\n\tbackground: var(--meridiem-selected-bg-color, ".concat(CLOCK_WRAPPER_MERIDIEM_BACKGROUND_COLOR_SELECTED, ");\n\tcolor: var(--meridiem-selected-text-color, ").concat(CLOCK_WRAPPER_MERIDIEM_TEXT_COLOR_SELECTED, ");\n");
 
-var meridiem = function meridiem(_ref) {
-  var isRight = _ref.isRight,
-      isSelected = _ref.isSelected;
-  return (
-    /*#__PURE__*/
-    (0, core_esm.css)("background:white;font-size:14px;color:", CLOCK_WRAPPER_MERIDIEM_COLOR, ";display:inline-block;padding:0;cursor:pointer;border-radius:99px;width:", MERIDIEM_SELECT_SIZE, "px;height:", MERIDIEM_SELECT_SIZE, "px;text-align:center;line-height:", MERIDIEM_SELECT_SIZE, "px;transition:0.15s ease-out;", isRight && right, " ", isSelected && selected, process.env.NODE_ENV === "production" ? "" : "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy9jb21wb25lbnRzL3N0eWxlcy9tZXJpZGllbXMudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBOEIrRCIsImZpbGUiOiIuLi8uLi8uLi9zcmMvY29tcG9uZW50cy9zdHlsZXMvbWVyaWRpZW1zLnRzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgY3NzLCBqc3ggfSBmcm9tICdAZW1vdGlvbi9jb3JlJ1xuXG5jb25zdCBDTE9DS19XUkFQUEVSX01FUklESUVNX0NPTE9SID0gJyM4OTg5ODknXG5jb25zdCBDTE9DS19XUkFQUEVSX01FUklESUVNX0JBQ0tHUk9VTkRfQ09MT1JfU0VMRUNURUQgPSAnI0UxRUZGNidcbmNvbnN0IENMT0NLX1dSQVBQRVJfTUVSSURJRU1fVEVYVF9DT0xPUl9TRUxFQ1RFRCA9ICcjODk4OTg5J1xuXG5jb25zdCBNRVJJRElFTV9TRUxFQ1RfU0laRSA9IDM4XG5cbmV4cG9ydCBjb25zdCBtZXJpZGllbVdyYXBwZXIgPSBjc3NgXG5cdHRleHQtYWxpZ246IGxlZnQ7XG5cdHBhZGRpbmc6IDAgMzBweDtcblx0bWFyZ2luLXRvcDogLTE2cHg7XG5cdHBvc2l0aW9uOiByZWxhdGl2ZTtcblx0ei1pbmRleDogMTA7XG5gXG5cbmludGVyZmFjZSBQcm9wcyB7XG5cdGlzUmlnaHQ/OiBib29sZWFuXG5cdGlzU2VsZWN0ZWQ6IGJvb2xlYW5cbn1cblxuY29uc3QgcmlnaHQgPSBgXG5cdGZsb2F0OiByaWdodDtcbmBcblxuY29uc3Qgc2VsZWN0ZWQgPSBgXG5cdGJhY2tncm91bmQ6ICR7Q0xPQ0tfV1JBUFBFUl9NRVJJRElFTV9CQUNLR1JPVU5EX0NPTE9SX1NFTEVDVEVEfTtcblx0Y29sb3I6ICR7Q0xPQ0tfV1JBUFBFUl9NRVJJRElFTV9URVhUX0NPTE9SX1NFTEVDVEVEfTtcbmBcblxuZXhwb3J0IGNvbnN0IG1lcmlkaWVtID0gKHsgaXNSaWdodCwgaXNTZWxlY3RlZCB9OiBQcm9wcykgPT4gY3NzYFxuXHRiYWNrZ3JvdW5kOiB3aGl0ZTtcblx0Zm9udC1zaXplOiAxNHB4O1xuXHRjb2xvcjogJHtDTE9DS19XUkFQUEVSX01FUklESUVNX0NPTE9SfTtcblx0ZGlzcGxheTogaW5saW5lLWJsb2NrO1xuXHRwYWRkaW5nOiAwO1xuXHRjdXJzb3I6IHBvaW50ZXI7XG5cdGJvcmRlci1yYWRpdXM6IDk5cHg7XG5cdHdpZHRoOiAke01FUklESUVNX1NFTEVDVF9TSVpFfXB4O1xuXHRoZWlnaHQ6ICR7TUVSSURJRU1fU0VMRUNUX1NJWkV9cHg7XG5cdHRleHQtYWxpZ246IGNlbnRlcjtcblx0bGluZS1oZWlnaHQ6ICR7TUVSSURJRU1fU0VMRUNUX1NJWkV9cHg7XG5cdHRyYW5zaXRpb246IDAuMTVzIGVhc2Utb3V0O1xuXG5cdC8vIGNvbmRpdGlvbmFsc1xuXHQke2lzUmlnaHQgJiYgcmlnaHR9XG5cdCR7aXNTZWxlY3RlZCAmJiBzZWxlY3RlZH1cbmBcbiJdfQ== */")
-  );
-};
+const meridiem = ({
+  isRight,
+  isSelected
+}) =>
+/*#__PURE__*/
+(0, core_esm.css)("background:var(--meridiem-bg-color,white);font-size:14px;color:var(--meridiem-text-color,", CLOCK_WRAPPER_MERIDIEM_COLOR, ");display:inline-block;padding:0;cursor:pointer;border-radius:99px;width:", MERIDIEM_SELECT_SIZE, "px;height:", MERIDIEM_SELECT_SIZE, "px;text-align:center;line-height:", MERIDIEM_SELECT_SIZE, "px;transition:0.15s ease-out;", isRight && right, " ", isSelected && selected, process.env.NODE_ENV === "production" ? "" : "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy9jb21wb25lbnRzL3N0eWxlcy9tZXJpZGllbXMudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBOEIrRCIsImZpbGUiOiIuLi8uLi8uLi9zcmMvY29tcG9uZW50cy9zdHlsZXMvbWVyaWRpZW1zLnRzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgY3NzLCBqc3ggfSBmcm9tICdAZW1vdGlvbi9jb3JlJ1xuXG5jb25zdCBDTE9DS19XUkFQUEVSX01FUklESUVNX0NPTE9SID0gJyM4OTg5ODknXG5jb25zdCBDTE9DS19XUkFQUEVSX01FUklESUVNX0JBQ0tHUk9VTkRfQ09MT1JfU0VMRUNURUQgPSAnI0UxRUZGNidcbmNvbnN0IENMT0NLX1dSQVBQRVJfTUVSSURJRU1fVEVYVF9DT0xPUl9TRUxFQ1RFRCA9ICcjODk4OTg5J1xuXG5jb25zdCBNRVJJRElFTV9TRUxFQ1RfU0laRSA9IDM4XG5cbmV4cG9ydCBjb25zdCBtZXJpZGllbVdyYXBwZXIgPSBjc3NgXG5cdHRleHQtYWxpZ246IGxlZnQ7XG5cdHBhZGRpbmc6IDAgMzBweDtcblx0bWFyZ2luLXRvcDogLTE2cHg7XG5cdHBvc2l0aW9uOiByZWxhdGl2ZTtcblx0ei1pbmRleDogMTA7XG5gXG5cbmludGVyZmFjZSBQcm9wcyB7XG5cdGlzUmlnaHQ/OiBib29sZWFuXG5cdGlzU2VsZWN0ZWQ6IGJvb2xlYW5cbn1cblxuY29uc3QgcmlnaHQgPSBgXG5cdGZsb2F0OiByaWdodDtcbmBcblxuY29uc3Qgc2VsZWN0ZWQgPSBgXG5cdGJhY2tncm91bmQ6IHZhcigtLW1lcmlkaWVtLXNlbGVjdGVkLWJnLWNvbG9yLCAke0NMT0NLX1dSQVBQRVJfTUVSSURJRU1fQkFDS0dST1VORF9DT0xPUl9TRUxFQ1RFRH0pO1xuXHRjb2xvcjogdmFyKC0tbWVyaWRpZW0tc2VsZWN0ZWQtdGV4dC1jb2xvciwgJHtDTE9DS19XUkFQUEVSX01FUklESUVNX1RFWFRfQ09MT1JfU0VMRUNURUR9KTtcbmBcblxuZXhwb3J0IGNvbnN0IG1lcmlkaWVtID0gKHsgaXNSaWdodCwgaXNTZWxlY3RlZCB9OiBQcm9wcykgPT4gY3NzYFxuXHRiYWNrZ3JvdW5kOiB2YXIoLS1tZXJpZGllbS1iZy1jb2xvciwgd2hpdGUpO1xuXHRmb250LXNpemU6IDE0cHg7XG5cdGNvbG9yOiB2YXIoLS1tZXJpZGllbS10ZXh0LWNvbG9yLCAke0NMT0NLX1dSQVBQRVJfTUVSSURJRU1fQ09MT1J9KTtcblx0ZGlzcGxheTogaW5saW5lLWJsb2NrO1xuXHRwYWRkaW5nOiAwO1xuXHRjdXJzb3I6IHBvaW50ZXI7XG5cdGJvcmRlci1yYWRpdXM6IDk5cHg7XG5cdHdpZHRoOiAke01FUklESUVNX1NFTEVDVF9TSVpFfXB4O1xuXHRoZWlnaHQ6ICR7TUVSSURJRU1fU0VMRUNUX1NJWkV9cHg7XG5cdHRleHQtYWxpZ246IGNlbnRlcjtcblx0bGluZS1oZWlnaHQ6ICR7TUVSSURJRU1fU0VMRUNUX1NJWkV9cHg7XG5cdHRyYW5zaXRpb246IDAuMTVzIGVhc2Utb3V0O1xuXG5cdC8vIGNvbmRpdGlvbmFsc1xuXHQke2lzUmlnaHQgJiYgcmlnaHR9XG5cdCR7aXNTZWxlY3RlZCAmJiBzZWxlY3RlZH1cbmBcbiJdfQ== */");
 
 exports.meridiem = meridiem;
 });
@@ -20284,17 +20424,17 @@ var _stateContext = interopRequireDefault(stateContext_1);
 
 
 function Meridiems() {
-  var _useTimekeeperState = (0, _stateContext.default)(),
-      time = _useTimekeeperState.time,
-      updateMeridiem = _useTimekeeperState.updateMeridiem;
+  const _useTimekeeperState = (0, _stateContext.default)(),
+        time = _useTimekeeperState.time,
+        updateMeridiem = _useTimekeeperState.updateMeridiem;
 
-  var setAM = (0, _react.useCallback)(function () {
+  const setAM = (0, _react.useCallback)(() => {
     updateMeridiem(constants.MERIDIEM.am);
   }, [updateMeridiem]);
-  var setPM = (0, _react.useCallback)(function () {
+  const setPM = (0, _react.useCallback)(() => {
     updateMeridiem(constants.MERIDIEM.pm);
   }, [updateMeridiem]);
-  var isPM = time.hour >= 12;
+  const isPM = time.hour >= 12;
   return (0, core_esm.jsx)("div", {
     css: meridiems.meridiemWrapper
   }, (0, core_esm.jsx)("button", {
@@ -20302,7 +20442,7 @@ function Meridiems() {
     css: (0, meridiems.meridiem)({
       isSelected: !isPM
     }),
-    className: "react-timekeeper-button-reset react-timekeeper__meridiem-toggle",
+    className: "react-timekeeper-button-reset react-timekeeper__meridiem-toggle ".concat(!isPM ? 'react-timekeeper__meridiem--active' : ''),
     onClick: setAM
   }, "AM"), (0, core_esm.jsx)("button", {
     type: "button",
@@ -20310,13 +20450,27 @@ function Meridiems() {
       isRight: true,
       isSelected: isPM
     }),
-    className: "react-timekeeper-button-reset react-timekeeper__meridiem-toggle",
+    className: "react-timekeeper-button-reset react-timekeeper__meridiem-toggle ".concat(isPM ? 'react-timekeeper__meridiem--active' : ''),
     onClick: setPM
   }, "PM"));
 }
 });
 
 unwrapExports(Meridiems_1);
+
+var constants$1 = createCommonjsModule(function (module, exports) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.CLOCK_WRAPPER_BACKGROUND = void 0;
+// clock wrapper
+const CLOCK_WRAPPER_BACKGROUND = '#f4f4f4';
+exports.CLOCK_WRAPPER_BACKGROUND = CLOCK_WRAPPER_BACKGROUND;
+});
+
+unwrapExports(constants$1);
+var constants_1$1 = constants$1.CLOCK_WRAPPER_BACKGROUND;
 
 var clockWrapper = createCommonjsModule(function (module, exports) {
 
@@ -20329,9 +20483,9 @@ exports.default = void 0;
 
 
 
-var style =
+const style =
 /*#__PURE__*/
-(0, core_esm.css)("text-align:center;padding:18px 0 14px;background:", constants$1.CLOCK_WRAPPER_BACKGROUND, ";" + (process.env.NODE_ENV === "production" ? "" : "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy9jb21wb25lbnRzL3N0eWxlcy9jbG9jay13cmFwcGVyLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUdpQiIsImZpbGUiOiIuLi8uLi8uLi9zcmMvY29tcG9uZW50cy9zdHlsZXMvY2xvY2std3JhcHBlci50cyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IGNzcywganN4IH0gZnJvbSAnQGVtb3Rpb24vY29yZSdcbmltcG9ydCB7IENMT0NLX1dSQVBQRVJfQkFDS0dST1VORCB9IGZyb20gJy4vY29uc3RhbnRzJ1xuXG5jb25zdCBzdHlsZSA9IGNzc2Bcblx0dGV4dC1hbGlnbjogY2VudGVyO1xuXHRwYWRkaW5nOiAxOHB4IDAgMTRweDtcblx0YmFja2dyb3VuZDogJHtDTE9DS19XUkFQUEVSX0JBQ0tHUk9VTkR9O1xuYFxuXG5leHBvcnQgZGVmYXVsdCBzdHlsZVxuIl19 */"));
+(0, core_esm.css)("text-align:center;padding:18px 0 14px;background:var(--clock-wrapper-bg,", constants$1.CLOCK_WRAPPER_BACKGROUND, ");" + (process.env.NODE_ENV === "production" ? "" : "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy9jb21wb25lbnRzL3N0eWxlcy9jbG9jay13cmFwcGVyLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUdpQiIsImZpbGUiOiIuLi8uLi8uLi9zcmMvY29tcG9uZW50cy9zdHlsZXMvY2xvY2std3JhcHBlci50cyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IGNzcywganN4IH0gZnJvbSAnQGVtb3Rpb24vY29yZSdcbmltcG9ydCB7IENMT0NLX1dSQVBQRVJfQkFDS0dST1VORCB9IGZyb20gJy4vY29uc3RhbnRzJ1xuXG5jb25zdCBzdHlsZSA9IGNzc2Bcblx0dGV4dC1hbGlnbjogY2VudGVyO1xuXHRwYWRkaW5nOiAxOHB4IDAgMTRweDtcblx0YmFja2dyb3VuZDogdmFyKC0tY2xvY2std3JhcHBlci1iZywgJHtDTE9DS19XUkFQUEVSX0JBQ0tHUk9VTkR9KTtcbmBcblxuZXhwb3J0IGRlZmF1bHQgc3R5bGVcbiJdfQ== */"));
 var _default = style;
 exports.default = _default;
 });
@@ -20353,7 +20507,7 @@ exports.default = useClockEvents;
 
 
 
-var atan2 = Math.atan2;
+const atan2 = Math.atan2;
 
 /*
 	solely responsible for transforming click events into
@@ -20361,11 +20515,11 @@ var atan2 = Math.atan2;
 	on current mode and other restrictions)
 */
 function useClockEvents(clock, handleChange) {
-  var wrapper = (0, React__default.useRef)(null);
-  var calcOffsetCache = (0, React__default.useRef)(null);
-  var dragCount = (0, React__default.useRef)(0);
-  var cleanup = (0, React__default.useCallback)(_removeHandlers, []);
-  var disableMouse = (0, React__default.useRef)(false); // mouse events
+  const wrapper = (0, React__default.useRef)(null);
+  const calcOffsetCache = (0, React__default.useRef)(null);
+  const dragCount = (0, React__default.useRef)(0);
+  const cleanup = (0, React__default.useCallback)(_removeHandlers, []);
+  const disableMouse = (0, React__default.useRef)(false); // mouse events
 
   function handleMouseDown(e) {
     if (disableMouse.current) {
@@ -20381,16 +20535,17 @@ function useClockEvents(clock, handleChange) {
     if (clock.current) {
       calcOffsetCache.current = (0, dom.calcOffset)(clock.current);
     } // move hand
+    // @ts-ignore
 
 
-    handleMouseDrag(e); // TODO - fix ts
+    handleMouseDrag(e);
   }
 
   function handleMouseDrag(e) {
     if (calcOffsetCache.current) {
-      var _calcOffsetCache$curr = calcOffsetCache.current(e.clientX, e.clientY),
-          offsetX = _calcOffsetCache$curr.offsetX,
-          offsetY = _calcOffsetCache$curr.offsetY;
+      const _calcOffsetCache$curr = calcOffsetCache.current(e.clientX, e.clientY),
+            offsetX = _calcOffsetCache$curr.offsetX,
+            offsetY = _calcOffsetCache$curr.offsetY;
 
       calculatePoint(offsetX, offsetY, false);
     }
@@ -20423,11 +20578,11 @@ function useClockEvents(clock, handleChange) {
 
   function touchDragHandler(e) {
     if (calcOffsetCache.current) {
-      var touch = e.targetTouches[0];
+      const touch = e.targetTouches[0];
 
-      var _calcOffsetCache$curr2 = calcOffsetCache.current(touch.clientX, touch.clientY),
-          offsetX = _calcOffsetCache$curr2.offsetX,
-          offsetY = _calcOffsetCache$curr2.offsetY;
+      const _calcOffsetCache$curr2 = calcOffsetCache.current(touch.clientX, touch.clientY),
+            offsetX = _calcOffsetCache$curr2.offsetX,
+            offsetY = _calcOffsetCache$curr2.offsetY;
 
       calculatePoint(offsetX, offsetY, false);
     }
@@ -20477,25 +20632,25 @@ function useClockEvents(clock, handleChange) {
 
     clock.current.style.cursor = '';
 
-    var _ref = calcOffsetCache.current(e.clientX, e.clientY),
-        offsetX = _ref.offsetX,
-        offsetY = _ref.offsetY;
+    const _ref = calcOffsetCache.current(e.clientX, e.clientY),
+          offsetX = _ref.offsetX,
+          offsetY = _ref.offsetY;
 
     calculatePoint(offsetX, offsetY, true);
   }
 
   function _handleTouchEnd(e) {
-    var touch = e.targetTouches[0] || e.changedTouches[0];
+    const touch = e.targetTouches[0] || e.changedTouches[0];
 
     if (touch && calcOffsetCache.current) {
-      var _calcOffsetCache$curr3 = calcOffsetCache.current(touch.clientX, touch.clientY),
-          offsetX = _calcOffsetCache$curr3.offsetX,
-          offsetY = _calcOffsetCache$curr3.offsetY;
+      const _calcOffsetCache$curr3 = calcOffsetCache.current(touch.clientX, touch.clientY),
+            offsetX = _calcOffsetCache$curr3.offsetX,
+            offsetY = _calcOffsetCache$curr3.offsetY;
 
       calculatePoint(offsetX, offsetY, true);
     }
 
-    setTimeout(function () {
+    setTimeout(() => {
       disableMouse.current = false;
     }, 10);
   }
@@ -20506,11 +20661,11 @@ function useClockEvents(clock, handleChange) {
   canAutoChangeUnit) {
     // if user just clicks/taps a number (drag count < 2), then just assume it's a rough tap
     // and force a rounded/coarse number (ie: 1, 2, 3, 4 is tapped, assume 0 or 5)
-    var wasTapped = dragCount.current < 2;
-    var x = offsetX - constants.CLOCK_RADIUS;
-    var y = -offsetY + constants.CLOCK_RADIUS;
-    var a = atan2(y, x);
-    var d = 90 - (0, math.deg)(a);
+    const wasTapped = dragCount.current < 2;
+    const x = offsetX - constants.CLOCK_RADIUS;
+    const y = -offsetY + constants.CLOCK_RADIUS;
+    const a = atan2(y, x);
+    let d = 90 - (0, math.deg)(a);
 
     if (d < 0) {
       d = 360 + d;
@@ -20521,17 +20676,17 @@ function useClockEvents(clock, handleChange) {
       return false;
     }
 
-    var isInnerClick = (0, math.isWithinRadius)(x, y, constants.INNER_NUMBER_RADIUS); // update time on main
+    const isInnerClick = (0, math.isWithinRadius)(x, y, constants.INNER_NUMBER_RADIUS); // update time on main
 
     handleChange(d, {
-      canAutoChangeUnit: canAutoChangeUnit,
-      wasTapped: wasTapped,
-      isInnerClick: isInnerClick
+      canAutoChangeUnit,
+      wasTapped,
+      isInnerClick
     });
   } // clean up
 
 
-  (0, React__default.useEffect)(function () {
+  (0, React__default.useEffect)(() => {
     return cleanup;
   }, [cleanup]);
   return {
@@ -20580,18 +20735,18 @@ var _clockEvents = interopRequireDefault(clockEvents);
 var _stateContext = interopRequireDefault(stateContext_1);
 
 function ClockWrapper() {
-  var config = (0, _configContext.default)(); // clock events
+  const config = (0, _configContext.default)(); // clock events
 
-  var clock = (0, _react.useRef)(null);
+  const clock = (0, _react.useRef)(null);
 
-  var _useClockEvents = (0, _clockEvents.default)(clock, calculateTimeValue),
-      bind = _useClockEvents.bind;
+  const _useClockEvents = (0, _clockEvents.default)(clock, calculateTimeValue),
+        bind = _useClockEvents.bind;
 
-  var _useTimekeeperState = (0, _stateContext.default)(),
-      mode = _useTimekeeperState.mode,
-      updateTime = _useTimekeeperState.updateTime,
-      setMode = _useTimekeeperState.setMode,
-      getComposedTime = _useTimekeeperState.getComposedTime;
+  const _useTimekeeperState = (0, _stateContext.default)(),
+        mode = _useTimekeeperState.mode,
+        updateTime = _useTimekeeperState.updateTime,
+        setMode = _useTimekeeperState.setMode,
+        getComposedTime = _useTimekeeperState.getComposedTime;
   /*
   	LOGIC AROUND COARSE
   	- on drag, if count < 2, do not force coarse
@@ -20611,24 +20766,22 @@ function ClockWrapper() {
   */
 
 
-  function calculateTimeValue(angle, _ref) {
-    var _ref$canAutoChangeUni = _ref.canAutoChangeUnit,
-        canAutoChangeUnit = _ref$canAutoChangeUni === void 0 ? false : _ref$canAutoChangeUni,
-        _ref$wasTapped = _ref.wasTapped,
-        wasTapped = _ref$wasTapped === void 0 ? false : _ref$wasTapped,
-        _ref$isInnerClick = _ref.isInnerClick,
-        isInnerClick = _ref$isInnerClick === void 0 ? false : _ref$isInnerClick;
+  function calculateTimeValue(angle, {
+    canAutoChangeUnit = false,
+    wasTapped = false,
+    isInnerClick = false
+  }) {
     // total number of allowable increments, 12/24 for hours, 60 for min
-    var totalIncrements = constants.CLOCK_VALUES[mode].increments; // minimum increment used for rounding
+    const totalIncrements = constants.CLOCK_VALUES[mode].increments; // minimum increment used for rounding
 
-    var minIncrement = 1; // coarse minutes
+    let minIncrement = 1; // coarse minutes
 
     if ((0, utils.isMinuteMode)(mode) && (wasTapped || config.forceCoarseMinutes)) {
       minIncrement = config.coarseMinutes;
     }
 
-    var val = angle / 360 * totalIncrements;
-    var selected = Math.round(val / minIncrement) * minIncrement;
+    const val = angle / 360 * totalIncrements;
+    let selected = Math.round(val / minIncrement) * minIncrement;
 
     if (mode === constants.MODE.HOURS_24 && config.hour24Mode) {
       // fixes 12pm and midnight, both angle -> selected return 0
@@ -20674,13 +20827,13 @@ exports.default = exports.DONE_BUTTON_BORDER_COLOR = exports.DONE_BUTTON_COLOR =
 
 
 
-var DONE_BUTTON_COLOR = '#686868';
+const DONE_BUTTON_COLOR = '#686868';
 exports.DONE_BUTTON_COLOR = DONE_BUTTON_COLOR;
-var DONE_BUTTON_BORDER_COLOR = '#CCC';
+const DONE_BUTTON_BORDER_COLOR = '#CCC';
 exports.DONE_BUTTON_BORDER_COLOR = DONE_BUTTON_BORDER_COLOR;
-var doneButton =
+const doneButton =
 /*#__PURE__*/
-(0, core_esm.css)("background:", constants$1.CLOCK_WRAPPER_BACKGROUND, ";display:block;color:", DONE_BUTTON_COLOR, ";text-transform:uppercase;border-top:1px solid ", DONE_BUTTON_BORDER_COLOR, ";text-align:center;cursor:pointer;padding:16px 0;font-size:13px;letter-spacing:0.5px;line-height:normal;font-weight:500;" + (process.env.NODE_ENV === "production" ? "" : "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy9jb21wb25lbnRzL3N0eWxlcy9kb25lLWJ1dHRvbi50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFNc0IiLCJmaWxlIjoiLi4vLi4vLi4vc3JjL2NvbXBvbmVudHMvc3R5bGVzL2RvbmUtYnV0dG9uLnRzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgY3NzLCBqc3ggfSBmcm9tICdAZW1vdGlvbi9jb3JlJ1xuaW1wb3J0IHsgQ0xPQ0tfV1JBUFBFUl9CQUNLR1JPVU5EIH0gZnJvbSAnLi9jb25zdGFudHMnXG5cbmV4cG9ydCBjb25zdCBET05FX0JVVFRPTl9DT0xPUiA9ICcjNjg2ODY4J1xuZXhwb3J0IGNvbnN0IERPTkVfQlVUVE9OX0JPUkRFUl9DT0xPUiA9ICcjQ0NDJ1xuXG5jb25zdCBkb25lQnV0dG9uID0gY3NzYFxuXHRiYWNrZ3JvdW5kOiAke0NMT0NLX1dSQVBQRVJfQkFDS0dST1VORH07XG5cdGRpc3BsYXk6IGJsb2NrO1xuXHRjb2xvcjogJHtET05FX0JVVFRPTl9DT0xPUn07XG5cdHRleHQtdHJhbnNmb3JtOiB1cHBlcmNhc2U7XG5cdGJvcmRlci10b3A6IDFweCBzb2xpZCAke0RPTkVfQlVUVE9OX0JPUkRFUl9DT0xPUn07XG5cdHRleHQtYWxpZ246IGNlbnRlcjtcblx0Y3Vyc29yOiBwb2ludGVyO1xuXHRwYWRkaW5nOiAxNnB4IDA7XG5cdGZvbnQtc2l6ZTogMTNweDtcblx0bGV0dGVyLXNwYWNpbmc6IDAuNXB4O1xuXHRsaW5lLWhlaWdodDogbm9ybWFsO1xuXHRmb250LXdlaWdodDogNTAwO1xuYFxuXG5leHBvcnQgZGVmYXVsdCBkb25lQnV0dG9uXG4iXX0= */"));
+(0, core_esm.css)("background:var(--done-bg-color,", constants$1.CLOCK_WRAPPER_BACKGROUND, ");display:block;color:var(--done-text-color,", DONE_BUTTON_COLOR, ");text-transform:uppercase;border-top:var(--done-border-top,1px solid ", DONE_BUTTON_BORDER_COLOR, ");text-align:center;cursor:pointer;padding:16px 0;font-size:var(--done-font-size,13px);letter-spacing:0.5px;line-height:normal;font-weight:var(--done-font-weight,500);" + (process.env.NODE_ENV === "production" ? "" : "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy9jb21wb25lbnRzL3N0eWxlcy9kb25lLWJ1dHRvbi50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFNc0IiLCJmaWxlIjoiLi4vLi4vLi4vc3JjL2NvbXBvbmVudHMvc3R5bGVzL2RvbmUtYnV0dG9uLnRzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgY3NzLCBqc3ggfSBmcm9tICdAZW1vdGlvbi9jb3JlJ1xuaW1wb3J0IHsgQ0xPQ0tfV1JBUFBFUl9CQUNLR1JPVU5EIH0gZnJvbSAnLi9jb25zdGFudHMnXG5cbmV4cG9ydCBjb25zdCBET05FX0JVVFRPTl9DT0xPUiA9ICcjNjg2ODY4J1xuZXhwb3J0IGNvbnN0IERPTkVfQlVUVE9OX0JPUkRFUl9DT0xPUiA9ICcjQ0NDJ1xuXG5jb25zdCBkb25lQnV0dG9uID0gY3NzYFxuXHRiYWNrZ3JvdW5kOiB2YXIoLS1kb25lLWJnLWNvbG9yLCAke0NMT0NLX1dSQVBQRVJfQkFDS0dST1VORH0pO1xuXHRkaXNwbGF5OiBibG9jaztcblx0Y29sb3I6IHZhcigtLWRvbmUtdGV4dC1jb2xvciwgJHtET05FX0JVVFRPTl9DT0xPUn0pO1xuXHR0ZXh0LXRyYW5zZm9ybTogdXBwZXJjYXNlO1xuXHRib3JkZXItdG9wOiB2YXIoLS1kb25lLWJvcmRlci10b3AsIDFweCBzb2xpZCAke0RPTkVfQlVUVE9OX0JPUkRFUl9DT0xPUn0pO1xuXHR0ZXh0LWFsaWduOiBjZW50ZXI7XG5cdGN1cnNvcjogcG9pbnRlcjtcblx0cGFkZGluZzogMTZweCAwO1xuXHRmb250LXNpemU6IHZhcigtLWRvbmUtZm9udC1zaXplLCAxM3B4KTtcblx0bGV0dGVyLXNwYWNpbmc6IDAuNXB4O1xuXHRsaW5lLWhlaWdodDogbm9ybWFsO1xuXHRmb250LXdlaWdodDogdmFyKC0tZG9uZS1mb250LXdlaWdodCwgNTAwKTtcbmBcblxuZXhwb3J0IGRlZmF1bHQgZG9uZUJ1dHRvblxuIl19 */"));
 var _default = doneButton;
 exports.default = _default;
 });
@@ -20709,12 +20862,12 @@ var _doneButton = interopRequireDefault(doneButton_1);
 var _stateContext = interopRequireDefault(stateContext_1);
 
 function DoneButton() {
-  var _useConfig = (0, _configContext.default)(),
-      onDoneClick = _useConfig.onDoneClick,
-      doneButton = _useConfig.doneButton;
+  const _useConfig = (0, _configContext.default)(),
+        onDoneClick = _useConfig.onDoneClick,
+        doneButton = _useConfig.doneButton;
 
-  var _useTimekeeperState = (0, _stateContext.default)(),
-      getComposedTime = _useTimekeeperState.getComposedTime;
+  const _useTimekeeperState = (0, _stateContext.default)(),
+        getComposedTime = _useTimekeeperState.getComposedTime;
 
   if (doneButton) {
     return doneButton(getComposedTime());
@@ -20723,9 +20876,7 @@ function DoneButton() {
   if (onDoneClick) {
     return (0, core_esm.jsx)("span", {
       css: _doneButton.default,
-      onClick: function onClick(e) {
-        return onDoneClick(getComposedTime(), e);
-      },
+      onClick: e => onDoneClick(getComposedTime(), e),
       className: "react-timekeeper__done-button"
     }, "Done");
   }
@@ -20792,16 +20943,18 @@ var _TimeKeeper = interopRequireDefault(TimeKeeper_1);
 
 
 
-function TimepickerWithConfig(_ref) {
-  var time = _ref.time,
-      onChange = _ref.onChange,
-      coarseMinutes = _ref.coarseMinutes,
-      forceCoarseMinutes = _ref.forceCoarseMinutes,
-      switchToMinuteOnHourSelect = _ref.switchToMinuteOnHourSelect,
-      closeOnMinuteSelect = _ref.closeOnMinuteSelect,
-      hour24Mode = _ref.hour24Mode,
-      onDoneClick = _ref.onDoneClick,
-      doneButton = _ref.doneButton;
+function TimepickerWithConfig({
+  time,
+  onChange,
+  // config props:
+  coarseMinutes,
+  forceCoarseMinutes,
+  switchToMinuteOnHourSelect,
+  closeOnMinuteSelect,
+  hour24Mode,
+  onDoneClick,
+  doneButton
+}) {
   return (0, core_esm.jsx)(configContext_1.ConfigProvider, {
     coarseMinutes: coarseMinutes,
     forceCoarseMinutes: forceCoarseMinutes,
@@ -21003,14 +21156,16 @@ var ContentWrapper = styled__default.div(_templateObject2$6(), function (_ref2) 
   return getArrowPosition(props);
 });
 
-var Popup =
-/*#__PURE__*/
-function (_PureComponent) {
+function _createSuper$7(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$7(); return function _createSuperInternal() { var Super = getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$7() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+var Popup = /*#__PURE__*/function (_PureComponent) {
   inherits(Popup, _PureComponent);
 
-  function Popup() {
-    var _getPrototypeOf2;
+  var _super = _createSuper$7(Popup);
 
+  function Popup() {
     var _this;
 
     classCallCheck(this, Popup);
@@ -21019,7 +21174,7 @@ function (_PureComponent) {
       args[_key] = arguments[_key];
     }
 
-    _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(Popup)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = _super.call.apply(_super, [this].concat(args));
 
     defineProperty(assertThisInitialized(_this), "state", {
       showDialogue: false,
@@ -21091,7 +21246,7 @@ function (_PureComponent) {
       var childProps = closeOnSelect ? {
         onClick: _this.closePopup
       } : {};
-      return React__default.cloneElement(React__default.createElement("div", null, child), childProps);
+      return React__default.cloneElement( /*#__PURE__*/React__default.createElement("div", null, child), childProps);
     });
 
     return _this;
@@ -21142,16 +21297,16 @@ function (_PureComponent) {
       var childrenWithProps = React__default.Children.map(children, function (child) {
         return _this2.getElement(child);
       });
-      return React__default.createElement(React__default.Fragment, null, React__default.createElement(Trigger, _extends_1({
+      return /*#__PURE__*/React__default.createElement(React__default.Fragment, null, /*#__PURE__*/React__default.createElement(Trigger, _extends_1({
         ref: function ref(node) {
           return _this2.trigger = node;
         },
         onClick: function onClick() {
           return !showDialogue && _this2.toggleDialogue(true);
         }
-      }, otherProps), trigger || React__default.createElement(DotsVertical$1, {
+      }, otherProps), trigger || /*#__PURE__*/React__default.createElement(DotsVertical$1, {
         color: colors.gray.default
-      }), React__default.createElement(ContentWrapper, {
+      }), /*#__PURE__*/React__default.createElement(ContentWrapper, {
         ref: function ref(node) {
           return _this2.menu = node;
         },
@@ -21178,6 +21333,9 @@ defineProperty(Popup, "defaultProps", {
   arrow: false
 });
 
+function _createSuper$8(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$8(); return function _createSuperInternal() { var Super = getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$8() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 var styleOverrides = {
   icon: {
     position: 'absolute',
@@ -21192,14 +21350,12 @@ var styleOverrides = {
   }
 };
 
-var TimeInput =
-/*#__PURE__*/
-function (_Component) {
+var TimeInput = /*#__PURE__*/function (_Component) {
   inherits(TimeInput, _Component);
 
-  function TimeInput() {
-    var _getPrototypeOf2;
+  var _super = _createSuper$8(TimeInput);
 
+  function TimeInput() {
     var _this;
 
     classCallCheck(this, TimeInput);
@@ -21208,7 +21364,7 @@ function (_Component) {
       args[_key] = arguments[_key];
     }
 
-    _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(TimeInput)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = _super.call.apply(_super, [this].concat(args));
 
     defineProperty(assertThisInitialized(_this), "state", {
       showTime: true
@@ -21253,11 +21409,11 @@ function (_Component) {
       var timeObj = formik.values && formik.values[name];
       var formattedTime = timeObj && timeObj["formatted".concat(timeFormat)];
       var errorText = errorForField(formik.errors, formik.touched, name);
-      var trigger = React__default.createElement(InputWrapper, {
+      var trigger = /*#__PURE__*/React__default.createElement(InputWrapper, {
         label: label,
         alertText: errorText,
         width: "100%"
-      }, React__default.createElement(StyledInput$1, {
+      }, /*#__PURE__*/React__default.createElement(StyledInput$1, {
         type: "text",
         name: "timeInput",
         placeholder: placeholder,
@@ -21266,11 +21422,11 @@ function (_Component) {
         onChange: function onChange() {},
         width: "100%",
         autoComplete: "off"
-      }), React__default.createElement(ClockOutline$1, {
+      }), /*#__PURE__*/React__default.createElement(ClockOutline$1, {
         style: styleOverrides.icon,
         color: colors.gray.default
       }));
-      return React__default.createElement(Popup, {
+      return /*#__PURE__*/React__default.createElement(Popup, {
         trigger: trigger,
         style: {
           width: width
@@ -21278,9 +21434,9 @@ function (_Component) {
         contentStyle: styleOverrides.popup,
         disabled: disabled
       }, function (closePopup) {
-        return showTime && React__default.createElement("div", {
+        return showTime && /*#__PURE__*/React__default.createElement("div", {
           className: "clock-wrapper"
-        }, React__default.createElement(TimeKeeper, {
+        }, /*#__PURE__*/React__default.createElement(TimeKeeper, {
           hour24Mode: timeFormat === "24",
           switchToMinuteOnHourSelect: true,
           time: formattedTime || '00:00',
@@ -21309,12 +21465,12 @@ defineProperty(TimeInput, "defaultProps", {
 var index$3 = formik.connect(TimeInput);
 
 var lib$2 = createCommonjsModule(function (module) {
-module.exports=function(e){var t={};function r(n){if(t[n])return t[n].exports;var a=t[n]={i:n,l:!1,exports:{}};return e[n].call(a.exports,a,a.exports,r),a.l=!0,a.exports}return r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n});},r.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0});},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&"object"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,"default",{enumerable:!0,value:e}),2&t&&"string"!=typeof e)for(var a in e)r.d(n,a,function(t){return e[t]}.bind(null,a));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,"a",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p="",r(r.s=8)}([function(e,t){e.exports=React__default;},function(e,t,r){var n;
+module.exports=function(e){var t={};function r(n){if(t[n])return t[n].exports;var a=t[n]={i:n,l:!1,exports:{}};return e[n].call(a.exports,a,a.exports,r),a.l=!0,a.exports}return r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n});},r.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0});},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&"object"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,"default",{enumerable:!0,value:e}),2&t&&"string"!=typeof e)for(var a in e)r.d(n,a,function(t){return e[t]}.bind(null,a));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,"a",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p="",r(r.s=9)}([function(e,t){e.exports=React__default;},function(e,t,r){var n;
 /*!
   Copyright (c) 2017 Jed Watson.
   Licensed under the MIT License (MIT), see
   http://jedwatson.github.io/classnames
-*/!function(){var r={}.hasOwnProperty;function a(){for(var e=[],t=0;t<arguments.length;t++){var n=arguments[t];if(n){var o=typeof n;if("string"===o||"number"===o)e.push(n);else if(Array.isArray(n)&&n.length){var i=a.apply(null,n);i&&e.push(i);}else if("object"===o)for(var u in n)r.call(n,u)&&n[u]&&e.push(u);}}return e.join(" ")}e.exports?(a.default=a,e.exports=a):void 0===(n=function(){return a}.apply(t,[]))||(e.exports=n);}();},function(e,t,r){(function(t){var r=1/0,n=17976931348623157e292,a=NaN,o="[object Symbol]",i=/^\s+|\s+$/g,u=/^[-+]0x[0-9a-f]+$/i,c=/^0b[01]+$/i,s=/^0o[0-7]+$/i,l=parseInt,f="object"==typeof t&&t&&t.Object===Object&&t,p="object"==typeof self&&self&&self.Object===Object&&self,d=f||p||Function("return this")(),h=Object.prototype.toString,y=d.Symbol,m=y?y.prototype:void 0,g=m?m.toString:void 0;function b(e){if("string"==typeof e)return e;if(C(e))return g?g.call(e):"";var t=e+"";return "0"==t&&1/e==-r?"-0":t}function v(e){var t=typeof e;return !!e&&("object"==t||"function"==t)}function C(e){return "symbol"==typeof e||function(e){return !!e&&"object"==typeof e}(e)&&h.call(e)==o}function _(e){return e?(e=function(e){if("number"==typeof e)return e;if(C(e))return a;if(v(e)){var t="function"==typeof e.valueOf?e.valueOf():e;e=v(t)?t+"":t;}if("string"!=typeof e)return 0===e?e:+e;e=e.replace(i,"");var r=c.test(e);return r||s.test(e)?l(e.slice(2),r?2:8):u.test(e)?a:+e}(e))===r||e===-r?(e<0?-1:1)*n:e==e?e:0:0===e?e:0}e.exports=function(e,t,r){var n,a,o,i;return e=null==(n=e)?"":b(n),a=function(e){var t=_(e),r=t%1;return t==t?r?t-r:t:0}(r),o=0,i=e.length,a==a&&(void 0!==i&&(a=a<=i?a:i),void 0!==o&&(a=a>=o?a:o)),r=a,t=b(t),e.slice(r,r+t.length)==t};}).call(this,r(3));},function(e,t){var r;r=function(){return this}();try{r=r||new Function("return this")();}catch(e){"object"==typeof window&&(r=window);}e.exports=r;},function(e,t,r){(function(t){var r="Expected a function",n="__lodash_hash_undefined__",a="[object Function]",o="[object GeneratorFunction]",i=/^\[object .+?Constructor\]$/,u="object"==typeof t&&t&&t.Object===Object&&t,c="object"==typeof self&&self&&self.Object===Object&&self,s=u||c||Function("return this")();var l,f=Array.prototype,p=Function.prototype,d=Object.prototype,h=s["__core-js_shared__"],y=(l=/[^.]+$/.exec(h&&h.keys&&h.keys.IE_PROTO||""))?"Symbol(src)_1."+l:"",m=p.toString,g=d.hasOwnProperty,b=d.toString,v=RegExp("^"+m.call(g).replace(/[\\^$.*+?()[\]{}|]/g,"\\$&").replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g,"$1.*?")+"$"),C=f.splice,_=N(s,"Map"),w=N(Object,"create");function S(e){var t=-1,r=e?e.length:0;for(this.clear();++t<r;){var n=e[t];this.set(n[0],n[1]);}}function j(e){var t=-1,r=e?e.length:0;for(this.clear();++t<r;){var n=e[t];this.set(n[0],n[1]);}}function x(e){var t=-1,r=e?e.length:0;for(this.clear();++t<r;){var n=e[t];this.set(n[0],n[1]);}}function k(e,t){for(var r,n,a=e.length;a--;)if((r=e[a][0])===(n=t)||r!=r&&n!=n)return a;return -1}function O(e){return !(!I(e)||(t=e,y&&y in t))&&(function(e){var t=I(e)?b.call(e):"";return t==a||t==o}(e)||function(e){var t=!1;if(null!=e&&"function"!=typeof e.toString)try{t=!!(e+"");}catch(e){}return t}(e)?v:i).test(function(e){if(null!=e){try{return m.call(e)}catch(e){}try{return e+""}catch(e){}}return ""}(e));var t;}function E(e,t){var r,n,a=e.__data__;return ("string"==(n=typeof(r=t))||"number"==n||"symbol"==n||"boolean"==n?"__proto__"!==r:null===r)?a["string"==typeof t?"string":"hash"]:a.map}function N(e,t){var r=function(e,t){return null==e?void 0:e[t]}(e,t);return O(r)?r:void 0}function T(e,t){if("function"!=typeof e||t&&"function"!=typeof t)throw new TypeError(r);var n=function(){var r=arguments,a=t?t.apply(this,r):r[0],o=n.cache;if(o.has(a))return o.get(a);var i=e.apply(this,r);return n.cache=o.set(a,i),i};return n.cache=new(T.Cache||x),n}function I(e){var t=typeof e;return !!e&&("object"==t||"function"==t)}S.prototype.clear=function(){this.__data__=w?w(null):{};},S.prototype.delete=function(e){return this.has(e)&&delete this.__data__[e]},S.prototype.get=function(e){var t=this.__data__;if(w){var r=t[e];return r===n?void 0:r}return g.call(t,e)?t[e]:void 0},S.prototype.has=function(e){var t=this.__data__;return w?void 0!==t[e]:g.call(t,e)},S.prototype.set=function(e,t){return this.__data__[e]=w&&void 0===t?n:t,this},j.prototype.clear=function(){this.__data__=[];},j.prototype.delete=function(e){var t=this.__data__,r=k(t,e);return !(r<0)&&(r==t.length-1?t.pop():C.call(t,r,1),!0)},j.prototype.get=function(e){var t=this.__data__,r=k(t,e);return r<0?void 0:t[r][1]},j.prototype.has=function(e){return k(this.__data__,e)>-1},j.prototype.set=function(e,t){var r=this.__data__,n=k(r,e);return n<0?r.push([e,t]):r[n][1]=t,this},x.prototype.clear=function(){this.__data__={hash:new S,map:new(_||j),string:new S};},x.prototype.delete=function(e){return E(this,e).delete(e)},x.prototype.get=function(e){return E(this,e).get(e)},x.prototype.has=function(e){return E(this,e).has(e)},x.prototype.set=function(e,t){return E(this,e).set(e,t),this},T.Cache=x,e.exports=T;}).call(this,r(3));},function(e,t,r){(function(t){var r="Expected a function",n=NaN,a="[object Symbol]",o=/^\s+|\s+$/g,i=/^[-+]0x[0-9a-f]+$/i,u=/^0b[01]+$/i,c=/^0o[0-7]+$/i,s=parseInt,l="object"==typeof t&&t&&t.Object===Object&&t,f="object"==typeof self&&self&&self.Object===Object&&self,p=l||f||Function("return this")(),d=Object.prototype.toString,h=Math.max,y=Math.min,m=function(){return p.Date.now()};function g(e){var t=typeof e;return !!e&&("object"==t||"function"==t)}function b(e){if("number"==typeof e)return e;if(function(e){return "symbol"==typeof e||function(e){return !!e&&"object"==typeof e}(e)&&d.call(e)==a}(e))return n;if(g(e)){var t="function"==typeof e.valueOf?e.valueOf():e;e=g(t)?t+"":t;}if("string"!=typeof e)return 0===e?e:+e;e=e.replace(o,"");var r=u.test(e);return r||c.test(e)?s(e.slice(2),r?2:8):i.test(e)?n:+e}e.exports=function(e,t,n){var a,o,i,u,c,s,l=0,f=!1,p=!1,d=!0;if("function"!=typeof e)throw new TypeError(r);function v(t){var r=a,n=o;return a=o=void 0,l=t,u=e.apply(n,r)}function C(e){var r=e-s;return void 0===s||r>=t||r<0||p&&e-l>=i}function _(){var e=m();if(C(e))return w(e);c=setTimeout(_,function(e){var r=t-(e-s);return p?y(r,i-(e-l)):r}(e));}function w(e){return c=void 0,d&&a?v(e):(a=o=void 0,u)}function S(){var e=m(),r=C(e);if(a=arguments,o=this,s=e,r){if(void 0===c)return function(e){return l=e,c=setTimeout(_,t),f?v(e):u}(s);if(p)return c=setTimeout(_,t),v(s)}return void 0===c&&(c=setTimeout(_,t)),u}return t=b(t)||0,g(n)&&(f=!!n.leading,i=(p="maxWait"in n)?h(b(n.maxWait)||0,t):i,d="trailing"in n?!!n.trailing:d),S.cancel=function(){void 0!==c&&clearTimeout(c),l=0,a=s=o=c=void 0;},S.flush=function(){return void 0===c?u:w(m())},S};}).call(this,r(3));},function(e,t,r){(function(e,r){var n=200,a="Expected a function",o="__lodash_hash_undefined__",i=1,u=2,c=1/0,s=9007199254740991,l="[object Arguments]",f="[object Array]",p="[object Boolean]",d="[object Date]",h="[object Error]",y="[object Function]",m="[object GeneratorFunction]",g="[object Map]",b="[object Number]",v="[object Object]",C="[object RegExp]",_="[object Set]",w="[object String]",S="[object Symbol]",j="[object ArrayBuffer]",x="[object DataView]",k=/\.|\[(?:[^[\]]*|(["'])(?:(?!\1)[^\\]|\\.)*?\1)\]/,O=/^\w*$/,E=/^\./,N=/[^.[\]]+|\[(?:(-?\d+(?:\.\d+)?)|(["'])((?:(?!\2)[^\\]|\\.)*?)\2)\]|(?=(?:\.|\[\])(?:\.|\[\]|$))/g,T=/\\(\\)?/g,I=/^\[object .+?Constructor\]$/,D=/^(?:0|[1-9]\d*)$/,A={};A["[object Float32Array]"]=A["[object Float64Array]"]=A["[object Int8Array]"]=A["[object Int16Array]"]=A["[object Int32Array]"]=A["[object Uint8Array]"]=A["[object Uint8ClampedArray]"]=A["[object Uint16Array]"]=A["[object Uint32Array]"]=!0,A[l]=A[f]=A[j]=A[p]=A[x]=A[d]=A[h]=A[y]=A[g]=A[b]=A[v]=A[C]=A[_]=A[w]=A["[object WeakMap]"]=!1;var P="object"==typeof e&&e&&e.Object===Object&&e,F="object"==typeof self&&self&&self.Object===Object&&self,M=P||F||Function("return this")(),R=t&&!t.nodeType&&t,z=R&&"object"==typeof r&&r&&!r.nodeType&&r,L=z&&z.exports===R&&P.process,B=function(){try{return L&&L.binding("util")}catch(e){}}(),$=B&&B.isTypedArray;function G(e,t,r,n){var a=-1,o=e?e.length:0;for(n&&o&&(r=e[++a]);++a<o;)r=t(r,e[a],a,e);return r}function K(e,t){for(var r=-1,n=e?e.length:0;++r<n;)if(t(e[r],r,e))return !0;return !1}function U(e,t,r,n,a){return a(e,(function(e,a,o){r=n?(n=!1,e):t(r,e,a,o);})),r}function V(e){var t=!1;if(null!=e&&"function"!=typeof e.toString)try{t=!!(e+"");}catch(e){}return t}function q(e){var t=-1,r=Array(e.size);return e.forEach((function(e,n){r[++t]=[n,e];})),r}function W(e){var t=-1,r=Array(e.size);return e.forEach((function(e){r[++t]=e;})),r}var H,J,Z,Q=Array.prototype,Y=Function.prototype,X=Object.prototype,ee=M["__core-js_shared__"],te=(H=/[^.]+$/.exec(ee&&ee.keys&&ee.keys.IE_PROTO||""))?"Symbol(src)_1."+H:"",re=Y.toString,ne=X.hasOwnProperty,ae=X.toString,oe=RegExp("^"+re.call(ne).replace(/[\\^$.*+?()[\]{}|]/g,"\\$&").replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g,"$1.*?")+"$"),ie=M.Symbol,ue=M.Uint8Array,ce=X.propertyIsEnumerable,se=Q.splice,le=(J=Object.keys,Z=Object,function(e){return J(Z(e))}),fe=Ve(M,"DataView"),pe=Ve(M,"Map"),de=Ve(M,"Promise"),he=Ve(M,"Set"),ye=Ve(M,"WeakMap"),me=Ve(Object,"create"),ge=Xe(fe),be=Xe(pe),ve=Xe(de),Ce=Xe(he),_e=Xe(ye),we=ie?ie.prototype:void 0,Se=we?we.valueOf:void 0,je=we?we.toString:void 0;function xe(e){var t=-1,r=e?e.length:0;for(this.clear();++t<r;){var n=e[t];this.set(n[0],n[1]);}}function ke(e){var t=-1,r=e?e.length:0;for(this.clear();++t<r;){var n=e[t];this.set(n[0],n[1]);}}function Oe(e){var t=-1,r=e?e.length:0;for(this.clear();++t<r;){var n=e[t];this.set(n[0],n[1]);}}function Ee(e){var t=-1,r=e?e.length:0;for(this.__data__=new Oe;++t<r;)this.add(e[t]);}function Ne(e){this.__data__=new ke(e);}function Te(e,t){var r=nt(e)||rt(e)?function(e,t){for(var r=-1,n=Array(e);++r<e;)n[r]=t(r);return n}(e.length,String):[],n=r.length,a=!!n;for(var o in e)!t&&!ne.call(e,o)||a&&("length"==o||We(o,n))||r.push(o);return r}function Ie(e,t){for(var r=e.length;r--;)if(tt(e[r][0],t))return r;return -1}xe.prototype.clear=function(){this.__data__=me?me(null):{};},xe.prototype.delete=function(e){return this.has(e)&&delete this.__data__[e]},xe.prototype.get=function(e){var t=this.__data__;if(me){var r=t[e];return r===o?void 0:r}return ne.call(t,e)?t[e]:void 0},xe.prototype.has=function(e){var t=this.__data__;return me?void 0!==t[e]:ne.call(t,e)},xe.prototype.set=function(e,t){return this.__data__[e]=me&&void 0===t?o:t,this},ke.prototype.clear=function(){this.__data__=[];},ke.prototype.delete=function(e){var t=this.__data__,r=Ie(t,e);return !(r<0)&&(r==t.length-1?t.pop():se.call(t,r,1),!0)},ke.prototype.get=function(e){var t=this.__data__,r=Ie(t,e);return r<0?void 0:t[r][1]},ke.prototype.has=function(e){return Ie(this.__data__,e)>-1},ke.prototype.set=function(e,t){var r=this.__data__,n=Ie(r,e);return n<0?r.push([e,t]):r[n][1]=t,this},Oe.prototype.clear=function(){this.__data__={hash:new xe,map:new(pe||ke),string:new xe};},Oe.prototype.delete=function(e){return Ue(this,e).delete(e)},Oe.prototype.get=function(e){return Ue(this,e).get(e)},Oe.prototype.has=function(e){return Ue(this,e).has(e)},Oe.prototype.set=function(e,t){return Ue(this,e).set(e,t),this},Ee.prototype.add=Ee.prototype.push=function(e){return this.__data__.set(e,o),this},Ee.prototype.has=function(e){return this.__data__.has(e)},Ne.prototype.clear=function(){this.__data__=new ke;},Ne.prototype.delete=function(e){return this.__data__.delete(e)},Ne.prototype.get=function(e){return this.__data__.get(e)},Ne.prototype.has=function(e){return this.__data__.has(e)},Ne.prototype.set=function(e,t){var r=this.__data__;if(r instanceof ke){var a=r.__data__;if(!pe||a.length<n-1)return a.push([e,t]),this;r=this.__data__=new Oe(a);}return r.set(e,t),this};var De,Pe=(De=function(e,t){return e&&Fe(e,t,ft)},function(e,t){if(null==e)return e;if(!at(e))return De(e,t);for(var r=e.length,n=-1,a=Object(e);(++n<r)&&!1!==t(a[n],n,a););return e}),Fe=function(e){return function(t,r,n){for(var a=-1,o=Object(t),i=n(t),u=i.length;u--;){var c=i[e?u:++a];if(!1===r(o[c],c,o))break}return t}}();function Me(e,t){for(var r=0,n=(t=He(t,e)?[t]:Ge(t)).length;null!=e&&r<n;)e=e[Ye(t[r++])];return r&&r==n?e:void 0}function Re(e,t){return null!=e&&t in Object(e)}function ze(e,t,r,n,a){return e===t||(null==e||null==t||!ut(e)&&!ct(t)?e!=e&&t!=t:function(e,t,r,n,a,o){var c=nt(e),s=nt(t),y=f,m=f;c||(y=(y=qe(e))==l?v:y);s||(m=(m=qe(t))==l?v:m);var k=y==v&&!V(e),O=m==v&&!V(t),E=y==m;if(E&&!k)return o||(o=new Ne),c||lt(e)?Ke(e,t,r,n,a,o):function(e,t,r,n,a,o,c){switch(r){case x:if(e.byteLength!=t.byteLength||e.byteOffset!=t.byteOffset)return !1;e=e.buffer,t=t.buffer;case j:return !(e.byteLength!=t.byteLength||!n(new ue(e),new ue(t)));case p:case d:case b:return tt(+e,+t);case h:return e.name==t.name&&e.message==t.message;case C:case w:return e==t+"";case g:var s=q;case _:var l=o&u;if(s||(s=W),e.size!=t.size&&!l)return !1;var f=c.get(e);if(f)return f==t;o|=i,c.set(e,t);var y=Ke(s(e),s(t),n,a,o,c);return c.delete(e),y;case S:if(Se)return Se.call(e)==Se.call(t)}return !1}(e,t,y,r,n,a,o);if(!(a&u)){var N=k&&ne.call(e,"__wrapped__"),T=O&&ne.call(t,"__wrapped__");if(N||T){var I=N?e.value():e,D=T?t.value():t;return o||(o=new Ne),r(I,D,n,a,o)}}if(!E)return !1;return o||(o=new Ne),function(e,t,r,n,a,o){var i=a&u,c=ft(e),s=c.length,l=ft(t).length;if(s!=l&&!i)return !1;var f=s;for(;f--;){var p=c[f];if(!(i?p in t:ne.call(t,p)))return !1}var d=o.get(e);if(d&&o.get(t))return d==t;var h=!0;o.set(e,t),o.set(t,e);var y=i;for(;++f<s;){p=c[f];var m=e[p],g=t[p];if(n)var b=i?n(g,m,p,t,e,o):n(m,g,p,e,t,o);if(!(void 0===b?m===g||r(m,g,n,a,o):b)){h=!1;break}y||(y="constructor"==p);}if(h&&!y){var v=e.constructor,C=t.constructor;v!=C&&"constructor"in e&&"constructor"in t&&!("function"==typeof v&&v instanceof v&&"function"==typeof C&&C instanceof C)&&(h=!1);}return o.delete(e),o.delete(t),h}(e,t,r,n,a,o)}(e,t,ze,r,n,a))}function Le(e){return !(!ut(e)||function(e){return !!te&&te in e}(e))&&(ot(e)||V(e)?oe:I).test(Xe(e))}function Be(e){return "function"==typeof e?e:null==e?pt:"object"==typeof e?nt(e)?function(e,t){if(He(e)&&Je(t))return Ze(Ye(e),t);return function(r){var n=function(e,t,r){var n=null==e?void 0:Me(e,t);return void 0===n?r:n}(r,e);return void 0===n&&n===t?function(e,t){return null!=e&&function(e,t,r){t=He(t,e)?[t]:Ge(t);var n,a=-1,o=t.length;for(;++a<o;){var i=Ye(t[a]);if(!(n=null!=e&&r(e,i)))break;e=e[i];}if(n)return n;return !!(o=e?e.length:0)&&it(o)&&We(i,o)&&(nt(e)||rt(e))}(e,t,Re)}(r,e):ze(t,n,void 0,i|u)}}(e[0],e[1]):function(e){var t=function(e){var t=ft(e),r=t.length;for(;r--;){var n=t[r],a=e[n];t[r]=[n,a,Je(a)];}return t}(e);if(1==t.length&&t[0][2])return Ze(t[0][0],t[0][1]);return function(r){return r===e||function(e,t,r,n){var a=r.length,o=a,c=!n;if(null==e)return !o;for(e=Object(e);a--;){var s=r[a];if(c&&s[2]?s[1]!==e[s[0]]:!(s[0]in e))return !1}for(;++a<o;){var l=(s=r[a])[0],f=e[l],p=s[1];if(c&&s[2]){if(void 0===f&&!(l in e))return !1}else{var d=new Ne;if(n)var h=n(f,p,l,e,t,d);if(!(void 0===h?ze(p,f,n,i|u,d):h))return !1}}return !0}(r,e,t)}}(e):He(t=e)?(r=Ye(t),function(e){return null==e?void 0:e[r]}):function(e){return function(t){return Me(t,e)}}(t);var t,r;}function $e(e){if(r=(t=e)&&t.constructor,n="function"==typeof r&&r.prototype||X,t!==n)return le(e);var t,r,n,a=[];for(var o in Object(e))ne.call(e,o)&&"constructor"!=o&&a.push(o);return a}function Ge(e){return nt(e)?e:Qe(e)}function Ke(e,t,r,n,a,o){var c=a&u,s=e.length,l=t.length;if(s!=l&&!(c&&l>s))return !1;var f=o.get(e);if(f&&o.get(t))return f==t;var p=-1,d=!0,h=a&i?new Ee:void 0;for(o.set(e,t),o.set(t,e);++p<s;){var y=e[p],m=t[p];if(n)var g=c?n(m,y,p,t,e,o):n(y,m,p,e,t,o);if(void 0!==g){if(g)continue;d=!1;break}if(h){if(!K(t,(function(e,t){if(!h.has(t)&&(y===e||r(y,e,n,a,o)))return h.add(t)}))){d=!1;break}}else if(y!==m&&!r(y,m,n,a,o)){d=!1;break}}return o.delete(e),o.delete(t),d}function Ue(e,t){var r,n,a=e.__data__;return ("string"==(n=typeof(r=t))||"number"==n||"symbol"==n||"boolean"==n?"__proto__"!==r:null===r)?a["string"==typeof t?"string":"hash"]:a.map}function Ve(e,t){var r=function(e,t){return null==e?void 0:e[t]}(e,t);return Le(r)?r:void 0}var qe=function(e){return ae.call(e)};function We(e,t){return !!(t=null==t?s:t)&&("number"==typeof e||D.test(e))&&e>-1&&e%1==0&&e<t}function He(e,t){if(nt(e))return !1;var r=typeof e;return !("number"!=r&&"symbol"!=r&&"boolean"!=r&&null!=e&&!st(e))||(O.test(e)||!k.test(e)||null!=t&&e in Object(t))}function Je(e){return e==e&&!ut(e)}function Ze(e,t){return function(r){return null!=r&&(r[e]===t&&(void 0!==t||e in Object(r)))}}(fe&&qe(new fe(new ArrayBuffer(1)))!=x||pe&&qe(new pe)!=g||de&&"[object Promise]"!=qe(de.resolve())||he&&qe(new he)!=_||ye&&"[object WeakMap]"!=qe(new ye))&&(qe=function(e){var t=ae.call(e),r=t==v?e.constructor:void 0,n=r?Xe(r):void 0;if(n)switch(n){case ge:return x;case be:return g;case ve:return "[object Promise]";case Ce:return _;case _e:return "[object WeakMap]"}return t});var Qe=et((function(e){var t;e=null==(t=e)?"":function(e){if("string"==typeof e)return e;if(st(e))return je?je.call(e):"";var t=e+"";return "0"==t&&1/e==-c?"-0":t}(t);var r=[];return E.test(e)&&r.push(""),e.replace(N,(function(e,t,n,a){r.push(n?a.replace(T,"$1"):t||e);})),r}));function Ye(e){if("string"==typeof e||st(e))return e;var t=e+"";return "0"==t&&1/e==-c?"-0":t}function Xe(e){if(null!=e){try{return re.call(e)}catch(e){}try{return e+""}catch(e){}}return ""}function et(e,t){if("function"!=typeof e||t&&"function"!=typeof t)throw new TypeError(a);var r=function(){var n=arguments,a=t?t.apply(this,n):n[0],o=r.cache;if(o.has(a))return o.get(a);var i=e.apply(this,n);return r.cache=o.set(a,i),i};return r.cache=new(et.Cache||Oe),r}function tt(e,t){return e===t||e!=e&&t!=t}function rt(e){return function(e){return ct(e)&&at(e)}(e)&&ne.call(e,"callee")&&(!ce.call(e,"callee")||ae.call(e)==l)}et.Cache=Oe;var nt=Array.isArray;function at(e){return null!=e&&it(e.length)&&!ot(e)}function ot(e){var t=ut(e)?ae.call(e):"";return t==y||t==m}function it(e){return "number"==typeof e&&e>-1&&e%1==0&&e<=s}function ut(e){var t=typeof e;return !!e&&("object"==t||"function"==t)}function ct(e){return !!e&&"object"==typeof e}function st(e){return "symbol"==typeof e||ct(e)&&ae.call(e)==S}var lt=$?function(e){return function(t){return e(t)}}($):function(e){return ct(e)&&it(e.length)&&!!A[ae.call(e)]};function ft(e){return at(e)?Te(e):$e(e)}function pt(e){return e}r.exports=function(e,t,r){var n=nt(e)?G:U,a=arguments.length<3;return n(e,Be(t),r,a,Pe)};}).call(this,r(3),r(7)(e));},function(e,t){e.exports=function(e){return e.webpackPolyfill||(e.deprecate=function(){},e.paths=[],e.children||(e.children=[]),Object.defineProperty(e,"loaded",{enumerable:!0,get:function(){return e.l}}),Object.defineProperty(e,"id",{enumerable:!0,get:function(){return e.i}}),e.webpackPolyfill=1),e};},function(e,t,r){function n(e,t,r){return t in e?Object.defineProperty(e,t,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[t]=r,e}function a(e){if(Symbol.iterator in Object(e)||"[object Arguments]"===Object.prototype.toString.call(e))return Array.from(e)}function o(e){return function(e){if(Array.isArray(e)){for(var t=0,r=new Array(e.length);t<e.length;t++)r[t]=e[t];return r}}(e)||a(e)||function(){throw new TypeError("Invalid attempt to spread non-iterable instance")}()}function i(e){return function(e){if(Array.isArray(e))return e}(e)||a(e)||function(){throw new TypeError("Invalid attempt to destructure non-iterable instance")}()}function u(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function c(e,t){for(var r=0;r<t.length;r++){var n=t[r];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n);}}function s(e){return (s="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e})(e)}function l(e){return (l="function"==typeof Symbol&&"symbol"===s(Symbol.iterator)?function(e){return s(e)}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":s(e)})(e)}function f(e){if(void 0===e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return e}function p(e){return (p=Object.setPrototypeOf?Object.getPrototypeOf:function(e){return e.__proto__||Object.getPrototypeOf(e)})(e)}function d(e,t){return (d=Object.setPrototypeOf||function(e,t){return e.__proto__=t,e})(e,t)}r.r(t);var h=r(0),y=r.n(h),m=r(5),g=r.n(m),b=r(4),v=r.n(b),C=r(6),_=r.n(C),w=r(2),S=r.n(w),j=r(1),x=r.n(j);var k=[["Afghanistan",["asia"],"af","93"],["Albania",["europe"],"al","355"],["Algeria",["africa","north-africa"],"dz","213"],["American Samoa",["oceania"],"as","1684"],["Andorra",["europe"],"ad","376"],["Angola",["africa"],"ao","244"],["Anguilla",["america","carribean"],"ai","1264"],["Antigua and Barbuda",["america","carribean"],"ag","1268"],["Argentina",["america","south-america"],"ar","54","(..) ........"],["Armenia",["asia","ex-ussr"],"am","374"],["Aruba",["america","carribean"],"aw","297"],["Australia",["oceania"],"au","61","... ... ..."],["Austria",["europe","eu-union"],"at","43"],["Azerbaijan",["asia","ex-ussr"],"az","994"],["Bahamas",["america","carribean"],"bs","1242"],["Bahrain",["middle-east"],"bh","973"],["Bangladesh",["asia"],"bd","880"],["Barbados",["america","carribean"],"bb","1246"],["Belarus",["europe","ex-ussr"],"by","375","(..) ... .. .."],["Belgium",["europe","eu-union"],"be","32","... .. .. .."],["Belize",["america","central-america"],"bz","501"],["Benin",["africa"],"bj","229"],["Bermuda",["america","north-america"],"bm","1441"],["Bhutan",["asia"],"bt","975"],["Bolivia",["america","south-america"],"bo","591"],["Bosnia and Herzegovina",["europe","ex-yugos"],"ba","387"],["Botswana",["africa"],"bw","267"],["Brazil",["america","south-america"],"br","55","(..) ........."],["British Indian Ocean Territory",["asia"],"io","246"],["British Virgin Islands",["america","carribean"],"vg","1284"],["Brunei",["asia"],"bn","673"],["Bulgaria",["europe","eu-union"],"bg","359"],["Burkina Faso",["africa"],"bf","226"],["Burundi",["africa"],"bi","257"],["Cambodia",["asia"],"kh","855"],["Cameroon",["africa"],"cm","237"],["Canada",["america","north-america"],"ca","1","(...) ...-....",1,["204","226","236","249","250","289","306","343","365","387","403","416","418","431","437","438","450","506","514","519","548","579","581","587","604","613","639","647","672","705","709","742","778","780","782","807","819","825","867","873","902","905"]],["Cape Verde",["africa"],"cv","238"],["Caribbean Netherlands",["america","carribean"],"bq","599","",1],["Cayman Islands",["america","carribean"],"ky","1345"],["Central African Republic",["africa"],"cf","236"],["Chad",["africa"],"td","235"],["Chile",["america","south-america"],"cl","56"],["China",["asia"],"cn","86","..-........."],["Colombia",["america","south-america"],"co","57"],["Comoros",["africa"],"km","269"],["Congo",["africa"],"cd","243"],["Congo",["africa"],"cg","242"],["Cook Islands",["oceania"],"ck","682"],["Costa Rica",["america","central-america"],"cr","506","....-...."],["Côte d’Ivoire",["africa"],"ci","225"],["Croatia",["europe","eu-union","ex-yugos"],"hr","385"],["Cuba",["america","carribean"],"cu","53"],["Curaçao",["america","carribean"],"cw","599","",0],["Cyprus",["europe","eu-union"],"cy","357",".. ......"],["Czech Republic",["europe","eu-union"],"cz","420"],["Denmark",["europe","eu-union","baltic"],"dk","45",".. .. .. .."],["Djibouti",["africa"],"dj","253"],["Dominica",["america","carribean"],"dm","1767"],["Dominican Republic",["america","carribean"],"do","1","",2,["809","829","849"]],["Ecuador",["america","south-america"],"ec","593"],["Egypt",["africa","north-africa"],"eg","20"],["El Salvador",["america","central-america"],"sv","503","....-...."],["Equatorial Guinea",["africa"],"gq","240"],["Eritrea",["africa"],"er","291"],["Estonia",["europe","eu-union","ex-ussr","baltic"],"ee","372",".... ......"],["Ethiopia",["africa"],"et","251"],["Falkland Islands",["america","south-america"],"fk","500"],["Faroe Islands",["europe"],"fo","298"],["Fiji",["oceania"],"fj","679"],["Finland",["europe","eu-union","baltic"],"fi","358",".. ... .. .."],["France",["europe","eu-union"],"fr","33",". .. .. .. .."],["French Guiana",["america","south-america"],"gf","594"],["French Polynesia",["oceania"],"pf","689"],["Gabon",["africa"],"ga","241"],["Gambia",["africa"],"gm","220"],["Georgia",["asia","ex-ussr"],"ge","995"],["Germany",["europe","eu-union","baltic"],"de","49",".... ........"],["Ghana",["africa"],"gh","233"],["Gibraltar",["europe"],"gi","350"],["Greece",["europe","eu-union"],"gr","30"],["Greenland",["america"],"gl","299"],["Grenada",["america","carribean"],"gd","1473"],["Guadeloupe",["america","carribean"],"gp","590","",0],["Guam",["oceania"],"gu","1671"],["Guatemala",["america","central-america"],"gt","502","....-...."],["Guinea",["africa"],"gn","224"],["Guinea-Bissau",["africa"],"gw","245"],["Guyana",["america","south-america"],"gy","592"],["Haiti",["america","carribean"],"ht","509","....-...."],["Honduras",["america","central-america"],"hn","504"],["Hong Kong",["asia"],"hk","852",".... ...."],["Hungary",["europe","eu-union"],"hu","36"],["Iceland",["europe"],"is","354","... ...."],["India",["asia"],"in","91",".....-....."],["Indonesia",["asia"],"id","62"],["Iran",["middle-east"],"ir","98"],["Iraq",["middle-east"],"iq","964"],["Ireland",["europe","eu-union"],"ie","353",".. ......."],["Israel",["middle-east"],"il","972","... ... ...."],["Italy",["europe","eu-union"],"it","39","... .......",0],["Jamaica",["america","carribean"],"jm","1876"],["Japan",["asia"],"jp","81",".. .... ...."],["Jordan",["middle-east"],"jo","962"],["Kazakhstan",["asia","ex-ussr"],"kz","7","... ...-..-..",1,["310","311","312","313","315","318","321","324","325","326","327","336","7172","73622"]],["Kenya",["africa"],"ke","254"],["Kiribati",["oceania"],"ki","686"],["Kosovo",["europe","ex-yugos"],"xk","383"],["Kuwait",["middle-east"],"kw","965"],["Kyrgyzstan",["asia","ex-ussr"],"kg","996"],["Laos",["asia"],"la","856"],["Latvia",["europe","eu-union","ex-ussr","baltic"],"lv","371"],["Lebanon",["middle-east"],"lb","961"],["Lesotho",["africa"],"ls","266"],["Liberia",["africa"],"lr","231"],["Libya",["africa","north-africa"],"ly","218"],["Liechtenstein",["europe"],"li","423"],["Lithuania",["europe","eu-union","ex-ussr","baltic"],"lt","370"],["Luxembourg",["europe","eu-union"],"lu","352"],["Macau",["asia"],"mo","853"],["Macedonia",["europe","ex-yugos"],"mk","389"],["Madagascar",["africa"],"mg","261"],["Malawi",["africa"],"mw","265"],["Malaysia",["asia"],"my","60","..-....-...."],["Maldives",["asia"],"mv","960"],["Mali",["africa"],"ml","223"],["Malta",["europe","eu-union"],"mt","356"],["Marshall Islands",["oceania"],"mh","692"],["Martinique",["america","carribean"],"mq","596"],["Mauritania",["africa"],"mr","222"],["Mauritius",["africa"],"mu","230"],["Mexico",["america","central-america"],"mx","52"],["Micronesia",["oceania"],"fm","691"],["Moldova",["europe"],"md","373","(..) ..-..-.."],["Monaco",["europe"],"mc","377"],["Mongolia",["asia"],"mn","976"],["Montenegro",["europe","ex-yugos"],"me","382"],["Montserrat",["america","carribean"],"ms","1664"],["Morocco",["africa","north-africa"],"ma","212"],["Mozambique",["africa"],"mz","258"],["Myanmar",["asia"],"mm","95"],["Namibia",["africa"],"na","264"],["Nauru",["africa"],"nr","674"],["Nepal",["asia"],"np","977"],["Netherlands",["europe","eu-union"],"nl","31",".. ........"],["New Caledonia",["oceania"],"nc","687"],["New Zealand",["oceania"],"nz","64","...-...-...."],["Nicaragua",["america","central-america"],"ni","505"],["Niger",["africa"],"ne","227"],["Nigeria",["africa"],"ng","234"],["Niue",["asia"],"nu","683"],["Norfolk Island",["oceania"],"nf","672"],["North Korea",["asia"],"kp","850"],["Northern Mariana Islands",["oceania"],"mp","1670"],["Norway",["europe","baltic"],"no","47","... .. ..."],["Oman",["middle-east"],"om","968"],["Pakistan",["asia"],"pk","92","...-......."],["Palau",["oceania"],"pw","680"],["Palestine",["middle-east"],"ps","970"],["Panama",["america","central-america"],"pa","507"],["Papua New Guinea",["oceania"],"pg","675"],["Paraguay",["america","south-america"],"py","595"],["Peru",["america","south-america"],"pe","51"],["Philippines",["asia"],"ph","63",".... ......."],["Poland",["europe","eu-union","baltic"],"pl","48","...-...-..."],["Portugal",["europe","eu-union"],"pt","351"],["Puerto Rico",["america","carribean"],"pr","1","",3,["787","939"]],["Qatar",["middle-east"],"qa","974"],["Réunion",["africa"],"re","262"],["Romania",["europe","eu-union"],"ro","40"],["Russia",["europe","asia","ex-ussr","baltic"],"ru","7","(...) ...-..-..",0],["Rwanda",["africa"],"rw","250"],["Saint Barthélemy",["america","carribean"],"bl","590","",1],["Saint Helena",["africa"],"sh","290"],["Saint Kitts and Nevis",["america","carribean"],"kn","1869"],["Saint Lucia",["america","carribean"],"lc","1758"],["Saint Martin",["america","carribean"],"mf","590","",2],["Saint Pierre and Miquelon",["america","north-america"],"pm","508"],["Saint Vincent and the Grenadines",["america","carribean"],"vc","1784"],["Samoa",["oceania"],"ws","685"],["San Marino",["europe"],"sm","378"],["São Tomé and Príncipe",["africa"],"st","239"],["Saudi Arabia",["middle-east"],"sa","966"],["Senegal",["africa"],"sn","221"],["Serbia",["europe","ex-yugos"],"rs","381"],["Seychelles",["africa"],"sc","248"],["Sierra Leone",["africa"],"sl","232"],["Singapore",["asia"],"sg","65","....-...."],["Sint Maarten",["america","carribean"],"sx","1721"],["Slovakia",["europe","eu-union"],"sk","421"],["Slovenia",["europe","eu-union","ex-yugos"],"si","386"],["Solomon Islands",["oceania"],"sb","677"],["Somalia",["africa"],"so","252"],["South Africa",["africa"],"za","27"],["South Korea",["asia"],"kr","82","... .... ...."],["South Sudan",["africa","north-africa"],"ss","211"],["Spain",["europe","eu-union"],"es","34","... ... ..."],["Sri Lanka",["asia"],"lk","94"],["Sudan",["africa"],"sd","249"],["Suriname",["america","south-america"],"sr","597"],["Swaziland",["africa"],"sz","268"],["Sweden",["europe","eu-union","baltic"],"se","46","(...) ...-..."],["Switzerland",["europe"],"ch","41",".. ... .. .."],["Syria",["middle-east"],"sy","963"],["Taiwan",["asia"],"tw","886"],["Tajikistan",["asia","ex-ussr"],"tj","992"],["Tanzania",["africa"],"tz","255"],["Thailand",["asia"],"th","66"],["Timor-Leste",["asia"],"tl","670"],["Togo",["africa"],"tg","228"],["Tokelau",["oceania"],"tk","690"],["Tonga",["oceania"],"to","676"],["Trinidad and Tobago",["america","carribean"],"tt","1868"],["Tunisia",["africa","north-africa"],"tn","216"],["Turkey",["europe"],"tr","90","... ... .. .."],["Turkmenistan",["asia","ex-ussr"],"tm","993"],["Turks and Caicos Islands",["america","carribean"],"tc","1649"],["Tuvalu",["asia"],"tv","688"],["U.S. Virgin Islands",["america","carribean"],"vi","1340"],["Uganda",["africa"],"ug","256"],["Ukraine",["europe","ex-ussr"],"ua","380","(..) ... .. .."],["United Arab Emirates",["middle-east"],"ae","971"],["United Kingdom",["europe","eu-union"],"gb","44",".... ......"],["United States",["america","north-america"],"us","1","(...) ...-....",0,["907","205","251","256","334","479","501","870","480","520","602","623","928","209","213","310","323","408","415","510","530","559","562","619","626","650","661","707","714","760","805","818","831","858","909","916","925","949","951","303","719","970","203","860","202","302","239","305","321","352","386","407","561","727","772","813","850","863","904","941","954","229","404","478","706","770","912","808","319","515","563","641","712","208","217","309","312","618","630","708","773","815","847","219","260","317","574","765","812","316","620","785","913","270","502","606","859","225","318","337","504","985","413","508","617","781","978","301","410","207","231","248","269","313","517","586","616","734","810","906","989","218","320","507","612","651","763","952","314","417","573","636","660","816","228","601","662","406","252","336","704","828","910","919","701","308","402","603","201","609","732","856","908","973","505","575","702","775","212","315","516","518","585","607","631","716","718","845","914","216","330","419","440","513","614","740","937","405","580","918","503","541","215","412","570","610","717","724","814","401","803","843","864","605","423","615","731","865","901","931","210","214","254","281","325","361","409","432","512","713","806","817","830","903","915","936","940","956","972","979","435","801","276","434","540","703","757","804","802","206","253","360","425","509","262","414","608","715","920","304","307"]],["Uruguay",["america","south-america"],"uy","598"],["Uzbekistan",["asia","ex-ussr"],"uz","998"],["Vanuatu",["oceania"],"vu","678"],["Vatican City",["europe"],"va","39",".. .... ....",1],["Venezuela",["america","south-america"],"ve","58"],["Vietnam",["asia"],"vn","84"],["Wallis and Futuna",["oceania"],"wf","681"],["Yemen",["middle-east"],"ye","967"],["Zambia",["africa"],"zm","260"],["Zimbabwe",["africa"],"zw","263"]];function O(e,t,r,n,a){return !r||a?e+"".padEnd(t.length,".")+" "+n:e+"".padEnd(t.length,".")+" "+r}function E(e,t,r,a){var i,u;return u="boolean"==typeof e,(i=[]).concat.apply(i,o(k.map((function(o){var i={name:o[0],regions:o[1],iso2:o[2],dialCode:o[3],format:O(t,o[3],o[4],r,a),priority:o[5]||0,hasAreaCodes:!!o[6]},c=[];return o[6]&&(u||e.includes(o[2]))&&o[6].map((function(e){var t=function(e){for(var t=1;t<arguments.length;t++){var r=null!=arguments[t]?arguments[t]:{},a=Object.keys(r);"function"==typeof Object.getOwnPropertySymbols&&(a=a.concat(Object.getOwnPropertySymbols(r).filter((function(e){return Object.getOwnPropertyDescriptor(r,e).enumerable})))),a.forEach((function(t){n(e,t,r[t]);}));}return e}({},i);t.regions=o[1],t.dialCode=o[3]+e,t.isAreaCode=!0,c.push(t);})),c.length>0?(i.mainCode=!0,[i].concat(c)):[i]}))))}var N=function e(t,r,n,a,o,i,c,s,l,f,p,d,h){var y=this;u(this,e),this.filterRegions=function(e,t){if("string"==typeof e){var r=e;return t.filter((function(e){return e.regions.some((function(e){return e===r}))}))}return t.filter((function(t){return e.map((function(e){return t.regions.some((function(t){return t===e}))})).some((function(e){return e}))}))},this.getFilteredCountryList=function(e,t,r){return 0===e.length?t:r?e.map((function(e){var r=t.find((function(t){return t.iso2===e}));if(r)return r})).filter((function(e){return e})):t.filter((function(t){return e.some((function(e){return e===t.iso2}))}))},this.extendCountries=function(e,t,r,n,a){for(var o=0;o<e.length;o++)void 0!==t[e[o].iso2]?e[o].localName=t[e[o].iso2]:void 0!==t[e[o].name]&&(e[o].localName=t[e[o].name]),void 0!==r[e[o].iso2]?e[o].format=r[e[o].iso2]:void 0!==r[e[o].name]&&(e[o].format=r[e[o].name]);if(Object.keys(n).length>0){var i=function(){for(var t=[],r=null,o=0;o<e.length;o++)if(t.push(e[o]),void 0!==n[e[o].iso2]){if(r||(r=e[o]),e[o+1]&&e[o+1].iso2===r.iso2)continue;y.getCustomAreas(r,n[e[o].iso2]).forEach((function(e){t.push(e);})),r=null;}else if(void 0!==n[e[o].name]){if(r||(r=e[o]),e[o+1]&&e[o+1].iso2===r.iso2)continue;y.getCustomAreas(r,n[e[o].name]).forEach((function(e){t.push(e);})),r=null;}return {v:y.modifyPriority(t,a)}}();if("object"==typeof i)return i.v}return y.modifyPriority(e,a)},this.getCustomAreas=function(e,t){for(var r=[],n=0;n<t.length;n++){var a=JSON.parse(JSON.stringify(e));a.dialCode+=t[n],r.push(a);}return r},this.modifyPriority=function(e,t){if(t){var r=Object.keys(t);e.forEach((function(e){r.includes(e.iso2)&&Object.keys(t).forEach((function(r){r===e.iso2&&(e.priority=t[r]);}));}));}return e},this.excludeCountries=function(e,t){return 0===t.length?e:e.filter((function(e){return !t.includes(e.iso2)}))};var m=t?E(t,f,p,d):function(e,t,r){return k.map((function(n){return {name:n[0],regions:n[1],iso2:n[2],dialCode:n[3],format:O(e,n[3],n[4],t,r),priority:n[5]||0}}))}(f,p,d);r&&(m=this.filterRegions(r,m)),this.onlyCountries=this.excludeCountries(this.extendCountries(this.getFilteredCountryList(n,m,i.includes("onlyCountries")),c,s,l,h),o),this.preferredCountries=0===a.length?[]:this.extendCountries(this.getFilteredCountryList(a,m,i.includes("preferredCountries")),c,s,l,h);},T=function(e){function t(e){var r;u(this,t),(r=function(e,t){return !t||"object"!==l(t)&&"function"!=typeof t?f(e):t}(this,p(t).call(this,e))).getProbableCandidate=v()((function(e){return e&&0!==e.length?r.state.onlyCountries.filter((function(t){return S()(t.name.toLowerCase(),e.toLowerCase())}),f(f(r)))[0]:null})),r.guessSelectedCountry=v()((function(e,t,n){var a=t.find((function(e){return e.iso2==n}));if(""===e.trim())return a;var o=t.reduce((function(t,r){if(S()(e,r.dialCode)){if(r.dialCode.length>t.dialCode.length)return r;if(r.dialCode.length===t.dialCode.length&&r.priority<t.priority)return r}return t}),{dialCode:"",priority:10001},f(f(r)));return o.name?o:a})),r.updateCountry=function(e){var t;(t=e.indexOf(0)>="0"&&e.indexOf(0)<="9"?r.state.onlyCountries.find((function(t){return t.dialCode==+e})):r.state.onlyCountries.find((function(t){return t.iso2==e})))&&t.dialCode&&r.setState({country:e,selectedCountry:t,formattedNumber:r.props.disableCountryCode?"":r.props.prefix+t.dialCode});},r.scrollTo=function(e,t){if(e){var n=r.dropdownRef;if(n&&document.body){var a=n.offsetHeight,o=n.getBoundingClientRect().top+document.body.scrollTop,i=o+a,u=e,c=u.getBoundingClientRect(),s=u.offsetHeight,l=c.top+document.body.scrollTop,f=l+s,p=l-o+n.scrollTop,d=a/2-s/2;if(r.props.enableSearch?l<o+32:l<o)t&&(p-=d),n.scrollTop=p;else if(f>i){t&&(p+=d);var h=a-s;n.scrollTop=p-h;}}}},r.scrollToTop=function(){var e=r.dropdownRef;e&&document.body&&(e.scrollTop=0);},r.formatNumber=function(e,t){var n,a=r.props,o=a.disableCountryCode,u=a.enableLongNumbers,c=a.autoFormat;if(o&&t?((n=t.split(" ")).shift(),n=n.join(" ")):n=t,!e||0===e.length)return o?"":r.props.prefix;if(e&&e.length<2||!n||!c)return o?e:r.props.prefix+e;var s,l=_()(n,(function(e,t){if(0===e.remainingText.length)return e;if("."!==t)return {formattedText:e.formattedText+t,remainingText:e.remainingText};var r=i(e.remainingText),n=r[0],a=r.slice(1);return {formattedText:e.formattedText+n,remainingText:a}}),{formattedText:"",remainingText:e.split("")});return (s=u?l.formattedText+l.remainingText.join(""):l.formattedText).includes("(")&&!s.includes(")")&&(s+=")"),s},r.cursorToEnd=function(){var e=r.numberInputRef;e.focus();var t=e.value.length;e.setSelectionRange(t,t);},r.getElement=function(e){return r["flag_no_".concat(e)]},r.getCountryData=function(){return r.state.selectedCountry?{name:r.state.selectedCountry.name||"",dialCode:r.state.selectedCountry.dialCode||"",countryCode:r.state.selectedCountry.iso2||"",format:r.state.selectedCountry.format||""}:{}},r.handleFlagDropdownClick=function(){if(r.state.showDropdown||!r.props.disabled){var e,t=r.state,n=t.preferredCountries,a=t.selectedCountry,o=n.concat(r.state.onlyCountries);e=n.includes(a)?n.findIndex((function(e){return e==a})):r.props.enableAreaCodes?o.findIndex((function(e){return e==a})):o.findIndex((function(e){return e.iso2==a.iso2})),r.setState({showDropdown:!r.state.showDropdown,highlightCountryIndex:e},(function(){r.state.showDropdown&&r.scrollTo(r.getElement(r.state.highlightCountryIndex));}));}},r.handleInput=function(e){var t=r.props.disableCountryCode?"":r.props.prefix,n=r.state.selectedCountry,a=r.state.freezeSelection;if(!r.props.countryCodeEditable){var o=n.hasAreaCodes?r.state.onlyCountries.find((function(e){return e.iso2===n.iso2&&e.mainCode})).dialCode:n.dialCode,i=r.props.prefix+o;if(e.target.value.slice(0,i.length)!==i)return}if(!(e.target.value.replace(/\D/g,"").length>15)&&e.target.value!==r.state.formattedNumber){if(e.preventDefault?e.preventDefault():e.returnValue=!1,r.props.onChange&&e.persist(),e.target.value.length>0){var u=e.target.value.replace(/\D/g,"");(!r.state.freezeSelection||r.state.selectedCountry.dialCode.length>u.length)&&(n=r.guessSelectedCountry(u.substring(0,6),r.state.onlyCountries,r.state.country)||r.state.selectedCountry,a=!1),t=n?r.formatNumber(u,n.format):u,n=n.dialCode?n:r.state.selectedCountry;}var c=e.target.selectionStart,s=r.state.formattedNumber,l=t.length-s.length;r.setState({formattedNumber:t,freezeSelection:a,selectedCountry:n},(function(){l>0&&(c-=l),")"==t.charAt(t.length-1)?r.numberInputRef.setSelectionRange(t.length-1,t.length-1):c>0&&s.length>=t.length&&r.numberInputRef.setSelectionRange(c,c),r.props.onChange&&r.props.onChange(r.state.formattedNumber,r.getCountryData(),e);}));}},r.handleInputClick=function(e){r.setState({showDropdown:!1}),r.props.onClick&&r.props.onClick(e,r.getCountryData());},r.handleDoubleClick=function(e){var t=e.target.value.length;e.target.setSelectionRange(0,t);},r.handleFlagItemClick=function(e){var t=r.state.selectedCountry,n=r.state.onlyCountries.find((function(t){return t==e}));if(n){var a=r.state.formattedNumber.replace(" ","").replace("(","").replace(")","").replace("-",""),o=a.length>1?a.replace(t.dialCode,n.dialCode):n.dialCode,i=r.formatNumber(o.replace(/\D/g,""),n.format);r.setState({showDropdown:!1,selectedCountry:n,freezeSelection:!0,formattedNumber:i},(function(){r.cursorToEnd(),r.props.onChange&&r.props.onChange(i.replace(/[^0-9]+/g,""),r.getCountryData());}));}},r.handleInputFocus=function(e){r.numberInputRef&&r.numberInputRef.value===r.props.prefix&&r.state.selectedCountry&&!r.props.disableCountryCode&&r.setState({formattedNumber:r.props.prefix+r.state.selectedCountry.dialCode},(function(){r.props.jumpCursorToEnd&&setTimeout(r.cursorToEnd,0);})),r.setState({placeholder:""}),r.props.onFocus&&r.props.onFocus(e,r.getCountryData()),r.props.jumpCursorToEnd&&setTimeout(r.cursorToEnd,0);},r.handleInputBlur=function(e){e.target.value||r.setState({placeholder:r.props.placeholder}),r.props.onBlur&&r.props.onBlur(e,r.getCountryData());},r.handleInputCopy=function(e){if(r.props.copyNumbersOnly){var t=window.getSelection().toString().replace(/[^0-9]+/g,"");e.clipboardData.setData("text/plain",t),e.preventDefault();}},r.getHighlightCountryIndex=function(e){var t=r.state.highlightCountryIndex+e;return t<0||t>=r.state.onlyCountries.length+r.state.preferredCountries.length?t-e:r.props.enableSearch&&t>r.getSearchFilteredCountries().length?0:t},r.searchCountry=function(){var e=r.getProbableCandidate(r.state.queryString)||r.state.onlyCountries[0],t=r.state.onlyCountries.findIndex((function(t){return t==e}))+r.state.preferredCountries.length;r.scrollTo(r.getElement(t),!0),r.setState({queryString:"",highlightCountryIndex:t});},r.handleKeydown=function(e){var t=r.props.keys,n=e.target.className;if(n.includes("flag-dropdown")&&e.which===t.ENTER&&!r.state.showDropdown)return r.handleFlagDropdownClick();if(n.includes("form-control")&&(e.which===t.ENTER||e.which===t.ESC))return e.target.blur();if(r.state.showDropdown&&!r.props.disabled&&(!n.includes("search-box")||e.which===t.UP||e.which===t.DOWN||e.which===t.ENTER||e.which===t.ESC&&""===e.target.value)){e.preventDefault?e.preventDefault():e.returnValue=!1;var a=function(e){r.setState({highlightCountryIndex:r.getHighlightCountryIndex(e)},(function(){r.scrollTo(r.getElement(r.state.highlightCountryIndex),!0);}));};switch(e.which){case t.DOWN:a(1);break;case t.UP:a(-1);break;case t.ENTER:r.props.enableSearch?r.handleFlagItemClick(r.getSearchFilteredCountries()[r.state.highlightCountryIndex]||r.getSearchFilteredCountries()[0],e):r.handleFlagItemClick([].concat(o(r.state.preferredCountries),o(r.state.onlyCountries))[r.state.highlightCountryIndex],e);break;case t.ESC:r.setState({showDropdown:!1},r.cursorToEnd);break;default:(e.which>=t.A&&e.which<=t.Z||e.which===t.SPACE)&&r.setState({queryString:r.state.queryString+String.fromCharCode(e.which)},r.state.debouncedQueryStingSearcher);}}},r.handleInputKeyDown=function(e){var t=r.props.keys;e.which===t.ENTER&&r.props.onEnterKeyPress(e),r.props.onKeyDown&&r.props.onKeyDown(e);},r.handleClickOutside=function(e){r.dropdownRef&&!r.dropdownContainerRef.contains(e.target)&&r.state.showDropdown&&r.setState({showDropdown:!1});},r.handleSearchChange=function(e){var t=e.currentTarget.value,n=r.state,a=n.preferredCountries,o=n.selectedCountry,i=0;if(""===t&&o){var u=r.state.onlyCountries;i=a.concat(u).findIndex((function(e){return e==o})),setTimeout((function(){return r.scrollTo(r.getElement(i))}),100);}r.setState({searchValue:t,highlightCountryIndex:i});},r.getDropdownCountryName=function(e){return e.localName||e.name},r.getSearchFilteredCountries=function(){var e=r.state,t=e.preferredCountries,n=e.onlyCountries,a=e.searchValue,i=r.props.enableSearch,u=t.concat(n),c=a.trim().toLowerCase();if(i&&c){var s=u.filter((function(e){e.name,e.localName;var t=e.iso2;e.dialCode;return ["".concat(t)].some((function(e){return e.toLowerCase().includes(c)}))})),l=u.filter((function(e){var t=e.name,n=e.localName,a=(e.iso2,e.dialCode);return ["".concat(t),"".concat(n),r.props.prefix+a].some((function(e){return e.toLowerCase().includes(c)}))}));return r.scrollToTop(),o(new Set([].concat(s,l)))}return u},r.getCountryDropdownList=function(){var e,t=r.state,a=t.preferredCountries,o=t.highlightCountryIndex,i=t.showDropdown,u=t.searchValue,c=r.props,s=c.enableSearch,l=c.disableSearchIcon,f=c.searchClass,p=c.searchStyle,d=c.searchPlaceholder,h=c.autocompleteSearch,m=r.getSearchFilteredCountries().map((function(e,t){var n=x()({country:!0,preferred:"us"===e.iso2||"gb"===e.iso2,active:"us"===e.iso2,highlight:o===t}),a="flag ".concat(e.iso2);return y.a.createElement("li",{ref:function(e){return r["flag_no_".concat(t)]=e},key:"flag_no_".concat(t),"data-flag-key":"flag_no_".concat(t),className:n,"data-dial-code":"1",tabIndex:r.props.tabIndex,"data-country-code":e.iso2,onClick:function(){return r.handleFlagItemClick(e)}},y.a.createElement("div",{className:a}),y.a.createElement("span",{className:"country-name"},r.getDropdownCountryName(e)),y.a.createElement("span",{className:"dial-code"},e.format?r.formatNumber(e.dialCode,e.format):r.props.prefix+e.dialCode))})),g=y.a.createElement("li",{key:"dashes",className:"divider"});a.length>0&&(!s||s&&!u.trim())&&m.splice(a.length,0,g);var b=x()((n(e={},r.props.dropdownClass,!0),n(e,"country-list",!0),n(e,"hide",!i),e));return y.a.createElement("ul",{ref:function(e){return r.dropdownRef=e},className:b,style:r.props.dropdownStyle},s&&y.a.createElement("li",{className:x()(n({search:!0},f,f))},!l&&y.a.createElement("span",{className:x()(n({"search-emoji":!0},"".concat(f,"-emoji"),f)),role:"img","aria-label":"Magnifying glass"},"🔎"),y.a.createElement("input",{className:x()(n({"search-box":!0},"".concat(f,"-box"),f)),style:p,type:"search",placeholder:d,autoFocus:!0,autoComplete:h?"on":"off",value:u,onChange:r.handleSearchChange})),m.length>0?m:y.a.createElement("li",{className:"no-entries-message"},y.a.createElement("span",null,"No entries to show.")))};var a,c=new N(e.enableAreaCodes,e.regions,e.onlyCountries,e.preferredCountries,e.excludeCountries,e.preserveOrder,e.localization,e.masks,e.areaCodes,e.prefix,e.defaultMask,e.alwaysDefaultMask,e.priority),s=c.onlyCountries,d=c.preferredCountries,h=e.value.replace(/[^0-9\.]+/g,"")||"";a=h.length>1?r.guessSelectedCountry(h.substring(0,6),s,e.country)||0:e.country&&s.find((function(t){return t.iso2==e.country}))||0;var m,b=h.length<2&&a&&!S()(h.replace(/\D/g,""),a.dialCode)?a.dialCode:"";m=""===h&&0===a?"":r.formatNumber((e.disableCountryCode?"":b)+h.replace(/\D/g,""),a.name?a.format:void 0);var C=s.findIndex((function(e){return e==a}));return r.state={formattedNumber:m,onlyCountries:s,preferredCountries:d,country:e.country,selectedCountry:a,highlightCountryIndex:C,queryString:"",showDropdown:!1,freezeSelection:!1,debouncedQueryStingSearcher:g()(r.searchCountry,250),searchValue:""},r}var r,a;return function(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function");e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,writable:!0,configurable:!0}}),t&&d(e,t);}(t,e),r=t,(a=[{key:"componentDidMount",value:function(){document.addEventListener&&document.addEventListener("mousedown",this.handleClickOutside);}},{key:"componentWillUnmount",value:function(){document.removeEventListener&&document.removeEventListener("mousedown",this.handleClickOutside);}},{key:"UNSAFE_componentWillReceiveProps",value:function(e){e.country&&e.country!==this.state.country?this.updateCountry(e.country):e.value!==this.state.formattedNumber&&this.updateFormattedNumber(e.value);}},{key:"updateFormattedNumber",value:function(e){var t,r=this.state,n=r.onlyCountries,a=r.country,o=e,i=e;if(S()(o,this.props.prefix))o=o.replace(/\D/g,""),i=(t=this.guessSelectedCountry(o.substring(0,6),n,a)||this.state.selectedCountry)?this.formatNumber(o,t.format):o;else{var u=(t=this.state.selectedCountry||n.find((function(e){return e.iso2==a})))&&!S()(o.replace(/\D/g,""),t.dialCode)?t.dialCode:"";i=this.formatNumber((this.props.disableCountryCode?"":u)+o.replace(/\D/g,""),t?t.format:void 0);}this.setState({selectedCountry:t,formattedNumber:i});}},{key:"render",value:function(){var e,t,r=this,a=this.state,o=a.onlyCountries,i=a.selectedCountry,u=a.showDropdown,c=a.formattedNumber,s=this.props,l=s.disableDropdown,f=s.renderStringAsFlag,p=x()({arrow:!0,up:u}),d=x()((n(e={},this.props.inputClass,!0),n(e,"form-control",!0),n(e,"invalid-number",!this.props.isValid(c.replace(/\D/g,""),o)),n(e,"open",u),e)),h=x()({"selected-flag":!0,open:u}),m=x()((n(t={},this.props.buttonClass,!0),n(t,"flag-dropdown",!0),n(t,"open",u),t)),g="flag ".concat(i&&i.iso2);return y.a.createElement("div",{className:this.props.containerClass,style:this.props.style||this.props.containerStyle,onKeyDown:this.handleKeydown},y.a.createElement("input",Object.assign({className:d,style:this.props.inputStyle,onChange:this.handleInput,onClick:this.handleInputClick,onDoubleClick:this.handleDoubleClick,onFocus:this.handleInputFocus,onBlur:this.handleInputBlur,onCopy:this.handleInputCopy,value:c,ref:function(e){return r.numberInputRef=e},onKeyDown:this.handleInputKeyDown,placeholder:this.props.placeholder,disabled:this.props.disabled,type:"tel"},this.props.inputProps)),y.a.createElement("div",{className:m,style:this.props.buttonStyle,ref:function(e){return r.dropdownContainerRef=e},tabIndex:this.props.tabIndex,role:"button"},f?y.a.createElement("div",{className:h},f):y.a.createElement("div",{onClick:l?void 0:this.handleFlagDropdownClick,className:h,title:i?"".concat(i.name,": + ").concat(i.dialCode):""},y.a.createElement("div",{className:g},!l&&y.a.createElement("div",{className:p}))),u&&this.getCountryDropdownList()))}}])&&c(r.prototype,a),t}(y.a.Component);T.defaultProps={country:"",value:"",onlyCountries:[],preferredCountries:[],excludeCountries:[],placeholder:"1 (702) 123-4567",searchPlaceholder:"search",flagsImagePath:"./flags.png",disabled:!1,containerStyle:{},inputStyle:{},buttonStyle:{},dropdownStyle:{},searchStyle:{},containerClass:"react-tel-input",inputClass:"",buttonClass:"",dropdownClass:"",searchClass:"",autoFormat:!0,enableAreaCodes:!1,isValid:function(e,t){return !0},disableCountryCode:!1,disableDropdown:!1,enableLongNumbers:!1,countryCodeEditable:!0,enableSearch:!1,disableSearchIcon:!1,regions:"",inputProps:{},localization:{},masks:{},areaCodes:{},preserveOrder:[],defaultMask:"... ... ... ... ..",alwaysDefaultMask:!1,prefix:"+",copyNumbersOnly:!0,renderStringAsFlag:"",autocompleteSearch:!1,jumpCursorToEnd:!0,tabIndex:"0",priority:null,onEnterKeyPress:function(){},keys:{UP:38,DOWN:40,RIGHT:39,LEFT:37,ENTER:13,ESC:27,PLUS:43,A:65,Z:90,SPACE:32}};t.default=T;}]);
+*/!function(){var r={}.hasOwnProperty;function a(){for(var e=[],t=0;t<arguments.length;t++){var n=arguments[t];if(n){var o=typeof n;if("string"===o||"number"===o)e.push(n);else if(Array.isArray(n)&&n.length){var i=a.apply(null,n);i&&e.push(i);}else if("object"===o)for(var u in n)r.call(n,u)&&n[u]&&e.push(u);}}return e.join(" ")}e.exports?(a.default=a,e.exports=a):void 0===(n=function(){return a}.apply(t,[]))||(e.exports=n);}();},function(e,t,r){(function(t){var r=1/0,n=17976931348623157e292,a=NaN,o="[object Symbol]",i=/^\s+|\s+$/g,u=/^[-+]0x[0-9a-f]+$/i,c=/^0b[01]+$/i,s=/^0o[0-7]+$/i,l=parseInt,f="object"==typeof t&&t&&t.Object===Object&&t,d="object"==typeof self&&self&&self.Object===Object&&self,p=f||d||Function("return this")(),h=Object.prototype.toString,y=p.Symbol,m=y?y.prototype:void 0,g=m?m.toString:void 0;function b(e){if("string"==typeof e)return e;if(C(e))return g?g.call(e):"";var t=e+"";return "0"==t&&1/e==-r?"-0":t}function v(e){var t=typeof e;return !!e&&("object"==t||"function"==t)}function C(e){return "symbol"==typeof e||function(e){return !!e&&"object"==typeof e}(e)&&h.call(e)==o}function _(e){return e?(e=function(e){if("number"==typeof e)return e;if(C(e))return a;if(v(e)){var t="function"==typeof e.valueOf?e.valueOf():e;e=v(t)?t+"":t;}if("string"!=typeof e)return 0===e?e:+e;e=e.replace(i,"");var r=c.test(e);return r||s.test(e)?l(e.slice(2),r?2:8):u.test(e)?a:+e}(e))===r||e===-r?(e<0?-1:1)*n:e==e?e:0:0===e?e:0}e.exports=function(e,t,r){var n,a,o,i;return e=null==(n=e)?"":b(n),a=function(e){var t=_(e),r=t%1;return t==t?r?t-r:t:0}(r),o=0,i=e.length,a==a&&(void 0!==i&&(a=a<=i?a:i),void 0!==o&&(a=a>=o?a:o)),r=a,t=b(t),e.slice(r,r+t.length)==t};}).call(this,r(3));},function(e,t){var r;r=function(){return this}();try{r=r||new Function("return this")();}catch(e){"object"==typeof window&&(r=window);}e.exports=r;},function(e,t,r){(function(t){var r="Expected a function",n="__lodash_hash_undefined__",a="[object Function]",o="[object GeneratorFunction]",i=/^\[object .+?Constructor\]$/,u="object"==typeof t&&t&&t.Object===Object&&t,c="object"==typeof self&&self&&self.Object===Object&&self,s=u||c||Function("return this")();var l,f=Array.prototype,d=Function.prototype,p=Object.prototype,h=s["__core-js_shared__"],y=(l=/[^.]+$/.exec(h&&h.keys&&h.keys.IE_PROTO||""))?"Symbol(src)_1."+l:"",m=d.toString,g=p.hasOwnProperty,b=p.toString,v=RegExp("^"+m.call(g).replace(/[\\^$.*+?()[\]{}|]/g,"\\$&").replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g,"$1.*?")+"$"),C=f.splice,_=N(s,"Map"),w=N(Object,"create");function S(e){var t=-1,r=e?e.length:0;for(this.clear();++t<r;){var n=e[t];this.set(n[0],n[1]);}}function j(e){var t=-1,r=e?e.length:0;for(this.clear();++t<r;){var n=e[t];this.set(n[0],n[1]);}}function x(e){var t=-1,r=e?e.length:0;for(this.clear();++t<r;){var n=e[t];this.set(n[0],n[1]);}}function O(e,t){for(var r,n,a=e.length;a--;)if((r=e[a][0])===(n=t)||r!=r&&n!=n)return a;return -1}function k(e){return !(!I(e)||(t=e,y&&y in t))&&(function(e){var t=I(e)?b.call(e):"";return t==a||t==o}(e)||function(e){var t=!1;if(null!=e&&"function"!=typeof e.toString)try{t=!!(e+"");}catch(e){}return t}(e)?v:i).test(function(e){if(null!=e){try{return m.call(e)}catch(e){}try{return e+""}catch(e){}}return ""}(e));var t;}function E(e,t){var r,n,a=e.__data__;return ("string"==(n=typeof(r=t))||"number"==n||"symbol"==n||"boolean"==n?"__proto__"!==r:null===r)?a["string"==typeof t?"string":"hash"]:a.map}function N(e,t){var r=function(e,t){return null==e?void 0:e[t]}(e,t);return k(r)?r:void 0}function T(e,t){if("function"!=typeof e||t&&"function"!=typeof t)throw new TypeError(r);var n=function(){var r=arguments,a=t?t.apply(this,r):r[0],o=n.cache;if(o.has(a))return o.get(a);var i=e.apply(this,r);return n.cache=o.set(a,i),i};return n.cache=new(T.Cache||x),n}function I(e){var t=typeof e;return !!e&&("object"==t||"function"==t)}S.prototype.clear=function(){this.__data__=w?w(null):{};},S.prototype.delete=function(e){return this.has(e)&&delete this.__data__[e]},S.prototype.get=function(e){var t=this.__data__;if(w){var r=t[e];return r===n?void 0:r}return g.call(t,e)?t[e]:void 0},S.prototype.has=function(e){var t=this.__data__;return w?void 0!==t[e]:g.call(t,e)},S.prototype.set=function(e,t){return this.__data__[e]=w&&void 0===t?n:t,this},j.prototype.clear=function(){this.__data__=[];},j.prototype.delete=function(e){var t=this.__data__,r=O(t,e);return !(r<0)&&(r==t.length-1?t.pop():C.call(t,r,1),!0)},j.prototype.get=function(e){var t=this.__data__,r=O(t,e);return r<0?void 0:t[r][1]},j.prototype.has=function(e){return O(this.__data__,e)>-1},j.prototype.set=function(e,t){var r=this.__data__,n=O(r,e);return n<0?r.push([e,t]):r[n][1]=t,this},x.prototype.clear=function(){this.__data__={hash:new S,map:new(_||j),string:new S};},x.prototype.delete=function(e){return E(this,e).delete(e)},x.prototype.get=function(e){return E(this,e).get(e)},x.prototype.has=function(e){return E(this,e).has(e)},x.prototype.set=function(e,t){return E(this,e).set(e,t),this},T.Cache=x,e.exports=T;}).call(this,r(3));},function(e,t,r){(function(t){var r="Expected a function",n=NaN,a="[object Symbol]",o=/^\s+|\s+$/g,i=/^[-+]0x[0-9a-f]+$/i,u=/^0b[01]+$/i,c=/^0o[0-7]+$/i,s=parseInt,l="object"==typeof t&&t&&t.Object===Object&&t,f="object"==typeof self&&self&&self.Object===Object&&self,d=l||f||Function("return this")(),p=Object.prototype.toString,h=Math.max,y=Math.min,m=function(){return d.Date.now()};function g(e){var t=typeof e;return !!e&&("object"==t||"function"==t)}function b(e){if("number"==typeof e)return e;if(function(e){return "symbol"==typeof e||function(e){return !!e&&"object"==typeof e}(e)&&p.call(e)==a}(e))return n;if(g(e)){var t="function"==typeof e.valueOf?e.valueOf():e;e=g(t)?t+"":t;}if("string"!=typeof e)return 0===e?e:+e;e=e.replace(o,"");var r=u.test(e);return r||c.test(e)?s(e.slice(2),r?2:8):i.test(e)?n:+e}e.exports=function(e,t,n){var a,o,i,u,c,s,l=0,f=!1,d=!1,p=!0;if("function"!=typeof e)throw new TypeError(r);function v(t){var r=a,n=o;return a=o=void 0,l=t,u=e.apply(n,r)}function C(e){var r=e-s;return void 0===s||r>=t||r<0||d&&e-l>=i}function _(){var e=m();if(C(e))return w(e);c=setTimeout(_,function(e){var r=t-(e-s);return d?y(r,i-(e-l)):r}(e));}function w(e){return c=void 0,p&&a?v(e):(a=o=void 0,u)}function S(){var e=m(),r=C(e);if(a=arguments,o=this,s=e,r){if(void 0===c)return function(e){return l=e,c=setTimeout(_,t),f?v(e):u}(s);if(d)return c=setTimeout(_,t),v(s)}return void 0===c&&(c=setTimeout(_,t)),u}return t=b(t)||0,g(n)&&(f=!!n.leading,i=(d="maxWait"in n)?h(b(n.maxWait)||0,t):i,p="trailing"in n?!!n.trailing:p),S.cancel=function(){void 0!==c&&clearTimeout(c),l=0,a=s=o=c=void 0;},S.flush=function(){return void 0===c?u:w(m())},S};}).call(this,r(3));},function(e,t,r){(function(e,r){var n=200,a="Expected a function",o="__lodash_hash_undefined__",i=1,u=2,c=1/0,s=9007199254740991,l="[object Arguments]",f="[object Array]",d="[object Boolean]",p="[object Date]",h="[object Error]",y="[object Function]",m="[object GeneratorFunction]",g="[object Map]",b="[object Number]",v="[object Object]",C="[object RegExp]",_="[object Set]",w="[object String]",S="[object Symbol]",j="[object ArrayBuffer]",x="[object DataView]",O=/\.|\[(?:[^[\]]*|(["'])(?:(?!\1)[^\\]|\\.)*?\1)\]/,k=/^\w*$/,E=/^\./,N=/[^.[\]]+|\[(?:(-?\d+(?:\.\d+)?)|(["'])((?:(?!\2)[^\\]|\\.)*?)\2)\]|(?=(?:\.|\[\])(?:\.|\[\]|$))/g,T=/\\(\\)?/g,I=/^\[object .+?Constructor\]$/,A=/^(?:0|[1-9]\d*)$/,D={};D["[object Float32Array]"]=D["[object Float64Array]"]=D["[object Int8Array]"]=D["[object Int16Array]"]=D["[object Int32Array]"]=D["[object Uint8Array]"]=D["[object Uint8ClampedArray]"]=D["[object Uint16Array]"]=D["[object Uint32Array]"]=!0,D[l]=D[f]=D[j]=D[d]=D[x]=D[p]=D[h]=D[y]=D[g]=D[b]=D[v]=D[C]=D[_]=D[w]=D["[object WeakMap]"]=!1;var P="object"==typeof e&&e&&e.Object===Object&&e,F="object"==typeof self&&self&&self.Object===Object&&self,M=P||F||Function("return this")(),R=t&&!t.nodeType&&t,z=R&&"object"==typeof r&&r&&!r.nodeType&&r,L=z&&z.exports===R&&P.process,B=function(){try{return L&&L.binding("util")}catch(e){}}(),$=B&&B.isTypedArray;function G(e,t,r,n){var a=-1,o=e?e.length:0;for(n&&o&&(r=e[++a]);++a<o;)r=t(r,e[a],a,e);return r}function K(e,t){for(var r=-1,n=e?e.length:0;++r<n;)if(t(e[r],r,e))return !0;return !1}function U(e,t,r,n,a){return a(e,(function(e,a,o){r=n?(n=!1,e):t(r,e,a,o);})),r}function V(e){var t=!1;if(null!=e&&"function"!=typeof e.toString)try{t=!!(e+"");}catch(e){}return t}function q(e){var t=-1,r=Array(e.size);return e.forEach((function(e,n){r[++t]=[n,e];})),r}function W(e){var t=-1,r=Array(e.size);return e.forEach((function(e){r[++t]=e;})),r}var H,J,Z,Q=Array.prototype,Y=Function.prototype,X=Object.prototype,ee=M["__core-js_shared__"],te=(H=/[^.]+$/.exec(ee&&ee.keys&&ee.keys.IE_PROTO||""))?"Symbol(src)_1."+H:"",re=Y.toString,ne=X.hasOwnProperty,ae=X.toString,oe=RegExp("^"+re.call(ne).replace(/[\\^$.*+?()[\]{}|]/g,"\\$&").replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g,"$1.*?")+"$"),ie=M.Symbol,ue=M.Uint8Array,ce=X.propertyIsEnumerable,se=Q.splice,le=(J=Object.keys,Z=Object,function(e){return J(Z(e))}),fe=Ve(M,"DataView"),de=Ve(M,"Map"),pe=Ve(M,"Promise"),he=Ve(M,"Set"),ye=Ve(M,"WeakMap"),me=Ve(Object,"create"),ge=Xe(fe),be=Xe(de),ve=Xe(pe),Ce=Xe(he),_e=Xe(ye),we=ie?ie.prototype:void 0,Se=we?we.valueOf:void 0,je=we?we.toString:void 0;function xe(e){var t=-1,r=e?e.length:0;for(this.clear();++t<r;){var n=e[t];this.set(n[0],n[1]);}}function Oe(e){var t=-1,r=e?e.length:0;for(this.clear();++t<r;){var n=e[t];this.set(n[0],n[1]);}}function ke(e){var t=-1,r=e?e.length:0;for(this.clear();++t<r;){var n=e[t];this.set(n[0],n[1]);}}function Ee(e){var t=-1,r=e?e.length:0;for(this.__data__=new ke;++t<r;)this.add(e[t]);}function Ne(e){this.__data__=new Oe(e);}function Te(e,t){var r=nt(e)||rt(e)?function(e,t){for(var r=-1,n=Array(e);++r<e;)n[r]=t(r);return n}(e.length,String):[],n=r.length,a=!!n;for(var o in e)!t&&!ne.call(e,o)||a&&("length"==o||We(o,n))||r.push(o);return r}function Ie(e,t){for(var r=e.length;r--;)if(tt(e[r][0],t))return r;return -1}xe.prototype.clear=function(){this.__data__=me?me(null):{};},xe.prototype.delete=function(e){return this.has(e)&&delete this.__data__[e]},xe.prototype.get=function(e){var t=this.__data__;if(me){var r=t[e];return r===o?void 0:r}return ne.call(t,e)?t[e]:void 0},xe.prototype.has=function(e){var t=this.__data__;return me?void 0!==t[e]:ne.call(t,e)},xe.prototype.set=function(e,t){return this.__data__[e]=me&&void 0===t?o:t,this},Oe.prototype.clear=function(){this.__data__=[];},Oe.prototype.delete=function(e){var t=this.__data__,r=Ie(t,e);return !(r<0)&&(r==t.length-1?t.pop():se.call(t,r,1),!0)},Oe.prototype.get=function(e){var t=this.__data__,r=Ie(t,e);return r<0?void 0:t[r][1]},Oe.prototype.has=function(e){return Ie(this.__data__,e)>-1},Oe.prototype.set=function(e,t){var r=this.__data__,n=Ie(r,e);return n<0?r.push([e,t]):r[n][1]=t,this},ke.prototype.clear=function(){this.__data__={hash:new xe,map:new(de||Oe),string:new xe};},ke.prototype.delete=function(e){return Ue(this,e).delete(e)},ke.prototype.get=function(e){return Ue(this,e).get(e)},ke.prototype.has=function(e){return Ue(this,e).has(e)},ke.prototype.set=function(e,t){return Ue(this,e).set(e,t),this},Ee.prototype.add=Ee.prototype.push=function(e){return this.__data__.set(e,o),this},Ee.prototype.has=function(e){return this.__data__.has(e)},Ne.prototype.clear=function(){this.__data__=new Oe;},Ne.prototype.delete=function(e){return this.__data__.delete(e)},Ne.prototype.get=function(e){return this.__data__.get(e)},Ne.prototype.has=function(e){return this.__data__.has(e)},Ne.prototype.set=function(e,t){var r=this.__data__;if(r instanceof Oe){var a=r.__data__;if(!de||a.length<n-1)return a.push([e,t]),this;r=this.__data__=new ke(a);}return r.set(e,t),this};var Ae,Pe=(Ae=function(e,t){return e&&Fe(e,t,ft)},function(e,t){if(null==e)return e;if(!at(e))return Ae(e,t);for(var r=e.length,n=-1,a=Object(e);(++n<r)&&!1!==t(a[n],n,a););return e}),Fe=function(e){return function(t,r,n){for(var a=-1,o=Object(t),i=n(t),u=i.length;u--;){var c=i[e?u:++a];if(!1===r(o[c],c,o))break}return t}}();function Me(e,t){for(var r=0,n=(t=He(t,e)?[t]:Ge(t)).length;null!=e&&r<n;)e=e[Ye(t[r++])];return r&&r==n?e:void 0}function Re(e,t){return null!=e&&t in Object(e)}function ze(e,t,r,n,a){return e===t||(null==e||null==t||!ut(e)&&!ct(t)?e!=e&&t!=t:function(e,t,r,n,a,o){var c=nt(e),s=nt(t),y=f,m=f;c||(y=(y=qe(e))==l?v:y);s||(m=(m=qe(t))==l?v:m);var O=y==v&&!V(e),k=m==v&&!V(t),E=y==m;if(E&&!O)return o||(o=new Ne),c||lt(e)?Ke(e,t,r,n,a,o):function(e,t,r,n,a,o,c){switch(r){case x:if(e.byteLength!=t.byteLength||e.byteOffset!=t.byteOffset)return !1;e=e.buffer,t=t.buffer;case j:return !(e.byteLength!=t.byteLength||!n(new ue(e),new ue(t)));case d:case p:case b:return tt(+e,+t);case h:return e.name==t.name&&e.message==t.message;case C:case w:return e==t+"";case g:var s=q;case _:var l=o&u;if(s||(s=W),e.size!=t.size&&!l)return !1;var f=c.get(e);if(f)return f==t;o|=i,c.set(e,t);var y=Ke(s(e),s(t),n,a,o,c);return c.delete(e),y;case S:if(Se)return Se.call(e)==Se.call(t)}return !1}(e,t,y,r,n,a,o);if(!(a&u)){var N=O&&ne.call(e,"__wrapped__"),T=k&&ne.call(t,"__wrapped__");if(N||T){var I=N?e.value():e,A=T?t.value():t;return o||(o=new Ne),r(I,A,n,a,o)}}if(!E)return !1;return o||(o=new Ne),function(e,t,r,n,a,o){var i=a&u,c=ft(e),s=c.length,l=ft(t).length;if(s!=l&&!i)return !1;var f=s;for(;f--;){var d=c[f];if(!(i?d in t:ne.call(t,d)))return !1}var p=o.get(e);if(p&&o.get(t))return p==t;var h=!0;o.set(e,t),o.set(t,e);var y=i;for(;++f<s;){d=c[f];var m=e[d],g=t[d];if(n)var b=i?n(g,m,d,t,e,o):n(m,g,d,e,t,o);if(!(void 0===b?m===g||r(m,g,n,a,o):b)){h=!1;break}y||(y="constructor"==d);}if(h&&!y){var v=e.constructor,C=t.constructor;v!=C&&"constructor"in e&&"constructor"in t&&!("function"==typeof v&&v instanceof v&&"function"==typeof C&&C instanceof C)&&(h=!1);}return o.delete(e),o.delete(t),h}(e,t,r,n,a,o)}(e,t,ze,r,n,a))}function Le(e){return !(!ut(e)||function(e){return !!te&&te in e}(e))&&(ot(e)||V(e)?oe:I).test(Xe(e))}function Be(e){return "function"==typeof e?e:null==e?dt:"object"==typeof e?nt(e)?function(e,t){if(He(e)&&Je(t))return Ze(Ye(e),t);return function(r){var n=function(e,t,r){var n=null==e?void 0:Me(e,t);return void 0===n?r:n}(r,e);return void 0===n&&n===t?function(e,t){return null!=e&&function(e,t,r){t=He(t,e)?[t]:Ge(t);var n,a=-1,o=t.length;for(;++a<o;){var i=Ye(t[a]);if(!(n=null!=e&&r(e,i)))break;e=e[i];}if(n)return n;return !!(o=e?e.length:0)&&it(o)&&We(i,o)&&(nt(e)||rt(e))}(e,t,Re)}(r,e):ze(t,n,void 0,i|u)}}(e[0],e[1]):function(e){var t=function(e){var t=ft(e),r=t.length;for(;r--;){var n=t[r],a=e[n];t[r]=[n,a,Je(a)];}return t}(e);if(1==t.length&&t[0][2])return Ze(t[0][0],t[0][1]);return function(r){return r===e||function(e,t,r,n){var a=r.length,o=a,c=!n;if(null==e)return !o;for(e=Object(e);a--;){var s=r[a];if(c&&s[2]?s[1]!==e[s[0]]:!(s[0]in e))return !1}for(;++a<o;){var l=(s=r[a])[0],f=e[l],d=s[1];if(c&&s[2]){if(void 0===f&&!(l in e))return !1}else{var p=new Ne;if(n)var h=n(f,d,l,e,t,p);if(!(void 0===h?ze(d,f,n,i|u,p):h))return !1}}return !0}(r,e,t)}}(e):He(t=e)?(r=Ye(t),function(e){return null==e?void 0:e[r]}):function(e){return function(t){return Me(t,e)}}(t);var t,r;}function $e(e){if(r=(t=e)&&t.constructor,n="function"==typeof r&&r.prototype||X,t!==n)return le(e);var t,r,n,a=[];for(var o in Object(e))ne.call(e,o)&&"constructor"!=o&&a.push(o);return a}function Ge(e){return nt(e)?e:Qe(e)}function Ke(e,t,r,n,a,o){var c=a&u,s=e.length,l=t.length;if(s!=l&&!(c&&l>s))return !1;var f=o.get(e);if(f&&o.get(t))return f==t;var d=-1,p=!0,h=a&i?new Ee:void 0;for(o.set(e,t),o.set(t,e);++d<s;){var y=e[d],m=t[d];if(n)var g=c?n(m,y,d,t,e,o):n(y,m,d,e,t,o);if(void 0!==g){if(g)continue;p=!1;break}if(h){if(!K(t,(function(e,t){if(!h.has(t)&&(y===e||r(y,e,n,a,o)))return h.add(t)}))){p=!1;break}}else if(y!==m&&!r(y,m,n,a,o)){p=!1;break}}return o.delete(e),o.delete(t),p}function Ue(e,t){var r,n,a=e.__data__;return ("string"==(n=typeof(r=t))||"number"==n||"symbol"==n||"boolean"==n?"__proto__"!==r:null===r)?a["string"==typeof t?"string":"hash"]:a.map}function Ve(e,t){var r=function(e,t){return null==e?void 0:e[t]}(e,t);return Le(r)?r:void 0}var qe=function(e){return ae.call(e)};function We(e,t){return !!(t=null==t?s:t)&&("number"==typeof e||A.test(e))&&e>-1&&e%1==0&&e<t}function He(e,t){if(nt(e))return !1;var r=typeof e;return !("number"!=r&&"symbol"!=r&&"boolean"!=r&&null!=e&&!st(e))||(k.test(e)||!O.test(e)||null!=t&&e in Object(t))}function Je(e){return e==e&&!ut(e)}function Ze(e,t){return function(r){return null!=r&&(r[e]===t&&(void 0!==t||e in Object(r)))}}(fe&&qe(new fe(new ArrayBuffer(1)))!=x||de&&qe(new de)!=g||pe&&"[object Promise]"!=qe(pe.resolve())||he&&qe(new he)!=_||ye&&"[object WeakMap]"!=qe(new ye))&&(qe=function(e){var t=ae.call(e),r=t==v?e.constructor:void 0,n=r?Xe(r):void 0;if(n)switch(n){case ge:return x;case be:return g;case ve:return "[object Promise]";case Ce:return _;case _e:return "[object WeakMap]"}return t});var Qe=et((function(e){var t;e=null==(t=e)?"":function(e){if("string"==typeof e)return e;if(st(e))return je?je.call(e):"";var t=e+"";return "0"==t&&1/e==-c?"-0":t}(t);var r=[];return E.test(e)&&r.push(""),e.replace(N,(function(e,t,n,a){r.push(n?a.replace(T,"$1"):t||e);})),r}));function Ye(e){if("string"==typeof e||st(e))return e;var t=e+"";return "0"==t&&1/e==-c?"-0":t}function Xe(e){if(null!=e){try{return re.call(e)}catch(e){}try{return e+""}catch(e){}}return ""}function et(e,t){if("function"!=typeof e||t&&"function"!=typeof t)throw new TypeError(a);var r=function(){var n=arguments,a=t?t.apply(this,n):n[0],o=r.cache;if(o.has(a))return o.get(a);var i=e.apply(this,n);return r.cache=o.set(a,i),i};return r.cache=new(et.Cache||ke),r}function tt(e,t){return e===t||e!=e&&t!=t}function rt(e){return function(e){return ct(e)&&at(e)}(e)&&ne.call(e,"callee")&&(!ce.call(e,"callee")||ae.call(e)==l)}et.Cache=ke;var nt=Array.isArray;function at(e){return null!=e&&it(e.length)&&!ot(e)}function ot(e){var t=ut(e)?ae.call(e):"";return t==y||t==m}function it(e){return "number"==typeof e&&e>-1&&e%1==0&&e<=s}function ut(e){var t=typeof e;return !!e&&("object"==t||"function"==t)}function ct(e){return !!e&&"object"==typeof e}function st(e){return "symbol"==typeof e||ct(e)&&ae.call(e)==S}var lt=$?function(e){return function(t){return e(t)}}($):function(e){return ct(e)&&it(e.length)&&!!D[ae.call(e)]};function ft(e){return at(e)?Te(e):$e(e)}function dt(e){return e}r.exports=function(e,t,r){var n=nt(e)?G:U,a=arguments.length<3;return n(e,Be(t),r,a,Pe)};}).call(this,r(3),r(7)(e));},function(e,t){e.exports=function(e){return e.webpackPolyfill||(e.deprecate=function(){},e.paths=[],e.children||(e.children=[]),Object.defineProperty(e,"loaded",{enumerable:!0,get:function(){return e.l}}),Object.defineProperty(e,"id",{enumerable:!0,get:function(){return e.i}}),e.webpackPolyfill=1),e};},function(e,t){String.prototype.padEnd||(String.prototype.padEnd=function(e,t){return e>>=0,t=String(void 0!==t?t:" "),this.length>e?String(this):((e-=this.length)>t.length&&(t+=t.repeat(e/t.length)),String(this)+t.slice(0,e))});},function(e,t,r){function n(e,t,r){return t in e?Object.defineProperty(e,t,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[t]=r,e}function a(e){if(Symbol.iterator in Object(e)||"[object Arguments]"===Object.prototype.toString.call(e))return Array.from(e)}function o(e){return function(e){if(Array.isArray(e)){for(var t=0,r=new Array(e.length);t<e.length;t++)r[t]=e[t];return r}}(e)||a(e)||function(){throw new TypeError("Invalid attempt to spread non-iterable instance")}()}function i(e){if(Array.isArray(e))return e}function u(){throw new TypeError("Invalid attempt to destructure non-iterable instance")}function c(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function s(e,t){for(var r=0;r<t.length;r++){var n=t[r];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n);}}function l(e){return (l="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e})(e)}function f(e){return (f="function"==typeof Symbol&&"symbol"===l(Symbol.iterator)?function(e){return l(e)}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":l(e)})(e)}function d(e){if(void 0===e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return e}function p(e){return (p=Object.setPrototypeOf?Object.getPrototypeOf:function(e){return e.__proto__||Object.getPrototypeOf(e)})(e)}function h(e,t){return (h=Object.setPrototypeOf||function(e,t){return e.__proto__=t,e})(e,t)}r.r(t);var y=r(0),m=r.n(y),g=r(5),b=r.n(g),v=r(4),C=r.n(v),_=r(6),w=r.n(_),S=r(2),j=r.n(S),x=r(1),O=r.n(x);r(8);function k(e,t){return i(e)||function(e,t){var r=[],n=!0,a=!1,o=void 0;try{for(var i,u=e[Symbol.iterator]();!(n=(i=u.next()).done)&&(r.push(i.value),!t||r.length!==t);n=!0);}catch(e){a=!0,o=e;}finally{try{n||null==u.return||u.return();}finally{if(a)throw o}}return r}(e,t)||u()}var E=[["Afghanistan",["asia"],"af","93"],["Albania",["europe"],"al","355"],["Algeria",["africa","north-africa"],"dz","213"],["Andorra",["europe"],"ad","376"],["Angola",["africa"],"ao","244"],["Antigua and Barbuda",["america","carribean"],"ag","1268"],["Argentina",["america","south-america"],"ar","54","(..) ........"],["Armenia",["asia","ex-ussr"],"am","374"],["Aruba",["america","carribean"],"aw","297"],["Australia",["oceania"],"au","61","(..) .... ....",0,["2","3","4","7","8","02","03","04","07","08"]],["Austria",["europe","eu-union"],"at","43"],["Azerbaijan",["asia","ex-ussr"],"az","994"],["Bahamas",["america","carribean"],"bs","1242"],["Bahrain",["middle-east"],"bh","973"],["Bangladesh",["asia"],"bd","880"],["Barbados",["america","carribean"],"bb","1246"],["Belarus",["europe","ex-ussr"],"by","375","(..) ... .. .."],["Belgium",["europe","eu-union"],"be","32","... .. .. .."],["Belize",["america","central-america"],"bz","501"],["Benin",["africa"],"bj","229"],["Bhutan",["asia"],"bt","975"],["Bolivia",["america","south-america"],"bo","591"],["Bosnia and Herzegovina",["europe","ex-yugos"],"ba","387"],["Botswana",["africa"],"bw","267"],["Brazil",["america","south-america"],"br","55","(..) ........."],["British Indian Ocean Territory",["asia"],"io","246"],["Brunei",["asia"],"bn","673"],["Bulgaria",["europe","eu-union"],"bg","359"],["Burkina Faso",["africa"],"bf","226"],["Burundi",["africa"],"bi","257"],["Cambodia",["asia"],"kh","855"],["Cameroon",["africa"],"cm","237"],["Canada",["america","north-america"],"ca","1","(...) ...-....",1,["204","226","236","249","250","289","306","343","365","387","403","416","418","431","437","438","450","506","514","519","548","579","581","587","604","613","639","647","672","705","709","742","778","780","782","807","819","825","867","873","902","905"]],["Cape Verde",["africa"],"cv","238"],["Caribbean Netherlands",["america","carribean"],"bq","599","",1],["Central African Republic",["africa"],"cf","236"],["Chad",["africa"],"td","235"],["Chile",["america","south-america"],"cl","56"],["China",["asia"],"cn","86","..-........."],["Colombia",["america","south-america"],"co","57"],["Comoros",["africa"],"km","269"],["Congo",["africa"],"cd","243"],["Congo",["africa"],"cg","242"],["Costa Rica",["america","central-america"],"cr","506","....-...."],["Côte d’Ivoire",["africa"],"ci","225"],["Croatia",["europe","eu-union","ex-yugos"],"hr","385"],["Cuba",["america","carribean"],"cu","53"],["Curaçao",["america","carribean"],"cw","599","",0],["Cyprus",["europe","eu-union"],"cy","357",".. ......"],["Czech Republic",["europe","eu-union"],"cz","420"],["Denmark",["europe","eu-union","baltic"],"dk","45",".. .. .. .."],["Djibouti",["africa"],"dj","253"],["Dominica",["america","carribean"],"dm","1767"],["Dominican Republic",["america","carribean"],"do","1","",2,["809","829","849"]],["Ecuador",["america","south-america"],"ec","593"],["Egypt",["africa","north-africa"],"eg","20"],["El Salvador",["america","central-america"],"sv","503","....-...."],["Equatorial Guinea",["africa"],"gq","240"],["Eritrea",["africa"],"er","291"],["Estonia",["europe","eu-union","ex-ussr","baltic"],"ee","372",".... ......"],["Ethiopia",["africa"],"et","251"],["Fiji",["oceania"],"fj","679"],["Finland",["europe","eu-union","baltic"],"fi","358",".. ... .. .."],["France",["europe","eu-union"],"fr","33",". .. .. .. .."],["French Guiana",["america","south-america"],"gf","594"],["French Polynesia",["oceania"],"pf","689"],["Gabon",["africa"],"ga","241"],["Gambia",["africa"],"gm","220"],["Georgia",["asia","ex-ussr"],"ge","995"],["Germany",["europe","eu-union","baltic"],"de","49",".... ........"],["Ghana",["africa"],"gh","233"],["Greece",["europe","eu-union"],"gr","30"],["Grenada",["america","carribean"],"gd","1473"],["Guadeloupe",["america","carribean"],"gp","590","",0],["Guam",["oceania"],"gu","1671"],["Guatemala",["america","central-america"],"gt","502","....-...."],["Guinea",["africa"],"gn","224"],["Guinea-Bissau",["africa"],"gw","245"],["Guyana",["america","south-america"],"gy","592"],["Haiti",["america","carribean"],"ht","509","....-...."],["Honduras",["america","central-america"],"hn","504"],["Hong Kong",["asia"],"hk","852",".... ...."],["Hungary",["europe","eu-union"],"hu","36"],["Iceland",["europe"],"is","354","... ...."],["India",["asia"],"in","91",".....-....."],["Indonesia",["asia"],"id","62"],["Iran",["middle-east"],"ir","98"],["Iraq",["middle-east"],"iq","964"],["Ireland",["europe","eu-union"],"ie","353",".. ......."],["Israel",["middle-east"],"il","972","... ... ...."],["Italy",["europe","eu-union"],"it","39","... .......",0],["Jamaica",["america","carribean"],"jm","1876"],["Japan",["asia"],"jp","81",".. .... ...."],["Jordan",["middle-east"],"jo","962"],["Kazakhstan",["asia","ex-ussr"],"kz","7","... ...-..-..",1,["310","311","312","313","315","318","321","324","325","326","327","336","7172","73622"]],["Kenya",["africa"],"ke","254"],["Kiribati",["oceania"],"ki","686"],["Kosovo",["europe","ex-yugos"],"xk","383"],["Kuwait",["middle-east"],"kw","965"],["Kyrgyzstan",["asia","ex-ussr"],"kg","996"],["Laos",["asia"],"la","856"],["Latvia",["europe","eu-union","ex-ussr","baltic"],"lv","371"],["Lebanon",["middle-east"],"lb","961"],["Lesotho",["africa"],"ls","266"],["Liberia",["africa"],"lr","231"],["Libya",["africa","north-africa"],"ly","218"],["Liechtenstein",["europe"],"li","423"],["Lithuania",["europe","eu-union","ex-ussr","baltic"],"lt","370"],["Luxembourg",["europe","eu-union"],"lu","352"],["Macau",["asia"],"mo","853"],["Macedonia",["europe","ex-yugos"],"mk","389"],["Madagascar",["africa"],"mg","261"],["Malawi",["africa"],"mw","265"],["Malaysia",["asia"],"my","60","..-....-...."],["Maldives",["asia"],"mv","960"],["Mali",["africa"],"ml","223"],["Malta",["europe","eu-union"],"mt","356"],["Marshall Islands",["oceania"],"mh","692"],["Martinique",["america","carribean"],"mq","596"],["Mauritania",["africa"],"mr","222"],["Mauritius",["africa"],"mu","230"],["Mexico",["america","central-america"],"mx","52","... ... ....",0,["55","81","33","656","664","998","774","229"]],["Micronesia",["oceania"],"fm","691"],["Moldova",["europe"],"md","373","(..) ..-..-.."],["Monaco",["europe"],"mc","377"],["Mongolia",["asia"],"mn","976"],["Montenegro",["europe","ex-yugos"],"me","382"],["Morocco",["africa","north-africa"],"ma","212"],["Mozambique",["africa"],"mz","258"],["Myanmar",["asia"],"mm","95"],["Namibia",["africa"],"na","264"],["Nauru",["africa"],"nr","674"],["Nepal",["asia"],"np","977"],["Netherlands",["europe","eu-union"],"nl","31",".. ........"],["New Caledonia",["oceania"],"nc","687"],["New Zealand",["oceania"],"nz","64","...-...-...."],["Nicaragua",["america","central-america"],"ni","505"],["Niger",["africa"],"ne","227"],["Nigeria",["africa"],"ng","234"],["North Korea",["asia"],"kp","850"],["Norway",["europe","baltic"],"no","47","... .. ..."],["Oman",["middle-east"],"om","968"],["Pakistan",["asia"],"pk","92","...-......."],["Palau",["oceania"],"pw","680"],["Palestine",["middle-east"],"ps","970"],["Panama",["america","central-america"],"pa","507"],["Papua New Guinea",["oceania"],"pg","675"],["Paraguay",["america","south-america"],"py","595"],["Peru",["america","south-america"],"pe","51"],["Philippines",["asia"],"ph","63",".... ......."],["Poland",["europe","eu-union","baltic"],"pl","48","...-...-..."],["Portugal",["europe","eu-union"],"pt","351"],["Puerto Rico",["america","carribean"],"pr","1","",3,["787","939"]],["Qatar",["middle-east"],"qa","974"],["Réunion",["africa"],"re","262"],["Romania",["europe","eu-union"],"ro","40"],["Russia",["europe","asia","ex-ussr","baltic"],"ru","7","(...) ...-..-..",0],["Rwanda",["africa"],"rw","250"],["Saint Kitts and Nevis",["america","carribean"],"kn","1869"],["Saint Lucia",["america","carribean"],"lc","1758"],["Saint Vincent and the Grenadines",["america","carribean"],"vc","1784"],["Samoa",["oceania"],"ws","685"],["San Marino",["europe"],"sm","378"],["São Tomé and Príncipe",["africa"],"st","239"],["Saudi Arabia",["middle-east"],"sa","966"],["Senegal",["africa"],"sn","221"],["Serbia",["europe","ex-yugos"],"rs","381"],["Seychelles",["africa"],"sc","248"],["Sierra Leone",["africa"],"sl","232"],["Singapore",["asia"],"sg","65","....-...."],["Slovakia",["europe","eu-union"],"sk","421"],["Slovenia",["europe","eu-union","ex-yugos"],"si","386"],["Solomon Islands",["oceania"],"sb","677"],["Somalia",["africa"],"so","252"],["South Africa",["africa"],"za","27"],["South Korea",["asia"],"kr","82","... .... ...."],["South Sudan",["africa","north-africa"],"ss","211"],["Spain",["europe","eu-union"],"es","34","... ... ..."],["Sri Lanka",["asia"],"lk","94"],["Sudan",["africa"],"sd","249"],["Suriname",["america","south-america"],"sr","597"],["Swaziland",["africa"],"sz","268"],["Sweden",["europe","eu-union","baltic"],"se","46","(...) ...-..."],["Switzerland",["europe"],"ch","41",".. ... .. .."],["Syria",["middle-east"],"sy","963"],["Taiwan",["asia"],"tw","886"],["Tajikistan",["asia","ex-ussr"],"tj","992"],["Tanzania",["africa"],"tz","255"],["Thailand",["asia"],"th","66"],["Timor-Leste",["asia"],"tl","670"],["Togo",["africa"],"tg","228"],["Tonga",["oceania"],"to","676"],["Trinidad and Tobago",["america","carribean"],"tt","1868"],["Tunisia",["africa","north-africa"],"tn","216"],["Turkey",["europe"],"tr","90","... ... .. .."],["Turkmenistan",["asia","ex-ussr"],"tm","993"],["Tuvalu",["asia"],"tv","688"],["Uganda",["africa"],"ug","256"],["Ukraine",["europe","ex-ussr"],"ua","380","(..) ... .. .."],["United Arab Emirates",["middle-east"],"ae","971"],["United Kingdom",["europe","eu-union"],"gb","44",".... ......"],["United States",["america","north-america"],"us","1","(...) ...-....",0,["907","205","251","256","334","479","501","870","480","520","602","623","928","209","213","310","323","408","415","510","530","559","562","619","626","650","661","707","714","760","805","818","831","858","909","916","925","949","951","303","719","970","203","860","202","302","239","305","321","352","386","407","561","727","772","813","850","863","904","941","954","229","404","478","706","770","912","808","319","515","563","641","712","208","217","309","312","618","630","708","773","815","847","219","260","317","574","765","812","316","620","785","913","270","502","606","859","225","318","337","504","985","413","508","617","781","978","301","410","207","231","248","269","313","517","586","616","734","810","906","989","218","320","507","612","651","763","952","314","417","573","636","660","816","228","601","662","406","252","336","704","828","910","919","701","308","402","603","201","609","732","856","908","973","505","575","702","775","212","315","516","518","585","607","631","716","718","845","914","216","330","419","440","513","614","740","937","405","580","918","503","541","215","412","570","610","717","724","814","401","803","843","864","605","423","615","731","865","901","931","210","214","254","281","325","361","409","432","512","713","806","817","830","903","915","936","940","956","972","979","435","801","276","434","540","703","757","804","802","206","253","360","425","509","262","414","608","715","920","304","307"]],["Uruguay",["america","south-america"],"uy","598"],["Uzbekistan",["asia","ex-ussr"],"uz","998"],["Vanuatu",["oceania"],"vu","678"],["Vatican City",["europe"],"va","39",".. .... ....",1],["Venezuela",["america","south-america"],"ve","58"],["Vietnam",["asia"],"vn","84"],["Yemen",["middle-east"],"ye","967"],["Zambia",["africa"],"zm","260"],["Zimbabwe",["africa"],"zw","263"]],N=[["American Samoa",["oceania"],"as","1684"],["Anguilla",["america","carribean"],"ai","1264"],["Bermuda",["america","north-america"],"bm","1441"],["British Virgin Islands",["america","carribean"],"vg","1284"],["Cayman Islands",["america","carribean"],"ky","1345"],["Cook Islands",["oceania"],"ck","682"],["Falkland Islands",["america","south-america"],"fk","500"],["Faroe Islands",["europe"],"fo","298"],["Gibraltar",["europe"],"gi","350"],["Greenland",["america"],"gl","299"],["Jersey",["europe","eu-union"],"je","44",".... ......"],["Montserrat",["america","carribean"],"ms","1664"],["Niue",["asia"],"nu","683"],["Norfolk Island",["oceania"],"nf","672"],["Northern Mariana Islands",["oceania"],"mp","1670"],["Saint Barthélemy",["america","carribean"],"bl","590","",1],["Saint Helena",["africa"],"sh","290"],["Saint Martin",["america","carribean"],"mf","590","",2],["Saint Pierre and Miquelon",["america","north-america"],"pm","508"],["Sint Maarten",["america","carribean"],"sx","1721"],["Tokelau",["oceania"],"tk","690"],["Turks and Caicos Islands",["america","carribean"],"tc","1649"],["U.S. Virgin Islands",["america","carribean"],"vi","1340"],["Wallis and Futuna",["oceania"],"wf","681"]];function T(e,t,r,n,a){return !r||a?e+"".padEnd(t.length,".")+" "+n:e+"".padEnd(t.length,".")+" "+r}function I(e,t,r,a,i){var u,c,s=[];return c=!0===t,[(u=[]).concat.apply(u,o(e.map((function(e){var o={name:e[0],regions:e[1],iso2:e[2],countryCode:e[3],dialCode:e[3],format:T(r,e[3],e[4],a,i),priority:e[5]||0,hasAreaCodes:!!e[6]},u=[];return e[6]&&e[6].map((function(t){var r=function(e){for(var t=1;t<arguments.length;t++){var r=null!=arguments[t]?arguments[t]:{},a=Object.keys(r);"function"==typeof Object.getOwnPropertySymbols&&(a=a.concat(Object.getOwnPropertySymbols(r).filter((function(e){return Object.getOwnPropertyDescriptor(r,e).enumerable})))),a.forEach((function(t){n(e,t,r[t]);}));}return e}({},o);r.dialCode=e[3]+t,r.isAreaCode=!0,r.areaCodeLength=t.length,u.push(r);})),u.length>0?(o.mainCode=!0,c||"Array"===t.constructor.name&&t.includes(e[2])?[o].concat(u):(s=s.concat(u),[o])):[o]})))),s]}function A(e,t,r,n){if(null!==r){var a=Object.keys(r),o=Object.values(r);a.forEach((function(r,a){if(n)return e.push([r,o[a]]);var i=e.findIndex((function(e){return e[0]===r}));if(-1===i){var u=[r];u[t]=o[a],e.push(u);}else e[i][t]=o[a];}));}}function D(e,t){return 0===t.length?e:e.map((function(e){var r=t.findIndex((function(t){return t[0]===e[2]}));if(-1===r)return e;var n=t[r];return n[1]&&(e[4]=n[1]),n[3]&&(e[5]=n[3]),n[2]&&(e[6]=n[2]),e}))}var P=function e(t,r,n,a,i,u,s,l,f,d,p,h,y,m){c(this,e),this.filterRegions=function(e,t){if("string"==typeof e){var r=e;return t.filter((function(e){return e.regions.some((function(e){return e===r}))}))}return t.filter((function(t){return e.map((function(e){return t.regions.some((function(t){return t===e}))})).some((function(e){return e}))}))},this.sortTerritories=function(e,t){var r=[].concat(o(e),o(t));return r.sort((function(e,t){return e.name<t.name?-1:e.name>t.name?1:0})),r},this.getFilteredCountryList=function(e,t,r){return 0===e.length?t:r?e.map((function(e){var r=t.find((function(t){return t.iso2===e}));if(r)return r})).filter((function(e){return e})):t.filter((function(t){return e.some((function(e){return e===t.iso2}))}))},this.localizeCountries=function(e,t){for(var r=0;r<e.length;r++)void 0!==t[e[r].iso2]?e[r].localName=t[e[r].iso2]:void 0!==t[e[r].name]&&(e[r].localName=t[e[r].name]);return e},this.getCustomAreas=function(e,t){for(var r=[],n=0;n<t.length;n++){var a=JSON.parse(JSON.stringify(e));a.dialCode+=t[n],r.push(a);}return r},this.excludeCountries=function(e,t){return 0===t.length?e:e.filter((function(e){return !t.includes(e.iso2)}))};var g=function(e,t,r){var n=[];return A(n,1,e,!0),A(n,3,t),A(n,2,r),n}(l,f,d),b=D(JSON.parse(JSON.stringify(E)),g),v=D(JSON.parse(JSON.stringify(N)),g),C=k(I(b,t,h,y,m),2),_=C[0],w=C[1];if(r){var S=k(I(v,t,h,y,m),2),j=S[0];S[1];_=this.sortTerritories(j,_);}n&&(_=this.filterRegions(n,_)),this.onlyCountries=this.localizeCountries(this.excludeCountries(this.getFilteredCountryList(a,_,s.includes("onlyCountries")),u),p),this.preferredCountries=0===i.length?[]:this.localizeCountries(this.getFilteredCountryList(i,_,s.includes("preferredCountries")),p),this.hiddenAreaCodes=this.excludeCountries(this.getFilteredCountryList(a,w),u);},F=function(e){function t(e){var r;c(this,t),(r=function(e,t){return !t||"object"!==f(t)&&"function"!=typeof t?d(e):t}(this,p(t).call(this,e))).getProbableCandidate=C()((function(e){return e&&0!==e.length?r.state.onlyCountries.filter((function(t){return j()(t.name.toLowerCase(),e.toLowerCase())}),d(d(r)))[0]:null})),r.guessSelectedCountry=C()((function(e,t,n,a){var o;if(!1===r.props.enableAreaCodes&&(a.some((function(t){if(j()(e,t.dialCode))return n.some((function(e){if(t.iso2===e.iso2&&e.mainCode)return o=e,!0})),!0})),o))return o;var i=n.find((function(e){return e.iso2==t}));if(""===e.trim())return i;var u=n.reduce((function(t,r){if(j()(e,r.dialCode)){if(r.dialCode.length>t.dialCode.length)return r;if(r.dialCode.length===t.dialCode.length&&r.priority<t.priority)return r}return t}),{dialCode:"",priority:10001},d(d(r)));return u.name?u:i})),r.updateCountry=function(e){var t,n=r.state.onlyCountries;(t=e.indexOf(0)>="0"&&e.indexOf(0)<="9"?n.find((function(t){return t.dialCode==+e})):n.find((function(t){return t.iso2==e})))&&t.dialCode&&r.setState({selectedCountry:t,formattedNumber:r.props.disableCountryCode?"":r.formatNumber(t.dialCode,t)});},r.scrollTo=function(e,t){if(e){var n=r.dropdownRef;if(n&&document.body){var a=n.offsetHeight,o=n.getBoundingClientRect().top+document.body.scrollTop,i=o+a,u=e,c=u.getBoundingClientRect(),s=u.offsetHeight,l=c.top+document.body.scrollTop,f=l+s,d=l-o+n.scrollTop,p=a/2-s/2;if(r.props.enableSearch?l<o+32:l<o)t&&(d-=p),n.scrollTop=d;else if(f>i){t&&(d+=p);var h=a-s;n.scrollTop=d-h;}}}},r.scrollToTop=function(){var e=r.dropdownRef;e&&document.body&&(e.scrollTop=0);},r.formatNumber=function(e,t){if(!t)return e;var n,o=t.format,c=r.props,s=c.disableCountryCode,l=c.enableAreaCodeStretch,f=c.enableLongNumbers,d=c.autoFormat;if(s?((n=o.split(" ")).shift(),n=n.join(" ")):l&&t.isAreaCode?((n=o.split(" "))[1]=n[1].replace(/\.+/,"".padEnd(t.areaCodeLength,".")),n=n.join(" ")):n=o,!e||0===e.length)return s?"":r.props.prefix;if(e&&e.length<2||!n||!d)return s?e:r.props.prefix+e;var p,h=w()(n,(function(e,t){if(0===e.remainingText.length)return e;if("."!==t)return {formattedText:e.formattedText+t,remainingText:e.remainingText};var r,n=i(r=e.remainingText)||a(r)||u(),o=n[0],c=n.slice(1);return {formattedText:e.formattedText+o,remainingText:c}}),{formattedText:"",remainingText:e.split("")});return (p=f?h.formattedText+h.remainingText.join(""):h.formattedText).includes("(")&&!p.includes(")")&&(p+=")"),p},r.cursorToEnd=function(){var e=r.numberInputRef;e.focus();var t=e.value.length;")"===e.value.charAt(t-1)&&(t-=1),e.setSelectionRange(t,t);},r.getElement=function(e){return r["flag_no_".concat(e)]},r.getCountryData=function(){return r.state.selectedCountry?{name:r.state.selectedCountry.name||"",dialCode:r.state.selectedCountry.dialCode||"",countryCode:r.state.selectedCountry.iso2||"",format:r.state.selectedCountry.format||""}:{}},r.handleFlagDropdownClick=function(){if(r.state.showDropdown||!r.props.disabled){var e=r.state,t=e.preferredCountries,n=e.selectedCountry,a=t.concat(r.state.onlyCountries).findIndex((function(e){return e.dialCode===n.dialCode&&e.iso2===n.iso2}));r.setState({showDropdown:!r.state.showDropdown,highlightCountryIndex:a},(function(){r.state.showDropdown&&r.scrollTo(r.getElement(r.state.highlightCountryIndex));}));}},r.handleInput=function(e){var t=e.target.value,n=r.props.prefix;if(t===n)return r.setState({formattedNumber:""});var a=r.props.disableCountryCode?"":n,o=r.state.selectedCountry,i=r.state.freezeSelection;if(!r.props.countryCodeEditable){var u=n+(o.hasAreaCodes?r.state.onlyCountries.find((function(e){return e.iso2===o.iso2&&e.mainCode})).dialCode:o.dialCode);if(t.slice(0,u.length)!==u)return}if((!(t.replace(/\D/g,"").length>15)||r.state.enableLongNumbers)&&t!==r.state.formattedNumber){e.preventDefault?e.preventDefault():e.returnValue=!1;var c=r.props,s=c.country,l=c.onChange,f=r.state,d=f.onlyCountries,p=f.selectedCountry,h=f.hiddenAreaCodes;if(l&&e.persist(),t.length>0){var y=t.replace(/\D/g,"");(!r.state.freezeSelection||p.dialCode.length>y.length)&&(o=r.guessSelectedCountry(y.substring(0,6),s,d,h)||p,i=!1),a=r.formatNumber(y,o),o=o.dialCode?o:p;}var m=e.target.selectionStart,g=r.state.formattedNumber,b=a.length-g.length;r.setState({formattedNumber:a,freezeSelection:i,selectedCountry:o},(function(){b>0&&(m-=b),")"==a.charAt(a.length-1)?r.numberInputRef.setSelectionRange(a.length-1,a.length-1):m>0&&g.length>=a.length&&r.numberInputRef.setSelectionRange(m,m),l&&l(a.replace(/[^0-9]+/g,""),r.getCountryData(),e,a);}));}},r.handleInputClick=function(e){r.setState({showDropdown:!1}),r.props.onClick&&r.props.onClick(e,r.getCountryData());},r.handleDoubleClick=function(e){var t=e.target.value.length;e.target.setSelectionRange(0,t);},r.handleFlagItemClick=function(e,t){var n=r.state.selectedCountry,a=r.state.onlyCountries.find((function(t){return t==e}));if(a){var o=r.state.formattedNumber.replace(" ","").replace("(","").replace(")","").replace("-",""),i=o.length>1?o.replace(n.dialCode,a.dialCode):a.dialCode,u=r.formatNumber(i.replace(/\D/g,""),a);r.setState({showDropdown:!1,selectedCountry:a,freezeSelection:!0,formattedNumber:u},(function(){r.cursorToEnd(),r.props.onChange&&r.props.onChange(u.replace(/[^0-9]+/g,""),r.getCountryData(),t,u);}));}},r.handleInputFocus=function(e){r.numberInputRef&&r.numberInputRef.value===r.props.prefix&&r.state.selectedCountry&&!r.props.disableCountryCode&&r.setState({formattedNumber:r.props.prefix+r.state.selectedCountry.dialCode},(function(){r.props.jumpCursorToEnd&&setTimeout(r.cursorToEnd,0);})),r.setState({placeholder:""}),r.props.onFocus&&r.props.onFocus(e,r.getCountryData()),r.props.jumpCursorToEnd&&setTimeout(r.cursorToEnd,0);},r.handleInputBlur=function(e){e.target.value||r.setState({placeholder:r.props.placeholder}),r.props.onBlur&&r.props.onBlur(e,r.getCountryData());},r.handleInputCopy=function(e){if(r.props.copyNumbersOnly){var t=window.getSelection().toString().replace(/[^0-9]+/g,"");e.clipboardData.setData("text/plain",t),e.preventDefault();}},r.getHighlightCountryIndex=function(e){var t=r.state.highlightCountryIndex+e;return t<0||t>=r.state.onlyCountries.length+r.state.preferredCountries.length?t-e:r.props.enableSearch&&t>r.getSearchFilteredCountries().length?0:t},r.searchCountry=function(){var e=r.getProbableCandidate(r.state.queryString)||r.state.onlyCountries[0],t=r.state.onlyCountries.findIndex((function(t){return t==e}))+r.state.preferredCountries.length;r.scrollTo(r.getElement(t),!0),r.setState({queryString:"",highlightCountryIndex:t});},r.handleKeydown=function(e){var t=r.props.keys,n=e.target.className;if(n.includes("flag-dropdown")&&e.which===t.ENTER&&!r.state.showDropdown)return r.handleFlagDropdownClick();if(n.includes("form-control")&&(e.which===t.ENTER||e.which===t.ESC))return e.target.blur();if(r.state.showDropdown&&!r.props.disabled&&(!n.includes("search-box")||e.which===t.UP||e.which===t.DOWN||e.which===t.ENTER||e.which===t.ESC&&""===e.target.value)){e.preventDefault?e.preventDefault():e.returnValue=!1;var a=function(e){r.setState({highlightCountryIndex:r.getHighlightCountryIndex(e)},(function(){r.scrollTo(r.getElement(r.state.highlightCountryIndex),!0);}));};switch(e.which){case t.DOWN:a(1);break;case t.UP:a(-1);break;case t.ENTER:r.props.enableSearch?r.handleFlagItemClick(r.getSearchFilteredCountries()[r.state.highlightCountryIndex]||r.getSearchFilteredCountries()[0],e):r.handleFlagItemClick([].concat(o(r.state.preferredCountries),o(r.state.onlyCountries))[r.state.highlightCountryIndex],e);break;case t.ESC:r.setState({showDropdown:!1},r.cursorToEnd);break;default:(e.which>=t.A&&e.which<=t.Z||e.which===t.SPACE)&&r.setState({queryString:r.state.queryString+String.fromCharCode(e.which)},r.state.debouncedQueryStingSearcher);}}},r.handleInputKeyDown=function(e){var t=r.props,n=t.keys,a=t.onEnterKeyPress,o=t.onKeyDown;e.which===n.ENTER&&a&&a(e),o&&o(e);},r.handleClickOutside=function(e){r.dropdownRef&&!r.dropdownContainerRef.contains(e.target)&&r.state.showDropdown&&r.setState({showDropdown:!1});},r.handleSearchChange=function(e){var t=e.currentTarget.value,n=r.state,a=n.preferredCountries,o=n.selectedCountry,i=0;if(""===t&&o){var u=r.state.onlyCountries;i=a.concat(u).findIndex((function(e){return e==o})),setTimeout((function(){return r.scrollTo(r.getElement(i))}),100);}r.setState({searchValue:t,highlightCountryIndex:i});},r.getDropdownCountryName=function(e){return e.localName||e.name},r.getSearchFilteredCountries=function(){var e=r.state,t=e.preferredCountries,n=e.onlyCountries,a=e.searchValue,i=r.props.enableSearch,u=t.concat(n),c=a.trim().toLowerCase();if(i&&c){if(/^\d+$/.test(c))return u.filter((function(e){var t=e.dialCode;return ["".concat(t)].some((function(e){return e.toLowerCase().includes(c)}))}));var s=u.filter((function(e){var t=e.iso2;return ["".concat(t)].some((function(e){return e.toLowerCase().includes(c)}))})),l=u.filter((function(e){var t=e.name,r=e.localName;e.iso2;return ["".concat(t),"".concat(r)].some((function(e){return e.toLowerCase().includes(c)}))}));return r.scrollToTop(),o(new Set([].concat(s,l)))}return u},r.getCountryDropdownList=function(){var e,t=r.state,a=t.preferredCountries,o=t.highlightCountryIndex,i=t.showDropdown,u=t.searchValue,c=r.props,s=c.disableDropdown,l=c.prefix,f=r.props,d=f.enableSearch,p=f.searchNotFound,h=f.disableSearchIcon,y=f.searchClass,g=f.searchStyle,b=f.searchPlaceholder,v=f.autocompleteSearch,C=r.getSearchFilteredCountries().map((function(e,t){var n=O()({country:!0,preferred:"us"===e.iso2||"gb"===e.iso2,active:"us"===e.iso2,highlight:o===t}),a="flag ".concat(e.iso2);return m.a.createElement("li",{ref:function(e){return r["flag_no_".concat(t)]=e},key:"flag_no_".concat(t),"data-flag-key":"flag_no_".concat(t),className:n,"data-dial-code":"1",tabIndex:s?"-1":"0","data-country-code":e.iso2,onClick:function(t){return r.handleFlagItemClick(e,t)}},m.a.createElement("div",{className:a}),m.a.createElement("span",{className:"country-name"},r.getDropdownCountryName(e)),m.a.createElement("span",{className:"dial-code"},e.format?r.formatNumber(e.dialCode,e):l+e.dialCode))})),_=m.a.createElement("li",{key:"dashes",className:"divider"});a.length>0&&(!d||d&&!u.trim())&&C.splice(a.length,0,_);var w=O()((n(e={},r.props.dropdownClass,!0),n(e,"country-list",!0),n(e,"hide",!i),e));return m.a.createElement("ul",{ref:function(e){return r.dropdownRef=e},className:w,style:r.props.dropdownStyle},d&&m.a.createElement("li",{className:O()(n({search:!0},y,y))},!h&&m.a.createElement("span",{className:O()(n({"search-emoji":!0},"".concat(y,"-emoji"),y)),role:"img","aria-label":"Magnifying glass"},"🔎"),m.a.createElement("input",{className:O()(n({"search-box":!0},"".concat(y,"-box"),y)),style:g,type:"search",placeholder:b,autoFocus:!0,autoComplete:v?"on":"off",value:u,onChange:r.handleSearchChange})),C.length>0?C:m.a.createElement("li",{className:"no-entries-message"},m.a.createElement("span",null,p)))};var s,l=new P(e.enableAreaCodes,e.enableTerritories,e.regions,e.onlyCountries,e.preferredCountries,e.excludeCountries,e.preserveOrder,e.masks,e.priority,e.areaCodes,e.localization,e.prefix,e.defaultMask,e.alwaysDefaultMask),h=l.onlyCountries,y=l.preferredCountries,g=l.hiddenAreaCodes,v=e.value.replace(/\D/g,"")||"";s=e.disableInitialCountryGuess?0:v.length>1?r.guessSelectedCountry(v.substring(0,6),e.country,h,g)||0:e.country&&h.find((function(t){return t.iso2==e.country}))||0;var _,S=v.length<2&&s&&!j()(v,s.dialCode)?s.dialCode:"";_=""===v&&0===s?"":r.formatNumber((e.disableCountryCode?"":S)+v,s.name?s:void 0);var x=h.findIndex((function(e){return e==s}));return r.state={showDropdown:e.showDropdown,formattedNumber:_,onlyCountries:h,preferredCountries:y,hiddenAreaCodes:g,selectedCountry:s,highlightCountryIndex:x,queryString:"",freezeSelection:!1,debouncedQueryStingSearcher:b()(r.searchCountry,250),searchValue:""},r}var r,l;return function(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function");e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,writable:!0,configurable:!0}}),t&&h(e,t);}(t,e),r=t,(l=[{key:"componentDidMount",value:function(){document.addEventListener&&this.props.enableClickOutside&&document.addEventListener("mousedown",this.handleClickOutside);}},{key:"componentWillUnmount",value:function(){document.removeEventListener&&this.props.enableClickOutside&&document.removeEventListener("mousedown",this.handleClickOutside);}},{key:"UNSAFE_componentWillReceiveProps",value:function(e){e.country!==this.props.country?this.updateCountry(e.country):e.value!==this.props.value&&this.updateFormattedNumber(e.value);}},{key:"updateFormattedNumber",value:function(e){if(null===e)return this.setState({selectedCountry:0,formattedNumber:""});var t=this.state,r=t.onlyCountries,n=t.selectedCountry,a=t.hiddenAreaCodes,o=this.props,i=o.country,u=o.prefix;if(""===e)return this.setState({selectedCountry:n,formattedNumber:""});var c,s,l=e.replace(/\D/g,"");if(n&&j()(e,u+n.dialCode))s=this.formatNumber(l,n),this.setState({formattedNumber:s});else{var f=(c=this.guessSelectedCountry(l.substring(0,6),i,r,a)||n)&&j()(l,u+c.dialCode)?c.dialCode:"";s=this.formatNumber((this.props.disableCountryCode?"":f)+l,c||void 0),this.setState({selectedCountry:c,formattedNumber:s});}}},{key:"render",value:function(){var e,t,r,a,o,i=this,u=this.state,c=u.onlyCountries,s=u.selectedCountry,l=u.showDropdown,f=u.formattedNumber,d=u.hiddenAreaCodes,p=this.props,h=p.disableDropdown,y=p.renderStringAsFlag,g=p.isValid,b=p.defaultErrorMessage;if("boolean"==typeof g)a=g;else{var v=g(f.replace(/\D/g,""),s,c,d);"boolean"==typeof v?!1===(a=v)&&(o=b):(a=!1,o=v);}var C=O()((n(e={},this.props.containerClass,!0),n(e,"react-tel-input",!0),e)),_=O()({arrow:!0,up:l}),w=O()((n(t={},this.props.inputClass,!0),n(t,"form-control",!0),n(t,"invalid-number",!a),n(t,"open",l),t)),S=O()({"selected-flag":!0,open:l}),j=O()((n(r={},this.props.buttonClass,!0),n(r,"flag-dropdown",!0),n(r,"invalid-number",!a),n(r,"open",l),r)),x="flag ".concat(s&&s.iso2);return m.a.createElement("div",{className:C,style:this.props.style||this.props.containerStyle,onKeyDown:this.handleKeydown},o&&m.a.createElement("div",{className:"invalid-number-message"},o),m.a.createElement("input",Object.assign({className:w,style:this.props.inputStyle,onChange:this.handleInput,onClick:this.handleInputClick,onDoubleClick:this.handleDoubleClick,onFocus:this.handleInputFocus,onBlur:this.handleInputBlur,onCopy:this.handleInputCopy,value:f,ref:function(e){return i.numberInputRef=e},onKeyDown:this.handleInputKeyDown,placeholder:this.props.placeholder,disabled:this.props.disabled,type:"tel"},this.props.inputProps)),m.a.createElement("div",{className:j,style:this.props.buttonStyle,ref:function(e){return i.dropdownContainerRef=e},tabIndex:h?"-1":"0",role:"button"},y?m.a.createElement("div",{className:S},y):m.a.createElement("div",{onClick:h?void 0:this.handleFlagDropdownClick,className:S,title:s?"".concat(s.name,": + ").concat(s.dialCode):""},m.a.createElement("div",{className:x},!h&&m.a.createElement("div",{className:_}))),l&&this.getCountryDropdownList()))}}])&&s(r.prototype,l),t}(m.a.Component);F.defaultProps={country:"",value:"",onlyCountries:[],preferredCountries:[],excludeCountries:[],placeholder:"1 (702) 123-4567",searchPlaceholder:"search",searchNotFound:"No entries to show",flagsImagePath:"./flags.png",disabled:!1,containerStyle:{},inputStyle:{},buttonStyle:{},dropdownStyle:{},searchStyle:{},containerClass:"",inputClass:"",buttonClass:"",dropdownClass:"",searchClass:"",autoFormat:!0,enableAreaCodes:!1,enableTerritories:!1,disableCountryCode:!1,disableDropdown:!1,enableLongNumbers:!1,countryCodeEditable:!0,enableSearch:!1,disableSearchIcon:!1,disableInitialCountryGuess:!1,regions:"",inputProps:{},localization:{},masks:null,priority:null,areaCodes:null,preserveOrder:[],defaultMask:"... ... ... ... ..",alwaysDefaultMask:!1,prefix:"+",copyNumbersOnly:!0,renderStringAsFlag:"",autocompleteSearch:!1,jumpCursorToEnd:!0,enableAreaCodeStretch:!1,enableClickOutside:!0,showDropdown:!1,isValid:!0,defaultErrorMessage:"",onEnterKeyPress:null,keys:{UP:38,DOWN:40,RIGHT:39,LEFT:37,ENTER:13,ESC:27,PLUS:43,A:65,Z:90,SPACE:32}};t.default=F;}]);
 });
 
 var ReactPhoneInput = unwrapExports(lib$2);
@@ -21358,10 +21514,10 @@ var TelInput = function TelInput(props) {
   };
 
   var defaultValue = hasFormik && formik.values[name];
-  return React__default.createElement(InputWrapper, _extends_1({
+  return /*#__PURE__*/React__default.createElement(InputWrapper, _extends_1({
     disabled: disabled,
     alertText: alertText
-  }, otherProps), React__default.createElement(ReactPhoneInput, _extends_1({}, inputDefaults, {
+  }, otherProps), /*#__PURE__*/React__default.createElement(ReactPhoneInput, _extends_1({}, inputDefaults, {
     preferredCountries: ['za'],
     onChange: onChange ? onChange : defaultOnChange,
     value: value || defaultValue || '',
@@ -26126,9 +26282,9 @@ var Select$1 = function Select(props) {
   };
 
   var defaultValue = hasFormik && formik.values[name];
-  return React__default.createElement(InputWrapper, _extends_1({
+  return /*#__PURE__*/React__default.createElement(InputWrapper, _extends_1({
     alertText: alertText
-  }, otherProps), React__default.createElement(index$5, _extends_1({}, inputDefaults, otherProps, {
+  }, otherProps), /*#__PURE__*/React__default.createElement(index$5, _extends_1({}, inputDefaults, otherProps, {
     onChange: onChange || defaultOnChange,
     value: value || defaultValue,
     placeholder: placeholder,
@@ -26213,12 +26369,12 @@ var TypeInput = function TypeInput(_ref) {
 
   var typeValues = inputDefaults.value || value;
   var selectedValues = selected || hasFormik && formik.values[name];
-  return React__default.createElement(InputWrapper, _extends_1({
+  return /*#__PURE__*/React__default.createElement(InputWrapper, _extends_1({
     alertText: alertText
-  }, otherProps), React__default.createElement(Container$1, null, options && options.map(function (_ref2) {
+  }, otherProps), /*#__PURE__*/React__default.createElement(Container$1, null, options && options.map(function (_ref2) {
     var label = _ref2.label,
         value = _ref2.value;
-    return React__default.createElement(Value, {
+    return /*#__PURE__*/React__default.createElement(Value, {
       key: value,
       selected: Array.isArray(selectedValues) && selectedValues.includes(value),
       onClick: function onClick() {
@@ -26263,12 +26419,12 @@ var Button$2 = styled__default.button(_templateObject$j(), function (_ref) {
   return theme.colors.gray.xlight;
 });
 
-var Link = function Link(_ref) {
+var Link$2 = function Link(_ref) {
   var href = _ref.href,
       children = _ref.children,
       otherProps = objectWithoutProperties(_ref, ["href", "children"]);
 
-  return React__default.createElement("a", _extends_1({
+  return /*#__PURE__*/React__default.createElement("a", _extends_1({
     href: href
   }, otherProps), children);
 };
@@ -26279,8 +26435,8 @@ var OverflowMenu = function OverflowMenu(_ref2) {
       NextLink = _ref2.NextLink,
       otherProps = objectWithoutProperties(_ref2, ["position", "options", "NextLink"]);
 
-  var LinkComponent = NextLink ? NextLink : Link;
-  return React__default.createElement(Popup, _extends_1({
+  var LinkComponent = NextLink ? NextLink : Link$2;
+  return /*#__PURE__*/React__default.createElement(Popup, _extends_1({
     closeOnSelect: true,
     position: position,
     contentStyle: {
@@ -26294,10 +26450,10 @@ var OverflowMenu = function OverflowMenu(_ref2) {
         href = _ref3.href,
         otherProps = objectWithoutProperties(_ref3, ["name", "onClick", "href"]);
 
-    return href ? React__default.createElement(LinkComponent, _extends_1({
+    return href ? /*#__PURE__*/React__default.createElement(LinkComponent, _extends_1({
       key: name,
       href: href
-    }, otherProps), React__default.createElement(Button$2, null, name)) : React__default.createElement(Button$2, _extends_1({
+    }, otherProps), /*#__PURE__*/React__default.createElement(Button$2, null, name)) : /*#__PURE__*/React__default.createElement(Button$2, _extends_1({
       key: name,
       onClick: onClick
     }, otherProps), name);
@@ -26418,9 +26574,9 @@ var LanguageSetField = function LanguageSetField(_ref) {
     var code = _ref2.code;
     return code === locale;
   });
-  return React__default.createElement(Container$2, _extends_1({
+  return /*#__PURE__*/React__default.createElement(Container$2, _extends_1({
     id: containerId
-  }, otherProps), React__default.createElement(Inner, null, React__default.createElement(LanguageText, null, language ? language.value || locale : locale), defaultLanguage && React__default.createElement(DefaultText, null, "(default)")), React__default.createElement(Input$2, _extends_1({
+  }, otherProps), /*#__PURE__*/React__default.createElement(Inner, null, /*#__PURE__*/React__default.createElement(LanguageText, null, language ? language.value || locale : locale), defaultLanguage && /*#__PURE__*/React__default.createElement(DefaultText, null, "(default)")), /*#__PURE__*/React__default.createElement(Input$2, _extends_1({
     placeholder: placeholder,
     name: name,
     value: value,
@@ -26434,42 +26590,36 @@ LanguageSetField.defaultProps = {
 var LanguageSetField$1 = React__default.memo(LanguageSetField);
 
 function _arrayWithoutHoles(arr) {
-  if (Array.isArray(arr)) {
-    for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) {
-      arr2[i] = arr[i];
-    }
-
-    return arr2;
-  }
+  if (Array.isArray(arr)) return arrayLikeToArray(arr);
 }
 
 var arrayWithoutHoles = _arrayWithoutHoles;
 
 function _iterableToArray(iter) {
-  if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter);
+  if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter);
 }
 
 var iterableToArray = _iterableToArray;
 
 function _nonIterableSpread() {
-  throw new TypeError("Invalid attempt to spread non-iterable instance");
+  throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
 }
 
 var nonIterableSpread = _nonIterableSpread;
 
 function _toConsumableArray(arr) {
-  return arrayWithoutHoles(arr) || iterableToArray(arr) || nonIterableSpread();
+  return arrayWithoutHoles(arr) || iterableToArray(arr) || unsupportedIterableToArray(arr) || nonIterableSpread();
 }
 
 var toConsumableArray = _toConsumableArray;
 
 function _toArray(arr) {
-  return arrayWithHoles(arr) || iterableToArray(arr) || nonIterableRest();
+  return arrayWithHoles(arr) || iterableToArray(arr) || unsupportedIterableToArray(arr) || nonIterableRest();
 }
 
 var toArray$1 = _toArray;
 
-function t(t,e){void 0===e&&(e={}),Object.keys(e).forEach(function(i){t.style[i]=e[i];});}function toast(e,i){var o;void 0===e&&(e=""),void 0===i&&(i={});var r="number"==typeof i?{duration:i}:"function"==typeof i?{cb:i}:i,n=r.className;void 0===n&&(n="");var a=r.duration;void 0===a&&(a=function(t){return 1e3*function(t){void 0===t&&(t="");var e=document.implementation.createHTMLDocument("New").body;return e.innerHTML=t,e.textContent||e.innerText||""}(t).split(" ").length/1.6}(e));var d=r.target;void 0===d&&(d="body");var c=r.offset;void 0===c&&(c=15);var u=r.styles;void 0===u&&(u={});var s=r.selector;void 0===s&&(s="just-toasty");var v=r.role;void 0===v&&(v="alert");var l=r.type;void 0===l&&(l="polite");var f=r.cb;void 0===f&&(f=function(){});var m=["top","right"],p=m[0],y=m[1],b=document.querySelector(d),x=document.createElement("div");x.setAttribute("role",v),x.setAttribute("aria-live",l),x.setAttribute("aria-atomic","true"),x.classList.add(s),n&&x.classList.add(n),x.innerHTML=e,t(x,Object.assign(((o={})[y]="15px",o.opacity=1,o.padding="1em 1.5em",o.zIndex=9999,o.color="#fff",o.background="rgba(0,0,10,0.8)",o.display="inline-block",o.position="fixed",o.borderRadius=".2em",o.top="-100px",o.fontFamily="inherit",o.transition="all 0.4s ease-out",o),u)),b.insertBefore(x,b.firstChild);var g=c;return document.querySelectorAll("."+s).forEach(function(e){var i,o=e.clientHeight;t(e,((i={})[p]=g+"px",i)),g+=o+c;}),setTimeout(function(){var e;t(x,((e={})[y]="-"+x.offsetWidth+"px",e.opacity=0,e)),setTimeout(function(){x.remove(),f();},1e3);},a),x}
+function t$1(t,e){void 0===e&&(e={}),Object.keys(e).forEach(function(i){t.style[i]=e[i];});}function toast(e,i){var o;void 0===e&&(e=""),void 0===i&&(i={});var r="number"==typeof i?{duration:i}:"function"==typeof i?{cb:i}:i,n=r.className;void 0===n&&(n="");var a=r.duration;void 0===a&&(a=function(t){return 1e3*function(t){void 0===t&&(t="");var e=document.implementation.createHTMLDocument("New").body;return e.innerHTML=t,e.textContent||e.innerText||""}(t).split(" ").length/1.6}(e));var d=r.target;void 0===d&&(d="body");var c=r.offset;void 0===c&&(c=15);var u=r.styles;void 0===u&&(u={});var s=r.selector;void 0===s&&(s="just-toasty");var v=r.role;void 0===v&&(v="alert");var l=r.type;void 0===l&&(l="polite");var f=r.cb;void 0===f&&(f=function(){});var m=["top","right"],p=m[0],y=m[1],b=document.querySelector(d),x=document.createElement("div");x.setAttribute("role",v),x.setAttribute("aria-live",l),x.setAttribute("aria-atomic","true"),x.classList.add(s),n&&x.classList.add(n),x.innerHTML=e,t$1(x,Object.assign(((o={})[y]="15px",o.opacity=1,o.padding="1em 1.5em",o.zIndex=9999,o.color="#fff",o.background="rgba(0,0,10,0.8)",o.display="inline-block",o.position="fixed",o.borderRadius=".2em",o.top="-100px",o.fontFamily="inherit",o.transition="all 0.4s ease-out",o),u)),b.insertBefore(x,b.firstChild);var g=c;return document.querySelectorAll("."+s).forEach(function(e){var i,o=e.clientHeight;t$1(e,((i={})[p]=g+"px",i)),g+=o+c;}),setTimeout(function(){var e;t$1(x,((e={})[y]="-"+x.offsetWidth+"px",e.opacity=0,e)),setTimeout(function(){x.remove(),f();},1e3);},a),x}
 
 function _templateObject5$2() {
   var data = taggedTemplateLiteral(["\n  display: flex;\n  justify-content: space-between;\n  margin-top: 2.8em;\n"]);
@@ -26541,6 +26691,10 @@ var EditButton = styled__default.button(_templateObject4$2(), function (_ref3) {
 });
 var Actions = styled__default.div(_templateObject5$2());
 
+function _createSuper$9(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$9(); return function _createSuperInternal() { var Super = getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$9() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
 function ownKeys$a(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread$b(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$a(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$a(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -26561,14 +26715,12 @@ function updateLanguageSets(formikLanguageSets, state) {
   });
 }
 
-var TranslateModal =
-/*#__PURE__*/
-function (_Component) {
+var TranslateModal = /*#__PURE__*/function (_Component) {
   inherits(TranslateModal, _Component);
 
-  function TranslateModal() {
-    var _getPrototypeOf2;
+  var _super = _createSuper$9(TranslateModal);
 
+  function TranslateModal() {
     var _this;
 
     classCallCheck(this, TranslateModal);
@@ -26577,7 +26729,7 @@ function (_Component) {
       args[_key] = arguments[_key];
     }
 
-    _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(TranslateModal)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = _super.call.apply(_super, [this].concat(args));
 
     defineProperty(assertThisInitialized(_this), "state", {
       languageSets: []
@@ -26625,8 +26777,8 @@ function (_Component) {
           disabled = _this$props.disabled,
           languages = _this$props.languages;
       var languageSets = this.state.languageSets;
-      return React__default.createElement(Container$3, null, languageSets.map(function (languageSet, i) {
-        return React__default.createElement(LanguageSetField$1, _extends_1({
+      return /*#__PURE__*/React__default.createElement(Container$3, null, languageSets.map(function (languageSet, i) {
+        return /*#__PURE__*/React__default.createElement(LanguageSetField$1, _extends_1({
           key: languageSet.locale
         }, languageSet, {
           placeholder: placeholder,
@@ -26637,9 +26789,9 @@ function (_Component) {
           disabled: disabled,
           languages: languages
         }));
-      }), React__default.createElement(Actions, null, React__default.createElement(EditTextContainer, null, onLanguagesChange && React__default.createElement(React__default.Fragment, null, React__default.createElement(EditButton, {
+      }), /*#__PURE__*/React__default.createElement(Actions, null, /*#__PURE__*/React__default.createElement(EditTextContainer, null, onLanguagesChange && /*#__PURE__*/React__default.createElement(React__default.Fragment, null, /*#__PURE__*/React__default.createElement(EditButton, {
         onClick: onLanguagesChange
-      }, "Edit"), React__default.createElement(EditText, null, "\xA0 ", "language preferences."))), React__default.createElement(Button, {
+      }, "Edit"), /*#__PURE__*/React__default.createElement(EditText, null, "\xA0 ", "language preferences."))), /*#__PURE__*/React__default.createElement(Button, {
         variant: "primary",
         m: 2,
         onClick: function onClick() {
@@ -27786,7 +27938,7 @@ componentWillMount.__suppressDeprecationWarning = true;
 componentWillReceiveProps.__suppressDeprecationWarning = true;
 componentWillUpdate.__suppressDeprecationWarning = true;
 
-function polyfill$1(Component) {
+function polyfill$3(Component) {
   var prototype = Component.prototype;
 
   if (!prototype || !prototype.isReactComponent) {
@@ -27895,7 +28047,7 @@ function polyfill$1(Component) {
 }
 
 var reactLifecyclesCompat_es = /*#__PURE__*/Object.freeze({
-  polyfill: polyfill$1
+  polyfill: polyfill$3
 });
 
 var Modal_1 = createCommonjsModule(function (module, exports) {
@@ -28342,16 +28494,18 @@ var FadeOverlay = styled__default.div(_templateObject10());
 function ownKeys$b(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread$c(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$b(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$b(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _createSuper$a(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$a(); return function _createSuperInternal() { var Super = getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$a() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 ReactModal.setAppElement('body');
 
-var ModalWrapper =
-/*#__PURE__*/
-function (_Component) {
+var ModalWrapper = /*#__PURE__*/function (_Component) {
   inherits(ModalWrapper, _Component);
 
-  function ModalWrapper() {
-    var _getPrototypeOf2;
+  var _super = _createSuper$a(ModalWrapper);
 
+  function ModalWrapper() {
     var _this;
 
     classCallCheck(this, ModalWrapper);
@@ -28360,7 +28514,7 @@ function (_Component) {
       args[_key] = arguments[_key];
     }
 
-    _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(ModalWrapper)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = _super.call.apply(_super, [this].concat(args));
 
     defineProperty(assertThisInitialized(_this), "state", {
       contentSpacing: 0
@@ -28453,7 +28607,7 @@ function (_Component) {
       };
 
       var renderCloseIcon = function renderCloseIcon() {
-        return React__default.createElement(IconButton, {
+        return /*#__PURE__*/React__default.createElement(IconButton, {
           icon: "close",
           noShadow: true,
           color: "transparent",
@@ -28463,7 +28617,7 @@ function (_Component) {
       };
 
       var renderBackButton = function renderBackButton() {
-        return React__default.createElement(IconButton, {
+        return /*#__PURE__*/React__default.createElement(IconButton, {
           onClick: onBack,
           color: "transparent",
           icon: "back",
@@ -28472,26 +28626,26 @@ function (_Component) {
         });
       };
 
-      return React__default.createElement(ReactModal, _extends_1({
+      return /*#__PURE__*/React__default.createElement(ReactModal, _extends_1({
         onRequestClose: onClose,
         onAfterOpen: this.afterOpenModal,
         style: modalStyles
-      }, otherProps), React__default.createElement(React__default.Fragment, null, onClose && !hideCloseButton && renderCloseIcon(), onBack && renderBackButton(), React__default.createElement(Header, {
+      }, otherProps), /*#__PURE__*/React__default.createElement(React__default.Fragment, null, onClose && !hideCloseButton && renderCloseIcon(), onBack && renderBackButton(), /*#__PURE__*/React__default.createElement(Header, {
         ref: function ref(node) {
           return _this2.headerRef = node;
         }
-      }, title && React__default.createElement(Flex, {
+      }, title && /*#__PURE__*/React__default.createElement(Flex, {
         width: "100%",
         justifyContent: centerTitle ? 'center' : 'flex-start',
         pl: onBack && !centerTitle ? '2.5em' : 0
-      }, React__default.createElement(Title, null, title), proximusTitle && React__default.createElement(ProximusTitle, null, "\xA0| ".concat(proximusTitle))), subtitle && React__default.createElement(Subtitle, null, subtitle), description && React__default.createElement(Description, {
+      }, /*#__PURE__*/React__default.createElement(Title, null, title), proximusTitle && /*#__PURE__*/React__default.createElement(ProximusTitle, null, "\xA0| ".concat(proximusTitle))), subtitle && /*#__PURE__*/React__default.createElement(Subtitle, null, subtitle), description && /*#__PURE__*/React__default.createElement(Description, {
         centerText: centerTitle
-      }, description), actions && React__default.createElement(Actions$1, null, actions)), React__default.createElement(ContentWrapper$1, {
+      }, description), actions && /*#__PURE__*/React__default.createElement(Actions$1, null, actions)), /*#__PURE__*/React__default.createElement(ContentWrapper$1, {
         style: wrapperStyle
-      }, scrollable && React__default.createElement(FadeOverlay, null), React__default.createElement(InnerContent, {
+      }, scrollable && /*#__PURE__*/React__default.createElement(FadeOverlay, null), /*#__PURE__*/React__default.createElement(InnerContent, {
         hasHeader: hasHeader,
         style: _objectSpread$c({}, styleOverrides.content, {}, contentStyle)
-      }, children)), footer && React__default.createElement(Footer, {
+      }, children)), footer && /*#__PURE__*/React__default.createElement(Footer, {
         ref: function ref(node) {
           return _this2.footerRef = node;
         }
@@ -28553,14 +28707,16 @@ function ownKeys$c(object, enumerableOnly) { var keys = Object.keys(object); if 
 
 function _objectSpread$d(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$c(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$c(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
-var TranslationInput =
-/*#__PURE__*/
-function (_Component) {
+function _createSuper$b(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$b(); return function _createSuperInternal() { var Super = getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$b() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+var TranslationInput = /*#__PURE__*/function (_Component) {
   inherits(TranslationInput, _Component);
 
-  function TranslationInput() {
-    var _getPrototypeOf2;
+  var _super = _createSuper$b(TranslationInput);
 
+  function TranslationInput() {
     var _this;
 
     classCallCheck(this, TranslationInput);
@@ -28569,7 +28725,7 @@ function (_Component) {
       args[_key] = arguments[_key];
     }
 
-    _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(TranslationInput)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = _super.call.apply(_super, [this].concat(args));
 
     defineProperty(assertThisInitialized(_this), "state", {
       showModal: false
@@ -28688,25 +28844,25 @@ function (_Component) {
           inputDefaults = objectWithoutProperties(_createDefaultInputPr, ["alertText", "hasFormik"]);
 
       var val = formik.values[name] && formik.values[name][0] && formik.values[name][0].value ? formik.values[name][0].value : '';
-      return React__default.createElement(InputWrapper, _extends_1({
+      return /*#__PURE__*/React__default.createElement(InputWrapper, _extends_1({
         alertText: this.getAlertMessage(alertText)
-      }, otherProps), React__default.createElement(Container$4, null, React__default.createElement(TranslateInputContainer, _extends_1({}, inputDefaults, {
+      }, otherProps), /*#__PURE__*/React__default.createElement(Container$4, null, /*#__PURE__*/React__default.createElement(TranslateInputContainer, _extends_1({}, inputDefaults, {
         id: id,
         value: val,
         onChange: this.updateDefaultValue,
         name: name,
         placeholder: placeholder || label,
         disabled: disabled
-      }, inputProps)), React__default.createElement(TranslateIconContainer, {
+      }, inputProps)), /*#__PURE__*/React__default.createElement(TranslateIconContainer, {
         onClick: this.toggleModal
-      }, React__default.createElement(Translate$1, {
+      }, /*#__PURE__*/React__default.createElement(Translate$1, {
         size: fontSizes.normal,
         color: colors.gray.default
-      })), React__default.createElement(ModalWrapper, {
+      })), /*#__PURE__*/React__default.createElement(ModalWrapper, {
         isOpen: showModal,
         onClose: this.toggleModal,
         hideCloseButton: true
-      }, React__default.createElement(TranslateModal, {
+      }, /*#__PURE__*/React__default.createElement(TranslateModal, {
         values: formik.values[name],
         placeholder: placeholder || label,
         onClose: this.toggleModal,
@@ -28819,7 +28975,7 @@ var _toPrimitive = function (it, S) {
 
 var dP = Object.defineProperty;
 
-var f = _descriptors ? Object.defineProperty : function defineProperty(O, P, Attributes) {
+var f$1 = _descriptors ? Object.defineProperty : function defineProperty(O, P, Attributes) {
   _anObject(O);
   P = _toPrimitive(P, true);
   _anObject(Attributes);
@@ -28832,7 +28988,7 @@ var f = _descriptors ? Object.defineProperty : function defineProperty(O, P, Att
 };
 
 var _objectDp = {
-	f: f
+	f: f$1
 };
 
 var _propertyDesc = function (bitmap, value) {
@@ -29041,16 +29197,16 @@ var _objectKeys = Object.keys || function keys(O) {
   return _objectKeysInternal(O, _enumBugKeys);
 };
 
-var f$1 = Object.getOwnPropertySymbols;
+var f$2 = Object.getOwnPropertySymbols;
 
 var _objectGops = {
-	f: f$1
+	f: f$2
 };
 
-var f$2 = {}.propertyIsEnumerable;
+var f$3 = {}.propertyIsEnumerable;
 
 var _objectPie = {
-	f: f$2
+	f: f$3
 };
 
 // 7.1.13 ToObject(argument)
@@ -29437,10 +29593,10 @@ for (var i = 0; i < DOMIterables.length; i++) {
   _iterators[NAME] = _iterators.Array;
 }
 
-var f$3 = _wks;
+var f$4 = _wks;
 
 var _wksExt = {
-	f: f$3
+	f: f$4
 };
 
 var iterator = _wksExt.f('iterator');
@@ -29544,12 +29700,12 @@ var _isArray = Array.isArray || function isArray(arg) {
 
 var hiddenKeys = _enumBugKeys.concat('length', 'prototype');
 
-var f$4 = Object.getOwnPropertyNames || function getOwnPropertyNames(O) {
+var f$5 = Object.getOwnPropertyNames || function getOwnPropertyNames(O) {
   return _objectKeysInternal(O, hiddenKeys);
 };
 
 var _objectGopn = {
-	f: f$4
+	f: f$5
 };
 
 // fallback for IE11 buggy Object.getOwnPropertyNames with iframe and window
@@ -29568,17 +29724,17 @@ var getWindowNames = function (it) {
   }
 };
 
-var f$5 = function getOwnPropertyNames(it) {
+var f$6 = function getOwnPropertyNames(it) {
   return windowNames && toString$1.call(it) == '[object Window]' ? getWindowNames(it) : gOPN(_toIobject(it));
 };
 
 var _objectGopnExt = {
-	f: f$5
+	f: f$6
 };
 
 var gOPD$2 = Object.getOwnPropertyDescriptor;
 
-var f$6 = _descriptors ? gOPD$2 : function getOwnPropertyDescriptor(O, P) {
+var f$7 = _descriptors ? gOPD$2 : function getOwnPropertyDescriptor(O, P) {
   O = _toIobject(O);
   P = _toPrimitive(P, true);
   if (_ie8DomDefine) try {
@@ -29588,7 +29744,7 @@ var f$6 = _descriptors ? gOPD$2 : function getOwnPropertyDescriptor(O, P) {
 };
 
 var _objectGopd = {
-	f: f$6
+	f: f$7
 };
 
 // ECMAScript 6 symbols shim
@@ -29761,7 +29917,7 @@ for (var es6Symbols = (
   'hasInstance,isConcatSpreadable,iterator,match,replace,search,species,split,toPrimitive,toStringTag,unscopables'
 ).split(','), j = 0; es6Symbols.length > j;)_wks(es6Symbols[j++]);
 
-for (var wellKnownSymbols = _objectKeys(_wks.store), k = 0; wellKnownSymbols.length > k;) _wksDefine(wellKnownSymbols[k++]);
+for (var wellKnownSymbols = _objectKeys(_wks.store), k$1 = 0; wellKnownSymbols.length > k$1;) _wksDefine(wellKnownSymbols[k$1++]);
 
 _export(_export.S + _export.F * !USE_NATIVE, 'Symbol', {
   // 19.4.2.1 Symbol.for(key)
@@ -32993,7 +33149,7 @@ Range.defaultProps = {
 };
 
 
-polyfill$1(Range);
+polyfill$3(Range);
 
 var Range$1 = createSlider(Range);
 
@@ -33011,7 +33167,7 @@ function contains(root, n) {
   return false;
 }
 
-function _typeof$1(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof$1 = function _typeof(obj) { return typeof obj; }; } else { _typeof$1 = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof$1(obj); }
+function _typeof$1(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof$1 = function _typeof(obj) { return typeof obj; }; } else { _typeof$1 = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof$1(obj); }
 
 function _classCallCheck$2(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -33019,24 +33175,26 @@ function _defineProperties$1(target, props) { for (var i = 0; i < props.length; 
 
 function _createClass$2(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties$1(Constructor.prototype, protoProps); if (staticProps) _defineProperties$1(Constructor, staticProps); return Constructor; }
 
-function _possibleConstructorReturn$2(self, call) { if (call && (_typeof$1(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized$2(self); }
-
-function _assertThisInitialized$2(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
 function _inherits$2(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
-var ContainerRender =
-/*#__PURE__*/
-function (_React$Component) {
+function _createSuper$c(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$c(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn$2(this, result); }; }
+
+function _possibleConstructorReturn$2(self, call) { if (call && (_typeof$1(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized$2(self); }
+
+function _assertThisInitialized$2(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct$c() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+var ContainerRender = /*#__PURE__*/function (_React$Component) {
   _inherits$2(ContainerRender, _React$Component);
 
-  function ContainerRender() {
-    var _getPrototypeOf2;
+  var _super = _createSuper$c(ContainerRender);
 
+  function ContainerRender() {
     var _this;
 
     _classCallCheck$2(this, ContainerRender);
@@ -33045,7 +33203,7 @@ function (_React$Component) {
       args[_key] = arguments[_key];
     }
 
-    _this = _possibleConstructorReturn$2(this, (_getPrototypeOf2 = _getPrototypeOf(ContainerRender)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = _super.call.apply(_super, [this].concat(args));
 
     _this.removeContainer = function () {
       if (_this.container) {
@@ -33131,7 +33289,7 @@ ContainerRender.defaultProps = {
   forceRender: false
 };
 
-function _typeof$2(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof$2 = function _typeof(obj) { return typeof obj; }; } else { _typeof$2 = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof$2(obj); }
+function _typeof$2(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof$2 = function _typeof(obj) { return typeof obj; }; } else { _typeof$2 = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof$2(obj); }
 
 function _classCallCheck$3(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -33139,25 +33297,29 @@ function _defineProperties$2(target, props) { for (var i = 0; i < props.length; 
 
 function _createClass$3(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties$2(Constructor.prototype, protoProps); if (staticProps) _defineProperties$2(Constructor, staticProps); return Constructor; }
 
-function _possibleConstructorReturn$3(self, call) { if (call && (_typeof$2(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized$3(self); }
-
-function _assertThisInitialized$3(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _getPrototypeOf$1(o) { _getPrototypeOf$1 = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf$1(o); }
-
 function _inherits$3(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf$1(subClass, superClass); }
 
 function _setPrototypeOf$1(o, p) { _setPrototypeOf$1 = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf$1(o, p); }
 
-var Portal =
-/*#__PURE__*/
-function (_React$Component) {
+function _createSuper$d(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$d(); return function _createSuperInternal() { var Super = _getPrototypeOf$1(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf$1(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn$3(this, result); }; }
+
+function _possibleConstructorReturn$3(self, call) { if (call && (_typeof$2(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized$3(self); }
+
+function _assertThisInitialized$3(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct$d() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf$1(o) { _getPrototypeOf$1 = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf$1(o); }
+
+var Portal$1 = /*#__PURE__*/function (_React$Component) {
   _inherits$3(Portal, _React$Component);
+
+  var _super = _createSuper$d(Portal);
 
   function Portal() {
     _classCallCheck$3(this, Portal);
 
-    return _possibleConstructorReturn$3(this, _getPrototypeOf$1(Portal).apply(this, arguments));
+    return _super.apply(this, arguments);
   }
 
   _createClass$3(Portal, [{
@@ -33206,7 +33368,7 @@ function (_React$Component) {
   return Portal;
 }(React__default.Component);
 
-Portal.propTypes = {
+Portal$1.propTypes = {
   getContainer: PropTypes.func.isRequired,
   children: PropTypes.node.isRequired,
   didUpdate: PropTypes.func
@@ -34078,7 +34240,7 @@ function getOffsetParent$1(element) {
     return element.nodeName.toLowerCase() === 'html' ? null : getParent(element);
   }
 
-  for (parent = getParent(element); parent && parent !== body; parent = getParent(parent)) {
+  for (parent = getParent(element); parent && parent !== body && parent.nodeType !== 9; parent = getParent(parent)) {
     positionStyle = utils$1.css(parent, 'position');
 
     if (positionStyle !== 'static') {
@@ -34114,7 +34276,7 @@ function isAncestorFixed(element) {
  * 获得元素的显示部分的区域
  */
 
-function getVisibleRectForElement(element) {
+function getVisibleRectForElement(element, alwaysByViewport) {
   var visibleRect = {
     left: 0,
     right: Infinity,
@@ -34187,7 +34349,7 @@ function getVisibleRectForElement(element) {
     element.style.position = originalPosition;
   }
 
-  if (isAncestorFixed(element)) {
+  if (alwaysByViewport || isAncestorFixed(element)) {
     // Clip by viewport's size.
     visibleRect.left = Math.max(visibleRect.left, scrollX);
     visibleRect.top = Math.max(visibleRect.top, scrollY);
@@ -34377,9 +34539,10 @@ function doAlign(el, tgtRegion, align, isTgtRegionVisible) {
   targetOffset = [].concat(targetOffset);
   overflow = overflow || {};
   var newOverflowCfg = {};
-  var fail = 0; // 当前节点可以被放置的显示区域
+  var fail = 0;
+  var alwaysByViewport = !!(overflow && overflow.alwaysByViewport); // 当前节点可以被放置的显示区域
 
-  var visibleRect = getVisibleRectForElement(source); // 当前节点所占的区域, left/top/width/height
+  var visibleRect = getVisibleRectForElement(source, alwaysByViewport); // 当前节点所占的区域, left/top/width/height
 
   var elRegion = getRegion(source); // 将 offset 转换成数值，支持百分比
 
@@ -34449,7 +34612,23 @@ function doAlign(el, tgtRegion, align, isTgtRegionVisible) {
     // 1. 复原修改过的定位参数
 
     if (isStillFailX || isStillFailY) {
-      points = align.points;
+      var _newPoints2 = points; // 重置对应部分的翻转逻辑
+
+      if (isStillFailX) {
+        _newPoints2 = flip$1(points, /[lr]/gi, {
+          l: 'r',
+          r: 'l'
+        });
+      }
+
+      if (isStillFailY) {
+        _newPoints2 = flip$1(points, /[tb]/gi, {
+          t: 'b',
+          b: 't'
+        });
+      }
+
+      points = _newPoints2;
       offset = align.offset || [0, 0];
       targetOffset = align.targetOffset || [0, 0];
     } // 2. 只有指定了可以调整当前方向才调整
@@ -34500,8 +34679,8 @@ function doAlign(el, tgtRegion, align, isTgtRegionVisible) {
  *   - 增加智能对齐，以及大小调整选项
  **/
 
-function isOutOfVisibleRect(target) {
-  var visibleRect = getVisibleRectForElement(target);
+function isOutOfVisibleRect(target, alwaysByViewport) {
+  var visibleRect = getVisibleRectForElement(target, alwaysByViewport);
   var targetRegion = getRegion(target);
   return !visibleRect || targetRegion.left + targetRegion.width <= visibleRect.left || targetRegion.top + targetRegion.height <= visibleRect.top || targetRegion.left >= visibleRect.right || targetRegion.top >= visibleRect.bottom;
 }
@@ -34509,7 +34688,7 @@ function isOutOfVisibleRect(target) {
 function alignElement(el, refNode, align) {
   var target = align.target || refNode;
   var refNodeRegion = getRegion(target);
-  var isTargetNotOutOfVisible = !isOutOfVisibleRect(target);
+  var isTargetNotOutOfVisible = !isOutOfVisibleRect(target, align.overflow && align.overflow.alwaysByViewport);
   return doAlign(el, refNodeRegion, align, isTargetNotOutOfVisible);
 }
 
@@ -35069,7 +35248,7 @@ try {
  * Whitespace regexp.
  */
 
-var re$1 = /\s+/;
+var re = /\s+/;
 
 /**
  * toString reference.
@@ -35227,7 +35406,7 @@ ClassList.prototype.toggle = function(name, force){
 ClassList.prototype.array = function(){
   var className = this.el.getAttribute('class') || '';
   var str = className.replace(/^\s+|\s+$/g, '');
-  var arr = str.split(re$1);
+  var arr = str.split(re);
   if ('' === arr[0]) arr.shift();
   return arr;
 };
@@ -36674,7 +36853,7 @@ var Trigger$1 = function (_React$Component) {
     // prevent unmounting after it's rendered
     if (popupVisible || this._component || forceRender) {
       portal = React__default.createElement(
-        Portal,
+        Portal$1,
         { key: 'portal', getContainer: this.getContainer, didUpdate: this.handlePortalUpdate },
         this.getComponent()
       );
@@ -37005,7 +37184,7 @@ var _initialiseProps$2 = function _initialiseProps() {
   };
 };
 
-polyfill$1(Trigger$1);
+polyfill$3(Trigger$1);
 
 var autoAdjustOverflow = {
   adjustX: 1,
@@ -37420,9 +37599,9 @@ var RangeInput = function RangeInput(_ref) {
   var defaultOnChange = hasFormik ? function (value) {
     return formik.setFieldValue(name, value);
   } : onChange;
-  return React__default.createElement(InputWrapper, _extends_1({
+  return /*#__PURE__*/React__default.createElement(InputWrapper, _extends_1({
     alertText: alertText
-  }, otherProps), React__default.createElement(Container$5, null, React__default.createElement(Value$1, null, metric, rangeValues[0]), React__default.createElement(Range$1, _extends_1({}, inputDefaults, {
+  }, otherProps), /*#__PURE__*/React__default.createElement(Container$5, null, /*#__PURE__*/React__default.createElement(Value$1, null, metric, rangeValues[0]), /*#__PURE__*/React__default.createElement(Range$1, _extends_1({}, inputDefaults, {
     onChange: defaultOnChange,
     name: name,
     id: id,
@@ -37431,7 +37610,7 @@ var RangeInput = function RangeInput(_ref) {
     width: "70%",
     min: min,
     max: max
-  }, inputProps)), React__default.createElement(Value$1, null, metric, rangeValues[1])));
+  }, inputProps)), /*#__PURE__*/React__default.createElement(Value$1, null, metric, rangeValues[1])));
 };
 
 RangeInput.defaultProps = {
@@ -37973,17 +38152,21 @@ function ownKeys$e(object, enumerableOnly) { var keys = Object.keys(object); if 
 
 function _objectSpread$e(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$e(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$e(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
-var ExpandingSearchInput =
-/*#__PURE__*/
-function (_Component) {
+function _createSuper$e(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$e(); return function _createSuperInternal() { var Super = getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$e() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+var ExpandingSearchInput = /*#__PURE__*/function (_Component) {
   inherits(ExpandingSearchInput, _Component);
+
+  var _super = _createSuper$e(ExpandingSearchInput);
 
   function ExpandingSearchInput() {
     var _this;
 
     classCallCheck(this, ExpandingSearchInput);
 
-    _this = possibleConstructorReturn(this, getPrototypeOf(ExpandingSearchInput).call(this));
+    _this = _super.call(this);
 
     defineProperty(assertThisInitialized(_this), "toggleExpanded", function () {
       _this.setState(function (_ref) {
@@ -38011,7 +38194,7 @@ function (_Component) {
     value: function render() {
       var expanded = this.state.expanded;
       var onChange = this.props.onChange;
-      return React__default.createElement(ContainerAlt, null, React__default.createElement(InputAlt, _extends_1({
+      return /*#__PURE__*/React__default.createElement(ContainerAlt, null, /*#__PURE__*/React__default.createElement(InputAlt, _extends_1({
         style: {
           padding: '0 1em'
         },
@@ -38021,7 +38204,7 @@ function (_Component) {
         onChange: debounce$2(function () {
           return onChange.apply(void 0, arguments);
         }, 500)
-      }, this.props)), React__default.createElement(Magnify$1, {
+      }, this.props)), /*#__PURE__*/React__default.createElement(Magnify$1, {
         onClick: this.toggleExpanded,
         style: _objectSpread$e({}, iconAltStyling, {}, expanded && expandedIconStyles),
         bg: "white",
@@ -38095,15 +38278,19 @@ function ownKeys$f(object, enumerableOnly) { var keys = Object.keys(object); if 
 
 function _objectSpread$f(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$f(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$f(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
-var Toggle =
-/*#__PURE__*/
-function (_React$PureComponent) {
+function _createSuper$f(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$f(); return function _createSuperInternal() { var Super = getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return possibleConstructorReturn(this, result); }; }
+
+function _isNativeReflectConstruct$f() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+var Toggle = /*#__PURE__*/function (_React$PureComponent) {
   inherits(Toggle, _React$PureComponent);
+
+  var _super = _createSuper$f(Toggle);
 
   function Toggle() {
     classCallCheck(this, Toggle);
 
-    return possibleConstructorReturn(this, getPrototypeOf(Toggle).apply(this, arguments));
+    return _super.apply(this, arguments);
   }
 
   createClass(Toggle, [{
@@ -38117,7 +38304,7 @@ function (_React$PureComponent) {
           checked = _this$props.checked,
           otherProps = objectWithoutProperties(_this$props, ["id", "onBlur", "onChange", "inputStyle", "checked"]);
 
-      return React.createElement(ToggleContainer, otherProps, React.createElement(ToggleInput, {
+      return /*#__PURE__*/React.createElement(ToggleContainer, otherProps, /*#__PURE__*/React.createElement(ToggleInput, {
         style: inputStyle,
         checked: checked,
         onChange: onChange,
@@ -38125,7 +38312,7 @@ function (_React$PureComponent) {
         id: id,
         type: "checkbox",
         readOnly: true
-      }), React.createElement(ToggleLabel, {
+      }), /*#__PURE__*/React.createElement(ToggleLabel, {
         htmlFor: this.props.id
       }));
     }
@@ -40709,7 +40896,7 @@ var Footer$1 = function Footer(_ref5) {
       children = _ref5.children,
       otherProps = objectWithoutProperties(_ref5, ["copyright", "children"]);
 
-  return React.createElement(Box, otherProps, children, React.createElement(CopyrightText, null, copyright));
+  return /*#__PURE__*/React.createElement(Box, otherProps, children, /*#__PURE__*/React.createElement(CopyrightText, null, copyright));
 };
 
 Footer$1.defaultProps = {

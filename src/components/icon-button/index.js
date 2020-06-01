@@ -19,6 +19,7 @@ import Email from '@lessondesk/material-icons/dist/Email'
 import Close from '@lessondesk/material-icons/dist/Close'
 import Eye from '@lessondesk/material-icons/dist/Eye'
 import EyeClosed from '@lessondesk/material-icons/dist/EyeOff'
+import Link from '@lessondesk/material-icons/dist/Link'
 
 class IconButton extends PureComponent {
 
@@ -58,7 +59,8 @@ class IconButton extends PureComponent {
     email: Email,
     close: Close,
     eye: Eye,
-    eyeClosed: EyeClosed
+    eyeClosed: EyeClosed,
+    link: Link
   }
 
   iconSizes = {
