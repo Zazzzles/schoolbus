@@ -64,7 +64,7 @@ const TelInput = props => {
 TelInput.defaultProps = {
   defaultCountry: 'za',
   masks: {
-    za: '+.. .. ... ....',
+    za: '.. ... ....',
   }
 }
 export default connect(TelInput)
