@@ -107,7 +107,7 @@
     "just-toasty": "^1.3.0",
     "lodash": "^4.17.15",
     "rc-slider": "^8.6.13",
-    "react-content-loader": "^5.0.2",
+    "react-content-loader": "^5.1.0",
     "react-modal": "^3.11.2",
     "react-phone-input-2": "^2.12.1",
     "react-timekeeper": "^2.0.4",

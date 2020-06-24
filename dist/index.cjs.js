@@ -21537,7 +21537,7 @@ var TelInput = function TelInput(props) {
 TelInput.defaultProps = {
   defaultCountry: 'za',
   masks: {
-    za: '+.. .. ... ....'
+    za: '.. ... ....'
   }
 };
 var index$4 = formik.connect(TelInput);
