@@ -37,7 +37,7 @@
     "@babel/plugin-proposal-class-properties": "7.5.5",
     "@babel/plugin-proposal-object-rest-spread": "7.5.5",
     "@babel/preset-env": "7.5.5",
-    "@babel/preset-react": "7.0.0",
+    "@babel/preset-react": "7.10.1",
     "@lessondesk/babel-preset": "1.0.0",
     "@lessondesk/eslint-config": "1.4.0",
     "@lessondesk/material-icons": "^1.0.2",
