@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import Flex from '../flex'
 
 const getButtonColor = ({ theme, color, disabled, icon, badge }) => {
   const isGray = disabled || (badge && color === 'white')
@@ -22,12 +23,10 @@ const buttonSizes = {
   xlarge: '48px'
 }
 
-export const Button = styled.button.attrs({
+export const Button = styled(Flex).attrs({
+  as: 'button',
   type: 'button'
 })`
-  display: flex;
-  align-items: center;
-  justify-content: center;
   position: relative;
   border-radius: ${({ theme }) => theme.radii.full};
   border: none;
@@ -37,11 +36,6 @@ export const Button = styled.button.attrs({
   width: ${({ size }) => buttonSizes[size]};
   min-width: ${({ size }) => buttonSizes[size]};
   height: ${({ size }) => buttonSizes[size]};
-  margin: ${({ m }) => m || '0'};
-  margin-top: ${({ mt }) => mt || '0'};
-  margin-right: ${({ mr }) => mr || '0'};
-  margin-bottom: ${({ mb }) => mb || '0'};
-  margin-left: ${({ ml }) => ml || '0'};
   &:hover {
     cursor: ${({ disabled }) => disabled ? 'default' : 'pointer'};
     opacity: .9;
@@ -49,6 +43,7 @@ export const Button = styled.button.attrs({
   &:active {
     transform: scale(0.98);
   }
+  
 `
 
 export const Badge = styled.span`

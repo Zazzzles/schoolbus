@@ -39,3 +39,8 @@ storiesOf('Text', module)
       <Text color="primary">primary</Text>
     </>
   ))
+  .add('Uppercase', () => (
+    <>
+      <Text uppercase>Uppercase</Text>
+    </>
+  ))
