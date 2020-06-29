@@ -5,7 +5,7 @@ import theme from '../../config/theme'
 
 const Text = styled.p`
   color: ${({theme}) => theme.colors.gray.xdark};
-  text-transform: ${({ uppercase }) => uppercase ? 'uppercase' : 'unset'};
+  text-transform: ${({ uppercase }) => uppercase && 'uppercase'};
   ${typography}
   ${space}
   ${color}
