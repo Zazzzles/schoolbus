@@ -1,5 +1,11 @@
 import { shadows, colors, radii, fontSizes, fonts, fontWeights } from '../../config/theme'
 
+const bgColorMap = {
+  borderless: colors.transparent,
+  compact: colors.transparent,
+  light: colors.white
+}
+
 function getBackgroundColor(variant) {
   switch (variant) {
     case 'borderless':
@@ -12,18 +18,28 @@ function getBackgroundColor(variant) {
 }
 
 function getDisabledColor(variant) {
-  return variant === 'borderless' ? colors.transparent : colors.white
+  return ['borderless', 'compact'].includes(variant) ? colors.transparent : colors.white
 }
 
-export const styleOverride = ({ fontSize, shape, variant, hasShadow, disabled, align }) => ({
+export const styleOverride = ({ 
+  fontSize, 
+  shape, 
+  variant, 
+  hasShadow, 
+  disabled, 
+  align, 
+  singleValueStyles 
+}) => ({
   indicatorSeparator: () => ({
     display: 'none',
   }),
   control: (provided, state) => ({
       ...provided,
       color: colors.gray.xdark,
-      backgroundColor: disabled ? getDisabledColor(variant) : getBackgroundColor(variant),
-      border: state.isDisabled && !hasShadow && variant !== 'borderless'
+      backgroundColor: disabled 
+        ? getDisabledColor(variant) 
+        : bgColorMap[variant] || colors.gray.xxlight,
+      border: state.isDisabled && !hasShadow && !['borderless', 'compact'].includes(variant)
         ? `border: 1px solid ${colors.gray.xlight}`
         : 'none',
       borderColor: state.isDisabled ? colors.gray.xlight : null,
@@ -31,7 +47,7 @@ export const styleOverride = ({ fontSize, shape, variant, hasShadow, disabled, a
       fontSize: fontSize ? fontSizes[fontSize] : fontSizes.small,
       borderRadius: shape === 'rounded' ? radii.full : radii.small,
       boxShadow: hasShadow ? shadows[4] : 'none',
-      padding: '0 0.8em',
+      padding: variant === 'compact' ? 0 : '0 0.8em',
       overflow: 'hidden',
       width: '100%',
       ...(variant === 'light' && {
@@ -41,7 +57,8 @@ export const styleOverride = ({ fontSize, shape, variant, hasShadow, disabled, a
   }),
   valueContainer: provided => ({
     ...provided,
-    justifyContent: `flex-${align === 'left' ? 'start' : 'end'}`
+    justifyContent: `flex-${align === 'left' ? 'start' : 'end'}`,
+    ...variant === 'compact' ? { padding: 0 } : {}
   }),
   menuList: provided => ({
     ...provided,
@@ -53,6 +70,7 @@ export const styleOverride = ({ fontSize, shape, variant, hasShadow, disabled, a
   }),
   singleValue: () => ({
     color: colors.gray.xdark,
+    ...singleValueStyles
   }),
   indicatorsContainer: (provided, state) => ({
     display: state.isDisabled ? 'none' : 'flex',

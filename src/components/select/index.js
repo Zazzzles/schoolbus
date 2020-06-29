@@ -8,12 +8,9 @@ import createDefaultInputProps from '../../utils/create-input-defaults'
 
 import { styleOverride } from './styles' 
 
-
 const Select = props => {
-
   const {
     shape,
-    variant,
     hasShadow,
     disabled,
     disableEmpty,
@@ -62,7 +59,8 @@ const Select = props => {
 
 Select.defaultProps = {
   containerStyle: {},
-  align: 'left'
+  align: 'left',
+  singleValueStyles: {}
 }
 
 export default connect(Select)

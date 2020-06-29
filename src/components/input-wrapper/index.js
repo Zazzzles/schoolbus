@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { layout, space } from 'styled-system'
+import { layout, space, variant } from 'styled-system'
 
 const StyledLabel = styled.label`
   display: block;
@@ -21,9 +21,15 @@ const StyledInputContainer = styled.div`
   @media (max-width: 990px) {
     width: 100%;
   }
-
   ${space}
   ${layout}
+  ${variant({
+    variants: {
+      compact: {
+        minWidth: 0
+      }
+    }
+  })}
 `
 
 StyledInputContainer.displayName = 'InputContainer'

@@ -41,8 +41,8 @@ export const colors = {
   black: '#212325',
   transparent: 'transparent',
   blue: ['#80dcff', '#4dceff', '#00abeb', '#0082b3', '#005d80'],
-  green: ['#F9FFF4', '#85E2A2', '#37b049'],
-  red: ['#FFF5F5', '#f6bdbb', '#ed7470', '#e53933', '#9f1814', '#71110e'],
+  green: ['#F9FFF4', '#85E2A2', '#37b049', '#65D287'],
+  red: ['#FFF5F5', '#f6bdbb', '#ed7470', '#e53933', '#9f1814', '#71110e', '#FB7D7D'],
   yellow: '#f8b31c',
   orange: ['#fff8eb', '#ffa400']
 }

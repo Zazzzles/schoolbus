@@ -1,9 +1,14 @@
 import React from 'react'
 import { Formik } from 'formik'
 import { storiesOf } from '@storybook/react'
-import { Select } from '../'
+import { Select, Flex, theme } from '../'
 
 const options = [{ label: 'option 1', value: '1' }, { label: 'option 2', value: '2' }]
+
+const singleValueStyles = {
+  fontSize: theme.fontSizes.large,
+  color: theme.colors.gray.dark
+}
 
 storiesOf('Input | Select', module)
   .addParameters({ component: Select })
@@ -13,6 +18,16 @@ storiesOf('Input | Select', module)
   .add('Borderless', () => <Select variant="borderless" options={options} />)
   .add('Light + Rounded', () => (
     <Select value={options[0]} shape="rounded" variant="light" hasShadow options={options} />
+  ))
+  .add('Compact + singleValueStyles', () => (
+    <Flex width={120}>
+      <Select 
+        label="label"
+        value={options[0]} 
+        variant="compact" 
+        options={options} 
+        singleValueStyles={singleValueStyles} />
+    </Flex>   
   ))
   .add('Disabled', () => <Select disabled options={options} />)
   .add('Align right', () => <Select value={options[0]} align="right" options={options} />)
