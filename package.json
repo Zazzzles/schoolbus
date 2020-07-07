@@ -111,7 +111,7 @@
     "react-modal": "^3.11.2",
     "react-phone-input-2": "^2.12.1",
     "react-timekeeper": "^2.0.4",
-    "react-tooltip": "^3.11.6",
+    "react-tooltip": "^4.2.7",
     "styled-system": "^5.1.5"
   },
   "browserslist": {
