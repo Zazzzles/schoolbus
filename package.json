@@ -39,7 +39,7 @@
     "@babel/preset-env": "7.10.4",
     "@babel/preset-react": "7.10.1",
     "@lessondesk/babel-preset": "1.0.0",
-    "@lessondesk/eslint-config": "1.4.0",
+    "@lessondesk/eslint-config": "1.4.1",
     "@lessondesk/material-icons": "^1.0.2",
     "@storybook/addon-a11y": "5.3.17",
     "@storybook/addon-actions": "5.3.17",
