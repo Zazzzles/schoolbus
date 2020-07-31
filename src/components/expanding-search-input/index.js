@@ -20,11 +20,19 @@ class ExpandingSearchInput extends Component {
   }
 
   toggleExpanded = () => {
+    const { onExpand } = this.props
+
     this.setState(({expanded, value}) => ({
       expanded: !expanded,
       value: expanded ? value : ''
-    }), () => this.input.current.focus())
+    }), () => {
+      const { expanded } = this.state
+
+      onExpand && onExpand(expanded)
+      this.input.current.focus()
+    })
   }
+
 
   render() {
     const { expanded } = this.state
