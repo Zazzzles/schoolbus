@@ -36,7 +36,7 @@ class ExpandingSearchInput extends Component {
 
   render() {
     const { expanded } = this.state
-    const { onChange } = this.props
+    const { onChange, onExpand, ...rest } = this.props
 
     return (
       <ContainerAlt>
@@ -46,7 +46,7 @@ class ExpandingSearchInput extends Component {
           expanded={expanded}
           ref={this.input}
           onChange={debounce((...args) => onChange(...args), 500)}
-          {...this.props}
+          {...rest}
         />
         <Magnify
           onClick={this.toggleExpanded}
