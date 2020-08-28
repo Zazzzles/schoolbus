@@ -25,7 +25,7 @@ class Pill extends React.PureComponent {
     const { children, active, count, ...otherProps } = this.props
 
     return (
-      <Container {...otherProps} active={active} count={count}>
+      <Container active={active} count={count} {...otherProps}>
         <Text active={active}>{children}</Text>
         {count >= 0 && <Count active={active}>{count}</Count>}
       </Container>

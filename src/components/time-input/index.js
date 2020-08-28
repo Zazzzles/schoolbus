@@ -62,7 +62,8 @@ class TimeInput extends Component {
       placeholder,
       name,
       label,
-      width
+      width,
+      ...otherProps
     } = this.props
 
     const timeObj = formik.values && formik.values[name]
@@ -71,9 +72,9 @@ class TimeInput extends Component {
 
     const trigger = (
       <InputWrapper
-        label={label}
         alertText={errorText}
         width="100%"
+        {...otherProps}
       >
         <Input
           type="text"

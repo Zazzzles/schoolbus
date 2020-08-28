@@ -43,7 +43,6 @@ export const Button = styled(Flex).attrs({
   &:active {
     transform: scale(0.98);
   }
-  
 `
 
 export const Badge = styled.span`

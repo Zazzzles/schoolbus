@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import theme from '../../config/theme'
 import { Button, Badge } from './styles'
+import Flex from '../flex'
 import PropTypes from 'prop-types'
 
 import Plus from '@lessondesk/material-icons/dist/Plus'
@@ -31,7 +32,8 @@ class IconButton extends PureComponent {
     iconColor: PropTypes.string,
     children: PropTypes.node,
     badge: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    noShadow: PropTypes.bool
+    noShadow: PropTypes.bool,
+    ...Flex.propTypes
   }
 
   static defaultProps = {
