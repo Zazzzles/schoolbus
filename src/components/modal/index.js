@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import ReactModal from 'react-modal'
 
 import IconButton from '../icon-button'
@@ -33,6 +34,27 @@ class ModalWrapper extends Component {
     scrollable: true,
     centerTitle: false,
     hideCloseButton: false
+  }
+
+  static propTypes = {
+    onClose: PropTypes.func,
+    onBack: PropTypes.func,
+    style: PropTypes.object,
+    contentStyle: PropTypes.object,
+    wrapperStyle: PropTypes.object,
+    children: PropTypes.node,
+    width: PropTypes.string,
+    height: PropTypes.string,
+    title: PropTypes.string,
+    proximusTitle: PropTypes.string,
+    centerTitle: PropTypes.bool,
+    subtitle: PropTypes.string,
+    description: PropTypes.string,
+    actions: PropTypes.node,
+    footer: PropTypes.node,
+    scrollable: PropTypes.bool,
+    hideCloseButton: PropTypes.bool,
+    ...ReactModal.propTypes
   }
 
   state = {

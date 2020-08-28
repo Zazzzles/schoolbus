@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import Popup from '../popup'
 
 import { Button } from "./styles"
@@ -14,7 +15,6 @@ const OverflowMenu = ({ position, options, NextLink, ...otherProps }) => {
   return (
     <Popup
       closeOnSelect
-      position={position}
       contentStyle={{ padding: '.5em 0' }}
       xOffset="-20px"
       yOffset="-30px"
@@ -28,10 +28,16 @@ const OverflowMenu = ({ position, options, NextLink, ...otherProps }) => {
   )
 }
 
+OverflowMenu.displayName = 'OverflowMenu'
+
 OverflowMenu.defaultProps = {
   position: 'bottomLeft',
   options: []
 }
 
+OverflowMenu.propTypes = {
+  ...Popup.propTypes,
+  options: PropTypes.arrayOf(PropTypes.object),
+}
 
 export default React.memo(OverflowMenu)

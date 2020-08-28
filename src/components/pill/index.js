@@ -7,7 +7,6 @@ import { Container, Text, Count } from './styles'
 import theme from '../../config/theme'
 
 Container.displayName = 'Pill'
-
 class Pill extends React.PureComponent {
 
   static defaultProps = {

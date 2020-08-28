@@ -36,6 +36,7 @@ Image.displayName = 'Image'
 
 Image.propTypes = {
   ...layout.propTypes,
+  ...shadow.propTypes
 }
 
 Image.defaultProps = {
