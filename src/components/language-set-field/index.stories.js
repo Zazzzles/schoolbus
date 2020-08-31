@@ -1,14 +1,16 @@
-import React from 'react'
-import { storiesOf } from '@storybook/react'
-import LanguageSetField from './'
+import React from 'react';
+import LanguageSetField from './';
 
 const defaultLanguage = {
   code: 'en-ZA',
   value: 'English',
-}
+};
 
-storiesOf('Input/ Language Set Field', module)
-  .addParameters({ component: LanguageSetField })
-  .add('Default', () => (
-    <LanguageSetField language={defaultLanguage} name="test" placeholder="Default" />
-  ))
+export default {
+  title: 'Inputs/ Language Set Field',
+  component: LanguageSetField,
+};
+
+export const Default = () => (
+  <LanguageSetField language={defaultLanguage} name='test' placeholder='Default' />
+);

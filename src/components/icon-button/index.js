@@ -111,8 +111,8 @@ class IconButton extends PureComponent {
 
     return (
       <Button
-        alignItems="center"
-        justifyContent="center"
+        alignItems='center'
+        justifyContent='center'
         theme={theme}
         badge={badge}
         {...otherProps}

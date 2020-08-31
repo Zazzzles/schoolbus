@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Popup from '../popup'
 
-import { Button } from "./styles"
+import { Button } from './styles'
 
 const Link = ({href, children, ...otherProps}) => (
   <a href={href} {...otherProps}>{children}</a>
@@ -16,8 +16,8 @@ const OverflowMenu = ({ position, options, NextLink, ...otherProps }) => {
     <Popup
       closeOnSelect
       contentStyle={{ padding: '.5em 0' }}
-      xOffset="-20px"
-      yOffset="-30px"
+      xOffset='-20px'
+      yOffset='-30px'
       {...otherProps}
     >
       {options.map(({ name, onClick, href, ...otherProps }) => href

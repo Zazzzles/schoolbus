@@ -19,6 +19,10 @@ export const Container = styled.div`
   & .rc-slider-track {
     background-color: ${({theme}) => theme.colors.primary};
   }
+
+  & .rc-slider-disabled {
+    background: transparent;
+  }
 `
 
 export const Value = styled.div`

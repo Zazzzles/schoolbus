@@ -1,18 +1,20 @@
 import React from 'react'
-import { storiesOf } from '@storybook/react'
 import TelInput from './'
 import { Formik } from 'formik'
+import defaultInputArgs from '../../config/default-input-args'
 
-storiesOf('Input/ Tel Input', module)
-  .addParameters({ component: TelInput })
-  .add('Basic', () => <TelInput id="1" name="1" label="Default" />)
-  .add('With Formik', () => (
-    <Formik>
-      <TelInput label="With Formik" name="test" />
-    </Formik>
-  ))
-  .add('Disabled', () => (
-    <Formik>
-      <TelInput name="test" disabled />
-    </Formik>
-  ))
+export default {
+  title: 'Inputs/ Tel Input',
+  parameters: {
+    formik: true,
+    component: TelInput,
+    docs: {
+      description: {
+        component: 'An input used for mobile numbers. Includes the ability to select the countrycode from a drop down.'
+      }
+    }
+  },
+}
+
+export const Base = (args) => <TelInput {...args}  />
+Base.args = defaultInputArgs

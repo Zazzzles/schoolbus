@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import { layout, space } from 'styled-system'
+import propTypes from '@styled-system/prop-types'
 
 export default {
   formik: PropTypes.object,
@@ -12,6 +12,6 @@ export default {
   placeholder: PropTypes.string,
   alertText: PropTypes.string,
   inputStyles: PropTypes.object,
-  ...layout.propTypes,
-  ...space.propTypes,
+  ...propTypes.layout,
+  ...propTypes.space,
 }

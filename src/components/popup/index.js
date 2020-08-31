@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react'
+import PropTypes from 'prop-types'
 
 import DotsVertical from '@lessondesk/material-icons/dist/DotsVertical'
 import { colors } from '../../config/theme'
@@ -16,7 +17,11 @@ class Popup extends PureComponent {
   }
 
   static propTypes = {
-    
+    position: PropTypes.string,
+    contentStyle: PropTypes.object,
+    xOffset: PropTypes.string,
+    yOffset: PropTypes.string,
+    array: PropTypes.bool
   }
 
   state = {

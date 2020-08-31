@@ -61,7 +61,6 @@ class TimeInput extends Component {
       timeFormat,
       placeholder,
       name,
-      label,
       width,
       ...otherProps
     } = this.props

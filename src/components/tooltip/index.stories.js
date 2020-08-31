@@ -1,18 +1,19 @@
 import React from 'react'
-import { storiesOf } from '@storybook/react'
 
 import Tooltip from './'
 
-import mdx from './index.stories.mdx'
+export default {
+  title: 'Misc/Tooltip',
+  parameters: {
+    docs: {
+      description: {
+        component: 'A lightweight & responsive tooltip component build on[react - tooltip](https://www.npmjs.com/package/react-tooltip).'
+      }
+    },
+  }
+}
 
-storiesOf('Tooltip', module)
-  .addParameters({
-    component: Tooltip,
-    docs: mdx,
-  })
-  .add('Basic', () => (
-    <div>
-      <Tooltip />
-      <p data-tip="hello world">Tooltip</p>
-    </div>
-  ))
+export const Base = (args) => <Tooltip {...args}>This is some text</Tooltip>
+Base.args = {
+  text: 'This is a tooltip'
+}

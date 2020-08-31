@@ -1,9 +1,11 @@
-import React from 'react'
-import { storiesOf } from '@storybook/react'
-import ExpandingSearchInput from './'
+import React from 'react';
+import ExpandingSearchInput from './';
 
-const handleExpand = state => console.log(state)
+const handleExpand = state => console.log(state);
 
-storiesOf('Input/ Expanding Search Input', module)
-  .addParameters({ component: ExpandingSearchInput })
-  .add('Default', () => <ExpandingSearchInput label="Default" onExpand={handleExpand}/>)
+export default {
+  title: 'Inputs/ Expanding Search Input',
+  component: ExpandingSearchInput,
+};
+
+export const Default = () => <ExpandingSearchInput label='Default' onExpand={handleExpand} />;

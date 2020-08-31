@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import propTypes from '@styled-system/prop-types'
 import styled from 'styled-components'
 import { layout, space, variant } from 'styled-system'
 
@@ -81,8 +82,8 @@ InputWrapper.propTypes = {
   containerStyle: PropTypes.object,
   labelStyle: PropTypes.object,
   required: PropTypes.bool,
-  ...layout.propTypes,
-  ...space.propTypes
+  ...propTypes.layout,
+  ...propTypes.space
 }
 
 export default InputWrapper

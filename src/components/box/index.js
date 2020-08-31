@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { space, color, layout, flexbox } from 'styled-system'
+import propTypes from '@styled-system/prop-types'
 import theme from '../../config/theme'
 
 const Box = styled.div`
@@ -16,10 +17,10 @@ Box.defaultProps = {
 }
 
 Box.propTypes = {
-  ...space.propTypes,
-  ...layout.propTypes,
-  ...color.propTypes,
-  ...flexbox.propTypes,
+  ...propTypes.space,
+  ...propTypes.layout,
+  ...propTypes.color,
+  ...propTypes.flexbox,
 }
 
 export default Box

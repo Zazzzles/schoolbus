@@ -222,7 +222,7 @@ BackgroundImage.defaultProps = {
 };
 BackgroundImage.propTypes = _objectSpread(_objectSpread(_objectSpread(_objectSpread({
   source: PropTypes.string.isRequired
-}, styledSystem.space.propTypes), styledSystem.background.propTypes), styledSystem.layout.propTypes), styledSystem.flexbox.propTypes);
+}, styledSystem.propTypes.space), styledSystem.propTypes.background), styledSystem.propTypes.layout), styledSystem.propTypes.flexbox);
 BackgroundImage.displayName = 'BackgroundImage';
 
 function ownKeys$1(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
@@ -243,7 +243,7 @@ Box.displayName = 'Box';
 Box.defaultProps = {
   theme: theme
 };
-Box.propTypes = _objectSpread$1(_objectSpread$1(_objectSpread$1(_objectSpread$1({}, styledSystem.space.propTypes), styledSystem.layout.propTypes), styledSystem.color.propTypes), styledSystem.flexbox.propTypes);
+Box.propTypes = _objectSpread$1(_objectSpread$1(_objectSpread$1(_objectSpread$1({}, styledSystem.propTypes.space), styledSystem.propTypes.layout), styledSystem.propTypes.color), styledSystem.propTypes.flexbox);
 
 var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
 
@@ -530,7 +530,7 @@ defineProperty(Button, "propTypes", _objectSpread$2(_objectSpread$2(_objectSprea
   onClick: PropTypes.oneOfType([PropTypes.func, PropTypes.string]).isRequired,
   shape: PropTypes.oneOf(Object.keys(SHAPES)),
   size: PropTypes.oneOf(Object.keys(SIZES))
-}, styledSystem.space.propTypes), styledSystem.layout.propTypes), styledSystem.typography.propTypes));
+}, styledSystem.propTypes.space), styledSystem.propTypes.layout), styledSystem.propTypes.typography));
 
 defineProperty(Button, "defaultProps", {
   onClick: function onClick() {},
@@ -970,7 +970,7 @@ var Flex = mapProps(function (_ref) {
 Flex.defaultProps = {
   theme: theme
 };
-Flex.propTypes = _objectSpread$3(_objectSpread$3(_objectSpread$3(_objectSpread$3(_objectSpread$3(_objectSpread$3(_objectSpread$3({}, styledSystem.space.propTypes), styledSystem.layout.propTypes), styledSystem.color.propTypes), styledSystem.alignItems.propTypes), styledSystem.justifyContent.propTypes), styledSystem.flexWrap.propTypes), styledSystem.flexDirection.propTypes);
+Flex.propTypes = _objectSpread$3(_objectSpread$3(_objectSpread$3(_objectSpread$3(_objectSpread$3(_objectSpread$3(_objectSpread$3({}, styledSystem.propTypes.space), styledSystem.propTypes.layout), styledSystem.propTypes.color), styledSystem.propTypes.alignItems), styledSystem.propTypes.justifyContent), styledSystem.propTypes.flexWrap), styledSystem.propTypes.flexDirection);
 Flex.displayName = 'Flex';
 
 function _templateObject2() {
@@ -2206,7 +2206,7 @@ defineProperty(Card, "defaultProps", {
 defineProperty(Card, "propTypes", _objectSpread$5(_objectSpread$5(_objectSpread$5({
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired
-}, styledSystem.space.propTypes), styledSystem.layout.propTypes), styledSystem.flexbox.propTypes));
+}, styledSystem.propTypes.space), styledSystem.propTypes.layout), styledSystem.propTypes.flexbox));
 
 defineProperty(Card, "Header", StyledCardHeader);
 
@@ -2232,7 +2232,7 @@ var defaultPropTypes = _objectSpread$6(_objectSpread$6({
   placeholder: PropTypes.string,
   alertText: PropTypes.string,
   inputStyles: PropTypes.object
-}, styledSystem.layout.propTypes), styledSystem.space.propTypes);
+}, styledSystem.propTypes.layout), styledSystem.propTypes.space);
 
 function _templateObject3$1() {
   var data = taggedTemplateLiteral(["\n  display: inline-block;\n  width: 100%;\n\n  ", "\n\n  &::after {\n    content: '';\n    display: block;\n    position: absolute;\n    box-sizing: border-box;\n    top: 4px;\n    left: 2px;\n    width: 10px;\n    height: 5px;\n    border: solid 2px transparent;\n    border-right: none;\n    border-top: none;\n    transform: translate(3px, 4px) rotate(-45deg);\n  }\n\n  ", ":checked + &::before,\n  ", ":indeterminate + &::before {\n    border-color: ", ";\n    background-color: ", ";\n  }\n\n  ", ":checked + &::after,\n  ", ":indeterminate + &::after {\n    border-color: rgb(255, 255, 255);\n  }\n\n  ", ":indeterminate + &::after {\n    border-left: none;\n    transform: translate(4px, 3px);\n  }\n"]);
@@ -2371,7 +2371,7 @@ defineProperty(Checkbox, "propTypes", _objectSpread$7(_objectSpread$7(_objectSpr
   onBlur: PropTypes.func,
   checked: PropTypes.bool,
   disabled: PropTypes.bool
-}, styledSystem.space.PropTypes), styledSystem.layout.PropTypes), styledSystem.typography.PropTypes));
+}, styledSystem.propTypes.space), styledSystem.propTypes.layout), styledSystem.propTypes.typography));
 
 var CalendarToday = createCommonjsModule(function (module, exports) {
 
@@ -2529,7 +2529,7 @@ InputWrapper.propTypes = _objectSpread$8(_objectSpread$8({
   containerStyle: PropTypes.object,
   labelStyle: PropTypes.object,
   required: PropTypes.bool
-}, styledSystem.layout.propTypes), styledSystem.space.propTypes);
+}, styledSystem.propTypes.layout), styledSystem.propTypes.space);
 
 var errorForField = function errorForField(errors, touched, fieldname) {
   if (errors[fieldname] && touched[fieldname]) {
@@ -14476,7 +14476,7 @@ var Image = styled__default.img.attrs({
   alt: ''
 })(_templateObject$e(), shape, styledSystem.layout, styledSystem.shadow);
 Image.displayName = 'Image';
-Image.propTypes = _objectSpread$a(_objectSpread$a({}, styledSystem.layout.propTypes), styledSystem.shadow.propTypes);
+Image.propTypes = _objectSpread$a(_objectSpread$a({}, styledSystem.propTypes.layout), styledSystem.propTypes.shadow);
 Image.defaultProps = {
   theme: theme,
   shape: SHAPES$1.square
@@ -17079,7 +17079,7 @@ defineProperty(Pill, "defaultProps", {
 defineProperty(Pill, "propTypes", _objectSpread$d(_objectSpread$d({
   active: PropTypes.bool,
   onClick: PropTypes.func.isRequired
-}, styledSystem.space.propTypes), styledSystem.layout.propTypes));
+}, styledSystem.propTypes.space), styledSystem.propTypes.layout));
 
 var _global = createCommonjsModule(function (module) {
 // https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
@@ -32689,7 +32689,7 @@ var Text$1 = styled__default.p(_templateObject$n(), function (_ref) {
 Text$1.defaultProps = {
   theme: theme
 };
-Text$1.propTypes = _objectSpread$g(_objectSpread$g(_objectSpread$g({}, styledSystem.typography.propTypes), styledSystem.space.propTypes), styledSystem.color.propTypes);
+Text$1.propTypes = _objectSpread$g(_objectSpread$g(_objectSpread$g({}, styledSystem.propTypes.typography), styledSystem.propTypes.space), styledSystem.propTypes.color);
 Text$1.displayName = 'Text';
 
 var interopRequireDefault = createCommonjsModule(function (module) {
@@ -37763,7 +37763,7 @@ defineProperty(Toggle, "defaultProps", {
 
 defineProperty(Toggle, "propTypes", _objectSpread$i(_objectSpread$i({
   checked: PropTypes.bool
-}, styledSystem.layout.propTypes), styledSystem.space.propTypes));
+}, styledSystem.propTypes.layout), styledSystem.propTypes.space));
 
 function rng() {
   return crypto.randomBytes(16);

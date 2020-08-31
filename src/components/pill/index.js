@@ -1,24 +1,22 @@
 import * as React from 'react'
 import PropTypes from 'prop-types'
 import { space, layout } from 'styled-system'
+import propTypes from '@styled-system/prop-types'
 
 import { Container, Text, Count } from './styles'
-
-import theme from '../../config/theme'
 
 Container.displayName = 'Pill'
 class Pill extends React.PureComponent {
 
   static defaultProps = {
-    theme,
     active: false,
   }
 
   static propTypes = {
     active: PropTypes.bool,
     onClick: PropTypes.func.isRequired,
-    ...space.propTypes,
-    ...layout.propTypes,
+    ...propTypes.space,
+    ...propTypes.layout,
   }
 
   render() {

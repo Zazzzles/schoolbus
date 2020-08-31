@@ -1,6 +1,7 @@
 import * as React from 'react'
 import PropTypes from 'prop-types'
 import { space, layout } from 'styled-system'
+import propTypes from '@styled-system/prop-types'
 
 import {
   ToggleContainer,
@@ -16,8 +17,8 @@ class Toggle extends React.PureComponent {
 
   static propTypes = {
     checked: PropTypes.bool,
-    ...layout.propTypes,
-    ...space.propTypes,
+    ...propTypes.layout,
+    ...propTypes.space,
   }
 
   render() {
@@ -31,7 +32,7 @@ class Toggle extends React.PureComponent {
           onChange={onChange}
           onBlur={onBlur}
           id={id}
-          type="checkbox"
+          type='checkbox'
           readOnly
         />
         <ToggleLabel htmlFor={this.props.id} />

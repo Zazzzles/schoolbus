@@ -2,6 +2,7 @@
 import * as React from 'react'
 import { space, layout, typography } from 'styled-system'
 import inputPropTypes from '../../config/input-prop-types'
+import propTypes from '@styled-system/prop-types'
 import PropTypes from 'prop-types'
 
 import {
@@ -18,9 +19,9 @@ class Checkbox extends React.PureComponent {
     onBlur: PropTypes.func,
     checked: PropTypes.bool,
     disabled: PropTypes.bool,
-    ...space.PropTypes,
-    ...layout.PropTypes,
-    ...typography.PropTypes
+    ...propTypes.space,
+    ...propTypes.layout,
+    ...propTypes.typography
   }
 
   render() {

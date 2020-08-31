@@ -1,8 +1,7 @@
 import React from 'react'
-import { storiesOf } from '@storybook/react'
 import TranslateInput from './'
-import { Formik } from 'formik'
 import * as yup from 'yup'
+import defaultInputArgs from '../../config/default-input-args'
 
 const schema = yup.object().shape({
   test: yup.array().of(
@@ -18,7 +17,7 @@ const schema = yup.object().shape({
 })
 
 const initialValues = {
-  test: [
+  name: [
     {
       value: '',
       locale: 'en-ZA',
@@ -42,19 +41,24 @@ const languages = [
   },
 ]
 
-storiesOf('Input/ Translate Input', module)
-  .addParameters({  })
-  .add('With Formik', () => (
-    <Formik
-      validationSchema={schema}
-      initialValues={initialValues}
-    >
-      {
-        <TranslateInput
-          label="With Formik"
-          name="test"
-          languages={languages}
-        />
+export default {
+  title: 'Inputs/ Translate Input',
+  component: TranslateInput,
+  parameters: {
+    formik: {
+      schema,
+      initialValues,
+    },
+    docs: {
+      description: { 
+        component: 'The TranslateInput component represents an input containing translations for each language. These languages can be specified using the `languages` property.'
       }
-    </Formik>
-  ))
+    },
+  }
+}
+
+export const Base = (args) => <TranslateInput {...args} />
+Base.args = { 
+  ...defaultInputArgs,
+  languages,
+ }

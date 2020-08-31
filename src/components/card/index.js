@@ -1,5 +1,6 @@
 import * as React from 'react'
 import PropTypes from 'prop-types'
+import propTypes from '@styled-system/prop-types'
 
 import { space, layout, flexbox } from 'styled-system'
 import IconButton from '../icon-button'
@@ -25,9 +26,9 @@ class Card extends React.PureComponent {
   static propTypes = {
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
-    ...space.propTypes,
-    ...layout.propTypes,
-    ...flexbox.propTypes,
+    ...propTypes.space,
+    ...propTypes.layout,
+    ...propTypes.flexbox,
   }
 
   static Header = StyledCardHeader

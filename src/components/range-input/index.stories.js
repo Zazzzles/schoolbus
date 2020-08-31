@@ -1,17 +1,28 @@
 import React from 'react'
-import { storiesOf } from '@storybook/react'
 import RangeInput from './'
-import { Formik } from 'formik'
+import defaultInputArgs from '../../config/default-input-args'
 
-storiesOf('Input/ Range Input', module)
-  .addParameters({ component: RangeInput })
-  .add('Basic', () => <RangeInput label="Price" name="price" metric="R" />)
-  .add('With Formik', () => (
-    <Formik
-      initialValues={{
-        price: [0, 0],
-      }}
-    >
-      <RangeInput label="Price" name="price" metric="R" />
-    </Formik>
-  ))
+export default {
+  title: 'Inputs/ Range Input',
+  component: RangeInput,
+  parameters: {
+    formik: {
+      initialValues: { name: [12, 30] }
+    },
+    docs: {
+      description: {
+        component: 'An input used to select a two limits that define a range.'
+      }
+    }
+  },
+}
+const defaultArgs = {
+  ...defaultInputArgs,
+  metric: 'R'
+}
+
+export const Base = (args) => <RangeInput {...args} />
+Base.args = defaultArgs
+
+export const Disabled = () => <RangeInput {...defaultArgs} disabled />
+export const Invalid = () => <RangeInput {...defaultArgs} alertText='Invalid' />

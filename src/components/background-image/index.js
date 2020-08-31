@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
+import propTypes from '@styled-system/prop-types'
 
 import { background, space, layout, flexbox } from 'styled-system'
 
@@ -24,10 +25,10 @@ BackgroundImage.defaultProps = {
 
 BackgroundImage.propTypes = {
   source: PropTypes.string.isRequired,
-  ...space.propTypes,
-  ...background.propTypes,
-  ...layout.propTypes,
-  ...flexbox.propTypes,
+  ...propTypes.space,
+  ...propTypes.background,
+  ...propTypes.layout,
+  ...propTypes.flexbox,
 }
 
 BackgroundImage.displayName = 'BackgroundImage'

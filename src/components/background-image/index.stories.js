@@ -1,12 +1,13 @@
 import React from 'react'
-import { storiesOf } from '@storybook/react'
 import BackgroundImage from './'
 
-storiesOf('BackgroundImage', module)
-  .addParameters({ component: BackgroundImage })
-  .add('Basic', () => (
-    <BackgroundImage
-      source="https://images.freeimages.com/images/small-previews/05e/on-the-road-6-1384796.jpg"
-      size="300px"
-    />
-  ))
+export default {
+  title: 'BackgroundImage',
+  component: BackgroundImage,
+}
+
+export const Base = (args) => <BackgroundImage {...args} />
+Base.args = {
+  source: 'https://images.freeimages.com/images/small-previews/05e/on-the-road-6-1384796.jpg',
+  size: '300px'
+}

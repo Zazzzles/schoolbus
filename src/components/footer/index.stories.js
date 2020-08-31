@@ -1,14 +1,17 @@
 import React from 'react'
-import { storiesOf } from '@storybook/react'
 
 import Footer from './'
 
 import mdx from './index.stories.mdx'
 
-storiesOf('Footer', module)
-  .addParameters({
-    component: Footer,
-    docs: mdx,
-  })
-  .add('Basic', () => <Footer />)
-  .add('Custom copyright', () => <Footer copyright="This is a custom copyright" />)
+export default {
+  title: 'Footer',
+  component: Footer,
+}
+
+export const Basic = () => <Footer />
+export const CustomCopyright = () => <Footer copyright='This is a custom copyright' />
+
+CustomCopyright.story = {
+  name: 'Custom copyright',
+}

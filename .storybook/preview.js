@@ -1,7 +1,6 @@
-import { addParameters } from '@storybook/client-api'
 import { Formik } from 'formik'
+import theme from '../src/config/theme'
 import { ThemeProvider, Box, Normalize } from '../src'
-import theme from './theme'
 
 export const decorators = [
   (Story, { parameters }) => (
@@ -18,6 +17,19 @@ export const decorators = [
   )
 ]
 
-addParameters({
+export const parameters = {
   viewMode: 'docs',
-})
+  backgrounds: {
+    default: 'Dark',
+    values: [
+      {
+        name: 'Dark',
+        value: theme.white
+      },
+      {
+        name: 'Light',
+        value: theme.black
+      },
+    ],
+  }
+}

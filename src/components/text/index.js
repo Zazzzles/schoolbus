@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { typography, space, color } from 'styled-system'
+import propTypes from '@styled-system/prop-types'
 
 import theme from '../../config/theme'
 
@@ -16,9 +17,9 @@ Text.defaultProps = {
 }
 
 Text.propTypes = {
-  ...typography.propTypes,
-  ...space.propTypes,
-  ...color.propTypes,
+  ...propTypes.typography,
+  ...propTypes.space,
+  ...propTypes.color,
 }
 
 Text.displayName = 'Text'

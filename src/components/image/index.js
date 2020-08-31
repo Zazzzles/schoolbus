@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { layout, shadow } from 'styled-system'
+import propTypes from '@styled-system/prop-types'
 
 import theme from '../../config/theme'
 
@@ -35,8 +36,8 @@ const Image = styled.img.attrs({
 Image.displayName = 'Image'
 
 Image.propTypes = {
-  ...layout.propTypes,
-  ...shadow.propTypes
+  ...propTypes.layout,
+  ...propTypes.shadow
 }
 
 Image.defaultProps = {

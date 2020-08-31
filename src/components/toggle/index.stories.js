@@ -1,7 +1,7 @@
 import Toggle from './'
 
 export default {
-  title: 'Input/Toggle',
+  title: 'Inputs/Toggle',
   component: Toggle,
   parameters: {
     docs: {
@@ -13,8 +13,7 @@ export default {
 }
 
 
-export const Basic = args => <Toggle {...args} />;
-Basic.args = { checked: false }
+export const Base = args => <Toggle {...args} />
+Base.args = { checked: false }
 
-export const Checked = args => <Toggle {...args} />;
-Checked.args = { checked: true }
+export const Checked = () => <Toggle checked />

@@ -1,16 +1,13 @@
-import React from 'react'
-import { storiesOf } from '@storybook/react'
-import InputWrapper from './'
+import React from 'react';
+import InputWrapper from './';
 
-storiesOf('Input/ Wrapper', module)
-  .addParameters({ component: InputWrapper })
-  .add('Default', () => (
-    <InputWrapper 
-      id='id'
-      label='Test label'
-      alertText='Test error text'
-      required
-    >
-      Children go here
-    </InputWrapper>
-  ))
+export default {
+  title: 'Inputs/ Wrapper',
+  component: InputWrapper,
+};
+
+export const Default = () => (
+  <InputWrapper id='id' label='Test label' alertText='Test error text' required>
+    Children go here
+  </InputWrapper>
+);

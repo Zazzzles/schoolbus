@@ -1,22 +1,23 @@
 import React from 'react'
-import { storiesOf } from '@storybook/react'
 import TimeInput from './'
-import { Formik } from 'formik'
+import defaultInputArgs from '../../config/default-input-args'
 
-storiesOf('Input/ Time Input', module)
-  .addParameters({ component: TimeInput })
-  .add('With Formik 12', () => (
-    <Formik>
-      <TimeInput label="With Formik" />
-    </Formik>
-  ))
-  .add('With Formik 24', () => (
-    <Formik>
-      <TimeInput timeFormat="24" label="With Formik" />
-    </Formik>
-  ))
-  .add('Disabled', () => (
-    <Formik>
-      <TimeInput timeFormat="24" label="With Formik" disabled/>
-    </Formik>
-  ))
+export default {
+  title: 'Inputs/ Time Input',
+  component: TimeInput,
+  parameters: {
+    formik: true,
+    docs: {
+      description: {
+        component: 'An input used to select the time of day.'
+      }
+    }
+  },
+}
+
+export const Base = (args) =>  <TimeInput {...args} />
+Base.args = defaultInputArgs
+export const Hour12 = () => <TimeInput {...defaultInputArgs} />
+export const Hour24 = () => <TimeInput {...defaultInputArgs} timeFormat='24' />
+export const Disabled = () => <TimeInput {...defaultInputArgs} disabled />
+export const invalid = () => <TimeInput {...defaultInputArgs} alertText='Invalid' />

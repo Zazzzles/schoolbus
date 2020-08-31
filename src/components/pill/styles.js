@@ -13,10 +13,10 @@ export const Container = styled.button.attrs({
   min-width: 80px;
   border-radius: ${({ theme }) => theme.radii.full};
   box-shadow: ${({ active, theme }) => active ? theme.shadows[1] : 'none'};
-  border: ${({ active, theme, count, bordered }) => (
-    `1px solid ${(count >= 0 && !active) || (bordered && !active) 
+  border: ${({ active, theme, count, variant }) => (
+    `1px solid ${(count >= 0 && !active) || (variant === 'bordered' && !active) 
       ? theme.colors.gray.xlight 
-      : theme.colors.transparent}`
+      : theme.colors?.transparent}`
   )};
   font-size: ${({ theme }) => theme.fontSizes.small};
   font-weight: ${({ theme }) => theme.fontWeights.bold};

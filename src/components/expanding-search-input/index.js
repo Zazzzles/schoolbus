@@ -41,7 +41,7 @@ class ExpandingSearchInput extends Component {
     return (
       <Container {...otherProps}>
         <Input
-          placeholder="Search..."
+          placeholder='Search...'
           expanded={expanded}
           ref={this.input}
           onChange={debounce((...args) => onChange(...args), 500)}

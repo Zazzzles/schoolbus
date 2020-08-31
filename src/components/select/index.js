@@ -1,10 +1,12 @@
 import React from 'react'
 import ReactSelect from 'react-select'
+import PropTypes from 'prop-types'
 import { connect } from 'formik'
 
 import InputWrapper from '../input-wrapper'
 
 import createDefaultInputProps from '../../utils/create-input-defaults'
+import inputPropTypes from '../../config/input-prop-types'
 
 import { styleOverride } from './styles' 
 
@@ -61,6 +63,14 @@ Select.defaultProps = {
   containerStyle: {},
   align: 'left',
   singleValueStyles: {}
+}
+
+Select.propTypes = {
+  ...inputPropTypes,
+  align: PropTypes.string,
+  singleValueStyles: PropTypes.object,
+  containerStyle: PropTypes.object,
+  multiple: PropTypes.bool
 }
 
 export default connect(Select)
