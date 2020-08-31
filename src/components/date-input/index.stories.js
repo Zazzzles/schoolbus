@@ -4,7 +4,7 @@ import DateInput from './'
 import Flex from '../flex'
 import { Formik } from 'formik'
 
-storiesOf('Input | Date Input', module)
+storiesOf('Input/ Date Input', module)
   .addParameters({ component: DateInput })
   .add('Basic', () => (
     <Flex flexDirection="column">

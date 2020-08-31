@@ -1,0 +1,24 @@
+import { Title, Description } from '@storybook/addon-docs/blocks'
+import { Meta, ColorPalette, ColorItem } from '@storybook/addon-docs/blocks';
+import theme from '../../config/theme'
+
+<Meta title='Colors' />
+
+<Title>Colors</Title>
+<Description>A list of the available colors provided by the theme.</Description>
+
+<ColorPalette>
+  {Object.entries(theme.colors).sort((colorsA, colorsB) => 
+      (Array.isArray(colorsB[1]) ? colorsB[1].length : 1) -
+      (Array.isArray(colorsA[1]) ? colorsA[1].length : 1)
+    ).map(([key, color]) => (
+      <ColorItem 
+        key={key}
+        title={`theme.color.${key}`} 
+        a={console.log(key, color)}
+        subtitle={key}
+        colors={Array.isArray(color) ? color  : [color]}
+      />
+    )
+  )}
+</ColorPalette>

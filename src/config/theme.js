@@ -44,7 +44,8 @@ export const colors = {
   green: ['#F9FFF4', '#85E2A2', '#37b049', '#65D287'],
   red: ['#FFF5F5', '#f6bdbb', '#ed7470', '#e53933', '#9f1814', '#71110e', '#FB7D7D'],
   yellow: '#f8b31c',
-  orange: ['#fff8eb', '#ffa400']
+  orange: ['#fff8eb', '#ffa400'],
+  questionColors: ['#F15152', '#3480EE', '#1E9E2F', '#FFA400']
 }
 
 colors.primary = colors.orange[1]

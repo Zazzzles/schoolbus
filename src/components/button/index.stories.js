@@ -6,7 +6,7 @@ import mdx from './index.stories.mdx'
 
 const flexContainer = { display: 'flex' }
 
-storiesOf('Input | Button', module)
+storiesOf('Input/ Button', module)
   .addParameters({
     docs: mdx,
     component: Button,

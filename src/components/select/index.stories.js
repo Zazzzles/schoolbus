@@ -12,7 +12,7 @@ const singleValueStyles = {
   color: theme.colors.gray.dark
 }
 
-storiesOf('Input | Select', module)
+storiesOf('Input/ Select', module)
   .addParameters({ component: Select })
   .add('Empty', () => <Select name="1" placeholder="Empty" />)
   .add('With options', () => <Select value={options[0]} options={options} label="Label" name="2" />)

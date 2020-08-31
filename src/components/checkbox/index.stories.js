@@ -4,7 +4,7 @@ import Checkbox from './'
 
 import mdx from './index.stories.mdx'
 
-storiesOf('Input | Checkbox', module)
+storiesOf('Input/ Checkbox', module)
   .addParameters({
     component: Checkbox,
     docs: mdx,

@@ -17,39 +17,43 @@ const schema = yup.object().shape({
   ),
 })
 
-storiesOf('Input | Translate Input', module)
-  .addParameters({ component: TranslateInput })
+const initialValues = {
+  test: [
+    {
+      value: '',
+      locale: 'en-ZA',
+      default: true,
+    },
+    {
+      value: '',
+      locale: 'af',
+    },
+  ],
+}
+
+const languages = [
+  {
+    value: 'English',
+    code: 'en-ZA',
+  },
+  {
+    value: 'Afrikaans',
+    code: 'af',
+  },
+]
+
+storiesOf('Input/ Translate Input', module)
+  .addParameters({  })
   .add('With Formik', () => (
     <Formik
       validationSchema={schema}
-      initialValues={{
-        test: [
-          {
-            value: '',
-            locale: 'en-ZA',
-            default: true,
-          },
-          {
-            value: '',
-            locale: 'af',
-          },
-        ],
-      }}
+      initialValues={initialValues}
     >
       {
         <TranslateInput
           label="With Formik"
           name="test"
-          languages={[
-            {
-              value: 'English',
-              code: 'en-ZA',
-            },
-            {
-              value: 'Afrikaans',
-              code: 'af',
-            },
-          ]}
+          languages={languages}
         />
       }
     </Formik>

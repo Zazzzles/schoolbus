@@ -1,13 +1,20 @@
-import React from 'react'
-import { storiesOf } from '@storybook/react'
 import Toggle from './'
 
-import mdx from './index.stories.mdx'
+export default {
+  title: 'Input/Toggle',
+  component: Toggle,
+  parameters: {
+    docs: {
+      description: {
+        component: 'The Toggle component represents a toggle, which can be used in forms or anywhere in a document that needs simple, standard toggling functionality.'
+      }
+    },
+  }
+}
 
-storiesOf('Input | Toggle', module)
-  .addParameters({
-    component: Toggle,
-    docs: mdx,
-  })
-  .add('Unchecked', () => <Toggle />)
-  .add('Checked', () => <Toggle checked={true} />)
+
+export const Basic = args => <Toggle {...args} />;
+Basic.args = { checked: false }
+
+export const Checked = args => <Toggle {...args} />;
+Checked.args = { checked: true }

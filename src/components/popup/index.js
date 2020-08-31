@@ -15,6 +15,10 @@ class Popup extends PureComponent {
     arrow: false
   }
 
+  static propTypes = {
+    
+  }
+
   state = {
     showDialogue: false,
     renderToBottom: true,

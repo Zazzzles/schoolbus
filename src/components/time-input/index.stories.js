@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react'
 import TimeInput from './'
 import { Formik } from 'formik'
 
-storiesOf('Input | Time Input', module)
+storiesOf('Input/ Time Input', module)
   .addParameters({ component: TimeInput })
   .add('With Formik 12', () => (
     <Formik>

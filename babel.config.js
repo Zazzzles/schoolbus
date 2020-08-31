@@ -12,11 +12,11 @@ module.exports = api => {
             },
           },
         ],
-        "@babel/preset-react"
+        '@babel/preset-react'
       ],
 
       plugins: [
-        "require-context-hook",
+        'require-context-hook',
         '@babel/plugin-proposal-class-properties',
         '@babel/plugin-proposal-object-rest-spread'
       ]
@@ -24,9 +24,10 @@ module.exports = api => {
   }
 
   return {
-    "presets": ["@lessondesk/babel-preset"],
+    'presets': ['@lessondesk/babel-preset'],
     plugins: [
-      "babel-plugin-styled-components"
+      '@babel/plugin-proposal-optional-chaining',
+      'babel-plugin-styled-components'
     ]
   }
 }

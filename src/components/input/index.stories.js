@@ -2,7 +2,7 @@ import React from 'react'
 import { storiesOf } from '@storybook/react'
 import Input from './'
 
-storiesOf('Input | Input', module)
+storiesOf('Input/ Input', module)
   .addParameters({ component: Input })
   .add('Without label', () => <Input id="1" name="1" placeholder="Without label" />)
   .add('With label', () => <Input id="2" label="Label" name="2" />)

@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react'
 import TelInput from './'
 import { Formik } from 'formik'
 
-storiesOf('Input | Tel Input', module)
+storiesOf('Input/ Tel Input', module)
   .addParameters({ component: TelInput })
   .add('Basic', () => <TelInput id="1" name="1" label="Default" />)
   .add('With Formik', () => (

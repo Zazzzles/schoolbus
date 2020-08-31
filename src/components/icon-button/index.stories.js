@@ -6,7 +6,7 @@ import Text from '../text'
 
 import mdx from './index.stories.mdx'
 
-storiesOf('Input | Icon Button', module)
+storiesOf('Input/ Icon Button', module)
   .addParameters({
     docs: mdx,
     component: IconButton,

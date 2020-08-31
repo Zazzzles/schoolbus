@@ -16,6 +16,7 @@ class Pill extends React.PureComponent {
 
   static propTypes = {
     active: PropTypes.bool,
+    onClick: PropTypes.func.isRequired,
     ...space.propTypes,
     ...layout.propTypes,
   }
