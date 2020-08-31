@@ -36,12 +36,19 @@ class ExpandingSearchInput extends Component {
 
   render() {
     const { expanded } = this.state
-    const { onChange, onExpand, ...otherProps } = this.props
+    const {
+      onChange,
+      onExpand,
+      placeholder = 'Search...',
+      disabled,
+      ...otherProps
+    } = this.props
 
     return (
       <Container {...otherProps}>
         <Input
-          placeholder='Search...'
+          disabled={disabled}
+          placeholder={placeholder}
           expanded={expanded}
           ref={this.input}
           onChange={debounce((...args) => onChange(...args), 500)}

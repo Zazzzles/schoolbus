@@ -1,18 +1,22 @@
-import React from 'react';
-import IconButton from './';
-import Flex from '../flex';
-import Text from '../text';
+import React from 'react'
+import IconButton from './'
+import Flex from '../flex'
+import Text from '../text'
 
-import mdx from './index.stories.mdx';
 
 export default {
   title: 'Actions/ Icon Button',
+  component: IconButton,
+}
 
-  parameters: {
-    docs: mdx,
-    component: IconButton,
-  },
-};
+export const Base = (args) => <IconButton {...args} />
+Base.args = {
+  fontSize: 'large',
+  color: 'gray.dark',
+  iconColor: 'primary',
+  badge: 2,
+  noShadow: false
+}
 
 export const Props = () => (
   <>
@@ -93,4 +97,4 @@ export const Props = () => (
       <IconButton disabled />
     </Flex>
   </>
-);
+)

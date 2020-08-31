@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import ReactModal from 'react-modal'
+import PropTypes from 'prop-types'
 
 import IconButton from '../icon-button'
 import Flex from '../flex'
@@ -54,7 +54,6 @@ class ModalWrapper extends Component {
     footer: PropTypes.node,
     scrollable: PropTypes.bool,
     hideCloseButton: PropTypes.bool,
-    ...ReactModal.propTypes
   }
 
   state = {
@@ -97,7 +96,7 @@ class ModalWrapper extends Component {
 
     const styleOverrides = {
       closeBtn: {
-        position: 'absolute',
+        position: "absolute",
         top: 25,
         right: 25,
         zIndex: 9999
@@ -111,7 +110,7 @@ class ModalWrapper extends Component {
         textAlign: 'center'
       },
       backBtn: {
-        position: 'absolute',
+        position: "absolute",
         top: 25,
         left: 20,
         zIndex: 1
@@ -144,9 +143,9 @@ class ModalWrapper extends Component {
 
     const renderCloseIcon = () => (
       <IconButton
-        icon='close'
+        icon="close"
         noShadow
-        color='transparent'
+        color="transparent"
         style={styleOverrides.closeBtn}
         onClick={onClose}
       />
@@ -155,12 +154,13 @@ class ModalWrapper extends Component {
     const renderBackButton = () => (
       <IconButton
         onClick={onBack}
-        color='transparent'
-        icon='back'
+        color="transparent"
+        icon="back"
         style={styleOverrides.backBtn}
         noShadow
       />
     )
+    console.log(onClose)
 
     return (
       <ReactModal
@@ -176,7 +176,7 @@ class ModalWrapper extends Component {
           <Header ref={node => this.headerRef = node}>
             {title && (
               <Flex 
-                width='100%' 
+                width="100%" 
                 justifyContent={centerTitle ? 'center' : 'flex-start'}
                 pl={onBack && !centerTitle ? '2.5em' : 0}
               >

@@ -2,7 +2,7 @@ import React from 'react'
 import Text from './'
 
 export default {
-  title: 'Theme/Text',
+  title: 'Misc/Text',
   component: Text,
 }
 

@@ -1,13 +1,19 @@
-import React from 'react';
-import InputWrapper from './';
+import React from 'react'
+import InputWrapper from './'
 
 export default {
-  title: 'Inputs/ Wrapper',
+  title: 'Containers/ Input Wrapper',
   component: InputWrapper,
-};
+}
 
-export const Default = () => (
-  <InputWrapper id='id' label='Test label' alertText='Test error text' required>
+export const Base = (args) => (
+  <InputWrapper {...args}>
     Children go here
   </InputWrapper>
-);
+)
+Base.args = {
+  name: 'name',
+  label: 'Label',
+  alertText: 'This is an alert',
+  width: '100%'
+}
