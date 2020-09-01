@@ -3,7 +3,7 @@ import Flex from './'
 import Box from '../box'
 
 export default {
-  title: 'Containers/ Flex',
+  title: 'Containers & Wrappers/ Flex',
   component: Flex,
 }
 

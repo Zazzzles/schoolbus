@@ -4,8 +4,25 @@ import { number, text } from '@storybook/addon-knobs'
 import Box from './'
 
 export default {
-  title: 'Box',
+  title: 'Containers & Wrappers/ Box',
   component: Box,
+}
+
+export const Base = (args) => <Box {...args}>children</Box>
+Base.args = {
+  color: 'white',
+  bg: 'primary',
+  shadow: 1,
+  p: '1em',
+  m: '1em',
+  pl: '',
+  pt: '',
+  pr: '',
+  pb: '',
+  ml: '',
+  mt: '',
+  mr: '',
+  mb: '',
 }
 
 export const Padding = () => <Box p={number('Padding', 3)}>With padding</Box>
@@ -18,15 +35,10 @@ export const Color = () => (
 )
 
 export const BackgroundColor = () => (
-  <Box p={3} color={text('Color', 'primary')} bg={text('Background color', 'primary')}>
+  <Box p={3} color='primary' bg='black'>
     Background color
   </Box>
 )
-
-BackgroundColor.story = {
-  name: 'Background color',
-}
-
 export const Width = () => (
   <Box p={3} width={1 / 2} color='white' bg='primary'>
     Half Width
@@ -39,19 +51,11 @@ export const PixelWidth = () => (
   </Box>
 )
 
-PixelWidth.story = {
-  name: 'Pixel width',
-}
-
 export const VwWidth = () => (
   <Box p={3} width='50vw' color='white' bg='primary'>
     50vw width
   </Box>
 )
-
-VwWidth.story = {
-  name: 'VW Width',
-}
 
 export const DirectionalPadding = () => (
   <Box p={3}>
@@ -76,10 +80,6 @@ export const DirectionalPadding = () => (
   </Box>
 )
 
-DirectionalPadding.story = {
-  name: 'Directional padding',
-}
-
 export const DirectionalMargin = () => (
   <Box p={3}>
     <Box mt={3} color='white' bg='primary'>
@@ -102,7 +102,3 @@ export const DirectionalMargin = () => (
     </Box>
   </Box>
 )
-
-DirectionalMargin.story = {
-  name: 'Directional margin',
-}

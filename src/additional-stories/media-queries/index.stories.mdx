@@ -1,0 +1,22 @@
+import { Meta } from '@storybook/addon-docs/blocks'
+import Flex from '../../components/flex'
+import Box from '../../components/box'
+import Text from '../../components/text'
+import theme, { mediaQueriesAliases, breakpoints } from '../../config/theme'
+
+<Meta title='Theme/ Media Queries' />
+
+# Media Queries
+A list of media queries supplied by the theme.
+
+<Flex flexDirection='column'>
+  {mediaQueriesAliases.map((key, i) => (
+    <Flex m='1em 0' flexDirection='column' alignItems='center'>
+      <Box width={breakpoints[i]} p='1em' mt='1em' bg='gray.xxlight'>
+        <Text m='0'>theme.mediaQueries.{key}</Text>
+        <Text m='0'>theme.breakpoints.{key}</Text>
+        <Text color='black' m='0.5em 0'>{breakpoints[i]}</Text>
+      </Box>
+    </Flex>
+  ))}
+</Flex>

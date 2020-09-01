@@ -1,0 +1,65 @@
+import { Meta } from '@storybook/addon-docs/blocks'
+import Text from '../../components/text'
+import Box from '../../components/box'
+import Flex from '../../components/flex'
+import ExampleRow from './example-row'
+import TextExample from './text-example'
+import theme, {
+  letterSpacingsAliases,
+  fontWeightsAliases,
+  fontSizeAliases,
+  lineHeightsAliases
+} from '../../config/theme'
+
+<!-- TODO: figure out why Normalize doesn't get added by default in mdx stories  -->
+import Normalize from '../../components/normalize'
+
+<Meta title='Theme/ Typography' />
+
+<Normalize />
+
+# Typography
+A list of the available letter spacings, font sizes, and font weights provided by the theme.
+Can be used in places where a component accepts any of these properties,
+or can be accessed through the theme.
+
+ - [Font sizes](#font-sizes)
+ - [Font weights](#font-weights)
+ - [Letter spacings](#letter-spacings)
+ - [Line heights](#line-heights)
+
+## Font sizes
+<TextExample 
+  keyPrefix='theme.fontSizes'
+  propKey='fontSize'
+  values={theme.fontSizes}
+  keys={fontSizeAliases}
+/>
+
+## Font weights
+<TextExample 
+  keyPrefix='theme.fontWeights'
+  propKey='fontWeight'
+  values={theme.fontWeights}
+  keys={fontWeightsAliases}
+/>
+
+## Letter spacings
+<TextExample 
+  keyPrefix='theme.letterSpacings'
+  propKey='letterSpacing'
+  values={theme.letterSpacings}
+  keys={letterSpacingsAliases}
+/>
+
+## Line heights
+<TextExample 
+  keyPrefix='theme.lineHeights'
+  propKey='lineHeight'
+  values={theme.lineHeights}
+  keys={lineHeightsAliases}
+>
+  Amet irure qui aliqua reprehenderit. Anim consequat nostrud anim proident quis.
+  Lorem eiusmod pariatur tempor adipisicing laborum ut quis consectetur occaecat sint nostrud reprehenderit dolor.
+  Culpa excepteur enim do dolor reprehenderit pariatur. Consectetur do sit eiusmod mollit aute.
+</TextExample>

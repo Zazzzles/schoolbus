@@ -52,8 +52,8 @@ const Spinner = styled.div`
 `
 
 Spinner.propTypes = {
-  size: PropTypes.number,
-  width: PropTypes.number,
+  size: PropTypes.string,
+  width: PropTypes.string,
   ...propTypes.color,
   ...propTypes.space
 }

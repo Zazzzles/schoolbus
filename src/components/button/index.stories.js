@@ -1,21 +1,30 @@
-import React from 'react';
-import Button from './';
-
-import mdx from './index.stories.mdx';
-
-const flexContainer = { display: 'flex' };
+import React from 'react'
+import Button from './'
+import Flex from '../flex'
 
 export default {
   title: 'Actions/ Button',
-
+  component: Button,
   parameters: {
-    docs: mdx,
-    component: Button,
+    docs: {
+      description: {
+        component: 'The Button component represents a clickable button that can be used for actions in forms, dialogs, and more.'
+      }
+    }
   },
-};
+}
+
+export const Base = (args) => <Button {...args}>Hello World!</Button>
+Base.args = {
+  variant: 'primary',
+  size: 'default',
+  shape: 'round',
+  disabled: false,
+  isLoading: false
+}
 
 export const Variants = () => (
-  <div style={flexContainer}>
+  <Flex>
     <Button>Default</Button>
     <Button variant='primary' m={2}>
       Primary
@@ -38,8 +47,8 @@ export const Variants = () => (
     <Button variant='primary' disabled m={2}>
       disabled
     </Button>
-  </div>
-);
+  </Flex>
+)
 
 export const Sizes = () => (
   <>
@@ -53,7 +62,7 @@ export const Sizes = () => (
       Large
     </Button>
   </>
-);
+)
 
 export const Shapes = () => (
   <>
@@ -70,4 +79,4 @@ export const Shapes = () => (
       Block
     </Button>
   </>
-);
+)

@@ -1,0 +1,22 @@
+import { Meta } from '@storybook/addon-docs/blocks'
+import Flex from '../../components/flex'
+import Box from '../../components/box'
+import Text from '../../components/text'
+import theme from '../../config/theme'
+
+<Meta title='Theme/ Space' />
+
+# Space
+A list of the available spacing properties provided by the theme.
+
+<Flex flexDirection='column'>
+  {theme.space.map((space, i) => (
+    <Flex mt='4em' alignItems='center'>
+      <Flex flexDirection='column' mr='3em'>
+        <Text m='0' color='gray.xdark' fontWeight='bold'>theme.space[{i}]</Text>
+        <Text m='0' color='gray.default'>{space}</Text>
+      </Flex>
+      <Box height='1em' width={space} bg='primary' />
+    </Flex>
+  ))}
+</Flex>

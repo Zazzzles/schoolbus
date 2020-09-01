@@ -1,64 +1,49 @@
-import React from 'react';
+import React from 'react'
 
-import Card from './';
+import Card from './'
 
-import mdx from './index.stories.mdx';
-
-const description =
-  'Lorem ipsum dolor amet twee occupy deep v cold-pressed. Street art skateboard man braid sint sed venmo in, cillum YOLO organic.';
+const description = 'Magna laboris sit consectetur nulla. Fugiat commodo anim amet consectetur et amet sint reprehenderit mollit aliqua.'
 
 export default {
-  title: 'Card',
-
+  title: 'Containers & Wrappers/ Card',
+  component: Card,
   parameters: {
-    docs: mdx,
-    component: Card,
+    docs: {
+      description: {
+        component: 'The card component provides a flexible and extensible content container with multiple ' +
+        'variants and options. The description and onAdd button will be hidden when in viewstate.'
+      }
+    }
   },
-};
+}
 
-export const Empty = () => <Card />;
-export const WithTitle = () => <Card title='Example' viewState></Card>;
-
-WithTitle.story = {
-  name: 'With title',
-};
-
+export const Base = (args) => <Card {...args} onAdd={console.log}>Children go here</Card>
+Base.args = {
+  title: 'This is a title',
+  description: 'This is the description. Consectetur id ipsum ex adipisicing. Occaecat incididunt tempor sit amet laboris eiusmod eu ullamco.',
+  onAdd: console.log,
+  actions: '',
+  viewState: true,
+  hideDivider: false,
+}
+export const WithTitle = () => <Card title='Example' viewState></Card>
 export const WithDescription = () => (
   <Card title='Example' description={description}>
     content
   </Card>
-);
-
-WithDescription.story = {
-  name: 'With description',
-};
-
+)
 export const WithOnAdd = () => (
   <Card title='Example' description={description} onAdd={() => console.log('adding')}>
     content
   </Card>
-);
-
-WithOnAdd.story = {
-  name: 'With onAdd',
-};
-
+)
 export const HiddenDividerNoDescription = () => (
   <Card hideDivider title='Example' onAdd={() => console.log('adding')}>
     content
   </Card>
-);
-
-HiddenDividerNoDescription.story = {
-  name: 'Hidden divider, no description',
-};
-
+)
 export const ViewstateHidingDescriptionAndActions = () => (
   <Card viewState title='Example' description={description} onAdd={() => console.log('adding')}>
     content
   </Card>
-);
-
-ViewstateHidingDescriptionAndActions.story = {
-  name: 'viewstate hiding description and actions.',
-};
+)

@@ -6,7 +6,7 @@ import { background, space, layout, flexbox } from 'styled-system'
 
 import theme from '../../config/theme'
 
-const image = ({source}) => `url(${source})`
+const image = ({ source, src }) => `url(${source || src})`
 
 const BackgroundImage = styled.div`
   background-position: center;

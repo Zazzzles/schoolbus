@@ -4,7 +4,7 @@ import Flex from '../flex'
 import Button from '../button'
 
 export default {
-  title: 'Containers/ Modal',
+  title: 'Containers & Wrappers/ Modal',
   component: Modal,
 }
 

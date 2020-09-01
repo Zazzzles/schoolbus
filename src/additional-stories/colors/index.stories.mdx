@@ -1,11 +1,12 @@
-import { Title, Description } from '@storybook/addon-docs/blocks'
-import { Meta, ColorPalette, ColorItem } from '@storybook/addon-docs/blocks';
+import { Meta, ColorPalette, ColorItem } from '@storybook/addon-docs/blocks'
 import theme from '../../config/theme'
 
-<Meta title='Theme/Colors' />
+<Meta title='Theme/ Colors' />
 
-<Title>Colors</Title>
-<Description>A list of the available colors provided by the theme.</Description>
+# Colors
+A list of the available colors provided by the theme.
+Can be used in places were the component accepts a color,
+or can be accessed through the theme.
 
 <ColorPalette>
   {Object.entries(theme.colors).sort((colorsA, colorsB) => 

@@ -1,19 +1,24 @@
 import React from 'react'
 import Checkbox from './'
 
-import mdx from './index.stories.mdx'
-
 export default {
-  title: 'Inputs/ Checkbox',
+  title: 'Actions/ Checkbox',
   component: Checkbox,
+  parameters: {
+    docs: {
+      description: {
+        component: 'The Checkbox component represents a togglable action, which can be used in forms or anywhere in a document that needs simple, standard button functionality.'
+      }
+    }
+  }
 }
 
-export const WithoutLabel = () => <Checkbox />
-
-WithoutLabel.story = {
-  name: 'Without label',
+export const Base = () => <Checkbox>Children go here</Checkbox>
+Base.args = {
+  checked: false,
+  disabled: false
 }
 
 export const WithLabel = () => <Checkbox>With Label</Checkbox>
-export const Checked = () => <Checkbox checked>With Label</Checkbox>
+export const Checked = () => <Checkbox checked />
 export const Disabled = () => <Checkbox disabled>Disabled</Checkbox>

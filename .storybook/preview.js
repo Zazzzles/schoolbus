@@ -16,20 +16,3 @@ export const decorators = [
     </ThemeProvider>
   )
 ]
-
-export const parameters = {
-  viewMode: 'docs',
-  backgrounds: {
-    default: 'Dark',
-    values: [
-      {
-        name: 'Dark',
-        value: theme.white
-      },
-      {
-        name: 'Light',
-        value: theme.black
-      },
-    ],
-  }
-}

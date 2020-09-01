@@ -19,4 +19,5 @@ Base.args = {
 
 export const NoShape = () => <Image src={imageUrl} size='300px' />
 export const Rounded = () => <Image shape='rounded' src={imageUrl} size='300px' />
-export const Shadow = () => <Image shape='round' boxShadow={3} src={imageUrl} size='300px' />
+export const Round = () => <Image shape='round' src={imageUrl} size='300px' />
+export const WithShadow = () => <Image shape='round' boxShadow={3} src={imageUrl} size='300px' />
