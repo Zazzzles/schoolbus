@@ -1,5 +1,6 @@
 import * as React from 'react'
 import PropTypes from 'prop-types'
+import propTypes from '@styled-system/prop-types'
 
 import { typography, layout, space } from 'styled-system'
 import theme from '../../config/theme'
@@ -15,9 +16,9 @@ class Button extends React.PureComponent {
     onClick: PropTypes.oneOfType([PropTypes.func, PropTypes.string]).isRequired,
     shape: PropTypes.oneOf(Object.keys(SHAPES)),
     size: PropTypes.oneOf(Object.keys(SIZES)),
-    ...space.propTypes,
-    ...layout.propTypes,
-    ...typography.propTypes,
+    ...propTypes.space,
+    ...propTypes.layout,
+    ...propTypes.typography,
   }
 
   static defaultProps = {

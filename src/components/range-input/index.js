@@ -18,6 +18,7 @@ const RangeInput = ({
   metric,
   alertText: alertTextOverride,
   inputProps,
+  disabled,
   ...otherProps
 }) => {
   const { id = otherProps.name, name } = otherProps
@@ -50,6 +51,7 @@ const RangeInput = ({
           width='70%'
           min={min}
           max={max}
+          disabled={disabled}
           {...inputProps}
         />
         <Value>

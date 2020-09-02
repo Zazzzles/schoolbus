@@ -1,7 +1,7 @@
 import React, { Component, createRef } from 'react'
 import { debounce } from 'lodash-es'
 
-import { ContainerAlt, InputAlt, iconAltStyling, expandedIconStyles } from './styles'
+import { Container, Input, iconAltStyling, expandedIconStyles } from './styles'
 import Magnify from '@lessondesk/material-icons/dist/Magnify'
 
 import { fontSizes, colors } from '../../config/theme.js'
@@ -36,17 +36,22 @@ class ExpandingSearchInput extends Component {
 
   render() {
     const { expanded } = this.state
-    const { onChange, onExpand, ...rest } = this.props
+    const {
+      onChange,
+      onExpand,
+      placeholder = 'Search...',
+      disabled,
+      ...otherProps
+    } = this.props
 
     return (
-      <ContainerAlt>
-        <InputAlt
-          style={{ padding: '0 1em' }}
-          placeholder="Search..."
+      <Container {...otherProps}>
+        <Input
+          disabled={disabled}
+          placeholder={placeholder}
           expanded={expanded}
           ref={this.input}
           onChange={debounce((...args) => onChange(...args), 500)}
-          {...rest}
         />
         <Magnify
           onClick={this.toggleExpanded}
@@ -58,7 +63,7 @@ class ExpandingSearchInput extends Component {
           size={fontSizes.large}
           color={colors.gray.default}
         />
-      </ContainerAlt>
+      </Container>
     )
   }
 }

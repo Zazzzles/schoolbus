@@ -1,8 +1,10 @@
 import React from 'react'
 import { connect } from 'formik'
 
+import PropTypes from 'prop-types'
 import createDefaultInputProps from '../../utils/create-input-defaults'
 import InputWrapper from '../input-wrapper'
+import inputPropTypes from '../../config/input-prop-types'
 
 import { Container, Value } from './styles'
 
@@ -56,6 +58,14 @@ const TypeInput = ({
       </Container>
     </InputWrapper>
   )
+}
+
+TypeInput.propTypes = {
+  ...inputPropTypes,
+  options: PropTypes.arrayOf(PropTypes.shape({
+    name: PropTypes.string,
+    value: PropTypes.string
+  })),
 }
 
 export default connect(TypeInput)

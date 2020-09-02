@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import toast from 'just-toasty'
 import { connect } from 'formik'
 import Translate from '@lessondesk/material-icons/dist/Translate'
+import PropTypes from 'prop-types'
 
 import InputWrapper from '../input-wrapper'
 import TranslateModal from '../translate-modal'
@@ -9,6 +10,7 @@ import Modal from '../modal'
 
 import createDefaultInputProps from '../../utils/create-input-defaults'
 import { fontSizes, colors } from '../../config/theme.js'
+import defaultPropTypes from '../../config/input-prop-types'
 
 import { Container, TranslateIconContainer, TranslateInputContainer } from './styles'
 
@@ -17,6 +19,13 @@ class TranslationInput extends Component {
     type: 'lesson',
     onChange: () => {},
     onBlur: () => {}
+  }
+
+  static propTypes = {
+    ...defaultPropTypes,
+    languages: PropTypes.arrayOf(PropTypes.object).isRequired,
+    formik: PropTypes.object.isRequired,
+    onLanguagesChange: PropTypes.func,
   }
 
   state = {

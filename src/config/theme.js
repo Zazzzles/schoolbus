@@ -8,7 +8,7 @@ const addAliases = (arr, aliases) =>
     })
   )
 
-export const space = [0, 4, 8, 16, 32, 64, 128, 256, 512]
+export const space = [0, '0.25em', '0.5em', '1em', '2em', '4em', '8em', '16em', '32em']
 
 export const fontSizes = [
   '0.5em',
@@ -23,7 +23,7 @@ export const fontSizes = [
   '4em',
   '5em',
 ]
-const fontSizeAliases = [
+export const fontSizeAliases = [
   'xxxsmall',
   'xxsmall',
   'xsmall',
@@ -44,7 +44,8 @@ export const colors = {
   green: ['#F9FFF4', '#85E2A2', '#37b049', '#65D287'],
   red: ['#FFF5F5', '#f6bdbb', '#ed7470', '#e53933', '#9f1814', '#71110e', '#FB7D7D'],
   yellow: '#f8b31c',
-  orange: ['#fff8eb', '#ffa400']
+  orange: ['#fff8eb', '#ffa400'],
+  answerColors: ['#F15152', '#3480EE', '#1E9E2F', '#FFA400']
 }
 
 colors.primary = colors.orange[1]
@@ -60,15 +61,15 @@ const fontsAliases = ['Montserrat', 'OpenSans']
 addAliases(fonts, fontsAliases)
 
 export const fontWeights = [100, 200, 300, 400, 500, 600, 700]
-const fontWeightsAliases = ['hairline', 'thin', 'light', 'medium', 'semi', 'bold', 'extrabold']
+export const fontWeightsAliases = ['hairline', 'thin', 'light', 'medium', 'semi', 'bold', 'extrabold']
 addAliases(fontWeights, fontWeightsAliases)
 
-export const lineHeights = [1, 1.25, 1.375, 1.5, 1.625, 2]
-const lineHeightsAliases = ['none', 'tight', 'snug', 'normal', 'relaxed', 'loose']
+export const lineHeights = [1.0, 1.25, 1.375, 1.5, 1.625, 2.0]
+export const lineHeightsAliases = ['none', 'tight', 'snug', 'normal', 'relaxed', 'loose']
 addAliases(lineHeights, lineHeightsAliases)
 
 export const letterSpacings = ['-0.05em', '-0.025em', '0', '0.025em', '0.05em', '0.1em']
-const letterSpacingsAliases = ['tighter', 'tight', 'normal', 'wide', 'wider', 'widest']
+export const letterSpacingsAliases = ['tighter', 'tight', 'normal', 'wide', 'wider', 'widest']
 addAliases(letterSpacings, letterSpacingsAliases)
 const shadowColor = 'rgba(0, 0, 0, 0.12)'
 const baseShadow = '0 0 2px 0 rgba(0,0,0,.0625),'
@@ -81,15 +82,16 @@ export const shadows = [
 ]
 
 export const radii = [0, '2px', '5px', '10px', '15px', '20px', '30px', '9999px']
-const radiiAliases = ['none', 'xsmall', 'small', 'medium', 'large', 'xlarge', 'xxlarge', 'full']
+export const radiiAliases = ['none', 'xsmall', 'small', 'medium', 'large', 'xlarge', 'xxlarge', 'full']
 addAliases(radii, radiiAliases)
 
 export const zIndices = [1, 2, 3, 4, 5]
 
-export const breakpoints = ['20em', '40em', '52em', '64em', '80em']
+export const breakpoints = ['320px', '640px', '832px', '1024px', '1280px']
 export const mediaQueries = breakpoints.map(val => `@media screen and (min-width: ${val})`)
-const mediaQueriesAliases = ['xsmall', 'small', 'medium', 'large', 'xlarge']
+export const mediaQueriesAliases = ['xsmall', 'small', 'medium', 'large', 'xlarge']
 addAliases(mediaQueries, mediaQueriesAliases)
+addAliases(breakpoints, mediaQueriesAliases)
 
 const buttons = {
   primary: {

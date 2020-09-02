@@ -39,7 +39,7 @@
     color: #6f6f6f !important;
 }
 
-.react-datepicker-popper[data-placement^="bottom"] .react-datepicker__triangle, .react-datepicker-popper[data-placement^="bottom"] .react-datepicker__triangle::before {
+.react-datepicker-popper[data-placement^='bottom'] .react-datepicker__triangle, .react-datepicker-popper[data-placement^='bottom'] .react-datepicker__triangle::before {
   display: none !important;
 }
 

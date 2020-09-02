@@ -4,7 +4,7 @@ import { connect } from 'formik'
 import StyledInput from '../styled-input'
 import InputWrapper from '../input-wrapper'
 import theme from '../../config/theme'
-import defaultPropTypes from '../../config/prop-types'
+import defaultPropTypes from '../../config/input-prop-types'
 import createDefaultInputProps from '../../utils/create-input-defaults'
 
 class Input extends React.PureComponent {

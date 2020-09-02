@@ -1,0 +1,35 @@
+import { Meta } from '@storybook/addon-docs/blocks'
+import Flex from '../../components/flex'
+import Box from '../../components/box'
+import Text from '../../components/text'
+import theme from '../../config/theme'
+
+<Meta title='Theme/ Shadows' />
+
+# Shadows
+A list of the available shadow properties. 
+Can be used in places where a component accepts a shadow,
+or can be accessed through the theme.
+
+<Flex flexDirection='column'>
+  {Object.keys(theme.shadows).map(key => (
+    <Flex
+      key={key}
+      justifyContent='space-between'
+      alignItems='center'
+      mb='2.5em' 
+    >
+      <Text fontWeight='extrabold'>
+        theme.shadows[{key}]
+      </Text>
+      <Box
+        alignItems='center'
+        shadow={key}
+        p='1em'
+        width='70%'
+      >
+        <Text textAlign='center'>{theme.shadows[key]}</Text>
+      </Box>
+    </Flex>
+  ))}
+</Flex>

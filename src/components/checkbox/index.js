@@ -1,5 +1,9 @@
 /* eslint no-use-before-define: 0 */
 import * as React from 'react'
+import { space, layout, typography } from 'styled-system'
+import inputPropTypes from '../../config/input-prop-types'
+import propTypes from '@styled-system/prop-types'
+import PropTypes from 'prop-types'
 
 import {
   StyledInput,
@@ -8,8 +12,27 @@ import {
 } from './styles'
 
 class Checkbox extends React.PureComponent {
+
+  static propTypes = {
+    children: PropTypes.node,
+    onChange: PropTypes.func,
+    onBlur: PropTypes.func,
+    checked: PropTypes.bool,
+    disabled: PropTypes.bool,
+    ...propTypes.space,
+    ...propTypes.layout,
+    ...propTypes.typography
+  }
+
   render() {
-    const { children, onChange, checked, onBlur, disabled, ...otherProps } = this.props
+    const {
+      children,
+      onChange,
+      checked,
+      onBlur,
+      disabled,
+      ...otherProps
+    } = this.props
 
     return (
       <StyledLabel {...otherProps}>

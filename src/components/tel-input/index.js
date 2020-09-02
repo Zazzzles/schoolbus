@@ -1,6 +1,8 @@
 import React from 'react'
 import { connect } from 'formik'
+import PropTypes from 'prop-types'
 import ReactPhoneInput from 'react-phone-input-2'
+import inputPropTypes from '../../config/input-prop-types'
 
 import 'react-phone-input-2/lib/style.css'
 import './styles.css'
@@ -67,4 +69,10 @@ TelInput.defaultProps = {
     za: '.. ... ....',
   }
 }
+
+TelInput.propTypes = {
+  ...inputPropTypes,
+  defaultCountry: PropTypes.string,
+}
+
 export default connect(TelInput)

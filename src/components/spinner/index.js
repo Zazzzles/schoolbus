@@ -1,4 +1,7 @@
 import styled from 'styled-components'
+import { space } from 'styled-system'
+import PropTypes from 'prop-types'
+import propTypes from '@styled-system/prop-types'
 
 const Spinner = styled.div`
   display: ${props => props.show};
@@ -9,7 +12,7 @@ const Spinner = styled.div`
   border: ${({ width }) => width || '5px'} solid ${({ theme, color }) => color || theme.colors.primary};
   box-sizing: border-box;
   animation: sweep 1s linear alternate infinite, rota 0.8s linear infinite;
-  margin: ${({ margin }) => margin || 0};
+  ${space}
 
   @keyframes rota {
     from {
@@ -47,5 +50,12 @@ const Spinner = styled.div`
     }
   }
 `
+
+Spinner.propTypes = {
+  size: PropTypes.string,
+  width: PropTypes.string,
+  ...propTypes.color,
+  ...propTypes.space
+}
 
 export default Spinner

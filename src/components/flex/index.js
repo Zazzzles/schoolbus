@@ -1,4 +1,6 @@
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
+import propTypes from '@styled-system/prop-types'
 
 import {
   space,
@@ -34,13 +36,16 @@ Flex.defaultProps = {
 }
 
 Flex.propTypes = {
-  ...space.propTypes,
-  ...layout.propTypes,
-  ...color.propTypes,
-  ...alignItems.propTypes,
-  ...justifyContent.propTypes,
-  ...flexWrap.propTypes,
-  ...flexDirection.propTypes,
+  wrap: PropTypes.bool,
+  align: PropTypes.string,
+  justify: PropTypes.string,
+  ...propTypes.space,
+  ...propTypes.layout,
+  ...propTypes.color,
+  ...propTypes.alignItems,
+  ...propTypes.justifyContent,
+  ...propTypes.flexWrap,
+  ...propTypes.flexDirection,
 }
 
 Flex.displayName = 'Flex'

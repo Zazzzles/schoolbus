@@ -1,4 +1,6 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+import propTypes from '@styled-system/prop-types'
 import styled from 'styled-components'
 import { layout, space, variant } from 'styled-system'
 
@@ -70,5 +72,18 @@ const InputWrapper = ({
     {alertText && <StyledAlertText style={alertStyle}>{alertText}</StyledAlertText>}
   </StyledInputContainer>
 )
+
+InputWrapper.propTypes = {
+  id: PropTypes.string,
+  label: PropTypes.string,
+  children: PropTypes.node,
+  alertText: PropTypes.string,
+  alertStyle: PropTypes.object,
+  containerStyle: PropTypes.object,
+  labelStyle: PropTypes.object,
+  required: PropTypes.bool,
+  ...propTypes.layout,
+  ...propTypes.space
+}
 
 export default InputWrapper
