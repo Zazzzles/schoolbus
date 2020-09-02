@@ -27,7 +27,7 @@ var addAliases = function addAliases(arr, aliases) {
   });
 };
 
-var space = [0, 4, 8, 16, 32, 64, 128, 256, 512];
+var space = [0, '0.25em', '0.5em', '1em', '2em', '4em', '8em', '16em', '32em'];
 var fontSizes = ['0.5em', '0.625em', '0.75em', '0.875em', '1em', '1.25em', '1.5em', '2em', '3em', '4em', '5em'];
 var fontSizeAliases = ['xxxsmall', 'xxsmall', 'xsmall', 'small', 'medium', 'large', 'xlarge', 'xxlarge'];
 addAliases(fontSizes, fontSizeAliases);
@@ -41,7 +41,7 @@ var colors = {
   red: ['#FFF5F5', '#f6bdbb', '#ed7470', '#e53933', '#9f1814', '#71110e', '#FB7D7D'],
   yellow: '#f8b31c',
   orange: ['#fff8eb', '#ffa400'],
-  questionColors: ['#F15152', '#3480EE', '#1E9E2F', '#FFA400']
+  answerColors: ['#F15152', '#3480EE', '#1E9E2F', '#FFA400']
 };
 colors.primary = colors.orange[1];
 var orangeColorAliases = ['primaryLight', 'primary'];
@@ -57,7 +57,7 @@ addAliases(fonts, fontsAliases);
 var fontWeights = [100, 200, 300, 400, 500, 600, 700];
 var fontWeightsAliases = ['hairline', 'thin', 'light', 'medium', 'semi', 'bold', 'extrabold'];
 addAliases(fontWeights, fontWeightsAliases);
-var lineHeights = [1, 1.25, 1.375, 1.5, 1.625, 2];
+var lineHeights = [1.0, 1.25, 1.375, 1.5, 1.625, 2.0];
 var lineHeightsAliases = ['none', 'tight', 'snug', 'normal', 'relaxed', 'loose'];
 addAliases(lineHeights, lineHeightsAliases);
 var letterSpacings = ['-0.05em', '-0.025em', '0', '0.025em', '0.05em', '0.1em'];
@@ -70,12 +70,13 @@ var radii = [0, '2px', '5px', '10px', '15px', '20px', '30px', '9999px'];
 var radiiAliases = ['none', 'xsmall', 'small', 'medium', 'large', 'xlarge', 'xxlarge', 'full'];
 addAliases(radii, radiiAliases);
 var zIndices = [1, 2, 3, 4, 5];
-var breakpoints = ['20em', '40em', '52em', '64em', '80em'];
+var breakpoints = ['320px', '640px', '832px', '1024px', '1280px'];
 var mediaQueries = breakpoints.map(function (val) {
   return "@media screen and (min-width: ".concat(val, ")");
 });
 var mediaQueriesAliases = ['xsmall', 'small', 'medium', 'large', 'xlarge'];
 addAliases(mediaQueries, mediaQueriesAliases);
+addAliases(breakpoints, mediaQueriesAliases);
 var buttons = {
   primary: {
     color: colors.white,
@@ -197,6 +198,31 @@ function _defineProperty(obj, key, value) {
 
 var defineProperty = _defineProperty;
 
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+var propType = PropTypes.oneOfType([PropTypes.number, PropTypes.string, PropTypes.array, PropTypes.object]);
+var createPropTypes = function createPropTypes(props) {
+  return props.reduce(function (acc, name) {
+    var _extends2;
+
+    return _extends({}, acc, (_extends2 = {}, _extends2[name] = propType, _extends2));
+  }, {});
+};
+var propTypes = {
+  space: createPropTypes(styledSystem.space.propNames),
+  color: createPropTypes(styledSystem.color.propNames),
+  layout: createPropTypes(styledSystem.layout.propNames),
+  typography: createPropTypes(styledSystem.typography.propNames),
+  flexbox: createPropTypes(styledSystem.flexbox.propNames),
+  border: createPropTypes(styledSystem.border.propNames),
+  background: createPropTypes(styledSystem.background.propNames),
+  position: createPropTypes(styledSystem.position.propNames),
+  grid: createPropTypes(styledSystem.grid.propNames),
+  shadow: createPropTypes(styledSystem.shadow.propNames),
+  buttonStyle: createPropTypes(styledSystem.buttonStyle.propNames),
+  textStyle: createPropTypes(styledSystem.textStyle.propNames),
+  colorStyle: createPropTypes(styledSystem.colorStyle.propNames)
+};
+
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -212,8 +238,9 @@ function _templateObject$2() {
 }
 
 var image = function image(_ref) {
-  var source = _ref.source;
-  return "url(".concat(source, ")");
+  var source = _ref.source,
+      src = _ref.src;
+  return "url(".concat(source || src, ")");
 };
 
 var BackgroundImage = styled__default.div(_templateObject$2(), image, styledSystem.space, styledSystem.background, styledSystem.layout, styledSystem.flexbox);
@@ -222,7 +249,7 @@ BackgroundImage.defaultProps = {
 };
 BackgroundImage.propTypes = _objectSpread(_objectSpread(_objectSpread(_objectSpread({
   source: PropTypes.string.isRequired
-}, styledSystem.propTypes.space), styledSystem.propTypes.background), styledSystem.propTypes.layout), styledSystem.propTypes.flexbox);
+}, propTypes.space), propTypes.background), propTypes.layout), propTypes.flexbox);
 BackgroundImage.displayName = 'BackgroundImage';
 
 function ownKeys$1(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
@@ -230,7 +257,7 @@ function ownKeys$1(object, enumerableOnly) { var keys = Object.keys(object); if 
 function _objectSpread$1(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$1(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$1(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _templateObject$3() {
-  var data = taggedTemplateLiteral(["\n  ", "\n  ", "\n  ", "\n  ", "\n"]);
+  var data = taggedTemplateLiteral(["\n  ", "\n  ", "\n  ", "\n  ", "\n  ", "\n  ", ";\n  ", ";\n"]);
 
   _templateObject$3 = function _templateObject() {
     return data;
@@ -238,12 +265,25 @@ function _templateObject$3() {
 
   return data;
 }
-var Box = styled__default.div(_templateObject$3(), styledSystem.space, styledSystem.layout, styledSystem.color, styledSystem.flexbox);
+var Box = styled__default.div(_templateObject$3(), styledSystem.space, styledSystem.layout, styledSystem.color, styledSystem.flexbox, styledSystem.border, function (_ref) {
+  var _theme$shadows;
+
+  var theme = _ref.theme,
+      shadow = _ref.shadow;
+  return shadow !== undefined && "\n    box-shadow: ".concat(((_theme$shadows = theme.shadows) === null || _theme$shadows === void 0 ? void 0 : _theme$shadows[shadow]) || shadow, ";\n  ");
+}, function (_ref2) {
+  var theme = _ref2.theme,
+      radius = _ref2.radius;
+  return radius && "\n    border-radius: ".concat(theme.radii[radius] || radius, ";\n  ");
+});
 Box.displayName = 'Box';
 Box.defaultProps = {
   theme: theme
 };
-Box.propTypes = _objectSpread$1(_objectSpread$1(_objectSpread$1(_objectSpread$1({}, styledSystem.propTypes.space), styledSystem.propTypes.layout), styledSystem.propTypes.color), styledSystem.propTypes.flexbox);
+Box.propTypes = _objectSpread$1(_objectSpread$1(_objectSpread$1(_objectSpread$1(_objectSpread$1(_objectSpread$1({}, propTypes.space), propTypes.layout), propTypes.color), propTypes.flexbox), propTypes.border), {}, {
+  radius: PropTypes.string,
+  shadow: PropTypes.string
+});
 
 var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
 
@@ -384,8 +424,12 @@ function _getPrototypeOf(o) {
 module.exports = _getPrototypeOf;
 });
 
+function ownKeys$2(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread$2(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$2(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$2(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
 function _templateObject$4() {
-  var data = taggedTemplateLiteral(["\n  display: ", ";\n  border-radius: 50%;\n  width: ", ";\n  height: ", ";\n  color: ", ";\n  border: ", " solid ", ";\n  box-sizing: border-box;\n  animation: sweep 1s linear alternate infinite, rota 0.8s linear infinite;\n  margin: ", ";\n\n  @keyframes rota {\n    from {\n      transform: rotate(0deg);\n    }\n    to {\n      transform: rotate(360deg);\n    }\n  }\n  @keyframes sweep {\n    0% {\n      clip-path: polygon(0% 0%, 0% 0%, 0% 0%, 50% 50%, 0% 0%, 0% 0%, 0% 0%);\n    }\n    50% {\n      clip-path: polygon(\n        0% 0%,\n        0% 100%,\n        0% 100%,\n        50% 50%,\n        100% 0%,\n        100% 0%,\n        0% 0%\n      );\n    }\n    100% {\n      clip-path: polygon(\n        0% 0%,\n        0% 100%,\n        100% 100%,\n        50% 50%,\n        100% 100%,\n        100% 0%,\n        0% 0%\n      );\n    }\n  }\n"]);
+  var data = taggedTemplateLiteral(["\n  display: ", ";\n  border-radius: 50%;\n  width: ", ";\n  height: ", ";\n  color: ", ";\n  border: ", " solid ", ";\n  box-sizing: border-box;\n  animation: sweep 1s linear alternate infinite, rota 0.8s linear infinite;\n  ", "\n\n  @keyframes rota {\n    from {\n      transform: rotate(0deg);\n    }\n    to {\n      transform: rotate(360deg);\n    }\n  }\n  @keyframes sweep {\n    0% {\n      clip-path: polygon(0% 0%, 0% 0%, 0% 0%, 50% 50%, 0% 0%, 0% 0%, 0% 0%);\n    }\n    50% {\n      clip-path: polygon(\n        0% 0%,\n        0% 100%,\n        0% 100%,\n        50% 50%,\n        100% 0%,\n        100% 0%,\n        0% 0%\n      );\n    }\n    100% {\n      clip-path: polygon(\n        0% 0%,\n        0% 100%,\n        100% 100%,\n        50% 50%,\n        100% 100%,\n        100% 0%,\n        0% 0%\n      );\n    }\n  }\n"]);
 
   _templateObject$4 = function _templateObject() {
     return data;
@@ -412,10 +456,11 @@ var Spinner = styled__default.div(_templateObject$4(), function (props) {
   var theme = _ref5.theme,
       color = _ref5.color;
   return color || theme.colors.primary;
-}, function (_ref6) {
-  var margin = _ref6.margin;
-  return margin || 0;
-});
+}, styledSystem.space);
+Spinner.propTypes = _objectSpread$2(_objectSpread$2({
+  size: PropTypes.string,
+  width: PropTypes.string
+}, propTypes.color), propTypes.space);
 
 function _templateObject$5() {
   var data = taggedTemplateLiteral(["\n  font-weight: ", ";\n  font-family: ", ";\n  min-width: 120px;\n  width: ", ";\n  border: none;\n  cursor: pointer;\n  transition: transform 0.1s;\n  min-height: 2.9em;\n  &:hover {\n    opacity: .9;\n  }\n  &:active {\n    transform: ", ";\n    opacity: 1;\n  }\n  &:disabled {\n    opacity: 1;\n    cursor: default;\n    background-color: ", ";\n  }\n  > div {\n    margin: auto;\n  }\n  ", "\n  ", "\n  ", "\n  ", "\n  ", "\n  ", "\n"]);
@@ -481,9 +526,9 @@ var StyledButton = styled__default.button.attrs({
   return theme.colors.gray.xlight;
 }, styledSystem.buttonStyle, radius, size, styledSystem.space, styledSystem.layout, styledSystem.typography);
 
-function ownKeys$2(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+function ownKeys$3(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread$2(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$2(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$2(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread$3(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$3(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$3(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return possibleConstructorReturn(this, result); }; }
 
@@ -526,11 +571,11 @@ defineProperty(Button, "SHAPES", SHAPES);
 
 defineProperty(Button, "SIZES", SIZES);
 
-defineProperty(Button, "propTypes", _objectSpread$2(_objectSpread$2(_objectSpread$2({
+defineProperty(Button, "propTypes", _objectSpread$3(_objectSpread$3(_objectSpread$3({
   onClick: PropTypes.oneOfType([PropTypes.func, PropTypes.string]).isRequired,
   shape: PropTypes.oneOf(Object.keys(SHAPES)),
   size: PropTypes.oneOf(Object.keys(SIZES))
-}, styledSystem.propTypes.space), styledSystem.propTypes.layout), styledSystem.propTypes.typography));
+}, propTypes.space), propTypes.layout), propTypes.typography));
 
 defineProperty(Button, "defaultProps", {
   onClick: function onClick() {},
@@ -952,16 +997,16 @@ function _templateObject$6() {
   return data;
 }
 
-function ownKeys$3(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+function ownKeys$4(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread$3(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$3(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$3(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread$4(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$4(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$4(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 var Flex = mapProps(function (_ref) {
   var wrap = _ref.wrap,
       align = _ref.align,
       justify = _ref.justify,
       otherProps = objectWithoutProperties(_ref, ["wrap", "align", "justify"]);
 
-  return _objectSpread$3({
+  return _objectSpread$4({
     flexWrap: wrap ? 'wrap' : 'nowrap',
     alignItems: align,
     justifyContent: justify
@@ -970,7 +1015,11 @@ var Flex = mapProps(function (_ref) {
 Flex.defaultProps = {
   theme: theme
 };
-Flex.propTypes = _objectSpread$3(_objectSpread$3(_objectSpread$3(_objectSpread$3(_objectSpread$3(_objectSpread$3(_objectSpread$3({}, styledSystem.propTypes.space), styledSystem.propTypes.layout), styledSystem.propTypes.color), styledSystem.propTypes.alignItems), styledSystem.propTypes.justifyContent), styledSystem.propTypes.flexWrap), styledSystem.propTypes.flexDirection);
+Flex.propTypes = _objectSpread$4(_objectSpread$4(_objectSpread$4(_objectSpread$4(_objectSpread$4(_objectSpread$4(_objectSpread$4({
+  wrap: PropTypes.bool,
+  align: PropTypes.string,
+  justify: PropTypes.string
+}, propTypes.space), propTypes.layout), propTypes.color), propTypes.alignItems), propTypes.justifyContent), propTypes.flexWrap), propTypes.flexDirection);
 Flex.displayName = 'Flex';
 
 function _templateObject2() {
@@ -1891,9 +1940,9 @@ exports["default"] = _default;
 
 var Link$1 = unwrapExports(Link);
 
-function ownKeys$4(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+function ownKeys$5(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread$4(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$4(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$4(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread$5(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$5(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$5(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _createSuper$1(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$1(); return function _createSuperInternal() { var Super = getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return possibleConstructorReturn(this, result); }; }
 
@@ -1999,7 +2048,7 @@ var IconButton = /*#__PURE__*/function (_PureComponent) {
   return IconButton;
 }(React.PureComponent);
 
-defineProperty(IconButton, "propTypes", _objectSpread$4({
+defineProperty(IconButton, "propTypes", _objectSpread$5({
   onClick: PropTypes.func,
   icon: PropTypes.string,
   size: PropTypes.string,
@@ -2144,14 +2193,14 @@ var StyledCardDescription = styled__default.p(_templateObject5(), function (_ref
 });
 var StyledContent = styled__default.div(_templateObject6(), function (_ref14) {
   var showDivider = _ref14.showDivider;
-  return showDivider ? "1.5em" : "2em";
+  return showDivider ? '1.5em' : '2em';
 });
 var TitleContainer = styled__default.div(_templateObject7());
 var ActionsContainer = styled__default.div(_templateObject8());
 
-function ownKeys$5(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+function ownKeys$6(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread$5(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$5(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$5(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread$6(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$6(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$6(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _createSuper$2(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$2(); return function _createSuperInternal() { var Super = getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return possibleConstructorReturn(this, result); }; }
 
@@ -2203,10 +2252,10 @@ defineProperty(Card, "defaultProps", {
   actions: []
 });
 
-defineProperty(Card, "propTypes", _objectSpread$5(_objectSpread$5(_objectSpread$5({
+defineProperty(Card, "propTypes", _objectSpread$6(_objectSpread$6(_objectSpread$6({
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired
-}, styledSystem.propTypes.space), styledSystem.propTypes.layout), styledSystem.propTypes.flexbox));
+}, propTypes.space), propTypes.layout), propTypes.flexbox));
 
 defineProperty(Card, "Header", StyledCardHeader);
 
@@ -2218,10 +2267,10 @@ defineProperty(Card, "Divider", StyledCardDivider);
 
 defineProperty(Card, "Content", StyledContent);
 
-function ownKeys$6(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+function ownKeys$7(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread$6(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$6(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$6(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-var defaultPropTypes = _objectSpread$6(_objectSpread$6({
+function _objectSpread$7(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$7(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$7(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+var inputPropTypes = _objectSpread$7(_objectSpread$7({
   formik: PropTypes.object,
   id: PropTypes.string,
   name: PropTypes.string.isRequired,
@@ -2232,7 +2281,7 @@ var defaultPropTypes = _objectSpread$6(_objectSpread$6({
   placeholder: PropTypes.string,
   alertText: PropTypes.string,
   inputStyles: PropTypes.object
-}, styledSystem.propTypes.layout), styledSystem.propTypes.space);
+}, propTypes.layout), propTypes.space);
 
 function _templateObject3$1() {
   var data = taggedTemplateLiteral(["\n  display: inline-block;\n  width: 100%;\n\n  ", "\n\n  &::after {\n    content: '';\n    display: block;\n    position: absolute;\n    box-sizing: border-box;\n    top: 4px;\n    left: 2px;\n    width: 10px;\n    height: 5px;\n    border: solid 2px transparent;\n    border-right: none;\n    border-top: none;\n    transform: translate(3px, 4px) rotate(-45deg);\n  }\n\n  ", ":checked + &::before,\n  ", ":indeterminate + &::before {\n    border-color: ", ";\n    background-color: ", ";\n  }\n\n  ", ":checked + &::after,\n  ", ":indeterminate + &::after {\n    border-color: rgb(255, 255, 255);\n  }\n\n  ", ":indeterminate + &::after {\n    border-left: none;\n    transform: translate(4px, 3px);\n  }\n"]);
@@ -2319,9 +2368,9 @@ StyledInput,
 /* sc-selector */
 StyledInput);
 
-function ownKeys$7(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+function ownKeys$8(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread$7(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$7(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$7(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread$8(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$8(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$8(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _createSuper$3(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$3(); return function _createSuperInternal() { var Super = getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return possibleConstructorReturn(this, result); }; }
 
@@ -2365,13 +2414,13 @@ var Checkbox = /*#__PURE__*/function (_React$PureComponent) {
   return Checkbox;
 }(React.PureComponent);
 
-defineProperty(Checkbox, "propTypes", _objectSpread$7(_objectSpread$7(_objectSpread$7({
+defineProperty(Checkbox, "propTypes", _objectSpread$8(_objectSpread$8(_objectSpread$8({
   children: PropTypes.node,
   onChange: PropTypes.func,
   onBlur: PropTypes.func,
   checked: PropTypes.bool,
   disabled: PropTypes.bool
-}, styledSystem.propTypes.space), styledSystem.propTypes.layout), styledSystem.propTypes.typography));
+}, propTypes.space), propTypes.layout), propTypes.typography));
 
 var CalendarToday = createCommonjsModule(function (module, exports) {
 
@@ -2422,9 +2471,9 @@ exports["default"] = _default;
 
 var CalendarToday$1 = unwrapExports(CalendarToday);
 
-function ownKeys$8(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+function ownKeys$9(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread$8(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$8(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$8(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread$9(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$9(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$9(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _templateObject3$2() {
   var data = taggedTemplateLiteral(["\n  position: absolute;\n  top: 0;\n  right: 0;\n  font-size: ", ";\n  font-style: italic;\n  color: ", ";\n  font-weight: ", ";\n"]);
@@ -2520,7 +2569,7 @@ var InputWrapper = function InputWrapper(_ref10) {
   }, alertText));
 };
 
-InputWrapper.propTypes = _objectSpread$8(_objectSpread$8({
+InputWrapper.propTypes = _objectSpread$9(_objectSpread$9({
   id: PropTypes.string,
   label: PropTypes.string,
   children: PropTypes.node,
@@ -2529,7 +2578,7 @@ InputWrapper.propTypes = _objectSpread$8(_objectSpread$8({
   containerStyle: PropTypes.object,
   labelStyle: PropTypes.object,
   required: PropTypes.bool
-}, styledSystem.propTypes.layout), styledSystem.propTypes.space);
+}, propTypes.layout), propTypes.space);
 
 var errorForField = function errorForField(errors, touched, fieldname) {
   if (errors[fieldname] && touched[fieldname]) {
@@ -10874,7 +10923,7 @@ var defineProperty$4 = function (obj, key, value) {
   return obj;
 };
 
-var _extends = Object.assign || function (target) {
+var _extends$1 = Object.assign || function (target) {
   for (var i = 1; i < arguments.length; i++) {
     var source = arguments[i];
 
@@ -10896,7 +10945,7 @@ var _extends = Object.assign || function (target) {
  * @returns {Object} ClientRect like output
  */
 function getClientRect(offsets) {
-  return _extends({}, offsets, {
+  return _extends$1({}, offsets, {
     right: offsets.left + offsets.width,
     bottom: offsets.top + offsets.height
   });
@@ -11184,7 +11233,7 @@ function computeAutoPlacement(placement, refRect, popper, reference, boundariesE
   };
 
   var sortedAreas = Object.keys(rects).map(function (key) {
-    return _extends({
+    return _extends$1({
       key: key
     }, rects[key], {
       area: getArea(rects[key])
@@ -11826,9 +11875,9 @@ function computeStyle(data, options) {
   };
 
   // Update `data` attributes, styles and arrowStyles
-  data.attributes = _extends({}, attributes, data.attributes);
-  data.styles = _extends({}, styles, data.styles);
-  data.arrowStyles = _extends({}, data.offsets.arrow, data.arrowStyles);
+  data.attributes = _extends$1({}, attributes, data.attributes);
+  data.styles = _extends$1({}, styles, data.styles);
+  data.arrowStyles = _extends$1({}, data.offsets.arrow, data.arrowStyles);
 
   return data;
 }
@@ -12108,7 +12157,7 @@ function flip(data, options) {
 
       // this object contains `position`, we want to preserve it along with
       // any additional property we may add in the future
-      data.offsets.popper = _extends({}, data.offsets.popper, getPopperOffsets(data.instance.popper, data.offsets.reference, data.placement));
+      data.offsets.popper = _extends$1({}, data.offsets.popper, getPopperOffsets(data.instance.popper, data.offsets.reference, data.placement));
 
       data = runModifiers(data.instance.modifiers, data, 'flip');
     }
@@ -12382,7 +12431,7 @@ function preventOverflow(data, options) {
 
   order.forEach(function (placement) {
     var side = ['left', 'top'].indexOf(placement) !== -1 ? 'primary' : 'secondary';
-    popper = _extends({}, popper, check[side](placement));
+    popper = _extends$1({}, popper, check[side](placement));
   });
 
   data.offsets.popper = popper;
@@ -12417,7 +12466,7 @@ function shift(data) {
       end: defineProperty$4({}, side, reference[side] + reference[measurement] - popper[measurement])
     };
 
-    data.offsets.popper = _extends({}, popper, shiftOffsets[shiftvariation]);
+    data.offsets.popper = _extends$1({}, popper, shiftOffsets[shiftvariation]);
   }
 
   return data;
@@ -12949,7 +12998,7 @@ var Popper = function () {
     this.update = debounce(this.update.bind(this));
 
     // with {} we create a new object with the options inside it
-    this.options = _extends({}, Popper.Defaults, options);
+    this.options = _extends$1({}, Popper.Defaults, options);
 
     // init state
     this.state = {
@@ -12964,13 +13013,13 @@ var Popper = function () {
 
     // Deep merge modifiers options
     this.options.modifiers = {};
-    Object.keys(_extends({}, Popper.Defaults.modifiers, options.modifiers)).forEach(function (name) {
-      _this.options.modifiers[name] = _extends({}, Popper.Defaults.modifiers[name] || {}, options.modifiers ? options.modifiers[name] : {});
+    Object.keys(_extends$1({}, Popper.Defaults.modifiers, options.modifiers)).forEach(function (name) {
+      _this.options.modifiers[name] = _extends$1({}, Popper.Defaults.modifiers[name] || {}, options.modifiers ? options.modifiers[name] : {});
     });
 
     // Refactoring modifiers' list (Object => Array)
     this.modifiers = Object.keys(this.options.modifiers).map(function (name) {
-      return _extends({
+      return _extends$1({
         name: name
       }, _this.options.modifiers[name]);
     })
@@ -14319,9 +14368,9 @@ var expandedIconStyles = {
   boxShadow: '0px 0px 16px 0px rgba(0, 0, 0, 0.09)'
 };
 
-function ownKeys$9(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+function ownKeys$a(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread$9(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$9(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$9(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread$a(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$a(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$a(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _createSuper$4(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$4(); return function _createSuperInternal() { var Super = getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return possibleConstructorReturn(this, result); }; }
 
@@ -14373,10 +14422,14 @@ var ExpandingSearchInput = /*#__PURE__*/function (_Component) {
       var _this$props = this.props,
           onChange = _this$props.onChange,
           onExpand = _this$props.onExpand,
-          otherProps = objectWithoutProperties(_this$props, ["onChange", "onExpand"]);
+          _this$props$placehold = _this$props.placeholder,
+          placeholder = _this$props$placehold === void 0 ? 'Search...' : _this$props$placehold,
+          disabled = _this$props.disabled,
+          otherProps = objectWithoutProperties(_this$props, ["onChange", "onExpand", "placeholder", "disabled"]);
 
       return /*#__PURE__*/React__default.createElement(Container, otherProps, /*#__PURE__*/React__default.createElement(Input, {
-        placeholder: "Search...",
+        disabled: disabled,
+        placeholder: placeholder,
         expanded: expanded,
         ref: this.input,
         onChange: debounce$1(function () {
@@ -14384,7 +14437,7 @@ var ExpandingSearchInput = /*#__PURE__*/function (_Component) {
         }, 500)
       }), /*#__PURE__*/React__default.createElement(Magnify$1, {
         onClick: this.toggleExpanded,
-        style: _objectSpread$9(_objectSpread$9({}, iconAltStyling), expanded && expandedIconStyles),
+        style: _objectSpread$a(_objectSpread$a({}, iconAltStyling), expanded && expandedIconStyles),
         bg: "white",
         size: fontSizes.large,
         color: colors.gray.default
@@ -14434,9 +14487,9 @@ Footer.defaultProps = {
 };
 Footer.displayName = 'Footer';
 
-function ownKeys$a(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+function ownKeys$b(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread$a(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$a(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$a(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread$b(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$b(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$b(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _templateObject$e() {
   var data = taggedTemplateLiteral(["\n  display: block;\n  max-width: 100%;\n  height: auto;\n  ", "\n  ", "\n  ", "\n"]);
@@ -14476,7 +14529,7 @@ var Image = styled__default.img.attrs({
   alt: ''
 })(_templateObject$e(), shape, styledSystem.layout, styledSystem.shadow);
 Image.displayName = 'Image';
-Image.propTypes = _objectSpread$a(_objectSpread$a({}, styledSystem.propTypes.layout), styledSystem.propTypes.shadow);
+Image.propTypes = _objectSpread$b(_objectSpread$b({}, propTypes.layout), propTypes.shadow);
 Image.defaultProps = {
   theme: theme,
   shape: SHAPES$1.square
@@ -14577,7 +14630,7 @@ var Input$1 = /*#__PURE__*/function (_React$PureComponent) {
   return Input;
 }(React.PureComponent);
 
-defineProperty(Input$1, "propTypes", defaultPropTypes);
+defineProperty(Input$1, "propTypes", inputPropTypes);
 
 defineProperty(Input$1, "defaultProps", {
   label: '',
@@ -14689,7 +14742,8 @@ var LanguageSetField = function LanguageSetField(_ref) {
       onChange = _ref.onChange,
       language = _ref.language,
       name = _ref.name,
-      otherProps = objectWithoutProperties(_ref, ["locale", "default", "containerId", "languages", "inputProps", "placeholder", "value", "onChange", "language", "name"]);
+      disabled = _ref.disabled,
+      otherProps = objectWithoutProperties(_ref, ["locale", "default", "containerId", "languages", "inputProps", "placeholder", "value", "onChange", "language", "name", "disabled"]);
 
   language = language || languages.find(function (_ref2) {
     var code = _ref2.code;
@@ -14701,7 +14755,8 @@ var LanguageSetField = function LanguageSetField(_ref) {
     placeholder: placeholder,
     name: name,
     value: value,
-    onChange: onChange
+    onChange: onChange,
+    disabled: disabled
   }, inputProps)));
 };
 
@@ -16385,9 +16440,9 @@ var InnerContent = styled__default.div(_templateObject8$1(), function (_ref12) {
 var Footer$1 = styled__default.div(_templateObject9());
 var FadeOverlay = styled__default.div(_templateObject10());
 
-function ownKeys$b(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+function ownKeys$c(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread$b(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$b(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$b(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread$c(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$c(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$c(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _createSuper$6(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$6(); return function _createSuperInternal() { var Super = getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return possibleConstructorReturn(this, result); }; }
 
@@ -16484,7 +16539,7 @@ var ModalWrapper = /*#__PURE__*/function (_Component) {
           alignItems: 'center',
           justifyContent: 'center'
         },
-        content: _objectSpread$b({
+        content: _objectSpread$c({
           position: 'relative',
           top: 'unset',
           left: 'unset',
@@ -16520,6 +16575,7 @@ var ModalWrapper = /*#__PURE__*/function (_Component) {
         });
       };
 
+      console.log(onClose);
       return /*#__PURE__*/React__default.createElement(ReactModal, _extends_1({
         onRequestClose: onClose,
         onAfterOpen: this.afterOpenModal,
@@ -16538,7 +16594,7 @@ var ModalWrapper = /*#__PURE__*/function (_Component) {
         style: wrapperStyle
       }, scrollable && /*#__PURE__*/React__default.createElement(FadeOverlay, null), /*#__PURE__*/React__default.createElement(InnerContent, {
         hasHeader: hasHeader,
-        style: _objectSpread$b(_objectSpread$b({}, styleOverrides.content), contentStyle)
+        style: _objectSpread$c(_objectSpread$c({}, styleOverrides.content), contentStyle)
       }, children)), footer && /*#__PURE__*/React__default.createElement(Footer$1, {
         ref: function ref(node) {
           return _this2.footerRef = node;
@@ -16564,7 +16620,7 @@ defineProperty(ModalWrapper, "defaultProps", {
   hideCloseButton: false
 });
 
-defineProperty(ModalWrapper, "propTypes", _objectSpread$b({
+defineProperty(ModalWrapper, "propTypes", {
   onClose: PropTypes.func,
   onBack: PropTypes.func,
   style: PropTypes.object,
@@ -16582,7 +16638,7 @@ defineProperty(ModalWrapper, "propTypes", _objectSpread$b({
   footer: PropTypes.node,
   scrollable: PropTypes.bool,
   hideCloseButton: PropTypes.bool
-}, ReactModal.propTypes));
+});
 
 function _templateObject2$7() {
   var data = taggedTemplateLiteral(["\n  white-space: nowrap;\n  position: absolute;\n  background-color: ", ";\n  border-radius: ", ";\n  box-shadow: 0 0 15px 5px rgba(0,0,0,.2);\n  ", ";\n  ", ";\n  z-index: ", ";\n  transform: ", ";\n  transform-origin: ", ";\n  transition: 80ms transform ease-out;\n  &::before {\n    display: ", ";\n    content: '';\n    position: absolute;\n    height: 12px;\n    width: 12px;\n    background-color: inherit;\n    ", "; \n    z-index: -1;\n  }\n"]);
@@ -16859,7 +16915,13 @@ defineProperty(Popup, "defaultProps", {
   arrow: false
 });
 
-defineProperty(Popup, "propTypes", {});
+defineProperty(Popup, "propTypes", {
+  position: PropTypes.string,
+  contentStyle: PropTypes.object,
+  xOffset: PropTypes.string,
+  yOffset: PropTypes.string,
+  array: PropTypes.bool
+});
 
 function _templateObject$j() {
   var data = taggedTemplateLiteral(["\n  padding: .5em 2em .5em 1em;\n  width: 100%;\n  text-align: left;\n  font-family: ", ";\n  font-weight: ", ";\n  font-size: ", ";\n  color: ", ";\n  background-color: ", ";\n  cursor: pointer;\n  &:hover {\n    background-color: ", ";\n  }\n  &:active {\n    background-color: ", ";\n  }\n"]);
@@ -16893,9 +16955,9 @@ var Button$2 = styled__default.button(_templateObject$j(), function (_ref) {
   return theme.colors.gray.xlight;
 });
 
-function ownKeys$c(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+function ownKeys$d(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread$c(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$c(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$c(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread$d(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$d(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$d(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 var Link$2 = function Link(_ref) {
   var href = _ref.href,
@@ -16942,7 +17004,7 @@ OverflowMenu.defaultProps = {
   position: 'bottomLeft',
   options: []
 };
-OverflowMenu.propTypes = _objectSpread$c(_objectSpread$c({}, Popup.propTypes), {}, {
+OverflowMenu.propTypes = _objectSpread$d(_objectSpread$d({}, Popup.propTypes), {}, {
   options: PropTypes.arrayOf(PropTypes.object)
 });
 var index$3 = /*#__PURE__*/React__default.memo(OverflowMenu);
@@ -16993,11 +17055,13 @@ var Container$2 = styled__default.button.attrs({
       theme = _ref4.theme;
   return active ? theme.shadows[1] : 'none';
 }, function (_ref5) {
+  var _theme$colors;
+
   var active = _ref5.active,
       theme = _ref5.theme,
       count = _ref5.count,
-      bordered = _ref5.bordered;
-  return "1px solid ".concat(count >= 0 && !active || bordered && !active ? theme.colors.gray.xlight : theme.colors.transparent);
+      variant = _ref5.variant;
+  return "1px solid ".concat(count >= 0 && !active || variant === 'bordered' && !active ? theme.colors.gray.xlight : (_theme$colors = theme.colors) === null || _theme$colors === void 0 ? void 0 : _theme$colors.transparent);
 }, function (_ref6) {
   var theme = _ref6.theme;
   return theme.fontSizes.small;
@@ -17028,9 +17092,9 @@ var Count = styled__default.span(_templateObject3$5(), function (_ref11) {
   return active ? theme.colors.orange[0] : theme.colors.gray.xxlight;
 });
 
-function ownKeys$d(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+function ownKeys$e(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread$d(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$d(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$d(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread$e(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$e(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$e(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _createSuper$8(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$8(); return function _createSuperInternal() { var Super = getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return possibleConstructorReturn(this, result); }; }
 
@@ -17072,14 +17136,13 @@ var Pill = /*#__PURE__*/function (_React$PureComponent) {
 }(React.PureComponent);
 
 defineProperty(Pill, "defaultProps", {
-  theme: theme,
   active: false
 });
 
-defineProperty(Pill, "propTypes", _objectSpread$d(_objectSpread$d({
+defineProperty(Pill, "propTypes", _objectSpread$e(_objectSpread$e({
   active: PropTypes.bool,
   onClick: PropTypes.func.isRequired
-}, styledSystem.propTypes.space), styledSystem.propTypes.layout));
+}, propTypes.space), propTypes.layout));
 
 var _global = createCommonjsModule(function (module) {
 // https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
@@ -17461,7 +17524,7 @@ module.exports = { "default": assign$1, __esModule: true };
 
 unwrapExports(assign$2);
 
-var _extends$1 = createCommonjsModule(function (module, exports) {
+var _extends$2 = createCommonjsModule(function (module, exports) {
 
 exports.__esModule = true;
 
@@ -17486,7 +17549,7 @@ exports.default = _assign2.default || function (target) {
 };
 });
 
-var _extends$2 = unwrapExports(_extends$1);
+var _extends$3 = unwrapExports(_extends$2);
 
 var classCallCheck$2 = createCommonjsModule(function (module, exports) {
 
@@ -18376,7 +18439,7 @@ var Track = function Track(props) {
 
   var positonStyle = vertical ? (_ref = {}, _defineProperty$1(_ref, reverse ? 'top' : 'bottom', offset + '%'), _defineProperty$1(_ref, reverse ? 'bottom' : 'top', 'auto'), _defineProperty$1(_ref, 'height', length + '%'), _ref) : (_ref2 = {}, _defineProperty$1(_ref2, reverse ? 'right' : 'left', offset + '%'), _defineProperty$1(_ref2, reverse ? 'left' : 'right', 'auto'), _defineProperty$1(_ref2, 'width', length + '%'), _ref2);
 
-  var elStyle = _extends$2({}, style, positonStyle);
+  var elStyle = _extends$3({}, style, positonStyle);
   return included ? React__default.createElement('div', { className: className, style: elStyle }) : null;
 };
 
@@ -19017,9 +19080,9 @@ var Steps = function Steps(_ref) {
     var offset = Math.abs(point - min) / range * 100 + '%';
 
     var isActived = !included && point === upperBound || included && point <= upperBound && point >= lowerBound;
-    var style = vertical ? _extends$2({}, dotStyle, _defineProperty$1({}, reverse ? 'top' : 'bottom', offset)) : _extends$2({}, dotStyle, _defineProperty$1({}, reverse ? 'right' : 'left', offset));
+    var style = vertical ? _extends$3({}, dotStyle, _defineProperty$1({}, reverse ? 'top' : 'bottom', offset)) : _extends$3({}, dotStyle, _defineProperty$1({}, reverse ? 'right' : 'left', offset));
     if (isActived) {
-      style = _extends$2({}, style, activeDotStyle);
+      style = _extends$3({}, style, activeDotStyle);
     }
 
     var pointClassName = classnames((_classNames = {}, _defineProperty$1(_classNames, prefixCls + '-dot', true), _defineProperty$1(_classNames, prefixCls + '-dot-active', isActived), _defineProperty$1(_classNames, prefixCls + '-dot-reverse', reverse), _classNames));
@@ -19090,7 +19153,7 @@ var Marks = function Marks(_ref) {
     }, reverse ? 'right' : 'left', reverse ? (point - min / 4) / range * 100 + '%' : (point - min) / range * 100 + '%');
 
     var style = vertical ? bottomStyle : leftStyle;
-    var markStyle = markPointIsObject ? _extends$2({}, style, markPoint.style) : style;
+    var markStyle = markPointIsObject ? _extends$3({}, style, markPoint.style) : style;
     return React__default.createElement(
       'span',
       {
@@ -19215,14 +19278,14 @@ var Handle = function (_React$Component) {
 
       var className = classnames(this.props.className, _defineProperty$1({}, prefixCls + '-handle-click-focused', this.state.clickFocused));
       var positionStyle = vertical ? (_ref2 = {}, _defineProperty$1(_ref2, reverse ? 'top' : 'bottom', offset + '%'), _defineProperty$1(_ref2, reverse ? 'bottom' : 'top', 'auto'), _defineProperty$1(_ref2, 'transform', 'translateY(+50%)'), _ref2) : (_ref3 = {}, _defineProperty$1(_ref3, reverse ? 'right' : 'left', offset + '%'), _defineProperty$1(_ref3, reverse ? 'left' : 'right', 'auto'), _defineProperty$1(_ref3, 'transform', 'translateX(' + (reverse ? '+' : '-') + '50%)'), _ref3);
-      var elStyle = _extends$2({}, style, positionStyle);
+      var elStyle = _extends$3({}, style, positionStyle);
 
       var _tabIndex = tabIndex || 0;
       if (disabled || tabIndex === null) {
         _tabIndex = null;
       }
 
-      return React__default.createElement('div', _extends$2({
+      return React__default.createElement('div', _extends$3({
         ref: this.setHandleRef,
         tabIndex: _tabIndex
       }, restProps, {
@@ -20468,7 +20531,7 @@ function createSlider(Component) {
           },
           React__default.createElement('div', {
             className: prefixCls + '-rail',
-            style: _extends$2({}, maximumTrackStyle, railStyle)
+            style: _extends$3({}, maximumTrackStyle, railStyle)
           }),
           tracks,
           React__default.createElement(Steps, {
@@ -20505,7 +20568,7 @@ function createSlider(Component) {
     }]);
 
     return ComponentEnhancer;
-  }(Component), _class.displayName = 'ComponentEnhancer(' + Component.displayName + ')', _class.propTypes = _extends$2({}, Component.propTypes, {
+  }(Component), _class.displayName = 'ComponentEnhancer(' + Component.displayName + ')', _class.propTypes = _extends$3({}, Component.propTypes, {
     min: PropTypes.number,
     max: PropTypes.number,
     step: PropTypes.number,
@@ -20533,7 +20596,7 @@ function createSlider(Component) {
     autoFocus: PropTypes.bool,
     onFocus: PropTypes.func,
     onBlur: PropTypes.func
-  }), _class.defaultProps = _extends$2({}, Component.defaultProps, {
+  }), _class.defaultProps = _extends$3({}, Component.defaultProps, {
     prefixCls: 'rc-slider',
     className: '',
     min: 0,
@@ -20549,7 +20612,7 @@ function createSlider(Component) {
         return null;
       }
 
-      return React__default.createElement(Handle, _extends$2({}, restProps, { key: index }));
+      return React__default.createElement(Handle, _extends$3({}, restProps, { key: index }));
     },
 
     onBeforeChange: noop,
@@ -20624,7 +20687,7 @@ var Slider = function (_React$Component) {
     value: function onChange(state) {
       var props = this.props;
       var isNotControlled = !('value' in props);
-      var nextState = state.value > this.props.max ? _extends$2({}, state, { value: this.props.max }) : state;
+      var nextState = state.value > this.props.max ? _extends$3({}, state, { value: this.props.max }) : state;
       if (isNotControlled) {
         this.setState(nextState);
       }
@@ -20706,7 +20769,7 @@ var Slider = function (_React$Component) {
         return null;
       }
 
-      var mergedProps = _extends$2({}, this.props, nextProps);
+      var mergedProps = _extends$3({}, this.props, nextProps);
       var val = ensureValueInRange(v, mergedProps);
       return ensureValuePrecision(val, mergedProps);
     }
@@ -20760,7 +20823,7 @@ var Slider = function (_React$Component) {
         offset: 0,
         reverse: reverse,
         length: offset,
-        style: _extends$2({}, minimumTrackStyle, _trackStyle)
+        style: _extends$3({}, minimumTrackStyle, _trackStyle)
       });
 
       return { tracks: track, handles: handle };
@@ -20947,7 +21010,7 @@ var Range = function (_React$Component) {
         }
       }
 
-      var data = _extends$2({}, this.state, state);
+      var data = _extends$3({}, this.state, state);
       var changedValue = data.bounds;
       props.onChange(changedValue);
     }
@@ -21088,7 +21151,7 @@ var Range = function (_React$Component) {
 
       var cache = this._getPointsCache;
       if (!cache || cache.marks !== marks || cache.step !== step) {
-        var pointsObject = _extends$2({}, marks);
+        var pointsObject = _extends$3({}, marks);
         if (step !== null) {
           for (var point = min; point <= max; point += step) {
             pointsObject[point] = point;
@@ -21311,7 +21374,7 @@ var Range = function (_React$Component) {
         })) {
           return null;
         }
-        return _extends$2({}, state, {
+        return _extends$3({}, state, {
           bounds: nextBounds
         });
       }
@@ -21578,7 +21641,7 @@ function isPointsEq(a1, a2, isAlignPoint) {
 
 function getAlignFromPlacement(builtinPlacements, placementStr, align) {
   var baseAlign = builtinPlacements[placementStr] || {};
-  return _extends$2({}, baseAlign, align);
+  return _extends$3({}, baseAlign, align);
 }
 
 function getAlignPopupClassName(builtinPlacements, prefixCls, align, isAlignPoint) {
@@ -21626,7 +21689,7 @@ function _defineProperty$2(obj, key, value) {
   return obj;
 }
 
-function ownKeys$e(object, enumerableOnly) {
+function ownKeys$f(object, enumerableOnly) {
   var keys = Object.keys(object);
 
   if (Object.getOwnPropertySymbols) {
@@ -21645,13 +21708,13 @@ function _objectSpread2(target) {
     var source = arguments[i] != null ? arguments[i] : {};
 
     if (i % 2) {
-      ownKeys$e(source, true).forEach(function (key) {
+      ownKeys$f(source, true).forEach(function (key) {
         _defineProperty$2(target, key, source[key]);
       });
     } else if (Object.getOwnPropertyDescriptors) {
       Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
     } else {
-      ownKeys$e(source).forEach(function (key) {
+      ownKeys$f(source).forEach(function (key) {
         Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
       });
     }
@@ -24126,7 +24189,7 @@ var Animate = function (_React$Component) {
       if (Component) {
         var passedProps = props;
         if (typeof Component === 'string') {
-          passedProps = _extends$2({
+          passedProps = _extends$3({
             className: props.className,
             style: props.style
           }, props.componentProps);
@@ -24460,7 +24523,7 @@ var Popup$1 = function (_Component) {
       }
     }
 
-    var newStyle = _extends$2({}, sizeStyle, style, this.getZIndexStyle());
+    var newStyle = _extends$3({}, sizeStyle, style, this.getZIndexStyle());
 
     var popupInnerProps = {
       className: className,
@@ -24493,7 +24556,7 @@ var Popup$1 = function (_Component) {
           },
           React__default.createElement(
             PopupInner,
-            _extends$2({
+            _extends$3({
               visible: true
             }, popupInnerProps),
             children
@@ -24526,7 +24589,7 @@ var Popup$1 = function (_Component) {
         },
         React__default.createElement(
           PopupInner,
-          _extends$2({
+          _extends$3({
             hiddenClassName: hiddenClassName
           }, popupInnerProps),
           children
@@ -25314,7 +25377,7 @@ var _initialiseProps$2 = function _initialiseProps() {
 
     return React__default.createElement(
       Popup$1,
-      _extends$2({
+      _extends$3({
         prefixCls: prefixCls,
         destroyPopupOnHide: destroyPopupOnHide,
         visible: popupVisible,
@@ -25562,13 +25625,13 @@ var Tooltip = function (_Component) {
         getTooltipContainer = _props.getTooltipContainer,
         restProps = _objectWithoutProperties$2(_props, ['overlayClassName', 'trigger', 'mouseEnterDelay', 'mouseLeaveDelay', 'overlayStyle', 'prefixCls', 'children', 'onVisibleChange', 'afterVisibleChange', 'transitionName', 'animation', 'placement', 'align', 'destroyTooltipOnHide', 'defaultVisible', 'getTooltipContainer']);
 
-    var extraProps = _extends$2({}, restProps);
+    var extraProps = _extends$3({}, restProps);
     if ('visible' in this.props) {
       extraProps.popupVisible = this.props.visible;
     }
     return React__default.createElement(
       Trigger$1,
-      _extends$2({
+      _extends$3({
         popupClassName: overlayClassName,
         ref: this.saveTrigger,
         prefixCls: prefixCls,
@@ -25650,7 +25713,7 @@ function createSliderWithTooltip(Component) {
       }, _this.handleTooltipVisibleChange = function (index, visible) {
         _this.setState(function (prevState) {
           return {
-            visibles: _extends$2({}, prevState.visibles, _defineProperty$1({}, index, visible))
+            visibles: _extends$3({}, prevState.visibles, _defineProperty$1({}, index, visible))
           };
         });
       }, _this.handleWithTooltip = function (_ref2) {
@@ -25684,15 +25747,15 @@ function createSliderWithTooltip(Component) {
 
         return React__default.createElement(
           Tooltip,
-          _extends$2({}, restTooltipProps, {
+          _extends$3({}, restTooltipProps, {
             prefixCls: prefixCls,
             overlay: overlay,
             placement: placement,
             visible: !disabled && (_this.state.visibles[index] || dragging) || visible,
             key: index
           }),
-          React__default.createElement(Handle, _extends$2({}, restProps, {
-            style: _extends$2({}, handleStyleWithIndex),
+          React__default.createElement(Handle, _extends$3({}, restProps, {
+            style: _extends$3({}, handleStyleWithIndex),
             value: value,
             onMouseEnter: function onMouseEnter() {
               return _this.handleTooltipVisibleChange(index, true);
@@ -25708,7 +25771,7 @@ function createSliderWithTooltip(Component) {
     _createClass$1(ComponentWrapper, [{
       key: 'render',
       value: function render() {
-        return React__default.createElement(Component, _extends$2({}, this.props, { handle: this.handleWithTooltip }));
+        return React__default.createElement(Component, _extends$3({}, this.props, { handle: this.handleWithTooltip }));
       }
     }]);
 
@@ -25742,7 +25805,7 @@ function _templateObject2$9() {
 }
 
 function _templateObject$l() {
-  var data = taggedTemplateLiteral(["\n  min-height: 38px;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n\n  & .rc-slider {\n    margin: 0 1em;\n  }\n\n  & .rc-slider-handle {\n    background-color: ", ";\n    border: solid 2px ", ";\n    box-shadow: 0 0 0.4em 0 rgba(0, 0, 0, 0.3);\n  }\n\n  & .rc-slider-track {\n    background-color: ", ";\n  }\n"]);
+  var data = taggedTemplateLiteral(["\n  min-height: 38px;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n\n  & .rc-slider {\n    margin: 0 1em;\n  }\n\n  & .rc-slider-handle {\n    background-color: ", ";\n    border: solid 2px ", ";\n    box-shadow: 0 0 0.4em 0 rgba(0, 0, 0, 0.3);\n  }\n\n  & .rc-slider-track {\n    background-color: ", ";\n  }\n\n  & .rc-slider-disabled {\n    background: transparent;\n  }\n"]);
 
   _templateObject$l = function _templateObject() {
     return data;
@@ -25772,7 +25835,8 @@ var RangeInput = function RangeInput(_ref) {
       metric = _ref.metric,
       alertTextOverride = _ref.alertText,
       inputProps = _ref.inputProps,
-      otherProps = objectWithoutProperties(_ref, ["min", "max", "value", "onBlur", "onChange", "formik", "metric", "alertText", "inputProps"]);
+      disabled = _ref.disabled,
+      otherProps = objectWithoutProperties(_ref, ["min", "max", "value", "onBlur", "onChange", "formik", "metric", "alertText", "inputProps", "disabled"]);
 
   var _otherProps$id = otherProps.id,
       id = _otherProps$id === void 0 ? otherProps.name : _otherProps$id,
@@ -25804,7 +25868,8 @@ var RangeInput = function RangeInput(_ref) {
     value: rangeValues,
     width: "70%",
     min: min,
-    max: max
+    max: max,
+    disabled: disabled
   }, inputProps)), /*#__PURE__*/React__default.createElement(Value, null, metric, rangeValues[1])));
 };
 
@@ -28331,7 +28396,7 @@ exports.default = AutosizeInput;
 
 var AutosizeInput = unwrapExports(AutosizeInput_1);
 
-function _extends$3() { _extends$3 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$3.apply(this, arguments); }
+function _extends$4() { _extends$4 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$4.apply(this, arguments); }
 
 function _inheritsLoose$2(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; subClass.__proto__ = superClass; }
 function getMenuPlacement(_ref) {
@@ -28571,7 +28636,7 @@ function (_Component) {
     _this.getUpdatedProps = function () {
       var menuPlacement = _this.props.menuPlacement;
       var placement = _this.state.placement || coercePlacement(menuPlacement);
-      return _extends$3({}, _this.props, {
+      return _extends$4({}, _this.props, {
         placement: placement,
         maxHeight: _this.state.maxHeight
       });
@@ -28603,7 +28668,7 @@ var Menu = function Menu(props) {
       getStyles = props.getStyles,
       innerRef = props.innerRef,
       innerProps = props.innerProps;
-  return jsx("div", _extends$3({
+  return jsx("div", _extends$4({
     css: getStyles('menu', props),
     className: cx({
       menu: true
@@ -28666,7 +28731,7 @@ var NoOptionsMessage = function NoOptionsMessage(props) {
       cx = props.cx,
       getStyles = props.getStyles,
       innerProps = props.innerProps;
-  return jsx("div", _extends$3({
+  return jsx("div", _extends$4({
     css: getStyles('noOptionsMessage', props),
     className: cx({
       'menu-notice': true,
@@ -28683,7 +28748,7 @@ var LoadingMessage = function LoadingMessage(props) {
       cx = props.cx,
       getStyles = props.getStyles,
       innerProps = props.innerProps;
-  return jsx("div", _extends$3({
+  return jsx("div", _extends$4({
     css: getStyles('loadingMessage', props),
     className: cx({
       'menu-notice': true,
@@ -29220,7 +29285,7 @@ var Control = function Control(props) {
 
 function _objectWithoutPropertiesLoose$1$1(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 
-function _extends$4() { _extends$4 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$4.apply(this, arguments); }
+function _extends$4$1() { _extends$4$1 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$4$1.apply(this, arguments); }
 var groupCSS = function groupCSS(_ref) {
   var spacing = _ref.theme.spacing;
   return {
@@ -29244,7 +29309,7 @@ var Group = function Group(props) {
     className: cx({
       group: true
     }, className)
-  }, jsx(Heading, _extends$4({}, headingProps, {
+  }, jsx(Heading, _extends$4$1({}, headingProps, {
     selectProps: selectProps,
     theme: theme,
     getStyles: getStyles,
@@ -29275,8 +29340,8 @@ var GroupHeading = function GroupHeading(props) {
       selectProps = props.selectProps,
       cleanProps = _objectWithoutPropertiesLoose$1$1(props, ["className", "cx", "getStyles", "theme", "selectProps"]);
 
-  return jsx("div", _extends$4({
-    css: getStyles('groupHeading', _extends$4({
+  return jsx("div", _extends$4$1({
+    css: getStyles('groupHeading', _extends$4$1({
       theme: theme
     }, cleanProps)),
     className: cx({
@@ -30518,7 +30583,7 @@ var defaultTheme = {
 
 function _objectWithoutPropertiesLoose$2$1(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 
-function _extends$4$1() { _extends$4$1 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$4$1.apply(this, arguments); }
+function _extends$4$2() { _extends$4$2 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$4$2.apply(this, arguments); }
 
 function _inheritsLoose$4(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; subClass.__proto__ = superClass; }
 
@@ -30649,7 +30714,7 @@ function (_Component) {
       var _this$props = _this.props,
           onChange = _this$props.onChange,
           name = _this$props.name;
-      onChange(newValue, _extends$4$1({}, actionMeta, {
+      onChange(newValue, _extends$4$2({}, actionMeta, {
         name: name
       }));
     };
@@ -30844,7 +30909,7 @@ function (_Component) {
           context = _ref3.context;
 
       _this.setState({
-        ariaLiveContext: instructionsAriaMessage(event, _extends$4$1({}, context, {
+        ariaLiveContext: instructionsAriaMessage(event, _extends$4$2({}, context, {
           label: _this.props['aria-label']
         }))
       });
@@ -31669,7 +31734,7 @@ function (_Component) {
     // overlay it with the default theme.
 
 
-    return _extends$4$1({}, defaultTheme, this.props.theme);
+    return _extends$4$2({}, defaultTheme, this.props.theme);
   };
 
   _proto.getCommonProps = function getCommonProps() {
@@ -31896,7 +31961,7 @@ function (_Component) {
 
     if (!isSearchable) {
       // use a dummy input to maintain focus/blur functionality
-      return React__default.createElement(DummyInput, _extends$4$1({
+      return React__default.createElement(DummyInput, _extends$4$2({
         id: id,
         innerRef: this.getInputRef,
         onBlur: this.onInputBlur,
@@ -31913,7 +31978,7 @@ function (_Component) {
         cx = _this$commonProps.cx,
         theme = _this$commonProps.theme,
         selectProps = _this$commonProps.selectProps;
-    return React__default.createElement(Input, _extends$4$1({
+    return React__default.createElement(Input, _extends$4$2({
       autoCapitalize: "none",
       autoComplete: "off",
       autoCorrect: "off",
@@ -31958,7 +32023,7 @@ function (_Component) {
         isFocused = _this$state8.isFocused;
 
     if (!this.hasValue() || !controlShouldRenderValue) {
-      return inputValue ? null : React__default.createElement(Placeholder, _extends$4$1({}, commonProps, {
+      return inputValue ? null : React__default.createElement(Placeholder, _extends$4$2({}, commonProps, {
         key: "placeholder",
         isDisabled: isDisabled,
         isFocused: isFocused
@@ -31968,7 +32033,7 @@ function (_Component) {
     if (isMulti) {
       var selectValues = selectValue.map(function (opt, index) {
         var isOptionFocused = opt === focusedValue;
-        return React__default.createElement(MultiValue, _extends$4$1({}, commonProps, {
+        return React__default.createElement(MultiValue, _extends$4$2({}, commonProps, {
           components: {
             Container: MultiValueContainer,
             Label: MultiValueLabel,
@@ -32001,7 +32066,7 @@ function (_Component) {
     }
 
     var singleValue = selectValue[0];
-    return React__default.createElement(SingleValue, _extends$4$1({}, commonProps, {
+    return React__default.createElement(SingleValue, _extends$4$2({}, commonProps, {
       data: singleValue,
       isDisabled: isDisabled
     }), this.formatOptionLabel(singleValue, 'value'));
@@ -32024,7 +32089,7 @@ function (_Component) {
       onTouchEnd: this.onClearIndicatorTouchEnd,
       'aria-hidden': 'true'
     };
-    return React__default.createElement(ClearIndicator, _extends$4$1({}, commonProps, {
+    return React__default.createElement(ClearIndicator, _extends$4$2({}, commonProps, {
       innerProps: innerProps,
       isFocused: isFocused
     }));
@@ -32041,7 +32106,7 @@ function (_Component) {
     var innerProps = {
       'aria-hidden': 'true'
     };
-    return React__default.createElement(LoadingIndicator, _extends$4$1({}, commonProps, {
+    return React__default.createElement(LoadingIndicator, _extends$4$2({}, commonProps, {
       innerProps: innerProps,
       isDisabled: isDisabled,
       isFocused: isFocused
@@ -32057,7 +32122,7 @@ function (_Component) {
     var commonProps = this.commonProps;
     var isDisabled = this.props.isDisabled;
     var isFocused = this.state.isFocused;
-    return React__default.createElement(IndicatorSeparator, _extends$4$1({}, commonProps, {
+    return React__default.createElement(IndicatorSeparator, _extends$4$2({}, commonProps, {
       isDisabled: isDisabled,
       isFocused: isFocused
     }));
@@ -32074,7 +32139,7 @@ function (_Component) {
       onTouchEnd: this.onDropdownIndicatorTouchEnd,
       'aria-hidden': 'true'
     };
-    return React__default.createElement(DropdownIndicator, _extends$4$1({}, commonProps, {
+    return React__default.createElement(DropdownIndicator, _extends$4$2({}, commonProps, {
       innerProps: innerProps,
       isDisabled: isDisabled,
       isFocused: isFocused
@@ -32120,7 +32185,7 @@ function (_Component) {
       // focused option changes so we calculate additional props based on that
       var isFocused = focusedOption === props.data;
       props.innerRef = isFocused ? _this5.getFocusedOptionRef : undefined;
-      return React__default.createElement(Option, _extends$4$1({}, commonProps, props, {
+      return React__default.createElement(Option, _extends$4$2({}, commonProps, props, {
         isFocused: isFocused
       }), _this5.formatOptionLabel(props.data, 'menu'));
     };
@@ -32134,7 +32199,7 @@ function (_Component) {
               group = _objectWithoutPropertiesLoose$2$1(item, ["type"]);
 
           var headingId = item.key + "-heading";
-          return React__default.createElement(Group, _extends$4$1({}, commonProps, group, {
+          return React__default.createElement(Group, _extends$4$2({}, commonProps, group, {
             Heading: GroupHeading,
             headingProps: {
               id: headingId
@@ -32169,12 +32234,12 @@ function (_Component) {
       menuPosition: menuPosition,
       menuShouldScrollIntoView: menuShouldScrollIntoView
     };
-    var menuElement = React__default.createElement(MenuPlacer, _extends$4$1({}, commonProps, menuPlacementProps), function (_ref8) {
+    var menuElement = React__default.createElement(MenuPlacer, _extends$4$2({}, commonProps, menuPlacementProps), function (_ref8) {
       var ref = _ref8.ref,
           _ref8$placerProps = _ref8.placerProps,
           placement = _ref8$placerProps.placement,
           maxHeight = _ref8$placerProps.maxHeight;
-      return React__default.createElement(Menu, _extends$4$1({}, commonProps, menuPlacementProps, {
+      return React__default.createElement(Menu, _extends$4$2({}, commonProps, menuPlacementProps, {
         innerRef: ref,
         innerProps: {
           onMouseDown: _this5.onMenuMouseDown,
@@ -32188,7 +32253,7 @@ function (_Component) {
         onBottomArrive: onMenuScrollToBottom
       }, React__default.createElement(ScrollBlock, {
         isEnabled: menuShouldBlockScroll
-      }, React__default.createElement(MenuList, _extends$4$1({}, commonProps, {
+      }, React__default.createElement(MenuList, _extends$4$2({}, commonProps, {
         innerRef: _this5.getMenuListRef,
         isLoading: isLoading,
         maxHeight: maxHeight
@@ -32197,7 +32262,7 @@ function (_Component) {
     // so we use the same component. the actual portalling logic is forked
     // within the component based on `menuPosition`
 
-    return menuPortalTarget || menuPosition === 'fixed' ? React__default.createElement(MenuPortal, _extends$4$1({}, commonProps, {
+    return menuPortalTarget || menuPosition === 'fixed' ? React__default.createElement(MenuPortal, _extends$4$2({}, commonProps, {
       appendTo: menuPortalTarget,
       controlElement: this.controlRef,
       menuPlacement: menuPlacement,
@@ -32275,7 +32340,7 @@ function (_Component) {
         menuIsOpen = _this$props20.menuIsOpen;
     var isFocused = this.state.isFocused;
     var commonProps = this.commonProps = this.getCommonProps();
-    return React__default.createElement(SelectContainer, _extends$4$1({}, commonProps, {
+    return React__default.createElement(SelectContainer, _extends$4$2({}, commonProps, {
       className: className,
       innerProps: {
         id: id,
@@ -32283,7 +32348,7 @@ function (_Component) {
       },
       isDisabled: isDisabled,
       isFocused: isFocused
-    }), this.renderLiveRegion(), React__default.createElement(Control, _extends$4$1({}, commonProps, {
+    }), this.renderLiveRegion(), React__default.createElement(Control, _extends$4$2({}, commonProps, {
       innerRef: this.getControlRef,
       innerProps: {
         onMouseDown: this.onControlMouseDown,
@@ -32292,9 +32357,9 @@ function (_Component) {
       isDisabled: isDisabled,
       isFocused: isFocused,
       menuIsOpen: menuIsOpen
-    }), React__default.createElement(ValueContainer, _extends$4$1({}, commonProps, {
+    }), React__default.createElement(ValueContainer, _extends$4$2({}, commonProps, {
       isDisabled: isDisabled
-    }), this.renderPlaceholderOrValue(), this.renderInput()), React__default.createElement(IndicatorsContainer, _extends$4$1({}, commonProps, {
+    }), this.renderPlaceholderOrValue(), this.renderInput()), React__default.createElement(IndicatorsContainer, _extends$4$2({}, commonProps, {
       isDisabled: isDisabled
     }), this.renderClearIndicator(), this.renderLoadingIndicator(), this.renderIndicatorSeparator(), this.renderDropdownIndicator())), this.renderMenu(), this.renderFormField());
   };
@@ -32432,9 +32497,9 @@ var manageState = function manageState(SelectComponent) {
 
 var index$6 = manageState(Select);
 
-function ownKeys$f(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+function ownKeys$g(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread$e(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$f(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$f(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread$f(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$g(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$g(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 var bgColorMap = {
   borderless: colors.transparent,
   compact: colors.transparent,
@@ -32460,7 +32525,7 @@ var styleOverride = function styleOverride(_ref) {
       };
     },
     control: function control(provided, state) {
-      return _objectSpread$e(_objectSpread$e(_objectSpread$e({}, provided), {}, {
+      return _objectSpread$f(_objectSpread$f(_objectSpread$f({}, provided), {}, {
         color: colors.gray.xdark,
         backgroundColor: disabled ? getDisabledColor(variant) : bgColorMap[variant] || colors.gray.xxlight,
         border: state.isDisabled && !hasShadow && !['borderless', 'compact'].includes(variant) ? "border: 1px solid ".concat(colors.gray.xlight) : 'none',
@@ -32479,14 +32544,14 @@ var styleOverride = function styleOverride(_ref) {
       });
     },
     valueContainer: function valueContainer(provided) {
-      return _objectSpread$e(_objectSpread$e({}, provided), {}, {
+      return _objectSpread$f(_objectSpread$f({}, provided), {}, {
         justifyContent: "flex-".concat(align === 'left' ? 'start' : 'end')
       }, variant === 'compact' ? {
         padding: 0
       } : {});
     },
     menuList: function menuList(provided) {
-      return _objectSpread$e(_objectSpread$e({}, provided), {}, {
+      return _objectSpread$f(_objectSpread$f({}, provided), {}, {
         backgroundColor: colors.white,
         borderRadius: 4
       });
@@ -32497,7 +32562,7 @@ var styleOverride = function styleOverride(_ref) {
       };
     },
     singleValue: function singleValue() {
-      return _objectSpread$e({
+      return _objectSpread$f({
         color: colors.gray.xdark
       }, singleValueStyles);
     },
@@ -32519,11 +32584,11 @@ var styleOverride = function styleOverride(_ref) {
         color = colors.gray.xxlight;
       }
 
-      return _objectSpread$e(_objectSpread$e({}, defaultStyles), {}, {
+      return _objectSpread$f(_objectSpread$f({}, defaultStyles), {}, {
         fontSize: fontSizes.small,
         color: colors.gray.xdark,
         backgroundColor: color,
-        ':active': _objectSpread$e(_objectSpread$e({}, defaultStyles[':active']), {}, {
+        ':active': _objectSpread$f(_objectSpread$f({}, defaultStyles[':active']), {}, {
           backgroundColor: colors.gray.xlight
         }),
         cursor: 'pointer',
@@ -32532,6 +32597,10 @@ var styleOverride = function styleOverride(_ref) {
     }
   };
 };
+
+function ownKeys$h(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread$g(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$h(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$h(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 var Select$1 = function Select(props) {
   var shape = props.shape,
@@ -32586,6 +32655,12 @@ Select$1.defaultProps = {
   align: 'left',
   singleValueStyles: {}
 };
+Select$1.propTypes = _objectSpread$g(_objectSpread$g({}, inputPropTypes), {}, {
+  align: PropTypes.string,
+  singleValueStyles: PropTypes.object,
+  containerStyle: PropTypes.object,
+  multiple: PropTypes.bool
+});
 var index$7 = formik.connect(Select$1);
 
 var lib$3 = createCommonjsModule(function (module) {
@@ -32599,9 +32674,9 @@ module.exports=function(e){var t={};function r(n){if(t[n])return t[n].exports;va
 
 var ReactPhoneInput = unwrapExports(lib$3);
 
-function ownKeys$g(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+function ownKeys$i(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread$f(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$g(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$g(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread$h(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$i(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$i(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 var TelInput = function TelInput(props) {
   var formik = props.formik,
@@ -32650,7 +32725,7 @@ var TelInput = function TelInput(props) {
     name: name,
     countryCodeEditable: false,
     masks: masks,
-    inputExtraProps: _objectSpread$f(_objectSpread$f({}, inputProps), {}, {
+    inputExtraProps: _objectSpread$h(_objectSpread$h({}, inputProps), {}, {
       id: id,
       name: name
     }),
@@ -32664,14 +32739,17 @@ TelInput.defaultProps = {
     za: '.. ... ....'
   }
 };
+TelInput.propTypes = _objectSpread$h(_objectSpread$h({}, inputPropTypes), {}, {
+  defaultCountry: PropTypes.string
+});
 var index$8 = formik.connect(TelInput);
 
-function ownKeys$h(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+function ownKeys$j(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread$g(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$h(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$h(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread$i(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$j(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$j(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _templateObject$n() {
-  var data = taggedTemplateLiteral(["\n  color: ", ";\n  text-transform: ", ";\n  ", "\n  ", "\n  ", "\n"]);
+  var data = taggedTemplateLiteral(["\n  color: ", ";\n  ", "\n  ", "\n  ", "\n  ", "\n  ", "\n"]);
 
   _templateObject$n = function _templateObject() {
     return data;
@@ -32684,12 +32762,12 @@ var Text$1 = styled__default.p(_templateObject$n(), function (_ref) {
   return theme.colors.gray.xdark;
 }, function (_ref2) {
   var uppercase = _ref2.uppercase;
-  return uppercase && 'uppercase';
-}, styledSystem.typography, styledSystem.space, styledSystem.color);
+  return uppercase && 'text-transform: uppercase;';
+}, styledSystem.typography, styledSystem.layout, styledSystem.space, styledSystem.color);
 Text$1.defaultProps = {
   theme: theme
 };
-Text$1.propTypes = _objectSpread$g(_objectSpread$g(_objectSpread$g({}, styledSystem.propTypes.typography), styledSystem.propTypes.space), styledSystem.propTypes.color);
+Text$1.propTypes = _objectSpread$i(_objectSpread$i(_objectSpread$i(_objectSpread$i({}, propTypes.typography), propTypes.layout), propTypes.space), propTypes.color);
 Text$1.displayName = 'Text';
 
 var interopRequireDefault = createCommonjsModule(function (module) {
@@ -33222,7 +33300,7 @@ unwrapExports(dom);
 var dom_1 = dom.getScrollBarWidth;
 var dom_2 = dom.calcOffset;
 
-function _objectSpread$h(target) {
+function _objectSpread$j(target) {
   for (var i = 1; i < arguments.length; i++) {
     var source = arguments[i] != null ? Object(arguments[i]) : {};
     var ownKeys = Object.keys(source);
@@ -33241,7 +33319,7 @@ function _objectSpread$h(target) {
   return target;
 }
 
-var objectSpread = _objectSpread$h;
+var objectSpread = _objectSpread$j;
 
 /**
  * lodash (Custom Build) <https://lodash.com/>
@@ -37591,9 +37669,8 @@ var TimeInput = /*#__PURE__*/function (_Component) {
           timeFormat = _this$props2.timeFormat,
           placeholder = _this$props2.placeholder,
           name = _this$props2.name,
-          label = _this$props2.label,
           width = _this$props2.width,
-          otherProps = objectWithoutProperties(_this$props2, ["formik", "disabled", "timeFormat", "placeholder", "name", "label", "width"]);
+          otherProps = objectWithoutProperties(_this$props2, ["formik", "disabled", "timeFormat", "placeholder", "name", "width"]);
 
       var timeObj = formik.values && formik.values[name];
       var formattedTime = timeObj && timeObj["formatted".concat(timeFormat)];
@@ -37709,9 +37786,9 @@ var ToggleLabel = styled__default.label(_templateObject3$6(), function (_ref) {
   return theme.colors.primary;
 });
 
-function ownKeys$i(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+function ownKeys$k(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread$i(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$i(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$i(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread$k(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$k(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$k(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _createSuper$c(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$c(); return function _createSuperInternal() { var Super = getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return possibleConstructorReturn(this, result); }; }
 
@@ -37761,9 +37838,9 @@ defineProperty(Toggle, "defaultProps", {
   inputStyle: {}
 });
 
-defineProperty(Toggle, "propTypes", _objectSpread$i(_objectSpread$i({
+defineProperty(Toggle, "propTypes", _objectSpread$k(_objectSpread$k({
   checked: PropTypes.bool
-}, styledSystem.propTypes.layout), styledSystem.propTypes.space));
+}, propTypes.layout), propTypes.space));
 
 function rng() {
   return crypto.randomBytes(16);
@@ -37880,7 +37957,7 @@ function _extends$e() {
   return _extends$e.apply(this, arguments);
 }
 
-function ownKeys$j(object, enumerableOnly) {
+function ownKeys$l(object, enumerableOnly) {
   var keys = Object.keys(object);
 
   if (Object.getOwnPropertySymbols) {
@@ -37899,13 +37976,13 @@ function _objectSpread2$1(target) {
     var source = arguments[i] != null ? arguments[i] : {};
 
     if (i % 2) {
-      ownKeys$j(Object(source), true).forEach(function (key) {
+      ownKeys$l(Object(source), true).forEach(function (key) {
         _defineProperty$3(target, key, source[key]);
       });
     } else if (Object.getOwnPropertyDescriptors) {
       Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
     } else {
-      ownKeys$j(Object(source)).forEach(function (key) {
+      ownKeys$l(Object(source)).forEach(function (key) {
         Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
       });
     }
@@ -39551,7 +39628,13 @@ function (_React$Component) {
   clickable: false
 }), _defineProperty$3(_class2, "supportedWrappers", ['div', 'span']), _defineProperty$3(_class2, "displayName", 'ReactTooltip'), _temp)) || _class) || _class) || _class) || _class) || _class) || _class) || _class;
 
-var Tooltip$1 = ReactTooltip;
+var Tooltip$1 = function Tooltip(_ref) {
+  var text = _ref.text,
+      children = _ref.children;
+  return /*#__PURE__*/React__default.createElement("div", null, /*#__PURE__*/React__default.createElement(ReactTooltip, null), /*#__PURE__*/React__default.createElement("div", {
+    "data-tip": text
+  }, children));
+};
 
 function _arrayWithoutHoles(arr) {
   if (Array.isArray(arr)) return arrayLikeToArray(arr);
@@ -39659,9 +39742,9 @@ function _createSuper$d(Derived) { var hasNativeReflectConstruct = _isNativeRefl
 
 function _isNativeReflectConstruct$d() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
-function ownKeys$k(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+function ownKeys$m(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread$j(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$k(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$k(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread$l(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$m(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$m(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function updateLanguageSets(formikLanguageSets, state) {
   var currentLanguageSets = state.languageSets;
@@ -39674,7 +39757,7 @@ function updateLanguageSets(formikLanguageSets, state) {
 
     return acc.concat(Object.assign({}, set));
   }, []);
-  return _objectSpread$j(_objectSpread$j({}, state), {}, {
+  return _objectSpread$l(_objectSpread$l({}, state), {}, {
     languageSets: newLanguageSets
   });
 }
@@ -39705,7 +39788,7 @@ var TranslateModal = /*#__PURE__*/function (_Component) {
       var maxTranslationLength = _this.props.maxTranslationLength;
       var slicedValue = value.slice(0, maxTranslationLength);
       var languageSets = prevLanguageSets.map(function (set, index) {
-        return index === i ? _objectSpread$j(_objectSpread$j({}, set), {}, {
+        return index === i ? _objectSpread$l(_objectSpread$l({}, set), {}, {
           value: slicedValue
         }) : set;
       });
@@ -39813,9 +39896,9 @@ var Container$5 = styled__default.div(_templateObject$q());
 var TranslateIconContainer = styled__default.div(_templateObject2$c());
 var TranslateInputContainer = styled__default(StyledInput$1)(_templateObject3$8());
 
-function ownKeys$l(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+function ownKeys$n(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread$k(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$l(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$l(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread$m(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$n(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$n(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _createSuper$e(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$e(); return function _createSuperInternal() { var Super = getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return possibleConstructorReturn(this, result); }; }
 
@@ -39879,7 +39962,7 @@ var TranslationInput = /*#__PURE__*/function (_Component) {
           defaultValue = _prevValues[0],
           rest = _prevValues.slice(1);
 
-      var updatedDefault = _objectSpread$k(_objectSpread$k({}, defaultValue), {}, {
+      var updatedDefault = _objectSpread$m(_objectSpread$m({}, defaultValue), {}, {
         value: value
       });
 
@@ -39994,7 +40077,7 @@ defineProperty(TranslationInput, "defaultProps", {
   onBlur: function onBlur() {}
 });
 
-defineProperty(TranslationInput, "propTypes", _objectSpread$k(_objectSpread$k({}, defaultPropTypes), {}, {
+defineProperty(TranslationInput, "propTypes", _objectSpread$m(_objectSpread$m({}, inputPropTypes), {}, {
   languages: PropTypes.arrayOf(PropTypes.object).isRequired,
   formik: PropTypes.object.isRequired,
   onLanguagesChange: PropTypes.func
@@ -40036,6 +40119,10 @@ var Value$1 = styled__default.button(_templateObject2$d(), function (_ref) {
       theme = _ref4.theme;
   return selected ? "\n    color: ".concat(theme.colors.gray.xdark, ";\n    background-color: ").concat(theme.colors.white, ";\n    box-shadow: ").concat(theme.shadows[1], "\n  ") : "\n    color: ".concat(theme.colors.gray.dark, ";\n    background-color: ").concat(theme.colors.gray.xxlight, ";\n  ");
 });
+
+function ownKeys$o(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread$n(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$o(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$o(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function formikChangeHandler(formik, name, value) {
   var values = formik.values,
@@ -40085,6 +40172,12 @@ var TypeInput = function TypeInput(_ref) {
   })));
 };
 
+TypeInput.propTypes = _objectSpread$n(_objectSpread$n({}, inputPropTypes), {}, {
+  options: PropTypes.arrayOf(PropTypes.shape({
+    name: PropTypes.string,
+    value: PropTypes.string
+  }))
+});
 var index$b = formik.connect(TypeInput);
 
 exports.BackgroundImage = BackgroundImage;
