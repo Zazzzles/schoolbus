@@ -160,7 +160,6 @@ class ModalWrapper extends Component {
         noShadow
       />
     )
-    console.log(onClose)
 
     return (
       <ReactModal

@@ -2,6 +2,7 @@ import React from 'react'
 import IconButton from './'
 import Flex from '../flex'
 import Text from '../text'
+import IconButton2 from './icon-button2'
 
 
 export default {
@@ -9,13 +10,17 @@ export default {
   component: IconButton,
 }
 
-export const Base = (args) => <IconButton {...args} />
+export const Base = (args) => <>
+  <IconButton {...args} />
+  <IconButton2 {...args} />
+</>
 Base.args = {
   fontSize: 'large',
   color: 'gray.dark',
   iconColor: 'primary',
   badge: 2,
-  noShadow: false
+  noShadow: false,
+  icon: 'Plus'
 }
 
 export const Props = () => (
@@ -23,6 +28,7 @@ export const Props = () => (
     <Text>default icon button</Text>
     <Flex m='.5em 0 2em'>
       <IconButton />
+      <IconButton2 />
     </Flex>
 
     <Text>
@@ -37,6 +43,13 @@ export const Props = () => (
       <IconButton size='large' ml='1em' />
       <IconButton size='xlarge' ml='1em' />
     </Flex>
+    <Flex alignItems='center'>
+      <IconButton2 size='xsmall' />
+      <IconButton2 size='small' ml='1em' />
+      <IconButton2 size='medium' ml='1em' />
+      <IconButton2 size='large' ml='1em' />
+      <IconButton2 size='xlarge' ml='1em' />
+    </Flex>
 
     <Text>
       color <em>(string | sets background color | E.g 'primary' or '#fefefe')</em>
@@ -46,6 +59,11 @@ export const Props = () => (
       <IconButton color='blue' ml='1em' iconColor='white' />
       <IconButton color='#cce1ed' ml='1em' />
     </Flex>
+    <Flex>
+      <IconButton2 color='secondary' />
+      <IconButton2 color='blue' ml='1em' iconColor='white' />
+      <IconButton2 color='#cce1ed' ml='1em' />
+    </Flex>
 
     <Text>
       iconColor <em>(string | E.g 'primary' or '#fefefe')</em>
@@ -53,6 +71,10 @@ export const Props = () => (
     <Flex m='.5em 0 2em'>
       <IconButton color='black' iconColor='white' />
       <IconButton color='green' iconColor='#eaff00' ml='1em' />
+    </Flex>
+    <Flex>
+      <IconButton2 color='black' iconColor='white' />
+      <IconButton2 color='green' iconColor='#eaff00' ml='1em' />
     </Flex>
 
     <Text>
@@ -65,6 +87,12 @@ export const Props = () => (
       <IconButton color='white' icon='download' ml='1em' />
       <IconButton color='white' ml='1em' icon='back' />
       <IconButton icon='delete' ml='1em' />
+    </Flex>
+    <Flex m='.5em 0 2em'>
+      <IconButton2 color='white' icon='edit' />
+      <IconButton2 color='white' icon='download' ml='1em' />
+      <IconButton2 color='white' ml='1em' icon='back' />
+      <IconButton2 icon='delete' ml='1em' />
     </Flex>
 
     <Text>

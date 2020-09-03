@@ -27,13 +27,13 @@ export const Input = styled(StyledInput)`
   border-radius: ${({ theme }) => theme.radii.small};
 `
 
-export const LanguageText = styled.div`
+export const LanguageText = styled.label`
   font-size: ${({ theme }) => theme.fontSizes.small};
   font-weight: ${({ theme }) => theme.fontWeights.bold};
   color: ${({ theme }) => theme.colors.black};
 `
 
-export const DefaultText = styled.div`
+export const DefaultText = styled.span`
   padding-left: 0.5em;
   font-weight: ${({ theme }) => theme.fontWeights.medium};
   font-size: ${({ theme }) => theme.fontSizes.small};

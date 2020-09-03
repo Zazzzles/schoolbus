@@ -29,7 +29,7 @@ const DateInput = ({
   ...otherProps
 }) => {
 
-  const { id = otherProps.name, label, inputStyle, name, required } = otherProps
+  const { name, id = name, label, inputStyle, required } = otherProps
 
   const { alertText, ...inputDefaults } = createDefaultInputProps({
     value,

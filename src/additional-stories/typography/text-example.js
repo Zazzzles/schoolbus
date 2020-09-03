@@ -12,7 +12,6 @@ const TextExport = ({ keys, values, keyPrefix, propKey, children }) => {
           title={`${keyPrefix}.${key}`}
           value={values[key]}
         >
-          {console.log(propKey, key)}
           <Text {...{ [propKey]: key }} m='0' maxWidth='70%'>
             {children || 'Mollit nulla qui minim amet laborum do esse esse ullamco veniam eu in laborum.'}
           </Text>

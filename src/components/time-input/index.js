@@ -60,11 +60,11 @@ class TimeInput extends Component {
       disabled,
       timeFormat,
       placeholder,
-      name,
       width,
       ...otherProps
     } = this.props
 
+    const { name, id = name } = otherProps
     const timeObj = formik.values && formik.values[name]
     const formattedTime = timeObj && timeObj[`formatted${timeFormat}`]
     const errorText = errorForField(formik.errors, formik.touched, name)
@@ -79,11 +79,11 @@ class TimeInput extends Component {
           type="text"
           name="timeInput"
           placeholder={placeholder}
-          value={formattedTime ? formattedTime : ''}
+          value={formattedTime || ''}
           disabled={disabled}
-          onChange={() => {}}
           width="100%"
           autoComplete="off"
+          id={id}
         />
         <ClockOutline style={styleOverrides.icon} color={colors.gray.default} />
       </InputWrapper>

@@ -2547,7 +2547,9 @@ var StyledAlertText = styled__default.span.attrs({
 StyledAlertText.displayName = 'StyledAlertText';
 
 var InputWrapper = function InputWrapper(_ref10) {
-  var id = _ref10.id,
+  var name = _ref10.name,
+      _ref10$id = _ref10.id,
+      id = _ref10$id === void 0 ? name : _ref10$id,
       label = _ref10.label,
       children = _ref10.children,
       alertText = _ref10.alertText,
@@ -2555,13 +2557,14 @@ var InputWrapper = function InputWrapper(_ref10) {
       containerStyle = _ref10.containerStyle,
       labelStyle = _ref10.labelStyle,
       required = _ref10.required,
-      otherProps = objectWithoutProperties(_ref10, ["id", "label", "children", "alertText", "alertStyle", "containerStyle", "labelStyle", "required"]);
+      otherProps = objectWithoutProperties(_ref10, ["name", "id", "label", "children", "alertText", "alertStyle", "containerStyle", "labelStyle", "required"]);
 
   return /*#__PURE__*/React__default.createElement(StyledInputContainer, _extends_1({
     empty: !label,
-    style: containerStyle
+    style: containerStyle,
+    "data-error-key": id
   }, otherProps), label && /*#__PURE__*/React__default.createElement(StyledLabel$1, {
-    htmlFor: id,
+    htmlFor: id || name,
     required: required,
     style: labelStyle
   }, label), children, alertText && /*#__PURE__*/React__default.createElement(StyledAlertText, {
@@ -13812,11 +13815,11 @@ var DateInput = function DateInput(_ref) {
       dateFormatter = _ref.dateFormatter,
       otherProps = objectWithoutProperties(_ref, ["formik", "disabled", "value", "onBlur", "onChange", "placeholder", "inputProps", "alertText", "dateFormatter"]);
 
-  var _otherProps$id = otherProps.id,
-      id = _otherProps$id === void 0 ? otherProps.name : _otherProps$id,
+  var name = otherProps.name,
+      _otherProps$id = otherProps.id,
+      id = _otherProps$id === void 0 ? name : _otherProps$id,
       label = otherProps.label,
       inputStyle = otherProps.inputStyle,
-      name = otherProps.name,
       required = otherProps.required;
 
   var _createDefaultInputPr = createDefaultInputProps({
@@ -14595,12 +14598,12 @@ var Input$1 = /*#__PURE__*/function (_React$PureComponent) {
           inputProps = _this$props.inputProps,
           otherProps = objectWithoutProperties(_this$props, ["formik", "alertText", "disabled", "value", "onBlur", "onChange", "inputProps"]);
 
-      var _otherProps$id = otherProps.id,
-          id = _otherProps$id === void 0 ? otherProps.name : _otherProps$id,
+      var name = otherProps.name,
+          _otherProps$id = otherProps.id,
+          id = _otherProps$id === void 0 ? name : _otherProps$id,
           label = otherProps.label,
           placeholder = otherProps.placeholder,
-          inputStyle = otherProps.inputStyle,
-          name = otherProps.name;
+          inputStyle = otherProps.inputStyle;
 
       var _createDefaultInputPr = createDefaultInputProps({
         value: value,
@@ -14710,7 +14713,7 @@ var Input$2 = styled__default(StyledInput$1)(_templateObject3$3(), function (_re
   var theme = _ref6.theme;
   return theme.radii.small;
 });
-var LanguageText = styled__default.div(_templateObject4$1(), function (_ref7) {
+var LanguageText = styled__default.label(_templateObject4$1(), function (_ref7) {
   var theme = _ref7.theme;
   return theme.fontSizes.small;
 }, function (_ref8) {
@@ -14720,7 +14723,7 @@ var LanguageText = styled__default.div(_templateObject4$1(), function (_ref7) {
   var theme = _ref9.theme;
   return theme.colors.black;
 });
-var DefaultText = styled__default.div(_templateObject5$1(), function (_ref10) {
+var DefaultText = styled__default.span(_templateObject5$1(), function (_ref10) {
   var theme = _ref10.theme;
   return theme.fontWeights.medium;
 }, function (_ref11) {
@@ -14742,8 +14745,10 @@ var LanguageSetField = function LanguageSetField(_ref) {
       onChange = _ref.onChange,
       language = _ref.language,
       name = _ref.name,
+      _ref$id = _ref.id,
+      id = _ref$id === void 0 ? name : _ref$id,
       disabled = _ref.disabled,
-      otherProps = objectWithoutProperties(_ref, ["locale", "default", "containerId", "languages", "inputProps", "placeholder", "value", "onChange", "language", "name", "disabled"]);
+      otherProps = objectWithoutProperties(_ref, ["locale", "default", "containerId", "languages", "inputProps", "placeholder", "value", "onChange", "language", "name", "id", "disabled"]);
 
   language = language || languages.find(function (_ref2) {
     var code = _ref2.code;
@@ -14751,8 +14756,11 @@ var LanguageSetField = function LanguageSetField(_ref) {
   });
   return /*#__PURE__*/React__default.createElement(Container$1, _extends_1({
     id: containerId
-  }, otherProps), /*#__PURE__*/React__default.createElement(Inner, null, /*#__PURE__*/React__default.createElement(LanguageText, null, language ? language.value || locale : locale), defaultLanguage && /*#__PURE__*/React__default.createElement(DefaultText, null, "(default)")), /*#__PURE__*/React__default.createElement(Input$2, _extends_1({
+  }, otherProps), /*#__PURE__*/React__default.createElement(Inner, null, /*#__PURE__*/React__default.createElement(LanguageText, {
+    htmlFor: id
+  }, language ? language.value || locale : locale, defaultLanguage && /*#__PURE__*/React__default.createElement(DefaultText, null, "(default)"))), /*#__PURE__*/React__default.createElement(Input$2, _extends_1({
     placeholder: placeholder,
+    id: id,
     name: name,
     value: value,
     onChange: onChange,
@@ -16575,7 +16583,6 @@ var ModalWrapper = /*#__PURE__*/function (_Component) {
         });
       };
 
-      console.log(onClose);
       return /*#__PURE__*/React__default.createElement(ReactModal, _extends_1({
         onRequestClose: onClose,
         onAfterOpen: this.afterOpenModal,
@@ -25838,9 +25845,9 @@ var RangeInput = function RangeInput(_ref) {
       disabled = _ref.disabled,
       otherProps = objectWithoutProperties(_ref, ["min", "max", "value", "onBlur", "onChange", "formik", "metric", "alertText", "inputProps", "disabled"]);
 
-  var _otherProps$id = otherProps.id,
-      id = _otherProps$id === void 0 ? otherProps.name : _otherProps$id,
-      name = otherProps.name;
+  var name = otherProps.name,
+      _otherProps$id = otherProps.id,
+      id = _otherProps$id === void 0 ? name : _otherProps$id;
 
   var _createDefaultInputPr = createDefaultInputProps({
     alertText: alertTextOverride,
@@ -32616,8 +32623,11 @@ var Select$1 = function Select(props) {
       fontSize = props.fontSize,
       multiple = props.multiple,
       alertTextOverride = props.alertText,
-      name = props.name,
-      otherProps = objectWithoutProperties(props, ["shape", "hasShadow", "disabled", "disableEmpty", "options", "formik", "value", "onBlur", "onChange", "placeholder", "fontSize", "multiple", "alertText", "name"]);
+      otherProps = objectWithoutProperties(props, ["shape", "hasShadow", "disabled", "disableEmpty", "options", "formik", "value", "onBlur", "onChange", "placeholder", "fontSize", "multiple", "alertText"]);
+
+  var name = otherProps.name,
+      _otherProps$id = otherProps.id,
+      id = _otherProps$id === void 0 ? name : _otherProps$id;
 
   var _createDefaultInputPr = createDefaultInputProps({
     alertText: alertTextOverride,
@@ -32643,10 +32653,10 @@ var Select$1 = function Select(props) {
     value: value || defaultValue,
     placeholder: placeholder,
     styles: styleOverride(props),
-    name: name,
     options: options,
     isDisabled: disableEmpty ? disabled || options.length === 0 : disabled,
-    isMulti: multiple
+    isMulti: multiple,
+    id: id
   })));
 };
 
@@ -32691,10 +32701,10 @@ var TelInput = function TelInput(props) {
       alertTextOverride = props.alertText,
       otherProps = objectWithoutProperties(props, ["formik", "masks", "value", "onBlur", "onChange", "placeholder", "defaultCountry", "inputProps", "disabled", "alertText"]);
 
-  var _otherProps$id = otherProps.id,
-      id = _otherProps$id === void 0 ? otherProps.name : _otherProps$id,
-      label = otherProps.label,
-      name = otherProps.name;
+  var name = otherProps.name,
+      _otherProps$id = otherProps.id,
+      id = _otherProps$id === void 0 ? name : _otherProps$id,
+      label = otherProps.label;
 
   var _createDefaultInputPr = createDefaultInputProps({
     alertText: alertTextOverride,
@@ -37668,10 +37678,12 @@ var TimeInput = /*#__PURE__*/function (_Component) {
           disabled = _this$props2.disabled,
           timeFormat = _this$props2.timeFormat,
           placeholder = _this$props2.placeholder,
-          name = _this$props2.name,
           width = _this$props2.width,
-          otherProps = objectWithoutProperties(_this$props2, ["formik", "disabled", "timeFormat", "placeholder", "name", "width"]);
+          otherProps = objectWithoutProperties(_this$props2, ["formik", "disabled", "timeFormat", "placeholder", "width"]);
 
+      var name = otherProps.name,
+          _otherProps$id = otherProps.id,
+          id = _otherProps$id === void 0 ? name : _otherProps$id;
       var timeObj = formik.values && formik.values[name];
       var formattedTime = timeObj && timeObj["formatted".concat(timeFormat)];
       var errorText = errorForField(formik.errors, formik.touched, name);
@@ -37682,11 +37694,11 @@ var TimeInput = /*#__PURE__*/function (_Component) {
         type: "text",
         name: "timeInput",
         placeholder: placeholder,
-        value: formattedTime ? formattedTime : '',
+        value: formattedTime || '',
         disabled: disabled,
-        onChange: function onChange() {},
         width: "100%",
-        autoComplete: "off"
+        autoComplete: "off",
+        id: id
       }), /*#__PURE__*/React__default.createElement(ClockOutline$1, {
         style: styleOverrides.icon,
         color: colors.gray.default
@@ -37809,18 +37821,21 @@ var Toggle = /*#__PURE__*/function (_React$PureComponent) {
     key: "render",
     value: function render() {
       var _this$props = this.props,
-          id = _this$props.id,
+          name = _this$props.name,
+          _this$props$id = _this$props.id,
+          id = _this$props$id === void 0 ? name : _this$props$id,
           onBlur = _this$props.onBlur,
           onChange = _this$props.onChange,
           inputStyle = _this$props.inputStyle,
           checked = _this$props.checked,
-          otherProps = objectWithoutProperties(_this$props, ["id", "onBlur", "onChange", "inputStyle", "checked"]);
+          otherProps = objectWithoutProperties(_this$props, ["name", "id", "onBlur", "onChange", "inputStyle", "checked"]);
 
       return /*#__PURE__*/React.createElement(ToggleContainer, otherProps, /*#__PURE__*/React.createElement(ToggleInput, {
         style: inputStyle,
         checked: checked,
         onChange: onChange,
         onBlur: onBlur,
+        name: name,
         id: id,
         type: "checkbox",
         readOnly: true
@@ -40020,10 +40035,10 @@ var TranslationInput = /*#__PURE__*/function (_Component) {
           languages = _this$props4.languages,
           otherProps = objectWithoutProperties(_this$props4, ["inputProps", "type", "formik", "value", "onBlur", "onChange", "placeholder", "onLanguagesChange", "alertText", "disabled", "languages"]);
 
-      var _otherProps$id = otherProps.id,
-          id = _otherProps$id === void 0 ? otherProps.name : _otherProps$id,
-          label = otherProps.label,
-          name = otherProps.name;
+      var name = otherProps.name,
+          _otherProps$id = otherProps.id,
+          id = _otherProps$id === void 0 ? name : _otherProps$id,
+          label = otherProps.label;
 
       var _createDefaultInputPr = createDefaultInputProps({
         alertText: alertTextOverride,

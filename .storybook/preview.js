@@ -16,3 +16,7 @@ export const decorators = [
     </ThemeProvider>
   )
 ]
+
+export const parameters = {
+  viewMode: 'docs'
+}

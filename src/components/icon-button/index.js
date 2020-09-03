@@ -37,7 +37,7 @@ class IconButton extends PureComponent {
   }
 
   static defaultProps = {
-    icon: 'add',
+    icon: 'Plus',
     size: 'medium',
     color: 'primary',
     noShadow: false,
@@ -46,7 +46,7 @@ class IconButton extends PureComponent {
   }
 
   iconTypes = {
-    add: Plus,
+    Plus: Plus,
     filter: FilterVariant,
     translate: Translate,
     download: Download,

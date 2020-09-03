@@ -13,6 +13,7 @@ const LanguageSetField = ({
   onChange,
   language,
   name,
+  id = name,
   disabled,
   ...otherProps
 }) => {
@@ -21,11 +22,14 @@ const LanguageSetField = ({
   return (
     <Container id={containerId} {...otherProps}>
       <Inner>
-        <LanguageText>{language ? language.value || locale : locale}</LanguageText>
-        {defaultLanguage && <DefaultText>(default)</DefaultText>}
+        <LanguageText htmlFor={id}>
+          {language ? language.value || locale : locale}
+          {defaultLanguage && <DefaultText>(default)</DefaultText>}
+        </LanguageText>
       </Inner>
       <Input
         placeholder={placeholder}
+        id={id}
         name={name}
         value={value}
         onChange={onChange}
