@@ -25,10 +25,9 @@ const Select = props => {
     fontSize,
     multiple,
     alertText: alertTextOverride,
-    name,
     ...otherProps
   } = props
-
+  const { name, id = name } = otherProps
   const { alertText, hasFormik, ...inputDefaults } = createDefaultInputProps({
     alertText: alertTextOverride,
     value,
@@ -50,10 +49,10 @@ const Select = props => {
         value={value || defaultValue}
         placeholder={placeholder}
         styles={styleOverride(props)}
-        name={name}
         options={options}
         isDisabled={disableEmpty ? disabled || options.length === 0 : disabled}
         isMulti={multiple}
+        id={id}
       />
     </InputWrapper>
   )

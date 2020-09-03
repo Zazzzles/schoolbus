@@ -22,7 +22,7 @@ class Toggle extends React.PureComponent {
   }
 
   render() {
-    const { id, onBlur, onChange, inputStyle, checked, ...otherProps } = this.props
+    const { name, id = name, onBlur, onChange, inputStyle, checked, ...otherProps } = this.props
 
     return (
       <ToggleContainer {...otherProps}>
@@ -31,6 +31,7 @@ class Toggle extends React.PureComponent {
           checked={checked}
           onChange={onChange}
           onBlur={onBlur}
+          name={name}
           id={id}
           type='checkbox'
           readOnly

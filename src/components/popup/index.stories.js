@@ -27,7 +27,7 @@ export default {
 }
 
 const defaultArgs = { position: 'bottomCenter' }
-export const Base = (args) => console.log(args) || (
+export const Base = (args) => (
   <Popup
     {...args}
     trigger={<Button variant='primary'>Click me!</Button>}

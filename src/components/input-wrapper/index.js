@@ -51,7 +51,8 @@ const StyledAlertText = styled.span.attrs({
 StyledAlertText.displayName = 'StyledAlertText'
 
 const InputWrapper = ({
-  id,
+  name,
+  id = name,
   label,
   children,
   alertText,
@@ -61,9 +62,14 @@ const InputWrapper = ({
   required,
   ...otherProps
 }) => (
-  <StyledInputContainer empty={!label} style={containerStyle} {...otherProps}>
+  <StyledInputContainer
+    empty={!label}
+    style={containerStyle}
+    data-error-key={id}
+    {...otherProps}
+  >
     {label && (
-      <StyledLabel htmlFor={id} required={required} style={labelStyle}>
+      <StyledLabel htmlFor={id || name} required={required} style={labelStyle}>
         {label}
       </StyledLabel>
     )}

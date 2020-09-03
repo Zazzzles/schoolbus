@@ -103,7 +103,7 @@ class TranslationInput extends Component {
       ...otherProps
     } = this.props
 
-    const { id = otherProps.name, label, name } = otherProps
+    const { name, id = name, label } = otherProps
 
     const { alertText, hasFormik, ...inputDefaults } = createDefaultInputProps({
       alertText: alertTextOverride,

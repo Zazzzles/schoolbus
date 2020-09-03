@@ -29,7 +29,7 @@ export const Selected = () => <Select {...defaultArgs} value={options[0]} />
 export const Disabled = () => <Select {...defaultArgs} disabled />
 export const Invalid = () => <Select {...defaultArgs} options={options} alertText='Invalid' />
 export const Variants = () => (
-  <Flex wrap>
+  <Flex wrap justifyContent='space-between'>
     <Select {...defaultArgs} label='default' variant='default' />
     <Select {...defaultArgs} label='light' variant='light' />
     <Select {...defaultArgs} label='borderless' variant='borderless' />
@@ -37,7 +37,7 @@ export const Variants = () => (
   </Flex>
 )
 export const Shapes = () => (
-  <Flex wrap>
+  <Flex wrap justifyContent='space-between'>
     <Select {...defaultArgs} label='default' />
     <Select {...defaultArgs} label='rounded' shape='rounded' />
   </Flex>

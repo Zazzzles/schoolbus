@@ -21,7 +21,7 @@ const RangeInput = ({
   disabled,
   ...otherProps
 }) => {
-  const { id = otherProps.name, name } = otherProps
+  const { name, id = name } = otherProps
 
   const { alertText, hasFormik, ...inputDefaults } = createDefaultInputProps({
     alertText: alertTextOverride,
