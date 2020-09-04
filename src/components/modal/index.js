@@ -143,9 +143,8 @@ class ModalWrapper extends Component {
 
     const renderCloseIcon = () => (
       <IconButton
-        icon="close"
-        noShadow
-        color="transparent"
+        icon='Close'
+        variant='clear'
         style={styleOverrides.closeBtn}
         onClick={onClose}
       />
@@ -154,10 +153,9 @@ class ModalWrapper extends Component {
     const renderBackButton = () => (
       <IconButton
         onClick={onBack}
-        color="transparent"
-        icon="back"
+        variant='clear'
+        icon='ArrowLeft'
         style={styleOverrides.backBtn}
-        noShadow
       />
     )
 
