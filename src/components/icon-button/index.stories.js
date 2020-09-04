@@ -22,7 +22,7 @@ Base.args = {
 export const variant = () => (
   <>
     <Text mb='1em'>
-      variant <em>(E.G. primary, secondary, light, danger)</em>
+      variant <em>(E.G. primary, secondary, light, clear, danger)</em>
     </Text>
     <Flex m='.5em 0 2em'>
       <IconButton variant='primary' mr='1em' />
