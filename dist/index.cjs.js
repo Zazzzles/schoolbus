@@ -1920,26 +1920,6 @@ function _templateObject$7() {
 
   return data;
 }
-
-var getButtonColor = function getButtonColor(_ref) {
-  var theme = _ref.theme,
-      color = _ref.color,
-      disabled = _ref.disabled,
-      icon = _ref.icon,
-      badge = _ref.badge;
-  var isGray = disabled || badge && color === 'white';
-  if (isGray) return theme.colors.gray.xxlight;
-  var themeColors = theme.colors;
-  if (icon === 'delete') return themeColors.red[2];
-
-  if (Object.keys(themeColors).includes(color)) {
-    var selectedColor = themeColors[color];
-    return Array.isArray(selectedColor) ? selectedColor[2] : selectedColor;
-  }
-
-  return color;
-};
-
 var buttonSizes = {
   xsmall: '28px',
   small: '32px',
@@ -1950,11 +1930,15 @@ var buttonSizes = {
 var Button$1 = styled__default(Flex).attrs({
   as: 'button',
   type: 'button'
-})(_templateObject$7(), function (_ref2) {
-  var theme = _ref2.theme;
+})(_templateObject$7(), function (_ref) {
+  var theme = _ref.theme;
   return theme.radii.full;
-}, function (props) {
-  return getButtonColor(props);
+}, function (_ref2) {
+  var _theme$colors;
+
+  var theme = _ref2.theme,
+      color = _ref2.color;
+  return ((_theme$colors = theme.colors) === null || _theme$colors === void 0 ? void 0 : _theme$colors[color]) || color;
 }, function (_ref3) {
   var disabled = _ref3.disabled;
   return disabled ? 'none' : 'inherit';
