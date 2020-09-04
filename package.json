@@ -32,25 +32,25 @@
     "dist"
   ],
   "devDependencies": {
-    "@babel/cli": "7.11.5",
+    "@babel/cli": "7.11.6",
     "@babel/core": "7.11.6",
     "@babel/plugin-proposal-class-properties": "7.10.4",
     "@babel/plugin-proposal-object-rest-spread": "7.11.0",
-    "@babel/preset-env": "7.11.0",
+    "@babel/preset-env": "7.11.5",
     "@babel/preset-react": "7.10.4",
     "@lessondesk/babel-preset": "1.0.0",
     "@lessondesk/eslint-config": "1.4.1",
     "@lessondesk/material-icons": "^1.0.2",
-    "@storybook/addon-a11y": "6.0.20",
-    "@storybook/addon-actions": "6.0.20",
-    "@storybook/addon-docs": "^6.0.20",
+    "@storybook/addon-a11y": "6.0.21",
+    "@storybook/addon-actions": "6.0.21",
+    "@storybook/addon-docs": "^6.0.21",
     "@storybook/addon-knobs": "6.0.21",
-    "@storybook/addon-storyshots": "6.0.20",
-    "@storybook/addon-storyshots-puppeteer": "6.0.20",
-    "@storybook/addon-viewport": "6.0.20",
-    "@storybook/codemod": "^6.0.20",
+    "@storybook/addon-storyshots": "6.0.21",
+    "@storybook/addon-storyshots-puppeteer": "6.0.21",
+    "@storybook/addon-viewport": "6.0.21",
+    "@storybook/codemod": "^6.0.21",
     "@storybook/react": "6.0.21",
-    "@storybook/theming": "6.0.20",
+    "@storybook/theming": "6.0.21",
     "babel-eslint": "10.1.0",
     "babel-jest": "26.3.0",
     "babel-loader": "8.1.0",
@@ -102,6 +102,7 @@
   },
   "dependencies": {
     "@babel/plugin-proposal-optional-chaining": "^7.11.0",
+    "@fullfacing/browserslist-config": "^1.0.2",
     "@styled-system/prop-types": "^5.1.5",
     "hoist-non-react-statics": "^3.3.2",
     "indexof": "^0.0.1",
@@ -115,16 +116,7 @@
     "react-tooltip": "^4.2.7",
     "styled-system": "^5.1.5"
   },
-  "browserslist": {
-    "production": [
-      ">0.1%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  }
+  "browserslist": [
+    "extends @fullfacing/browserslist-config"
+  ]
 }
