@@ -4,6 +4,8 @@ const description = `
 Material icons as react components.
 
 ## Usage
+Icons can be viewed at [@lessondesk/material-icons](https://fullfacing.github.io/material-icons/)
+
 \`\`\`
 import Alert from '@lessondesk/material-icons/dist/Alert'
 

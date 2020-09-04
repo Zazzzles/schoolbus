@@ -4,3 +4,4 @@ node_modules
 .docz
 .vscode
 storybook-build
+dist
