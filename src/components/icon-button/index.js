@@ -19,11 +19,16 @@ const VARIANTS = {
   },
   secondary: {
     color: 'gray.xxlight',
-    iconColor: 'primary'
+    iconColor: 'gray.xdark'
   },
   light: {
     color: 'white',
     iconColor: 'gray.default'
+  },
+  clear: {
+    color: 'transparent',
+    iconColor: 'gray.default',
+    noShadow: true
   },
   danger: {
     color: theme.colors.red[2],

@@ -28,6 +28,7 @@ export const variant = () => (
       <IconButton variant='primary' mr='1em' />
       <IconButton variant='secondary' mr='1em' />
       <IconButton variant='light' mr='1em' />
+      <IconButton variant='clear' mr='1em' />
       <IconButton variant='danger' mr='1em' />
     </Flex>
   </>
