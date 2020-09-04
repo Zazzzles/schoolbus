@@ -6,7 +6,7 @@
 
 ## About
 
-School Bus is a Component Library which provides developers with the easiest possible way of building [Lesson Desk](https://www.lessondesk.com/)’s products.
+[School Bus](https://schoolbus.netlify.app) is a Component Library which provides developers with the easiest possible way of building [Lesson Desk](https://www.lessondesk.com/)’s products.
 
 ## Motivation
 
