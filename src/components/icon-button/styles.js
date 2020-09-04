@@ -1,20 +1,6 @@
 import styled from 'styled-components'
 import Flex from '../flex'
 
-const getButtonColor = ({ theme, color, disabled, icon, badge }) => {
-  const isGray = disabled || (badge && color === 'white')
-  if (isGray) return theme.colors.gray.xxlight
-
-  const { colors: themeColors } = theme
-  if (icon === 'delete') return themeColors.red[2]
-
-  if (Object.keys(themeColors).includes(color)) {
-    const selectedColor = themeColors[color]
-    return Array.isArray(selectedColor) ? selectedColor[2] : selectedColor
-  }
-  return color
-}
-
 const buttonSizes = {
   xsmall: '28px',
   small: '32px',
@@ -30,7 +16,7 @@ export const Button = styled(Flex).attrs({
   position: relative;
   border-radius: ${({ theme }) => theme.radii.full};
   border: none;
-  background-color: ${props => getButtonColor(props)};
+  background-color: ${({ theme, color }) => theme.colors?.[color] || color};
   pointer-events: ${({ disabled }) => disabled ? 'none' : 'inherit'};
   box-shadow: ${({ noShadow, theme }) => noShadow ? 'unset' : theme.shadows[1]};
   width: ${({ size }) => buttonSizes[size]};
