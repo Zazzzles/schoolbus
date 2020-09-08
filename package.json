@@ -20,12 +20,13 @@
   "license": "MIT",
   "scripts": {
     "start": "start-storybook -p 8000",
-    "storybook": "build-storybook -o storybook-build",
+    "build-storybook": "build-storybook -o storybook-build",
     "lint:js": "eslint --fix src",
     "lint:styles": "stylelint --fix src/**/*.js",
     "lint": "yarn lint:js && yarn lint:styles",
     "fmt": "prettier-eslint --write \"src/**/*.js\"",
     "build": "rollup --config",
+    "chromatic": "chromatic",
     "test": "jest"
   },
   "files": [
@@ -56,6 +57,7 @@
     "babel-loader": "8.1.0",
     "babel-plugin-require-context-hook": "1.0.0",
     "babel-plugin-styled-components": "1.11.1",
+    "chromatic": "^5.1.0",
     "css-loader": "3.1.0",
     "eslint": "5.16.0",
     "eslint-config-prettier": "6.0.0",

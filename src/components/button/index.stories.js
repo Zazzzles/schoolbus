@@ -1,6 +1,5 @@
 import React from 'react'
 import Button from './'
-import Flex from '../flex'
 
 export default {
   title: 'Actions/ Button',
@@ -24,7 +23,7 @@ Base.args = {
 }
 
 export const Variants = () => (
-  <Flex>
+  <>
     <Button>Default</Button>
     <Button variant='primary' m={2}>
       Primary
@@ -47,7 +46,7 @@ export const Variants = () => (
     <Button variant='primary' disabled m={2}>
       disabled
     </Button>
-  </Flex>
+  </>
 )
 
 export const Sizes = () => (

@@ -34,9 +34,7 @@ const getWidth = ({ shape, width }) => {
   return 'auto'
 }
 
-export const StyledButton = styled.button.attrs({
-  type: 'button',
-})`
+export const StyledButton = styled.button`
   font-weight: ${({ theme }) => theme.fontWeights.bold};
   font-family: ${({ theme }) => theme.fonts.Montserrat};
   min-width: 120px;

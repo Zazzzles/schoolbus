@@ -2,8 +2,6 @@ import * as React from 'react'
 import PropTypes from 'prop-types'
 import propTypes from '@styled-system/prop-types'
 
-import { typography, layout, space } from 'styled-system'
-import theme from '../../config/theme'
 import Spinner from '../spinner'
 
 import { StyledButton, SHAPES, SIZES } from './styles'
@@ -26,7 +24,6 @@ class Button extends React.PureComponent {
     shape: this.SHAPES.square,
     size: this.SIZES.default,
     isLoading: false,
-    theme,
   }
 
   render() {
