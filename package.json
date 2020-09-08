@@ -26,7 +26,7 @@
     "lint": "yarn lint:js && yarn lint:styles",
     "fmt": "prettier-eslint --write \"src/**/*.js\"",
     "build": "rollup --config",
-    "chromatic": "chromatic",
+    "chromatic": "chromatic --exit-zero-on-changes",
     "test": "jest"
   },
   "files": [
