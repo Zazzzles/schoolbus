@@ -28,7 +28,7 @@ export const Active = () => (
       Active
     </Pill>
     <Pill ml='1em' onClick={() => { }} count={5} active>
-      Count
+      Active with count
     </Pill>
   </Flex>
 )
