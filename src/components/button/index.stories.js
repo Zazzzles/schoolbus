@@ -44,7 +44,7 @@ export const Variants = () => (
       Submit
     </Button>
     <Button variant='primary' disabled m={2}>
-      disabled
+      Disabled
     </Button>
   </>
 )

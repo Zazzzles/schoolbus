@@ -3,7 +3,7 @@ on:
     branches:
       - master
   pull_request:
-    types: [opened, edited]
+    types: [opened, edited, reopened]
     branches:
       - master
 
@@ -20,4 +20,3 @@ jobs:
     - uses: chromaui/action@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-        projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
