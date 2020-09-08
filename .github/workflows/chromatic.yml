@@ -3,7 +3,7 @@ on:
     branches:
       - master
   pull_request:
-    types: [opened, edited]
+    types: [opened, edited, reopened]
     branches:
       - master
 
