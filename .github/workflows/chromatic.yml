@@ -2,6 +2,10 @@ on:
   push:
     branches:
       - master
+  pull_request:
+    types: [opened, edited]
+    branches:
+      - master
 
 #https://www.chromatic.com/docs/ci
 name: Storybook publish and chromatic automation
