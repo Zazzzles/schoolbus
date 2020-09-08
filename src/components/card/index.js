@@ -2,7 +2,6 @@ import * as React from 'react'
 import PropTypes from 'prop-types'
 import propTypes from '@styled-system/prop-types'
 
-import { space, layout, flexbox } from 'styled-system'
 import IconButton from '../icon-button'
 
 import {
@@ -57,9 +56,9 @@ class Card extends React.PureComponent {
         {typeof renderHeader === 'function' ? (
           renderHeader({ title, description })
         ) : (
-          <Card.Header>
+          <StyledCardHeader>
             <TitleContainer>
-              <Card.Title>{title}</Card.Title>
+                <StyledCardTitle>{title}</StyledCardTitle>
               <ActionsContainer>
                 {actions}
                 {onAdd && !viewState && (
@@ -68,12 +67,12 @@ class Card extends React.PureComponent {
               </ActionsContainer>
             </TitleContainer>
             {description.length > 0 && !viewState && (
-              <Card.Description>{description}</Card.Description>
+                <StyledCardDescription>{description}</StyledCardDescription>
             )}
-            {showDivider && <Card.Divider />}
-          </Card.Header>
+            {showDivider && <StyledCardDivider />}
+          </StyledCardHeader>
         )}
-        <Card.Content showDivider={showDivider}>{children}</Card.Content>
+        <StyledContent showDivider={showDivider}>{children}</StyledContent>
       </StyledCard>
     )
   }
