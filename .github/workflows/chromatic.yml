@@ -1,0 +1,23 @@
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    types: [opened, edited]
+    branches:
+      - master
+
+#https://www.chromatic.com/docs/ci
+name: Storybook publish and chromatic automation
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0 # Required to retrieve git history
+    - uses: chromaui/action@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
