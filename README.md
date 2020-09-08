@@ -1,6 +1,6 @@
 # 🚌 School Bus
 
-[![lessondesk-code-style](https://img.shields.io/badge/code%20style-lessondesk-ffa400.svg?style=flat-square)](https://github.com/lessondesk/eslint-config) [![Storybook](https://www.chromatic.com/library?appId=5f572b7b9f4e4e002234d952)](https://schoolbus.netlify.com)
+[![lessondesk-code-style](https://img.shields.io/badge/code%20style-lessondesk-ffa400.svg?style=flat-square)](https://github.com/lessondesk/eslint-config) [![Storybook](https://cdn.jsdelivr.net/gh/storybookjs/brand@master/badge/badge-storybook.svg)](https://www.chromatic.com/library?appId=5f572b7b9f4e4e002234d952)
 
 > Lesson Desk Component Library
 
