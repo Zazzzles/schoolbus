@@ -12,6 +12,14 @@ const ICON_SIZES = {
   xlarge: 26
 }
 
+const BUTTON_SIZES = {
+  xsmall: '28px',
+  small: '32px',
+  medium: '38px',
+  large: '44px',
+  xlarge: '48px'
+}
+
 const VARIANTS = {
   primary: {
     color: 'primary',
@@ -61,10 +69,9 @@ const IconButton = ({ variant, ...props }) => {
     <Button
       alignItems='center'
       justifyContent='center'
-      theme={theme}
       badge={badge}
-      size={size}
-      color={color}
+      size={BUTTON_SIZES[size] || size}
+      backgroundColor={theme.colors?.[color] || color}
       {...otherProps}
     >
       {badge > 0 && <Badge>{badge}</Badge>}

@@ -1,13 +1,6 @@
 import styled from 'styled-components'
 import Flex from '../flex'
 
-const buttonSizes = {
-  xsmall: '28px',
-  small: '32px',
-  medium: '38px',
-  large: '44px',
-  xlarge: '48px'
-}
 
 export const Button = styled(Flex).attrs({
   as: 'button',
@@ -16,12 +9,12 @@ export const Button = styled(Flex).attrs({
   position: relative;
   border-radius: ${({ theme }) => theme.radii.full};
   border: none;
-  background-color: ${({ theme, color }) => theme.colors?.[color] || color};
+  background-color: ${({ backgroundColor }) => backgroundColor};
   pointer-events: ${({ disabled }) => disabled ? 'none' : 'inherit'};
   box-shadow: ${({ noShadow, theme }) => noShadow ? 'unset' : theme.shadows[1]};
-  width: ${({ size }) => buttonSizes[size]};
-  min-width: ${({ size }) => buttonSizes[size]};
-  height: ${({ size }) => buttonSizes[size]};
+  width: ${({ size }) => size};
+  min-width: ${({ size }) => size};
+  height: ${({ size }) => size};
   &:hover {
     cursor: ${({ disabled }) => disabled ? 'default' : 'pointer'};
     opacity: .9;
