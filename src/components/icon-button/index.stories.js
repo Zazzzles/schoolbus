@@ -12,7 +12,7 @@ export default {
 export const Base = (args) => <IconButton {...args} />
 Base.args = {
   fontSize: 'large',
-  color: 'gray.dark',
+  color: 'gray.xlight',
   iconColor: 'primary',
   badge: 2,
   noShadow: false,
@@ -41,6 +41,7 @@ export const color = () => (
     </Text>
     <Flex m='.5em 0 2em'>
       <IconButton color='primary' mr='1em' />
+      <IconButton color='gray.dark' mr='1em' />
       <IconButton color='#333' mr='1em' />
     </Flex>
   </>
@@ -54,6 +55,22 @@ export const iconColor = () => (
     <Flex m='.5em 0 2em'>
       <IconButton iconColor='gray.default' mr='1em' />
       <IconButton iconColor='#FEFEFE' mr='1em' />
+    </Flex>
+  </>
+)
+
+
+export const Size = () => (
+  <>
+    <Text mb='1em'>
+      size <em>(E.G.xsmall, small, medium, large, xlarge)</em>
+    </Text>
+    <Flex m='.5em 0 2em'>
+      <IconButton size='xsmall' />
+      <IconButton size='small' />
+      <IconButton size='medium' />
+      <IconButton size='large' />
+      <IconButton size='xlarge' />
     </Flex>
   </>
 )
