@@ -69,7 +69,6 @@ const IconButton = ({ variant, ...props }) => {
     <Button
       alignItems='center'
       justifyContent='center'
-      theme={theme}
       badge={badge}
       size={BUTTON_SIZES[size] || size}
       backgroundColor={theme.colors?.[color] || color}
