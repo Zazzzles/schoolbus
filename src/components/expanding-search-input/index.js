@@ -3,6 +3,7 @@ import { debounce } from 'lodash-es'
 
 import { Container, Input, iconAltStyling, expandedIconStyles } from './styles'
 import Magnify from '@lessondesk/material-icons/dist/Magnify'
+import VisuallyHidden from '../visually-hidden'
 
 import { fontSizes, colors } from '../../config/theme.js'
 
@@ -43,16 +44,23 @@ class ExpandingSearchInput extends Component {
       onExpand,
       placeholder = 'Search...',
       disabled,
+      id,
       ...otherProps
     } = this.props
 
     return (
       <Container {...otherProps}>
+        {id && (
+          <VisuallyHidden>
+            <label htmlFor={id}>Search</label>
+          </VisuallyHidden>
+        )}
         <Input
           disabled={disabled}
           placeholder={placeholder}
           expanded={expanded}
           ref={this.input}
+          id={id}
           onChange={onChange && debounce(({ target }) => onChange(target.value), SEARCH_DEBOUNCE_TIME)}
         />
         <Magnify
