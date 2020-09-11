@@ -11,5 +11,6 @@ Base.args = {
   placeholder: 'Search...',
   disabled: false,
   onExpand: console.log,
-  onChange: console.log
+  onChange: console.log,
+  debounceTimeout: 250,
 }
