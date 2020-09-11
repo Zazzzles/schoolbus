@@ -6,6 +6,8 @@ import Magnify from '@lessondesk/material-icons/dist/Magnify'
 
 import { fontSizes, colors } from '../../config/theme.js'
 
+const SEARCH_DEBOUNCE_TIME = 500
+
 class ExpandingSearchInput extends Component {
 
   constructor() {
@@ -51,7 +53,7 @@ class ExpandingSearchInput extends Component {
           placeholder={placeholder}
           expanded={expanded}
           ref={this.input}
-          onChange={onChange && debounce(({ target }) => onChange(target.value), 500)}
+          onChange={onChange && debounce(({ target }) => onChange(target.value), SEARCH_DEBOUNCE_TIME)}
         />
         <Magnify
           onClick={this.toggleExpanded}
