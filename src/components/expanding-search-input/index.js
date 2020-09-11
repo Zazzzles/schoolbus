@@ -51,7 +51,7 @@ class ExpandingSearchInput extends Component {
           placeholder={placeholder}
           expanded={expanded}
           ref={this.input}
-          onChange={debounce((...args) => onChange(...args), 500)}
+          onChange={onChange && debounce(({ target }) => onChange(target.value), 500)}
         />
         <Magnify
           onClick={this.toggleExpanded}
