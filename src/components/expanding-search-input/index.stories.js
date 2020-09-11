@@ -9,6 +9,7 @@ export default {
 export const Base = (args) => <ExpandingSearchInput {...args} />
 Base.args = {
   placeholder: 'Search...',
+  label: 'Search',
   disabled: false,
   onExpand: console.log,
   onChange: console.log,

@@ -45,6 +45,7 @@ class ExpandingSearchInput extends Component {
       placeholder = 'Search...',
       disabled,
       id,
+      label,
       debounceTimeout = SEARCH_DEBOUNCE_TIME,
       ...otherProps
     } = this.props
@@ -57,7 +58,7 @@ class ExpandingSearchInput extends Component {
       <Container {...otherProps}>
         {id && (
           <VisuallyHidden>
-            <label htmlFor={id}>Search</label>
+            <label htmlFor={id}>{label || 'Search'}</label>
           </VisuallyHidden>
         )}
         <Input
