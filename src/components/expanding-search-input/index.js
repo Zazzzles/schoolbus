@@ -7,7 +7,7 @@ import VisuallyHidden from '../visually-hidden'
 
 import { fontSizes, colors } from '../../config/theme.js'
 
-const SEARCH_DEBOUNCE_TIME = 500
+const SEARCH_DEBOUNCE_TIME = 250
 
 class ExpandingSearchInput extends Component {
 
@@ -45,14 +45,20 @@ class ExpandingSearchInput extends Component {
       placeholder = 'Search...',
       disabled,
       id,
+      label,
+      debounceTimeout = SEARCH_DEBOUNCE_TIME,
       ...otherProps
     } = this.props
+
+    const debouncedChange = debounceTimeout 
+      ? onChange && debounce(onChange, debounceTimeout) 
+      : onChange
 
     return (
       <Container {...otherProps}>
         {id && (
           <VisuallyHidden>
-            <label htmlFor={id}>Search</label>
+            <label htmlFor={id}>{label || 'Search'}</label>
           </VisuallyHidden>
         )}
         <Input
@@ -61,7 +67,7 @@ class ExpandingSearchInput extends Component {
           expanded={expanded}
           ref={this.input}
           id={id}
-          onChange={onChange && debounce(({ target }) => onChange(target.value), SEARCH_DEBOUNCE_TIME)}
+          onChange={onChange && (({ target }) => debouncedChange(target.value))}
         />
         <Magnify
           onClick={this.toggleExpanded}
