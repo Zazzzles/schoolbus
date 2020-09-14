@@ -13,7 +13,6 @@ module.exports = {
     }
   ],
   plugins: [
-    dynamicImportVars(),
     babel({
       exclude: 'node_modules/**',
       runtimeHelpers: true

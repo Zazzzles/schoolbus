@@ -43,7 +43,6 @@
     "@lessondesk/babel-preset": "1.0.0",
     "@lessondesk/eslint-config": "1.4.1",
     "@lessondesk/material-icons": "^1.0.2",
-    "@rollup/plugin-dynamic-import-vars": "^1.1.0",
     "@storybook/addon-a11y": "6.0.21",
     "@storybook/addon-actions": "6.0.21",
     "@storybook/addon-docs": "^6.0.21",
