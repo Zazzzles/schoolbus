@@ -1,7 +1,6 @@
 import React from 'react'
 import { connect } from 'formik'
 import { Range } from 'rc-slider'
-import 'rc-slider/assets/index.css'
 
 import createDefaultInputProps from '../../utils/create-input-defaults'
 import InputWrapper from '../input-wrapper'

@@ -4,9 +4,6 @@ import PropTypes from 'prop-types'
 import ReactPhoneInput from 'react-phone-input-2'
 import inputPropTypes from '../../config/input-prop-types'
 
-import 'react-phone-input-2/lib/style.css'
-import './styles.css'
-
 import createDefaultInputProps from '../../utils/create-input-defaults'
 
 import InputWrapper from '../input-wrapper'

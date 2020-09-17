@@ -9,9 +9,6 @@ import { iconStyles, StyledDatePicker } from './styles'
 
 import { colors } from '../../config/theme'
 
-import 'react-datepicker/dist/react-datepicker.css'
-import './styles.css'
-
 function getDateString(value) {
   return value instanceof Date ? value.toDateString() : value
 }
