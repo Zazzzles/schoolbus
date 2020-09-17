@@ -1,3 +1,7 @@
 {
-  "presets": ["@lessondesk/babel-preset"]
+  "presets": ["@lessondesk/babel-preset"],
+  "ignore": [
+    "**/*.test.js",
+    "**/*.stories.js"
+  ]
 }
