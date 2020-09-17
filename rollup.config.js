@@ -7,9 +7,4 @@ module.exports = {
     nodeResolve(),
     css({ output: 'dist/index.css' }),
   ],
-  external: [
-    'react-datepicker',
-    'rc-slider',
-    'react-phone-input-2'
-  ]
 }
