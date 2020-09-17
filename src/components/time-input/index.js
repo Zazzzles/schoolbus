@@ -4,8 +4,6 @@ import ClockOutline from '@lessondesk/material-icons/dist/ClockOutline'
 import { connect } from 'formik'
 
 import { colors } from '../../config/theme'
-import './styles.css'
-
 import { errorForField } from '../../utils/error-for-field'
 import InputWrapper from '../input-wrapper'
 import Input from '../styled-input'
