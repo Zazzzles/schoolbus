@@ -2,7 +2,7 @@
   "name": "@lessondesk/schoolbus",
   "version": "0.0.0-dev",
   "description": "🚌 Lesson Desk Component Library",
-  "main": "dist/index.cjs.js",
+  "main": "dist/index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/lessondesk/schoolbus.git"
@@ -25,7 +25,7 @@
     "lint:styles": "stylelint --fix src/**/*.js",
     "lint": "yarn lint:js && yarn lint:styles",
     "fmt": "prettier-eslint --write \"src/**/*.js\"",
-    "build": "babel src --ignore src/stories --out-dir dist",
+    "build": "babel src --out-dir dist",
     "prepare": "npm run build",
     "chromatic": "chromatic --exit-zero-on-changes --project-token=0r1m4x1jq86",
     "test": "jest"
