@@ -4,24 +4,6 @@ import { Button, Badge } from './styles'
 import Flex from '../flex'
 import PropTypes from 'prop-types'
 
-import Eye from '@lessondesk/material-icons/dist/Eye'
-import DotsVertical from '@lessondesk/material-icons/dist/DotsVertical'
-import FilterVariant from '@lessondesk/material-icons/dist/FilterVariant'
-import Download from '@lessondesk/material-icons/dist/Download'
-import Pen from '@lessondesk/material-icons/dist/Pen'
-import Plus from '@lessondesk/material-icons/dist/Plus'
-import Close from '@lessondesk/material-icons/dist/Close'
-import Link from '@lessondesk/material-icons/dist/Link'
-import Pencil from '@lessondesk/material-icons/dist/Pencil'
-import Tune from '@lessondesk/material-icons/dist/Tune'
-import Delete from '@lessondesk/material-icons/dist/Delete'
-import ArrowLeft from '@lessondesk/material-icons/dist/ArrowLeft'
-import Phone from '@lessondesk/material-icons/dist/Phone'
-import Email from '@lessondesk/material-icons/dist/Email'
-import Magnify from '@lessondesk/material-icons/dist/Magnify'
-import ChevronLeft from '@lessondesk/material-icons/dist/ChevronLeft'
-import ChevronRight from '@lessondesk/material-icons/dist/ChevronRight'
-
 const ICON_SIZES = {
   xsmall: 18,
   small: 20,
@@ -62,26 +44,6 @@ const VARIANTS = {
   },
 }
 
-const ICON_MAP = {
-  Eye,
-  DotsVertical,
-  FilterVariant,
-  Download,
-  Pen,
-  Plus,
-  Close,
-  Link,
-  Pencil,
-  Tune,
-  Delete,
-  ArrowLeft,
-  Phone,
-  Email,
-  Magnify,
-  ChevronLeft,
-  ChevronRight
-}
-
 const IconButton = ({ variant, ...props }) => {
   const { 
     icon,
@@ -92,18 +54,16 @@ const IconButton = ({ variant, ...props }) => {
     iconColor,
     ...otherProps
   } = { ...props, ...VARIANTS[variant] }
-  // const [iconModule, setIcon] = useState(null)
-  // const importIcon = async () => setIcon(await import(`./available-icons/material-icons/dist/${icon}`))
-  // useEffect(() => { 
-  //   if (icon) importIcon() 
-  //   else setIcon(null)
-  // }, [icon])
-
-  // const iconComponent = iconModule?.default && iconModule.default({ 
-  //   size: size ? ICON_SIZES[size] || size : ICON_SIZES.medium, 
-  //   color: iconColor
-  // })
-  const Icon = ICON_MAP[icon]
+  const [iconModule, setIcon] = useState(null)
+  const importIcon = async () => setIcon(await import(`@lessondesk/material-icons/dist/${icon}`))
+  useEffect(() => { 
+    if (icon) importIcon() 
+    else setIcon(null)
+  }, [icon])
+  const iconComponent = iconModule?.default && iconModule.default({ 
+    size: size ? ICON_SIZES[size] || size : ICON_SIZES.medium, 
+    color: iconColor
+  })
 
   return (
     <Button
@@ -115,7 +75,7 @@ const IconButton = ({ variant, ...props }) => {
       {...otherProps}
     >
       {badge > 0 && <Badge>{badge}</Badge>}
-      {children || <Icon size={ICON_SIZES[size]} color={iconColor} />}
+      {children || iconComponent}
     </Button>
   )
 }
