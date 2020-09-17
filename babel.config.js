@@ -28,10 +28,6 @@ module.exports = api => {
     plugins: [
       '@babel/plugin-proposal-optional-chaining',
       'babel-plugin-styled-components'
-    ],
-    ignore: [
-      '**/*.test.js',
-      '**/*.stories.js'
     ]
   }
 }
