@@ -68,7 +68,7 @@
     "eslint-plugin-react": "7.20.6",
     "eslint-plugin-react-hooks": "4.1.1",
     "formik": "1.5.8",
-    "jest": "24.8.0",
+    "jest": "26.4.2",
     "jscodeshift": "^0.11.0",
     "markdown-loader-jest": "0.1.1",
     "preact-render-to-json": "3.6.6",
