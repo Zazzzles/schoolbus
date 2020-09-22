@@ -8,10 +8,10 @@ const CopyrightText = styled.p.attrs({
 })`
   text-align: center;
   margin: 2em 0 0;
-  color: ${({theme}) => theme.colors.gray.light};
-  font-size: ${({theme}) => theme.fontSizes.xsmall};
-  font-family: ${({theme}) => theme.fonts.Montserrat};
-  font-weight: ${({theme}) => theme.fontWeights.bold};
+  color: ${({ theme }) => theme.colors.gray.light};
+  font-size: ${({ theme }) => theme.fontSizes.xsmall};
+  font-family: ${({ theme }) => theme.fonts.Montserrat};
+  font-weight: ${({ theme }) => theme.fontWeights.bold};
 `
 
 CopyrightText.displayName = 'CopyrightText'

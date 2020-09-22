@@ -15,16 +15,18 @@ export default {
     },
     docs: {
       description: {
-        component: 'An input that allows you to select from a number of `Pill`\'s, passed through as `options`.'
-      }
+        component:
+          'An input that allows you to select from a number of `Pill`\'s, passed through as `options`.',
+      },
     },
-  }
+  },
 }
 
-export const Base = (args) => <TypeInput {...args}/>
+export const Base = args => <TypeInput {...args} />
 Base.args = { ...defaultInputArgs, options }
 delete Base.args.placeholder
 
-
 export const Disabled = () => <TypeInput {...defaultInputArgs} options={options} disabled />
-export const Invalid = () => <TypeInput {...defaultInputArgs} options={options} alertText='Invalid' />
+export const Invalid = () => (
+  <TypeInput {...defaultInputArgs} options={options} alertText="Invalid" />
+)

@@ -7,22 +7,22 @@ export default {
   component: RangeInput,
   parameters: {
     formik: {
-      initialValues: { name: [12, 30] }
+      initialValues: { name: [12, 30] },
     },
     docs: {
       description: {
-        component: 'An input used to select a two limits that define a range.'
-      }
-    }
+        component: 'An input used to select a two limits that define a range.',
+      },
+    },
   },
 }
 const defaultArgs = {
   ...defaultInputArgs,
-  metric: 'R'
+  metric: 'R',
 }
 
-export const Base = (args) => <RangeInput {...args} />
+export const Base = args => <RangeInput {...args} />
 Base.args = defaultArgs
 
 export const Disabled = () => <RangeInput {...defaultArgs} disabled />
-export const Invalid = () => <RangeInput {...defaultArgs} alertText='Invalid' />
+export const Invalid = () => <RangeInput {...defaultArgs} alertText="Invalid" />

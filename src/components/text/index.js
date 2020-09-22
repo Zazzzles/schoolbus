@@ -5,7 +5,7 @@ import propTypes from '@styled-system/prop-types'
 import theme from '../../config/theme'
 
 const Text = styled.p`
-  color: ${({theme}) => theme.colors.gray.xdark};
+  color: ${({ theme }) => theme.colors.gray.xdark};
   ${({ uppercase }) => uppercase && 'text-transform: uppercase;'}
   ${typography}
   ${layout}

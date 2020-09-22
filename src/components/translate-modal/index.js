@@ -43,14 +43,13 @@ class TranslateModal extends Component {
     return formikLanguageSets ? updateLanguageSets(formikLanguageSets, state) : null
   }
 
-  handleValueChange = (i, {value}) => {
+  handleValueChange = (i, { value }) => {
     const { languageSets: prevLanguageSets } = this.state
     const { maxTranslationLength } = this.props
     const slicedValue = value.slice(0, maxTranslationLength)
-    const languageSets = prevLanguageSets.map((set, index) => (index === i 
-      ? {...set, value: slicedValue}
-      : set
-    ))
+    const languageSets = prevLanguageSets.map((set, index) =>
+      index === i ? { ...set, value: slicedValue } : set
+    )
     this.setState({ languageSets })
   }
 
@@ -82,7 +81,7 @@ class TranslateModal extends Component {
           </EditTextContainer>
 
           <Button
-            variant='primary'
+            variant="primary"
             m={2}
             onClick={() => onSubmit(languageSets)}
             disabled={disabled}

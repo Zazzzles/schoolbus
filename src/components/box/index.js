@@ -10,10 +10,14 @@ const Box = styled.div`
   ${color}
   ${flexbox}
   ${border}
-  ${({ theme, shadow }) => shadow !== undefined && `
+  ${({ theme, shadow }) =>
+    shadow !== undefined &&
+    `
     box-shadow: ${theme.shadows?.[shadow] || shadow};
   `};
-  ${({ theme, radius }) => radius && `
+  ${({ theme, radius }) =>
+    radius &&
+    `
     border-radius: ${theme.radii[radius] || radius};
   `};
 `
@@ -31,7 +35,7 @@ Box.propTypes = {
   ...propTypes.flexbox,
   ...propTypes.border,
   radius: PropTypes.string,
-  shadow: PropTypes.string
+  shadow: PropTypes.string,
 }
 
 export default Box

@@ -20,7 +20,7 @@ const BackgroundImage = styled.div`
 `
 
 BackgroundImage.defaultProps = {
-  theme
+  theme,
 }
 
 BackgroundImage.propTypes = {

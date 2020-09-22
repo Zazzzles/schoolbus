@@ -14,31 +14,31 @@ export default {
   parameters: {
     docs: {
       description: {
-        component: 'It\'s a select.'
-      }
-    }
+        component: 'It\'s a select.',
+      },
+    },
   },
 }
 
 const defaultArgs = { ...defaultInputArgs, options: options }
-export const Base = (args) => <Select {...args} />
+export const Base = args => <Select {...args} />
 Base.args = { ...defaultArgs, align: 'left' }
 
 export const Empty = () => <Select {...defaultArgs} />
 export const Selected = () => <Select {...defaultArgs} value={options[0]} />
 export const Disabled = () => <Select {...defaultArgs} disabled />
-export const Invalid = () => <Select {...defaultArgs} options={options} alertText='Invalid' />
+export const Invalid = () => <Select {...defaultArgs} options={options} alertText="Invalid" />
 export const Variants = () => (
-  <Flex wrap justifyContent='space-between'>
-    <Select {...defaultArgs} label='default' variant='default' />
-    <Select {...defaultArgs} label='light' variant='light' />
-    <Select {...defaultArgs} label='borderless' variant='borderless' />
-    <Select {...defaultArgs} label='compact' variant='compact' />
+  <Flex wrap justifyContent="space-between">
+    <Select {...defaultArgs} label="default" variant="default" />
+    <Select {...defaultArgs} label="light" variant="light" />
+    <Select {...defaultArgs} label="borderless" variant="borderless" />
+    <Select {...defaultArgs} label="compact" variant="compact" />
   </Flex>
 )
 export const Shapes = () => (
-  <Flex wrap justifyContent='space-between'>
-    <Select {...defaultArgs} label='default' />
-    <Select {...defaultArgs} label='rounded' shape='rounded' />
+  <Flex wrap justifyContent="space-between">
+    <Select {...defaultArgs} label="default" />
+    <Select {...defaultArgs} label="rounded" shape="rounded" />
   </Flex>
 )

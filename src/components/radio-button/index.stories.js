@@ -6,12 +6,12 @@ export default {
   parameters: {
     docs: {
       description: {
-        component: 'Radio Button allows the user to choose only one of a predefined set of mutually exclusive options.'
-      }
+        component:
+          'Radio Button allows the user to choose only one of a predefined set of mutually exclusive options.',
+      },
     },
-  }
+  },
 }
-
 
 export const Base = args => <RadioButton {...args} />
 Base.args = {

@@ -7,16 +7,17 @@ export default {
   parameters: {
     docs: {
       description: {
-        component: 'The Checkbox component represents a togglable action, which can be used in forms or anywhere in a document that needs simple, standard button functionality.'
-      }
-    }
-  }
+        component:
+          'The Checkbox component represents a togglable action, which can be used in forms or anywhere in a document that needs simple, standard button functionality.',
+      },
+    },
+  },
 }
 
 export const Base = () => <Checkbox>Children go here</Checkbox>
 Base.args = {
   checked: false,
-  disabled: false
+  disabled: false,
 }
 
 export const WithLabel = () => <Checkbox>With Label</Checkbox>

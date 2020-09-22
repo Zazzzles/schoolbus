@@ -4,16 +4,15 @@ import PropTypes from 'prop-types'
 import DotsVertical from '@lessondesk/material-icons/dist/DotsVertical'
 import { colors } from '../../config/theme'
 
-import { Trigger, ContentWrapper} from './styles'
+import { Trigger, ContentWrapper } from './styles'
 
 class Popup extends PureComponent {
-
   static defaultProps = {
     position: 'bottomLeft',
     contentStyle: {},
     xOffset: '5px',
     yOffset: '5px',
-    arrow: false
+    arrow: false,
   }
 
   static propTypes = {
@@ -21,7 +20,7 @@ class Popup extends PureComponent {
     contentStyle: PropTypes.object,
     xOffset: PropTypes.string,
     yOffset: PropTypes.string,
-    array: PropTypes.bool
+    array: PropTypes.bool,
   }
 
   state = {
@@ -36,8 +35,8 @@ class Popup extends PureComponent {
 
     if (this.menu) {
       const { offsetHeight: menuHeight, offsetWidth: menuWidth } = this.menu
-      this.setState({ dimensions: { menuHeight, menuWidth }})
-    } 
+      this.setState({ dimensions: { menuHeight, menuWidth } })
+    }
   }
 
   componentWillUnmount() {
@@ -47,7 +46,7 @@ class Popup extends PureComponent {
   toggleDialogue = showDialogue => {
     const { disabled, position } = this.props
 
-    if (disabled) return
+    if (disabled) {return}
 
     if (showDialogue && this.trigger) {
       const { menuHeight, menuWidth } = this.state.dimensions
@@ -58,10 +57,10 @@ class Popup extends PureComponent {
       const renderLeft = ['topLeft', 'bottomLeft', 'leftCenter'].includes(position)
 
       if (menuHeight && menuWidth) {
-        const renderToBottom = renderDown && (innerHeight - bottom > menuHeight) || (top < menuHeight)
-        const renderToLeft = renderLeft && right > menuWidth || (innerWidth - left < menuWidth)
+        const renderToBottom = (renderDown && innerHeight - bottom > menuHeight) || top < menuHeight
+        const renderToLeft = (renderLeft && right > menuWidth) || innerWidth - left < menuWidth
         return this.setState({ renderToBottom, renderToLeft }, () => {
-          this.setState({showDialogue})
+          this.setState({ showDialogue })
         })
       }
     }
@@ -69,44 +68,53 @@ class Popup extends PureComponent {
     this.setState({ showDialogue })
   }
 
-  closePopup = () =>  this.toggleDialogue(false)
+  closePopup = () => this.toggleDialogue(false)
 
   handleClickOutside = ({ target }) => {
     const isMenu = this.menu && this.menu.contains(target)
     const isTrigger = this.trigger && this.trigger.contains(target)
-    if (isMenu || isTrigger) return
+    if (isMenu || isTrigger) {return}
     this.toggleDialogue(false)
   }
 
   getElement = child => {
     const { closeOnSelect } = this.props
 
-    const childProps = closeOnSelect ? ({ 
-      onClick: this.closePopup
-    }) : {}
+    const childProps = closeOnSelect
+      ? {
+        onClick: this.closePopup,
+      }
+      : {}
 
     return React.cloneElement(<div>{child}</div>, childProps)
   }
 
   render() {
     const { showDialogue, renderToBottom, renderToLeft } = this.state
-    const { children, trigger, contentStyle, xOffset, yOffset, position, arrow, ...otherProps } = this.props
+    const {
+      children,
+      trigger,
+      contentStyle,
+      xOffset,
+      yOffset,
+      position,
+      arrow,
+      ...otherProps
+    } = this.props
 
-    const childrenWithProps = React.Children.map(children, child => {
-      return this.getElement(child)
-    })
+    const childrenWithProps = React.Children.map(children, child => this.getElement(child))
 
     return (
       <>
         <Trigger
-          ref={node => this.trigger = node}
+          ref={node => (this.trigger = node)}
           onClick={() => !showDialogue && this.toggleDialogue(true)}
           {...otherProps}
         >
           {trigger || <DotsVertical color={colors.gray.default} />}
 
           <ContentWrapper
-            ref={node => this.menu = node}
+            ref={node => (this.menu = node)}
             showDialogue={showDialogue}
             renderToBottom={renderToBottom}
             renderToLeft={renderToLeft}
@@ -115,7 +123,7 @@ class Popup extends PureComponent {
             style={contentStyle}
             position={position}
             arrow={arrow}
-          >  
+          >
             {typeof children === 'function' ? children(this.closePopup) : childrenWithProps}
           </ContentWrapper>
         </Trigger>

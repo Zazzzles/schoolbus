@@ -62,10 +62,12 @@ const TypeInput = ({
 
 TypeInput.propTypes = {
   ...inputPropTypes,
-  options: PropTypes.arrayOf(PropTypes.shape({
-    name: PropTypes.string,
-    value: PropTypes.string
-  })),
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string,
+      value: PropTypes.string,
+    })
+  ),
 }
 
 export default connect(TypeInput)

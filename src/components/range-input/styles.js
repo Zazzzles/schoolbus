@@ -11,13 +11,13 @@ export const Container = styled.div`
   }
 
   & .rc-slider-handle {
-    background-color: ${({theme}) => theme.colors.primary};
-    border: solid 2px ${({theme}) => theme.colors.white};
+    background-color: ${({ theme }) => theme.colors.primary};
+    border: solid 2px ${({ theme }) => theme.colors.white};
     box-shadow: 0 0 0.4em 0 rgba(0, 0, 0, 0.3);
   }
 
   & .rc-slider-track {
-    background-color: ${({theme}) => theme.colors.primary};
+    background-color: ${({ theme }) => theme.colors.primary};
   }
 
   & .rc-slider-disabled {

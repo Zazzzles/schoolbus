@@ -50,15 +50,16 @@ export default {
       initialValues,
     },
     docs: {
-      description: { 
-        component: 'The TranslateInput component represents an input containing translations for each language. These languages can be specified using the `languages` property.'
-      }
+      description: {
+        component:
+          'The TranslateInput component represents an input containing translations for each language. These languages can be specified using the `languages` property.',
+      },
     },
-  }
+  },
 }
 
-export const Base = (args) => <TranslateInput {...args} />
-Base.args = { 
+export const Base = args => <TranslateInput {...args} />
+Base.args = {
   ...defaultInputArgs,
   languages,
- }
+}

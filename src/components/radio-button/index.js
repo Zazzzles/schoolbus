@@ -6,10 +6,7 @@ import propTypes from '@styled-system/prop-types'
 import RadioboxBlank from '@lessondesk/material-icons/dist/RadioboxBlank'
 import RadioboxMarked from '@lessondesk/material-icons/dist/RadioboxMarked'
 
-import {
-  StyledLabel,
-  StyledSpan
-} from './styles'
+import { StyledLabel, StyledSpan } from './styles'
 
 const RadioButton = ({
   children,
@@ -44,7 +41,7 @@ RadioButton.propTypes = {
   labelProps: PropTypes.object,
   ...propTypes.typography,
   ...propTypes.layout,
-  ...propTypes.space
+  ...propTypes.space,
 }
 
 export default RadioButton

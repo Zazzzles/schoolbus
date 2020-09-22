@@ -8,7 +8,7 @@ import InputWrapper from '../input-wrapper'
 import createDefaultInputProps from '../../utils/create-input-defaults'
 import inputPropTypes from '../../config/input-prop-types'
 
-import { styleOverride } from './styles' 
+import { styleOverride } from './styles'
 
 const Select = props => {
   const {
@@ -61,7 +61,7 @@ const Select = props => {
 Select.defaultProps = {
   containerStyle: {},
   align: 'left',
-  singleValueStyles: {}
+  singleValueStyles: {},
 }
 
 Select.propTypes = {
@@ -69,7 +69,7 @@ Select.propTypes = {
   align: PropTypes.string,
   singleValueStyles: PropTypes.object,
   containerStyle: PropTypes.object,
-  multiple: PropTypes.bool
+  multiple: PropTypes.bool,
 }
 
 export default connect(Select)

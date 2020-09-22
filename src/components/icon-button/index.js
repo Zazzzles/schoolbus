@@ -27,7 +27,7 @@ const ICON_SIZES = {
   small: 20,
   medium: 22,
   large: 24,
-  xlarge: 26
+  xlarge: 26,
 }
 
 const BUTTON_SIZES = {
@@ -35,30 +35,30 @@ const BUTTON_SIZES = {
   small: '32px',
   medium: '38px',
   large: '44px',
-  xlarge: '48px'
+  xlarge: '48px',
 }
 
 const VARIANTS = {
   primary: {
     color: 'primary',
-    iconColor: 'white'
+    iconColor: 'white',
   },
   secondary: {
     color: 'gray.xxlight',
-    iconColor: 'gray.xdark'
+    iconColor: 'gray.xdark',
   },
   light: {
     color: 'white',
-    iconColor: 'gray.default'
+    iconColor: 'gray.default',
   },
   clear: {
     color: 'transparent',
     iconColor: 'gray.default',
-    noShadow: true
+    noShadow: true,
   },
   danger: {
     color: theme.colors.red[2],
-    iconColor: 'white'
+    iconColor: 'white',
   },
 }
 
@@ -79,36 +79,31 @@ const ICON_MAP = {
   Email,
   Magnify,
   ChevronLeft,
-  ChevronRight
+  ChevronRight,
 }
 
 const IconButton = ({ variant, ...props }) => {
-  const { 
-    icon,
-    badge,
-    children,
-    size,
-    color,
-    iconColor,
-    ...otherProps
-  } = { ...props, ...VARIANTS[variant] }
+  const { icon, badge, children, size, color, iconColor, ...otherProps } = {
+    ...props,
+    ...VARIANTS[variant],
+  }
   // const [iconModule, setIcon] = useState(null)
   // const importIcon = async () => setIcon(await import(`./available-icons/material-icons/dist/${icon}`))
-  // useEffect(() => { 
-  //   if (icon) importIcon() 
+  // useEffect(() => {
+  //   if (icon) importIcon()
   //   else setIcon(null)
   // }, [icon])
 
-  // const iconComponent = iconModule?.default && iconModule.default({ 
-  //   size: size ? ICON_SIZES[size] || size : ICON_SIZES.medium, 
+  // const iconComponent = iconModule?.default && iconModule.default({
+  //   size: size ? ICON_SIZES[size] || size : ICON_SIZES.medium,
   //   color: iconColor
   // })
   const Icon = ICON_MAP[icon]
 
   return (
     <Button
-      alignItems='center'
-      justifyContent='center'
+      alignItems="center"
+      justifyContent="center"
       badge={badge}
       size={BUTTON_SIZES[size] || size}
       backgroundColor={theme.colors?.[color] || color}
@@ -130,7 +125,7 @@ IconButton.propTypes = {
   children: PropTypes.node,
   badge: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   noShadow: PropTypes.bool,
-  ...Flex.propTypes
+  ...Flex.propTypes,
 }
 
 IconButton.defaultProps = {
@@ -139,7 +134,7 @@ IconButton.defaultProps = {
   color: 'primary',
   iconColor: 'white',
   noShadow: false,
-  iconStyle: {}
+  iconStyle: {},
 }
 
 export default IconButton

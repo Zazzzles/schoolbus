@@ -25,7 +25,6 @@ const DateInput = ({
   dateFormatter,
   ...otherProps
 }) => {
-
   const { name, id = name, label, inputStyle, required } = otherProps
 
   const { alertText, ...inputDefaults } = createDefaultInputProps({
@@ -36,11 +35,9 @@ const DateInput = ({
     formik,
     alertText: alertTextOverride,
   })
-  
+
   const { hasFormik } = inputDefaults
-  const defaultChangeHandler = hasFormik 
-    ? value => formik.setFieldValue(name, value)
-    : onChange
+  const defaultChangeHandler = hasFormik ? value => formik.setFieldValue(name, value) : onChange
 
   return (
     <InputWrapper alertText={alertTextOverride || alertText} {...otherProps}>
@@ -51,11 +48,11 @@ const DateInput = ({
         value={dateFormatter(value || inputDefaults.value)}
         style={inputStyle}
         aria-label={label}
-        aria-required={required}  
+        aria-required={required}
         placeholderText={placeholder || label}
         disabled={disabled}
         name={name}
-        autoComplete='off'
+        autoComplete="off"
         {...inputProps}
       />
       <CalendarToday style={iconStyles} color={colors.gray.default} />
@@ -67,7 +64,7 @@ DateInput.defaultProps = {
   dateFormatter: getDateString,
   dateFormat: 'dd/MM/yyyy',
   onBlur: () => {},
-  onChange: () => {}
+  onChange: () => {},
 }
 
 export default connect(DateInput)

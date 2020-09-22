@@ -15,11 +15,14 @@ export const Value = styled.button`
   border: none;
   cursor: pointer;
 
-  ${({ selected, theme }) => selected ? `
+  ${({ selected, theme }) =>
+    selected
+      ? `
     color: ${theme.colors.gray.xdark};
     background-color: ${theme.colors.white};
     box-shadow: ${theme.shadows[1]}
-  ` : `
+  `
+      : `
     color: ${theme.colors.gray.dark};
     background-color: ${theme.colors.gray.xxlight};
   `}

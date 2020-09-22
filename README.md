@@ -23,12 +23,15 @@ In order to create a great experience for our users, the component library is in
 
 The following peer dependencies are required:
 
-- [React](https://www.npmjs.com/package/react)
-- [React DOM](https://www.npmjs.com/package/react-dom)
-- [Formik](https://www.npmjs.com/package/formik)
-- [PropTypes](https://www.npmjs.com/package/prop-types)
-- [Styled Components](https://www.npmjs.com/package/styled-components)
-- [@lessondesk/material-icons](https://www.npmjs.com/package/@lessondesk/material-icons)
+```json
+"@lessondesk/material-icons": "^1.0.2",
+"formik": "2.1.5",
+"prop-types": "^15.7.2",
+"react": "^16.8.6",
+"react-dom": "^16.8.6",
+"just-toasty": "^1.3.0",
+"styled-components": "^4.3.2"
+```
 
 Afterwards, you can install the library:
 

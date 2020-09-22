@@ -7,7 +7,6 @@ import { Container, Text, Count } from './styles'
 
 Container.displayName = 'Pill'
 class Pill extends React.PureComponent {
-
   static defaultProps = {
     active: false,
   }

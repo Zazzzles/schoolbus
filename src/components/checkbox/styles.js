@@ -11,7 +11,7 @@ export const StyledInput = styled.input.attrs({
   top: -8px;
   display: block;
   margin: 0;
-  border-radius: ${({theme}) => theme.radii.full};
+  border-radius: ${({ theme }) => theme.radii.full};
   width: 40px;
   height: 40px;
   background-color: rgba(0, 0, 0, 0.6);
@@ -24,7 +24,7 @@ export const StyledInput = styled.input.attrs({
 
   &:checked,
   &:indeterminate {
-    background-color: ${({theme}) => theme.colors.gray};
+    background-color: ${({ theme }) => theme.colors.gray};
   }
 
   &:active {
@@ -34,7 +34,7 @@ export const StyledInput = styled.input.attrs({
   }
 
   &:active + span::before {
-    border-color: ${({theme}) => theme.colors.gray};
+    border-color: ${({ theme }) => theme.colors.gray};
   }
 
   &:checked:active + span::before {
@@ -61,9 +61,9 @@ export const StyledLabel = styled.label`
   position: relative;
   display: inline-block;
   color: ${({ theme }) => theme.colors.gray.dark};
-  font-family: ${({theme}) => theme.fonts.Montserrat};
-  font-size: ${({theme}) => theme.fontSizes.small};
-  line-height: ${({theme}) => theme.lineHeights.relaxed};
+  font-family: ${({ theme }) => theme.fonts.Montserrat};
+  font-size: ${({ theme }) => theme.fontSizes.small};
+  line-height: ${({ theme }) => theme.lineHeights.relaxed};
   font-weight: ${({ theme }) => theme.fontWeights.default};
 
 
@@ -117,10 +117,10 @@ export const StyledSpan = styled.span`
 
   ${/* sc-selector */ StyledInput}:checked + &::before,
   ${/* sc-selector */ StyledInput}:indeterminate + &::before {
-    border-color: ${({ theme, disabled }) => disabled
-    ? theme.colors.gray[2] : theme.colors.primary};
-    background-color: ${({ theme, disabled }) => disabled
-    ? theme.colors.gray[2] : theme.colors.primary};
+    border-color: ${({ theme, disabled }) =>
+    disabled ? theme.colors.gray[2] : theme.colors.primary};
+    background-color: ${({ theme, disabled }) =>
+    disabled ? theme.colors.gray[2] : theme.colors.primary};
   }
 
   ${/* sc-selector */ StyledInput}:checked + &::after,

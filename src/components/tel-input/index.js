@@ -64,7 +64,7 @@ TelInput.defaultProps = {
   defaultCountry: 'za',
   masks: {
     za: '.. ... ....',
-  }
+  },
 }
 
 TelInput.propTypes = {

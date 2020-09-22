@@ -13,7 +13,7 @@ class Input extends React.PureComponent {
   static defaultProps = {
     label: '',
     inputStyle: {},
-    theme
+    theme,
   }
 
   render() {

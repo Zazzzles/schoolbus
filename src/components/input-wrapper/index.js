@@ -7,9 +7,9 @@ import { layout, space, variant } from 'styled-system'
 const StyledLabel = styled.label`
   display: block;
   font-family: inherit;
-  color: ${({theme}) => theme.colors.gray.dark};
-  font-weight: ${({theme}) => theme.fontWeights.bold};
-  font-size: ${({theme}) => theme.fontSizes.xsmall};
+  color: ${({ theme }) => theme.colors.gray.dark};
+  font-weight: ${({ theme }) => theme.fontWeights.bold};
+  font-size: ${({ theme }) => theme.fontSizes.xsmall};
   margin-bottom: 0.4em;
 `
 
@@ -28,9 +28,9 @@ const StyledInputContainer = styled.div`
   ${variant({
     variants: {
       compact: {
-        minWidth: 0
-      }
-    }
+        minWidth: 0,
+      },
+    },
   })}
 `
 
@@ -42,10 +42,10 @@ const StyledAlertText = styled.span.attrs({
   position: absolute;
   top: 0;
   right: 0;
-  font-size: ${({theme}) => theme.fontSizes.xsmall};
+  font-size: ${({ theme }) => theme.fontSizes.xsmall};
   font-style: italic;
-  color: ${({theme}) => theme.colors.red[2]};
-  font-weight: ${({theme}) => theme.fontWeights.bold};
+  color: ${({ theme }) => theme.colors.red[2]};
+  font-weight: ${({ theme }) => theme.fontWeights.bold};
 `
 
 StyledAlertText.displayName = 'StyledAlertText'
@@ -62,18 +62,13 @@ const InputWrapper = ({
   required,
   ...otherProps
 }) => (
-  <StyledInputContainer
-    empty={!label}
-    style={containerStyle}
-    data-error-key={id}
-    {...otherProps}
-  >
+  <StyledInputContainer empty={!label} style={containerStyle} data-error-key={id} {...otherProps}>
     {label && (
       <StyledLabel htmlFor={id || name} required={required} style={labelStyle}>
         {label}
       </StyledLabel>
     )}
-    
+
     {children}
     {alertText && <StyledAlertText style={alertStyle}>{alertText}</StyledAlertText>}
   </StyledInputContainer>
@@ -89,7 +84,7 @@ InputWrapper.propTypes = {
   labelStyle: PropTypes.object,
   required: PropTypes.bool,
   ...propTypes.layout,
-  ...propTypes.space
+  ...propTypes.space,
 }
 
 export default InputWrapper

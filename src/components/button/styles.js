@@ -20,17 +20,12 @@ const radius = ({ shape, theme }) => ({
 
 const size = ({ size, theme }) => ({
   fontSize: size === SIZES.large ? theme.fontSizes.medium : theme.fontSizes.small,
-  padding:
-    size === SIZES.compact
-      ? '5px 10px'
-      : size === SIZES.default
-        ? '10px 20px'
-        : '15px 40px',
+  padding: size === SIZES.compact ? '5px 10px' : size === SIZES.default ? '10px 20px' : '15px 40px',
 })
 
 const getWidth = ({ shape, width }) => {
-  if (shape === SHAPES.block) return '100%'
-  if (width) return width
+  if (shape === SHAPES.block) {return '100%'}
+  if (width) {return width}
   return 'auto'
 }
 

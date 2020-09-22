@@ -3,11 +3,7 @@ import PropTypes from 'prop-types'
 import { space, layout } from 'styled-system'
 import propTypes from '@styled-system/prop-types'
 
-import {
-  ToggleContainer,
-  ToggleInput,
-  ToggleLabel
-} from './styles'
+import { ToggleContainer, ToggleInput, ToggleLabel } from './styles'
 
 class Toggle extends React.PureComponent {
   static defaultProps = {
@@ -33,7 +29,7 @@ class Toggle extends React.PureComponent {
           onBlur={onBlur}
           name={name}
           id={id}
-          type='checkbox'
+          type="checkbox"
           readOnly
         />
         <ToggleLabel htmlFor={this.props.id} />

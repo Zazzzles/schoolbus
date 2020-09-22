@@ -35,14 +35,11 @@ class Button extends React.PureComponent {
         variant={isLoading ? 'secondary' : variant}
         disabled={disabled || isLoading}
       >
-        {isLoading
-          ? <Spinner
-              color='white'
-              size='20px'
-              width='3px'
-              {...spinnerProps}
-            />
-          : this.props.children}
+        {isLoading ? (
+          <Spinner color="white" size="20px" width="3px" {...spinnerProps} />
+        ) : (
+          this.props.children
+        )}
       </StyledButton>
     )
   }

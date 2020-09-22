@@ -31,7 +31,7 @@ const RangeInput = ({
     formik,
   })
   const rangeValues = inputDefaults.value || value || [min, max]
-  const defaultOnChange = hasFormik ? (value => formik.setFieldValue(name, value)) : onChange
+  const defaultOnChange = hasFormik ? value => formik.setFieldValue(name, value) : onChange
 
   return (
     <InputWrapper alertText={alertText} {...otherProps}>
@@ -47,7 +47,7 @@ const RangeInput = ({
           id={id}
           pushable
           value={rangeValues}
-          width='70%'
+          width="70%"
           min={min}
           max={max}
           disabled={disabled}
@@ -66,7 +66,7 @@ RangeInput.defaultProps = {
   min: 0,
   max: 100,
   onChange: () => {},
-  onBlur: () => {}
+  onBlur: () => {},
 }
 
 export default connect(RangeInput)

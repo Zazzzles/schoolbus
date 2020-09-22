@@ -8,14 +8,14 @@ export default {
   parameters: {
     docs: {
       description: {
-        component: 'Footer '
-      }
-    }
-  }
+        component: 'Footer ',
+      },
+    },
+  },
 }
 
-export const Base = (args) => <Footer {...args} />
+export const Base = args => <Footer {...args} />
 Base.args = {
-  copyright: 'Copyright here '
+  copyright: 'Copyright here ',
 }
 export const FooterWithoutCopyright = () => <Footer />

@@ -5,14 +5,9 @@ import inputPropTypes from '../../config/input-prop-types'
 import propTypes from '@styled-system/prop-types'
 import PropTypes from 'prop-types'
 
-import {
-  StyledInput,
-  StyledLabel,
-  StyledSpan
-} from './styles'
+import { StyledInput, StyledLabel, StyledSpan } from './styles'
 
 class Checkbox extends React.PureComponent {
-
   static propTypes = {
     children: PropTypes.node,
     onChange: PropTypes.func,
@@ -21,34 +16,24 @@ class Checkbox extends React.PureComponent {
     disabled: PropTypes.bool,
     ...propTypes.space,
     ...propTypes.layout,
-    ...propTypes.typography
+    ...propTypes.typography,
   }
 
   render() {
-    const {
-      children,
-      onChange,
-      checked,
-      onBlur,
-      disabled,
-      ...otherProps
-    } = this.props
+    const { children, onChange, checked, onBlur, disabled, ...otherProps } = this.props
 
     return (
       <StyledLabel {...otherProps}>
-        <StyledInput 
-          onChange={onChange} 
-          onBlur={onBlur} 
-          checked={checked} 
-          disabled={disabled} 
+        <StyledInput
+          onChange={onChange}
+          onBlur={onBlur}
+          checked={checked}
+          disabled={disabled}
           readOnly
         />
-        <StyledSpan 
-          disabled={disabled} 
-          labelled={children}
-        >
+        <StyledSpan disabled={disabled} labelled={children}>
           {children}
-         </StyledSpan>
+        </StyledSpan>
       </StyledLabel>
     )
   }

@@ -7,17 +7,17 @@ export const Container = styled.div`
 export const EditTextContainer = styled.div`
   display: flex;
   align-items: center;
-  font-size: ${({theme}) => theme.fontSizes.small};
+  font-size: ${({ theme }) => theme.fontSizes.small};
 `
 
 export const EditText = styled.div`
-  color: ${({theme}) => theme.colors.gray.dark};
+  color: ${({ theme }) => theme.colors.gray.dark};
 `
 
 export const EditButton = styled.button`
-  color: ${({theme}) => theme.colors.primary};
-  font-weight: ${({theme}) => theme.fontWeights.bold};
-  font-size: ${({theme}) => theme.fontSizes.medium};
+  color: ${({ theme }) => theme.colors.primary};
+  font-weight: ${({ theme }) => theme.fontWeights.bold};
+  font-size: ${({ theme }) => theme.fontSizes.medium};
   border: none;
   text-decoration: underline;
   cursor: pointer;

@@ -7,20 +7,20 @@ export default {
   component: DateInput,
   parameters: {
     formik: {
-      initialValues: { 
-        name: '' 
-      }
+      initialValues: {
+        name: '',
+      },
     },
     docs: {
       description: {
-        component: 'An input used to select a date.'
-      }
-    }
-  }
+        component: 'An input used to select a date.',
+      },
+    },
+  },
 }
 
-export const Base = (args) => <DateInput {...args} />
+export const Base = args => <DateInput {...args} />
 Base.args = defaultInputArgs
 
 export const Disabled = () => <DateInput {...defaultInputArgs} disabled />
-export const Invalid = () => <DateInput {...defaultInputArgs} alertText='Invalid' />
+export const Invalid = () => <DateInput {...defaultInputArgs} alertText="Invalid" />

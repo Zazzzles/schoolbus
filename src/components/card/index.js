@@ -12,14 +12,14 @@ import {
   StyledCardDescription,
   StyledContent,
   TitleContainer,
-  ActionsContainer
+  ActionsContainer,
 } from './styles'
 
 class Card extends React.PureComponent {
   static defaultProps = {
     title: '',
     description: '',
-    actions: []
+    actions: [],
   }
 
   static propTypes = {
@@ -58,16 +58,14 @@ class Card extends React.PureComponent {
         ) : (
           <StyledCardHeader>
             <TitleContainer>
-                <StyledCardTitle>{title}</StyledCardTitle>
+              <StyledCardTitle>{title}</StyledCardTitle>
               <ActionsContainer>
                 {actions}
-                {onAdd && !viewState && (
-                  <IconButton onClick={onAdd} />
-                )}
+                {onAdd && !viewState && <IconButton onClick={onAdd} />}
               </ActionsContainer>
             </TitleContainer>
             {description.length > 0 && !viewState && (
-                <StyledCardDescription>{description}</StyledCardDescription>
+              <StyledCardDescription>{description}</StyledCardDescription>
             )}
             {showDivider && <StyledCardDivider />}
           </StyledCardHeader>

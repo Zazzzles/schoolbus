@@ -1,4 +1,3 @@
-
 import styled from 'styled-components'
 import { typography, space, layout } from 'styled-system'
 
@@ -14,9 +13,12 @@ export const StyledLabel = styled.label`
   ${space}
   ${layout}
 
-  ${({ disabled }) => disabled ? `
+  ${({ disabled }) =>
+    disabled
+      ? `
     opacity: 0.7;
-  ` : `
+  `
+      : `
     cursor: pointer;
   `}
 `

@@ -22,10 +22,10 @@ export const Input = styled.input`
   margin-right: 1em;
   transition: transform 0.3s, opacity 0.3s;
   width: 100%;
-  transform: ${({expanded}) => expanded ? 'scaleX(1)' : 'scaleX(0)'};
+  transform: ${({ expanded }) => (expanded ? 'scaleX(1)' : 'scaleX(0)')};
   transform-origin: right;
-  opacity: ${({expanded}) => expanded ? '1' : '0'};
-  font-size: ${({theme}) => theme.fontSizes.small};
+  opacity: ${({ expanded }) => (expanded ? '1' : '0')};
+  font-size: ${({ theme }) => theme.fontSizes.small};
   font-family: ${({ theme }) => theme.fonts.Montserrat};
   height: 100%;
   &::placeholder {
@@ -45,4 +45,3 @@ export const iconAltStyling = {
 export const expandedIconStyles = {
   boxShadow: '0px 0px 16px 0px rgba(0, 0, 0, 0.09)',
 }
-

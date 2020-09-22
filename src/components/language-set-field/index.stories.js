@@ -12,19 +12,17 @@ export default {
   parameters: {
     docs: {
       description: {
-        component: 'A text input field that displays the language next to it.'
-      }
+        component: 'A text input field that displays the language next to it.',
+      },
     },
-  }
+  },
 }
 
-export const Base = (args) => <LanguageSetField {...args} />
+export const Base = args => <LanguageSetField {...args} />
 Base.args = {
   placeholder: 'Placeholder',
   name: 'name',
   disabled: false,
   language: defaultLanguage,
-  default: true
+  default: true,
 }
-
-

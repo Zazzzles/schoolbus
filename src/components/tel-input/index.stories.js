@@ -10,11 +10,12 @@ export default {
     component: TelInput,
     docs: {
       description: {
-        component: 'An input used for mobile numbers. Includes the ability to select the countrycode from a drop down.'
-      }
-    }
+        component:
+          'An input used for mobile numbers. Includes the ability to select the countrycode from a drop down.',
+      },
+    },
   },
 }
 
-export const Base = (args) => <TelInput {...args}  />
+export const Base = args => <TelInput {...args} />
 Base.args = defaultInputArgs

@@ -13,21 +13,20 @@ import Alert from '@lessondesk/material-icons/dist/Alert'
 \`\`\`
 `
 
-
 export default {
   title: 'Misc/ Icons',
   component: Image,
   parameters: {
     docs: {
       description: {
-        component: description
-      }
-    }
-  }
+        component: description,
+      },
+    },
+  },
 }
 
-export const Base = (args) => <Alert {...args} />
+export const Base = args => <Alert {...args} />
 Base.args = {
   size: '5em',
-  color: '#FFA400'
+  color: '#FFA400',
 }

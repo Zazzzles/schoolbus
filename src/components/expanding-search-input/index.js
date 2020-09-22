@@ -10,7 +10,6 @@ import { fontSizes, colors } from '../../config/theme.js'
 const SEARCH_DEBOUNCE_TIME = 250
 
 class ExpandingSearchInput extends Component {
-
   constructor() {
     super()
 
@@ -25,17 +24,19 @@ class ExpandingSearchInput extends Component {
   toggleExpanded = () => {
     const { onExpand } = this.props
 
-    this.setState(({expanded, value}) => ({
-      expanded: !expanded,
-      value: expanded ? value : ''
-    }), () => {
-      const { expanded } = this.state
+    this.setState(
+      ({ expanded, value }) => ({
+        expanded: !expanded,
+        value: expanded ? value : '',
+      }),
+      () => {
+        const { expanded } = this.state
 
-      onExpand && onExpand(expanded)
-      this.input.current.focus()
-    })
+        onExpand && onExpand(expanded)
+        this.input.current.focus()
+      }
+    )
   }
-
 
   render() {
     const { expanded } = this.state
@@ -50,8 +51,8 @@ class ExpandingSearchInput extends Component {
       ...otherProps
     } = this.props
 
-    const debouncedChange = debounceTimeout 
-      ? onChange && debounce(onChange, debounceTimeout) 
+    const debouncedChange = debounceTimeout
+      ? onChange && debounce(onChange, debounceTimeout)
       : onChange
 
     return (
@@ -75,7 +76,7 @@ class ExpandingSearchInput extends Component {
             ...iconAltStyling,
             ...(expanded && expandedIconStyles),
           }}
-          bg='white'
+          bg="white"
           size={fontSizes.large}
           color={colors.gray.default}
         />

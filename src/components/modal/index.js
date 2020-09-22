@@ -5,23 +5,22 @@ import PropTypes from 'prop-types'
 import IconButton from '../icon-button'
 import Flex from '../flex'
 
-import { 
-  Header, 
-  Title, 
+import {
+  Header,
+  Title,
   ProximusTitle,
   Subtitle,
-  Description, 
-  InnerContent, 
-  FadeOverlay, 
+  Description,
+  InnerContent,
+  FadeOverlay,
   ContentWrapper,
   Actions,
-  Footer
+  Footer,
 } from './styles'
 
 ReactModal.setAppElement('body')
 
 class ModalWrapper extends Component {
-  
   static defaultProps = {
     isOpen: false,
     contentLabel: '',
@@ -33,7 +32,7 @@ class ModalWrapper extends Component {
     height: 'fit-content',
     scrollable: true,
     centerTitle: false,
-    hideCloseButton: false
+    hideCloseButton: false,
   }
 
   static propTypes = {
@@ -57,19 +56,19 @@ class ModalWrapper extends Component {
   }
 
   state = {
-    contentSpacing: 0
+    contentSpacing: 0,
   }
 
   afterOpenModal = () => {
     const headerHeight = this.headerRef ? this.headerRef.clientHeight : 0
     const footerHeight = this.footerRef ? this.footerRef.clientHeight : 0
-    let contentSpacing = headerHeight + footerHeight 
+    const contentSpacing = headerHeight + footerHeight
 
-    this.setState({contentSpacing})
+    this.setState({ contentSpacing })
   }
 
   render() {
-    const { contentSpacing } =this.state
+    const { contentSpacing } = this.state
 
     const {
       onClose,
@@ -96,25 +95,25 @@ class ModalWrapper extends Component {
 
     const styleOverrides = {
       closeBtn: {
-        position: "absolute",
+        position: 'absolute',
         top: 25,
         right: 25,
-        zIndex: 9999
+        zIndex: 9999,
       },
       content: {
         maxHeight: scrollable ? `calc(95vh - 5em - ${contentSpacing}px)` : 'none',
         maxWidth: 1100,
-        overflow: scrollable ? 'auto' : 'visible'
+        overflow: scrollable ? 'auto' : 'visible',
       },
       centerText: {
-        textAlign: 'center'
+        textAlign: 'center',
       },
       backBtn: {
-        position: "absolute",
+        position: 'absolute',
         top: 25,
         left: 20,
-        zIndex: 1
-      }
+        zIndex: 1,
+      },
     }
 
     const modalStyles = {
@@ -137,24 +136,19 @@ class ModalWrapper extends Component {
         maxHeight: '95vh',
         width,
         height,
-        ...style
-      }
+        ...style,
+      },
     }
 
     const renderCloseIcon = () => (
-      <IconButton
-        icon='Close'
-        variant='clear'
-        style={styleOverrides.closeBtn}
-        onClick={onClose}
-      />
+      <IconButton icon="Close" variant="clear" style={styleOverrides.closeBtn} onClick={onClose} />
     )
 
     const renderBackButton = () => (
       <IconButton
         onClick={onBack}
-        variant='clear'
-        icon='ArrowLeft'
+        variant="clear"
+        icon="ArrowLeft"
         style={styleOverrides.backBtn}
       />
     )
@@ -170,10 +164,10 @@ class ModalWrapper extends Component {
           {onClose && !hideCloseButton && renderCloseIcon()}
           {onBack && renderBackButton()}
 
-          <Header ref={node => this.headerRef = node}>
+          <Header ref={node => (this.headerRef = node)}>
             {title && (
-              <Flex 
-                width="100%" 
+              <Flex
+                width="100%"
                 justifyContent={centerTitle ? 'center' : 'flex-start'}
                 pl={onBack && !centerTitle ? '2.5em' : 0}
               >
@@ -181,12 +175,11 @@ class ModalWrapper extends Component {
                 {proximusTitle && <ProximusTitle>{`\xa0| ${proximusTitle}`}</ProximusTitle>}
               </Flex>
             )}
-            
+
             {subtitle && <Subtitle>{subtitle}</Subtitle>}
             {description && <Description centerText={centerTitle}>{description}</Description>}
             {actions && <Actions>{actions}</Actions>}
           </Header>
-      
 
           <ContentWrapper style={wrapperStyle}>
             {scrollable && <FadeOverlay />}
@@ -199,7 +192,7 @@ class ModalWrapper extends Component {
             </InnerContent>
           </ContentWrapper>
 
-          {footer && <Footer ref={node => this.footerRef = node}>{footer}</Footer>}
+          {footer && <Footer ref={node => (this.footerRef = node)}>{footer}</Footer>}
         </>
       </ReactModal>
     )

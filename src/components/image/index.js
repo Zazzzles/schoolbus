@@ -10,7 +10,7 @@ const SHAPES = {
   rounded: 'rounded',
 }
 
-const shape = ({shape, theme}) => {
+const shape = ({ shape, theme }) => {
   if (shape === SHAPES.round) {
     return { borderRadius: theme.radii.full }
   }
@@ -37,7 +37,7 @@ Image.displayName = 'Image'
 
 Image.propTypes = {
   ...propTypes.layout,
-  ...propTypes.shadow
+  ...propTypes.shadow,
 }
 
 Image.defaultProps = {

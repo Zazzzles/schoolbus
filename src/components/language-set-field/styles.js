@@ -7,15 +7,15 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   border-radius: ${({ theme }) => theme.radii.small};
-  background-color: ${({theme}) => theme.colors.gray.xxlight};
+  background-color: ${({ theme }) => theme.colors.gray.xxlight};
   margin-bottom: 1em;
 `
 
 export const Inner = styled.div`
   width: 14em;
-  border: solid 1px ${({theme}) => theme.colors.gray.xlight};
+  border: solid 1px ${({ theme }) => theme.colors.gray.xlight};
   border-radius: ${({ theme }) => theme.radii.small};
-  background-color: ${({theme}) => theme.colors.white};
+  background-color: ${({ theme }) => theme.colors.white};
   height: 100%;
   display: flex;
   align-items: center;

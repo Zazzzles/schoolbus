@@ -20,13 +20,13 @@ export default {
   parameters: {
     docs: {
       description: {
-        component: 'Displays a list of options when clicking on the overflow icon.'
-      }
+        component: 'Displays a list of options when clicking on the overflow icon.',
+      },
     },
-  }
+  },
 }
 
-export const Base = (args) => <OverflowMenu {...args} />
+export const Base = args => <OverflowMenu {...args} />
 Base.args = {
-  options
+  options,
 }

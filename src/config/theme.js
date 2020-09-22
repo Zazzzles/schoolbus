@@ -45,14 +45,23 @@ export const colors = {
   red: ['#FFF5F5', '#f6bdbb', '#ed7470', '#e53933', '#9f1814', '#71110e', '#FB7D7D'],
   yellow: '#f8b31c',
   orange: ['#fff8eb', '#ffa400'],
-  answerColors: ['#F15152', '#3480EE', '#1E9E2F', '#FFA400']
+  answerColors: ['#F15152', '#3480EE', '#1E9E2F', '#FFA400'],
 }
 
 colors.primary = colors.orange[1]
 const orangeColorAliases = ['primaryLight', 'primary']
 addAliases(colors.orange, orangeColorAliases)
 
-const grayColorAliases = ['xxxlight', 'xxlight', 'xlight', 'light', 'default', 'dark', 'xdark', 'xxdark']
+const grayColorAliases = [
+  'xxxlight',
+  'xxlight',
+  'xlight',
+  'light',
+  'default',
+  'dark',
+  'xdark',
+  'xxdark',
+]
 addAliases(colors.gray, grayColorAliases)
 
 const fallbackFontStack = `-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif`
@@ -61,7 +70,15 @@ const fontsAliases = ['Montserrat', 'OpenSans']
 addAliases(fonts, fontsAliases)
 
 export const fontWeights = [100, 200, 300, 400, 500, 600, 700]
-export const fontWeightsAliases = ['hairline', 'thin', 'light', 'medium', 'semi', 'bold', 'extrabold']
+export const fontWeightsAliases = [
+  'hairline',
+  'thin',
+  'light',
+  'medium',
+  'semi',
+  'bold',
+  'extrabold',
+]
 addAliases(fontWeights, fontWeightsAliases)
 
 export const lineHeights = [1.0, 1.25, 1.375, 1.5, 1.625, 2.0]
@@ -78,11 +95,20 @@ export const shadows = [
   `${baseShadow}0 4px 8px 0 ${shadowColor}`,
   `${baseShadow}0 12px 12px 0 ${shadowColor}`,
   `${baseShadow}0 24px 24px 0 ${shadowColor}`,
-  `${baseShadow}0 0 20px 0 rgba(0,0,0,.05)`
+  `${baseShadow}0 0 20px 0 rgba(0,0,0,.05)`,
 ]
 
 export const radii = [0, '2px', '5px', '10px', '15px', '20px', '30px', '9999px']
-export const radiiAliases = ['none', 'xsmall', 'small', 'medium', 'large', 'xlarge', 'xxlarge', 'full']
+export const radiiAliases = [
+  'none',
+  'xsmall',
+  'small',
+  'medium',
+  'large',
+  'xlarge',
+  'xxlarge',
+  'full',
+]
 addAliases(radii, radiiAliases)
 
 export const zIndices = [1, 2, 3, 4, 5]

@@ -6,7 +6,7 @@ export default {
   component: ExpandingSearchInput,
 }
 
-export const Base = (args) => <ExpandingSearchInput {...args} />
+export const Base = args => <ExpandingSearchInput {...args} />
 Base.args = {
   placeholder: 'Search...',
   label: 'Search',

@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 function getVerticalOffset(props) {
-  const { renderToBottom, yOffset, position } = props 
+  const { renderToBottom, yOffset, position } = props
   const isCentered = ['leftCenter', 'rightCenter'].includes(position)
   const offset = `calc(${isCentered ? '50%' : '100%'} + ${isCentered ? '0px' : yOffset})`
 
@@ -9,10 +9,10 @@ function getVerticalOffset(props) {
 }
 
 function getHorizontalOffset(props) {
-  const { renderToLeft, xOffset, position } = props 
+  const { renderToLeft, xOffset, position } = props
 
   const isCentered = ['bottomCenter', 'topCenter'].includes(position)
-  const offset = `calc(${isCentered ? '50%' : '100%'} + ${ isCentered ? '0px' : xOffset })`
+  const offset = `calc(${isCentered ? '50%' : '100%'} + ${isCentered ? '0px' : xOffset})`
 
   return `${renderToLeft && !isCentered ? 'right:' : 'left:'} ${offset}`
 }
@@ -31,7 +31,7 @@ function getTransform(props) {
 }
 
 function getTransformOrigin(props) {
-  const { renderToBottom, renderToLeft } = props 
+  const { renderToBottom, renderToLeft } = props
   const xOrigin = renderToBottom ? 'top' : 'bottom'
   const yOrigin = renderToLeft ? 'right' : 'left'
 
@@ -48,7 +48,7 @@ function getArrowPosition(props) {
       left: 50%;
       ${renderToBottom ? 'top' : 'bottom'}: -5px;
     `
-  } 
+  }
   return `
     transform: translateY(-50%) rotate(45deg);
     top: 50%;
@@ -72,7 +72,7 @@ export const ContentWrapper = styled.div`
   position: absolute;
   background-color: ${({ theme }) => theme.colors.white};
   border-radius: ${({ theme }) => theme.radii.small};
-  box-shadow: 0 0 15px 5px rgba(0,0,0,.2);
+  box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.2);
   ${props => getVerticalOffset(props)};
   ${props => getHorizontalOffset(props)};
   z-index: ${({ theme }) => theme.zIndices[4]};
@@ -80,13 +80,13 @@ export const ContentWrapper = styled.div`
   transform-origin: ${props => getTransformOrigin(props)};
   transition: 80ms transform ease-out;
   &::before {
-    display: ${({ arrow }) => arrow ? 'block' : 'none'};
+    display: ${({ arrow }) => (arrow ? 'block' : 'none')};
     content: '';
     position: absolute;
     height: 12px;
     width: 12px;
     background-color: inherit;
-    ${props => getArrowPosition(props)}; 
+    ${props => getArrowPosition(props)};
     z-index: -1;
   }
 `

@@ -6,5 +6,5 @@ export default {
   component: Spinner,
 }
 
-export const Base = (args) => <Spinner {...args} />
+export const Base = args => <Spinner {...args} />
 Base.args = { size: '5em', margin: '3em' }

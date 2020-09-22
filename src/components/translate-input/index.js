@@ -18,7 +18,7 @@ class TranslationInput extends Component {
   static defaultProps = {
     type: 'lesson',
     onChange: () => {},
-    onBlur: () => {}
+    onBlur: () => {},
   }
 
   static propTypes = {
@@ -59,7 +59,7 @@ class TranslationInput extends Component {
       toast('Oops! Please add all required translations.')
       return
     }
-    
+
     formik.setFieldValue(name, languageSets)
     this.toggleModal()
   }
@@ -71,7 +71,7 @@ class TranslationInput extends Component {
 
     const prevValues = values[name]
     const [defaultValue, ...rest] = prevValues
-    const updatedDefault = {...defaultValue, value}
+    const updatedDefault = { ...defaultValue, value }
 
     return setFieldValue(name, [updatedDefault, ...rest])
   }

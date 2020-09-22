@@ -26,7 +26,7 @@ export const Description = styled.p`
   font-weight: ${({ theme }) => theme.fontWeights.normal};
   color: ${({ theme }) => theme.colors.gray.default};
   padding-top: 1.5em;
-  text-align: ${({ centerText }) => centerText ? 'center' : 'left'};
+  text-align: ${({ centerText }) => (centerText ? 'center' : 'left')};
 `
 
 export const Actions = styled.div`
@@ -41,7 +41,7 @@ export const ContentWrapper = styled.div`
 
 export const InnerContent = styled.div`
   padding: 1em;
-  margin: ${({ hasHeader }) => hasHeader ? '0 -1em' : '-2em -1em 0'};
+  margin: ${({ hasHeader }) => (hasHeader ? '0 -1em' : '-2em -1em 0')};
   overflow: auto;
 `
 
@@ -57,6 +57,11 @@ export const FadeOverlay = styled.div`
   bottom: 0;
   left: 0;
   right: 0;
-  background: linear-gradient(white 0%, transparent 1.5em, transparent calc(100% - 1em), white 100% );
+  background: linear-gradient(
+    white 0%,
+    transparent 1.5em,
+    transparent calc(100% - 1em),
+    white 100%
+  );
   pointer-events: none;
 `
