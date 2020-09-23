@@ -1,0 +1,128 @@
+
+.react-datepicker-wrapper {
+    width: 100% !important;
+  }
+  
+  .react-datepicker {
+    font-family: inherit !important;
+  }
+  
+  .react-datepicker__input-container {
+    width: 100% !important;
+  }
+  
+  .react-datepicker__day--keyboard-selected {
+    background-color: #FFA400 !important;
+  }
+  
+  .react-datepicker__header {
+    background-color: #FFA400 !important;
+  }
+  
+  .react-datepicker__current-month,
+  .react-datepicker__day-names > * {
+      color: #FFF !important;
+  }
+  
+  .react-datepicker__triangle::before {
+    border-bottom-color: #FFA400 !important;
+  }
+  
+  .react-datepicker__navigation--next {
+    border-left-color: #FFF !important;
+  }
+  
+  .react-datepicker__navigation--previous {
+    border-right-color: #FFF !important;
+  }
+  
+  .react-datepicker__day--outside-month {
+      color: #6f6f6f !important;
+  }
+  
+  .react-datepicker-popper[data-placement^='bottom'] .react-datepicker__triangle, .react-datepicker-popper[data-placement^='bottom'] .react-datepicker__triangle::before {
+    display: none !important;
+  }
+  
+  .react-datepicker__header {
+    border: none !important;
+  }
+  
+  .react-datepicker {
+    box-shadow: 0 0 2px 0 rgba(0,0,0,.0625), 0 4px 8px 0 rgba(0, 0, 0, 0.12) !important;
+      border: none !important;
+  }
+  
+  .react-tel-input > input.form-control {
+    background-color: #f1f1f1 !important;
+    border: none !important;
+    height: 38px !important;
+    width: 100% !important;
+    color: #47494b;
+  }
+  
+  .react-tel-input > input.form-control:disabled {
+    background-color: #fff !important;
+    border: 1px solid #dadada !important;
+    color: #47494b;
+  }
+  
+  .react-tel-input .flag-dropdown.open-dropdown .selected-flag,
+  .react-tel-input .flag-dropdown:hover .selected-flag,
+  .react-tel-input .flag-dropdown.open-dropdown,
+  .react-tel-input > .flag-dropdown,
+  .react-tel-input .selected-flag {
+    background-color: transparent !important;
+    border: none !important;
+    z-index: inherit !important;
+  }
+  
+  .react-tel-input .selected-flag {
+    padding-left: 12px !important;
+  }
+  
+  .clock-wrapper {
+    z-index: 1;
+    font-family: inherit
+  }
+  
+  .clock-wrapper .react-timekeeper {
+    font-family: inherit;
+    box-shadow: none;
+  }
+  
+  .clock-wrapper .react-timekeeper__top-bar {
+    background-color: #FFA400;
+    padding: 8px;
+    font-family: inherit;
+  }
+  
+  .react-timekeeper__top-bar .react-timekeeper-button-reset {
+    transform: translateY(1px);
+    padding: 0 0 0 8px;
+  }
+  
+  .clock-wrapper .css-1se0bia,
+  .clock-wrapper .css-eg4puu,
+  .clock-wrapper .css-n0t0em {
+    color: #000;
+    font-weight: 400;
+  }
+  
+  .clock-wrapper .react-timekeeper__tb-hour,
+  .clock-wrapper .react-timekeeper__tb-minute,
+  .clock-wrapper .react-timekeeper__tb-colon,
+  .clock-wrapper .react-timekeeper-button-reset {
+    color: #FFF;
+    font-size: 1em;
+    font-weight: 700;
+    font-family: inherit;
+    background-color: #FFA400;
+  }
+  
+  .clock-wrapper .react-timekeeper__clock-hand,
+  .clock-wrapper .react-timekeeper__hand-circle-outer {
+    fill: #FCD286;
+    stroke: #FCD286;
+  }
+  

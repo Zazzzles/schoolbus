@@ -1,10 +1,10 @@
 const sharedPlugins = [
-  'require-context-hook',
   '@babel/plugin-proposal-class-properties',
   '@babel/plugin-proposal-object-rest-spread',
   '@babel/plugin-proposal-optional-chaining',
   'babel-plugin-styled-components'
 ]
+
 
 const runtimePlugins = [['@babel/plugin-transform-runtime', {version: '7.9.2', helpers: true}]]
 
@@ -16,7 +16,7 @@ const setPresets = moduleValue => [
 module.exports = {
   env: {
     development: {
-      presets: setPresets(false),
+      presets: setPresets(process.env.BABEL_MODULE || false),
       plugins: [...sharedPlugins, ...runtimePlugins]
     },
     production: {

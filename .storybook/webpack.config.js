@@ -24,28 +24,7 @@ module.exports = async ({ config }) => {
   config.module.rules[0].exclude = function (modulePath) {
     return /node_modules/.test(modulePath) &&
       !/node_modules\/@lessondesk\/material-icons/.test(modulePath);
-  },
-
-  // NOTE: Override loader
-  config.module.rules[5] = {
-        test: /\.css$/,
-        use: [
-          {
-            loader: 'style-loader',
-          },
-          {
-            loader: 'css-loader',
-            options: {
-              sourceMap: true,
-            },
-          },
-        ],
-      }
-
-      config.module.rules.push({
-          test: /\.(woff|woff2|eot|ttf|svg)$/,
-          use: 'url-loader'
-      })
+  }
 
   return config
 };

@@ -6,7 +6,11 @@ export default {
   title: 'Inputs/ Time Input',
   component: TimeInput,
   parameters: {
-    formik: true,
+    formik: {
+      initialValues: {
+        name: '',
+      },
+    },
     docs: {
       description: {
         component: 'An input used to select the time of day.',

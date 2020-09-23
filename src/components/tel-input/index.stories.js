@@ -6,7 +6,11 @@ import defaultInputArgs from '../../config/default-input-args'
 export default {
   title: 'Inputs/ Tel Input',
   parameters: {
-    formik: true,
+    formik: {
+      initialValues: {
+        name: '',
+      },
+    },
     component: TelInput,
     docs: {
       description: {
