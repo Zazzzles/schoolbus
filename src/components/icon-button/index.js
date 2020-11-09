@@ -19,6 +19,7 @@ import ArrowLeft from '@lessondesk/material-icons/dist/ArrowLeft'
 import Phone from '@lessondesk/material-icons/dist/Phone'
 import Email from '@lessondesk/material-icons/dist/Email'
 import Magnify from '@lessondesk/material-icons/dist/Magnify'
+import FormatLineSpacing from '@lessondesk/material-icons/dist/FormatLineSpacing'
 import ChevronLeft from '@lessondesk/material-icons/dist/ChevronLeft'
 import ChevronRight from '@lessondesk/material-icons/dist/ChevronRight'
 
@@ -78,6 +79,7 @@ const ICON_MAP = {
   Phone,
   Email,
   Magnify,
+  FormatLineSpacing,
   ChevronLeft,
   ChevronRight,
 }
