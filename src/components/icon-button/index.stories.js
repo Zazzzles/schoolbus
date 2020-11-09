@@ -24,7 +24,7 @@ export const variant = () => (
       variant <em>(E.G. primary, secondary, light, clear, danger)</em>
     </Text>
     <Flex m=".5em 0 2em">
-      <IconButton icon='Drag' variant="primary" mr="1em" />
+      <IconButton variant="primary" mr="1em" />
       <IconButton variant="secondary" mr="1em" />
       <IconButton variant="light" mr="1em" />
       <IconButton variant="clear" mr="1em" />
